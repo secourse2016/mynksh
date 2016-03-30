@@ -1,0 +1,20 @@
+{
+  "name"         : "mynksh",
+  "version"      : "0.0.0",
+  "description"  : "Simple airline application.",
+  "main"         : "server.js",
+  "private": true,
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "dependencies" : {
+    "body-parser": "~1.12.4",
+    "express": "~4.12.4",
+    "mongodb": "~2.0.55",
+    "swig": "~1.4.2",
+    "should": ">= 0.0.1",
+    "morgan"     : "~1.2.2",
+    "body-parser": "~1.5.2",
+    "method-override": "~2.1.2"
+    }
+}
