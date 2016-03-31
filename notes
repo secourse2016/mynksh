@@ -1,15 +1,31 @@
-Starting bootstrap:
+Bootstrap:
 
     Download the latest release.
-    Clone the repo: git clone https://github.com/twbs/bootstrap.git.
-    Install with Bower: bower install bootstrap.
     Install with npm: npm install bootstrap@3.
-    Install with Meteor: meteor add twbs:bootstrap.
-    Install with Composer: composer require twbs/bootstrap.
-
+    bootswatch.com for themes
+    getbootstrap.com/compnents
 
 Angular:
 	ng-app="store" attach the application module to the page
-	ng- controller="StoreController as store" attach a controller to the page
+	ng-controller="StoreController as store" attach a controller to the page
 	ng-show/ ng-hide display a section based on an Experession
 	ng-repeat to repeat a section in an Array
+	ng-source to evaluate before loading data
+	ng-click to set a certain a value
+	ng-init to evaluate an expression in the current scope
+	ng-submit calls a function when a form is submitted
+	ng-include takes a variable with the name of the file to include
+	ng-class="{ active: expression}" takes name of class and expression to evaluate
+	ng-model binds the form element value to the property
+	limit filters
+		{{data | filter:options}}
+		date:'DD/MM/YYYY hh:mma'
+		uppercase
+		limitTo:8
+		orderBy:'-date' -for descending order
+	a controller can be used to asses the values and return desired value as a way of pulling logic from html pages
+	to add validation first turn off default html validation novalidate then mark required fields required {{FormName.$valid}}
+	default classes for angular
+		ng-pristine it has no data
+		ng-dirty some data is entered
+		ng-invalid/ ng-valid checks validity

@@ -39,7 +39,8 @@
 |-- views  //error and layout
 `-- app.js
 `-- db.js
-`-- guides
+`-- structure
+`-- notes
 `-- npm-debug.log
 `-- package.json
 `-- server.js
