@@ -1,5 +1,5 @@
 /* Create Angular App Instance */
-App = angular.module('iberia', ['ui.bootstrap', 'ngRoute']);
+App = angular.module('IBERIA', ['ui.bootstrap', 'ngRoute']);
 
 /**
  * Angular Routes
@@ -19,15 +19,15 @@ App.config(function($routeProvider) {
             controller  : 'flightsCtrl'
         });
 
-        // route for the confirmation page
-        .when('/confirm', {
-            templateUrl : '/partials/confirmation.html',
-            controller  : ''
-        });
+        // // route for the confirmation page
+        // .when('/confirm', {
+        //     templateUrl : '/partials/confirmation.html',
+        //     controller  : ''
+        // });
 
-        // route for the payment page
-        .when('/payment', {
-            templateUrl : '/partials/payment.html',
-            controller  : ''
-        });
+        // // route for the payment page
+        // .when('/payment', {
+        //     templateUrl : '/partials/payment.html',
+        //     controller  : ''
+        // });
 });
