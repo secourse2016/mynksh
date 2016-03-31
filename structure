@@ -3,14 +3,19 @@
 |  `-- app.js
 |  |-- routes
 |  |  `-- routes.js
-|-- views
-|  `-- error.html
 |--config
 |  `-- db.js
 |-- assets //images will be here
 |-- modules
 |  `-- airports.json
 |-- public
+|  |-- partials
+|  |  `-- confirmation.html
+|  |  `-- landingPage.html
+|  |  `-- outgoingReturnFlights.html
+|  |  `-- payment.html
+|  |-- views
+|  |  `-- error.html
 |  |-- conrollers
 |  |  `-- mainCtrl.js
 |  |-- js
@@ -21,11 +26,6 @@
 |  |  `-- jquery-2.2.0.min.js
 |  |  `-- npm.js
 |  |  `-- ui-bootstrap-tpls-1.2.5.min.js
-|  |-- partials
-|  |  `-- confirmation.html
-|  |  `-- landingPage.html
-|  |  `-- outgoingReturnFlights.html
-|  |  `-- payment.html
 |  |-- css
 |  |  `-- bootstrap.css
 |  |  `-- bootstrap.css.map
@@ -49,4 +49,4 @@
 `-- structure
 `-- notes
 `-- .gitignore
-`-- npm-debug.log
+`-- npm-debug.lo

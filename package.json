@@ -1,7 +1,7 @@
 {
   "name"         : "mynksh",
-  "version"      : "0.0.0",
-  "description"  : "Simple airline application.",
+  "version"      : "0.0.1",
+  "description"  : "Iberia airline application.",
   "main"         : "server.js",
   "private": true,
   "scripts": {
@@ -23,5 +23,3 @@
     "istanbul": "~0.4.2"
   }
 }
-
-{}
