@@ -1,0 +1,46 @@
+|-- node_modules
+|--assets //images will be here
+|--modules
+|  `--airports.json
+|-- public
+|  |-- conrollers
+|  |  `--mainCtrl.js
+|  |-- js
+|  |  `--angular.min.js
+|  |  `--angular-route.min.js
+|  |  `--bootstrap.js
+|  |  `--bootstrap.min.js
+|  |  `--jquery-2.2.0.min.js
+|  |  `--npm.js
+|  |  `--ui-bootstrap-tpls-1.2.5.min.js
+|  |-- partials
+|  |  `--confirmation.html
+|  |  `--landingPage.html
+|  |  `--outgoingReturnFlights.html
+|  |-- css
+|  |  `--bootstrap.css
+|  |  `--bootstrap.css.map
+|  |  `--bootstrap.min.css
+|  |  `--bootstrap.min.css.map
+|  |  `--bootstrap-theme.css
+|  |  `--bootstrap-theme.css.map
+|  |  `--bootstrap-theme.min.css
+|  |  `--bootstrap-theme.min.css.map
+|  |-- fonts
+|  |  `--glyphicons-halflings-regular.eot
+|  |  `--glyphicons-halflings-regular.svg
+|  |  `--glyphicons-halflings-regular.ttf
+|  |  `--glyphicons-halflings-regular.woff
+|  |  `--glyphicons-halflings-regular.woff2
+|  `-- index.html
+|  `-- cors.js
+|-- routes
+|  `-- routes.js
+|-- views  //error and layout
+`-- app.js
+`-- db.js
+`-- guides
+`-- npm-debug.log
+`-- package.json
+`-- server.js
+`-- README.js
