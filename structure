@@ -18,6 +18,8 @@
 |  |  `-- error.html
 |  |-- conrollers
 |  |  `-- mainCtrl.js
+|  |-- conrollers
+|  |  `-- flightsSrv.js
 |  |-- js
 |  |  `-- angular.min.js
 |  |  `-- angular-route.min.js
