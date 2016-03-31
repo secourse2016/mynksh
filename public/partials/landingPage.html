@@ -4,8 +4,8 @@
   <title> Landing Page </title>
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   <!-- <script src="./js/angular.min.js"></script> -->
-  <!-- <script type="text/javascript" src="./landingPage.js"></script> -->
-  <script type="text/javascript">// <![CDATA[
+  <script type="text/javascript" src="./landingPage.js"></script>
+  <!-- <script type="text/javascript">// <![CDATA[
     $(function(){
   $('.carousel').carousel({
         interval: 300
@@ -14,14 +14,26 @@
   });
 
 
-    //  angular.module('dateInputExample', [])
-    //    .controller('DateController', ['$scope', function($scope) {
-    //      $scope.example = {
-    //        value: new Date(2013, 9, 22)
-    //      };
-    //    }]);
-
-
+</script> -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script>
+  $(function() {
+    $("input:checkbox").on('click', function() {
+      // in the handler, 'this' refers to the box clicked on
+      var $box = $(this);
+      if ($box.is(":checked")) {
+        // the name of the box is retrieved using the .attr() method
+        // as it is assumed and expected to be immutable
+        var group = "input:checkbox[name='" + $box.attr("name") + "']";
+        // the checked state of the group/box on the other hand will change
+        // and the current value is retrieved using .prop() method
+        $(group).prop("checked", false);
+        $box.prop("checked", true);
+      } else {
+        $box.prop("checked", false);
+      }
+    });
+  });
 </script>
 
   <style>
@@ -82,6 +94,7 @@ div.pos{
 .panel{
   background: transparent;
 }
+
 
 </style>
 
@@ -158,7 +171,7 @@ div.pos{
 
     <div class="form-group">
       <label class="control-label col-sm-2 text-left" > To: </label>
-      <div class="col-md-4" ng-controller="ToCtrl as ">
+      <div class="col-md-4" ng-controller="ToCtrl ">
         <input type="text" class="form-control" data-ng-model="to" placeholder="Destination city" />
   </div>
 </div>
@@ -212,6 +225,20 @@ div.pos{
 
 </div>
 </div>
+</div>
+
+<div class="form-group">
+
+  <label class="control-label col-sm-2 text-left"> One-Way</label>
+  <div class="col-md-4 radio">
+    <input type="checkbox" name="mobil[1][]" id="optionsRadios1"  value="1" checked class="radi"/></div>
+</div>
+<div class="form-group">
+  <label class="control-label col-sm-2 text-left"> Round Trip Flight </label>
+  <div class="col-md-4 radio">
+    <input type="checkbox" name="mobil[1][]" id="optionsRadios2" class="radi" value="0"/></div>
+
+
 </div>
 
 
