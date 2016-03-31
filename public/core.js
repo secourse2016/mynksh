@@ -10,12 +10,24 @@ App.config(function($routeProvider) {
         // route for the landingPage page
         .when('/', {
             templateUrl : '/partials/landingPage.html',
-            controller  : 'mainCtrl'
+            controller  : 'LandingCtrl'
         })
 
-        // route for the Landing page
+        // route for the OutgoingReturnFlights page
         .when('/flights', {
             templateUrl : '/partials/outgoingReturnFlights.html',
             controller  : 'flightsCtrl'
+        });
+
+        // route for the OutgoingReturnFlights page
+        .when('/confirm', {
+            templateUrl : '/partials/confirmation.html',
+            controller  : ''
+        });
+
+        // route for the Landing page
+        .when('/payment', {
+            templateUrl : '/partials/payment.html',
+            controller  : ''
         });
 });
