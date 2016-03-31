@@ -3,11 +3,11 @@ var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
-var db = require('./db.js');
+var db = require('../config/db.js');
 var htmlTemplate = require('angular-template');
 var bootstrap = require('bootstrap');
 var cons = require('consolidate');
-require('./routes')(app);
+require('./routes/routes.js')(app);
 var app = express();
 
 // view engine setup
@@ -20,7 +20,7 @@ app.set('view engine', 'html');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-;app.use(express.static(path.join(__dirname, 'public')));
+;app.use(express.static(path.join(__dirname, '../public')));
 
 // app.use('/', routes);
 // app.use('/users', users);
