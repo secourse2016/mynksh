@@ -7,7 +7,7 @@ var db = require('./db.js');
 var htmlTemplate = require('angular-template');
 var bootstrap = require('bootstrap');
 var cons = require('consolidate');
-var routes = require('./routes/routes.js');
+require('./routes')(app);
 var app = express();
 
 // view engine setup
@@ -22,7 +22,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 ;app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', routes);
+// app.use('/', routes);
 // app.use('/users', users);
 
 // catch 404 and forward to error handler
