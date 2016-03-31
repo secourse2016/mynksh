@@ -1,0 +1,64 @@
+Bootstrap:
+
+    Download the latest release.
+    Install with npm: npm install bootstrap@3.
+    bootswatch.com for themes
+    getbootstrap.com/compnents
+
+Angular:
+	
+	ng-app="store" attach the application module to the page
+	ng-controller="StoreController as store" attach a controller to the page
+	ng-show/ ng-hide display a section based on an Experession
+	ng-repeat to repeat a section in an Array
+	ng-source to evaluate before loading data
+	ng-click to set a certain a value
+	ng-init to evaluate an expression in the current scope
+	ng-submit calls a function when a form is submitted
+	ng-include takes a variable with the name of the file to include
+	ng-class="{ active: expression}" takes name of class and expression to evaluate
+	ng-model binds the form element value to the property
+	ng-view a directive the include the template of the current route
+	ngAnimate adds in animation
+
+	Limit filters
+		{{data | filter:options}}
+		date:'DD/MM/YYYY hh:mma'
+		uppercase
+		limitTo:8
+		orderBy:'-date' -for descending order
+	
+	a controller can be used to asses the values and return desired value as a way of pulling logic from html pages
+	to add validation first turn off default html validation novalidate then mark required fields required {{FormName.$valid}}
+	
+	$routeProvider handdles routing
+		.when('/',{
+			templateUrl: URL,
+			controller: ctrlName
+		})
+
+	Default classes for angular
+		ng-pristine it has no data
+		ng-dirty some data is entered
+		ng-invalid/ ng-valid checks validity
+	Using Directives
+		donot use self closing tafs as some browsers dont like that
+		allows you to write HTML that expressess the behavior of your application
+		template-expanding Directives
+			defiens a custom tag or attribute that is expanded or replaced and can include control logic
+		can be used for expressing UI calling events and registering event handlers
+		app.directive(directiveName,fuction that returns configuration object)
+			restrict : E type of directive (E for an element) (A for attribute)
+			templateUrl: URL of a partial view
+			controller:function(){}
+			controllerAs: alias of controller
+		<h3 product-title></h3> Element Directive can be used for UI widgets and Attribute Directive for mixin behaviots
+	
+	Using modules
+		var app = angular.module(moduleName) make a diffrent module for every partial and include it in the main contoller dependecy
+	
+	Services
+		$http.get(filename, {additional keys}) to fetch JSON data from a web service and returns promise object with .success() and .error() http has .post and .delete functions also
+		$log logging messages to the javaScript console
+		$filter filtering an array
+		app.controller(Name, [ServiceName, function(ServiceName){}]) Dependency Injection

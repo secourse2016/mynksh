@@ -1,0 +1,54 @@
+|-- node_modules
+|-- app
+|  `-- app.js
+|  |-- routes
+|  |  `-- routes.js
+|--config
+|  `-- db.js
+|-- modules
+|  `-- airports.json
+|-- public
+|  |-- partials
+|  |  `-- confirmation.html
+|  |  `-- landingPage.html
+|  |  `-- outgoingReturnFlights.html
+|  |  `-- payment.html
+|  |-- views
+|  |  `-- error.html
+|  |-- conrollers
+|  |  `-- mainCtrl.js
+|  |-- services
+|  |  `-- flightsSrv.js
+|  |-- js
+|  |  `-- angular.min.js
+|  |  `-- angular-route.min.js
+|  |  `-- bootstrap.js
+|  |  `-- bootstrap.min.js
+|  |  `-- jquery-2.2.0.min.js
+|  |  `-- npm.js
+|  |  `-- ui-bootstrap-tpls-1.2.5.min.js
+|  |-- css
+|  |  `-- bootstrap.css
+|  |  `-- bootstrap.css.map
+|  |  `-- bootstrap.min.css
+|  |  `-- bootstrap.min.css.map
+|  |  `-- bootstrap-theme.css
+|  |  `-- bootstrap-theme.css.map
+|  |  `-- bootstrap-theme.min.css
+|  |  `-- bootstrap-theme.min.css.map
+|  |-- fonts
+|  |  `-- glyphicons-halflings-regular.eot
+|  |  `-- glyphicons-halflings-regular.svg
+|  |  `-- glyphicons-halflings-regular.ttf
+|  |  `-- glyphicons-halflings-regular.woff
+|  |  `-- glyphicons-halflings-regular.woff2
+|  |-- assets //images will be here
+|  `-- index.html
+|  `-- cors.js
+`-- package.json
+`-- server.js
+`-- README.md
+`-- structure
+`-- notes
+`-- .gitignore
+`-- npm-debug.lo

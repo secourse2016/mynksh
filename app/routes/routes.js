@@ -4,9 +4,8 @@
 module.exports = function(app,mongo) {
 
     /* GET ALL STATES ENDPOINT */
-    app.get('/api/data/codes', function(req, res) {
-      var codes =  require('../module/airports.json');
-      res.json( codes );
+    app.get('/api/data/airports', function(req, res) {
+      res.json('../modules/airports.json');
     });
 
     /* RENDER MAIN PAGE */
@@ -15,3 +14,4 @@ module.exports = function(app,mongo) {
     });
 
 };
+
