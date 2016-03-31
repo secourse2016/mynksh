@@ -1,1 +1,14 @@
+{
+  "name"         : "mynksh",
+  "version"      : "0.0.0",
+  "description"  : "Iberia airline system",
+  "main"         : "server.js",
+  "author"       : "Scotch",
+  "dependencies" : {
+    "express"    : "~3.4.4",
+    "morgan": "~1.6.1",
+    "body-parser": "~1.15.0",
+    "method-override":"~2.3.5"
+  }
+}
 
