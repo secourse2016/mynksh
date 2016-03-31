@@ -4,7 +4,7 @@
 App.factory('FlightsSrv', function ($http) {
      return {
          getAirportCodes : function() {
-           return $http.get('/api/data/codes');
+           return $http.get('/api/data/airports');
          },
          setSelectedOriginAirport: function(value) {
            this.selectedOriginAirport = value;
