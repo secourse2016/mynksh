@@ -1,0 +1,15 @@
+Starting bootstrap:
+
+    Download the latest release.
+    Clone the repo: git clone https://github.com/twbs/bootstrap.git.
+    Install with Bower: bower install bootstrap.
+    Install with npm: npm install bootstrap@3.
+    Install with Meteor: meteor add twbs:bootstrap.
+    Install with Composer: composer require twbs/bootstrap.
+
+
+Angular:
+	ng-app="store" attach the application module to the page
+	ng- controller="StoreController as store" attach a controller to the page
+	ng-show/ ng-hide display a section based on an Experession
+	ng-repeat to repeat a section in an Array
