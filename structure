@@ -18,7 +18,7 @@
 |  |  `-- error.html
 |  |-- conrollers
 |  |  `-- mainCtrl.js
-|  |-- conrollers
+|  |-- services
 |  |  `-- flightsSrv.js
 |  |-- js
 |  |  `-- angular.min.js

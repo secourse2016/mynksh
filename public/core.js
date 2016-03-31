@@ -7,15 +7,15 @@ App = angular.module('iberia', ['ui.bootstrap', 'ngRoute']);
 App.config(function($routeProvider) {
     $routeProvider
 
-        // route for the index page
+        // route for the landingPage page
         .when('/', {
-            templateUrl : '/partials/index.html',
+            templateUrl : '/partials/landingPage.html',
             controller  : 'mainCtrl'
         })
 
         // route for the Landing page
         .when('/flights', {
-            templateUrl : '/partials/landingPage.html',
+            templateUrl : '/partials/outgoingReturnFlights.html',
             controller  : 'flightsCtrl'
         });
 });
