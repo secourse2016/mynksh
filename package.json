@@ -1,7 +1,8 @@
 {
   "name"         : "mynksh",
   "version"      : "0.0.1",
-  "description"  : "Iberia airline application.",
+  "description"  : "Iberia airline system",
+  "author"       : "MYNKSH",
   "main"         : "server.js",
   "private": true,
   "scripts": {
