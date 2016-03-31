@@ -13,6 +13,65 @@
   });
   </script>
 
+  <style>
+
+  .main-text
+{
+    position: absolute;
+    top: 50px;
+    width: 96.66666666666666%;
+    color: #FFF;
+}
+.btn-min-block
+{
+    min-width: 170px;
+    line-height: 26px;
+}
+.btn-clear
+{
+    color: #FFF;
+    background-color: transparent;
+    border-color: #FFF;
+    margin-right: 15px;
+}
+.btn-clear:hover
+{
+    color: #000;
+    background-color: #FFF;
+}
+.form-group > label, .form-group > div {
+    display:inline-block;
+    vertical-align: middle;
+}
+div.pos{
+    width: 1000px;
+    height: 600px;
+
+
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    margin: auto;
+}
+.styled select {
+  background: transparent;
+  width: 150px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  height: 34px;
+}
+.styled {
+  border-radius: 3px;
+  overflow: hidden;
+
+}
+
+
+</style>
+
 
 <!-- jQuery library -->
 <script src="../js/jquery-2.2.0.min.js"></script>
@@ -66,15 +125,151 @@
   </a>
 </div>
 
+<div class="pos">
+<div class="main-text hidden-xs">
 
-  <div class="row">
-      <div class="col-sm-4">
-        <h2  class="text-left"> From: </h2>
-      </div>
-      <div class="col-sm-8">
-
-      </div>
+  <form class="form-horizontal">
+      <div class="form-group">
+          <label class="control-label col-sm-2 text-left" > From: </label>
+          <div class="col-md-4">
+           <input type="text" class="form-control" name="City1" value="City"
+           style="background-color:white;
+           border: solid 1px #6E6E6E;
+           height: 30px;
+           font-size:18px;
+           vertical-align:9px;color:#bbb"
+           onfocus="if(this.value == 'City') {
+          this.value = '';
+          this.style.color='#000';
+       }" />
+          </div>
     </div>
+
+    <div class="form-group">
+      <label class="control-label col-sm-2 text-left" > To: </label>
+      <div class="col-md-4">
+        <input type="text" class="form-control" name="City1" value="City"
+        style="background-color:white;
+        border: solid 1px #6E6E6E;
+        height: 30px;
+        font-size:18px;
+        vertical-align:9px;color:#bbb"
+        onfocus="if(this.value == 'City') {
+          this.value = '';
+          this.style.color='#000';
+        }" />
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="control-label col-sm-2 text-left" >  Outgoing: </label>
+  <div class="col-md-4">
+    <input type="date" value="31/3/2016"
+    style="background-color:white;
+    border: solid 1px #6E6E6E;
+    height: 30px;
+    font-size:18px;
+    vertical-align:9px;color:#bbb"
+    onfocus="if(this.value == '31/3/2016') {
+   this.value = '';
+   this.style.color='#000';
+}"/>
+</div>
+</div>
+
+
+<div class="form-group">
+  <label class="control-label col-sm-2 text-left" >  Returning: </label>
+  <div class="col-md-4">
+    <input type="date" value="31/3/2016"
+    style="background-color:white;
+    border: solid 1px #6E6E6E;
+    height: 30px;
+    font-size:18px;
+    vertical-align:9px;color:#bbb"
+    onfocus="if(this.value == '31/3/2016') {
+   this.value = '';
+   this.style.color='#000';
+}"/>
+</div>
+</div>
+<div class="form-group">
+  <label class="control-label col-sm-2 text-left" >  Number of tickets: </label>
+  <div class="col-md-4">
+    <div class="styled">
+      <select name="ticketsCount"  >
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+      <option value="7">7</option>
+      <option value="8">8</option>
+      <option value="9">9</option>
+      <option value="10">10</option>
+    </select>
+
+</div>
+    <!-- <select name="ticketsCount">
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+  <option value="5">5</option>
+  <option value="6">6</option>
+  <option value="7">7</option>
+  <option value="8">8</option>
+  <option value="9">9</option>
+  <option value="10">10</option>
+</select> -->
+</div>
+</div>
+
+
+<div class="span7 text-center">
+    <a class="btn btn-clear btn-sm btn-min-block " href="./outgoingReturnFlights.html">Search</a>
+  </div>
+</div>
+
+  </form>
+
+
+
+
+
+          <!-- <div class="col-sm-4">
+          <form action="" method="post" autocomplete="off" class="form-horizontal">
+            <div class="control-group">
+                 <label class="control-label "><font size="5" > From: </font></label>
+                 <div class="controls">
+                   <div class="input-append">
+
+                    <input type="text" name="City1" value="City"
+                    style="background-color:white;
+                    border: solid 1px #6E6E6E;
+                    height: 30px;
+                    font-size:18px;
+                    vertical-align:9px;color:#bbb"
+                    onfocus="if(this.value == 'City') {
+                   this.value = '';
+                   this.style.color='#000';
+                }" /><br>
+              </div>
+            </div>
+          </div>
+                    <br> -->
+
+
+
+
+                  <!-- <h1>
+                      From:</h1>
+                  <h3>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  </h3> -->
+
+          </div>
 
 
 
