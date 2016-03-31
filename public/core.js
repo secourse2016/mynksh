@@ -19,13 +19,13 @@ App.config(function($routeProvider) {
             controller  : 'flightsCtrl'
         });
 
-        // route for the OutgoingReturnFlights page
+        // route for the confirmation page
         .when('/confirm', {
             templateUrl : '/partials/confirmation.html',
             controller  : ''
         });
 
-        // route for the Landing page
+        // route for the payment page
         .when('/payment', {
             templateUrl : '/partials/payment.html',
             controller  : ''
