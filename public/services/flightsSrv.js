@@ -18,5 +18,11 @@ App.factory('FlightsSrv', function ($http) {
          getSelectedDestinationAirport: function() {
            return this.selectedDestinationAirport;
          }
+         setSelectedOutAirport: function(value) {
+           this.selectedDestinationAirport = value;
+         },
+         getSelectedReturnAirport: function() {
+           return this.selectedDestinationAirport;
+         }
      };
  });
