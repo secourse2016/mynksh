@@ -1,10 +1,10 @@
-
 $(function(){
     $('.carousel').carousel({
         interval: 300
       });
     $('.carousel-control.right').trigger('click');
 });
+
 
 $(function() {
     $("input:checkbox").on('click', function() {
@@ -21,26 +21,5 @@ $(function() {
       } else {
         $box.prop("checked", false);
       }
-    });
   });
-
- $(function() {
-// var landingPage=angular.module('landingPage',[]);
-
-app.controller("PanelController", function(){
-  
-  this.tab=1;
-
-  this.selectTab =function(setTab){
-    this.tab=setTab;
-  };
-
-  this.isSelected = function(checkTab){
-    return this.tab === checkTab;
-  };
-
- });
 });
-
-
-
