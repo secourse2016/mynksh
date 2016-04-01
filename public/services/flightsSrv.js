@@ -17,6 +17,30 @@ App.factory('FlightsSrv', function ($http) {
          },
          getSelectedDestinationAirport: function() {
            return this.selectedDestinationAirport;
+         },
+         setSelectedOutDate: function(value) {
+           this.selectedOutDate = value;
+         },
+         getSelectedOutDate: function() {
+           return this.selectedOutDate;
+         },
+         setSelectedReturnDate: function(value) {
+           this.selectedReturnDate = value;
+         },
+         getSelectedReturnDate: function() {
+           return this.selectedReturnDate;
+         },
+         setSelectedRoundTrip: function(value) {
+           this.selectedRoundTrip = value;
+         },
+         getSelectedRoundTrip: function() {
+           return this.selectedRoundTrip;
+         },
+         setSelectedNumberOfTickets: function(value) {
+           this.selectedNumberOfTickets = value;
+         },
+         getSelectedNumberOfTickets: function() {
+           return this.selectedNumberOfTickets;
          }
      };
  });

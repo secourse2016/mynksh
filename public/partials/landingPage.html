@@ -1,8 +1,6 @@
-<!-- <div> -->
+<div>
   
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-      <body  ng-app>
-        <div id="mycarousel" class="carousel slide" data-ride="carousel">
+    <div id="mycarousel" class="carousel slide" data-ride="carousel">
       <!-- Indicators -->
       <ol class="carousel-indicators">
         <li data-target="#mycarousel" data-slide-to="0" class="active"></li>
@@ -44,36 +42,84 @@
 
     <div class="pos">
     <div class="main-text hidden-xs">
+    <div class="jumbotron">
 
       <form class="form-horizontal">
           <div class="form-group">
             <label class="control-label col-sm-2 text-left" > From: </label>
               <div class="col-md-4">
-               <input type="text" class="form-control" data-ng-model="from" placeholder="Origin city" />
+              <input name="originAirports"
+                id="originAirports"
+                type="text"
+                placeholder="Flying From"
+                ng-model="selectedOrigin"
+                uib-typeahead="airport.iata for airport in Airports | filter:$viewValue | limitTo:10"
+                class="form-control",
+                typeahead-on-select="SetOriginAirport($item.name)">   
               </div>
         </div>
 
         <div class="form-group">
           <label class="control-label col-sm-2 text-left" > To: </label>
-          <div class="col-md-4" ng-controller="ToCtrl ">
-            <input type="text" class="form-control" data-ng-model="to" placeholder="Destination city" />
+          <div class="col-md-4">
+            <input name="destinationAirports"
+                id="destinationAirports"
+                type="text"
+                placeholder="Flying To"
+                ng-model="selectedDestination"
+                uib-typeahead="airport.iata for airport in Airports | filter:$viewValue | limitTo:10"
+                class="form-control",
+                typeahead-on-select="SetDestinationAirport($item.iata)">
       </div>
     </div>
 
-    <div class="form-group" ng-controller="dateCtrl" >
+    <div class="form-group">
       <label class="control-label col-sm-2 text-left" >  Outgoing: </label>
       <div class="col-md-4">
-        <input type="date"  placeholder="dd-mm-yyyy" data-ng-model="example.value" required="" />
-    </div>
+        <p class="input-group">
+                      <input type="text"
+                             class="form-control"
+                             uib-datepicker-popup="{{format}}"
+                             ng-model="dt"
+                             is-open="popup1.opened"
+                             ng-required="true"
+                             close-text="Close"
+                             alt-input-formats="altInputFormats" />
+                      <span class="input-group-btn">
+                        <button type="button"
+                                class="btn btn-default"
+                                ng-click="open1()">
+                                <i class="glyphicon glyphicon-calendar"></i>
+                       </button>
+                      </span>
+                    </p>
+      </div>
     </div>
 
 
     <div class="form-group">
       <label class="control-label col-sm-2 text-left" >  Returning: </label>
       <div class="col-md-4">
-        <input type="date" data-ng-model="returning" placeholder="dd-mm-yyyy"/>
+        <p class="input-group">
+                      <input type="text"
+                             class="form-control"
+                             uib-datepicker-popup="{{format}}"
+                             ng-model="dt"
+                             is-open="popup2.opened"
+                             ng-required="true"
+                             close-text="Close"
+                             alt-input-formats="altInputFormats" />
+                      <span class="input-group-btn">
+                        <button type="button"
+                                class="btn btn-default"
+                                ng-click="open2()">
+                                <i class="glyphicon glyphicon-calendar"></i>
+                       </button>
+                      </span>
+                    </p>
     </div>
     </div>
+
     <div class="form-group">
       <label class="control-label col-sm-2 text-left" >  Number of tickets: </label>
       <div class="col-md-4">
@@ -90,27 +136,32 @@
           <option value="9">9</option>
           <option value="10">10</option>
         </select>
-
     </div>
     </div>
     </div>
-    
     <div class="form-group">
-
+    <form>
       <label class="control-label col-sm-2 text-left"> One-Way</label>
       <div class="col-md-4 radio">
-        <input type="checkbox" name="mobil[1][]" id="optionsRadios1"  value="1" checked class="radi"/></div>
+        <input ng-model="roundTrip" type="radio" value="false"/></div>
     </div>
     <div class="form-group">
       <label class="control-label col-sm-2 text-left"> Round Trip Flight </label>
       <div class="col-md-4 radio">
-        <input type="checkbox" name="mobil[1][]" id="optionsRadios2" class="radi" value="0"/></div>
-
+        <input ng-model="roundTrip" type="radio" value="true"/></div>
     </div>
+    </form>
     <div class="span7 text-center">
-        <a class="btn btn-clear btn-sm btn-min-block " href="./outgoingReturnFlights.html" ng-controller="routing">Search</a>
+        <a type="button" class="btn btn-clear btn-sm btn-min-block " id='btnSearch' ng-click='SearchFlights()'>Search Flights</a>
       </div>
-
+  </div>
+  {{selectedOriginAirport}}
+  {{selectedDestinationAirport}}
+  {{selectedOutDate}}
+  {{selectedReturnDate}}
+  {{selectedRoundTrip}}
+  {{selectedNumberOfTickets}}
+  {{roundTrip}}
       <section ng-init="tab =1" ng-controller="PanelController as panel">
         <ul class="nav nav-pills" >
           <li ng-class="{active: panel.isSelected(1)}"> <a href ng-click="panel.selectTab(1)">Offer 1</a> </li>
@@ -132,4 +183,4 @@
         </div>
       </section>
     </form>
-<!-- </div> -->
+</div>
