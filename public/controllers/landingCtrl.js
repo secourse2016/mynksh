@@ -4,7 +4,7 @@
 App.controller('landingCtrl', function($scope, FlightsSrv, $location) {
 
   /*----------- Angular Bootstrap Datepicker -----------*/
-  $scope.formats = ['shortDate'];
+  $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
   $scope.format = $scope.formats[0];
 
   $scope.open1 = function() {

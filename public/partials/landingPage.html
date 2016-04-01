@@ -1,8 +1,6 @@
 <!-- <div> -->
   
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-      <body  ng-app>
-        <div id="mycarousel" class="carousel slide" data-ride="carousel">
+    <div id="mycarousel" class="carousel slide" data-ride="carousel">
       <!-- Indicators -->
       <ol class="carousel-indicators">
         <li data-target="#mycarousel" data-slide-to="0" class="active"></li>
@@ -44,6 +42,7 @@
 
     <div class="pos">
     <div class="main-text hidden-xs">
+    <div class="jumbotron">
 
       <form class="form-horizontal">
           <div class="form-group">
@@ -74,18 +73,26 @@
       </div>
     </div>
 
-    <div class="form-group" ng-controller="dateCtrl" >
+    <div class="form-group">
       <label class="control-label col-sm-2 text-left" >  Outgoing: </label>
       <div class="col-md-4">
-        <input type="text"
-              class="form-control"
-              uib-datepicker-popup="{{format}}"
-              ng-model="dt"
-              is-open="popup1.opened"
-              placeholder="dd/mm/yyyy"
-              ng-required="true"
-              close-text="Close"
-              alt-input-formats="altInputFormats" />
+        <p class="input-group">
+                      <input type="text"
+                             class="form-control"
+                             uib-datepicker-popup="{{format}}"
+                             ng-model="dt"
+                             is-open="popup1.opened"
+                             ng-required="true"
+                             close-text="Close"
+                             alt-input-formats="altInputFormats" />
+                      <span class="input-group-btn">
+                        <button type="button"
+                                class="btn btn-default"
+                                ng-click="open1()">
+                                <i class="glyphicon glyphicon-calendar"></i>
+                       </button>
+                      </span>
+                    </p>
       </div>
     </div>
 
@@ -140,7 +147,7 @@
     <div class="span7 text-center">
         <a class="btn btn-clear btn-sm btn-min-block " href="./outgoingReturnFlights.html" ng-controller="routing">Search</a>
       </div>
-
+  </div>
       <section ng-init="tab =1" ng-controller="PanelController as panel">
         <ul class="nav nav-pills" >
           <li ng-class="{active: panel.isSelected(1)}"> <a href ng-click="panel.selectTab(1)">Offer 1</a> </li>
