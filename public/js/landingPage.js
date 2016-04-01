@@ -1,9 +1,9 @@
-$(function(){
 
-$('.carousel').carousel({
-    interval: 300
-  });
-$('.carousel-control.right').trigger('click');
+$(function(){
+    $('.carousel').carousel({
+        interval: 300
+      });
+    $('.carousel-control.right').trigger('click');
 });
 
 $(function() {
@@ -25,7 +25,6 @@ $(function() {
   });
 
  $(function() {
-
 // var landingPage=angular.module('landingPage',[]);
 
 app.controller("PanelController", function(){

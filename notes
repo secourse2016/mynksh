@@ -9,7 +9,7 @@ Angular:
 	
 	ng-app="store" attach the application module to the page
 	ng-controller="StoreController as store" attach a controller to the page
-	ng-show/ ng-hide display a section based on an Experession
+	ng-show / ng-hide display a section based on an Experession
 	ng-repeat to repeat a section in an Array
 	ng-source to evaluate before loading data
 	ng-click to set a certain a value

@@ -10,7 +10,7 @@ App.config(function($routeProvider) {
         // route for the landingPage page
         .when('/', {
             templateUrl : '/partials/landingPage.html',
-            controller  : 'LandingCtrl'
+            controller  : 'landingCtrl'
         })
 
         // route for the OutgoingReturnFlights page
