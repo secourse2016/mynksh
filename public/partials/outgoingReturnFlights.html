@@ -1,22 +1,11 @@
-<DOCTYPE !HTML>
-<html>
-<head>
-  <meta charset="utf-8">
-  <title>Flights</title>
-  <script src="../js/bootstrap.min.js"></script>
-   <link rel="stylesheet" href="../css/bootstrap.min.css">  
-  <link href="../css/top-bar.css" rel="stylesheet" type="text/css">
-  <link href="../css/outgoing.css" rel="stylesheet" type="text/css">  
 
-</head>
-<body>
-<div id='nav-bar'>
+<!-- <div id='nav-bar'>
   <a href='./'> 
   <div id='logo'>
     <img src='../assets/iberia-logo.png'>
   </div>
   </a>
-</div>
+</div> -->
 <div class='content'>
   <h1>Select your flights</h1>
   <div id='outgoing'>
@@ -106,23 +95,3 @@
 <a href="#" class="btn btn-primary btn-lg">Book Flight</a>
   </div>
 </div>
-<script>
-  var app= angular.module("flight",[]);
-  app.controller("flightController", function($scope,$http,flightsSrv){
-   $http.get("/api/outgoingInfo").then(function(response){
-    $scope.outgoingInfo= response.data.records;
-
-   });
-   $http.get("/api/returnInfo").then(function(response){
-    $scope.returnInfo= response.data.records;
-
-   });
-   $scope.origin= flightsSrv.getSelectedOriginAirport();
-   $scope.dest= flightsSrv.getSelectedDestinationAirport();
-   $scope.oDate= flightsSrv.getSelectedOutDate();
-   $scope.rDate= flightsSrv.getSelectedReturnDate();
-  });
-
-</script>
-</body>
-<html>

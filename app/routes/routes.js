@@ -13,8 +13,10 @@ module.exports = function(app,mongo) {
       res.sendFile(__dirname + '/public/index.html');
     });
 
-    
-
+    app.get('/api/outgoinginfo', function(req, res) {
+      res.json(require('../../modules/flights.json'));
+    });
+   
 };
 
 

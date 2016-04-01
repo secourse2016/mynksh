@@ -17,7 +17,8 @@ App.config(function($routeProvider) {
         // route for the OutgoingReturnFlights page
         .when('/flights', {
             templateUrl : '/partials/outgoingReturnFlights.html',
-            controller  : 'flightsCtrl'
+            controller  : 'flightsCtrl',
+            controllerAs: 'flights'
         });
 
         // // route for the confirmation page
