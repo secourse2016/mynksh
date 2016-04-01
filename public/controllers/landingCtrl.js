@@ -1,4 +1,4 @@
-/**
+/*
  * Main Controller
  */
 App.controller('landingCtrl', function($scope, FlightsSrv, $location) {
