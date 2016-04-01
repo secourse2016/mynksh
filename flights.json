@@ -1,0 +1,76 @@
+[
+	{"flightNumber": "B890",
+		"aircraft": "Airbus",
+	"capacity": 200,
+	"date":  ,
+	"arrivalTime": 8.00,
+	"duration": "String",
+	"origin": "Cairo",
+	"destination": "Madrid",
+	"AvailableSeats": "integer",
+	"seatMap":
+		{
+			"Window/Aisle": "W",
+			"Cabin": "Economy",
+			"cost": 300.32,
+			"seatNumber": "50A",
+			"userIdentification": "ttsx34235465464534"
+		}
+	},
+	{"flightNumber": "C890",
+		"aircraft": "Airbus",
+	"capacity": 200,
+	"date":  ,
+	"arrivalTime": 9.30
+	"duration": "String",
+	"origin": "Madrid",
+	"destination": "Cairo",
+	"AvailableSeats": "integer",
+	"seatMap":
+		{
+			"Window/Aisle": "A",
+			"Cabin": "Economy",
+			"cost": 300.32,
+			"seatNumber": "50C",
+			"userIdentification": "ttsx34235cbnb65464534"
+		}
+	},
+	{"flightNumber": "A890",
+		"aircraft": "Boeing",
+	"capacity": 150,
+	"date":  ,
+	"arrivalTime": 12.00
+	"duration": "String",
+	"origin": "London",
+	"destination": "Cairo",
+	"AvailableSeats": "integer",
+	"seatMap":
+		{
+			"Window/Aisle": "W",
+			"Cabin": "Business",
+			"cost": 800.32,
+			"seatNumber": "1A",
+			"userIdentification": "ttsx3423vhjfsbv65464534"
+		}
+	},
+
+	{"flightNumber": "F890",
+		"aircraft": "Boeing",
+	"capacity": 150,
+	"date":  ,
+	"arrivalTime": 20.00
+	"duration": "String",
+	"origin": "Cairo",
+	"destination": "London",
+	"AvailableSeats": "integer",
+	"seatMap":
+		{
+			"Window/Aisle": "A",
+			"Cabin": "Business",
+			"cost": 800.32,
+			"seatNumber": "2B",
+			"userIdentification": "ttsx3423546fgfh64534"
+		}
+	},
+
+]

@@ -7,6 +7,7 @@
    <link rel="stylesheet" href="../css/bootstrap.min.css">  
   <link href="../css/top-bar.css" rel="stylesheet" type="text/css">
   <link href="../css/outgoing.css" rel="stylesheet" type="text/css">  
+
 </head>
 <body>
 <div id='nav-bar'>
@@ -19,50 +20,49 @@
 <div class='content'>
   <h1>Select your flights</h1>
   <div id='outgoing'>
-  <h3><img src='../assets/outgoingPlane.png'>Outbound:From Madrid to Cairo 
-  <small>Arrival Date</small></h3>
+  <h3><img src='../assets/outgoingPlane.png'>Outbound:From {{origin}} to {{dest}} 
+  <small>{{oDate}}</small></h3>
   <table class="table table-striped table-hover table-bordered">
   <thead>
     <tr>
+      <th></th> 
       <th>Flight Number</th>
       <th>Operated by</th>
       <th>Departure Time</th>
       <th>Arrival Time</th>
       <th>Total Duration</th>
-      <th>Economy</th>
-      <th>Business</th> 
+      <th>Price</th>
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td>Column content</td>
-      <td>Column content</td>
-      <td>Column content</td>
-      <td>Column content</td>
-      <td>Column content</td>
-      <td><input type="radio" name="optionsRadios" id="economy price" value="option1" checked="">
-            000€</td>
-      <td><input type="radio" name="optionsRadios" id="economy price" value="option1" checked="">
-            000€</td>
+  <form ng-model="selectedFlight" >
+    <tr ng-repeat="flight in flightsInfo">
+      <td><input type="radio" value="{{x}}"></td>
+      <td>
+        <select ng-model="cabin">
+          <option value="economy">
+            Economy: {{flight.eCost}}
+          </option>
+          <option value="business">
+            Business: {{flight.bCost}}
+          </option>
+        </select>
+      </td>
+      <td>{{flight.flightNumber}}</td>
+      <td>iberia</td>
+      <td>{{flight.departureTime}}</td>
+      <td>{{flight.arrivalTime}}</td>
+      <td>{{flight.departureTime - flight.arrivalTime}}</td>
+      <td></td>
     </tr>
-    <tr>
-      <td>Column content</td>
-      <td>Column content</td>
-      <td>Column content</td>
-      <td>Column content</td>
-      <td>Column content</td>
-      <td><input type="radio" name="optionsRadios" id="economy price" value="option1" checked="">
-            000€</td>
-      <td><input type="radio" name="optionsRadios" id="economy price" value="option1" checked="">
-            000€</td>
-    </tr>
+  </form>
   </tbody>
 </table> 
   </div>
-  <div id='return'>
+  <div id='return' ng-show="roundTrip">
   <h1>Now select your return flight</h1>
-  <h3><img src='../assets/returnPlane.png'>Return: From Cairo to Madrid 
-  <small>Departure Date</small></h3>
+  <h3><img src='../assets/returnPlane.png'>Return: From {{dest}} to {{origin}} 
+  <small>{{rDate}}</small></h3>
   <table class="table table-striped table-hover table-bordered">
   <thead>
     <tr>
@@ -110,6 +110,19 @@
 <a href="#" class="btn btn-primary btn-lg">Book Flight</a>
   </div>
 </div>
-<script src="../js/outgoing.js"></script>
+<script>
+  var app= angular.module("flight",[]);
+  app.controller("flightController", function($scope,$http,flightsSrv){
+   $http.get("/api/flightsInfo").then(function(response){
+    $scope.flightsInfo= response.data.records;
+
+   });
+   $scope.origin= flightsSrv.getSelectedOriginAirport();
+   $scope.dest= flightsSrv.getSelectedDestinationAirport();
+   $scope.oDate= flightsSrv.getSelectedOutDate();
+   $scope.rDate= flightsSrv.getSelectedReturnDate();
+  });
+
+</script>
 </body>
 <html>
