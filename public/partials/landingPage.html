@@ -84,7 +84,7 @@
                              is-open="popup1.opened"
                              ng-required="true"
                              close-text="Close"
-                             alt-input-formats="altInputFormats" />
+                             alt-input-formats="altInputFormats"/>
                       <span class="input-group-btn">
                         <button type="button"
                                 class="btn btn-default"
@@ -155,13 +155,6 @@
         <a type="button" class="btn btn-clear btn-sm btn-min-block " id='btnSearch' ng-click='SearchFlights()'>Search Flights</a>
       </div>
   </div>
-  {{selectedOriginAirport}}
-  {{selectedDestinationAirport}}
-  {{selectedOutDate}}
-  {{selectedReturnDate}}
-  {{selectedRoundTrip}}
-  {{selectedNumberOfTickets}}
-  {{roundTrip}}
       <section ng-init="tab =1" ng-controller="PanelController as panel">
         <ul class="nav nav-pills" >
           <li ng-class="{active: panel.isSelected(1)}"> <a href ng-click="panel.selectTab(1)">Offer 1</a> </li>

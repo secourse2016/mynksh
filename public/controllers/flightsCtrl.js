@@ -1,7 +1,7 @@
 /**
  * Flights Controller
  */
-App.controller('flightsCtrl', function($scope,$http, FlightsSrv) {
+App.controller('flightsCtrl', function($scope, FlightsSrv) {
 
   /* Retrieve Selected Airports Codes */
   // $scope.flight = {
@@ -9,19 +9,27 @@ App.controller('flightsCtrl', function($scope,$http, FlightsSrv) {
   //   destination : FlightsSrv.getSelectedDestinationAirport()
   // };
    
-  	//should be in a service file
-   $http.get("/api/outgoingInfo").then(function(response){
-    $scope.outgoingInfo= response.data.records;
+   // $http.get("/api/returnInfo").then(function(response){
+   //  $scope.returnInfo= response.data.records;
 
-   });
-   $http.get("/api/returnInfo").then(function(response){
-    $scope.returnInfo= response.data.records;
+   // });
+   $scope.roundTrip=true;
+   function outgoingInfo() {
+    FlightsSrv.getOutgoingInfo().success(function(outgoingInfo) {
+         $scope.outgoingInfo = outgoingInfo;
+     });
+  };
 
-   });
+  function returnInfo() {
+    FlightsSrv.getReturnInfo().success(function(returnInfo) {
+         $scope.returnInfo = returnInfo;
+     });
+  };
    $scope.origin= FlightsSrv.getSelectedOriginAirport();
    $scope.dest= FlightsSrv.getSelectedDestinationAirport();
    $scope.oDate= FlightsSrv.getSelectedOutDate();
-   $scope.rDate= FlightsSrv.setSelectedReturnDate();
+   $scope.rDate= FlightsSrv.getSelectedReturnDate();
   // });
-
+  outgoingInfo();
+  returnInfo();
 });

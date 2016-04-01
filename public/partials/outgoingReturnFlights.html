@@ -24,16 +24,16 @@
     </tr>
   </thead>
   <tbody>
-  <form ng-model="selectedOutgoingFlight" >
+  <form>
     <tr ng-repeat="flight in outgoingInfo">
-      <td><input type="radio" value="{{x}}"></td>
+      <td><input type="radio" ng-model="$parent.selectedOutgoingFlight" value="{{flight}}" /></td>
       <td>{{flight.flightNumber}}</td>
       <td>iberia</td>
       <td>{{flight.departureTime}}</td>
       <td>{{flight.arrivalTime}}</td>
-      <td>{{flight.departureTime - flight.arrivalTime}}</td>
+      <td>{{flight.arrivalTime - flight.departureTime}}</td>
        <td>
-        <select ng-model="outgoingCabin">
+        <select ng-model="$parent.outgoingCabin">
           <option value="economy">
             Economy: {{flight.eCost}}
           </option>
@@ -64,16 +64,16 @@
     </tr>
   </thead>
   <tbody>
-  <form ng-model="selectedReturnFlight" >
+  <form >
     <tr ng-repeat="flight in returnInfo">
-      <td><input type="radio" value="{{x}}"></td>
+      <td><input type="radio" value="{{flight}}" ng-model="$parent.selectedReturnFlight"></td>
       <td>{{flight.flightNumber}}</td>
       <td>iberia</td>
       <td>{{flight.departureTime}}</td>
       <td>{{flight.arrivalTime}}</td>
       <td>{{flight.departureTime - flight.arrivalTime}}</td>
       <td>
-        <select ng-model="returnCabin">
+        <select ng-model="$parent.returnCabin">
           <option value="economy">
             Economy: {{flight.eCost}}
           </option>
