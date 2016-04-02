@@ -1,11 +1,4 @@
 
-<!-- <div id='nav-bar'>
-  <a href='./'> 
-  <div id='logo'>
-    <img src='../assets/iberia-logo.png'>
-  </div>
-  </a>
-</div> -->
 <div class='content'>
   <h1>Select your flights</h1>
   <div id='outgoing'>
@@ -71,7 +64,7 @@
       <td>iberia</td>
       <td>{{flight.departureTime}}</td>
       <td>{{flight.arrivalTime}}</td>
-      <td>{{flight.departureTime - flight.arrivalTime}}</td>
+      <td>{{flight.arrivalTime - flight.departureTime}}</td>
       <td>
         <select ng-model="$parent.returnCabin">
           <option value="economy">
