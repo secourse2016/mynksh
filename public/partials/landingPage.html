@@ -1,5 +1,5 @@
 <div>
-  
+
     <div id="mycarousel" class="carousel slide" data-ride="carousel">
       <!-- Indicators -->
       <ol class="carousel-indicators">
@@ -42,11 +42,15 @@
 
     <div class="pos">
     <div class="main-text hidden-xs">
-    <div class="jumbotron">
-
+    <!-- <div class="container">
+    <div class="jumbotron "> -->
+    </br>
+  </br>
+</br>
+    <div class="boxed">
       <form class="form-horizontal">
           <div class="form-group">
-            <label class="control-label col-sm-2 text-left" > From: </label>
+            <font class="control-label col-sm-2 text-left" size="2" > From: </font>
               <div class="col-md-4">
               <input name="originAirports"
                 id="originAirports"
@@ -55,12 +59,12 @@
                 ng-model="selectedOrigin"
                 uib-typeahead="airport.iata for airport in Airports | filter:$viewValue | limitTo:10"
                 class="form-control",
-                typeahead-on-select="SetOriginAirport($item.name)">   
+                typeahead-on-select="SetOriginAirport($item.name)">
               </div>
         </div>
 
         <div class="form-group">
-          <label class="control-label col-sm-2 text-left" > To: </label>
+            <font class="control-label col-sm-2 text-left" size="2" > To: </font>
           <div class="col-md-4">
             <input name="destinationAirports"
                 id="destinationAirports"
@@ -74,54 +78,54 @@
     </div>
 
     <div class="form-group">
-      <label class="control-label col-sm-2 text-left" >  Outgoing: </label>
+        <font class="control-label col-sm-2 text-left" size="2" >  Outgoing: </font>
       <div class="col-md-4">
         <p class="input-group">
-                      <input type="text"
-                             class="form-control"
-                             uib-datepicker-popup="{{format}}"
-                             ng-model="dt"
-                             is-open="popup1.opened"
-                             ng-required="true"
-                             close-text="Close"
-                             alt-input-formats="altInputFormats" />
-                      <span class="input-group-btn">
-                        <button type="button"
-                                class="btn btn-default"
-                                ng-click="open1()">
-                                <i class="glyphicon glyphicon-calendar"></i>
-                       </button>
-                      </span>
-                    </p>
+        <input type="text"
+            class="form-control"
+            uib-datepicker-popup="{{format}}"
+            ng-model="dt"
+            is-open="popup1.opened"
+            ng-required="true"
+            close-text="Close"
+            alt-input-formats="altInputFormats" />
+        <span class="input-group-btn">
+            <button type="button"
+              class="btn btn-default"
+              ng-click="open1()">
+            <i class="glyphicon glyphicon-calendar"></i>
+            </button>
+        </span>
+        </p>
       </div>
     </div>
 
 
     <div class="form-group">
-      <label class="control-label col-sm-2 text-left" >  Returning: </label>
+        <font class="control-label col-sm-2 text-left" size="2" > Returning: </font>
       <div class="col-md-4">
         <p class="input-group">
-                      <input type="text"
-                             class="form-control"
-                             uib-datepicker-popup="{{format}}"
-                             ng-model="dt"
-                             is-open="popup2.opened"
-                             ng-required="true"
-                             close-text="Close"
-                             alt-input-formats="altInputFormats" />
-                      <span class="input-group-btn">
-                        <button type="button"
-                                class="btn btn-default"
-                                ng-click="open2()">
-                                <i class="glyphicon glyphicon-calendar"></i>
-                       </button>
-                      </span>
-                    </p>
+          <input type="text"
+              class="form-control"
+              uib-datepicker-popup="{{format}}"
+              ng-model="dt"
+              is-open="popup2.opened"
+              ng-required="true"
+              close-text="Close"
+              alt-input-formats="altInputFormats" />
+          <span class="input-group-btn">
+            <button type="button"
+              class="btn btn-default"
+              ng-click="open2()">
+          <i class="glyphicon glyphicon-calendar"></i>
+              </button>
+          </span>
+        </p>
     </div>
     </div>
 
     <div class="form-group">
-      <label class="control-label col-sm-2 text-left" >  Number of tickets: </label>
+        <font class="control-label col-sm-2 text-left" size="2" >  Number of tickets: </font>
       <div class="col-md-4">
         <div class="styled">
         <select name="ticketsCount">
@@ -141,12 +145,12 @@
     </div>
     <div class="form-group">
     <form>
-      <label class="control-label col-sm-2 text-left"> One-Way</label>
+        <font class="control-label col-sm-2 text-left" size="2" >One-Way</font>
       <div class="col-md-4 radio">
         <input ng-model="roundTrip" type="radio" value="false"/></div>
     </div>
     <div class="form-group">
-      <label class="control-label col-sm-2 text-left"> Round Trip Flight </label>
+        <font class="control-label col-sm-2 text-left" size="2" > Round Trip Flight </font>
       <div class="col-md-4 radio">
         <input ng-model="roundTrip" type="radio" value="true"/></div>
     </div>
@@ -154,14 +158,9 @@
     <div class="span7 text-center">
         <a type="button" class="btn btn-clear btn-sm btn-min-block " id='btnSearch' ng-click='SearchFlights()'>Search Flights</a>
       </div>
-  </div>
-  {{selectedOriginAirport}}
-  {{selectedDestinationAirport}}
-  {{selectedOutDate}}
-  {{selectedReturnDate}}
-  {{selectedRoundTrip}}
-  {{selectedNumberOfTickets}}
-  {{roundTrip}}
+  <!-- </div>
+  </div> -->
+</div>
       <section ng-init="tab =1" ng-controller="PanelController as panel">
         <ul class="nav nav-pills" >
           <li ng-class="{active: panel.isSelected(1)}"> <a href ng-click="panel.selectTab(1)">Offer 1</a> </li>
@@ -183,4 +182,5 @@
         </div>
       </section>
     </form>
+
 </div>

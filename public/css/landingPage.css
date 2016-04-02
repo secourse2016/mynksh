@@ -22,7 +22,7 @@
     color: #000;
     background-color: #FFF;
 }
-.form-group > label, .form-group > div {
+ .form-group > div {
     display:inline-block;
     vertical-align: middle;
 }
@@ -53,4 +53,33 @@ div.pos{
 }
 .panel{
   background: transparent;
+}
+
+/*.jumbotron {
+    position: relative;
+    background: -webkit-gradient(
+  linear, left top, left bottom, from(rgba(50,50,50,0.8)),
+  to(rgba(80,80,80,0.2)), color-stop(.5,#333333)
+);
+
+    width: 70%;
+    height: 100%;
+    background-size: cover;
+    overflow: hidden;
+}
+#container {
+  width: 80%;
+  margin: auto;
+}*/
+
+.boxed{
+  background: -webkit-gradient(
+linear, left top, left bottom, from(rgba(50,50,50,0.8)),
+to(rgba(80,80,80,0.2)), color-stop(.5,#333333)
+);
+width:70%;
+padding-top: 20px;
+padding-left: 50px;
+padding-bottom: 10px;
+padding-right: 0;
 }
