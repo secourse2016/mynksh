@@ -88,12 +88,12 @@ function foo(){ console.log("Callback"); }
               <div class="collapse navbar-collapse navbar-responsive-collapse">
                 <ul class="nav navbar-nav navbar-right">
                   <li class="current"><a href="#header">Home</a></li>
-                  <li><a href="#section-feature">Features</a></li>
-                  <li><a href="#section-services">Services</a></li>
-                  <li><a href="#step-1">Work Flow</a></li>
-                  <li><a href="#section-screenshots">Screenshots</a></li>
-                  <li><a href="#section-pricing">Pricing</a></li>
-                  <li><a href="#section-download">Download</a></li>
+                  <li><a href="#section-feature">Flights</a></li>
+                  <li><a href="#section-services">Offers</a></li>
+                  <li><a href="#step-1">About Us</a></li>
+                  <li><a href="#section-screenshots">Team Members</a></li>
+                  <li><a href="#section-pricing">Contact Us</a></li>
+                  <li><a href="#section-download">Video</a></li>
                 </ul>
               </div>
               <!-- Main Navigation menu ends-->
@@ -142,8 +142,16 @@ function foo(){ console.log("Callback"); }
 
         <div class="boxed">
           <form class="form-horizontal">
+          <section id="section-video" class="section-video-wrap">
+		      <div class="section-overlay"></div>
+		      <div class="container big-video center animated" data-animation="fadeInLeft" data-animation-delay="700">
+
+            <div class="col-md-12 section-title text-left">
+					         <h3>Flights</h3>
+				    </div>
+				    <div class="row">
               <div class="form-group">
-                <font class="control-label col-sm-2 text-left" size="2" > From: </font>
+                <font class="control-label col-sm-2 text-left" size="2"  color:"white"> From: </font>
                   <div class="col-md-4">
                   <input name="originAirports"
                     id="originAirports"
@@ -155,6 +163,9 @@ function foo(){ console.log("Callback"); }
                     typeahead-on-select="SetOriginAirport($item.name)">
                   </div>
             </div>
+          </div>
+
+
 
             <div class="form-group">
                 <font class="control-label col-sm-2 text-left" size="2" > To: </font>
@@ -248,11 +259,13 @@ function foo(){ console.log("Callback"); }
             <input ng-model="roundTrip" type="radio" value="true"/></div>
         </div>
         </form>
-        <div class="span7 text-right">
+        <div class="span7 text-center">
             <a type="button" class="btn btn-clear btn-sm btn-min-block " id='btnSearch' ng-click='SearchFlights()'>Search Flights</a>
           </div>
 
         </div>
+      </div>
+      </section>
         <!--=== Features section Starts ===-->
 	<section id="section-feature" class="feature-wrap">
 		<div class="container features center">
