@@ -5,16 +5,16 @@
 	<title>Flights</title>
 	<link href="../styles/top-bar.css" rel="stylesheet" type="text/css">
 </head>
-<body ng-controller="StoreController as store">
+<body ng-controller="FlightsSrv as store">
 
-<div id='nav-bar'>
+<!-- <div id='nav-bar'>
 	<a href='./'>	
 	<div id='logo'>
 		<img src='../assets/iberia-logo.png'>	
 	</div>
 	<a>
 </div>
-
+ -->
 <div class="progress">
   	 <p align="right">1.Search &nbsp&nbsp 2.Book &nbsp&nbsp <b>3.Confirmation</b> &nbsp&nbsp 4.Payment</p>
 
@@ -24,11 +24,11 @@
 <div class='content'>
 	<h1></h1>
 	<div id='Confirmation'>
-	<pre style="font-size: 16">From: Cairo                              To: Newyork                             Date:17/07/2016                              Duration:2:00h</pre>
+	<pre style="font-size: 16">From:{{store.}}                                   To:                                     Date:{{store.getSelectedOutDate}}                                 Duration:</pre>
 	<pre style="font-size: 16">Airstops:                                Adults:                                 Price:</pre>
 	</div>
 </div>
- <div class="product row" ng-repeat="getNumberOfTickets in store.tickets">
+ <div class="tickets row" ng-repeat="store.getSelectedNumberOfTickets" ng-show="">
       <h3>
       <h2>Passenger Details:</h2>
         <pre style="font-size: 16">First name: <textarea style="width: 250px; height: 25px; font-size:18"></textarea></pre> 
@@ -46,6 +46,6 @@
 	<pre style="font-size: 16">Phone number: <textarea style="width: 250px; height: 25px; font-size:18"></textarea></pre>
 	<pre style="font-size: 16">Email: <textarea style="width: 250px; height: 25px; font-size:18"></textarea></pre>
 </div>
-<script src="../js/confirmation.js"></script>
+<script src="../services/OutReturnServ.js"></script>
 </body>
 <html>

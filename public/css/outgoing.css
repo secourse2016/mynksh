@@ -1,0 +1,17 @@
+.content {
+	width:60%;
+	margin-left:10%;
+}
+
+/*#outgoing{
+	border:1px solid black;
+}*/
+
+th,td{
+	padding: 15px;
+	text-align: center;
+}
+
+h1{
+	text-align: center;
+}
