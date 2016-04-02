@@ -140,20 +140,17 @@ function foo(){ console.log("Callback"); }
       		<!--=== Home Section Ends ===-->
       	</div>
 
-        <div class="boxed">
-          <form class="form-horizontal">
-          <section id="section-video" class="section-video-wrap">
-		      <div class="section-overlay"></div>
-		      <div class="container big-video center animated" data-animation="fadeInLeft" data-animation-delay="700">
 
-            <div class="col-md-12 section-title text-left">
-					         <h3>Flights</h3>
-				    </div>
+          <form class="form-horizontal">
+
 
             <!--=== Contact section Starts ===-->
-	<section id="section-contact" class="contact-wrap">
+	<!-- <section id="section-contact" class="contact-wrap">
 	<div class="section-overlay"></div>
 		<div class="container contact center animated" data-animation="flipInY" data-animation-delay="1000">
+			<div class="row"> -->
+    <section id="section-download" class="download-wrap">
+		<div class="container download center">
 			<div class="row">
 				<div class="col-md-8 col-md-offset-2">
 					<div class="col-md-10 col-md-offset-1 center section-title">
@@ -168,7 +165,7 @@ function foo(){ console.log("Callback"); }
 
 						<div class="col-lg-12">
               <div class="form-group">
-                <font class="control-label col-sm-2 text-left" size="3" > From: </font>
+                <font class="control-label col-sm-2 text-left" size="4" color:"white" > From: </font>
                 <div class="col-md-8">
               <input name="originAirports"
                 id="originAirports"
@@ -182,7 +179,7 @@ function foo(){ console.log("Callback"); }
             </div>
               </br>
               <div class="form-group">
-                <font class="control-label col-sm-2 text-left" size="3" > To: </font>
+                <font class="control-label col-sm-2 text-left" size="4" > To: </font>
                 <div class="col-md-8">
               <input name="destinationAirports"
                   id="destinationAirports"
@@ -196,7 +193,7 @@ function foo(){ console.log("Callback"); }
               </div>
               </br>
               <div class="form-group">
-                <font class="control-label col-sm-2 text-left" size="3" > Outgoing: </font>
+                <font class="control-label col-sm-2 text-left" size="4" > Outgoing: </font>
                 <div class="col-md-8">
                   <p class="input-group">
                   <input type="text"
@@ -219,7 +216,7 @@ function foo(){ console.log("Callback"); }
             </div>
               </br>
               <div class="form-group">
-                <font class="control-label col-sm-2 text-left" size="3" > Returning: </font>
+                <font class="control-label col-sm-2 text-left" size="4" > Returning: </font>
                 <div class="col-md-8">
                 <p class="input-group">
                   <input type="text"
@@ -242,8 +239,9 @@ function foo(){ console.log("Callback"); }
             </div>
               </br>
               <div class="form-group">
-                <font class="control-label col-sm-2 text-left" size="3" > Number of tickets: </font>
+                <font class="control-label col-sm-2 text-left" size="4" > Tickets Count: </font>
                 <div class="col-md-8">
+                </br>
               <div class="styled">
               <select name="ticketsCount">
                 <option value="1">1</option>
@@ -263,13 +261,15 @@ function foo(){ console.log("Callback"); }
 
             <form>
             <div class="form-group">
-              <font class="control-label col-sm-2 text-left" size="3" >One-Way</font>
-              <div class="col-md-4 radio">
+              <font class="control-label col-sm-2 text-left" size="4" >One-Way</font>
+              <div class="col-md-8 radio">
+              </br>
               <input ng-model="roundTrip" type="radio" value="false"/></div>
             </div>
             <div class="form-group">
-              <font class="control-label col-sm-2 text-left" size="2" > Round Trip Flight </font>
-              <div class="col-md-4 radio">
+              <font class="control-label col-sm-2 text-left" size="4" > Round Trip Flight </font>
+              <div class="col-md-8 radio">
+              </br>
               <input ng-model="roundTrip" type="radio" value="true"/></div>
             </div>
           </form>
@@ -282,15 +282,124 @@ function foo(){ console.log("Callback"); }
 								<i class="fa fa-paper-plane-o"></i>
 							</span>
 						</button>
-					</form>
+
 				</div>
 			</div>
 		</div>
 	</section>
+</form>
 	<!--=== Contact section Ends ===-->
 
+  <!--=== Pricing section Starts ===-->
+  <section id="section-testimonials" class="testimonials-wrap">
+      <div class="section-overlay"></div>
+		<div class="container pricing">
+			<div class="row">
+        <div class="col-md-10 col-md-offset-1 center section-title">
+          <h3>Offers</h3>
+        </div>
 
-				    
+
+				<!-- Single Price Starts -->
+				<div class="col-md-3 col-sm-6 single-pricing-wrap center animated" data-animation="bounceInLeft" data-animation-delay="700">
+					<div class="single-pricing best-pricing"> <!-- this is best-pricing -->
+
+						<div class="pricing-head">
+							<h4 class="pricing-heading color-scheme">Offer 1</h4>
+							<div class="price">
+								<h3>
+									<span class="euro">€</span>
+									60
+								</h3>
+							</div>
+						</div>
+
+						<ul class="package-features">
+							<li><span class="color-scheme fa fa-check"></span>From Cairo to Madrid</li>
+              <li><span class="color-scheme fa fa-check"></span>Business class</li>
+              <li><span class="color-scheme fa fa-check"></span>Round Trip Flight</li>
+						</ul>
+						<div class="sign-up">
+							<a href="#" class="fancy-button button-line btn-col vertical">
+								Book it UP!
+								<span class="icon">
+									<i class="fa fa-hand-o-up"></i>
+								</span>
+							</a>
+						</div>
+					</div>
+				</div>
+				<!-- Single Price Ends -->
+
+				<!-- Single Price Starts -->
+
+            <div class="col-md-3 col-sm-6 single-pricing-wrap center animated" data-animation="bounceInLeft" data-animation-delay="1100">
+            <div class="single-pricing">
+						<div class="pricing-head">
+							<h4 class="pricing-heading color-scheme">Offer 2</h4>
+							<div class="price">
+                <h3>
+                  <span class="euro">€</span>
+                  100
+                </h3>
+							</div>
+						</div>
+
+            <ul class="package-features">
+							<li><span class="color-scheme fa fa-check"></span>From United States to Paris</li>
+              <li><span class="color-scheme fa fa-check"></span>Economy class</li>
+							<li><span class="color-scheme fa fa-check"></span>One Way Flight</li>
+						</ul>
+						<div class="sign-up">
+							<a href="#" class="fancy-button button-line btn-col rotate">
+								Book it UP!
+								<span class="icon">
+									<i class="fa fa-thumbs-o-up"></i>
+								</span>
+							</a>
+						</div>
+					</div>
+        </div>
+
+				<!-- Single Price Ends -->
+
+				<!-- Single Price Starts -->
+				<div class="col-md-3 col-sm-6 single-pricing-wrap center animated" data-animation="bounceInLeft" data-animation-delay="1100">
+					<div class="single-pricing">
+
+						<div class="pricing-head">
+							<h4 class="pricing-heading color-scheme">Offer 3</h4>
+							<div class="price">
+                <h3>
+                  <span class="euro">€</span>
+                  110
+                </h3>
+							</div>
+						</div>
+
+            <ul class="package-features">
+							<li><span class="color-scheme fa fa-check"></span>From China to Madrid</li>
+              <li><span class="color-scheme fa fa-check"></span>Economy class</li>
+              <li><span class="color-scheme fa fa-check"></span>Round Trip Flight</li>
+						</ul>
+						<div class="sign-up">
+							<a href="#" class="fancy-button button-line btn-col zoom">
+								Book it UP!
+								<span class="icon">
+									<i class="fa fa-thumbs-o-up"></i>
+								</span>
+							</a>
+						</div>
+				</div>
+      </div>
+				<!-- Single Price Ends -->
+
+
+	</section>
+	<!--=== Pricing section Ends ===-->
+
+
+
         <!--=== Features section Starts ===-->
 	<section id="section-feature" class="feature-wrap">
 		<div class="container features center">
