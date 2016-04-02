@@ -29,15 +29,7 @@
         </div>
       </div>
 
-      <!-- Controls -->
-      <a class="left carousel-control" href="#mycarousel" role="button" data-slide="prev">
-        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-      </a>
-      <a class="right carousel-control" href="#mycarousel" role="button" data-slide="next">
-        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-      </a>
+
     </div>
 
     <div class="pos">
@@ -155,32 +147,14 @@
         <input ng-model="roundTrip" type="radio" value="true"/></div>
     </div>
     </form>
-    <div class="span7 text-center">
+    <div class="span7 text-right">
         <a type="button" class="btn btn-clear btn-sm btn-min-block " id='btnSearch' ng-click='SearchFlights()'>Search Flights</a>
       </div>
   <!-- </div>
   </div> -->
 </div>
-      <section ng-init="tab =1" ng-controller="PanelController as panel">
-        <ul class="nav nav-pills" >
-          <li ng-class="{active: panel.isSelected(1)}"> <a href ng-click="panel.selectTab(1)">Offer 1</a> </li>
-          <li ng-class="{active: panel.isSelected(2)}"> <a href ng-click="panel.selectTab(2)">Offer 2</a> </li>
-          <li ng-class="{active: panel.isSelected(3)}"> <a href ng-click="panel.selectTab(3)">Offer 3</a> </li>
-        </ul>
 
-        <div class="panel" ng-show="panel.isSelected(1)">
-          <h4> Offer 1</h4>
-          <p> We have a flight Madrid to Morroco Economy class with 60 Euros instead of 100 Euros </p>
-        </div>
-        <div class="panel" ng-show="panel.isSelected(2)">
-          <h4> Offer 2</h4>
-          <p> We have a flight From Cairo to Madrid Economy class with 70 Euros instead of 110 Euros </p>
-        </div>
-        <div class="panel" ng-show="panel.isSelected(3)">
-          <h4> Offer 3</h4>
-          <p> We have a flight From The United States to London Business class with 150 Euros instead of 200 Euros </p>
-        </div>
-      </section>
     </form>
 
 </div>
+<div>
