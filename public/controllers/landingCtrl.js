@@ -45,8 +45,8 @@ App.controller('landingCtrl', function($scope, FlightsSrv, $location) {
     FlightsSrv.setSelectedDestinationAirport(destAirport);
   };
 
-  $scope.SetSelectedOutDate = function(value) {
-           FlightsSrv.setSelectedOutDate(value);
+  $scope.SetSelectedOutDate = function(outDate) {
+           FlightsSrv.setSelectedOutDate(outDate);
   };
   $scope.SetSelectedReturnDate = function(value) {
            FlightsSrv.setSelectedReturnDate(value);
