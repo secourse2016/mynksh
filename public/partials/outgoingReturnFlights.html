@@ -1,5 +1,5 @@
 <div class='content'>
-  <h1 class="animated fadeInDown">Select your flights</h1>
+  <h1 class="animated fadeInDown header-font">Select your flights</h1>
   <div id='outgoing'>
   <div class="animated slideInLeft">
   <h3><img src='../assets/outgoingPlane.png'>Outbound:From {{origin}} to {{dest}} 
@@ -41,9 +41,9 @@
   </tbody>
 </table> 
   </div>
-  <div id='return' ng-show="roundTrip">
-  <h1 class ="animated fadeInDown">Now select your return flight</h1>
-  <div class ="animated slideInRight">
+  <div ng-show="roundTrip">
+  <h1 class ="animated fadeInDown header-font">Now select your return flight</h1>
+  <div id='return' class ="animated slideInRight">
   <h3><img src='../assets/returnPlane.png'>Return: From {{dest}} to {{origin}} 
   <small>{{rDate}}</small></h3>
   </div>
