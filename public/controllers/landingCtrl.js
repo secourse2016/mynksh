@@ -57,7 +57,7 @@ App.controller('landingCtrl', function($scope, FlightsSrv, $location) {
   $scope.SetSelectedNumberOfTickets = function(value) {
            FlightsSrv.setSelectedNumberOfTickets(value);
   };
-  
+
   /* Find All Available Flights  */
   $scope.SearchFlights = function() {
     $location.url('/flights');

@@ -1,3 +1,41 @@
+
+
+<script>
+$(function(){
+    $('.carousel').carousel({
+        interval: 10000
+      });
+    $('.carousel-control.right').trigger('click');
+});
+
+$(function(){
+
+    $("#typed").typed({
+        // strings: ["Typed.js is a <strong>jQuery</strong> plugin.", "It <em>types</em> out sentences.", "And then deletes them.", "Try it out!"],
+        stringsElement: $('#typed-strings'),
+        typeSpeed: 30,
+        backDelay: 500,
+        loop: false,
+        contentType: 'html', // or text
+        // defaults to false for infinite loop
+        loopCount: false,
+        callback: function(){ foo(); },
+        resetCallback: function() { newTyped(); }
+    });
+
+    $(".reset").click(function(){
+        $("#typed").typed('reset');
+    });
+
+});
+
+function newTyped(){ /* A new typed object */ }
+
+function foo(){ console.log("Callback"); }
+</script>
+
+
+
 <div>
 
     <div id="mycarousel" class="carousel slide" data-ride="carousel">
@@ -26,6 +64,7 @@
         </div>
         <div class="item">
           <img src="../assets/5.jpg" data-color="firebrick" alt="Fifth Image">
+
         </div>
       </div>
 
@@ -34,10 +73,20 @@
 
     <div class="pos">
     <div class="main-text hidden-xs">
+      <div class="type-wrap">
+            <div id="typed-strings">
+                <p>Hoy, <strong>Iberia</strong> está cambiando</p>
+                <p>Today, <strong>Iberia</strong> is changing</p>
+            </div>
+            <span id="typed" style="white-space:pre;"></span>
+        </div>
+      <!-- <div class="content">
+      <h1>Hoy, Iberia está cambiando</h1>
+      <h2>Today, Iberia is changing</h2>
+    </div> -->
     <!-- <div class="container">
     <div class="jumbotron "> -->
-    </br>
-  </br>
+
 </br>
     <div class="boxed">
       <form class="form-horizontal">
