@@ -4,7 +4,7 @@ Pre Loader
 $(window).load(function() {
 	'use strict';
 	$('.loading-icon').delay(500).fadeOut();
-	$('#preloader').delay(80).fadeOut('slow');
+	$('#preloader').delay(800).fadeOut('slow');
 });
 
 
