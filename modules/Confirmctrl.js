@@ -1,4 +1,4 @@
-App.controller('confirmCtrl', function($scope, confirmSrv) {
+App.controller('confirmCtrl', function($scope, flightsSrv) {
 
   /* Retrieve Selected Airports Codes */
   // $scope.flight = {
@@ -10,35 +10,21 @@ App.controller('confirmCtrl', function($scope, confirmSrv) {
    //  $scope.returnInfo= response.data.records;
 
    // });
-   $scope.roundTrip=true;
-   function getSelectedOutDate() {
-    FlightsSrv.getSelectedOutDate.success(function(outgoingdate) {
-         $scope.outgoingdate = outgoingdate;
-     });
-  };
-
-  function getSelectedReturnDate() {
-    FlightsSrv.getSelectedReturnDate().success(function(ReturnDate) {
-         $scope.ReturnDate = "17/07/2016";
-     });
-  };
-  function getSelectedOriginAirport() {
-    FlightsSrv.getSelectedOriginAirport().success(function(OriginAirport) {
-         $scope.OriginAirport = OriginAirport;
-     });
-  };
-  function getSelectedDestinationAirport() {
-    FlightsSrv.getSelectedDestinationAirport().success(function(DestinationAirport) {
-         $scope.DestinationAirport = DestinationAirport;
-     });
-  };
-  //  $scope.origin= FlightsSrv.getSelectedOriginAirport();
-  //  $scope.dest= FlightsSrv.getSelectedDestinationAirport();
-  //  $scope.oDate= FlightsSrv.getSelectedOutDate();
-  //  $scope.rDate= FlightsSrv.getSelectedReturnDate();
-  // // });
-  getSelectedOutDate();
-  getSelectedReturnDate();
-  getSelectedOriginAirport();
-  getSelectedDestinationAirport();
+  //  $scope.roundTrip=true;
+  //  function getSelectedOutDate() {
+  //   FlightsSrv.getSelectedOutDate.success(function(outgoingdate) {
+  //        $scope.outgoingdate = outgoingdate;
+  //    });
+  // };
+   $scope.origin= FlightsSrv.getSelectedOriginAirport();
+   $scope.dest= FlightsSrv.getSelectedDestinationAirport();
+   $scope.oDate= FlightsSrv.getSelectedOutDate();
+   $scope.rDate= FlightsSrv.getSelectedReturnDate();
+   // $scope.price=FlightsSrv.g
+   $scope.tickets=FlightsSrv.getSelectedNumberOfTickets();
+  // });
+  // getSelectedOutDate();
+  // getSelectedReturnDate();
+  // getSelectedOriginAirport();
+  // getSelectedDestinationAirport();
 });
