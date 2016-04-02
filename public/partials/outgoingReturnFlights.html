@@ -10,7 +10,7 @@
   <h1>Select your flights</h1>
   <div id='outgoing'>
   <h3><img src='../assets/outgoingPlane.png'>Outbound:From {{origin}} to {{dest}} 
-  <small>{{oDate | date}}</small></h3>
+  <small>{{oDate}}</small></h3>
   <table class="table table-striped table-hover table-bordered">
   <thead>
     <tr>
@@ -35,10 +35,10 @@
        <td>
         <select ng-model="$parent.outgoingCabin">
           <option value="economy">
-            Economy: {{flight.eCost | currrency}}
+            Economy: {{flight.eCost}}
           </option>
           <option value="business">
-            Business: {{flight.bCost | currency}}
+            Business: {{flight.bCost}}
           </option>
         </select>
       </td>
@@ -50,7 +50,7 @@
   <div id='return' ng-show="roundTrip">
   <h1>Now select your return flight</h1>
   <h3><img src='../assets/returnPlane.png'>Return: From {{dest}} to {{origin}} 
-  <small>{{rDate | date}}</small></h3>
+  <small>{{rDate}}</small></h3>
   <table class="table table-striped table-hover table-bordered">
    <thead>
     <tr>
@@ -75,12 +75,12 @@
       <td>
         <select ng-model="$parent.returnCabin">
           <option value="economy">
-            Economy: {{flight.eCost | currency}}
+            Economy: {{flight.eCost}}
           </option>
           <option value="business">
-            Business: {{flight.bCost | currency}}
+            Business: {{flight.bCost}}
           </option>
-        </select> 
+        </select>
       </td>
     </tr>
   </form>
