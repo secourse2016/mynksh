@@ -21,14 +21,14 @@
   </div>
 </div>
 
-<div class='content'>
+<div class='content' ng-show="store">
 	<h1></h1>
 	<div id='Confirmation'>
 	<pre style="font-size: 16">From:{{store.}}                                   To:                                     Date:{{store.getSelectedOutDate}}                                 Duration:</pre>
 	<pre style="font-size: 16">Airstops:                                Adults:                                 Price:</pre>
 	</div>
 </div>
- <div class="tickets row" ng-repeat="store.getSelectedNumberOfTickets" ng-show="">
+ <div class="tickets row" ng-repeat="store.getSelectedNumberOfTickets">
       <h3>
       <h2>Passenger Details:</h2>
         <pre style="font-size: 16">First name: <textarea style="width: 250px; height: 25px; font-size:18"></textarea></pre> 

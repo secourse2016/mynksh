@@ -12,21 +12,33 @@ App.controller('confirmCtrl', function($scope, confirmSrv) {
    // });
    $scope.roundTrip=true;
    function getSelectedOutDate() {
-    confirmSrv.getSelectedOutDate.success(function(outgoingdate) {
+    FlightsSrv.getSelectedOutDate.success(function(outgoingdate) {
          $scope.outgoingdate = outgoingdate;
      });
   };
 
   function getSelectedReturnDate() {
     FlightsSrv.getSelectedReturnDate().success(function(ReturnDate) {
-         $scope.ReturnDate = ReturnDate;
+         $scope.ReturnDate = "17/07/2016";
      });
   };
-   $scope.origin= FlightsSrv.getSelectedOriginAirport();
-   $scope.dest= FlightsSrv.getSelectedDestinationAirport();
-   $scope.oDate= FlightsSrv.getSelectedOutDate();
-   $scope.rDate= FlightsSrv.getSelectedReturnDate();
-  // });
-  outgoingInfo();
-  returnInfo();
+  function getSelectedOriginAirport() {
+    FlightsSrv.getSelectedOriginAirport().success(function(OriginAirport) {
+         $scope.OriginAirport = OriginAirport;
+     });
+  };
+  function getSelectedDestinationAirport() {
+    FlightsSrv.getSelectedDestinationAirport().success(function(DestinationAirport) {
+         $scope.DestinationAirport = DestinationAirport;
+     });
+  };
+  //  $scope.origin= FlightsSrv.getSelectedOriginAirport();
+  //  $scope.dest= FlightsSrv.getSelectedDestinationAirport();
+  //  $scope.oDate= FlightsSrv.getSelectedOutDate();
+  //  $scope.rDate= FlightsSrv.getSelectedReturnDate();
+  // // });
+  getSelectedOutDate();
+  getSelectedReturnDate();
+  getSelectedOriginAirport();
+  getSelectedDestinationAirport();
 });
