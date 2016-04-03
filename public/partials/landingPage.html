@@ -172,7 +172,7 @@ function foo(){ console.log("Callback"); }
                 ng-model="selectedOrigin"
                 uib-typeahead="airport.iata for airport in Airports | filter:$viewValue | limitTo:10"
                 class="form-control",
-                typeahead-on-select="SetOriginAirport($item.name)">
+                typeahead-on-select="SetOriginAirport($item.iata)">
               </div>
             </div>
               </br>
@@ -198,7 +198,7 @@ function foo(){ console.log("Callback"); }
                   <input type="text"
                       class="form-control"
                       uib-datepicker-popup="{{format}}"
-                      ng-model="dt"
+                      ng-model="$parent.dto"
                       is-open="popup1.opened"
                       ng-required="true"
                       close-text="Close"
@@ -212,6 +212,7 @@ function foo(){ console.log("Callback"); }
                   </span>
                 </p>
               </div>
+              {{dto}}
           </div>
               </br>
 
@@ -222,7 +223,7 @@ function foo(){ console.log("Callback"); }
                   <input type="text"
                       class="form-control"
                       uib-datepicker-popup="{{format}}"
-                      ng-model="dt"
+                      ng-model="$parent.dtr"
                       is-open="popup2.opened"
                       ng-required="true"
                       close-text="Close"
@@ -275,7 +276,8 @@ function foo(){ console.log("Callback"); }
             </div>
           </form>
 						</div>
-						<button type="submit" class="fancy-button button-line button-white large zoom subform" id='btnSearch' ng-click='SearchFlights()'>
+						<button type="submit" class="fancy-button button-line button-white large zoom subform" id='btnSearch' ng-click="SetOutDate(dto);
+            SetReturnDate(dtr); SearchFlights()">
 							Search Flights
               <!-- <a type="button" class="btn btn-clear btn-sm btn-min-block " id='btnSearch' ng-click='SearchFlights()'>Search Flights</a> -->
 

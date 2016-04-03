@@ -6,6 +6,10 @@ App.controller('landingCtrl', function($scope, FlightsSrv, $location) {
   /*----------- Angular Bootstrap Datepicker -----------*/
   $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
   $scope.format = $scope.formats[0];
+//   $scope.$watch('dt1',function(val){
+//    //to do       
+//    console.log(val)
+// });
   $scope.roundTrip = "true";
   $scope.open1 = function() {
     $scope.popup1.opened = true;
@@ -15,8 +19,12 @@ App.controller('landingCtrl', function($scope, FlightsSrv, $location) {
     $scope.popup2.opened = true;
   };
 
-  $scope.setDate = function(year, month, day) {
-    $scope.dt = new Date(year, month, day);
+  $scope.SetSelectedOutDate = function(year, month, day) {
+    $scope.dto = new Date(year, month, day);
+  };
+   $scope.SetSelectedReturnDate = function(year, month, day) {
+    $scope.dtr = new Date(year, month, day);
+
   };
 
   $scope.popup1 = {
@@ -45,10 +53,12 @@ App.controller('landingCtrl', function($scope, FlightsSrv, $location) {
     FlightsSrv.setSelectedDestinationAirport(destAirport);
   };
 
-  $scope.SetSelectedOutDate = function(outDate) {
-           FlightsSrv.setSelectedOutDate(outDate);
+
+  $scope.SetOutDate = function(value) {
+           
+           FlightsSrv.setSelectedOutDate(value);
   };
-  $scope.SetSelectedReturnDate = function(value) {
+  $scope.SetReturnDate = function(value) {
            FlightsSrv.setSelectedReturnDate(value);
   };
   $scope.SetSelectedRoundTrip = function(value) {
@@ -57,6 +67,9 @@ App.controller('landingCtrl', function($scope, FlightsSrv, $location) {
   $scope.SetSelectedNumberOfTickets = function(value) {
            FlightsSrv.setSelectedNumberOfTickets(value);
   };
+
+
+
 
   /* Find All Available Flights  */
   $scope.SearchFlights = function() {

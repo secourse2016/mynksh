@@ -22,12 +22,9 @@ var db = require('./config/db.js');
  * Get port from environment and store in Express.
  */
 
-<<<<<<< HEAD
-var port = normalizePort(process.env.PORT || '8080');
-=======
 
-var port = normalizePort(process.env.PORT || '80');
->>>>>>> 8eb3a1283066604071dd86513f6f2df5452f6a8c
+var port = normalizePort(process.env.PORT || '8080');
+
 app.set('port', port);
 
 /**
