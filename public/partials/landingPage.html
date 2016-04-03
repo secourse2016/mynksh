@@ -58,15 +58,6 @@ function foo(){ console.log("Callback"); }
 
 <div>
   <!--=== Preloader section starts ===-->
-	 <section id="preloader">
-		<!-- <div class="loading-circle fa-spin"></div> -->
-    <div class="scene">
-<img class="car" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/43033/car.svg" alt="" />
-<img class="poof" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/43033/poof.svg" alt="" />
-<img class="sign" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/43033/sign.svg" alt="" />
-  <em>LOADING Awesomeness...</em>
-</div>
-</section>
 
 
 	<!--=== Preloader section Ends ===-->
@@ -115,12 +106,13 @@ function foo(){ console.log("Callback"); }
       					<h1 class="well-come">Fly like IBERIA</h1>
 
       					<div class="col-md-8 col-md-offset-2">
-      						<p class="intro-message">We don't care about your money, we care about YOU!</p>
+      						<p class="intro-message">The Artful Flight Experience</p>
 
                   <div class="type-wrap">
                         <div id="typed-strings">
                             <p >Hoy, <strong>Iberia</strong> está cambiando</p>
                             <p>Today, <strong>Iberia</strong> is changing</p>
+                            <p>Oh YES, <strong>OUR</strong> typers actually work.</p>
                         </div>
                         <span id="typed" style="white-space:pre;"></span>
                     </div>
@@ -198,6 +190,7 @@ function foo(){ console.log("Callback"); }
                 </div>
               </div>
               </br>
+
               <div class="form-group">
                 <font class="control-label col-sm-2 text-left" size="4" > Outgoing: </font>
                 <div class="col-md-8">
@@ -219,8 +212,9 @@ function foo(){ console.log("Callback"); }
                   </span>
                 </p>
               </div>
-            </div>
+          </div>
               </br>
+
               <div class="form-group">
                 <font class="control-label col-sm-2 text-left" size="4" > Returning: </font>
                 <div class="col-md-8">
@@ -243,6 +237,7 @@ function foo(){ console.log("Callback"); }
                 </p>
               </div>
             </div>
+
               </br>
               <div class="form-group">
                 <font class="control-label col-sm-2 text-left" size="4" > Tickets Count: </font>
@@ -298,7 +293,7 @@ function foo(){ console.log("Callback"); }
 
   <!--=== Pricing section Starts ===-->
   <section id="section-pricing" class="testimonials-wrap">
-      <div class="section-overlay"></div>
+  <div class="section-overlay"></div>
 		<div class="container pricing">
 			<div class="row">
         <div class="col-md-10 col-md-offset-1 center section-title">
@@ -321,12 +316,15 @@ function foo(){ console.log("Callback"); }
 						</div>
 
 						<ul class="package-features">
-							<li><span class="color-scheme fa fa-check"></span>From Cairo to Madrid</li>
-              <li><span class="color-scheme fa fa-check"></span>Business class</li>
-              <li><span class="color-scheme fa fa-check"></span>Round Trip Flight</li>
+							<li><span class="color-scheme fa fa-check" >From:</span>Cairo</li>
+              <li><span class="color-scheme fa fa-check">To:</span>Madrid</li>
+              <li><span class="color-scheme fa fa-check" >Round Trip</span></li>
+              <li><span class="color-scheme fa fa-check" >Economy</span>class</li>
+              <li><span class="color-scheme fa fa-check">Outgoing:</span> 10/4/2016</li>
+              <li><span class="color-scheme fa fa-check">Returning:</span> 15/4/2016</li>
 						</ul>
 						<div class="sign-up">
-							<a href="#" class="fancy-button button-line btn-col vertical">
+							<a ng-click='SearchFlights()' class="fancy-button button-line btn-col vertical">
 								Book it UP!
 								<span class="icon">
 									<i class="fa fa-hand-o-up"></i>
@@ -352,12 +350,14 @@ function foo(){ console.log("Callback"); }
 						</div>
 
             <ul class="package-features">
-							<li><span class="color-scheme fa fa-check"></span>From United States to Paris</li>
-              <li><span class="color-scheme fa fa-check"></span>Economy class</li>
-							<li><span class="color-scheme fa fa-check"></span>One Way Flight</li>
+							<li><span class="color-scheme fa fa-check">From:</span>United States</li>
+              <li><span class="color-scheme fa fa-check">To:</span>Paris</li>
+              <li><span class="color-scheme fa fa-check" >One way</span></li>
+              <li><span class="color-scheme fa fa-check" >Business</span>class</li>
+              <li><span class="color-scheme fa fa-check">Outgoing:</span> 15/4/2016</li>
 						</ul>
 						<div class="sign-up">
-							<a href="#" class="fancy-button button-line btn-col rotate">
+							<a ng-click='SearchFlights()' class="fancy-button button-line btn-col rotate">
 								Book it UP!
 								<span class="icon">
 									<i class="fa fa-thumbs-o-up"></i>
@@ -384,12 +384,15 @@ function foo(){ console.log("Callback"); }
 						</div>
 
             <ul class="package-features">
-							<li><span class="color-scheme fa fa-check"></span>From China to Madrid</li>
-              <li><span class="color-scheme fa fa-check"></span>Economy class</li>
-              <li><span class="color-scheme fa fa-check"></span>Round Trip Flight</li>
+							<li><span class="color-scheme fa fa-check">From:</span>China</li>
+              <li><span class="color-scheme fa fa-check">To:</span>Madrid</li>
+              <li><span class="color-scheme fa fa-check" >Round Trip</span>Flight</li>
+              <li><span class="color-scheme fa fa-check" >Economy</span>class</li>
+              <li><span class="color-scheme fa fa-check">Outgoing:</span> 20/4/2016</li>
+              <li><span class="color-scheme fa fa-check">Returning:</span> 30/4/2016</li>
 						</ul>
 						<div class="sign-up">
-							<a href="#" class="fancy-button button-line btn-col zoom">
+							<a ng-click='SearchFlights()' class="fancy-button button-line btn-col zoom">
 								Book it UP!
 								<span class="icon">
 									<i class="fa fa-thumbs-o-up"></i>
@@ -407,9 +410,39 @@ function foo(){ console.log("Callback"); }
   <!-- ABOUT US STARTS  -->
   <section id="section-services" class="feature-wrap">
     <div class="container features center">
+      <div class="row">
+				<div class="col-md-8 col-md-offset-2">
+      <div class="sky">
+          <div class="moon"></div>
+          <div class="clouds_one"></div>
+          <div class="clouds_two"></div>
+          <div class="clouds_three"></div>
+        </div>
+      </div>
+    </div>
+      <!-- <section id="preloader"> -->
+       <!-- <div class="loading-circle fa-spin"></div> -->
+       <div class="scene">
+      <img class="car" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/43033/car.svg" alt="" />
+      <img class="poof" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/43033/poof.svg" alt="" />
+      <img class="sign" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/43033/sign.svg" alt="" />
+      <!-- <img class="sign" src="http://imagizer.imageshack.us/v2/100x75q90/922/0MsVKt.jpg" alt="" /> -->
+      <em><font size="5" color="black" >We make everything fly...</font></em>
+      </div>
+      <!-- </section> -->
+
+
+        <div id="ball" >
+          <font size="5" color="black" >Rocketing</font>
+        </br>
+          <font size="5" color="black" >Airplanes</font>
+        </div>
+
 
 
     </div>
+
+
   </section>
 
   <!-- ABOUT US ENDS  -->
@@ -430,7 +463,7 @@ function foo(){ console.log("Callback"); }
 									Front-End Developer
                 </p>
 
-									<a href="#" class="fancy-button button-line btn-col small vertical">
+									<a href="https://www.facebook.com/narihanellaithy" class="fancy-button button-line btn-col small vertical">
 										Details
 										<span class="icon">
 											<i class="fa fa-leaf"></i>
@@ -445,9 +478,10 @@ function foo(){ console.log("Callback"); }
 								<img src="images/2.jpg" alt="" class="feature-image" /><!-- Feature Icon -->
 								<h4 class="feature-title color-scheme">Safa Ads</h4>
 								<p class="feature-text">
-                  3amalet el Nav Bar HAHA!!
+
+                  Back-end Developer
                   </p>
-								<a href="#" class="fancy-button button-line btn-col small zoom">
+								<a href="https://www.facebook.com/Safa.Muhammed?fref=ts" class="fancy-button button-line btn-col small zoom">
 									Details
 									<span class="icon">
 										<i class="fa fa-leaf"></i>
@@ -460,9 +494,9 @@ function foo(){ console.log("Callback"); }
 								<img src="images/3.jpg" alt="" class="feature-image" /><!-- Feature Icon -->
 								<h4 class="feature-title color-scheme">Yara Sobhy</h4>
 								<p class="feature-text">
-                  Scrum MASTER!!
+                  Scrum Master
                 </p>
-								<a href="#" class="fancy-button button-line btn-col small zoom">
+								<a href="https://www.facebook.com/Yara.Sobhy?fref=ts" class="fancy-button button-line btn-col small zoom">
 									Details
 									<span class="icon">
 										<i class="fa fa-leaf"></i>
@@ -477,7 +511,7 @@ function foo(){ console.log("Callback"); }
 								<p class="feature-text">
                   Back-end developer
                 </p>
-								<a href="#" class="fancy-button button-line btn-col small zoom">
+								<a href="https://www.facebook.com/YoussufRadi?fref=ts" class="fancy-button button-line btn-col small zoom">
 									Details
 									<span class="icon">
 										<i class="fa fa-leaf"></i>
@@ -490,9 +524,9 @@ function foo(){ console.log("Callback"); }
 								<img src="images/5.jpg" alt="" class="feature-image" /><!-- Feature Icon -->
 								<h4 class="feature-title color-scheme">Mohamed Ashraf</h4>
 								<p class="feature-text">
-                  Back end developer
+                  Back-end developer
                 </p>
-								<a href="#" class="fancy-button button-line btn-col small zoom">
+								<a href="https://www.facebook.com/Kefa7y?pnref=friends.search" class="fancy-button button-line btn-col small zoom">
 									Details
 									<span class="icon">
 										<i class="fa fa-leaf"></i>
@@ -505,9 +539,9 @@ function foo(){ console.log("Callback"); }
 								<img src="images/6.jpg" alt="" class="feature-image" /><!-- Feature Icon -->
 								<h4 class="feature-title color-scheme">Hazem Ayman</h4>
 								<p class="feature-text">
-                  Front and Back end developer
+                  Front and Back-end developer
               	</p>
-								<a href="#" class="fancy-button button-line btn-col small zoom">
+								<a href="https://www.facebook.com/hazem.ayman.14?pnref=friends.search" class="fancy-button button-line btn-col small zoom">
 									Details
 									<span class="icon">
 										<i class="fa fa-leaf"></i>
@@ -522,7 +556,7 @@ function foo(){ console.log("Callback"); }
 								<p class="feature-text">
                   Developer
                 </p>
-								<a href="#" class="fancy-button button-line btn-col small zoom">
+								<a href="https://www.facebook.com/mostafaebrahimhassan" class="fancy-button button-line btn-col small zoom">
 									Details
 									<span class="icon">
 										<i class="fa fa-leaf"></i>
@@ -602,7 +636,7 @@ function foo(){ console.log("Callback"); }
 						</ul>
 					</div>
 
-					<p class="copyright">All rights reserved &copy; 2015</p>
+					<p class="copyright">All rights reserved &copy; to MYNKSH 2016</p>
 				</div>
 			</div>
 		</div>
