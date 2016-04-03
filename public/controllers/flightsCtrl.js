@@ -13,6 +13,7 @@ App.controller('flightsCtrl', function($scope, FlightsSrv) {
    //  $scope.returnInfo= response.data.records;
 
    // });
+  
    $scope.roundTrip=true;
    function outgoingInfo() {
     FlightsSrv.getOutgoingInfo().success(function(outgoingInfo) {
@@ -25,6 +26,15 @@ App.controller('flightsCtrl', function($scope, FlightsSrv) {
          $scope.returnInfo = returnInfo;
      });
   };
+  $scope.stringToDate=function(date)
+  {
+    return new Date(date); 
+  };
+  $scope.timediff = function(depart, arr){
+  return moment.utc(moment(arr).diff(moment(depart))).format("hh:mm");
+};
+ 
+
    $scope.origin= FlightsSrv.getSelectedOriginAirport();
    $scope.dest= FlightsSrv.getSelectedDestinationAirport();
    $scope.oDate= FlightsSrv.getSelectedOutDate();

@@ -29,9 +29,9 @@
       <td><input type="radio" ng-model="$parent.selectedOutgoingFlight" value="{{flight}}" /></td>
       <td>{{flight.flightNumber}}</td>
       <td>iberia</td>
-      <td>{{flight.departureTime}}</td>
-      <td>{{flight.arrivalTime}}</td>
-      <td>{{flight.arrivalTime - flight.departureTime}}</td>
+      <td>{{stringToDate(flight.departureTime) | date : 'shortTime'}}</td>
+      <td>{{stringToDate(flight.arrivalTime) | date : 'shortTime'}}</td>
+      <td>{{timediff(flight.departureTime,flight.arrivalTime)}}</td> 
        <td>
         <select ng-model="$parent.outgoingCabin">
           <option value="economy">
@@ -69,9 +69,9 @@
       <td><input type="radio" value="{{flight}}" ng-model="$parent.selectedReturnFlight"></td>
       <td>{{flight.flightNumber}}</td>
       <td>iberia</td>
-      <td>{{flight.departureTime}}</td>
-      <td>{{flight.arrivalTime}}</td>
-      <td>{{flight.departureTime - flight.arrivalTime}}</td>
+      <td>{{stringToDate(flight.departureTime) | date : 'shortTime'}}</td>
+      <td>{{stringToDate(flight.arrivalTime) | date : 'shortTime'}}</td>
+      <td>{{timediff(flight.departureTime,flight.arrivalTime)}}</td> 
       <td>
         <select ng-model="$parent.returnCabin">
           <option value="economy">
