@@ -21,8 +21,8 @@
 </div>
  <div >
 	<h2>Contact Details:</h2>
-	<pre style="font-size: 16">Phone number: <input></input></pre>
-	<pre style="font-size: 16">Email: <input></input></pre>
+	<pre style="font-size: 16">Phone number: <input type="number" placeholder="e.g.109013840923" ng-model="typePhoneno"></input></pre>
+	<pre style="font-size: 16">Email: <input type="string" placeholder="e.g. Hazem.279@gmail.com"   ng-model="typedEmail"></input></pre>
 </div>
  <div ng-repeat="n in noOfTickets" class="tickets row" >
       <h3>
@@ -40,6 +40,6 @@
 
 
 <div>
-	<button style="background-color: red; color: black;" ng-click="SetCountry(selectedCountry) ; SetFirstName(selectedFirstName) ; SetSurname(selectedSecondName) ; SetPassengers(SelectedPassengers); SetStret(selectedStret) ; SetInformation(selectedExtra) ; SetPostalcode(selectedPostalcode) ; SetCity(SelectedCity)  ;goToPayment()"> <b>Continue to payment</b> </button>
+	<button style="background-color: red; color: black;" ng-click="SetFname(typedFname) ; SetLName(typedLname) ; SetIssueDate(typedIssueDate) ; SetExpiryDate(typedExpiryDate); SetPassportNo(typedPassportno) ; SetEmail(typedEmail) ; SetPhoneNo(typedPhoneno) ; goToPayment()"> <b>Continue to payment</b> </button>
 </div>
 <!-- <input class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" id="fn" ng-model="travellers[$index].firstName" placeholder="First Name" required="required" type="text"> -->
