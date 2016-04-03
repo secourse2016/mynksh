@@ -16,6 +16,8 @@ App.controller('confirmCtrl', function($scope, FlightsSrv) {
   //        $scope.outgoingdate = outgoingdate;
   //    });
   // };
+   var fname;
+   var lname;
    $scope.origin= FlightsSrv.getSelectedOriginAirport();
 
    $scope.dest= FlightsSrv.getSelectedDestinationAirport();
@@ -25,11 +27,17 @@ App.controller('confirmCtrl', function($scope, FlightsSrv) {
    $scope.tickets=FlightsSrv.getSelectedNumberOfTickets();
 
    var range = [];
-   range.push(1);
+   range.push(0);
 for(var i=1;i<FlightsSrv.getSelectedNumberOfTickets();i++) {
   range.push(i);
 }
+
    $scope.noOfTickets=range;
+
+   $scope.goToPayment = function() {
+    $location.url('/flights');
+  };
+
 
 
   // });

@@ -15,29 +15,31 @@
 <div class='content'>
 	<h1></h1>
 	<div id='Confirmation'>
-	<pre style="font-size: 16">From:{{origin}}                         To:{{dest}}                                     Date:{{oDate}}                                 Duration:</pre>
+	<pre style="font-size: 16">From:{{origin}}                                   To:{{dest}}                                     Date:{{oDate}}                                 Duration:</pre>
 	<pre style="font-size: 16">Tickets:{{tickets}}                                Price:</pre>
 	</div>
 </div>
- <div ng-repeat="n in noOfTickets" class="tickets row" >
-      <h3>
-      <h2>Passenger Details:</h2>
-        <pre style="font-size: 16"> First name: <input></input></pre> 
-        <pre style="font-size: 16"> Last name: <input></input></pre>
-        <pre style="font-size: 16"> Passport: <button class="dropbtn"> <b>USA</b> </button> </pre>
-        <pre style="font-size: 16"> Issue date: <input></input></pre> 
-        <pre style="font-size: 16"> Expiry date: <input></input></pre> 
-        <pre style="font-size: 16"> Passport number: <input></input></pre>  
-
-      </h3>
-      
- </div>
-
  <div >
 	<h2>Contact Details:</h2>
 	<pre style="font-size: 16">Phone number: <input></input></pre>
 	<pre style="font-size: 16">Email: <input></input></pre>
 </div>
+ <div ng-repeat="n in noOfTickets" class="tickets row" >
+      <h3>
+      <h2>Passenger Details:</h2>
+        <pre style="font-size: 16"> First name: <input type="string" placeholder="e.g. Hazem"   ng-model="typedFname"></input></pre> 
+        <pre style="font-size: 16"> Last name: <input type="string" placeholder="e.g. Elessawy"   ng-model="typedLname"></input></pre>
+        <pre style="font-size: 16"> Passport: <button class="dropbtn"> <b>USA</b> </button> </pre>
+        <pre style="font-size: 16"> Issue date: <input type="date" placeholder="e.g. 17/10/2005"   ng-model="typedIssueDate"></input></pre> 
+        <pre style="font-size: 16"> Expiry date: <input type="date" placeholder="e.g. 17/10/2015"   ng-model="typedExpiryDate"></input></pre> 
+        <pre style="font-size: 16"> Passport number: <input type="number" ng-model="typedPassportno"></input></pre>  
+
+      </h3>
+      
+ </div>
+
+
 <div>
-	<button style="background-color: red; color: black;"> <b>Continue to payment</b> </button>
+	<button style="background-color: red; color: black;" ng-click="SetCountry(selectedCountry) ; SetFirstName(selectedFirstName) ; SetSurname(selectedSecondName) ; SetPassengers(SelectedPassengers); SetStret(selectedStret) ; SetInformation(selectedExtra) ; SetPostalcode(selectedPostalcode) ; SetCity(SelectedCity)  ;goToPayment()"> <b>Continue to payment</b> </button>
 </div>
+<!-- <input class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" id="fn" ng-model="travellers[$index].firstName" placeholder="First Name" required="required" type="text"> -->
