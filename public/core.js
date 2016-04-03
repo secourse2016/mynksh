@@ -13,6 +13,11 @@ App.config(function($routeProvider) {
             controller  : 'landingCtrl',
             controllerAs: 'landing'
         })
+        .when('/payment', {
+            templateUrl : '/partials/payment.html',
+            controller  : 'mainCtrl' ,
+              controllerAs: 'payment'
+        })
 
         // route for the OutgoingReturnFlights page
         .when('/flights', {
