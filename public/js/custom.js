@@ -3,8 +3,8 @@ Pre Loader
 ----------------------------- */
 $(window).load(function() {
 	'use strict';
-	$('.loading-icon').delay(5000).fadeOut();
-	$('#preloader').delay(8000).fadeOut('slow');
+	$('.loading-icon').delay(500).fadeOut();
+	$('#preloader').delay(800).fadeOut('slow');
 });
 
 
