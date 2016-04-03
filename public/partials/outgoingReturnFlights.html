@@ -41,7 +41,7 @@
   </tbody>
 </table> 
   </div>
-  <div ng-show="roundTrip">
+  <div ng-if="roundTrip">
   <h1 class ="animated fadeInDown header-font">Now select your return flight</h1>
   <div id='return' class ="animated slideInRight">
   <h3><img src='../assets/returnPlane.png'>Return: From {{dest}} to {{origin}} 
@@ -86,8 +86,11 @@
   <div id='price'>
   <blockquote>
   <p>Price of your tickets</p>
-  <h3>{{returnCabin + outgoingCabin | currency:"€"}}</h3>
+  <h3>{{totalPrice | currency:"€"}}</h3>
 </blockquote>
 <a href="#" class="btn btn-primary btn-lg hvr-underline-from-center" ng-click='BookFlight()'>Book Flight</a>
   </div>
 </div>
+{{returnCabin}}
+{{outgoingCabin}}
+{{totalPrice}}

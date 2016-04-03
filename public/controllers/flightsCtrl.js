@@ -26,6 +26,27 @@ App.controller('flightsCtrl', function($scope, FlightsSrv,OutReturnSrv,$location
          $scope.returnInfo = returnInfo;
      });
   };
+
+  $scope.calculatePrice =function(){
+    if($scope.outgoingCabin == "economy")
+     if(roundTrip == true){
+      if($scope.arrivalCabin == "economy")
+          $scope.totalPrice = $outgoingInfo.ePrice + $returnInfo.ePrice;
+      else if($scope.arrivalCabin == "business")
+          $scope.totalPrice = $outgoingInfo.ePrice + $returnInfo.bPrice;
+      }
+     else $scope.totalPrice = $outgoingInfo.ePrice;
+
+    if($scope.outgoingCabin == "business")
+     if(roundTrip == true){
+      if($scope.arrivalCabin == "economy")
+          $scope.totalPrice = $outgoingInfo.bPrice + $returnInfo.ePrice;
+      else if($scope.arrivalCabin == "business")
+          $scope.totalPrice = $outgoingInfo.bPrice + $returnInfo.bPrice;
+      }
+     else $scope.totalPrice = $outgoingInfo.bPrice;
+  };
+
   $scope.stringToDate=function(date)
   {
     return new Date(date); 
@@ -62,7 +83,6 @@ App.controller('flightsCtrl', function($scope, FlightsSrv,OutReturnSrv,$location
   $scope.SetOperatedBy = function() {
     OutReturnSrv.setSelectedOperatedBy();
   };
- 
 
    $scope.origin= FlightsSrv.getSelectedOriginAirport();
    $scope.dest= FlightsSrv.getSelectedDestinationAirport();
@@ -71,4 +91,7 @@ App.controller('flightsCtrl', function($scope, FlightsSrv,OutReturnSrv,$location
   // });
   outgoingInfo();
   returnInfo();
+
+  $scope.$watch('returnCabin',function() {$scope.calculatePrice();});
+  $scope.$watch('outgoingCabin',function() {$scope.calculatePrice();});
 });
