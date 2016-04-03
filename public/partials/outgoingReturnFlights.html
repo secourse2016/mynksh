@@ -35,10 +35,10 @@
        <td>
         <select ng-model="$parent.outgoingCabin">
           <option value="economy">
-            Economy: {{flight.eCost | currency}}
+            Economy: {{flight.eCost | currency: "€"}}
           </option>
           <option value="business">
-            Business: {{flight.bCost | currency}}
+            Business: {{flight.bCost | currency: "€"}}
           </option>
         </select>
       </td>
@@ -75,10 +75,10 @@
       <td>
         <select ng-model="$parent.returnCabin">
           <option value="economy">
-            Economy: {{flight.eCost | currency}}
+            Economy: {{flight.eCost | currency : "€"}}
           </option>
           <option value="business">
-            Business: {{flight.bCost | currency}}
+            Business: {{flight.bCost | currency: "€"}}
           </option>
         </select>
       </td>
