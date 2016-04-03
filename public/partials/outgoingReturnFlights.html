@@ -1,6 +1,6 @@
 
 <!-- <div id='nav-bar'>
-  <a href='./'> 
+  <a href='./'>
   <div id='logo'>
     <img src='../assets/iberia-logo.png'>
   </div>
@@ -9,12 +9,12 @@
 <div class='content'>
   <h1>Select your flights</h1>
   <div id='outgoing'>
-  <h3><img src='../assets/outgoingPlane.png'>Outbound:From {{origin}} to {{dest}} 
+  <h3><img src='../assets/outgoingPlane.png'>Outbound:From {{origin}} to {{dest}}
   <small>{{oDate}}</small></h3>
   <table class="table table-striped table-hover table-bordered">
   <thead>
     <tr>
-      <th></th> 
+      <th></th>
       <th>Flight Number</th>
       <th>Operated by</th>
       <th>Departure Time</th>
@@ -31,7 +31,7 @@
       <td>iberia</td>
       <td>{{stringToDate(flight.departureTime) | date : 'shortTime'}}</td>
       <td>{{stringToDate(flight.arrivalTime) | date : 'shortTime'}}</td>
-      <td>{{timediff(flight.departureTime,flight.arrivalTime)}}</td> 
+      <td>{{timediff(flight.departureTime,flight.arrivalTime)}}</td>
        <td>
         <select ng-model="$parent.outgoingCabin">
           <option value="economy">
@@ -45,16 +45,16 @@
     </tr>
   </form>
   </tbody>
-</table> 
+</table>
   </div>
   <div id='return' ng-show="roundTrip">
   <h1>Now select your return flight</h1>
-  <h3><img src='../assets/returnPlane.png'>Return: From {{dest}} to {{origin}} 
+  <h3><img src='../assets/returnPlane.png'>Return: From {{dest}} to {{origin}}
   <small>{{rDate}}</small></h3>
   <table class="table table-striped table-hover table-bordered">
    <thead>
     <tr>
-      <th></th> 
+      <th></th>
       <th>Flight Number</th>
       <th>Operated by</th>
       <th>Departure Time</th>
@@ -74,7 +74,7 @@
       <td>{{flight.departureTime - flight.arrivalTime}}</td>
       <td>{{stringToDate(flight.departureTime) | date : 'shortTime'}}</td>
       <td>{{stringToDate(flight.arrivalTime) | date : 'shortTime'}}</td>
-      <td>{{timediff(flight.departureTime,flight.arrivalTime)}}</td> 
+      <td>{{timediff(flight.departureTime,flight.arrivalTime)}}</td>
       <td>
         <select ng-model="$parent.returnCabin">
           <option value="economy">
@@ -88,7 +88,7 @@
     </tr>
   </form>
   </tbody>
-</table> 
+</table>
   </div>
   <div id='price'>
   <blockquote>
@@ -96,5 +96,6 @@
   <h3>000€</h3>
 </blockquote>
 <a href="#" class="btn btn-primary btn-lg">Book Flight</a>
+<button type="button" class="btn btn-primary btn-lg" style="position:relative; left:280px"  ng-click='goCocontinuePay()' >Continue</button>
   </div>
 </div>
