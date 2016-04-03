@@ -1,4 +1,5 @@
 //testing animation with setTimeout
+
 function animation(){
   var element = document.getElementById("ball"),
       time    = Date.now();
