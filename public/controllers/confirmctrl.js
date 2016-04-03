@@ -1,5 +1,3 @@
-(function(){
-  var App= angular.module('store',[ ]);
 
 App.controller('confirmCtrl', function($scope, FlightsSrv) {
 
@@ -31,6 +29,4 @@ App.controller('confirmCtrl', function($scope, FlightsSrv) {
   // getSelectedReturnDate();
   // getSelectedOriginAirport();
   // getSelectedDestinationAirport();
-})
-})();
-
+});

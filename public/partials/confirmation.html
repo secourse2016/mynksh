@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<title>Flights</title>
 	<link href="../styles/top-bar.css" rel="stylesheet" type="text/css">
-    <script src="./controllers/ConfirmCtrl.js"></script>
+    <script src="/controllers/Confirmctrl.js"></script>
 </head>
 <body ng-controller="Confirmctrl as store">
 
@@ -25,28 +25,28 @@
 <div class='content'>
 	<h1></h1>
 	<div id='Confirmation'>
-	<pre style="font-size: 16">From:                                   To:                                     Date:                                 Duration:</pre>
+	<pre style="font-size: 16">From: {{store.origin}}                                  To:                                     Date:                                 Duration:</pre>
 	<pre style="font-size: 16">Tickets:                                Price:</pre>
 	</div>
 </div>
  <div class="tickets row" ng-repeat="store.getSelectedNumberOfTickets">
       <h3>
       <h2>Passenger Details:</h2>
-        <pre style="font-size: 16">First name: <textarea style="width: 250px; height: 25px; font-size:18"></textarea></pre> 
-        <pre style="font-size: 16">Last name: <textarea style="width: 250px; height: 25px; font-size:18"></textarea></pre>
+        <pre style="font-size: 16">First name: <input></input></pre> 
+        <pre style="font-size: 16">Last name: <input></input></pre>
         <pre style="font-size: 16">Passport: <button class="dropbtn"> <b>USA</b> </button> </pre>
-        <pre style="font-size: 16">Issue date: <textarea style="width: 250px; height: 25px; font-size:18"></textarea></pre> 
-        <pre style="font-size: 16">Expiry date: <textarea style="width: 250px; height: 25px; font-size:18"></textarea></pre> 
-        <pre style="font-size: 16">Passport number: <textarea style="width: 250px; height: 25px; font-size:18"></textarea></pre>  
+        <pre style="font-size: 16">Issue date: <input></input></pre> 
+        <pre style="font-size: 16">Expiry date: <input></input></pre> 
+        <pre style="font-size: 16">Passport number: <input></input></pre>  
 
       </h3>
-      {{origin}}
+      
  </div>
 
  <div >
 	<h2>Contact Details:</h2>
-	<pre style="font-size: 16">Phone number: <textarea style="width: 250px; height: 25px; font-size:18"></textarea></pre>
-	<pre style="font-size: 16">Email: <textarea style="width: 250px; height: 25px; font-size:18"></textarea></pre>
+	<pre style="font-size: 16">Phone number: <input></input></pre>
+	<pre style="font-size: 16">Email: <input></input></pre>
 </div>
 </body>
 <html>
