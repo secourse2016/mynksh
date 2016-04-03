@@ -1,3 +1,6 @@
+(function(){
+  var App= angular.module('store',[ ]);
+
 App.controller('confirmCtrl', function($scope, FlightsSrv) {
 
   /* Retrieve Selected Airports Codes */
@@ -28,4 +31,6 @@ App.controller('confirmCtrl', function($scope, FlightsSrv) {
   // getSelectedReturnDate();
   // getSelectedOriginAirport();
   // getSelectedDestinationAirport();
-});
+})
+})();
+
