@@ -1,11 +1,5 @@
 
 <script>
-var setScroll = function(i) {
-       if($(i).length>0)
-       $(i).niceScroll().updateScrollBar();
-}
-
-setScroll(".classWithNiceScroll");
 
 $(function(){
     $("#typed").typed({
@@ -17,7 +11,6 @@ $(function(){
         contentType: 'html', // or text
         // defaults to false for infinite loop
         loopCount: false,
-        callback: function(){ foo(); },
         resetCallback: function() { newTyped(); }
     });
     $(".reset").click(function(){
@@ -50,7 +43,7 @@ $(function(){
 <link rel="stylesheet" href="css/animate.css" />
 <script type="text/javascript" src="js/jquery.baraja.js"></script>
 <link rel="stylesheet" href="css/baraja.css" />
-<!-- <script type="text/javascript" src="js/jquery.bxslider.min.js"></script> -->
+<script type="text/javascript" src="js/jquery.bxslider.min.js"></script>
 
 
 <!-- <link rel="stylesheet" id="scheme-source" href="css/schemes/gray.css" /> -->
@@ -66,7 +59,7 @@ $(function(){
 <link rel="stylesheet" href="css/responsive.css" />
 
 
-
+<script type="text/javascript" src="js/jquery.ajaxchimp.min.js"></script>
 
 <!--=== Preloader section starts ===-->
 

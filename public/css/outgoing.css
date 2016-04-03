@@ -2,9 +2,6 @@
 	width:60%;
 	margin-left:20%;
 }
-.metallic{
-	background:rgba(192,192,192,1);
-}
 th,td{
 	padding: 15px;
 	text-align: center;
@@ -51,9 +48,6 @@ h1{
 	background-color:#005580;
 }
 
-a {
-	text-decoration : none !important;
-}
 
 @keyframes slideInLeft {
   from {
