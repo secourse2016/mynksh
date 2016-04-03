@@ -7,16 +7,16 @@
           return $http.get('/api/data/airports');
         } ,
         setSelectedCountry: function(value) {
-          this.setSelectedCountry = value;
+          this.SelectedCountry = value;
         },
         getSelectedCountry: function(value) {
-          this.getSelectedCountry = value;
+          this.SelectedCountry = value;
         },
-        getFirstName : function() {
-          return this.FirstName ;
+        getSelectedFirstName : function() {
+          return this.selectedFirstName ;
         },
-        setFirstName: function(value) {
-          this.FirstName = value;
+        setSelectedFirstName: function(value) {
+          this.selectedFirstName = value;
         },
         getSelectedSurname: function() {
           return this.selectedSurname;
