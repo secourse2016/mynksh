@@ -28,10 +28,10 @@
       <td>{{timediff(flight.departureTime,flight.arrivalTime)}}</td> 
        <td>
         <select ng-model="$parent.outgoingCabin">
-          <option value="e">
+          <option value="economy">
             Economy: {{flight.eCost | currency: "€"}}
           </option>
-          <option value="b">
+          <option value="business">
             Business: {{flight.bCost | currency: "€"}}
           </option>
         </select>
