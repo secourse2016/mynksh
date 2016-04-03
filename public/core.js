@@ -26,15 +26,5 @@ App.config(function($routeProvider) {
             controllerAs: 'flights'
         });
 
-        // // route for the confirmation page
-        // .when('/confirm', {
-        //     templateUrl : '/partials/confirmation.html',
-        //     controller  : ''
-        // });
 
-        // // route for the payment page
-        // .when('/payment', {
-        //     templateUrl : '/partials/payment.html',
-        //     controller  : ''
-        // });
 });
