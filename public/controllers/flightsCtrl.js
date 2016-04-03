@@ -38,6 +38,30 @@ App.controller('flightsCtrl', function($scope, FlightsSrv,OutReturnSrv,$location
   {
     $location.url('/confirm');
   };
+    $scope.SetFlightNumber = function() {
+    OutReturnSrv.setSelectedFlightNumber();
+  };
+ $scope.SetDepartureTime = function() {
+    OutReturnSrv.setSelectedDepartureTime();
+  };
+  $scope.SetArrivalTime = function() {
+    OutReturnSrv.setSelectedArrivalTime();
+  };
+  $scope.SetDuration = function() {
+    OutReturnSrv.setSelectedDuration();
+  };
+  $scope.setSelectedCabin = function() {
+    OutReturnSrv.setSelectedDuration();
+  };
+  $scope.SetDuration = function() {
+    OutReturnSrv.setSelectedCabin();
+  };
+  $scope.SetPrice = function() {
+    OutReturnSrv.setSelectedPrice();
+  };
+  $scope.SetOperatedBy = function() {
+    OutReturnSrv.setSelectedOperatedBy();
+  };
  
 
    $scope.origin= FlightsSrv.getSelectedOriginAirport();
