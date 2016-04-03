@@ -1,12 +1,3 @@
-<DOCTYPE !HTML>
-<html>
-<head>
-	<meta charset="utf-8">
-	<title>Flights</title>
-	<link href="../styles/top-bar.css" rel="stylesheet" type="text/css">
-    <script src="/controllers/Confirmctrl.js"></script>
-</head>
-<body ng-controller="Confirmctrl as store">
 
 <!-- <div id='nav-bar'>
 	<a href='./'>	
@@ -17,16 +8,15 @@
 </div>
  -->
 <div class="progress">
-  	 <p align="right">1.Search &nbsp&nbsp 2.Book &nbsp&nbsp <b>3.Confirmation</b> &nbsp&nbsp 4.Payment</p>
+  	 <p align="right">1.Search &nbsp&nbsp 2.Book &nbsp&nbsp <b>3.Confirmation</b> &nbsp&nbsp 4.Payment</p> 
 
-  </div>
 </div>
 
 <div class='content'>
 	<h1></h1>
 	<div id='Confirmation'>
-	<pre style="font-size: 16">From:{{store.origin}}                   To:                                     Date:                                 Duration:</pre>
-	<pre style="font-size: 16">Tickets:                                Price:</pre>
+	<pre style="font-size: 16">From:{{origin}}                         To:{{dest}}                                     Date:{{oDate}}                                 Duration:</pre>
+	<pre style="font-size: 16">Tickets:{{tickets}}                                Price:</pre>
 	</div>
 </div>
  <div class="tickets row" ng-repeat="store.getSelectedNumberOfTickets">
@@ -51,5 +41,3 @@
 <div>
 	<button style="background-color: red; color: black;"> <b>Continue to payment</b> </button>
 </div>
-</body>
-<html>

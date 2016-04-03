@@ -1,4 +1,3 @@
-
 App.controller('confirmCtrl', function($scope, FlightsSrv) {
 
   /* Retrieve Selected Airports Codes */
@@ -17,7 +16,7 @@ App.controller('confirmCtrl', function($scope, FlightsSrv) {
   //        $scope.outgoingdate = outgoingdate;
   //    });
   // };
-   $scope.origin= "hamada";
+   $scope.origin= FlightsSrv.getSelectedOriginAirport();
 
    $scope.dest= FlightsSrv.getSelectedDestinationAirport();
    $scope.oDate= FlightsSrv.getSelectedOutDate();
