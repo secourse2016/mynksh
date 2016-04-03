@@ -3,10 +3,31 @@
  */
  App.controller('paymentCtrl', function($scope, FlightsSrv,OutReturnSrv, paymentSrv, $location) {
   $scope.no = "node";
-
+$scope.Success = "fail to pay please try again later";
   $scope.goToBriefConfirmation= function() {
     $location.url('/flights');
   };
+
+
+// function postIntoBooking() { $http.post('../../modules/bookings.json',{text:$scope.totalPrice}).success(function(response){
+//
+//   $scope.Success = "success to pay";
+//
+//
+//
+// });
+//   };
+
+$scope.postIntoBooking = function () {
+    var customer = {contact_name :"Scott",company_name:"HP"};
+    $.ajax({
+        type: "POST",
+        data :JSON.stringify(customer),
+        url: "/api/data/bookings",
+        contentType: "application/json"
+    });
+};
+
 
    function countryCode() {
      paymentSrv.getCountry().success(function(country) {
@@ -42,6 +63,9 @@
             paymentSrv.setSelectedCity(value);
    };
 
+   $scope.noOfPassengers = FlightsSrv.getSelectedNumberOfTickets();
+//   llsa  m3rfsh ha5odha mn meen
+   $scope.totalPrice = '0.00' ;
 
    $scope.Porigin= FlightsSrv.getSelectedOriginAirport();
    $scope.Pdest= FlightsSrv.getSelectedDestinationAirport();
