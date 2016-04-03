@@ -191,6 +191,7 @@ function foo(){ console.log("Callback"); }
                 </div>
               </div>
               </br>
+
               <div class="form-group">
                 <font class="control-label col-sm-2 text-left" size="4" > Outgoing: </font>
                 <div class="col-md-8">
@@ -212,8 +213,9 @@ function foo(){ console.log("Callback"); }
                   </span>
                 </p>
               </div>
-            </div>
+          </div>
               </br>
+
               <div class="form-group">
                 <font class="control-label col-sm-2 text-left" size="4" > Returning: </font>
                 <div class="col-md-8">
@@ -236,6 +238,7 @@ function foo(){ console.log("Callback"); }
                 </p>
               </div>
             </div>
+
               </br>
               <div class="form-group">
                 <font class="control-label col-sm-2 text-left" size="4" > Tickets Count: </font>
@@ -314,12 +317,15 @@ function foo(){ console.log("Callback"); }
 						</div>
 
 						<ul class="package-features">
-							<li><span class="color-scheme fa fa-check"></span>From Cairo to Madrid</li>
-              <li><span class="color-scheme fa fa-check"></span>Business class</li>
-              <li><span class="color-scheme fa fa-check"></span>Round Trip Flight</li>
+							<li><span class="color-scheme fa fa-check" >From:</span>Cairo</li>
+              <li><span class="color-scheme fa fa-check">To:</span>Madrid</li>
+              <li><span class="color-scheme fa fa-check" >Round Trip</span></li>
+              <li><span class="color-scheme fa fa-check" >Economy</span>class</li>
+              <li><span class="color-scheme fa fa-check">Outgoing:</span> 10/4/2016</li>
+              <li><span class="color-scheme fa fa-check">Returning:</span> 15/4/2016</li>
 						</ul>
 						<div class="sign-up">
-							<a href="#" class="fancy-button button-line btn-col vertical">
+							<a ng-click='SearchFlights()' class="fancy-button button-line btn-col vertical">
 								Book it UP!
 								<span class="icon">
 									<i class="fa fa-hand-o-up"></i>
@@ -345,12 +351,14 @@ function foo(){ console.log("Callback"); }
 						</div>
 
             <ul class="package-features">
-							<li><span class="color-scheme fa fa-check"></span>From United States to Paris</li>
-              <li><span class="color-scheme fa fa-check"></span>Economy class</li>
-							<li><span class="color-scheme fa fa-check"></span>One Way Flight</li>
+							<li><span class="color-scheme fa fa-check">From:</span>United States</li>
+              <li><span class="color-scheme fa fa-check">To:</span>Paris</li>
+              <li><span class="color-scheme fa fa-check" >One way</span></li>
+              <li><span class="color-scheme fa fa-check" >Business</span>class</li>
+              <li><span class="color-scheme fa fa-check">Outgoing:</span> 15/4/2016</li>
 						</ul>
 						<div class="sign-up">
-							<a href="#" class="fancy-button button-line btn-col rotate">
+							<a ng-click='SearchFlights()' class="fancy-button button-line btn-col rotate">
 								Book it UP!
 								<span class="icon">
 									<i class="fa fa-thumbs-o-up"></i>
@@ -377,12 +385,15 @@ function foo(){ console.log("Callback"); }
 						</div>
 
             <ul class="package-features">
-							<li><span class="color-scheme fa fa-check"></span>From China to Madrid</li>
-              <li><span class="color-scheme fa fa-check"></span>Economy class</li>
-              <li><span class="color-scheme fa fa-check"></span>Round Trip Flight</li>
+							<li><span class="color-scheme fa fa-check">From:</span>China</li>
+              <li><span class="color-scheme fa fa-check">To:</span>Madrid</li>
+              <li><span class="color-scheme fa fa-check" >Round Trip</span>Flight</li>
+              <li><span class="color-scheme fa fa-check" >Economy</span>class</li>
+              <li><span class="color-scheme fa fa-check">Outgoing:</span> 20/4/2016</li>
+              <li><span class="color-scheme fa fa-check">Returning:</span> 30/4/2016</li>
 						</ul>
 						<div class="sign-up">
-							<a href="" class="fancy-button button-line btn-col zoom">
+							<a ng-click='SearchFlights()' class="fancy-button button-line btn-col zoom">
 								Book it UP!
 								<span class="icon">
 									<i class="fa fa-thumbs-o-up"></i>
