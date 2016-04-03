@@ -8,6 +8,10 @@ module.exports = function(app,mongo) {
       res.json(require('../../modules/airports.json'));
     });
 
+    app.post('/api/data/bookings', function(req, res) {
+      res.send(require('../../modules/bookings.json'));
+    });
+
     /* RENDER MAIN PAGE */
     app.get('/', function (req, res) {
       res.sendFile(__dirname + '/public/index.html');
@@ -20,7 +24,8 @@ module.exports = function(app,mongo) {
     app.get('/api/returnInfo', function(req, res) {
       res.json(require('../../modules/returnInfo.json'));
     });
-   
+
+
+
+
 };
-
-
