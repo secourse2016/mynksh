@@ -19,17 +19,18 @@ App.factory('FlightsSrv', function ($http) {
            return this.selectedDestinationAirport;
          },
          setSelectedOutDate: function(value) {
-           this.selectedOutDate = value;
+           this.setSelectedOutDate = value;
          },
          getSelectedOutDate: function() {
-           return this.selectedOutDate;
+           return this.setSelectedOutDate;
          },
          setSelectedReturnDate: function(value) {
-           this.selectedReturnDate = value;
+           this.setSelectedReturnDate = value;
          },
          getSelectedReturnDate: function() {
-           return this.selectedReturnDate;
+           return this.setSelectedReturnDate;
          },
+
          setSelectedRoundTrip: function(value) {
            this.selectedRoundTrip = value;
          },
@@ -43,4 +44,7 @@ App.factory('FlightsSrv', function ($http) {
            return this.selectedNumberOfTickets;
          }
      };
+
+
+    
  });

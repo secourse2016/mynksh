@@ -1,21 +1,22 @@
-
 <script>
-$(function(){
-    $("#typed").typed({
-        // strings: ["Typed.js is a <strong>jQuery</strong> plugin.", "It <em>types</em> out sentences.", "And then deletes them.", "Try it out!"],
-        stringsElement: $('#typed-strings'),
-        typeSpeed: 30,
-        backDelay: 500,
-        loop: false,
-        contentType: 'html', // or text
-        // defaults to false for infinite loop
-        loopCount: false,
-        resetCallback: function() { newTyped(); }
+    $(function() {
+        $("#typed").typed({
+            // strings: ["Typed.js is a <strong>jQuery</strong> plugin.", "It <em>types</em> out sentences.", "And then deletes them.", "Try it out!"],
+            stringsElement: $('#typed-strings'),
+            typeSpeed: 30,
+            backDelay: 500,
+            loop: false,
+            contentType: 'html', // or text
+            // defaults to false for infinite loop
+            loopCount: false,
+            resetCallback: function() {
+                newTyped();
+            }
+        });
+        $(".reset").click(function() {
+            $("#typed").typed('reset');
+        });
     });
-    $(".reset").click(function(){
-        $("#typed").typed('reset');
-    });
-});
 </script>
 
 <!--==== Js files ====-->
@@ -57,12 +58,9 @@ $(function(){
 <link rel="stylesheet" href="css/style.css" />
 <link rel="stylesheet" href="css/responsive.css" />
 
-
 <script type="text/javascript" src="js/jquery.ajaxchimp.min.js"></script>
 
 <!--=== Preloader section starts ===-->
-
-
 
 <!--=== Preloader section Ends ===-->
 <!--=== Header section Starts ===-->
@@ -137,6 +135,7 @@ $(function(){
 <!--=== Contact section Starts ===-->
 <form class="form-horizontal">
     <section id="section-download" class="download-wrap">
+
         <div class="container download center">
             <div class="row">
                 <div class="col-md-8 col-md-offset-2">
@@ -153,20 +152,14 @@ $(function(){
                             <div class="form-group">
                                 <font class="control-label col-sm-2 text-left" size="4" color: "white"> From: </font>
                                 <div class="col-md-8">
-                                    <input name="originAirports" id="originAirports" type="text" placeholder="Flying From"
-                                    ng-model="selectedOrigin"
-                                    uib-typeahead="airport.iata for airport in Airports | filter:$viewValue | limitTo:10"
-                                    class="form-control" , typeahead-on-select="SetOriginAirport($item.name)">
+                                    <input name="originAirports" id="originAirports" type="text" placeholder="Flying From" ng-model="selectedOrigin" uib-typeahead="airport.iata for airport in Airports | filter:$viewValue | limitTo:10" class="form-control" , typeahead-on-select="SetOriginAirport($item.iata)">
                                 </div>
                             </div>
                             </br>
                             <div class="form-group">
                                 <font class="control-label col-sm-2 text-left" size="4"> To: </font>
                                 <div class="col-md-8">
-                                    <input name="destinationAirports" id="destinationAirports" type="text" placeholder="Flying To"
-                                    ng-model="selectedDestination"
-                                    uib-typeahead="airport.iata for airport in Airports | filter:$viewValue | limitTo:10"
-                                    class="form-control" , typeahead-on-select="SetDestinationAirport($item.name)">
+                                    <input name="destinationAirports" id="destinationAirports" type="text" placeholder="Flying To" ng-model="selectedDestination" uib-typeahead="airport.iata for airport in Airports | filter:$viewValue | limitTo:10" class="form-control" , typeahead-on-select="SetDestinationAirport($item.iata)">
                                 </div>
                             </div>
                             </br>
@@ -174,15 +167,13 @@ $(function(){
                                 <font class="control-label col-sm-2 text-left" size="4"> Outgoing: </font>
                                 <div class="col-md-8">
                                     <p class="input-group">
-                                        <input type="text" class="form-control" uib-datepicker-popup="{{format}}"
-                                        ng-model="dt" is-open="popup1.opened" ng-required="true" close-text="Close"
-                                        alt-input-formats="altInputFormats" />
+                                        <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="$parent.dto" is-open="popup1.opened" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
                                         <span class="input-group-btn">
-                    <button type="button"
-                        class="btn btn-default"
-                        ng-click="open1()">
-                        <i class="glyphicon glyphicon-calendar"></i>
-                    </button>
+                                          <button type="button"
+                                            class="btn btn-default"
+                                            ng-click="open1()">
+                                          <i class="glyphicon glyphicon-calendar"></i>
+                                          </button>
                 </span>
                                     </p>
                                 </div>
@@ -192,9 +183,7 @@ $(function(){
                                 <font class="control-label col-sm-2 text-left" size="4"> Returning: </font>
                                 <div class="col-md-8">
                                     <p class="input-group">
-                                        <input type="text" class="form-control"
-                                        uib-datepicker-popup="{{format}}" ng-model="dt" is-open="popup2.opened"
-                                        ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+                                        <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="$parent.dtr" is-open="popup2.opened" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
                                         <span class="input-group-btn">
                   <button type="button"
                       class="btn btn-default"
@@ -211,7 +200,7 @@ $(function(){
                                 <div class="col-md-8">
                                     </br>
                                     <div class="styled">
-                                        <select name="ticketsCount">
+                                        <select name="ticketsCount" ng-model="ticket">
                                             <option value="1">1</option>
                                             <option value="2">2</option>
                                             <option value="3">3</option>
@@ -244,20 +233,21 @@ $(function(){
                             </form>
                         </div>
                     </form>
-                    <button type="submit" class="fancy-button button-line button-white large zoom subform" id='btnSearch' ng-click='SearchFlights()'>
+                    <button type="submit" class="fancy-button button-line button-white large zoom subform" id='btnSearch' ng-click="SetOutDate(dto);
+                    SetReturnDate(dtr); SetRoundTrip(roundTrip);
+                    SetSelectedNumberOfTickets(ticket); SearchFlights()">
                         Search Flights
+                        <!-- <a type="button" class="btn btn-clear btn-sm btn-min-block " id='btnSearch' ng-click='SearchFlights()'>Search Flights</a> -->
+
                         <span class="icon">
-							    <i class="fa fa-paper-plane-o"></i>
-						    </span>
+        								<i class="fa fa-paper-plane-o"></i>
+        							</span>
                     </button>
                 </div>
             </div>
         </div>
     </section>
 </form>
-
-<!--=== Contact section Ends ===-->
-
 <!--=== Pricing section Starts ===-->
 <section id="section-pricing" class="testimonials-wrap">
     <div class="section-overlay"></div>
@@ -374,40 +364,40 @@ $(function(){
 
 <!-- ABOUT US STARTS  -->
 <section id="section-services" class="feature-wrap">
-    <div class="container features center">
-        <div class="container home">
-            <div class="row">
+    <!-- <div class="container features center"> -->
+        <!-- <div class="container home"> -->
+            <!-- <div class="row"> -->
 
-                <div class="col-md-10 col-md-offset-1 center section-title">
-                    <h3>About Us</h3>
-                </div>
-                </br>
-                </br>
-                <div class="col-md-8 col-md-offset-2">
-                    <div class="sky">
-                        <div class="moon"></div>
-                        <div class="clouds_one"></div>
-                        <div class="clouds_two"></div>
-                        <div class="clouds_three"></div>
-                    </div>
-                </div>
+                <!-- <div class="col-md-10 col-md-offset-1 center section-title"> -->
+                    <!-- <h3>About Us</h3> -->
+                <!-- </div> -->
+                <!-- </br> -->
+                <!-- </br> -->
+                <!-- <div class="col-md-8 col-md-offset-2"> -->
+                    <!-- <div class="sky"> -->
+                        <!-- <div class="moon"></div> -->
+                        <!-- <div class="clouds_one"></div> -->
+                        <!-- <div class="clouds_two"></div> -->
+                        <!-- <div class="clouds_three"></div> -->
+                    <!-- </div> -->
+                <!-- </div> -->
 
                 <!-- <section id="preloader"> -->
                 <!-- <div class="loading-circle fa-spin"></div> -->
-                <div class="scene">
-                    <img class="car" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/43033/car.svg" alt="" />
-                    <img class="poof" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/43033/poof.svg" alt="" />
-                    <img class="sign" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/43033/sign.svg" alt="" />
+                <!-- <div class="scene"> -->
+                    <!-- <img class="car" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/43033/car.svg" alt="" /> -->
+                    <!-- <img class="poof" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/43033/poof.svg" alt="" /> -->
+                    <!-- <img class="sign" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/43033/sign.svg" alt="" /> -->
                     <!-- <img class="sign" src="http://imagizer.imageshack.us/v2/100x75q90/922/0MsVKt.jpg" alt="" /> -->
 
-                    <em><font size="5" color="black" >We make everything fly...</font></em>
-                </div>
-            </div>
+                    <!-- <em><font size="5" color="black" >We make everything fly...</font></em> -->
+                <!-- </div> -->
+            <!-- </div> -->
 
 
             <!-- </section> -->
-        </div>
-    </div>
+        <!-- </div> -->
+    <!-- </div> -->
 
 </section>
 
@@ -446,6 +436,7 @@ $(function(){
                         <!-- Feature Icon -->
                         <h4 class="feature-title color-scheme">Safa Ads</h4>
                         <p class="feature-text">
+
                             Back-end Developer
                         </p>
                         <a href="https://www.facebook.com/Safa.Muhammed?fref=ts" class="fancy-button button-line btn-col small zoom">
@@ -621,5 +612,3 @@ $(function(){
 	</div> -->
 </div>
 <!--=== Footer section Ends ===-->
-</div>
-</div>

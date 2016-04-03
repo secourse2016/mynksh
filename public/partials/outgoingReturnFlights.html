@@ -6,8 +6,8 @@
   </div>
   </a>
 </div> -->
-<div class="jumbotron">
-<div class="container">
+<!-- <div class="jumbotron"> -->
+<!-- <div class="container"> -->
 <div class='content'>
   <h1>Select your flights</h1>
   <div id='outgoing'>
@@ -33,7 +33,7 @@
       <td>iberia</td>
       <td>{{stringToDate(flight.departureTime) | date : 'shortTime'}}</td>
       <td>{{stringToDate(flight.arrivalTime) | date : 'shortTime'}}</td>
-      <td>{{timediff(flight.departureTime,flight.arrivalTime)}}</td> 
+      <td>{{timediff(flight.departureTime,flight.arrivalTime)}}</td>
        <td>
         <select ng-model="$parent.outgoingCabin">
           <option value="economy">
@@ -76,7 +76,7 @@
       <td>{{flight.departureTime - flight.arrivalTime}}</td>
       <td>{{stringToDate(flight.departureTime) | date : 'shortTime'}}</td>
       <td>{{stringToDate(flight.arrivalTime) | date : 'shortTime'}}</td>
-      <td>{{timediff(flight.departureTime,flight.arrivalTime)}}</td> 
+      <td>{{timediff(flight.departureTime,flight.arrivalTime)}}</td>
       <td>
         <select ng-model="$parent.returnCabin">
           <option value="economy">
@@ -100,5 +100,5 @@
 <a href="#" class="btn btn-primary btn-lg">Book Flight</a>
   </div>
 </div>
-</div>
-</div>
+<!-- </div> -->
+<!-- </div> -->
