@@ -1,48 +1,82 @@
 <!DOCTYPE html>
 <html ng-app="IBERIA"> <!-- our module name -->
 <head>
-    <title>IBERIA</title>   
+    <title>IBERIA</title>
     <link href="./css/bars.css" rel="stylesheet" type="text/css">
-    <title>SE Lecture 7 Example</title>
     <script src="/js/jquery-2.2.0.min.js"></script>
     <script src="/js/angular.min.js"></script>
     <script src="/js/angular-route.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-moment/0.9.0/angular-moment.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
     <script src="/js/ui-bootstrap-tpls-1.2.5.min.js"></script>
     <script src="core.js"></script>
-    <script src="/controllers/mainCtrl.js"></script>
+    <script src="/controllers/landingCtrl.js"></script>
     <script src="/controllers/flightsCtrl.js"></script>
     <script src="/services/flightsSrv.js"></script>
+    <script src="/services/OutReturnSrv.js"></script>
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <script src="./js/bars.js"></script>
     <script type="text/javascript" src="./js/landingPage.js"></script>
     <link rel="stylesheet" href="/css/landingPage.css">
+    <script type="text/javascript" src="./js/typed.js"></script>
+    <link href="../css/outgoing.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="css/bootstrap.css" />
+	<link rel="stylesheet" href="css/font-awesome.min.css" />
+	<link rel="stylesheet" href="css/linea-icon.css" />
+	<link rel="stylesheet" href="css/fancy-buttons.css" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/bootstrap.css" />
+	<link rel="stylesheet" href="css/font-awesome.min.css" />
+	<link rel="stylesheet" href="css/linea-icon.css" />
+	<link rel="stylesheet" href="css/fancy-buttons.css" />
+
+
+	<!--=== Google Fonts ===-->
+	<link href='http://fonts.googleapis.com/css?family=Bangers' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Roboto+Slab:300,700,400' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Raleway:600,400,300' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+	<!--=== Other CSS files ===-->
+	<link rel="stylesheet" href="css/animate.css" />
+	<link rel="stylesheet" href="css/jquery.vegas.css" />
+	<link rel="stylesheet" href="css/baraja.css" />
+	<link rel="stylesheet" href="css/jquery.bxslider.css" />
+
+	<!--=== Main Stylesheets ===-->
+	<link rel="stylesheet" href="css/style.css" />
+	<link rel="stylesheet" href="css/responsive.css" />
+
+	<!--=== Color Scheme, three colors are available red.css, orange.css and gray.css ===-->
+	<link rel="stylesheet" id="scheme-source" href="css/schemes/gray.css" />
+
 </head>
-<body> <!-- Our controller name -->
+<body class="metallic">
 <div class="fluid-container">
     <div id='nav-bar-top'>
-    <a href='./'> 
+    <a href='#/'>
     <div id='logo'>
         <img src='./assets/iberia-logo.png'>
     </div>
     </a>
-    </div>  
+    </div>
             <!-- angular templating -->
             <!-- this is where content will be injected -->
             <div ng-view></div>
 
 <!-- <div id='nav-bar-bottom'>
-    <a href='./'> 
+    <a href='./'>
     <div id='logo'>
         <img src='./assets/iberia-logo.png'>
     </div>
     </a>
     <div id='info'>
         Telephone sales:
-        901 111 500                          
+        901 111 500
     </div>
-    </div> 
-    
+    </div>
+
     <div style="position: absolute; bottom: 0px; background-color: linear-gradient(#F20037,#C1002A) ; color: #aaa" >
      ©mynksh
     </div>

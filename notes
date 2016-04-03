@@ -1,15 +1,20 @@
+SVG Library
+Swiper
+WOW
+
 Bootstrap:
 
     Download the latest release.
     Install with npm: npm install bootstrap@3.
     bootswatch.com for themes
     getbootstrap.com/compnents
+    bootstrap magic
 
 Angular:
 	
 	ng-app="store" attach the application module to the page
 	ng-controller="StoreController as store" attach a controller to the page
-	ng-show/ ng-hide display a section based on an Experession
+	ng-show / ng-hide display a section based on an Experession
 	ng-repeat to repeat a section in an Array
 	ng-source to evaluate before loading data
 	ng-click to set a certain a value

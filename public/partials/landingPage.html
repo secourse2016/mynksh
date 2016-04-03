@@ -1,148 +1,610 @@
-<div id="mycarousel" class="carousel slide" data-ride="carousel">
-  <!-- Indicators -->
-  <ol class="carousel-indicators">
-    <li data-target="#mycarousel" data-slide-to="0" class="active"></li>
-    <li data-target="#mycarousel" data-slide-to="1"></li>
-    <li data-target="#mycarousel" data-slide-to="2"></li>
-    <li data-target="#mycarousel" data-slide-to="3"></li>
-    <li data-target="#mycarousel" data-slide-to="4"></li>
-  </ol>
-
-  <!-- Wrapper for slides -->
-  <div class="carousel-inner" role="listbox">
-    <div class="item active">
-      <img src="../assets/1.jpg" data-color="lightblue" alt="First Image">
-    </div>
-    <div class="item">
-      <img src="../assets/2.jpg" data-color="firebrick" alt="Second Image">
-    </div>
-    <div class="item">
-      <img src="../assets/3.jpg" data-color="lightblue" alt="Third Image">
-    </div>
-    <div class="item">
-      <img src="../assets/4.jpg" data-color="firebrick" alt="Fourth Image">
-    </div>
-    <div class="item">
-      <img src="../assets/5.jpg" data-color="firebrick" alt="Fifth Image">
-    </div>
-  </div>
-
-  <!-- Controls -->
-  <a class="left carousel-control" href="#mycarousel" role="button" data-slide="prev">
-    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="right carousel-control" href="#mycarousel" role="button" data-slide="next">
-    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
-</div>
-
-<div class="pos">
-<div class="main-text hidden-xs">
-
-  <form class="form-horizontal">
-      <div class="form-group">
-        <label class="control-label col-sm-2 text-left" > From: </label>
-          <div class="col-md-4">
-           <input type="text" class="form-control" data-ng-model="from" placeholder="Origin city" />
-          </div>
-    </div>
-
-    <div class="form-group">
-      <label class="control-label col-sm-2 text-left" > To: </label>
-      <div class="col-md-4" ng-controller="ToCtrl ">
-        <input type="text" class="form-control" data-ng-model="to" placeholder="Destination city" />
-  </div>
-</div>
-
-<div class="form-group" ng-controller="dateCtrl" >
-  <label class="control-label col-sm-2 text-left" >  Outgoing: </label>
-  <div class="col-md-4">
-    <input type="date"  placeholder="dd-mm-yyyy" data-ng-model="example.value" required="" />
-  <!-- <span>{{1288323623006 | date:'shortDate'}}</span>
-  <div role="alert">
-     <span class="error" ng-show="myForm.input.$error.required">
-         Required!</span>
-     <span class="error" ng-show="myForm.input.$error.date">
-         Not a valid date!</span>
-    </div> -->
-</div>
-</div>
 
 
-<div class="form-group">
-  <label class="control-label col-sm-2 text-left" >  Returning: </label>
-  <div class="col-md-4">
-    <input type="date" data-ng-model="returning" placeholder="dd-mm-yyyy"/>
-    <!-- style="background-color:white;
-    border: solid 1px #6E6E6E;
-    height: 30px;
-    font-size:18px;
-    vertical-align:9px;color:#bbb"
-    onfocus="if(this.value == '31/3/2016') {
-   this.value = '';
-   this.style.color='#000'; -->
+<script>
+$(function(){
 
-</div>
-</div>
-<div class="form-group">
-  <label class="control-label col-sm-2 text-left" >  Number of tickets: </label>
-  <div class="col-md-4">
-    <div class="styled">
-    <select name="ticketsCount">
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-      <option value="4">4</option>
-      <option value="5">5</option>
-      <option value="6">6</option>
-      <option value="7">7</option>
-      <option value="8">8</option>
-      <option value="9">9</option>
-      <option value="10">10</option>
-    </select>
+    $("#typed").typed({
+        // strings: ["Typed.js is a <strong>jQuery</strong> plugin.", "It <em>types</em> out sentences.", "And then deletes them.", "Try it out!"],
+        stringsElement: $('#typed-strings'),
+        typeSpeed: 30,
+        backDelay: 500,
+        loop: false,
+        contentType: 'html', // or text
+        // defaults to false for infinite loop
+        loopCount: false,
+        callback: function(){ foo(); },
+        resetCallback: function() { newTyped(); }
+    });
 
-</div>
-</div>
-</div>
+    $(".reset").click(function(){
+        $("#typed").typed('reset');
+    });
 
-<div class="form-group">
+});
 
-  <label class="control-label col-sm-2 text-left"> One-Way</label>
-  <div class="col-md-4 radio">
-    <input type="checkbox" name="mobil[1][]" id="optionsRadios1"  value="1" checked class="radi"/></div>
-</div>
-<div class="form-group">
-  <label class="control-label col-sm-2 text-left"> Round Trip Flight </label>
-  <div class="col-md-4 radio">
-    <input type="checkbox" name="mobil[1][]" id="optionsRadios2" class="radi" value="0"/></div>
+function newTyped(){ /* A new typed object */ }
+
+function foo(){ console.log("Callback"); }
+</script>
+
+<!--==== Js files ====-->
+<!--==== Essential files ====-->
+<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/bootstrapValidator.min.js"></script>
+<script type="text/javascript" src="js/modernizr.js"></script>
+<script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
+
+  <!--==== MailChimp Widget plugin ====-->
+<script type="text/javascript" src="js/jquery.ajaxchimp.min.js"></script>
+
+<!--==== Scroll and navigation plugins ====-->
+<script type="text/javascript" src="js/jquery.nicescroll.min.js"></script>
+<script type="text/javascript" src="js/jquery.nav.js"></script>
+<script type="text/javascript" src="js/jquery.appear.js"></script>
+<script type="text/javascript" src="js/jquery.fitvids.js"></script>
+
+<!--==== Custom Script files ====-->
+<script type="text/javascript" src="js/custom.js"></script>
+
+<!--==== Slider and Card style plugin ====-->
+<script type="text/javascript" src="js/jquery.baraja.js"></script>
+<script type="text/javascript" src="js/jquery.vegas.min.js"></script>
+<script type="text/javascript" src="js/jquery.bxslider.min.js"></script>
 
 
-</div>
 
 
-<div class="span7 text-center">
-    <a class="btn btn-clear btn-sm btn-min-block " href="./outgoingReturnFlights.html" ng-controller="routing">Search</a>
-  </div>
 
-<section ng-init="tab =1" ng-controller="PanelController as panel">
-<ul class="nav nav-pills" >
-  <li ng-class="{active: panel.isSelected(1)}"> <a href ng-click="panel.selectTab(1)">Offer 1</a> </li>
-  <li ng-class="{active: panel.isSelected(2)}"> <a href ng-click="panel.selectTab(2)">Offer 2</a> </li>
-  <li ng-class="{active: panel.isSelected(3)}"> <a href ng-click="panel.selectTab(3)">Offer 3</a> </li>
-</ul>
-
-<div class="panel" ng-show="panel.isSelected(1)">
-  <h4> Offer 1</h4>
-  <p> We have a flight Madrid to Morroco Economy class with 60 Euros instead of 100 Euros </p>
-</div>
-<div class="panel" ng-show="panel.isSelected(2)">
-  <h4> Offer 2</h4>
-  <p> We have a flight From Cairo to Madrid Economy class with 70 Euros instead of 110 Euros </p>
-</div>
-<div class="panel" ng-show="panel.isSelected(3)">
-  <h4> Offer 3</h4>
-  <p> We have a flight From The United States to London Business class with 150 Euros instead of 200 Euros </p>
+<div>
+  <!--=== Preloader section starts ===-->
+	 <section id="preloader">
+		<!-- <div class="loading-circle fa-spin"></div> -->
+    <div class="scene">
+<img class="car" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/43033/car.svg" alt="" />
+<img class="poof" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/43033/poof.svg" alt="" />
+<img class="sign" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/43033/sign.svg" alt="" />
+  <em>LOADING Awesomeness...</em>
 </div>
 </section>
+
+
+	<!--=== Preloader section Ends ===-->
+  <!--=== Header section Starts ===-->
+	<div id="header" class="header-section">
+		<!-- sticky-bar Starts-->
+  <div class="sticky-bar-wrap">
+        <div class="sticky-section">
+          <div id="topbar-hold" class="nav-hold container">
+            <nav class="navbar" role="navigation">
+              <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <!--=== Site Name ===-->
+                <!-- <a class="site-name navbar-brand" href="#"><span>Iberia</span></a> -->
+              </div>
+
+              <!-- Main Navigation menu Starts -->
+              <div class="collapse navbar-collapse navbar-responsive-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                  <li class="current"><a href="#header">Home</a></li>
+                  <li><a href="#section-download">Flights</a></li>
+                  <li><a href="#section-pricing">Offers</a></li>
+                  <li><a href="#section-services">About Us</a></li>
+                  <li><a href="#section-feature">Team Members</a></li>
+                  <li><a href="#section-video">Video</a></li>
+                  <li><a href="#section-footer">Contact Us</a></li>
+
+
+                </ul>
+              </div>
+              <!-- Main Navigation menu ends-->
+            </nav>
+          </div>
+        </div>
+      </div>
+
+      <div id="section-home" class="home-section-wrap center">
+      			<div class="section-overlay"></div>
+      			<div class="container home">
+      				<div class="row">
+      					<h1 class="well-come">Fly like IBERIA</h1>
+
+      					<div class="col-md-8 col-md-offset-2">
+      						<p class="intro-message">We don't care about your money, we care about YOU!</p>
+
+                  <div class="type-wrap">
+                        <div id="typed-strings">
+                            <p >Hoy, <strong>Iberia</strong> está cambiando</p>
+                            <p>Today, <strong>Iberia</strong> is changing</p>
+                        </div>
+                        <span id="typed" style="white-space:pre;"></span>
+                    </div>
+
+      						<!-- <div class="home-buttons">
+      							<a href="#" class="fancy-button button-line button-white vertical">
+      								Learn more
+      								<span class="icon">
+      									<i class="fa fa-gear"></i>
+      								</span>
+      							</a>
+      							<a href="#" class="fancy-button button-line button-white zoom">
+      								Download now
+      								<span class="icon">
+      									<i class="fa fa-leaf"></i>
+      								</span>
+      							</a>
+      						</div> -->
+      					</div>
+      				</div>
+      			</div>
+      		</div>
+      		<!--=== Home Section Ends ===-->
+      	</div>
+
+
+          <form class="form-horizontal">
+
+
+            <!--=== Contact section Starts ===-->
+	<!-- <section id="section-contact" class="contact-wrap">
+	<div class="section-overlay"></div>
+		<div class="container contact center animated" data-animation="flipInY" data-animation-delay="1000">
+			<div class="row"> -->
+    <section id="section-download" class="download-wrap">
+		<div class="container download center">
+			<div class="row">
+				<div class="col-md-8 col-md-offset-2">
+					<div class="col-md-10 col-md-offset-1 center section-title">
+						<h3>Flights</h3>
+					</div>
+
+					<div class="confirmation">
+						<p><span class="fa fa-check"></span></p>
+					</div>
+
+					<form class="contact-form support-form">
+
+						<div class="col-lg-12">
+              <div class="form-group">
+                <font class="control-label col-sm-2 text-left" size="4" color:"white" > From: </font>
+                <div class="col-md-8">
+              <input name="originAirports"
+                id="originAirports"
+                type="text"
+                placeholder="Flying From"
+                ng-model="selectedOrigin"
+                uib-typeahead="airport.iata for airport in Airports | filter:$viewValue | limitTo:10"
+                class="form-control",
+                typeahead-on-select="SetOriginAirport($item.name)">
+              </div>
+            </div>
+              </br>
+              <div class="form-group">
+                <font class="control-label col-sm-2 text-left" size="4" > To: </font>
+                <div class="col-md-8">
+              <input name="destinationAirports"
+                  id="destinationAirports"
+                  type="text"
+                  placeholder="Flying To"
+                  ng-model="selectedDestination"
+                  uib-typeahead="airport.iata for airport in Airports | filter:$viewValue | limitTo:10"
+                  class="form-control",
+                  typeahead-on-select="SetDestinationAirport($item.iata)">
+                </div>
+              </div>
+              </br>
+              <div class="form-group">
+                <font class="control-label col-sm-2 text-left" size="4" > Outgoing: </font>
+                <div class="col-md-8">
+                  <p class="input-group">
+                  <input type="text"
+                      class="form-control"
+                      uib-datepicker-popup="{{format}}"
+                      ng-model="dt"
+                      is-open="popup1.opened"
+                      ng-required="true"
+                      close-text="Close"
+                      alt-input-formats="altInputFormats" />
+                  <span class="input-group-btn">
+                      <button type="button"
+                        class="btn btn-default"
+                        ng-click="open1()">
+                      <i class="glyphicon glyphicon-calendar"></i>
+                      </button>
+                  </span>
+                </p>
+              </div>
+            </div>
+              </br>
+              <div class="form-group">
+                <font class="control-label col-sm-2 text-left" size="4" > Returning: </font>
+                <div class="col-md-8">
+                <p class="input-group">
+                  <input type="text"
+                      class="form-control"
+                      uib-datepicker-popup="{{format}}"
+                      ng-model="dt"
+                      is-open="popup2.opened"
+                      ng-required="true"
+                      close-text="Close"
+                      alt-input-formats="altInputFormats" />
+                  <span class="input-group-btn">
+                    <button type="button"
+                      class="btn btn-default"
+                      ng-click="open2()">
+                  <i class="glyphicon glyphicon-calendar"></i>
+                      </button>
+                  </span>
+                </p>
+              </div>
+            </div>
+              </br>
+              <div class="form-group">
+                <font class="control-label col-sm-2 text-left" size="4" > Tickets Count: </font>
+                <div class="col-md-8">
+                </br>
+              <div class="styled">
+              <select name="ticketsCount">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+              </select>
+            </div>
+            </div>
+            </div>
+
+            <form>
+            <div class="form-group">
+              <font class="control-label col-sm-2 text-left" size="4" >One-Way</font>
+              <div class="col-md-8 radio">
+              </br>
+              <input ng-model="roundTrip" type="radio" value="false"/></div>
+            </div>
+            <div class="form-group">
+              <font class="control-label col-sm-2 text-left" size="4" > Round Trip Flight </font>
+              <div class="col-md-8 radio">
+              </br>
+              <input ng-model="roundTrip" type="radio" value="true"/></div>
+            </div>
+          </form>
+						</div>
+						<button type="submit" class="fancy-button button-line button-white large zoom subform" id='btnSearch' ng-click='SearchFlights()'>
+							Search Flights
+              <!-- <a type="button" class="btn btn-clear btn-sm btn-min-block " id='btnSearch' ng-click='SearchFlights()'>Search Flights</a> -->
+
+							<span class="icon">
+								<i class="fa fa-paper-plane-o"></i>
+							</span>
+						</button>
+
+				</div>
+			</div>
+		</div>
+	</section>
+</form>
+	<!--=== Contact section Ends ===-->
+
+  <!--=== Pricing section Starts ===-->
+  <section id="section-pricing" class="testimonials-wrap">
+      <div class="section-overlay"></div>
+		<div class="container pricing">
+			<div class="row">
+        <div class="col-md-10 col-md-offset-1 center section-title">
+          <h3>Offers</h3>
+        </div>
+
+
+				<!-- Single Price Starts -->
+				<div class="col-md-3 col-sm-6 single-pricing-wrap center animated" data-animation="bounceInLeft" data-animation-delay="700">
+					<div class="single-pricing best-pricing"> <!-- this is best-pricing -->
+
+						<div class="pricing-head">
+							<h4 class="pricing-heading color-scheme">Offer 1</h4>
+							<div class="price">
+								<h3>
+									<span class="euro">€</span>
+									60
+								</h3>
+							</div>
+						</div>
+
+						<ul class="package-features">
+							<li><span class="color-scheme fa fa-check"></span>From Cairo to Madrid</li>
+              <li><span class="color-scheme fa fa-check"></span>Business class</li>
+              <li><span class="color-scheme fa fa-check"></span>Round Trip Flight</li>
+						</ul>
+						<div class="sign-up">
+							<a href="#" class="fancy-button button-line btn-col vertical">
+								Book it UP!
+								<span class="icon">
+									<i class="fa fa-hand-o-up"></i>
+								</span>
+							</a>
+						</div>
+					</div>
+				</div>
+				<!-- Single Price Ends -->
+
+				<!-- Single Price Starts -->
+
+            <div class="col-md-3 col-sm-6 single-pricing-wrap center animated" data-animation="bounceInLeft" data-animation-delay="1100">
+            <div class="single-pricing">
+						<div class="pricing-head">
+							<h4 class="pricing-heading color-scheme">Offer 2</h4>
+							<div class="price">
+                <h3>
+                  <span class="euro">€</span>
+                  100
+                </h3>
+							</div>
+						</div>
+
+            <ul class="package-features">
+							<li><span class="color-scheme fa fa-check"></span>From United States to Paris</li>
+              <li><span class="color-scheme fa fa-check"></span>Economy class</li>
+							<li><span class="color-scheme fa fa-check"></span>One Way Flight</li>
+						</ul>
+						<div class="sign-up">
+							<a href="#" class="fancy-button button-line btn-col rotate">
+								Book it UP!
+								<span class="icon">
+									<i class="fa fa-thumbs-o-up"></i>
+								</span>
+							</a>
+						</div>
+					</div>
+        </div>
+
+
+
+				<!-- Single Price Starts -->
+				<div class="col-md-3 col-sm-6 single-pricing-wrap center animated" data-animation="bounceInLeft" data-animation-delay="1100">
+					<div class="single-pricing">
+
+						<div class="pricing-head">
+							<h4 class="pricing-heading color-scheme">Offer 3</h4>
+							<div class="price">
+                <h3>
+                  <span class="euro">€</span>
+                  110
+                </h3>
+							</div>
+						</div>
+
+            <ul class="package-features">
+							<li><span class="color-scheme fa fa-check"></span>From China to Madrid</li>
+              <li><span class="color-scheme fa fa-check"></span>Economy class</li>
+              <li><span class="color-scheme fa fa-check"></span>Round Trip Flight</li>
+						</ul>
+						<div class="sign-up">
+							<a href="#" class="fancy-button button-line btn-col zoom">
+								Book it UP!
+								<span class="icon">
+									<i class="fa fa-thumbs-o-up"></i>
+								</span>
+							</a>
+						</div>
+				</div>
+      </div>
+				<!-- Single Price Ends -->
+
+
+	</section>
+	<!--=== Pricing section Ends ===-->
+
+  <!-- ABOUT US STARTS  -->
+  <section id="section-services" class="feature-wrap">
+    <div class="container features center">
+
+
+    </div>
+  </section>
+
+  <!-- ABOUT US ENDS  -->
+
+        <!--=== Features section Starts ===-->
+	<section id="section-feature" class="feature-wrap">
+		<div class="container features center">
+			<div class="row">
+				<div class="col-lg-12">
+						<!--Features container Starts -->
+						<ul id="card-ul" class="features-hold baraja-container">
+
+							<!-- Single Feature Starts -->
+							<li class="single-feature" title="Card style">
+								<img src="images/1.jpg" alt="" class="feature-image" /><!-- Feature Icon -->
+								<h4 class="feature-title color-scheme">Narihan Ellaithy</h4>
+								<p class="feature-text">
+									Front-End Developer
+                </p>
+
+									<a href="#" class="fancy-button button-line btn-col small vertical">
+										Details
+										<span class="icon">
+											<i class="fa fa-leaf"></i>
+										</span>
+									</a>
+
+							</li>
+							<!-- Single Feature Ends -->
+
+              <!-- Single Feature Starts -->
+							<li class="single-feature" title="50+ SVG Icon included">
+								<img src="images/2.jpg" alt="" class="feature-image" /><!-- Feature Icon -->
+								<h4 class="feature-title color-scheme">Safa Ads</h4>
+								<p class="feature-text">
+                  3amalet el Nav Bar HAHA!!
+                  </p>
+								<a href="#" class="fancy-button button-line btn-col small zoom">
+									Details
+									<span class="icon">
+										<i class="fa fa-leaf"></i>
+									</span>
+								</a>
+							</li>
+							<!-- Single Feature Ends -->
+              <!-- Single Feature Starts -->
+							<li class="single-feature" title="MailChimp Ready">
+								<img src="images/3.jpg" alt="" class="feature-image" /><!-- Feature Icon -->
+								<h4 class="feature-title color-scheme">Yara Sobhy</h4>
+								<p class="feature-text">
+                  Scrum MASTER!!
+                </p>
+								<a href="#" class="fancy-button button-line btn-col small zoom">
+									Details
+									<span class="icon">
+										<i class="fa fa-leaf"></i>
+									</span>
+								</a>
+							</li>
+							<!-- Single Feature Ends -->
+              <!-- Single Feature Starts -->
+							<li class="single-feature" title="4 home style">
+								<img src="images/4.jpg" alt="" class="feature-image" /><!-- Feature Icon -->
+								<h4 class="feature-title color-scheme">Youssef Radi</h4>
+								<p class="feature-text">
+                  Back-end developer
+                </p>
+								<a href="#" class="fancy-button button-line btn-col small zoom">
+									Details
+									<span class="icon">
+										<i class="fa fa-leaf"></i>
+									</span>
+								</a>
+							</li>
+							<!-- Single Feature Ends -->
+              <!-- Single Feature Starts -->
+							<li class="single-feature" title="Parallax Backgrounds">
+								<img src="images/5.jpg" alt="" class="feature-image" /><!-- Feature Icon -->
+								<h4 class="feature-title color-scheme">Mohamed Ashraf</h4>
+								<p class="feature-text">
+                  Back end developer
+                </p>
+								<a href="#" class="fancy-button button-line btn-col small zoom">
+									Details
+									<span class="icon">
+										<i class="fa fa-leaf"></i>
+									</span>
+								</a>
+							</li>
+							<!-- Single Feature Ends -->
+              <!-- Single Feature Starts -->
+							<li class="single-feature" title="Ajax contact form">
+								<img src="images/6.jpg" alt="" class="feature-image" /><!-- Feature Icon -->
+								<h4 class="feature-title color-scheme">Hazem Ayman</h4>
+								<p class="feature-text">
+                  Front and Back end developer
+              	</p>
+								<a href="#" class="fancy-button button-line btn-col small zoom">
+									Details
+									<span class="icon">
+										<i class="fa fa-leaf"></i>
+									</span>
+								</a>
+							</li>
+							<!-- Single Feature Ends -->
+              <!-- Single Feature Starts -->
+							<li class="single-feature" title="unlimited Google fonts">
+								<img src="images/7.jpg" alt="" class="feature-image" /><!-- Feature Icon -->
+								<h4 class="feature-title color-scheme">Mostafa Ibrahim</h4>
+								<p class="feature-text">
+                  Developer
+                </p>
+								<a href="#" class="fancy-button button-line btn-col small zoom">
+									Details
+									<span class="icon">
+										<i class="fa fa-leaf"></i>
+									</span>
+								</a>
+							</li>
+							<!-- Single Feature Ends -->
+
+            </ul>
+          <!--Features container Ends -->
+
+          <!-- Features Controls Starts -->
+          <div class="features-control relative">
+            <button class="control-icon fancy-button button-line no-text btn-col bell" id="feature-prev" title="Previous" >
+              <span class="icon">
+                <i class="fa fa-arrow-left"></i>
+              </span>
+            </button>
+            <button class="control-icon fancy-button button-line no-text btn-col zoom" id="feature-expand" title="Expand" >
+              <span class="icon">
+                <i class="fa fa-expand"></i>
+              </span>
+            </button>
+            <button class="control-icon fancy-button button-line no-text btn-col zoom" id="feature-close" title="Collapse" >
+              <span class="icon">
+                <i class="fa fa-compress"></i>
+              </span>
+            </button>
+            <button class="control-icon fancy-button button-line no-text btn-col bell" id="feature-next" title="Next" >
+              <span class="icon">
+                <i class="fa fa-arrow-right"></i>
+              </span>
+            </button>
+          </div>
+          <!-- Features Controls Ends -->
+      </div>
+    </div>
+  </div>
+</section>
+
+<!--=== Video section Starts ===-->
+<section id="section-video" class="section-video-wrap">
+  <div class="section-overlay"></div>
+  <div class="container big-video center animated" data-animation="fadeInLeft" data-animation-delay="700">
+    <div class="row">
+      <div class="col-md-12 section-title">
+        <h3>Describe with a video</h3>
+      </div>
+      <div class="col-md-10 col-md-offset-1 video-content">
+        <iframe src="https://player.vimeo.com/video/107288457" width="400" height="240"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+<!--=== Video section Ends ===-->
+
+
+<!--=== Features section Ends ===-->
+
+<div id="section-footer" class="footer-wrap">
+		<div class="container footer center">
+			<div class="row">
+				<div class="col-lg-12">
+					<h4 class="footer-title"><!-- Footer Title -->
+						<a class="site-name" href="http://www.iberia.com"><span>I</span>beria</a>
+					</h4>
+
+					<!-- Social Links -->
+					<div class="social-icons">
+						<ul>
+							<li><a href="https://www.facebook.com/iberia/?fref=ts"><i class="fa fa-facebook-square"></i></a></li>
+							<li><a href="https://twitter.com/iberia"><i class="fa fa-twitter-square"></i></a></li>
+							<li><a href="https://plus.google.com/+iberia"><i class="fa fa-google-plus-square"></i></a></li>
+							<li><a href="https://www.pinterest.com/iberia/"><i class="fa fa-pinterest-square"></i></a></li>
+							<li><a href="https://www.flickr.com/photos/iberialineasaereas/"><i class="fa fa-flickr"></i></a></li>
+							<li><a href="https://www.linkedin.com/company/iberia"><i class="fa fa-linkedin-square"></i></a></li>
+						</ul>
+					</div>
+
+					<p class="copyright">All rights reserved &copy; 2015</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--=== Footer section Ends ===-->

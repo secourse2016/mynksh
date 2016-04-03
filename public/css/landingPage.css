@@ -22,7 +22,7 @@
     color: #000;
     background-color: #FFF;
 }
-.form-group > label, .form-group > div {
+ .form-group > div {
     display:inline-block;
     vertical-align: middle;
 }
@@ -54,3 +54,309 @@ div.pos{
 .panel{
   background: transparent;
 }
+
+/*.jumbotron {
+    position: relative;
+    background: -webkit-gradient(
+  linear, left top, left bottom, from(rgba(50,50,50,0.8)),
+  to(rgba(80,80,80,0.2)), color-stop(.5,#333333)
+);
+
+    width: 70%;
+    height: 100%;
+    background-size: cover;
+    overflow: hidden;
+}
+#container {
+  width: 80%;
+  margin: auto;
+}*/
+
+.boxed{
+  background: -webkit-gradient(
+linear, left top, left bottom, from(rgba(50,50,50,0.8)),
+to(rgba(80,80,80,0.2)), color-stop(.5,#333333)
+);
+width:70%;
+padding-top: 20px;
+padding-left: 50px;
+padding-bottom: 10px;
+padding-right: 0;
+}
+
+/*@-webkit-keyframes typing {
+    from { width: 0 }
+    to { width:16.3em }
+}
+
+@-moz-keyframes typing {
+    from { width: 0 }
+    to { width:16.3em }
+}
+
+@-webkit-keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: black }
+}
+
+@-moz-keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: black }
+}
+
+body { font-family: Consolas, monospace; }
+
+.content h1 {
+    font-size:150%;
+    width:16.3em;
+    white-space:nowrap;
+    overflow:hidden;
+    border-right: .1em solid black;
+
+    -webkit-animation: typing 7s steps(50, end), /* # of steps = # of characters */
+                        /*blink-caret 1s step-end 2s;
+    -moz-animation: typing 7s steps(50, end), /* # of steps = # of characters */
+                        /*blink-caret 1s step-end 2s;
+    -moz-animation-delay:3s;
+    -moz-animation-fill-mode:both;
+}
+.content h2 {
+    font-size:150%;
+    width:16.3em;
+    white-space:nowrap;
+    overflow:hidden;
+    border-right: .1em solid black;
+    -webkit-animation-delay:8s;
+    -webkit-animation-fill-mode:both;
+    -webkit-animation: typing 7s steps(50, end), /* # of steps = # of characters */
+                        /*blink-caret 1s step-end infinite;
+    -moz-animation: typing 7s steps(50, end), /* # of steps = # of characters */
+                        /*blink-caret 1s step-end infinite;
+    -moz-animation-delay:3s;
+    -moz-animation-fill-mode:both;
+}*//*/*/
+/*
+.content h1 {
+	background:white;
+	opacity:0.7;
+	white-space:nowrap;
+    overflow:hidden;
+    border-right: 3px solid black;
+    -webkit-animation: typing 7s steps(50, end),
+                        blink-caret 1s step-end 2s;
+    -moz-animation: typing 7s steps(50, end),
+                        blink-caret 1s step-end 2s;
+    -moz-animation-delay:3s;
+    -moz-animation-fill-mode:both;
+}
+.content h2 {
+	background:white;
+	opacity:0.7;
+	white-space:nowrap;
+    overflow:hidden;
+    border-right: 3px solid black;
+    -webkit-animation: typing 7s steps(50, end),
+                        blink-caret 1s step-end infinite;
+    -webkit-animation-delay:8s;
+    -webkit-animation-fill-mode:both;
+    -moz-animation: typing 7s steps(50, end),
+                        blink-caret 1s step-end infinite;
+    -moz-animation-delay:3s;
+    -moz-animation-fill-mode:both;
+}
+
+@-webkit-keyframes typing {
+    from { width: 0; }
+    to { width:400px; }
+}
+
+@-moz-keyframes typing {
+    from { width: 0; }
+    to { width:400px; }
+}
+
+@-webkit-keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: black }
+}
+
+@-moz-keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: black }*/
+
+    .typed-cursor{
+        opacity: 1;
+        font-weight: 100;
+        -webkit-animation: blink 0.7s infinite;
+        -moz-animation: blink 0.7s infinite;
+        -ms-animation: blink 0.7s infinite;
+        -o-animation: blink 0.7s infinite;
+        animation: blink 0.7s infinite;
+    }
+    @-keyframes blink{
+        0% { opacity:1; }
+        50% { opacity:0; }
+        100% { opacity:1; }
+    }
+    @-webkit-keyframes blink{
+        0% { opacity:1; }
+        50% { opacity:0; }
+        100% { opacity:1; }
+    }
+    @-moz-keyframes blink{
+        0% { opacity:1; }
+        50% { opacity:0; }
+        100% { opacity:1; }
+    }
+    @-ms-keyframes blink{
+        0% { opacity:1; }
+        50% { opacity:0; }
+        100% { opacity:1; }
+    }
+    @-o-keyframes blink{
+        0% { opacity:1; }
+        50% { opacity:0; }
+        100% { opacity:1; }
+    }
+
+    @import "compass/css3";
+
+    body{background:#eee;}
+
+    .scene{
+      position:absolute;
+      width:400px;
+      height:200px;
+      top:50%;
+      left:50%;
+      margin-top:-100px;
+      margin-left:-200px;
+      overflow:hidden;
+      &:after{
+        content:" ";
+        left:0;
+        top:0;
+        bottom:0;
+        width:100px;
+        @include background-image(linear-gradient(to right, #eee, rgba(#eee,0)));
+        position:absolute;
+      }
+      &:before{
+        content:" ";
+        right:0;
+        top:0;
+        bottom:0;
+        width:100px;
+        @include background-image(linear-gradient(to left, #eee, rgba(#eee,0)));
+        position:absolute;
+        z-index:10;
+      }
+      em{
+        display:none;
+        position:absolute;
+        bottom:20px;
+        left:55px;
+        right:0;
+        text-align:center;
+        font-style:normal;
+        font-family:Proxima Nova;
+        color:#0bb4a6;
+        letter-spacing:0.2em;
+      }
+    }
+
+    .car{
+      position:absolute;
+      top:70px;
+      left:50%;
+      margin-left:-30px;
+      animation: peel 4s ease-in-out forwards infinite, bump 0.2s linear infinite;
+    }
+
+    .poof{
+      position:absolute;
+      top:110px;
+      left:160px;
+      margin-left:-30px;
+      opacity:0;
+      animation: poof 4s ease-in-out forwards infinite;
+    }
+
+    .sign{
+      position:absolute;
+      right:-40px;
+      top:30px;
+      animation: sign 4s ease-in-out forwards infinite;
+    }
+
+    @keyframes sign {
+      0% {
+        right:-40px;
+      }
+      30% {
+        right:80px;
+      }
+      70% {
+        right:80px;
+      }
+      100% {
+        right:100%;
+      }
+    }
+
+    @keyframes peel {
+      0% {
+        transform: rotate(0deg);
+      }
+      70% {
+        transform: rotate(0deg);
+      }
+      73% {
+        transform: rotate(-9deg);
+      }
+      95% {
+        transform: rotate(-9deg);
+      }
+      100% {
+        transform: rotate(0deg);
+      }
+    }
+
+    @keyframes poof {
+      0% {
+        opacity:0;
+        transform: scale(1.0);
+      }
+      70% {
+        opacity:0;
+        left:170px;
+        transform: scale(1.0);
+      }
+      76% {
+        opacity:1;
+        transform: scale(1.3);
+        left:160px;
+      }
+      95% {
+        opacity:0;
+      }
+      100% {
+        opacity:0;
+        transform: scale(1.3);
+      }
+    }
+
+    @keyframes bump {
+      0% {
+        top:70px;
+      }
+      50% {
+        top:70px;
+      }
+      60% {
+        top:69px;
+      }
+      100% {
+        top:70px;
+      }
+    }
