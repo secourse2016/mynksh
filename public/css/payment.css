@@ -1,0 +1,89 @@
+@charset "utf-8";
+.mainContainer {
+	height: 1400px;
+	width: 998px;
+	margin-left:auto;
+  margin-right:auto;
+	background-color: #ebebeb;
+}
+.leftInput {
+	position: relative;
+	height: 712px;
+	width: 707px;
+	background-color: #ffffff;
+	top: 50px ;
+}
+.rightDev {
+	position: relative;
+	width: 253px;
+	height: 814px;
+	background-color: #ffffff;
+	left: 740px;
+	top: -660px;
+}
+.title {
+	position: relative;
+	width: 998px;
+	height: 80px;
+	background-color: #EBEBEB;
+	top: 30px;
+
+}
+.middle{
+	position: relative;
+	width: 707px;
+	height:100px;
+	background-color: #FFFFFF;
+	top: -750px ;
+}.body {
+	margin: auto;
+	height: 1400px;
+	width: 998px;
+	background-color: #ebebeb;
+}
+.bottom{
+	position: relative;
+	width: 707px;
+	height:323px;
+	background-color: #FFFFFF;
+	top: -740px ;
+	}
+.titleText {
+	position: relative;
+	top: 0px;
+}
+hr {
+	position: relative;
+	display: block;
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+	margin-left: auto;
+	margin-right: auto;
+	border-style: inset;
+	border-width: 1px;
+	top: -20px;
+}
+.FormOfPayment {
+	position: relative;
+	width: 300px;
+}
+.Astric {
+	position: relative;
+	width: 300px;
+	left: 300px;
+	top: -30px;
+}
+.tabs {
+	position: relative;
+	width: 712px;
+	top:20px;
+
+}
+.form {
+	position: relative;
+	width: 500px;
+}
+.navTab {
+}
+.labelform {
+}
