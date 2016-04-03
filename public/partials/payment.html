@@ -26,24 +26,24 @@
       <div class="col-sm-10 col-lg-offset-0 col-lg-4" style="position:inherit top:-10px position: relative; position: relative; top: 10px; left:-60px" >
 
         <div class="form-group">
-          <font class="control-label col-sm-2 text-left" size="4" >  </font>
+          <font class="control-label col-sm-2 text-left" size="4" color:"white" > </font>
           <div class="col-md-8">
-        <input name="destinationAirports"
-            id="Issuer-country"
-            type="text"
-            placeholder="Couuntry"
-            ng-model="selectedCountry"
-            uib-typeahead="country.name for country in Airports | filter:$viewValue | limitTo:10"
-            class="form-control",
-            typeahead-on-select="SetDestinationAirport($item.iata)">
-          </div>
+        <input name="Country"
+          id="Country"
+          type="text"
+          placeholder="issuer country"
+          ng-model="selectedCountry"
+          uib-typeahead="country.name for country in Country | filter:$viewValue | limitTo:10"
+          class="form-control",
+          typeahead-on-select="setSelectedCountry($item.name)">
         </div>
+      </div>
 
       </div>
     </div>
 
      <div class="form-group" style="width: 350px;" >
-      <label class="control-label col-sm-2 labelform" for="country" style="width: 150px; position: relative; top: 8px; right: 64px;" >Type of card*:</label>
+      <label class="control-label col-sm-2 labelform" for="country" style="width: 150px; position: relative; top: 8px; right: 64px;" >Type of card {{no}} *:</label>
       <div class="col-sm-10 col-lg-offset-0 col-lg-4" style="position:inherit top:-10px position: relative; position: relative; top: 10px; left:-60px" >
         <div class="dropdown">
     <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"> Type
@@ -200,7 +200,6 @@ fe
  </h1>
 <p> Total price, includes air fare, taxes (except those charged at certain airports at the time of check-in), handling fees, operator charges and selected options. If you choose to pay for your trip with one of these cards, a surcharge of 1% of the final amount on long-haul flights and 2% on all other flights will apply per booking. This also includes the charge for using a credit card.  </p>
 
-<button type="button" class="btn btn-primary btn-lg" style="position:relative; left:280px"  ng-click='goCocontinuePay2()' >Continue</button>
 </div>
 </div>
 
