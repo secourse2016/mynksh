@@ -8,7 +8,7 @@
 </div>
  -->
 <div class="progress">
-  	 <p align="right">1.Search &nbsp&nbsp 2.Book &nbsp&nbsp <b>3.Confirmation</b> &nbsp&nbsp 4.Payment</p> 
+  	 <!-- <p align="right">1.Search &nbsp&nbsp 2.Book &nbsp&nbsp <b>3.Confirmation</b> &nbsp&nbsp 4.Payment</p>  -->
 
 </div>
 
@@ -19,15 +19,15 @@
 	<pre style="font-size: 16">Tickets:{{tickets}}                                Price:</pre>
 	</div>
 </div>
- <div class="tickets row" ng-repeat="store.getSelectedNumberOfTickets">
+ <div ng-repeat="n in noOfTickets" class="tickets row" >
       <h3>
       <h2>Passenger Details:</h2>
-        <pre style="font-size: 16">First name: <input></input></pre> 
-        <pre style="font-size: 16">Last name: <input></input></pre>
-        <pre style="font-size: 16">Passport: <button class="dropbtn"> <b>USA</b> </button> </pre>
-        <pre style="font-size: 16">Issue date: <input></input></pre> 
-        <pre style="font-size: 16">Expiry date: <input></input></pre> 
-        <pre style="font-size: 16">Passport number: <input></input></pre>  
+        <pre style="font-size: 16"> First name: <input></input></pre> 
+        <pre style="font-size: 16"> Last name: <input></input></pre>
+        <pre style="font-size: 16"> Passport: <button class="dropbtn"> <b>USA</b> </button> </pre>
+        <pre style="font-size: 16"> Issue date: <input></input></pre> 
+        <pre style="font-size: 16"> Expiry date: <input></input></pre> 
+        <pre style="font-size: 16"> Passport number: <input></input></pre>  
 
       </h3>
       

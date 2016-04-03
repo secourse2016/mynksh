@@ -23,6 +23,15 @@ App.controller('confirmCtrl', function($scope, FlightsSrv) {
    $scope.rDate= FlightsSrv.getSelectedReturnDate();
    // $scope.price=FlightsSrv.g
    $scope.tickets=FlightsSrv.getSelectedNumberOfTickets();
+
+   var range = [];
+   range.push(1);
+for(var i=1;i<FlightsSrv.getSelectedNumberOfTickets();i++) {
+  range.push(i);
+}
+   $scope.noOfTickets=range;
+
+
   // });
   // getSelectedOutDate();
   // getSelectedReturnDate();
