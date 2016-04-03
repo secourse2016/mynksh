@@ -1,0 +1,240 @@
+
+<div class="mainContainer" id ="payment">
+<div class="title">
+  <h1 class="titleText"> &nbsp; Payment Data</h1>
+</div>
+
+<div class="leftInput">
+  <h1 class="FormOfPayment">Form of Payment    </h1>  <h6 align="right" class="Astric">* Compulsory field</h6>
+  <hr>
+<!--  i have two tabs because of visa and paypal   -->
+<div class="tabs"  style="position:relative; top:-20px" >
+<ul class="nav nav-tabs navTab">
+  <li class="active"><a href="#home" data-toggle="tab" aria-expanded="false">Card payment</a></li>
+  <li class=""><a href="#profile" data-toggle="tab" aria-expanded="false">PayPal</a></li>
+
+</ul>
+<div id="myTabContent" class="tab-content">
+  <div class="tab-pane fade active in " id="home">
+    <!--  payment form  -->
+
+    <div class="container form">
+  <form class="form-horizontal" role="form">
+
+  <div class="form-group" style="width: 350px;" >
+      <label class="control-label col-sm-2 labelform" for="country" style="width: 150px; position: relative; top: 8px; right: 64px;" >Issuer country*:</label>
+      <div class="col-sm-10 col-lg-offset-0 col-lg-4" style="position:inherit top:-10px position: relative; position: relative; top: 10px; left:-60px" >
+
+        <div class="form-group">
+          <font class="control-label col-sm-2 text-left" size="4" color:"white" > </font>
+          <div class="col-md-8">
+        <input name="Country"
+          id="Country"
+          type="text"
+          placeholder="issuer country"
+          ng-model="selectedCountry"
+          uib-typeahead="country.name for country in Country | filter:$viewValue | limitTo:10"
+          class="form-control",
+          typeahead-on-select="setSelectedCountry($item.name)">
+        </div>
+      </div>
+
+      </div>
+    </div>
+
+     <div class="form-group" style="width: 350px;" >
+      <label class="control-label col-sm-2 labelform" for="country" style="width: 150px; position: relative; top: 8px; right: 64px;" >Type of card *:</label>
+      <div class="col-sm-10 col-lg-offset-0 col-lg-4" style="position:inherit top:-10px position: relative; position: relative; top: 10px; left:-60px" >
+        <div class="dropdown">
+    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"> Type
+    <span class="caret"></span></button>
+    <ul class="dropdown-menu">
+
+        	          		<option value="-1">Select an option</option>
+        					<option value="111" ng-model="selectedType">Personal Visa Card (no charge)</option>
+                  <option value="101"  ng-model="selectedType" >Visa Corporate Card (+6.64 €)</option>
+                  <option value="112"  ng-model="selectedType">Personal MasterCard (no charge)</option>
+                  <option value="105"  ng-model="selectedType">MasterCard Corporate (+6.64 €)</option>
+                  <option value="113"  ng-model="selectedType">Personal American Express (no charge)</option>
+                  <option value="123"  ng-model="selectedType">American Express Corporate (+6.64 €)</option>
+                  <option value="4"  ng-model="selectedType">Diners Club (+6.64 €)</option>
+                  <option value="3"  ng-model="selectedType">UATP/Airplus (+6.64 €)</option>
+                  <option value="6"  ng-model="selectedType">Carte Blanche (+6.64 €)</option>
+
+
+    </ul>
+  </div>
+      </div>
+    </div>
+
+
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="email">Card number*:</label>
+      <div class="col-sm-10 col-lg-6"  style="top:8px">
+        <input type="number" class="form-control" id="Card-number" placeholder="519603203xxxxxxx"   ng-model="selectedCard-number">
+      </div>
+    </div>
+
+     <div class="form-group" style="position:relative; width: 350px; top:-10px" >
+      <label class="control-label col-sm-2 labelform" for="country" style="width: 150px; position: relative; top: 8px; right: 64px;" >Expiry date*:</label>
+      <div class="col-sm-10 col-lg-offset-0 col-lg-6" style="position:inherit top:-10px position: relative; position: relative; top: 10px; left:-60px; height:40px" >
+        <div class="dropdown">
+    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"> Month
+    <span class="caret"></span></button>
+    <ul class="dropdown-menu">
+      <li><a href="#">HTML</a></li>
+
+    </ul>
+  </div>
+    <div class="dropdown" style="top:-34px; left:90px">
+    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"> Year
+    <span class="caret"></span></button>
+    <ul class="dropdown-menu">
+      <li><a href="#">HTML</a></li>
+
+    </ul>
+  </div>
+      </div>
+    </div>
+
+    <div class="form-group" style="position:relative; top:-10px">
+      <label class="control-label col-sm-2" for="email">Security code*:</label>
+      <div class="col-sm-10 col-lg-6"  style="top:10px">
+        <input type="number" class="form-control" id="CVV" placeholder="CVV" ng-model="selectedCVV">
+      </div>
+    </div>
+
+     <div class="form-group" style="position:relative; top:-20px">
+      <label class="control-label col-sm-2" for="email">First name*:</label>
+      <div class="col-sm-10 col-lg-6"  style="top:8px">
+        <input type="text" class="form-control" id="First-name" placeholder="eg.Mostafa"  ng-model="selectedFirstName">
+      </div>
+    </div>
+
+     <div class="form-group" style="position:relative; top:-30px">
+      <label class="control-label col-sm-2" for="email">Surname*:</label>
+      <div class="col-sm-10 col-lg-6"  style="top:8px">
+        <input type="text" class="form-control" id="Surname" placeholder="eg: hassan"  ng-model="selectedSecondName">
+      </div>
+    </div>
+
+     <div class="form-group" style="position:relative; top:-30px">
+      <label class="control-label col-sm-2" for="email">accompanying passengers:</label>
+      <div class="col-sm-10 col-lg-6"  style="top:8px">
+        <input type="text" class="form-control" id="passengers" placeholder="Name1 , Name 2 , Name 3 "  ng-model="SelectedPassengers">
+      </div>
+    </div>
+
+     <div class="form-group" style="position:relative; top:-38px">
+      <label class="control-label col-sm-2" for="email">Street*:</label>
+      <div class="col-sm-10 col-lg-6"  style="top:8px">
+        <input type="text" class="form-control" id="Street" placeholder="1-221 QUEBEC ST VICTORIA BC"  ng-model="selectedStret">
+      </div>
+    </div>
+
+     <div class="form-group" style="position:relative; top:-38px">
+      <label class="control-label col-sm-2" for="email">Additional information*:</label>
+      <div class="col-sm-10 col-lg-6"  style="top:8px">
+        <input type="text" class="form-control" id="info" placeholder="extra" ng-model="selectedExtra">
+      </div>
+    </div>
+
+
+    <div class="form-group" style="position:relative; top:-48px" >
+      <label class="control-label col-sm-2" for="email">Postal code*:</label>
+      <div class="col-sm-10 col-lg-6"  style="top:8px">
+        <input type="text" class="form-control" id="postal-code" placeholder="V8V 1W2"  ng-model="selectedPostalcode">
+      </div>
+    </div>
+
+    <div class="form-group" style="position:relative; top:-58px" >
+      <label class="control-label col-sm-2" for="email">City*:</label>
+      <div class="col-sm-10 col-lg-6"  style="top:8px">
+        <input type="text" class="form-control" id="city" placeholder="QUEBEC"  ng-model="SelectedCity">
+      </div>
+    </div>
+
+
+
+  </form>
+</div>
+    <!--  end of form    -->
+  </div>
+  <div class="tab-pane fade " id="profile">
+    <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit.</p>
+  </div>
+
+
+</div>
+
+
+</div>
+<!--  end of tabs    -->
+
+
+
+
+</div>
+
+
+
+<div class="rightDev">
+  <h3 class="FormOfPayment">Your travel plan </h3>
+  <hr>
+  <h3 class="FormOfPayment">Outbound</h3>
+  <hr>
+  <div>
+{{Porigin}} _ {{Pdest}} <br>
+   {{PoDate}}<br>
+
+   <br>
+   <br>
+
+
+{{Pdest}} _ {{Porigin}}  <br>
+ {{PrDate}}  <br>
+  </div>
+  <h3 class="FormOfPayment">Return</h3>
+  <hr>
+  <div>
+    {{P_round_origin}} _ {{P_round_dest}} <br>
+       {{P_round_oDate}}<br>
+
+       <br>
+       <br>
+
+
+    {{P_round_dest}} _ {{P_round_origin}}  <br>
+     {{P_round_rDate}}  <br>
+  </div>
+  <h3 class="FormOfPayment">Passengers</h3>
+  <hr>
+  <div>
+  <h4> {{noOfPassengers}} Passnger(s) <h4>  <br>
+  </div>
+
+
+</div>
+<div  class="middle">
+<h1 style="position:relative; top:20px;  left:20px; color:#E01619"> Price breakdown</h1>
+</div>
+
+<div class="bottom">
+
+<div class="checkbox" style="position:relative; left:50px; top:30px">
+  <label><input type="checkbox" value="">I have read and accept the terms and conditions and conditions of contract.</label>
+</div>
+
+
+<div style="position:relative; padding-left:20px ; top:60px">
+<h4>Total price :</h4>
+<h1> {{totalPrice}} €    <button type="button" class="btn btn-primary btn-lg" style="position:relative; left:280px"  ng-click="SetCountry(selectedCountry) ; SetFirstName(selectedFirstName) ; SetSurname(selectedSecondName) ; SetPassengers(SelectedPassengers); SetStret(selectedStret) ; SetInformation(selectedExtra) ; SetPostalcode(selectedPostalcode) ; SetCity(SelectedCity); postIntoBooking() ;goToBriefConfirmation() "  >Pay</button>
+ <button type="button" class="btn btn-primary btn-lg" style="position:relative; left:280px">cancell</button>
+ </h1>
+
+<p> Total price, includes air fare, taxes (except those charged at certain airports at the time of check-in), handling fees, operator charges and selected options. If you choose to pay for your trip with one of these cards, a surcharge of 1% of the final amount on long-haul flights and 2% on all other flights will apply per booking. This also includes the charge for using a credit card.  </p>
+
+</div>
+</div>
+
+</div>
