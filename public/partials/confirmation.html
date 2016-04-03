@@ -25,8 +25,9 @@
 <div class='content'>
 	<h1></h1>
 	<div id='Confirmation'>
-	<pre style="font-size: 16">From: {{store.origin}}                                  To:                                     Date:                                 Duration:</pre>
+	<pre style="font-size: 16">From:                                   To:                                     Date:                                 Duration:</pre>
 	<pre style="font-size: 16">Tickets:                                Price:</pre>
+	<p>{{store.origin}}</p> 
 	</div>
 </div>
  <div class="tickets row" ng-repeat="store.getSelectedNumberOfTickets">
@@ -47,6 +48,9 @@
 	<h2>Contact Details:</h2>
 	<pre style="font-size: 16">Phone number: <input></input></pre>
 	<pre style="font-size: 16">Email: <input></input></pre>
+</div>
+<div>
+	<button> <b>Continue to purchase</b> </button>
 </div>
 </body>
 <html>
