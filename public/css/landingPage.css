@@ -22,7 +22,7 @@
     color: #000;
     background-color: #FFF;
 }
-.form-group > label, .form-group > div {
+ .form-group > div {
     display:inline-block;
     vertical-align: middle;
 }
@@ -53,4 +53,188 @@ div.pos{
 }
 .panel{
   background: transparent;
+}
+
+/*.jumbotron {
+    position: relative;
+    background: -webkit-gradient(
+  linear, left top, left bottom, from(rgba(50,50,50,0.8)),
+  to(rgba(80,80,80,0.2)), color-stop(.5,#333333)
+);
+
+    width: 70%;
+    height: 100%;
+    background-size: cover;
+    overflow: hidden;
+}
+#container {
+  width: 80%;
+  margin: auto;
+}*/
+
+.boxed{
+  background: -webkit-gradient(
+linear, left top, left bottom, from(rgba(50,50,50,0.8)),
+to(rgba(80,80,80,0.2)), color-stop(.5,#333333)
+);
+width:70%;
+padding-top: 20px;
+padding-left: 50px;
+padding-bottom: 10px;
+padding-right: 0;
+}
+
+/*@-webkit-keyframes typing {
+    from { width: 0 }
+    to { width:16.3em }
+}
+
+@-moz-keyframes typing {
+    from { width: 0 }
+    to { width:16.3em }
+}
+
+@-webkit-keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: black }
+}
+
+@-moz-keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: black }
+}
+
+body { font-family: Consolas, monospace; }
+
+.content h1 {
+    font-size:150%;
+    width:16.3em;
+    white-space:nowrap;
+    overflow:hidden;
+    border-right: .1em solid black;
+
+    -webkit-animation: typing 7s steps(50, end), /* # of steps = # of characters */
+                        /*blink-caret 1s step-end 2s;
+    -moz-animation: typing 7s steps(50, end), /* # of steps = # of characters */
+                        /*blink-caret 1s step-end 2s;
+    -moz-animation-delay:3s;
+    -moz-animation-fill-mode:both;
+}
+.content h2 {
+    font-size:150%;
+    width:16.3em;
+    white-space:nowrap;
+    overflow:hidden;
+    border-right: .1em solid black;
+    -webkit-animation-delay:8s;
+    -webkit-animation-fill-mode:both;
+    -webkit-animation: typing 7s steps(50, end), /* # of steps = # of characters */
+                        /*blink-caret 1s step-end infinite;
+    -moz-animation: typing 7s steps(50, end), /* # of steps = # of characters */
+                        /*blink-caret 1s step-end infinite;
+    -moz-animation-delay:3s;
+    -moz-animation-fill-mode:both;
+}*//*/*/
+/*
+.content h1 {
+	background:white;
+	opacity:0.7;
+	white-space:nowrap;
+    overflow:hidden;
+    border-right: 3px solid black;
+    -webkit-animation: typing 7s steps(50, end),
+                        blink-caret 1s step-end 2s;
+    -moz-animation: typing 7s steps(50, end),
+                        blink-caret 1s step-end 2s;
+    -moz-animation-delay:3s;
+    -moz-animation-fill-mode:both;
+}
+.content h2 {
+	background:white;
+	opacity:0.7;
+	white-space:nowrap;
+    overflow:hidden;
+    border-right: 3px solid black;
+    -webkit-animation: typing 7s steps(50, end),
+                        blink-caret 1s step-end infinite;
+    -webkit-animation-delay:8s;
+    -webkit-animation-fill-mode:both;
+    -moz-animation: typing 7s steps(50, end),
+                        blink-caret 1s step-end infinite;
+    -moz-animation-delay:3s;
+    -moz-animation-fill-mode:both;
+}
+
+@-webkit-keyframes typing {
+    from { width: 0; }
+    to { width:400px; }
+}
+
+@-moz-keyframes typing {
+    from { width: 0; }
+    to { width:400px; }
+}
+
+@-webkit-keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: black }
+}
+
+@-moz-keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: black }*/
+
+    .typed-cursor{
+        opacity: 1;
+        font-weight: 100;
+        -webkit-animation: blink 0.7s infinite;
+        -moz-animation: blink 0.7s infinite;
+        -ms-animation: blink 0.7s infinite;
+        -o-animation: blink 0.7s infinite;
+        animation: blink 0.7s infinite;
+    }
+    @-keyframes blink{
+        0% { opacity:1; }
+        50% { opacity:0; }
+        100% { opacity:1; }
+    }
+    @-webkit-keyframes blink{
+        0% { opacity:1; }
+        50% { opacity:0; }
+        100% { opacity:1; }
+    }
+    @-moz-keyframes blink{
+        0% { opacity:1; }
+        50% { opacity:0; }
+        100% { opacity:1; }
+    }
+    @-ms-keyframes blink{
+        0% { opacity:1; }
+        50% { opacity:0; }
+        100% { opacity:1; }
+    }
+    @-o-keyframes blink{
+        0% { opacity:1; }
+        50% { opacity:0; }
+        100% { opacity:1; }
+    }
+/*Responsiveness*/
+
+/*lg*/
+@media (min-width: 1200px) {
+
+}
+
+/* md */
+@media (min-width: 992px) and (max-width: 1199px) {
+
+
+}
+
+/* sm */
+@media (min-width: 768px) and (max-width: 991px) {
+
+
+
+
 }
