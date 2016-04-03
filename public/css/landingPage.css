@@ -238,7 +238,7 @@ body { font-family: Consolas, monospace; }
         top:0;
         bottom:0;
         width:100px;
-        @include background-image(linear-gradient(to right, #eee, rgba(#eee,0)));
+        /*@include background-image(linear-gradient(to right, #eee, rgba(#eee,0)));*/
         position:absolute;
       }
       &:before{
