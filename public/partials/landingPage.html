@@ -97,100 +97,75 @@ function foo(){ console.log("Callback"); }
       </div>
     </div>
 
-      <div id="section-home" class="home-section-wrap center">
-      			<div class="section-overlay"></div>
-      			<div class="container home">
-      				<div class="row">
-      					<h1 class="well-come">Fly like IBERIA</h1>
-
-      					<div class="col-md-8 col-md-offset-2">
-      						<p class="intro-message">The Artful Flight Experience</p>
-
-                  <div class="type-wrap">
-                        <div id="typed-strings">
-                            <p >Hoy, <strong>Iberia</strong> está cambiando</p>
-                            <p>Today, <strong>Iberia</strong> is changing</p>
-                            <p>Oh YES, <strong>OUR</strong> typers actually work.</p>
-                        </div>
-                        <span id="typed" style="white-space:pre;"></span>
-                      </br>
-                      </br>
-                      </br>
-                      </br>
+    <div id="section-home" class="home-section-wrap center">
+      <div class="section-overlay"></div>
+      	<div class="container home">
+      		<div class="row">
+      			<h1 class="well-come">Fly like IBERIA</h1>
+      			<div class="col-md-8 col-md-offset-2">
+      				<p class="intro-message">The Artful Flight Experience</p>
+                <div class="type-wrap">
+                  <div id="typed-strings">
+                    <p >Hoy, <strong>Iberia</strong> está cambiando</p>
+                    <p>Today, <strong>Iberia</strong> is changing</p>
+                    <p>Oh YES, <strong>OUR</strong> typers actually work.</p>
+                  </div>
+                    <span id="typed" style="white-space:pre;"></span>
                     </br>
                     </br>
                     </br>
                     </br>
-                  </br>
-                  </br>
-                  </br>
-                  </br>
-                        <p> Note: for the navigation bar to work, click on home first</p>
-                    </div>
-
-      						<!-- <div class="home-buttons">
-      							<a href="#" class="fancy-button button-line button-white vertical">
-      								Learn more
-      								<span class="icon">
-      									<i class="fa fa-gear"></i>
-      								</span>
-      							</a>
-      							<a href="#" class="fancy-button button-line button-white zoom">
-      								Download now
-      								<span class="icon">
-      									<i class="fa fa-leaf"></i>
-      								</span>
-      							</a>
-      						</div> -->
-      					</div>
-      				</div>
+                    </br>
+                    </br>
+                    </br>
+                    </br>
+                    </br>
+                    </br>
+                    </br>
+                    </br>
+                    <p> Note: for the navigation bar to work, click on home first</p>
+                </div>
       			</div>
       		</div>
-      		<!--=== Home Section Ends ===-->
       	</div>
+      </div>
+      		<!--=== Home Section Ends ===-->
+</div>
 
+  <!--=== Contact section Starts ===-->
+<form class="form-horizontal">
+  <section id="section-download" class="download-wrap">
+	 <div class="container download center">
+		<div class="row">
+			<div class="col-md-8 col-md-offset-2">
+				<div class="col-md-10 col-md-offset-1 center section-title">
+					<h3>Flights</h3>
+				</div>
 
-          <form class="form-horizontal">
+				<div class="confirmation">
+					<p><span class="fa fa-check"></span></p>
+				</div>
 
-
-            <!--=== Contact section Starts ===-->
-	<!-- <section id="section-contact" class="contact-wrap">
-	<div class="section-overlay"></div>
-		<div class="container contact center animated" data-animation="flipInY" data-animation-delay="1000">
-			<div class="row"> -->
-    <section id="section-download" class="download-wrap">
-		<div class="container download center">
-			<div class="row">
-				<div class="col-md-8 col-md-offset-2">
-					<div class="col-md-10 col-md-offset-1 center section-title">
-						<h3>Flights</h3>
-					</div>
-
-					<div class="confirmation">
-						<p><span class="fa fa-check"></span></p>
-					</div>
-
-					<form class="contact-form support-form">
-
-						<div class="col-lg-12">
-              <div class="form-group">
-                <font class="control-label col-sm-2 text-left" size="4" color:"white" > From: </font>
-                <div class="col-md-8">
-              <input name="originAirports"
-                id="originAirports"
-                type="text"
-                placeholder="Flying From"
-                ng-model="selectedOrigin"
-                uib-typeahead="airport.iata for airport in Airports | filter:$viewValue | limitTo:10"
-                class="form-control",
-                typeahead-on-select="SetOriginAirport($item.name)">
+				<form class="contact-form support-form">
+					<div class="col-lg-12">
+            <div class="form-group">
+              <font class="control-label col-sm-2 text-left" size="4" color:"white" > From: </font>
+              <div class="col-md-8">
+                <input name="originAirports"
+                  id="originAirports"
+                  type="text"
+                  placeholder="Flying From"
+                  ng-model="selectedOrigin"
+                  uib-typeahead="airport.iata for airport in Airports | filter:$viewValue | limitTo:10"
+                  class="form-control",
+                  typeahead-on-select="SetOriginAirport($item.name)">
               </div>
             </div>
-              </br>
-              <div class="form-group">
-                <font class="control-label col-sm-2 text-left" size="4" > To: </font>
-                <div class="col-md-8">
-              <input name="destinationAirports"
+            </br>
+            <div class="form-group">
+              <font class="control-label col-sm-2 text-left" size="4" > To: </font>
+              <div class="col-md-8">
+                <input name="destinationAirports"
                   id="destinationAirports"
                   type="text"
                   placeholder="Flying To"
@@ -198,15 +173,14 @@ function foo(){ console.log("Callback"); }
                   uib-typeahead="airport.iata for airport in Airports | filter:$viewValue | limitTo:10"
                   class="form-control",
                   typeahead-on-select="SetDestinationAirport($item.iata)">
-                </div>
               </div>
-              </br>
-
-              <div class="form-group">
-                <font class="control-label col-sm-2 text-left" size="4" > Outgoing: </font>
-                <div class="col-md-8">
-                  <p class="input-group">
-                  <input type="text"
+            </div>
+            </br>
+            <div class="form-group">
+              <font class="control-label col-sm-2 text-left" size="4" > Outgoing: </font>
+              <div class="col-md-8">
+                <p class="input-group">
+                <input type="text"
                       class="form-control"
                       uib-datepicker-popup="{{format}}"
                       ng-model="dt"
@@ -214,18 +188,17 @@ function foo(){ console.log("Callback"); }
                       ng-required="true"
                       close-text="Close"
                       alt-input-formats="altInputFormats" />
-                  <span class="input-group-btn">
-                      <button type="button"
+                <span class="input-group-btn">
+                    <button type="button"
                         class="btn btn-default"
                         ng-click="open1()">
-                      <i class="glyphicon glyphicon-calendar"></i>
-                      </button>
-                  </span>
+                        <i class="glyphicon glyphicon-calendar"></i>
+                    </button>
+                </span>
                 </p>
               </div>
-          </div>
-              </br>
-
+            </div>
+            </br>
               <div class="form-group">
                 <font class="control-label col-sm-2 text-left" size="4" > Returning: </font>
                 <div class="col-md-8">
