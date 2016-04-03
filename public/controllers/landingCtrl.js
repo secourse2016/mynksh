@@ -22,9 +22,7 @@ App.controller('landingCtrl', function($scope, FlightsSrv, $location) {
   $scope.popup1 = {
     opened: false
   };
-  $scope.goContiunuePay = function() {
-    $location.url('/payment');
-  };
+
 
   $scope.popup2 = {
     opened: false
