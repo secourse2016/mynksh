@@ -1,7 +1,7 @@
 /**
  * Flights Controller
  */
-App.controller('flightsCtrl', function($scope, FlightsSrv,OutReturnSrv) {
+App.controller('flightsCtrl', function($scope, FlightsSrv,OutReturnSrv,$location) {
 
   /* Retrieve Selected Airports Codes */
   // $scope.flight = {
@@ -30,9 +30,14 @@ App.controller('flightsCtrl', function($scope, FlightsSrv,OutReturnSrv) {
   {
     return new Date(date); 
   };
-  $scope.timediff = function(depart, arr){
-  return moment.utc(moment(arr).diff(moment(depart))).format("hh:mm");
-};
+  $scope.timediff = function(depart, arr)
+  {
+    return moment.utc(moment(arr).diff(moment(depart))).format("hh:mm");
+  };
+  $scope.BookFlight = function() 
+  {
+    $location.url('/confirm');
+  };
  
 
    $scope.origin= FlightsSrv.getSelectedOriginAirport();

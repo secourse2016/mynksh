@@ -20,7 +20,7 @@
   <tbody>
   <form>
     <tr ng-repeat="flight in outgoingInfo">
-      <td><input type="radio" ng-model="$parent.selectedOutgoingFlight" value="{{flight}}" /></td>
+      <td><input type="radio" ng-model="$parent.selectedOutgoingFlight" ng-value="{{flight}}" /></td>
       <td>{{flight.flightNumber}}</td>
       <td>iberia</td>
       <td>{{stringToDate(flight.departureTime) | date : 'shortTime'}}</td>
@@ -86,8 +86,8 @@
   <div id='price'>
   <blockquote>
   <p>Price of your tickets</p>
-  <h3>000€</h3>
+  <h3>{{returnCabin + outgoingCabin | currency:"€"}}</h3>
 </blockquote>
-<a href="#" class="btn btn-primary btn-lg hvr-underline-from-center">Book Flight</a>
+<a href="#" class="btn btn-primary btn-lg hvr-underline-from-center" ng-click="BookFlight()">Book Flight</a>
   </div>
 </div>

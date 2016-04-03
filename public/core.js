@@ -23,9 +23,9 @@ App.config(function($routeProvider) {
 
         // // route for the confirmation page
         // .when('/confirm', {
-        //     templateUrl : '/partials/confirmation.html',
+        //     templateUrl : '/partials/confirmation.html'
         //     controller  : ''
-        // });
+        //  });
 
         // // route for the payment page
         // .when('/payment', {
