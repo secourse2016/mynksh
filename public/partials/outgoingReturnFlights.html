@@ -28,10 +28,10 @@
       <td>{{timediff(flight.departureTime,flight.arrivalTime)}}</td> 
        <td>
         <select ng-model="$parent.outgoingCabin">
-          <option value="economy">
+          <option value="e">
             Economy: {{flight.eCost | currency: "€"}}
           </option>
-          <option value="business">
+          <option value="b">
             Business: {{flight.bCost | currency: "€"}}
           </option>
         </select>
@@ -86,11 +86,10 @@
   <div id='price'>
   <blockquote>
   <p>Price of your tickets</p>
-  <h3>{{totalPrice | currency:"€"}}</h3>
+  <h3>{{(outgoingPrice + returnPrice) | currency:"€"}}</h3>
 </blockquote>
 <a href="#" class="btn btn-primary btn-lg hvr-underline-from-center" ng-click='BookFlight()'>Book Flight</a>
   </div>
 </div>
-{{returnCabin}}
-{{outgoingCabin}}
-{{totalPrice}}
+{{w}}
+{{outgoingPrice}}
