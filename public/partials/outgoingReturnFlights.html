@@ -3,7 +3,7 @@
   <div id='outgoing'>
   <div class="animated slideInLeft">
   <h3><img src='../assets/outgoingPlane.png'>Outbound:From {{origin}} to {{dest}} 
-  <small>{{oDate}}</small></h3>
+  <small>{{oDate | date}}</small></h3>
   </div>
   <table class="table table-striped table-hover table-bordered animated fadeInDown">
   <thead>
@@ -45,7 +45,7 @@
   <h1 class ="animated fadeInDown header-font">Now select your return flight</h1>
   <div id='return' class ="animated slideInRight">
   <h3><img src='../assets/returnPlane.png'>Return: From {{dest}} to {{origin}} 
-  <small>{{rDate}}</small></h3>
+  <small>{{rDate | date}}</small></h3>
   </div>
   <table class="table table-striped table-hover table-bordered animated fadeInDown">
    <thead>
@@ -88,6 +88,6 @@
   <p>Price of your tickets</p>
   <h3>{{returnCabin + outgoingCabin | currency:"€"}}</h3>
 </blockquote>
-<a href="#" class="btn btn-primary btn-lg hvr-underline-from-center" ng-click="BookFlight()">Book Flight</a>
+<a href="#" class="btn btn-primary btn-lg hvr-underline-from-center" ng-click='BookFlight()'>Book Flight</a>
   </div>
 </div>
