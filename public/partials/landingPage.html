@@ -212,7 +212,6 @@ function foo(){ console.log("Callback"); }
                   </span>
                 </p>
               </div>
-              {{dto}}
           </div>
               </br>
 
@@ -245,7 +244,7 @@ function foo(){ console.log("Callback"); }
                 <div class="col-md-8">
                 </br>
               <div class="styled">
-              <select name="ticketsCount">
+              <select name="ticketsCount" ng-model = "ticket">
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -277,7 +276,8 @@ function foo(){ console.log("Callback"); }
           </form>
 						</div>
 						<button type="submit" class="fancy-button button-line button-white large zoom subform" id='btnSearch' ng-click="SetOutDate(dto);
-            SetReturnDate(dtr); SetRoundTrip(roundTrip); SearchFlights()">
+            SetReturnDate(dtr); SetRoundTrip(roundTrip); 
+            SetSelectedNumberOfTickets(ticket); SearchFlights()">
 							Search Flights
               <!-- <a type="button" class="btn btn-clear btn-sm btn-min-block " id='btnSearch' ng-click='SearchFlights()'>Search Flights</a> -->
 
