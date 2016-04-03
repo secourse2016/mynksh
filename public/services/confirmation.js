@@ -3,56 +3,47 @@
  */
  App.factory('paymentSrv', function ($http) {
       return {
-        getCountry : function() {
-          return $http.get('/api/data/airports');
-        } ,
-        setSelectedCountry: function(value) {
-          this.SelectedCountry = value;
+        setFname: function(value) {
+          this.Fname = value;
         },
-        getSelectedCountry: function(value) {
-          this.SelectedCountry = value;
+        getFname: function(value) {
+          return this.Fname;
         },
-        getSelectedFirstName : function() {
-          return this.selectedFirstName ;
+        setLName: function(value) {
+          this.lastName = value;
         },
-        setSelectedFirstName: function(value) {
-          this.selectedFirstName = value;
+        getLName: function(value) {
+          return this.lastName;
         },
-        getSelectedSurname: function() {
-          return this.selectedSurname;
+        setIssueDate: function(value) {
+          this.IssueDate = value;
         },
-        setSelectedSurname: function(value) {
-          this.selectedSurname = value;
+        getIssueDate: function(value) {
+          return this.IssueDate;
         },
-        getSelectedPassengers: function() {
-          return this.SelectedPassengers;
+        setExpiryDate: function(value) {
+          this.ExpiryDate = value;
         },
-        setSelectedPassengers: function(value) {
-          this.SelectedPassengers = value;
+        getExpiryDate: function(value) {
+          return this.ExpiryDate;
         },
-        getSelectedStreet: function() {
-          return this.selectedStret;
+        setEmail: function(value) {
+          this.Email = value;
         },
-        setselectedStret: function(value) {
-          this.selectedStret = value;
+        getEmail: function(value) {
+          return this.Email;
         },
-        getSelectedinformation: function() {
-          return this.Selectedinformation;
+        setPhoneNo: function(value) {
+          this.PhoneNo = value;
         },
-        setSelectedinformation: function(value) {
-          this.Selectedinformation = value;
+        getPhoneNo: function(value) {
+          return this.PhoneNo;
         },
-        getSelectedPostalcode: function() {
-          return this.selectedPostalcode;
+        setPassportNo: function(value) {
+          this.PassportNo = value;
         },
-        setselectedPostalcode: function(value) {
-          this.selectedPostalcode = value;
-        },
-        getSelectedCity: function() {
-          return this.SelectedCity;
-        },
-        setSelectedCity: function(value) {
-          this.SelectedCity = value;
+        gePassportNo: function(value) {
+          return this.PassportNo;
         }
 
       };
