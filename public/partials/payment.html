@@ -51,15 +51,15 @@
     <ul class="dropdown-menu">
 
         	          		<option value="-1">Select an option</option>
-        					<option value="111"  ng-model="Type.choose">Personal Visa Card (no charge)</option>
-                  <option value="101">Visa Corporate Card (+6.64 €)</option>
-                  <option value="112">Personal MasterCard (no charge)</option>
-                  <option value="105">MasterCard Corporate (+6.64 €)</option>
-                  <option value="113">Personal American Express (no charge)</option>
-                  <option value="123">American Express Corporate (+6.64 €)</option>
-                  <option value="4">Diners Club (+6.64 €)</option>
-                  <option value="3">UATP/Airplus (+6.64 €)</option>
-                  <option value="6">Carte Blanche (+6.64 €)</option>
+        					<option value="111" ng-model="selectedType">Personal Visa Card (no charge)</option>
+                  <option value="101"  ng-model="selectedType" >Visa Corporate Card (+6.64 €)</option>
+                  <option value="112"  ng-model="selectedType">Personal MasterCard (no charge)</option>
+                  <option value="105"  ng-model="selectedType">MasterCard Corporate (+6.64 €)</option>
+                  <option value="113"  ng-model="selectedType">Personal American Express (no charge)</option>
+                  <option value="123"  ng-model="selectedType">American Express Corporate (+6.64 €)</option>
+                  <option value="4"  ng-model="selectedType">Diners Club (+6.64 €)</option>
+                  <option value="3"  ng-model="selectedType">UATP/Airplus (+6.64 €)</option>
+                  <option value="6"  ng-model="selectedType">Carte Blanche (+6.64 €)</option>
 
 
     </ul>
@@ -71,7 +71,7 @@
     <div class="form-group">
       <label class="control-label col-sm-2" for="email">Card number*:</label>
       <div class="col-sm-10 col-lg-6"  style="top:8px">
-        <input type="number" class="form-control" id="Card-number" placeholder="519603203xxxxxxx">
+        <input type="number" class="form-control" id="Card-number" placeholder="519603203xxxxxxx"   ng-model="selectedCard-number">
       </div>
     </div>
 
@@ -100,42 +100,42 @@
     <div class="form-group" style="position:relative; top:-10px">
       <label class="control-label col-sm-2" for="email">Security code*:</label>
       <div class="col-sm-10 col-lg-6"  style="top:10px">
-        <input type="number" class="form-control" id="CVV" placeholder="CVV">
+        <input type="number" class="form-control" id="CVV" placeholder="CVV" ng-model="selectedCVV">
       </div>
     </div>
 
      <div class="form-group" style="position:relative; top:-20px">
       <label class="control-label col-sm-2" for="email">First name*:</label>
       <div class="col-sm-10 col-lg-6"  style="top:8px">
-        <input type="text" class="form-control" id="First-name" placeholder="{{selectedCountry}}">
+        <input type="text" class="form-control" id="First-name" placeholder="eg.Mostafa"  ng-model="selectedFirstName">
       </div>
     </div>
 
      <div class="form-group" style="position:relative; top:-30px">
       <label class="control-label col-sm-2" for="email">Surname*:</label>
       <div class="col-sm-10 col-lg-6"  style="top:8px">
-        <input type="text" class="form-control" id="Surname" placeholder="eg: hassan">
+        <input type="text" class="form-control" id="Surname" placeholder="eg: hassan"  ng-model="selectedSecondName">
       </div>
     </div>
 
      <div class="form-group" style="position:relative; top:-30px">
       <label class="control-label col-sm-2" for="email">accompanying passengers:</label>
       <div class="col-sm-10 col-lg-6"  style="top:8px">
-        <input type="text" class="form-control" id="passengers" placeholder="Name1 , Name 2 , Name 3 ">
+        <input type="text" class="form-control" id="passengers" placeholder="Name1 , Name 2 , Name 3 "  ng-model="SelectedPassengers">
       </div>
     </div>
 
      <div class="form-group" style="position:relative; top:-38px">
       <label class="control-label col-sm-2" for="email">Street*:</label>
       <div class="col-sm-10 col-lg-6"  style="top:8px">
-        <input type="text" class="form-control" id="Street" placeholder="1-221 QUEBEC ST VICTORIA BC">
+        <input type="text" class="form-control" id="Street" placeholder="1-221 QUEBEC ST VICTORIA BC"  ng-model="selectedStret">
       </div>
     </div>
 
      <div class="form-group" style="position:relative; top:-38px">
       <label class="control-label col-sm-2" for="email">Additional information*:</label>
       <div class="col-sm-10 col-lg-6"  style="top:8px">
-        <input type="text" class="form-control" id="info" placeholder="extra">
+        <input type="text" class="form-control" id="info" placeholder="extra" ng-model="selectedExtra">
       </div>
     </div>
 
@@ -143,14 +143,14 @@
     <div class="form-group" style="position:relative; top:-48px" >
       <label class="control-label col-sm-2" for="email">Postal code*:</label>
       <div class="col-sm-10 col-lg-6"  style="top:8px">
-        <input type="text" class="form-control" id="postal-code" placeholder="V8V 1W2">
+        <input type="text" class="form-control" id="postal-code" placeholder="V8V 1W2"  ng-model="selectedPostalcode">
       </div>
     </div>
 
     <div class="form-group" style="position:relative; top:-58px" >
       <label class="control-label col-sm-2" for="email">City*:</label>
       <div class="col-sm-10 col-lg-6"  style="top:8px">
-        <input type="text" class="form-control" id="city" placeholder="QUEBEC">
+        <input type="text" class="form-control" id="city" placeholder="QUEBEC"  ng-model="SelectedCity">
       </div>
     </div>
 
@@ -195,7 +195,7 @@ fe
 
 <div style="position:relative; padding-left:20px ; top:60px">
 <h4>Total price :</h4>
-<h1> 1,171.80 €    <button type="button" class="btn btn-primary btn-lg" style="position:relative; left:280px">Pay</button>
+<h1> 1,171.80 €    <button type="button" class="btn btn-primary btn-lg" style="position:relative; left:280px"  ng-click="SetCountry(selectedCountry) ; SetFirstName(selectedFirstName) ; SetSurname(selectedSecondName) ; SetPassengers(SelectedPassengers); SetStret(selectedStret) ; SetInformation(selectedExtra) ; SetPostalcode(selectedPostalcode) ; SetCity(SelectedCity)  ;goToBriefConfirmation() "  >Pay</button>
  <button type="button" class="btn btn-primary btn-lg" style="position:relative; left:280px">cancell</button>
  </h1>
 <p> Total price, includes air fare, taxes (except those charged at certain airports at the time of check-in), handling fees, operator charges and selected options. If you choose to pay for your trip with one of these cards, a surcharge of 1% of the final amount on long-haul flights and 2% on all other flights will apply per booking. This also includes the charge for using a credit card.  </p>
