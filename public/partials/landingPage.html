@@ -1,3 +1,5 @@
+
+
 <script>
 $(function(){
 
@@ -56,9 +58,17 @@ function foo(){ console.log("Callback"); }
 
 <div>
   <!--=== Preloader section starts ===-->
-	<!-- <section id="preloader">
-		<div class="loading-circle fa-spin"></div>
-	</section> -->
+	 <section id="preloader">
+		<!-- <div class="loading-circle fa-spin"></div> -->
+    <div class="scene">
+<img class="car" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/43033/car.svg" alt="" />
+<img class="poof" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/43033/poof.svg" alt="" />
+<img class="sign" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/43033/sign.svg" alt="" />
+  <em>LOADING Awesomeness...</em>
+</div>
+</section>
+
+
 	<!--=== Preloader section Ends ===-->
   <!--=== Header section Starts ===-->
 	<div id="header" class="header-section">
@@ -84,7 +94,7 @@ function foo(){ console.log("Callback"); }
                   <li class="current"><a href="#header">Home</a></li>
                   <li><a href="#section-download">Flights</a></li>
                   <li><a href="#section-pricing">Offers</a></li>
-                  <li><a href="#step-1">About Us</a></li>
+                  <li><a href="#section-services">About Us</a></li>
                   <li><a href="#section-feature">Team Members</a></li>
                   <li><a href="#section-video">Video</a></li>
                   <li><a href="#section-footer">Contact Us</a></li>
@@ -394,7 +404,15 @@ function foo(){ console.log("Callback"); }
 	</section>
 	<!--=== Pricing section Ends ===-->
 
+  <!-- ABOUT US STARTS  -->
+  <section id="section-services" class="feature-wrap">
+    <div class="container features center">
 
+
+    </div>
+  </section>
+
+  <!-- ABOUT US ENDS  -->
 
         <!--=== Features section Starts ===-->
 	<section id="section-feature" class="feature-wrap">
@@ -569,7 +587,7 @@ function foo(){ console.log("Callback"); }
 			<div class="row">
 				<div class="col-lg-12">
 					<h4 class="footer-title"><!-- Footer Title -->
-						<a class="site-name" href="#"><span>I</span>beria</a>
+						<a class="site-name" href="http://www.iberia.com"><span>I</span>beria</a>
 					</h4>
 
 					<!-- Social Links -->
