@@ -1,0 +1,52 @@
+<DOCTYPE !HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Flights</title>
+	<link href="../styles/top-bar.css" rel="stylesheet" type="text/css">
+    <script src="/controllers/Confirmctrl.js"></script>
+</head>
+<body ng-controller="Confirmctrl as store">
+
+<!-- <div id='nav-bar'>
+	<a href='./'>	
+	<div id='logo'>
+		<img src='../assets/iberia-logo.png'>	
+	</div>
+	<a>
+</div>
+ -->
+<div class="progress">
+  	 <p align="right">1.Search &nbsp&nbsp 2.Book &nbsp&nbsp <b>3.Confirmation</b> &nbsp&nbsp 4.Payment</p>
+
+  </div>
+</div>
+
+<div class='content'>
+	<h1></h1>
+	<div id='Confirmation'>
+	<pre style="font-size: 16">From: {{origin}}                                  To:                                     Date:                                 Duration:</pre>
+	<pre style="font-size: 16">Tickets:                                Price:</pre>
+	</div>
+</div>
+ <div class="tickets row" ng-repeat="store.getSelectedNumberOfTickets">
+      <h3>
+      <h2>Passenger Details:</h2>
+        <pre style="font-size: 16">First name: <input></input></pre> 
+        <pre style="font-size: 16">Last name: <input></input></pre>
+        <pre style="font-size: 16">Passport: <button class="dropbtn"> <b>USA</b> </button> </pre>
+        <pre style="font-size: 16">Issue date: <input></input></pre> 
+        <pre style="font-size: 16">Expiry date: <input></input></pre> 
+        <pre style="font-size: 16">Passport number: <input></input></pre>  
+
+      </h3>
+      
+ </div>
+
+ <div >
+	<h2>Contact Details:</h2>
+	<pre style="font-size: 16">Phone number: <input></input></pre>
+	<pre style="font-size: 16">Email: <input></input></pre>
+</div>
+</body>
+<html>

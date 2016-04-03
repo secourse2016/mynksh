@@ -4,6 +4,7 @@
 	<meta charset="utf-8">
 	<title>Flights</title>
 	<link href="../styles/top-bar.css" rel="stylesheet" type="text/css">
+    <script src="./controllers/ConfirmCtrl.js"></script>
 </head>
 <body ng-controller="Confirmctrl as store">
 
@@ -39,6 +40,7 @@
         <pre style="font-size: 16">Passport number: <textarea style="width: 250px; height: 25px; font-size:18"></textarea></pre>  
 
       </h3>
+      {{origin}}
  </div>
 
  <div >
@@ -46,6 +48,5 @@
 	<pre style="font-size: 16">Phone number: <textarea style="width: 250px; height: 25px; font-size:18"></textarea></pre>
 	<pre style="font-size: 16">Email: <textarea style="width: 250px; height: 25px; font-size:18"></textarea></pre>
 </div>
-<script src="../services/OutReturnServ.js"></script>
 </body>
 <html>
