@@ -23,6 +23,7 @@ App.controller('landingCtrl', function($scope, FlightsSrv, $location) {
     opened: false
   };
 
+
   $scope.popup2 = {
     opened: false
   };

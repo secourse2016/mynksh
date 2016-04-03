@@ -13,6 +13,11 @@ App.config(function($routeProvider) {
             controller  : 'landingCtrl',
             controllerAs: 'landing'
         })
+        .when('/payment', {
+            templateUrl : '/partials/payment.html',
+            controller  : 'paymentCtrl',
+            controllerAs: 'payment'
+        })
 
         // route for the OutgoingReturnFlights page
         .when('/flights', {
@@ -21,15 +26,5 @@ App.config(function($routeProvider) {
             controllerAs: 'flights'
         });
 
-        // // route for the confirmation page
-        // .when('/confirm', {
-        //     templateUrl : '/partials/confirmation.html',
-        //     controller  : ''
-        // });
 
-        // // route for the payment page
-        // .when('/payment', {
-        //     templateUrl : '/partials/payment.html',
-        //     controller  : ''
-        // });
 });
