@@ -1,7 +1,7 @@
 /**
  * Flights Controller
  */
-App.controller('flightsCtrl', function($scope, FlightsSrv) {
+App.controller('flightsCtrl', function($scope, FlightsSrv,OutReturnSrv) {
 
   /* Retrieve Selected Airports Codes */
   // $scope.flight = {
@@ -16,13 +16,13 @@ App.controller('flightsCtrl', function($scope, FlightsSrv) {
   
    $scope.roundTrip=true;
    function outgoingInfo() {
-    FlightsSrv.getOutgoingInfo().success(function(outgoingInfo) {
+    OutReturnSrv.getOutgoingInfo().success(function(outgoingInfo) {
          $scope.outgoingInfo = outgoingInfo;
      });
   };
 
   function returnInfo() {
-    FlightsSrv.getReturnInfo().success(function(returnInfo) {
+    OutReturnSrv.getReturnInfo().success(function(returnInfo) {
          $scope.returnInfo = returnInfo;
      });
   };
