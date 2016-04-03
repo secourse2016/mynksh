@@ -1,0 +1,14 @@
+{
+	"_id": "String",
+	"firstName": "String",
+	"lastName": "String",
+	"passport": "String",
+	"passportNumber": "String",
+	"issueDate": "Date",
+	"expiryDate": "Date",
+	"email" : "String",
+	"phoneNumber" : "String",
+	"bookingRefNumber": "String",
+	"receipt_number": "String",
+	"flightNumber": "String
+}
