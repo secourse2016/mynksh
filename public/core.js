@@ -15,8 +15,8 @@ App.config(function($routeProvider) {
         })
         .when('/payment', {
             templateUrl : '/partials/payment.html',
-            controller  : 'mainCtrl' ,
-              controllerAs: 'payment'
+            controller  : 'paymentCtrl',
+            controllerAs: 'payment'
         })
 
         // route for the OutgoingReturnFlights page
