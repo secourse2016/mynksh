@@ -1,10 +1,13 @@
 /**
  * Flights Controller
  */
-App.controller('paymentCtrl', function($scope, paymentSrv,FlightsSrv, $location) {
+App.controller('paymentCtrl', function($scope,PaymentSrv,FlightsSrv,OutReturnSrv,$location) {
 
 
-    $scope.goPay = function() {
-      $location.url('/payment');
+
+    $scope.goCocontinuePay2 = function() {
+      $location.url('/flights');
     };
+
+
 });
