@@ -56,13 +56,13 @@ App.controller('landingCtrl', function($scope, FlightsSrv, $location) {
 
   $scope.SetOutDate = function(value) {
            
-           FlightsSrv.setSelectedOutDate(value);
+    FlightsSrv.setSelectedOutDate(value);
   };
   $scope.SetReturnDate = function(value) {
-           FlightsSrv.setSelectedReturnDate(value);
+    FlightsSrv.setSelectedReturnDate(value);
   };
-  $scope.SetSelectedRoundTrip = function(value) {
-           FlightsSrv.setSelectedRoundTrip(value);
+  $scope.SetRoundTrip = function(value) {
+    FlightsSrv.setSelectedRoundTrip(value);
   };
   $scope.SetSelectedNumberOfTickets = function(value) {
            FlightsSrv.setSelectedNumberOfTickets(value);
