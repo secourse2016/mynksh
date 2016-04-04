@@ -42,10 +42,35 @@
             <pre style="font-size: 16">Phone number: <input type="text" placeholder="e.g.109013840923" ng-model="typePhoneno"></input></pre>
             <pre style="font-size: 16">Email: <input type="string" placeholder="e.g. Hazem.279@gmail.com"   ng-model="typedEmail"></input></pre>
             <h2>Passenger Details: {{counter}}
- <!-- <button type="button" class="btn btn-primary btn-lg" style="position:relative; left:280px" ng-click='incCounter()'>Test</button> -->
-             <br>
-            </h2>
+            <!-- <button type="button" class="btn btn-primary btn-lg" style="position:relative; left:280px" ng-click='incCounter()'>Test</button> -->
+            <!-- <div ng-repeat="bookingRef in reservation" class="tickets row">
+           -            <h3>
+           -      <h2>Passenger Details:</h2>
+           -        <pre style="font-size: 16"> First name: <input type="string" placeholder="e.g. Hazem"   ng-model="typedFname"></input></pre>
+           -        <pre style="font-size: 16"> Last name: <input type="string" placeholder="e.g. Elessawy"   ng-model="typedLname"></input></pre>
+           -        <pre style="font-size: 16"> Passport: <button class="dropbtn" ng-model="typedCountry"> <b>USA</b> </button> </pre>
+           -        <pre style="font-size: 16"> Issue date: <input type="date" placeholder="e.g. 17/10/2005"   ng-model="typedIssueDate"></input></pre>
+           -        <pre style="font-size: 16"> Expiry date: <input type="date" placeholder="e.g. 17/10/2015"   ng-model="typedExpiryDate"></input></pre>
+           -        <pre style="font-size: 16"> Passport number: <input type="number" ng-model="typedPassportno"></input></pre>
+           -
+           -      </h3>
+                        <br>
+                       </h2>
+                   </div> -->
+        <blockquote ng-repeat="n in reservation">
+        <div>
+            <form name="reviewForm">
+                <select >
+                <option value="1">1 star</option>
+                <option value="2">2 stars</option>
+                </select>
+                <textarea></textarea>
+                <label>by:</label>
+                <input type="email" />
+                <input type="submit" value="Submit" />
+            </form>
         </div>
+        </blockquote> <br>asdsadsa
         <div class="tickets row">
             {{number}}
         </div>
