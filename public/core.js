@@ -7,11 +7,16 @@ App = angular.module('IBERIA', ['ui.bootstrap', 'ngRoute']);
 App.config(function($routeProvider) {
     $routeProvider
 
-        // route for the landingPage page
+    // route for the landingPage page
         .when('/', {
-            templateUrl : '/partials/landingPage.html',
-            controller  : 'landingCtrl',
+            templateUrl: '/partials/landingPage.html',
+            controller: 'landingCtrl',
             controllerAs: 'landing'
+        })
+        .when('/payment', {
+            templateUrl: '/partials/payment.html',
+            controller: 'paymentCtrl',
+            controllerAs: 'payment'
         })
 
         // route for the OutgoingReturnFlights page
@@ -19,17 +24,12 @@ App.config(function($routeProvider) {
             templateUrl : '/partials/outgoingReturnFlights.html',
             controller  : 'flightsCtrl',
             controllerAs: 'flights'
-        });
+        })
 
         // // route for the confirmation page
-        // .when('/confirm', {
-        //     templateUrl : '/partials/confirmation.html',
-        //     controller  : ''
-        // });
-
-        // // route for the payment page
-        // .when('/payment', {
-        //     templateUrl : '/partials/payment.html',
-        //     controller  : ''
-        // });
+        .when('/confirm', {
+            templateUrl : '/partials/confirmation.html',
+            controller  : 'confirmCtrl',
+            controllerAs: 'sotre'
+        });
 });

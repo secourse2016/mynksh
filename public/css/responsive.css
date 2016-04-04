@@ -8,24 +8,24 @@
 	.navbar-nav > li > a {
 		font-size: 14px !important;
 	}
-	
+
 	.step-no {
 		margin: 0 auto 60px;
 	}
-	
+
 	/* steps */
 	.step-even .step-img, .step-even .step-details {
 		float: none;
 	}
-	
+
 	.step-img, .step-details{
 		margin-bottom: 40px;
 	}
-	
+
 	.step-img {
 		text-align:center;
 	}
-	
+
 	.single-pricing {
 		margin-bottom: 60px;
 	}
@@ -33,7 +33,7 @@
 	.project-photo, .project-details {
 		margin-bottom: 60px;
 	}
-	
+
 
 }
 
@@ -62,14 +62,14 @@
 		display:none;
 	}
 
-	
-	
+
+
 }
 
 
 /* --------- Styles for Screen width Smaller than 767px -------- */
 @media only screen and (max-width: 767px) {
-	
+
 	/* Main menu */
 	.navbar-collapse {
 		margin-left: -16px;
@@ -82,13 +82,13 @@
 	.navbar-nav > li > a {
 		padding-left: 30px;
 	}
-	
+
 
 	/* features */
 	.container.features {
 		padding-bottom: 120px;
 	}
-	
+
 	.baraja-container {
 		width: 180px;
 		height: 250px;
@@ -123,7 +123,7 @@
 	.step .step-img {
 		margin-top: 30px;
 	}
-		
+
 	.sub-steps .sub-text {
 		line-height: 28px;
 	}
@@ -167,12 +167,12 @@
 		padding-top: 140px;
 		padding-bottom: 40px;
 	}
-	
+
 	.well-come {
 		margin-top: 150px;
 		font-size: 48px;
 	}
-	
+
 	.features-control {
 		float: left;
 		height: 160px;
@@ -201,7 +201,7 @@
 	.screenshots .col-xs-6 {
 		width: 100% !important;
 	}
-	
+
 		#subscription-form  .input-email {
 		width: 320px;
 	}
@@ -221,8 +221,3 @@
 		width: 250px;
 	}
 }
-
-
-
-
-

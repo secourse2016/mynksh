@@ -9,12 +9,9 @@ th,td{
 	padding: 15px;
 	text-align: center;
 }
-
 h1{
 	text-align: center;
 }
-
-
 /* Underline From Center */
 .hvr-underline-from-center {
   display: inline-block;
@@ -51,10 +48,6 @@ h1{
 
 .btn-primary {
 	background-color:#005580;
-} 
-
-a {
-	text-decoration : none !important;
 }
 
 @keyframes slideInLeft {
