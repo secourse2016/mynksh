@@ -95,42 +95,44 @@
                             </br>
                             <div class="col-md-10 col-md-offset-1 center section-title">
                                 <h3>Passenger Details</h3>
-                                <div class="mainContainer" style="height:350px; width:500px">
+                                <div class="mainContainer">
                                     </br>
-                                    <div class="form-group">
-                                        <font class="col-sm-4 text-right" size="4" color="black">First Name: </font>
-                                        <div class="col-md-8 col-sm-8 text-left">
-                                            <input type="string" placeholder="e.g. Hazem" ng-model="typedFname"></input>
+                                    <div ng-repeat="n in reservation">
+                                        <div class="form-group">
+                                            <font class="col-sm-4 text-right" size="4" color="black">First Name: </font>
+                                            <div class="col-md-8 col-sm-8 text-left">
+                                                <input type="string" placeholder="e.g. Hazem" ng-model="typedFname"></input>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <font class="col-sm-4 text-right" size="4" color="black">Last Name: </font>
-                                        <div class="col-md-8 col-sm-8 text-left">
-                                            <input type="string" placeholder="e.g. Elessawy" ng-model="typedLname"></input>
+                                        <div class="form-group">
+                                            <font class="col-sm-4 text-right" size="4" color="black">Last Name: </font>
+                                            <div class="col-md-8 col-sm-8 text-left">
+                                                <input type="string" placeholder="e.g. Elessawy" ng-model="typedLname"></input>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <font class="col-sm-4 text-right" size="4" color="black">Passport type: </font>
-                                        <div class="col-md-8 col-sm-8 text-left">
-                                            <input type="string" placeholder="e.g. USA" ng-model="typedCountry"></input>
+                                        <div class="form-group">
+                                            <font class="col-sm-4 text-right" size="4" color="black">Passport type: </font>
+                                            <div class="col-md-8 col-sm-8 text-left">
+                                                <input type="string" placeholder="e.g. USA" ng-model="typedCountry"></input>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <font class="col-sm-4 text-right" size="4" color="black">Issue Date: </font>
-                                        <div class="col-md-8 col-sm-8 text-left">
-                                            <input type="string" placeholder="e.g. 17/4/2016" ng-model="typedIssueDate"></input>
+                                        <div class="form-group">
+                                            <font class="col-sm-4 text-right" size="4" color="black">Issue Date: </font>
+                                            <div class="col-md-8 col-sm-8 text-left">
+                                                <input type="string" placeholder="e.g. 17/4/2016" ng-model="typedIssueDate"></input>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <font class="col-sm-4 text-right" size="4" color="black">Expiry Date: </font>
-                                        <div class="col-md-8 col-sm-8 text-left">
-                                            <input type="string" placeholder="e.g. 17/4/2020" ng-model="typedExpiryDate"></input>
+                                        <div class="form-group">
+                                            <font class="col-sm-4 text-right" size="4" color="black">Expiry Date: </font>
+                                            <div class="col-md-8 col-sm-8 text-left">
+                                                <input type="string" placeholder="e.g. 17/4/2020" ng-model="typedExpiryDate"></input>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <font class="col-sm-4 text-right" size="4" color="black">Passport Number: </font>
-                                        <div class="col-md-8 col-sm-8 text-left">
-                                            <input type="string" placeholder="" ng-model="typedPassportno"></input>
+                                        <div class="form-group">
+                                            <font class="col-sm-4 text-right" size="4" color="black">Passport Number: </font>
+                                            <div class="col-md-8 col-sm-8 text-left">
+                                                <input type="string" placeholder="" ng-model="typedPassportno"></input>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -140,7 +142,7 @@
                             </h2>
                         </div>
                         </blockquote>
-                        <br>asdsadsa
+                        <br>
                         <div class="tickets row">
                             <!-- {{number}} -->
                         </div>

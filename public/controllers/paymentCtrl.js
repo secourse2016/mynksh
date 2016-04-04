@@ -17,7 +17,7 @@
 
 $scope.Success = "fail to pay please try again later";
   $scope.goToBriefConfirmation= function() {
-    $location.url('/flights');
+    $location.url('/');
   };
 
 
