@@ -20,7 +20,5 @@ module.exports = function(app,mongo) {
     app.get('/api/returnInfo', function(req, res) {
       res.json(require('../../modules/returnInfo.json'));
     });
-   
+
 };
-
-
