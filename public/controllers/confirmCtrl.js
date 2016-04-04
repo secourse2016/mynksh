@@ -1,4 +1,4 @@
-App.controller('confirmCtrl', function($scope, FlightsSrv, $location) {
+App.controller('confirmCtrl', function($scope, FlightsSrv, OutReturnSrv, $location) {
 
     /* Retrieve Selected Airports Codes */
     // $scope.flight = {
@@ -21,6 +21,7 @@ App.controller('confirmCtrl', function($scope, FlightsSrv, $location) {
     $scope.oDate = FlightsSrv.getSelectedOutDate();
     $scope.rDate = FlightsSrv.getSelectedReturnDate();
     $scope.tickets = FlightsSrv.getSelectedNumberOfTickets();
+    $scope.price = OutReturnSrv.getSelectedPrice();
     // $scope.price=FlightsSrv.g
 
     $scope.setTicketfirstName = function(value) {
