@@ -1,6 +1,4 @@
-<!--=== Other CSS files ===-->
-<!-- <link rel="stylesheet" href="css/animate.css" /> -->
-<!-- <link rel="stylesheet" href="css/jquery.vegas.css" /> -->
+
 
 <script>
     $(function() {
@@ -39,15 +37,15 @@
 
 
 <!-- <script type="text/javascript" src="js/jquery.nicescroll.min.js"></script> -->
-<link rel="stylesheet" href="css/jquery.vegas.css" />
+<!-- <script type="text/javascript" src="js/jquery.combinedScroll.js"></script> -->
+<!-- <link rel="stylesheet" href="css/jquery.vegas.css"/> -->
 <script type="text/javascript" src="js/jquery.vegas.min.js"></script>
 
 <!--==== Slider and Card style plugin ====-->
-<link rel="stylesheet" href="css/animate.css" />
+<!-- <link rel="stylesheet" href="css/animate.css" /> -->
 <script type="text/javascript" src="js/jquery.baraja.js"></script>
 <link rel="stylesheet" href="css/baraja.css" />
 <script type="text/javascript" src="js/jquery.bxslider.min.js"></script>
-
 
 <!-- <link rel="stylesheet" id="scheme-source" href="css/schemes/gray.css" /> -->
 <link rel="stylesheet" href="css/font-awesome.min.css" />
@@ -191,20 +189,19 @@
                                     <p class="input-group">
                                         <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="$parent.dtr" is-open="popup2.opened" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
                                         <span class="input-group-btn">
-                  <button type="button"
-                      class="btn btn-default"
-                      ng-click="open2()">
-                      <i class="glyphicon glyphicon-calendar"></i>
-                  </button>
-                </span>
+                                          <button type="button"
+                                          class="btn btn-default"
+                                          ng-click="open2()">
+                                          <i class="glyphicon glyphicon-calendar"></i>
+                                        </button>
+                                      </span>
                                     </p>
                                 </div>
                             </div>
                             </br>
                             <div class="form-group">
-                                <font class="col-sm-2 text-right" size="4" color="white"> Tickets Count: </font>
+                                <font class=" col-sm-2 text-right" size="4" color="white"> Tickets Count:</font>
                                 <div class="col-sm-8 text-left">
-                                    </br>
                                     <div class="styled">
                                         <select name="ticketsCount" ng-model="ticket">
                                             <option value="1">1</option>
@@ -224,20 +221,19 @@
                             <form>
                                 </br>
                                 <div class="form-group">
-                                    <font class="col-sm-4 text-left" size="4">One-Way
+                                    <font class=" col-sm-4 text-left" size="4" color="white">One-Way
                                         <input ng-model="roundTrip" type="radio" value="false" />
-                                    </font>
-
-                                    <font class="control-label col-sm-2 text-left" size="4"> Round Trip Flight
-
-                                    <input ng-model="roundTrip" type="radio" value="true" />
+                                        </font>
+                                    <!-- </div>
+                                <div class="form-group"> -->
+                                    <font class=" col-sm-4 text-left" size="4" color="white"> Round Trip Flight
+                                        <input ng-model="roundTrip" type="radio" value="true" />
                                     </font>
 
                                 </div>
                             </form>
                         </div>
                     </form>
-                    </br>
                     <button type="submit" class="fancy-button button-line button-white large zoom subform" id='btnSearch' ng-click="SetOutDate(dto);
                     SetReturnDate(dtr); SetRoundTrip(roundTrip);
                     SetSelectedNumberOfTickets(ticket); SearchFlights()">
@@ -615,5 +611,6 @@
       <font size="5" color="black" >Airplanes</font>
     </div>
 	</div> -->
+
 </div>
 <!--=== Footer section Ends ===-->

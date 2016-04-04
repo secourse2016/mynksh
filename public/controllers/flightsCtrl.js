@@ -48,8 +48,8 @@ App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $locati
   $scope.$watch('selectedOutgoingFlight',function() {$scope.calculateOutgoingPrice();},true);
   $scope.$watch('selectedOutgoingFlight',function() {$scope.calculateReturningPrice();},true);
   $scope.$watch('returnCabin',function() {$scope.calculateReturningPrice();},true);
- 
-  $scope.calculateOutgoingPrice = function(){ 
+
+  $scope.calculateOutgoingPrice = function(){
     if($scope.outgoingCabin === "economy"){
         $scope.outgoingPrice = $scope.selectedOutgoingFlight.eCost;
       };
@@ -58,13 +58,17 @@ App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $locati
       };
   };
 
-  $scope.calculateReturningPrice = function(){ 
+  $scope.calculateReturningPrice = function(){
     if($scope.returnCabin === "economy"){
         $scope.returnPrice = $scope.selectedReturnFlight.eCost;
       };
     if($scope.returnCabin === "business"){
       $scope.returnPrice = $scope.selectedReturnFlight.bCost;
     };
+  };
+
+  $scope.goCocontinuePay = function() {
+      $location.url('/payment');
   };
 
 });

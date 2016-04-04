@@ -40,7 +40,6 @@ $(document).ready(function() {
         }
     });
 });
-
 /* -----------------------------
 Card Style Script
 ----------------------------- */
@@ -147,7 +146,6 @@ $('[placeholder]').focus(function() {
     }
 }).blur();
 
-
 /* -----------------------------
 BxSlider
 ----------------------------- */
@@ -166,14 +164,14 @@ $(document).ready(function() {
 Main navigation
 ----------------------------- */
 $(document).ready(function() {
-    'use strict';
-    $('.nav').onePageNav({
-        currentClass: 'current',
-        scrollSpeed: 1000,
-        easing: 'easeInOutQuint'
-    });
-    $(window).bind('scroll', function(e) {
-        var scrollPos = $(window).scrollTop();
-        scrollPos > 220 ? $('.sticky-section').addClass('nav-bg') : $('.sticky-section').removeClass('nav-bg');
-    });
+	'use strict';
+	$('.nav').onePageNav({
+		currentClass: 'current',
+		scrollSpeed: 1000,
+		easing: 'easeInOutQuint'
+	});
+	$(window).bind('scroll', function(e) {
+		var scrollPos = $(window).scrollTop();
+		scrollPos > 220 ? $('.sticky-section').addClass('nav-bg') : $('.sticky-section').removeClass('nav-bg');
+	});
 });
