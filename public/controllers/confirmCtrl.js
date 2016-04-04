@@ -27,7 +27,7 @@ App.controller('confirmCtrl', function($scope, FlightsSrv, OutReturnSrv, Confirm
     $scope.setTicketFirstName = function(value) {
         confirmSrv.setFname(value);
     };
-     $scope.setTicketLastName = function(value) {
+    $scope.setTicketLastName = function(value) {
         confirmSrv.setLname(value);
     };
     $scope.setTicketIssueDate = function(value) {
@@ -40,20 +40,16 @@ App.controller('confirmCtrl', function($scope, FlightsSrv, OutReturnSrv, Confirm
         confirmSrv.setEmail(value);
     };
 
-$scope.setTicketPhoneNo = function(value) {
+    $scope.setTicketPhoneNo = function(value) {
         confirmSrv.setPhoneNo(value);
     };
 
-$scope.setTicketPassportNo = function(value) {
+    $scope.setTicketPassportNo = function(value) {
         confirmSrv.setPassportNo(value);
     };
     $scope.setTicketPassportType = function(value) {
         confirmSrv.setPassportType(value);
     };
-
-
-
-    
 
     $scope.isGreaterThanTickets = function(num) {
         return num < $scope.number;
@@ -72,7 +68,7 @@ $scope.setTicketPassportNo = function(value) {
 
     $scope.reservation = [];
 
-    for (var bookingRef = 1; bookingRef< 5; bookingRef++) {
+    for (var bookingRef = 1; bookingRef <= FlightsSrv.getSelectedNumberOfTickets(); bookingRef++) {
         var ticket = {};
         ticket.FName = $scope.typedFname;
         ticket.LName = $scope.typedLname;

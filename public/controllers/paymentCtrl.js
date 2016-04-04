@@ -20,7 +20,6 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, OutReturnSrv, payment
         $location.url('/');
     };
 
-
     // function postIntoBooking() { $http.post('../../modules/bookings.json',{text:$scope.totalPrice}).success(function(response){
     //
     //   $scope.Success = "success to pay";
