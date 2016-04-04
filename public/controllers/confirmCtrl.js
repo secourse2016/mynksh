@@ -24,13 +24,36 @@ App.controller('confirmCtrl', function($scope, FlightsSrv, OutReturnSrv, Confirm
     $scope.price = OutReturnSrv.getSelectedPrice();
     // $scope.price=FlightsSrv.g
 
-    $scope.setTicketfirstName = function(value) {
+    $scope.setTicketFirstName = function(value) {
         confirmSrv.setFname(value);
     };
-
-    $scope.getNumber = function(num) {
-        return new Array(num);
+     $scope.setTicketLastName = function(value) {
+        confirmSrv.setLname(value);
     };
+    $scope.setTicketIssueDate = function(value) {
+        confirmSrv.setIssueDate(value);
+    };
+    $scope.setTicketExpiryDate = function(value) {
+        confirmSrv.setExpiryDate(value);
+    };
+    $scope.setTicketEmail = function(value) {
+        confirmSrv.setEmail(value);
+    };
+
+$scope.setTicketPhoneNo = function(value) {
+        confirmSrv.setPhoneNo(value);
+    };
+
+$scope.setTicketPassportNo = function(value) {
+        confirmSrv.setPassportNo(value);
+    };
+    $scope.setTicketPassportType = function(value) {
+        confirmSrv.setPassportType(value);
+    };
+
+
+
+    
 
     $scope.isGreaterThanTickets = function(num) {
         return num < $scope.number;
