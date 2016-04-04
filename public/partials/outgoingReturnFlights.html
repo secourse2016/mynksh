@@ -1,12 +1,3 @@
-<!-- <div id='nav-bar'>
-  <a href='./'>
-  <div id='logo'>
-    <img src='../assets/iberia-logo.png'>
-  </div>
-  </a>
-</div> -->
-<!-- <div class="jumbotron"> -->
-<!-- <div class="container"> -->
 <div class='content'>
     <h1 class="animated fadeInDown header-font">Select your flights</h1>
     <div id='outgoing'>
@@ -33,7 +24,7 @@
                             <input type="radio" ng-model="$parent.selectedOutgoingFlight" ng-value="{{flight}}" />
                         </td>
                         <td>{{flight.flightNumber}}</td>
-                        <td>iberia</td>
+                        <td>Iberia</td>
                         <td>{{stringToDate(flight.departureTime) | date : 'shortTime'}}</td>
                         <td>{{stringToDate(flight.arrivalTime) | date : 'shortTime'}}</td>
                         <td>{{timediff(flight.departureTime,flight.arrivalTime)}}</td>
@@ -52,7 +43,7 @@
             </tbody>
         </table>
     </div>
-    <div ng-if="roundTrip">
+    <div ng-show="roundTrip">
         <h1 class="animated fadeInDown header-font">Now select your return flight</h1>
         <div id='return' class="animated slideInRight">
             <h3><img src='../assets/returnPlane.png'>Return: From {{dest}} to {{origin}}
@@ -77,7 +68,7 @@
                             <input type="radio" value="{{flight}}" ng-model="$parent.selectedReturnFlight">
                         </td>
                         <td>{{flight.flightNumber}}</td>
-                        <td>iberia</td>
+                        <td>Iberia</td>
                         <td>{{stringToDate(flight.departureTime) | date : 'shortTime'}}</td>
                         <td>{{stringToDate(flight.arrivalTime) | date : 'shortTime'}}</td>
                         <td>{{timediff(flight.departureTime,flight.arrivalTime)}}</td>
@@ -106,5 +97,5 @@
         <button type="button" class="btn btn-primary btn-lg" style="position:relative; left:280px" ng-click='goCocontinuePay()'>Continue</button>
     </div>
 </div>
-{{w}}
-{{outgoingPrice}} sadasd
+{{selectedReturnFlight.eCost}}
+{{selectedReturnFlight}}
