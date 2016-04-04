@@ -1,4 +1,4 @@
-App.controller('confirmCtrl', function($scope, FlightsSrv , $location) {
+App.controller('confirmCtrl', function($scope, FlightsSrv, $location) {
 
     /* Retrieve Selected Airports Codes */
     // $scope.flight = {
@@ -38,30 +38,30 @@ App.controller('confirmCtrl', function($scope, FlightsSrv , $location) {
     $scope.typedEmail = "";
     $scope.typePhoneno = "";
 
- $scope.bol = "1" ;
-      $scope.counter = "1";
+    $scope.bol = "1";
+    $scope.counter = "1";
 
-      $scope.incCounter = function() {
-         $scope.counter =  $scope.counter + 1 ; 
+    $scope.incCounter = function() {
+        $scope.counter = $scope.counter + 1;
     };
 
     $scope.decCounter = function() {
-       $scope.counter =  $scope.counter - 1 ;
+        $scope.counter = $scope.counter - 1;
     };
 
-       $scope.setTicketfirstName = function(value) {
-        confirmSrv.setFname(value) ;
+    $scope.setTicketfirstName = function(value) {
+        confirmSrv.setFname(value);
     };
- 
- $scope.number = FlightsSrv.getSelectedNumberOfTickets();
 
-$scope.getNumber = function(num) {
-    return new Array(num);   
-};
+    $scope.number = FlightsSrv.getSelectedNumberOfTickets();
 
-$scope.isGreaterThanTickets = function(num) {
-    return num < $scope.number ;   
-};
+    $scope.getNumber = function(num) {
+        return new Array(num);
+    };
+
+    $scope.isGreaterThanTickets = function(num) {
+        return num < $scope.number;
+    };
 
 
 
@@ -81,7 +81,7 @@ $scope.isGreaterThanTickets = function(num) {
     // };
 
     $scope.goToPayment = function() {
-        $location.url('/flights');
+        $location.url('/payment');
     };
 
 
