@@ -62,7 +62,7 @@
   <tbody>
   <form >
     <tr ng-repeat="flight in returnInfo">
-      <td><input type="radio" value="{{flight}}" ng-model="$parent.selectedReturnFlight"></td>
+      <td><input type="radio" ng-value="{{flight}}" ng-model="$parent.selectedReturnFlight"></td>
       <td>{{flight.flightNumber}}</td>
       <td>iberia</td>
       <td>{{stringToDate(flight.departureTime) | date : 'shortTime'}}</td>
@@ -88,6 +88,6 @@
   <p>Price of your tickets</p>
   <h3>{{returnCabin + outgoingCabin | currency:"€"}}</h3>
 </blockquote>
-<a href="#" class="btn btn-primary btn-lg hvr-underline-from-center" ng-click='BookFlight()'>Book Flight</a>
+<a href="#" class="btn btn-primary btn-lg hvr-underline-from-center" ng-click="setOutFlightNum(selectedOutgoingFlight.flightNumber); SetOutArrivalTime(selectedOutgoingFlight.arrivalTime); SetOutDepartureTime(selectedOutgoingFlight.departureTime);SetOutDuration(timediff(selectedOutgoingFlight.departureTime,selectedOutgoingFlight.arrivalTime)); SetPrice();SetOutCabin(outgoingCabin); SetReturnFlightNum(selectedReturnFlight.flightNumber);SetReturnDuration(timediff(selectedReturnFlight.departureTime,selectedReturnFlight.arrivalTime));SetReturnArrivalTime(selectedReturnFlight.arrivalTime);SetReturnDepartureTime(selectedReturnFlight.departureTime);SetReturnCabin(returnCabin);BookFlight()">Book Flight</a>
   </div>
 </div>

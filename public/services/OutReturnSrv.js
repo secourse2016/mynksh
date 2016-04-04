@@ -6,29 +6,50 @@ App.factory('OutReturnSrv', function ($http) {
          		getReturnInfo : function() {
            			return $http.get('/api/returnInfo');
             },
-               setSelectedFlightNumber: function(value) 
+            setSelectedOutFlightNum: function(value) 
             {
-           	this.selectedFlightNumber = value;
+           	  this.selectedOutFlightNum = value;
             },
 
-            setSelectedDepartureTime: function(value) 
+            setSelectedReturnFlightNum: function(value) 
             {
-           	this.selectedDepartureTime = value;
+            this.selectedReturnFlightNum = value;
             },
 
-            setSelectedArrivalTime: function(value) 
+            setSelectedOutDepartureTime: function(value) 
             {
-           	this.selectedArrivalTime = value;
+           	this.selectedOutDepartureTime = value;
+            },
+            setSelectedReturnDepartureTime: function(value) 
+            {
+            this.selectedReturnDepartureTime = value;
             },
 
-            setSelectedDuration: function(value) 
+            setSelectedOutArrivalTime: function(value) 
             {
-           	this.selectedDuration = value;
+           	this.selectedOutArrivalTime = value;
+            },
+            setSelectedReturnArrivalTime: function(value) 
+            {
+            this.selectedReturnArrivalTime = value;
             },
 
-            setSelectedCabin: function(value) 
+            setSelectedOutDuration: function(value) 
             {
-           	this.selectedCabin = value;
+           	this.selectedOutDuration = value;
+            },
+            setSelectedReturnDuration: function(value) 
+            {
+            this.selectedReturnDuration = value;
+            },
+
+            setSelectedOutCabin: function(value) 
+            {
+           	this.selectedOutCabin = value;
+            },
+            setSelectedReturnCabin: function(value) 
+            {
+            this.selectedReturnCabin = value;
             },
 
             setSelectedPrice: function(value) 
@@ -36,9 +57,13 @@ App.factory('OutReturnSrv', function ($http) {
            	this.selectedPrice = value;
             },
 
-            setSelectedOperatedBy: function(value) 
+            setSelectedOutOperatedBy: function(value) 
             {
-           	this.selectedOperatedBy = value;
+           	this.selectedOutOperatedBy = value;
+            },
+            setSelectedReturnOperatedBy: function(value) 
+            {
+            this.selectedReturnOperatedBy = value;
             },
      };	
  });
