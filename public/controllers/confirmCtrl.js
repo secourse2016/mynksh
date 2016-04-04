@@ -16,39 +16,16 @@ App.controller('confirmCtrl', function($scope, FlightsSrv, $location) {
     //        $scope.outgoingdate = outgoingdate;
     //    });
     // };
-    var fname;
-    var lname;
     $scope.origin = FlightsSrv.getSelectedOriginAirport();
-    var flightNumber = "2";
     $scope.dest = FlightsSrv.getSelectedDestinationAirport();
     $scope.oDate = FlightsSrv.getSelectedOutDate();
     $scope.rDate = FlightsSrv.getSelectedReturnDate();
-    // $scope.price=FlightsSrv.g
     $scope.tickets = FlightsSrv.getSelectedNumberOfTickets();
-
-    $scope.typedFname = "";
-    $scope.typedLname = "";
-    $scope.typedCountry = "";
-    $scope.typedPassportno = "";
-    $scope.typedIssueDate = "";
-    $scope.typedExpiryDate = "";
-    $scope.typedEmail = "";
-    $scope.typePhoneno = "";
-
-
-    $scope.incCounter = function() {
-        $scope.counter = $scope.counter + 1;
-    };
-
-    $scope.decCounter = function() {
-        $scope.counter = $scope.counter - 1;
-    };
+    // $scope.price=FlightsSrv.g
 
     $scope.setTicketfirstName = function(value) {
         confirmSrv.setFname(value);
     };
-
-    $scope.number = FlightsSrv.getSelectedNumberOfTickets();
 
     $scope.getNumber = function(num) {
         return new Array(num);
@@ -58,6 +35,15 @@ App.controller('confirmCtrl', function($scope, FlightsSrv, $location) {
         return num < $scope.number;
     };
 
+    $scope.typedFname = "";
+    $scope.typedLname = "";
+    $scope.typedCountry = "";
+    $scope.typedPassportno = "";
+    $scope.typedIssueDate = "";
+    $scope.typedExpiryDate = "";
+    $scope.typedEmail = "";
+    $scope.typePhoneno = "";
+    var flightNumber = "2";
     $scope.reservation = [1,1,1,1];
 
     for (var bookingRef = 1; bookingRef< 5; bookingRef++) {

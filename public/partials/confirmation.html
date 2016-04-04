@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="css/font-awesome.min.css" />
+<link rel="stylesheet" href="css/style.css" />
 <div class="sticky-bar-wrap">
     <div class="sticky-section">
         <div id="topbar-hold" class="nav-hold container">
@@ -13,79 +15,153 @@
                         <span><img src="./assets/iberia-logo.png"></span>
                     </a>
                 </div>
-
-                <!-- Main Navigation menu Starts -->
-
-                <!-- Main Navigation menu ends-->
             </nav>
         </div>
     </div>
 </div>
+</br>
+</br>
+</br>
+
+<div class="container">
+    <section id="section-download" class="download-wrap">
+        <div class="container download center">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <div class="col-md-10 col-md-offset-1 center section-title">
+                        <h3>Confirmation</h3>
+                    </div>
+                    </br>
+                    </br>
+                    </br>
+                    <!-- <div class='content'> -->
+                    <form class="form-horizontal">
+                        <div id='Confirmation'>
+                            <div class="mainContainer" style="height:350px; width:500px">
+                                <form class="contact-form support-form">
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            <font class="col-sm-2 text-right" size="5" color="black"> From:
+                <font class="col-sm-2 text-left" size="4" color="black"> </font> {{origin}}</font>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <font class="col-sm-2 text-left" size="5" color="black"> To:
+                <font class="col-sm-2 text-left" size="4" color="black">  {{dest}} </font> </font>
+                                        </div>
+                                        <div class="form-group">
+                                            <font class="col-sm-2 text-left" size="5" color="black"> Date:
+                <font class="col-sm-2 text-left" size="4" color="black">  </font> </font>
+                                        </div>
+                                        <div class="form-group">
+                                            <font class="col-sm-2 text-left" size="5" color="black"> Duration:
+                <font class="col-sm-2 text-left" size="4" color="black">   </font> </font>
+                                        </div>
+                                        <div class="form-group">
+                                            <font class="col-sm-2 text-left" size="5" color="black"> Tickets:{{tickets}}
+                <font class="col-sm-2 text-left" size="4" color="black"> </font> </font>
+                                        </div>
+                                        <div class="form-group">
+                                            <font class="col-sm-2 text-left" size="5" color="black"> Price:
+                <font class="col-sm-2 text-left" size="4" color="black">  </font> </font>
+                                        </div>
 
 
-<div class="mainContainer" style="height:800px">
-    <div class="container">
-        <div class="progress">
-            <!-- <p align="right">1.Search &nbsp&nbsp 2.Book &nbsp&nbsp <b>3.Confirmation</b> &nbsp&nbsp 4.Payment</p>  -->
+                                    </div>
+                                </form>
+                            </div>
 
-        </div>
-        {{reservation}}
-        <div class='content'>
-            <h1></h1>
-            <div id='Confirmation'>
-                <pre style="font-size: 16">From:{{origin}}                                   To:{{dest}}                                     Date:{{oDate}}                                 Duration:</pre>
-                <pre style="font-size: 16">Tickets:{{tickets}}                                Price:</pre>
-            </div>
-        </div>
-        <div>
-            <h2>Contact Details:</h2>
-            <pre style="font-size: 16">Phone number: <input type="text" placeholder="e.g.109013840923" ng-model="typePhoneno"></input></pre>
-            <pre style="font-size: 16">Email: <input type="string" placeholder="e.g. Hazem.279@gmail.com"   ng-model="typedEmail"></input></pre>
-            <h2>Passenger Details: {{counter}}
-            <!-- <button type="button" class="btn btn-primary btn-lg" style="position:relative; left:280px" ng-click='incCounter()'>Test</button> -->
-            <!-- <div ng-repeat="bookingRef in reservation" class="tickets row">
-           -            <h3>
-           -      <h2>Passenger Details:</h2>
-           -        <pre style="font-size: 16"> First name: <input type="string" placeholder="e.g. Hazem"   ng-model="typedFname"></input></pre>
-           -        <pre style="font-size: 16"> Last name: <input type="string" placeholder="e.g. Elessawy"   ng-model="typedLname"></input></pre>
-           -        <pre style="font-size: 16"> Passport: <button class="dropbtn" ng-model="typedCountry"> <b>USA</b> </button> </pre>
-           -        <pre style="font-size: 16"> Issue date: <input type="date" placeholder="e.g. 17/10/2005"   ng-model="typedIssueDate"></input></pre>
-           -        <pre style="font-size: 16"> Expiry date: <input type="date" placeholder="e.g. 17/10/2015"   ng-model="typedExpiryDate"></input></pre>
-           -        <pre style="font-size: 16"> Passport number: <input type="number" ng-model="typedPassportno"></input></pre>
-           -
-           -      </h3>
-                        <br>
-                       </h2>
-                   </div> -->
-        <blockquote ng-repeat="n in reservation">
-        <div>
-            <form name="reviewForm">
-                <select >
-                <option value="1">1 star</option>
-                <option value="2">2 stars</option>
-                </select>
-                <textarea></textarea>
-                <label>by:</label>
-                <input type="email" />
-                <input type="submit" value="Submit" />
-            </form>
-        </div>
-        </blockquote> <br>asdsadsa
-        <div class="tickets row">
-            {{number}}
-        </div>
+                            </br>
+                            <div class="col-md-10 col-md-offset-1 center section-title">
+                                <h3>Contact Details</h3>
+                            </div>
+                            </br>
+                            </br>
+                            </br>
+                            <div class="mainContainer" style="height:150px; width:500px">
+                                <div class="form-group">
+                                    <font class="col-sm-4 text-right" size="4" color="black">Phone number: </font>
+                                    <div class="col-md-8 col-sm-8 text-left">
+                                        <input type="text" placeholder="e.g.109013840923" ng-model="typePhoneno"></input>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <font class="col-sm-4 text-right" size="4" color="black">Email: </font>
+                                    <div class="col-md-8 col-sm-8 text-left">
+                                        <input type="string" placeholder="e.g. Hazem.279@gmail.com" ng-model="typedEmail"></input>
+                                    </div>
+                                </div>
+                            </div>
+                            </br>
+                            <div class="col-md-10 col-md-offset-1 center section-title">
+                                <h3>Passenger Details</h3>
+                                <div class="mainContainer" style="height:350px; width:500px">
+                                    </br>
+                                    <div class="form-group">
+                                        <font class="col-sm-4 text-right" size="4" color="black">First Name: </font>
+                                        <div class="col-md-8 col-sm-8 text-left">
+                                            <input type="string" placeholder="e.g. Hazem" ng-model="typedFname"></input>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <font class="col-sm-4 text-right" size="4" color="black">Last Name: </font>
+                                        <div class="col-md-8 col-sm-8 text-left">
+                                            <input type="string" placeholder="e.g. Elessawy" ng-model="typedLname"></input>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <font class="col-sm-4 text-right" size="4" color="black">Passport type: </font>
+                                        <div class="col-md-8 col-sm-8 text-left">
+                                            <input type="string" placeholder="e.g. USA" ng-model="typedCountry"></input>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <font class="col-sm-4 text-right" size="4" color="black">Issue Date: </font>
+                                        <div class="col-md-8 col-sm-8 text-left">
+                                            <input type="string" placeholder="e.g. 17/4/2016" ng-model="typedIssueDate"></input>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <font class="col-sm-4 text-right" size="4" color="black">Expiry Date: </font>
+                                        <div class="col-md-8 col-sm-8 text-left">
+                                            <input type="string" placeholder="e.g. 17/4/2020" ng-model="typedExpiryDate"></input>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <font class="col-sm-4 text-right" size="4" color="black">Passport Number: </font>
+                                        <div class="col-md-8 col-sm-8 text-left">
+                                            <input type="string" placeholder="" ng-model="typedPassportno"></input>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <button type="button" class="btn btn-primary btn-lg" style="position:relative; left:280px" ng-click='incCounter()'>Test</button> -->
+                            <br>
+                            </h2>
+                        </div>
+                        </blockquote>
+                        <br>asdsadsa
+                        <div class="tickets row">
+                            <!-- {{number}} -->
+                        </div>
 
 
-        <div>
-            <button type="button" class="btn btn-primary btn-lg" style="position:right" ng-click="goToPayment()">
-                <b>Continue to payment</b> </button>
-        </div>
-    </div>
+                        <div>
+                            <button type="button" class="btn btn-primary btn-lg" style="position:right" ng-click="goToPayment()">
+                                <b>Continue to payment</b> </button>
+                        </div>
+                </div>
 
-    <ul ng-repeat="i in getNumber(number)">
+                <!-- <ul ng-repeat="i in getNumber(number)">
         <li><span>{{i}}</span>
         </li>
-    </ul>
+    </ul> -->
 
+                </form>
+            </div>
+
+        </div>
 </div>
+
+
 <!-- <input class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" id="fn" ng-model="travellers[$index].firstName" placeholder="First Name" required="required" type="text"> -->

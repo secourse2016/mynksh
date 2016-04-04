@@ -98,7 +98,7 @@ $scope.postIntoBooking = function () {
 
    $scope.noOfPassengers = FlightsSrv.getSelectedNumberOfTickets();
 //   llsa  m3rfsh ha5odha mn meen
-   $scope.totalPrice = '0.00' ;
+   $scope.totalPrice = OutReturnSrv.getSelectedPrice();
 
    $scope.Porigin= FlightsSrv.getSelectedOriginAirport();
    $scope.Pdest= FlightsSrv.getSelectedDestinationAirport();
