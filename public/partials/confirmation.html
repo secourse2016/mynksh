@@ -24,19 +24,20 @@
             <h2>Contact Details:</h2>
             <pre style="font-size: 16">Phone number: <input type="number" placeholder="e.g.109013840923" ng-model="typePhoneno"></input></pre>
             <pre style="font-size: 16">Email: <input type="string" placeholder="e.g. Hazem.279@gmail.com"   ng-model="typedEmail"></input></pre>
+            <h2>Passenger Details: {{counter}} 
+ <button type="button" class="btn btn-primary btn-lg" style="position:relative; left:280px" ng-click='incCounter()'>Test</button>
+             <br> 	
+            </h2>
         </div>
-        <div ng-repeat="bookingRef in reservation" class="tickets row">
-            <h3>
-      <h2>Passenger Details:</h2>
-        <pre style="font-size: 16"> First name: <input type="string" placeholder="e.g. Hazem"   ng-model="typedFname"></input></pre>
-        <pre style="font-size: 16"> Last name: <input type="string" placeholder="e.g. Elessawy"   ng-model="typedLname"></input></pre>
-        <pre style="font-size: 16"> Passport: <button class="dropbtn" ng-model="typedCountry"> <b>USA</b> </button> </pre>
-        <pre style="font-size: 16"> Issue date: <input type="date" placeholder="e.g. 17/10/2005"   ng-model="typedIssueDate"></input></pre>
-        <pre style="font-size: 16"> Expiry date: <input type="date" placeholder="e.g. 17/10/2015"   ng-model="typedExpiryDate"></input></pre>
-        <pre style="font-size: 16"> Passport number: <input type="number" ng-model="typedPassportno"></input></pre>
+        <div  class="tickets row">
 
-      </h3>
+        
 
+
+
+          {{number}}
+         
+                          
         </div>
 
 
@@ -45,5 +46,11 @@
             <b>Continue to payment</b> </button>
         </div>
     </div>
+
+    <ul ng-repeat="i in getNumber(number)" >
+    <li ><span>{{i}}</span>
+</li>
+</ul>
+
 </div>
 <!-- <input class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" id="fn" ng-model="travellers[$index].firstName" placeholder="First Name" required="required" type="text"> -->
