@@ -1,75 +1,81 @@
 <!DOCTYPE html>
-<html ng-app="IBERIA"> <!-- our module name -->
+<html ng-app="IBERIA">
+<!-- our module name -->
+
 <head>
     <title>IBERIA</title>
-    <link href="./css/bars.css" rel="stylesheet" type="text/css">
-    <script src="/js/jquery-2.2.0.min.js"></script>
+
+    <!-- basic files -->
+    <!-- <link href="./css/bars.css" rel="stylesheet" type="text/css"> -->
+    <script src="/js/jquery-1.11.1.min.js"></script>
     <script src="/js/angular.min.js"></script>
     <script src="/js/angular-route.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
     <script src="/js/ui-bootstrap-tpls-1.2.5.min.js"></script>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap.css" />
+    <script src="./js/bars.js"></script>
+
+    <!-- Angular controller -->
     <script src="core.js"></script>
     <script src="/controllers/landingCtrl.js"></script>
     <script src="/controllers/flightsCtrl.js"></script>
+    <script src="/controllers/confirmCtrl.js"></script>
+    <script src="/controllers/paymentCtrl.js"></script>
+
+    <!-- services -->
+    <script src="/services/paymentSrv.js"></script>
     <script src="/services/flightsSrv.js"></script>
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
-    <script src="./js/bars.js"></script>
+    <script src="/services/OutReturnSrv.js"></script>
+    <script src="/services/confirmation.js"></script>
+
+    <!-- custom js -->
     <script type="text/javascript" src="./js/landingPage.js"></script>
+
+    <!-- custom css -->
     <link rel="stylesheet" href="/css/landingPage.css">
     <script type="text/javascript" src="./js/typed.js"></script>
     <link href="../css/outgoing.css" rel="stylesheet" type="text/css">
     <link href="../css/payment.css" rel="stylesheet" type="text/css">
     <link href="../css/confirmation.css" rel="stylesheet" type="text/css">
 
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/bootstrap.css" />
-    <link rel="stylesheet" href="css/font-awesome.min.css" />
-    <link rel="stylesheet" href="css/linea-icon.css" />
-    <link rel="stylesheet" href="css/fancy-buttons.css" />
-
-
-    <!--=== Google Fonts ===-->
     <link href='http://fonts.googleapis.com/css?family=Bangers' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:300,700,400' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Raleway:600,400,300' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+
     <!--=== Other CSS files ===-->
-
-    <link rel="stylesheet" href="css/baraja.css" />
-
-    <link rel="stylesheet" href="css/jquery.bxslider.css" />
     <link rel="stylesheet" href="css/animate.css" />
-    <!--=== Main Stylesheets ===-->
-    <link rel="stylesheet" href="css/style.css" />
-    <link rel="stylesheet" href="css/responsive.css" />
+    <link rel="stylesheet" href="css/jquery.vegas.css" />
+    <!-- Vegas controls the scrolling -->
 
     <!--=== Color Scheme, three colors are available red.css, orange.css and gray.css ===-->
     <link rel="stylesheet" id="scheme-source" href="css/schemes/gray.css" />
 
 
-    <link rel="stylesheet" href="css/jquery.vegas.css" />
-
-
-
-
+    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-moment/0.9.0/angular-moment.min.js"></script>
+    <script type="text/javascript" src="./js/typed.js"></script>
 
 
 </head>
-<body>
-<div class="fluid-container">
-    <div id='nav-bar-top'>
-    <a href="#/">
-    <div id='logo'>
-        <img src='./assets/iberia-logo.png'>
-    </div>
-    </a>
-    </div>
-            <!-- angular templating -->
-            <!-- this is where content will be injected -->
-            <div ng-view></div>
 
-<!-- <div id='nav-bar-bottom'>
+<body class="metallic">
+    <!-- <div class="fluid-container">
+        <div id='nav-bar-top'>
+            <a href='#/'>
+                <div id='logo'>
+                    <img src='./assets/iberia-logo.png'>
+                </div>
+            </a>
+        </div> -->
+    <!-- angular templating -->
+    <!-- this is where content will be injected -->
+    <div ng-view></div>
+
+    <!-- <div id='nav-bar-bottom'>
     <a href='./'>
     <div id='logo'>
         <img src='./assets/iberia-logo.png'>
@@ -88,4 +94,5 @@
 
 
 </body>
+
 </html>
