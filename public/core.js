@@ -19,22 +19,17 @@ App.config(function($routeProvider) {
             controllerAs: 'payment'
         })
 
-    // route for the OutgoingReturnFlights page
-    .when('/flights', {
-        templateUrl: '/partials/outgoingReturnFlights.html',
-        controller: 'flightsCtrl',
-        controllerAs: 'flights'
-    });
+        // route for the OutgoingReturnFlights page
+        .when('/flights', {
+            templateUrl : '/partials/outgoingReturnFlights.html',
+            controller  : 'flightsCtrl',
+            controllerAs: 'flights'
+        })
 
-    // // route for the confirmation page
-    // .when('/confirm', {
-    //     templateUrl : '/partials/confirmation.html'
-    //     controller  : ''
-    //  });
-
-    // // route for the payment page
-    // .when('/payment', {
-    //     templateUrl : '/partials/payment.html',
-    //     controller  : ''
-    // });
+        // // route for the confirmation page
+        .when('/confirm', {
+            templateUrl : '/partials/confirmation.html',
+            controller  : 'confirmCtrl',
+            controllerAs: 'sotre'
+        });
 });
