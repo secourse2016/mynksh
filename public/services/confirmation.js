@@ -1,7 +1,7 @@
 /**
  * confirmation Service
  */
- App.factory('paymentSrv', function ($http) {
+ App.factory('confirmSrv', function ($http) {
       return {
         setFname: function(value) {
           this.Fname = value;
