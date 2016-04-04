@@ -6,33 +6,12 @@ App.factory('OutReturnSrv', function($http) {
         getReturnInfo: function() {
             return $http.get('/api/returnInfo');
         },
-        setSelectedOutFlightNum: function(value) {
-            this.selectedOutFlightNum = value;
+        setSelectedOutFlight: function(value) {
+            this.selectedOutFlight = value;
         },
 
-        setSelectedReturnFlightNum: function(value) {
-            this.selectedReturnFlightNum = value;
-        },
-
-        setSelectedOutDepartureTime: function(value) {
-            this.selectedOutDepartureTime = value;
-        },
-        setSelectedReturnDepartureTime: function(value) {
-            this.selectedReturnDepartureTime = value;
-        },
-
-        setSelectedOutArrivalTime: function(value) {
-            this.selectedOutArrivalTime = value;
-        },
-        setSelectedReturnArrivalTime: function(value) {
-            this.selectedReturnArrivalTime = value;
-        },
-
-        setSelectedOutDuration: function(value) {
-            this.selectedOutDuration = value;
-        },
-        setSelectedReturnDuration: function(value) {
-            this.selectedReturnDuration = value;
+        setSelectedReturnFlight: function(value) {
+            this.selectedReturnFlight = value;
         },
 
         setSelectedOutCabin: function(value) {
@@ -51,6 +30,31 @@ App.factory('OutReturnSrv', function($http) {
         },
         setSelectedReturnOperatedBy: function(value) {
             this.selectedReturnOperatedBy = value;
+        },
+        getSelectedOutFlight: function() {
+            return this.selectedOutFlight;
+        },
+
+        getSelectedReturnFlight: function() {
+            return this.selectedReturnFlight;
+        },
+
+        getSelectedOutCabin: function() {
+            return this.selectedOutCabin;
+        },
+        getSelectedReturnCabin: function() {
+            return this.selectedReturnCabin;
+        },
+
+        getSelectedPrice: function() {
+            return this.selectedPrice;
+        },
+
+        getSelectedOutOperatedBy: function() {
+            return this.selectedOutOperatedBy;
+        },
+        getSelectedReturnOperatedBy: function() {
+            return this.selectedReturnOperatedBy;
         },
     };
 });
