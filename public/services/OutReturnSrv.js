@@ -31,5 +31,30 @@ App.factory('OutReturnSrv', function($http) {
         setSelectedReturnOperatedBy: function(value) {
             this.selectedReturnOperatedBy = value;
         },
+        getSelectedOutFlight: function() {
+            return this.selectedOutFlight;
+        },
+
+        getSelectedReturnFlight: function() {
+            return this.selectedReturnFlight;
+        },
+
+        getSelectedOutCabin: function() {
+            return this.selectedOutCabin;
+        },
+        getSelectedReturnCabin: function() {
+            return this.selectedReturnCabin;
+        },
+
+        getSelectedPrice: function() {
+            return this.selectedPrice;
+        },
+
+        getSelectedOutOperatedBy: function() {
+            return this.selectedOutOperatedBy;
+        },
+        getSelectedReturnOperatedBy: function() {
+            return this.selectedReturnOperatedBy;
+        },
     };
 });
