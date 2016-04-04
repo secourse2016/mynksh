@@ -68,9 +68,6 @@ App.controller('landingCtrl', function($scope, FlightsSrv, $location) {
         FlightsSrv.setSelectedNumberOfTickets(value);
     };
 
-
-
-
     /* Find All Available Flights  */
     $scope.SearchFlights = function() {
         $location.url('/flights');
@@ -78,5 +75,4 @@ App.controller('landingCtrl', function($scope, FlightsSrv, $location) {
 
     /* Get Airports on page render  */
     AirportCodes();
-
 });

@@ -23,7 +23,7 @@ var db = require('./config/db.js');
  */
 
 
-var port = normalizePort(process.env.PORT || '8080');
+var port = normalizePort(process.env.PORT || '80');
 
 app.set('port', port);
 

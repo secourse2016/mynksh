@@ -85,6 +85,9 @@ App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $locati
 
         $scope.w++;
     };
+    $scope.goCocontinuePay = function() {
+        $location.url('/payment');
+    };
     // $scope.calculatePrice =function(){
     //   if($scope.outgoingCabin == "economy")
     //    if(roundTrip == true){
