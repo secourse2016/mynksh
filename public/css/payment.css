@@ -1,9 +1,10 @@
 @charset "utf-8";
 .mainContainer {
-    height: 1750px;
-    width: 998px;
+    /*height: 1750px;
+    width: 998px;*/
     margin-left: auto;
     margin-right: auto;
+    margin:center;
     background-color: #ebebeb;
 }
 .leftInput {
