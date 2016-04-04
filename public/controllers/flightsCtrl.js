@@ -31,7 +31,12 @@ App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $locati
             OutReturnSrv.setSelectedReturnOperatedBy('iberia');
             OutReturnSrv.setSelectedReturnCabin($scope.returnCabin);
         }
-        OutReturnSrv.setSelectedPrice($scope.outgoingPrice + $scope.returnPrice);
+        if(angular.isUndefined($scope.outgoingPrice) || $scope.outgoingPrice === null)
+          OutReturnSrv.setSelectedPrice($scope.returnPrice);
+        else if(angular.isUndefined($scope.returnPrice) || $scope.returnPrice === null)
+          OutReturnSrv.setSelectedPrice($scope.outgoingPrice);
+        else
+          OutReturnSrv.setSelectedPrice($scope.outgoingPrice + $scope.returnPrice);
         $location.url('/confirm');
     };
 
