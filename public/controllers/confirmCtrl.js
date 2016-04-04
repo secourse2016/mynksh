@@ -1,4 +1,4 @@
-App.controller('confirmCtrl', function($scope, FlightsSrv, OutReturnSrv, $location) {
+App.controller('confirmCtrl', function($scope, FlightsSrv, OutReturnSrv, ConfirmSrv, $location) {
 
     /* Retrieve Selected Airports Codes */
     // $scope.flight = {

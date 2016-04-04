@@ -1,13 +1,13 @@
 /**
  * confirmation Service
  */
- App.factory('confirmSrv', function ($http) {
+ App.factory('ConfirmSrv', function ($http) {
       return {
         setFname: function(value) {
-          this.Fname = value;
+          this.fname = value;
         },
         getFname: function(value) {
-          return this.Fname;
+          return this.fname;
         },
         setLName: function(value) {
           this.lastName = value;
@@ -16,35 +16,40 @@
           return this.lastName;
         },
         setIssueDate: function(value) {
-          this.IssueDate = value;
+          this.issueDate = value;
         },
         getIssueDate: function(value) {
-          return this.IssueDate;
+          return this.issueDate;
         },
         setExpiryDate: function(value) {
-          this.ExpiryDate = value;
+          this.expiryDate = value;
         },
         getExpiryDate: function(value) {
-          return this.ExpiryDate;
+          return this.expiryDate;
         },
         setEmail: function(value) {
-          this.Email = value;
+          this.email = value;
         },
         getEmail: function(value) {
-          return this.Email;
+          return this.email;
         },
         setPhoneNo: function(value) {
-          this.PhoneNo = value;
+          this.phoneNo = value;
         },
         getPhoneNo: function(value) {
-          return this.PhoneNo;
+          return this.phoneNo;
         },
         setPassportNo: function(value) {
-          this.PassportNo = value;
+          this.passportNo = value;
         },
         gePassportNo: function(value) {
-          return this.PassportNo;
+          return this.passportNo;
+        },
+        setPassportType: function(value) {
+          this.passportNo = value;
+        },
+        gePassportType: function(value) {
+          return this.passportNo;
         }
-
       };
   });
