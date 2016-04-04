@@ -3,8 +3,6 @@
  */
 App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $location) {
 
-    $scope.roundTrip = FlightsSrv.getSelectedRoundTrip();
-
     function outgoingInfo() {
         OutReturnSrv.getOutgoingInfo().success(function(outgoingInfo) {
             $scope.outgoingInfo = outgoingInfo;
@@ -16,41 +14,34 @@ App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $locati
             $scope.returnInfo = returnInfo;
         });
     };
-
     $scope.stringToDate = function(date) {
         return new Date(date);
     };
     $scope.timediff = function(depart, arr) {
         return moment.utc(moment(arr).diff(moment(depart))).format("hh:mm");
     };
+
+
     $scope.BookFlight = function() {
+        OutReturnSrv.setSelectedOutFlight($scope.selectedOutgoingFlight);
+        OutReturnSrv.setSelectedOutOperatedBy('iberia');
+        OutReturnSrv.setSelectedOutCabin($scope.outgoingCabin);
+        if ($scope.roundTrip == true) {
+            OutReturnSrv.setSelectedReturnFlight($scope.selectedReturnFlight);
+            OutReturnSrv.setSelectedReturnOperatedBy('iberia');
+            OutReturnSrv.setSelectedReturnCabin($scope.returnCabin);
+        }
+        if(angular.isUndefined($scope.outgoingPrice) || $scope.outgoingPrice === null)
+          OutReturnSrv.setSelectedPrice($scope.returnPrice);
+        else if(angular.isUndefined($scope.returnPrice) || $scope.returnPrice === null)
+          OutReturnSrv.setSelectedPrice($scope.outgoingPrice);
+        else
+          OutReturnSrv.setSelectedPrice($scope.outgoingPrice + $scope.returnPrice);
         $location.url('/confirm');
     };
-    $scope.SetFlightNumber = function() {
-        OutReturnSrv.setSelectedFlightNumber();
-    };
-    $scope.SetDepartureTime = function() {
-        OutReturnSrv.setSelectedDepartureTime();
-    };
-    $scope.SetArrivalTime = function() {
-        OutReturnSrv.setSelectedArrivalTime();
-    };
-    $scope.SetDuration = function() {
-        OutReturnSrv.setSelectedDuration();
-    };
-    $scope.setSelectedCabin = function() {
-        OutReturnSrv.setSelectedDuration();
-    };
-    $scope.SetDuration = function() {
-        OutReturnSrv.setSelectedCabin();
-    };
-    $scope.SetPrice = function() {
-        OutReturnSrv.setSelectedPrice();
-    };
-    $scope.SetOperatedBy = function() {
-        OutReturnSrv.setSelectedOperatedBy();
-    };
 
+    $scope.angular = angular;
+    $scope.roundTrip = FlightsSrv.getSelectedRoundTrip();
     $scope.origin = FlightsSrv.getSelectedOriginAirport();
     $scope.dest = FlightsSrv.getSelectedDestinationAirport();
     $scope.oDate = FlightsSrv.getSelectedOutDate();
@@ -60,51 +51,36 @@ App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $locati
     returnInfo();
 
     //calculating the price
-    if ($scope.roundTrip == true) {
-        $scope.returnCabin = '';
-        $scope.$watch('returnCabin', function() {
-            if ($scope.returnCabin == 'economy')
-                $scope.returnPrice = $scope.selectedReturnFlight.eCost;
-            if ($scope.returnCabin == 'business')
-                $scope.returnPrice = $scope.selectedReturnFlight.bCost;
-        });
-    }
-    $scope.outgoingCabin = '';
+
     $scope.$watch('outgoingCabin', function() {
-        $scope.calcOut();
+        $scope.calculateOutgoingPrice();
     }, true);
-    // $scope.$watch('selectedOutgoingFlight',function() {$scope.totalPrice=$scope.selectedOutgoingFlight.eCost;});
-    $scope.w = 0;
-    $scope.calcOut = function() {
+    $scope.$watch('selectedOutgoingFlight', function() {
+        $scope.calculateOutgoingPrice();
+    }, true);
+    $scope.$watch('selectedOutgoingFlight', function() {
+        $scope.calculateReturningPrice();
+    }, true);
+    $scope.$watch('returnCabin', function() {
+        $scope.calculateReturningPrice();
+    }, true);
+
+    $scope.calculateOutgoingPrice = function() {
         if ($scope.outgoingCabin === "economy") {
-            $scope.outgoingPrice = $scope.selectedReturnFlight.eCost;
+            $scope.outgoingPrice = $scope.selectedOutgoingFlight.eCost;
         };
         if ($scope.outgoingCabin === "business") {
-            $scope.outgoingPrice = $scope.selectedReturnFlight.bCost;
+            $scope.outgoingPrice = $scope.selectedOutgoingFlight.bCost;
         };
-
-        $scope.w++;
     };
-    $scope.goCocontinuePay = function() {
-        $location.url('/payment');
-    };
-    // $scope.calculatePrice =function(){
-    //   if($scope.outgoingCabin == "economy")
-    //    if(roundTrip == true){
-    //     if($scope.returnCabin == "economy")
-    //         $scope.totalPrice = $selectedOutgoingInfo.eCost + $selectedReturnFlight.eCost;
-    //     else if($scope.returnCabin == "business")
-    //         $scope.totalPrice = $selectedOutgoingFlight.eCost + $selectedReturnFlight.bCost;
-    //     }
-    //    else $scope.totalPrice = $selectedOutgoingFlight.eCost;
 
-    //   if($scope.outgoingCabin == "business")
-    //    if(roundTrip == true){
-    //     if($scope.returnCabin == "economy")
-    //         $scope.totalPrice = $selectedOutgoingFlight.bCost + $selectedReturnFlight.eCost;
-    //     else if($scope.returnCabin == "business")
-    //         $scope.totalPrice = $selectedOutgoingFlight.bCost + $selectedReturnFlight.bCost;
-    //     }
-    //    else $scope.totalPrice = $selectedOutgoingFlight.bCost;
-    // };
+    $scope.calculateReturningPrice = function() {
+        if ($scope.returnCabin === "economy") {
+            $scope.returnPrice = $scope.selectedReturnFlight.eCost;
+        };
+        if ($scope.returnCabin === "business") {
+            $scope.returnPrice = $scope.selectedReturnFlight.bCost;
+        };
+    };
+
 });

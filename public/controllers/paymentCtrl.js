@@ -3,11 +3,22 @@
  */
 App.controller('paymentCtrl', function($scope, FlightsSrv, OutReturnSrv, paymentSrv, $location) {
     $scope.no = "node";
-    $scope.Success = "fail to pay please try again later";
-    $scope.goToBriefConfirmation = function() {
-        $location.url('/flights');
+    $scope.tab = "active in";
+
+    $scope.tab1 = function() {
+        $scope.tab = "active in";
+        $scope.tab2 = "";
     };
 
+    $scope.tab2 = function() {
+        $scope.tab2 = "active in";
+        $scope.tab = "";
+    };
+
+    $scope.Success = "fail to pay please try again later";
+    $scope.goToBriefConfirmation = function() {
+        $location.url('/');
+    };
 
     // function postIntoBooking() { $http.post('../../modules/bookings.json',{text:$scope.totalPrice}).success(function(response){
     //
@@ -31,7 +42,6 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, OutReturnSrv, payment
         });
     };
 
-
     function countryCode() {
         paymentSrv.getCountry().success(function(country) {
             $scope.Country = country;
@@ -41,6 +51,26 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, OutReturnSrv, payment
     /* set paymet form  */
     $scope.SetCountry = function(value) {
         paymentSrv.setSelectedCountry(value);
+    };
+
+    $scope.SetCardType = function(value) {
+        paymentSrv.setSelectedCardType(value);
+    };
+
+    $scope.SetCaradNo = function(value) {
+        paymentSrv.setSelectedCaradNo(value);
+    };
+
+    $scope.SetMonth = function(value) {
+        paymentSrv.setSelectedMonth(value);
+    };
+
+    $scope.SetYear = function(value) {
+        paymentSrv.setSelectedYear(value);
+    };
+
+    $scope.SetCVV = function(value) {
+        paymentSrv.setSelectedCVV(value);
     };
 
     $scope.SetFirstName = function(value) {
@@ -68,7 +98,7 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, OutReturnSrv, payment
 
     $scope.noOfPassengers = FlightsSrv.getSelectedNumberOfTickets();
     //   llsa  m3rfsh ha5odha mn meen
-    $scope.totalPrice = '0.00';
+    $scope.totalPrice = OutReturnSrv.getSelectedPrice();
 
     $scope.Porigin = FlightsSrv.getSelectedOriginAirport();
     $scope.Pdest = FlightsSrv.getSelectedDestinationAirport();
