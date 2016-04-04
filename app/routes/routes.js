@@ -1,26 +1,27 @@
 /**
  * App routes:
  */
-module.exports = function(app,mongo) {
+module.exports = function(app, mongo) {
 
     /* GET ALL STATES ENDPOINT */
     app.get('/api/data/airports', function(req, res) {
-      res.json(require('../../modules/airports.json'));
+        res.json(require('../../modules/airports.json'));
+    });
+
+    app.post('/api/data/bookings', function(req, res) {
+        res.send(require('../../modules/bookings.json'));
     });
 
     /* RENDER MAIN PAGE */
-    app.get('/', function (req, res) {
-      res.sendFile(__dirname + '/public/index.html');
+    app.get('/', function(req, res) {
+        res.sendFile(__dirname + '/public/index.html');
     });
 
     app.get('/api/outgoingInfo', function(req, res) {
-      res.json(require('../../modules/outgoingInfo.json'));
+        res.json(require('../../modules/outgoingInfo.json'));
     });
 
     app.get('/api/returnInfo', function(req, res) {
-      res.json(require('../../modules/returnInfo.json'));
+        res.json(require('../../modules/returnInfo.json'));
     });
-   
 };
-
-
