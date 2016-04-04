@@ -1,44 +1,56 @@
-App.factory('OutReturnSrv', function ($http) {
-     return {
-				getOutgoingInfo : function() {
-           			return $http.get('/api/outgoingInfo');
-         	},
-         		getReturnInfo : function() {
-           			return $http.get('/api/returnInfo');
-            },
-               setSelectedFlightNumber: function(value)
-            {
-           	this.selectedFlightNumber = value;
-            },
+App.factory('OutReturnSrv', function($http) {
+    return {
+        getOutgoingInfo: function() {
+            return $http.get('/api/outgoingInfo');
+        },
+        getReturnInfo: function() {
+            return $http.get('/api/returnInfo');
+        },
+        setSelectedOutFlightNum: function(value) {
+            this.selectedOutFlightNum = value;
+        },
 
-            setSelectedDepartureTime: function(value)
-            {
-           	this.selectedDepartureTime = value;
-            },
+        setSelectedReturnFlightNum: function(value) {
+            this.selectedReturnFlightNum = value;
+        },
 
-            setSelectedArrivalTime: function(value)
-            {
-           	this.selectedArrivalTime = value;
-            },
+        setSelectedOutDepartureTime: function(value) {
+            this.selectedOutDepartureTime = value;
+        },
+        setSelectedReturnDepartureTime: function(value) {
+            this.selectedReturnDepartureTime = value;
+        },
 
-            setSelectedDuration: function(value)
-            {
-           	this.selectedDuration = value;
-            },
+        setSelectedOutArrivalTime: function(value) {
+            this.selectedOutArrivalTime = value;
+        },
+        setSelectedReturnArrivalTime: function(value) {
+            this.selectedReturnArrivalTime = value;
+        },
 
-            setSelectedCabin: function(value)
-            {
-           	this.selectedCabin = value;
-            },
+        setSelectedOutDuration: function(value) {
+            this.selectedOutDuration = value;
+        },
+        setSelectedReturnDuration: function(value) {
+            this.selectedReturnDuration = value;
+        },
 
-            setSelectedPrice: function(value)
-            {
-           	this.selectedPrice = value;
-            },
+        setSelectedOutCabin: function(value) {
+            this.selectedOutCabin = value;
+        },
+        setSelectedReturnCabin: function(value) {
+            this.selectedReturnCabin = value;
+        },
 
-            setSelectedOperatedBy: function(value)
-            {
-           	this.selectedOperatedBy = value;
-            },
-     };
- });
+        setSelectedPrice: function(value) {
+            this.selectedPrice = value;
+        },
+
+        setSelectedOutOperatedBy: function(value) {
+            this.selectedOutOperatedBy = value;
+        },
+        setSelectedReturnOperatedBy: function(value) {
+            this.selectedReturnOperatedBy = value;
+        },
+    };
+});
