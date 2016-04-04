@@ -2,6 +2,7 @@
 .mainContainer {
     margin-left: auto;
     margin-right: auto;
+    margin:center;
     background-color: #ebebeb;
 }
 .leftInput {

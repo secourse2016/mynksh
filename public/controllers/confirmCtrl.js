@@ -67,10 +67,4 @@ App.controller('confirmCtrl', function($scope, FlightsSrv, OutReturnSrv, Confirm
     $scope.goToPayment = function() {
         $location.url('/payment');
     };
-
-    // });
-    // getSelectedOutDate();
-    // getSelectedReturnDate();
-    // getSelectedOriginAirport();
-    // getSelectedDestinationAirport();
 });
