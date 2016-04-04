@@ -12,6 +12,41 @@
         getSelectedCountry: function(value) {
           this.SelectedCountry = value;
         },
+
+        getSelectedCardType : function() {
+          return this.SelectedCardType ;
+        },
+        setSelectedCardType: function(value) {
+          this.SelectedCardType = value;
+        }
+        ,getSelectedCaradNo : function() {
+          return this.SelectedCaradNo ;
+        },
+        setSelectedCaradNo: function(value) {
+          this.SelectedCaradNo = value;
+        },
+        getSelectedMonth : function() {
+          return this.SelectedMonth ;
+        },
+        setSelectedMonth: function(value) {
+          this.SelectedMonth = value;
+        },
+        getSelectedYear : function() {
+          return this.SelectedYear ;
+        },
+        setSelectedYear: function(value) {
+          this.SelectedYear = value;
+        },
+        getSelectedCVV : function() {
+          return this.SelectedCVV ;
+        },
+        setSelectedCVV: function(value) {
+          this.SelectedCVV = value;
+        },
+
+
+
+
         getSelectedFirstName : function() {
           return this.selectedFirstName ;
         },
