@@ -8,7 +8,6 @@ module.exports = function(app,mongo) {
       res.json(require('../../modules/airports.json'));
     });
 
-    /* RENDER MAIN PAGE */
     app.get('/', function (req, res) {
       res.sendFile(__dirname + '/public/index.html');
     });
