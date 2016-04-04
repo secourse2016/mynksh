@@ -30,7 +30,6 @@ App.factory('FlightsSrv', function($http) {
         getSelectedReturnDate: function() {
             return this.setSelectedReturnDate;
         },
-
         setSelectedRoundTrip: function(value) {
             this.selectedRoundTrip = value;
         },
@@ -44,7 +43,4 @@ App.factory('FlightsSrv', function($http) {
             return this.selectedNumberOfTickets;
         }
     };
-
-
-
 });

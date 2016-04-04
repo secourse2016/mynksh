@@ -1,4 +1,4 @@
-App.controller('confirmCtrl', function($scope, FlightsSrv, OutReturnSrv, $location) {
+App.controller('confirmCtrl', function($scope, FlightsSrv, OutReturnSrv, ConfirmSrv, $location) {
 
     /* Retrieve Selected Airports Codes */
     // $scope.flight = {
@@ -67,10 +67,4 @@ App.controller('confirmCtrl', function($scope, FlightsSrv, OutReturnSrv, $locati
     $scope.goToPayment = function() {
         $location.url('/payment');
     };
-
-    // });
-    // getSelectedOutDate();
-    // getSelectedReturnDate();
-    // getSelectedOriginAirport();
-    // getSelectedDestinationAirport();
 });
