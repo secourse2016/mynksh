@@ -1,8 +1,7 @@
 <!--=== Other CSS files ===-->
-<link rel="stylesheet" href="css/animate.css" />
-<link rel="stylesheet" href="css/jquery.vegas.css" />
-<link rel="stylesheet" href="/css/landingPage.css">
-<script type="text/javascript" src="./js/typed.js"></script>
+<!-- <link rel="stylesheet" href="css/animate.css" /> -->
+<!-- <link rel="stylesheet" href="css/jquery.vegas.css" /> -->
+
 <script>
     $(function() {
         $("#typed").typed({
@@ -39,7 +38,7 @@
 <script type="text/javascript" src="js/custom.js"></script>
 
 
-<script type="text/javascript" src="js/jquery.nicescroll.min.js"></script>
+<!-- <script type="text/javascript" src="js/jquery.nicescroll.min.js"></script> -->
 <link rel="stylesheet" href="css/jquery.vegas.css" />
 <script type="text/javascript" src="js/jquery.vegas.min.js"></script>
 
@@ -81,6 +80,9 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
+                        <a href='http://mynksh.com'>
+                            <span><img src="./assets/iberia-logo.png"></span>
+                        </a>
                     </div>
 
                     <!-- Main Navigation menu Starts -->
@@ -89,7 +91,7 @@
                             <li class="current"><a href="#header">Home</a></li>
                             <li><a href="#section-download">Flights</a></li>
                             <li><a href="#section-pricing">Offers</a></li>
-                            <li><a href="#section-services">About Us</a></li>
+                            <!-- <li><a href="#section-services">About Us</a></li> -->
                             <li><a href="#section-feature">Team Members</a></li>
                             <li><a href="#section-video">Video</a></li>
                             <li><a href="#section-footer">Contact Us</a></li>
@@ -154,22 +156,22 @@
                     <form class="contact-form support-form">
                         <div class="col-lg-12">
                             <div class="form-group">
-                                <font class="control-label col-sm-2 text-left" size="4" color: "white"> From: </font>
-                                <div class="col-md-8">
+                                <font class="col-sm-2 text-right" size="4" color="white"> From: </font>
+                                <div class="col-md-8 col-sm-8">
                                     <input name="originAirports" id="originAirports" type="text" placeholder="Flying From" ng-model="selectedOrigin" uib-typeahead="airport.iata for airport in Airports | filter:$viewValue | limitTo:10" class="form-control" , typeahead-on-select="SetOriginAirport($item.iata)">
                                 </div>
                             </div>
                             </br>
                             <div class="form-group">
-                                <font class="control-label col-sm-2 text-left" size="4"> To: </font>
-                                <div class="col-md-8">
+                                <font class="col-sm-2 text-right" size="4" color="white"> To: </font>
+                                <div class="col-md-8 col-sm-8">
                                     <input name="destinationAirports" id="destinationAirports" type="text" placeholder="Flying To" ng-model="selectedDestination" uib-typeahead="airport.iata for airport in Airports | filter:$viewValue | limitTo:10" class="form-control" , typeahead-on-select="SetDestinationAirport($item.iata)">
                                 </div>
                             </div>
                             </br>
                             <div class="form-group">
-                                <font class="control-label col-sm-2 text-left" size="4"> Outgoing: </font>
-                                <div class="col-md-8">
+                                <font class="col-sm-2 col-xs-4 text-right" size="4" color="white"> Outgoing: </font>
+                                <div class="col-md-8 col-sm-8 col-xs-4">
                                     <p class="input-group">
                                         <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="$parent.dto" is-open="popup1.opened" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
                                         <span class="input-group-btn">
@@ -178,14 +180,14 @@
                                             ng-click="open1()">
                                           <i class="glyphicon glyphicon-calendar"></i>
                                           </button>
-                </span>
+                                        </span>
                                     </p>
                                 </div>
                             </div>
                             </br>
                             <div class="form-group">
-                                <font class="control-label col-sm-2 text-left" size="4"> Returning: </font>
-                                <div class="col-md-8">
+                                <font class="col-sm-2 col-xs-4 text-right" size="4" color="white"> Returning: </font>
+                                <div class="col-md-8 col-sm-8 col-xs-4">
                                     <p class="input-group">
                                         <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="$parent.dtr" is-open="popup2.opened" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
                                         <span class="input-group-btn">
@@ -200,8 +202,8 @@
                             </div>
                             </br>
                             <div class="form-group">
-                                <font class="control-label col-sm-2 text-left" size="4"> Tickets Count: </font>
-                                <div class="col-md-8">
+                                <font class="col-sm-2 text-right" size="4" color="white"> Tickets Count: </font>
+                                <div class="col-sm-8 text-left">
                                     </br>
                                     <div class="styled">
                                         <select name="ticketsCount" ng-model="ticket">
@@ -220,23 +222,22 @@
                                 </div>
                             </div>
                             <form>
+                                </br>
                                 <div class="form-group">
-                                    <font class="control-label col-sm-2 text-left" size="4">One-Way</font>
-                                    <div class="col-md-8 radio">
-                                        </br>
+                                    <font class="col-sm-4 text-left" size="4">One-Way
                                         <input ng-model="roundTrip" type="radio" value="false" />
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <font class="control-label col-sm-2 text-left" size="4"> Round Trip Flight </font>
-                                    <div class="col-md-8 radio">
-                                        </br>
-                                        <input ng-model="roundTrip" type="radio" value="true" />
-                                    </div>
+                                    </font>
+
+                                    <font class="control-label col-sm-2 text-left" size="4"> Round Trip Flight
+
+                                    <input ng-model="roundTrip" type="radio" value="true" />
+                                    </font>
+
                                 </div>
                             </form>
                         </div>
                     </form>
+                    </br>
                     <button type="submit" class="fancy-button button-line button-white large zoom subform" id='btnSearch' ng-click="SetOutDate(dto);
                     SetReturnDate(dtr); SetRoundTrip(roundTrip);
                     SetSelectedNumberOfTickets(ticket); SearchFlights()">
@@ -367,43 +368,43 @@
 <!--=== Pricing section Ends ===-->
 
 <!-- ABOUT US STARTS  -->
-<section id="section-services" class="feature-wrap">
-    <!-- <div class="container features center"> -->
-    <!-- <div class="container home"> -->
-    <!-- <div class="row"> -->
+<!-- <section id="section-services" class="feature-wrap"> -->
+<!-- <div class="container features center"> -->
+<!-- <div class="container home"> -->
+<!-- <div class="row"> -->
 
-    <!-- <div class="col-md-10 col-md-offset-1 center section-title"> -->
-    <!-- <h3>About Us</h3> -->
-    <!-- </div> -->
-    <!-- </br> -->
-    <!-- </br> -->
-    <!-- <div class="col-md-8 col-md-offset-2"> -->
-    <!-- <div class="sky"> -->
-    <!-- <div class="moon"></div> -->
-    <!-- <div class="clouds_one"></div> -->
-    <!-- <div class="clouds_two"></div> -->
-    <!-- <div class="clouds_three"></div> -->
-    <!-- </div> -->
-    <!-- </div> -->
+<!-- <div class="col-md-10 col-md-offset-1 center section-title"> -->
+<!-- <h3>About Us</h3> -->
+<!-- </div> -->
+<!-- </br> -->
+<!-- </br> -->
+<!-- <div class="col-md-8 col-md-offset-2"> -->
+<!-- <div class="sky"> -->
+<!-- <div class="moon"></div> -->
+<!-- <div class="clouds_one"></div> -->
+<!-- <div class="clouds_two"></div> -->
+<!-- <div class="clouds_three"></div> -->
+<!-- </div> -->
+<!-- </div> -->
 
-    <!-- <section id="preloader"> -->
-    <!-- <div class="loading-circle fa-spin"></div> -->
-    <!-- <div class="scene"> -->
-    <!-- <img class="car" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/43033/car.svg" alt="" /> -->
-    <!-- <img class="poof" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/43033/poof.svg" alt="" /> -->
-    <!-- <img class="sign" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/43033/sign.svg" alt="" /> -->
-    <!-- <img class="sign" src="http://imagizer.imageshack.us/v2/100x75q90/922/0MsVKt.jpg" alt="" /> -->
+<!-- <section id="preloader"> -->
+<!-- <div class="loading-circle fa-spin"></div> -->
+<!-- <div class="scene"> -->
+<!-- <img class="car" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/43033/car.svg" alt="" /> -->
+<!-- <img class="poof" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/43033/poof.svg" alt="" /> -->
+<!-- <img class="sign" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/43033/sign.svg" alt="" /> -->
+<!-- <img class="sign" src="http://imagizer.imageshack.us/v2/100x75q90/922/0MsVKt.jpg" alt="" /> -->
 
-    <!-- <em><font size="5" color="black" >We make everything fly...</font></em> -->
-    <!-- </div> -->
-    <!-- </div> -->
+<!-- <em><font size="5" color="black" >We make everything fly...</font></em> -->
+<!-- </div> -->
+<!-- </div> -->
 
 
-    <!-- </section> -->
-    <!-- </div> -->
-    <!-- </div> -->
+<!-- </section> -->
+<!-- </div> -->
+<!-- </div> -->
 
-</section>
+<!-- </section> -->
 
 <!-- ABOUT US ENDS  -->
 
@@ -457,7 +458,7 @@
                         <!-- Feature Icon -->
                         <h4 class="feature-title color-scheme">Yara Sobhy</h4>
                         <p class="feature-text">
-                            Scrum Master
+                            Back and Frnt-End Developer
                         </p>
                         <a href="https://www.facebook.com/Yara.Sobhy?fref=ts" class="fancy-button button-line btn-col small zoom">
 									Details
