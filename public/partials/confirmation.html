@@ -1,18 +1,35 @@
-<div class="jumbotron">
-    <div class="container">
-        <!-- <div id='nav-bar'>
-	<a href='./'>
-	<div id='logo'>
-		<img src='../assets/iberia-logo.png'>
-	</div>
-	<a>
+<div class="sticky-bar-wrap">
+    <div class="sticky-section">
+        <div id="topbar-hold" class="nav-hold container">
+            <nav class="navbar" role="navigation">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a href='http://mynksh.com'>
+                        <span><img src="./assets/iberia-logo.png"></span>
+                    </a>
+                </div>
+
+                <!-- Main Navigation menu Starts -->
+
+                <!-- Main Navigation menu ends-->
+            </nav>
+        </div>
+    </div>
 </div>
- -->
+
+
+<div class="mainContainer" style="height:800px">
+    <div class="container">
         <div class="progress">
             <!-- <p align="right">1.Search &nbsp&nbsp 2.Book &nbsp&nbsp <b>3.Confirmation</b> &nbsp&nbsp 4.Payment</p>  -->
 
         </div>
-        {{reservation}} asdsadas
+        {{reservation}}
         <div class='content'>
             <h1></h1>
             <div id='Confirmation'>
@@ -22,27 +39,20 @@
         </div>
         <div>
             <h2>Contact Details:</h2>
-            <pre style="font-size: 16">Phone number: <input type="number" placeholder="e.g.109013840923" ng-model="typePhoneno"></input></pre>
+            <pre style="font-size: 16">Phone number: <input type="text" placeholder="e.g.109013840923" ng-model="typePhoneno"></input></pre>
             <pre style="font-size: 16">Email: <input type="string" placeholder="e.g. Hazem.279@gmail.com"   ng-model="typedEmail"></input></pre>
             <h2>Passenger Details: {{counter}}
- <button type="button" class="btn btn-primary btn-lg" style="position:relative; left:280px" ng-click='incCounter()'>Test</button>
+ <!-- <button type="button" class="btn btn-primary btn-lg" style="position:relative; left:280px" ng-click='incCounter()'>Test</button> -->
              <br>
             </h2>
         </div>
         <div class="tickets row">
-
-
-
-
-
             {{number}}
-
-
         </div>
 
 
         <div>
-            <button style="background-color: red; color: black;" ng-click="goToPayment()">
+            <button type="button" class="btn btn-primary btn-lg" style="position:right" ng-click="goToPayment()">
                 <b>Continue to payment</b> </button>
         </div>
     </div>
