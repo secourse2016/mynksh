@@ -9,12 +9,6 @@ App.factory('ConfirmSrv', function($http) {
         getReservation: function() {
             return this.reservation;
         },
-        setContactInfo: function(value) {
-            this.contactInfo = value;
-        },
-        getContactInfo: function() {
-            return this.contactInfo;
-        },
         setEmail: function(value) {
             this.email = value;
         },
