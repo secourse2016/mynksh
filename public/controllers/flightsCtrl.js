@@ -58,7 +58,7 @@ App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $locati
     $scope.$watch('selectedOutgoingFlight', function() {
         $scope.calculateOutgoingPrice();
     }, true);
-    $scope.$watch('selectedOutgoingFlight', function() {
+    $scope.$watch('selectedReturnFlight', function() {
         $scope.calculateReturningPrice();
     }, true);
     $scope.$watch('returnCabin', function() {
