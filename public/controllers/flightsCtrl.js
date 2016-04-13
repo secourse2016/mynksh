@@ -23,6 +23,10 @@ App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $locati
 
 
     $scope.BookFlight = function() {
+        if($scope.selectedOutgoingFlight==null){
+            $location.url('/flights');
+        }
+        else{
         OutReturnSrv.setSelectedOutFlight($scope.selectedOutgoingFlight);
         OutReturnSrv.setSelectedOutOperatedBy('iberia');
         OutReturnSrv.setSelectedOutCabin($scope.outgoingCabin);
@@ -38,6 +42,7 @@ App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $locati
         else
           OutReturnSrv.setSelectedPrice($scope.outgoingPrice + $scope.returnPrice);
         $location.url('/confirm');
+    }
     };
 
     $scope.angular = angular;

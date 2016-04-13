@@ -44,7 +44,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <form>
+                    <form name="myform">
                         <tr ng-repeat="flight in outgoingInfo">
                             <td>
                                 <input type="radio" ng-model="$parent.selectedOutgoingFlight" ng-value="{{flight}}" />
@@ -117,6 +117,7 @@
             <blockquote>
                 <p>Price of your tickets</p>
                 <h3>{{(outgoingPrice + returnPrice) | currency:"€"}}</h3>
+                <span ng-show="">A price must be selected</span>
             </blockquote>
             <a href class="btn btn-primary btn-lg hvr-underline-from-center" ng-click='BookFlight()'>Book Flight</a>
         </div>
