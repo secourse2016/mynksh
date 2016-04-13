@@ -41,9 +41,9 @@
                                             <font class="text-right" size="5" color="black"> Outgoing Date:
                 <font class="text-right" size="4" color="black"></font>  {{selectedOutgoingFlight.departureTime}} </font>
                                         </div>
-                                        <div class="form-group row" ng-show:'roundTrip'>
+                                        <div class="form-group row" ng-show="roundTrip === 'true'">
                                             <font class="text-right" size="5" color="black"> Return Date:
-                <font class="text-right" size="4" color="black"></font>  {{selectedOutgoingFlight.rDate}} </font>
+                <font class="text-right" size="4" color="black"></font>  {{selectedReturnFlight.departureTime}} </font>
                                         </div>
                                         <div class="form-group row">
                                             <font class="text-right" size="5" color="black"> Tickets:
@@ -148,4 +148,4 @@
 
         </div>
 </div>
-{{selectedOutgoingFlight}}
+{{selectedReturnFlight}}

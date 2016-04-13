@@ -26,7 +26,7 @@ App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $locati
         OutReturnSrv.setSelectedOutFlight($scope.selectedOutgoingFlight);
         OutReturnSrv.setSelectedOutOperatedBy('iberia');
         OutReturnSrv.setSelectedOutCabin($scope.outgoingCabin);
-        if ($scope.roundTrip == true) {
+        if ($scope.roundTrip === 'true') {
             OutReturnSrv.setSelectedReturnFlight($scope.selectedReturnFlight);
             OutReturnSrv.setSelectedReturnOperatedBy('iberia');
             OutReturnSrv.setSelectedReturnCabin($scope.returnCabin);
