@@ -25,11 +25,14 @@ App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $locati
     $scope.BookFlight = function() {
         if($scope.selectedOutgoingFlight==null){
             $location.url('/flights');
-            $scope.PriceSelected=true;
+            $scope.RadioSelected=true;
+            $scope.OutgoinPriceSelected=true;
         }
         else{
+        $scope.OutgoingPriceSelected=false;
+        $scope.RadioSelected=false;
+        $scope.ReturnPriceSelected=false;
         OutReturnSrv.setSelectedOutFlight($scope.selectedOutgoingFlight);
-        $scope.PriceSelected=false;
         OutReturnSrv.setSelectedOutOperatedBy('iberia');
         OutReturnSrv.setSelectedOutCabin($scope.outgoingCabin);
         if ($scope.roundTrip == true) {
@@ -37,14 +40,47 @@ App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $locati
             OutReturnSrv.setSelectedReturnOperatedBy('iberia');
             OutReturnSrv.setSelectedReturnCabin($scope.returnCabin);
         }
-        if(angular.isUndefined($scope.outgoingPrice) || $scope.outgoingPrice === null)
-          OutReturnSrv.setSelectedPrice($scope.returnPrice);
-        else if(angular.isUndefined($scope.returnPrice) || $scope.returnPrice === null)
-          OutReturnSrv.setSelectedPrice($scope.outgoingPrice);
-        else
-          OutReturnSrv.setSelectedPrice($scope.outgoingPrice + $scope.returnPrice);
-        $location.url('/confirm');
+         if($scope.outgoingPrice === null){
+            $location.url('/flights');
+            $scope.OutgoingPriceSelected=true;
+            OutReturnSrv.setSelectedOutFlight($scope.selectedOutgoingFlight);
+            OutReturnSrv.setSelectedOutOperatedBy('iberia');
+            OutReturnSrv.setSelectedOutCabin($scope.outgoingCabin);
+        // if ($scope.roundTrip == true) {
+            OutReturnSrv.setSelectedReturnFlight($scope.selectedReturnFlight);
+            OutReturnSrv.setSelectedReturnOperatedBy('iberia');
+            OutReturnSrv.setSelectedReturnCabin($scope.returnCabin);
+        // }
     }
+// if(angular.isUndefined($scope.returnPrice) || $scope.outgoingPrice === null)
+        //   OutReturnSrv.setSelectedPrice($scope.returnPrice);
+        // else if(angular.isUndefined($scope.returnPrice) || $scope.returnPrice === null)
+        //   OutReturnSrv.setSelectedPrice($scope.outgoingPrice);
+        // else
+        else{
+          OutReturnSrv.setSelectedPrice($scope.outgoingPrice + $scope.returnPrice);
+        
+        $location.url('/confirm');
+        }
+        if($scope.returnPrice === null){
+            $scope.ReturnPriceSelected=true;
+            $location.url('/flights');
+            OutReturnSrv.setSelectedOutFlight($scope.selectedOutgoingFlight);
+            OutReturnSrv.setSelectedOutOperatedBy('iberia');
+            OutReturnSrv.setSelectedOutCabin($scope.outgoingCabin);
+        // if ($scope.roundTrip == true) {
+            OutReturnSrv.setSelectedReturnFlight($scope.selectedReturnFlight);
+            OutReturnSrv.setSelectedReturnOperatedBy('iberia');
+            OutReturnSrv.setSelectedReturnCabin($scope.returnCabin);
+        // }
+
+        }
+        else{
+             OutReturnSrv.setSelectedPrice($scope.outgoingPrice + $scope.returnPrice);
+             $location.url('/confirm');
+        }
+    }
+
     };
 
     $scope.angular = angular;
