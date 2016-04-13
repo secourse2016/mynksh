@@ -51,35 +51,35 @@ App.controller('confirmCtrl', function($scope, FlightsSrv, OutReturnSrv, Confirm
         setTicketEmail($scope.typedEmail);
         
         for (var x = 1; x <= FlightsSrv.getSelectedNumberOfTickets(); x++) {
-        if($scope.reservation(x).FName==null){
+        if($scope.reservation[x].FName==null){
             $scope.FNameShow=true;
             return ;
         }
         else
             $scope.FNameShow=false;
 
-        if($scope.reservation(x).LName==null){
+        if($scope.reservation[x].LName==null){
             $scope.LNameShow=true;
             return ;
         }
         else
             $scope.LNameShow=false;
 
-        if($scope.reservation(x).issueDate==null){
+        if($scope.reservation[x].issueDate==null){
             $scope.IssueDateShow=true;
             return ;
         }
         else
             $scope.IssueDateShow=false;
 
-         if($scope.reservation(x).expiryDate==null){
+         if($scope.reservation[x].expiryDate==null){
             $scope.ExpiryDateShow=true;
             return ;
         }
         else
             $scope.ExpiryDateShow=false;
 
-            if($scope.reservation(x).passportNo==null){
+            if($scope.reservation[x].passportNo==null){
             $scope.PassportNumberShow=true;
             return ;
         }
