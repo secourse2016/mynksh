@@ -4,10 +4,6 @@ App.controller('confirmCtrl', function($scope, FlightsSrv, OutReturnSrv, Confirm
     $scope.roundTrip = FlightsSrv.getSelectedRoundTrip();
     if($scope.roundTrip == true)
         $scope.selectedReturnFlight = OutReturnSrv.getSelectedReturnFlight();
-    $scope.origin = selectedOutgoingFlight.origin;
-    $scope.dest = selectedOutgoingFlight.destination;
-    $scope.oDate = selectedOutgoingFlight.departureTime;
-    $scope.rDate = selectedOutgoingFlight.arrivalTime;
     $scope.tickets = FlightsSrv.getSelectedNumberOfTickets();
     $scope.price = OutReturnSrv.getSelectedPrice();
 
