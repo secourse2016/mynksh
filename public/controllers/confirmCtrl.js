@@ -4,6 +4,7 @@ App.controller('confirmCtrl', function($scope, FlightsSrv, OutReturnSrv, Confirm
     $scope.roundTrip = FlightsSrv.getSelectedRoundTrip();
     if($scope.roundTrip === 'true')
         $scope.selectedReturnFlight = OutReturnSrv.getSelectedReturnFlight();
+    
     $scope.tickets = FlightsSrv.getSelectedNumberOfTickets();
     $scope.price = OutReturnSrv.getSelectedPrice();
 
@@ -31,9 +32,24 @@ App.controller('confirmCtrl', function($scope, FlightsSrv, OutReturnSrv, Confirm
     };
 
     $scope.goToPayment = function() {
-        setTicketEmail($scope.typedEmail);
+        
+        if($scope.typedPhoneNo==null){
+            $scope.PhoneNoShow=true;
+            return;
+        }
+        else
+            $scope.PhoneNoShow=false;
+
         setTicketPhoneNo($scope.typedPhoneNo);
-        setTicketReservation($scope.reservation);
+
+        if($scope.typedEmail==null){
+            $scope.EmailShow=true;
+            return;
+        }
+        else
+            $scope.EmailShow=false;
+        setTicketEmail($scope.typedEmail);
+        
         for (var x = 1; x <= FlightsSrv.getSelectedNumberOfTickets(); x++) {
         if($scope.reservation(x).FName==null){
             $scope.FNameShow=true;
@@ -69,8 +85,10 @@ App.controller('confirmCtrl', function($scope, FlightsSrv, OutReturnSrv, Confirm
         }
         else
             $scope.PassportNumberShow=false;
+
                     
      }
+        setTicketReservation($scope.reservation);
         $location.url('/payment');
     };
 });

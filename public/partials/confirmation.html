@@ -99,9 +99,15 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <font class="col-sm-4 text-right" size="4" color="black">Passport type: </font>
+                                            <font class="col-sm-4 text-right" size="4" color="black">Passport Number: </font>
                                             <div class="col-md-8 col-sm-8 text-left">
-                                                <input type="string" placeholder="e.g. USA" ng-model="n.country"></input>
+                                                <input type="string" placeholder="" ng-model="n.passportNo"></input>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <font class="col-sm-4 text-right" size="4" color="black">Country of issue: </font>
+                                            <div class="col-md-8 col-sm-8 text-left">
+                                                <div ng-include="'./assets/countries.html'"/>
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -114,12 +120,6 @@
                                             <font class="col-sm-4 text-right" size="4" color="black">Expiry Date: </font>
                                             <div class="col-md-8 col-sm-8 text-left">
                                                 <input type="string" placeholder="e.g. 17/4/2020" ng-model="n.expiryDate"></input>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <font class="col-sm-4 text-right" size="4" color="black">Passport Number: </font>
-                                            <div class="col-md-8 col-sm-8 text-left">
-                                                <input type="string" placeholder="" ng-model="n.passportNo"></input>
                                             </div>
                                         </div>
                                     </div>
@@ -138,10 +138,14 @@
 
                         <div>
                         <span ng-show="FNameShow" style="color: red">You must enter a valid First name</span>
+                        <span ng-show="EmailShow" style="color: red">You must enter a valid Email</span>
+                        <span ng-show="PhoneNoShow" style="color: red">You must enter a valid Phone number</span>
                         <span ng-show="LNameShow" style="color: red">You must enter a valid Last name</span>
                         <span ng-show="IssueDateShow" style="color: red">You must enter a valid Issue date</span>
                         <span ng-show="ExpiryDateShow" style="color: red">You must enter a valid Expiry date</span>
                         <span ng-show="PassportNumberShow" style="color: red">You must enter a valid Passport number</span>
+                        </div>
+                        <div>
 
                             <button type="button" class="btn btn-primary btn-lg" style="position:right" ng-click="goToPayment()">
                                 <b>Continue to payment</b> </button>
