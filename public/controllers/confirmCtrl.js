@@ -63,7 +63,13 @@ App.controller('confirmCtrl', function($scope, FlightsSrv, OutReturnSrv, Confirm
         else
             $scope.ExpiryDateShow=false;
 
-        
+            if($scope.reservation(x).passportNo==null){
+            $scope.PassportNumberShow=true;
+            return;
+        }
+        else
+            $scope.PassportNumberShow=false;
+                    
      }
         $location.url('/payment');
     };
