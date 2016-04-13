@@ -1,3 +1,7 @@
+
+
+
+
 <div class="sticky-bar-wrap">
     <div class="sticky-section">
         <div id="topbar-hold" class="nav-hold container">
@@ -276,11 +280,14 @@
 
 <div style="position:relative; padding-left:30px ; top:50px">
 <h4>Total price :</h4>
-            <h1> {{totalPrice}} €    <button type="button" class="btn btn-primary btn-lg" style="position:relative; left:280px" ng-disabled="!reviewForm.$valid && !reviewForm.$valid2"
+            <h1> {{totalPrice}} €
+              <a href="http://mynksh.com">
+              <button type="button" class="btn btn-primary btn-lg" style="position:relative; left:280px" ng-disabled="!reviewForm.$valid && !reviewForm.$valid2"
               ng-click="SetCountry(selectedCountry);SetCardType(selectedType) ; SetCaradNo(selectedCardNumber);SetMonth(selectedMonth);
               SetYear(selectedYear);SetCVV(selectedCVV); SetFirstName(selectedFirstName) ; SetSurname(selectedSecondName) ;
               SetPassengers(SelectedPassengers); SetStret(selectedStret) ; SetInformation(selectedExtra) ; SetPostalcode(selectedPostalcode) ;
-              SetCity(SelectedCity); postIntoBooking() ;goToBriefConfirmation() " onClick="alert('Congatulations, You booked!')">Pay</button>
+              SetCity(SelectedCity); postIntoBooking() ;goToBriefConfirmation()" onclick="" >Pay</button>
+            </a>
               <a href="http://mynksh.com">
                 <button type="button" class="btn btn-primary btn-lg" style="position:relative; left:280px" >Cancel</button>
               </a>

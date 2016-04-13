@@ -32,4 +32,5 @@ App.config(function($routeProvider) {
         controller: 'confirmCtrl',
         controllerAs: 'sotre'
     });
+
 });

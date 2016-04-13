@@ -20,6 +20,7 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, OutReturnSrv, payment
         $location.url('/');
     };
 
+
     // function postIntoBooking() { $http.post('../../modules/bookings.json',{text:$scope.totalPrice}).success(function(response){
     //
     //   $scope.Success = "success to pay";
@@ -28,6 +29,7 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, OutReturnSrv, payment
     //
     // });
     //   };
+
 
     $scope.postIntoBooking = function() {
         var customer = {
@@ -112,4 +114,22 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, OutReturnSrv, payment
     $scope.P_round_rDate = FlightsSrv.getSelectedReturnDate();
     countryCode();
 
+
 });
+
+// App.directive('ngConfirmClick', [
+//     function(){
+//         return {
+//             priority: 1,
+//             terminal: true,
+//             link: function (scope, element, attr) {
+//                 var msg = attr.ngConfirmClick || "Are you sure?";
+//                 var clickAction = attr.ngClick;
+//                 element.bind('click',function (event) {
+//                     if ( window.confirm(msg) ) {
+//                         scope.$eval(clickAction)
+//                     }
+//                 });
+//             }
+//         };
+// }])
