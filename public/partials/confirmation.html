@@ -90,40 +90,41 @@
                                         <div class="form-group">
                                             <font class="col-sm-4 text-right" size="4" color="black">First Name: </font>
                                             <div class="col-md-8 col-sm-8 text-left">
-                                                <input type="string" placeholder="e.g. Hazem" ng-model="typedFname"></input>
+                                                <input type="string" placeholder="e.g. Hazem" ng-model="n.FName"></input>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <font class="col-sm-4 text-right" size="4" color="black">Last Name: </font>
                                             <div class="col-md-8 col-sm-8 text-left">
-                                                <input type="string" placeholder="e.g. Elessawy" ng-model="typedLname"></input>
+                                                <input type="string" placeholder="e.g. Elessawy" ng-model="n.LName"></input>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <font class="col-sm-4 text-right" size="4" color="black">Passport type: </font>
                                             <div class="col-md-8 col-sm-8 text-left">
-                                                <input type="string" placeholder="e.g. USA" ng-model="typedCountry"></input>
+                                                <input type="string" placeholder="e.g. USA" ng-model="n.country"></input>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <font class="col-sm-4 text-right" size="4" color="black">Issue Date: </font>
                                             <div class="col-md-8 col-sm-8 text-left">
-                                                <input type="string" placeholder="e.g. 17/4/2016" ng-model="typedIssueDate"></input>
+                                                <input type="string" placeholder="e.g. 17/4/2016" ng-model="n.issueDate"></input>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <font class="col-sm-4 text-right" size="4" color="black">Expiry Date: </font>
                                             <div class="col-md-8 col-sm-8 text-left">
-                                                <input type="string" placeholder="e.g. 17/4/2020" ng-model="typedExpiryDate"></input>
+                                                <input type="string" placeholder="e.g. 17/4/2020" ng-model="n.expiryDate"></input>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <font class="col-sm-4 text-right" size="4" color="black">Passport Number: </font>
                                             <div class="col-md-8 col-sm-8 text-left">
-                                                <input type="string" placeholder="" ng-model="typedPassportno"></input>
+                                                <input type="string" placeholder="" ng-model="n.passportNo"></input>
                                             </div>
                                         </div>
                                     </div>
+                                    {{reservation}}
                                 </div>
                             </div>
                             <!-- <button type="button" class="btn btn-primary btn-lg" style="position:relative; left:280px" ng-click='incCounter()'>Test</button> -->
@@ -148,4 +149,3 @@
 
         </div>
 </div>
-{{selectedReturnFlight}}
