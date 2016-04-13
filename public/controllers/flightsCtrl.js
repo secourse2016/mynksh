@@ -25,9 +25,11 @@ App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $locati
     $scope.BookFlight = function() {
         if($scope.selectedOutgoingFlight==null){
             $location.url('/flights');
+            $scope.PriceSelected=true;
         }
         else{
         OutReturnSrv.setSelectedOutFlight($scope.selectedOutgoingFlight);
+        $scope.PriceSelected=false;
         OutReturnSrv.setSelectedOutOperatedBy('iberia');
         OutReturnSrv.setSelectedOutCabin($scope.outgoingCabin);
         if ($scope.roundTrip == true) {

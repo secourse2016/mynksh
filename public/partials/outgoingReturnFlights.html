@@ -117,7 +117,7 @@
             <blockquote>
                 <p>Price of your tickets</p>
                 <h3>{{(outgoingPrice + returnPrice) | currency:"€"}}</h3>
-                <span ng-show="">A price must be selected</span>
+                <span ng-show="PriceSelected">A price must be selected</span>
             </blockquote>
             <a href class="btn btn-primary btn-lg hvr-underline-from-center" ng-click='BookFlight()'>Book Flight</a>
         </div>
