@@ -67,13 +67,13 @@
                                 <div class="form-group">
                                     <font class="col-sm-4 text-right" size="4" color="black">Phone number: </font>
                                     <div class="col-md-8 col-sm-8 text-left">
-                                        <input type="text" placeholder="e.g.109013840923" ng-model="typePhoneno"></input>
+                                        <input type="text" placeholder="e.g.109013840923" ng-model="typePhoneno" required></input>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <font class="col-sm-4 text-right" size="4" color="black">Email: </font>
+                                    <font class="col-sm-4 text-right" size="4" color="black" >Email: </font>
                                     <div class="col-md-8 col-sm-8 text-left">
-                                        <input type="string" placeholder="e.g. Hazem.279@gmail.com" ng-model="typedEmail"></input>
+                                        <input type="string" placeholder="e.g. Hazem.279@gmail.com" ng-model="typedEmail" required></input>
                                     </div>
                                 </div>
                             </div>
@@ -137,6 +137,12 @@
 
 
                         <div>
+                        <span ng-show="FNameShow" style="color: red">You must enter a valid First name</span>
+                        <span ng-show="LNameShow" style="color: red">You must enter a valid Last name</span>
+                        <span ng-show="IssueDateShow" style="color: red">You must enter a valid Issue date</span>
+                        <span ng-show="ExpiryDateShow" style="color: red">You must enter a valid Expiry date</span>
+                        <span ng-show="PassportNumberShow" style="color: red">You must enter a valid Passport number</span>
+
                             <button type="button" class="btn btn-primary btn-lg" style="position:right" ng-click="setTicketFirstName(typedFname) ;setTicketLastName(typedLname);setTicketIssueDate(typedIssueDate);setTicketExpiryDate(typedExpiryDate);setTicketEmail(typedEmail);setTicketPhoneNo(typePhoneno);setTicketPassportNo(typedPassportno);setTicketPassportType(typedCountry);goToPayment()">
                                 <b>Continue to payment</b> </button>
                         </div>

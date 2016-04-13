@@ -34,6 +34,37 @@ App.controller('confirmCtrl', function($scope, FlightsSrv, OutReturnSrv, Confirm
         setTicketEmail($scope.typedEmail);
         setTicketPhoneNo($scope.typedPhoneNo);
         setTicketReservation($scope.reservation);
+        for (var x = 1; x <= FlightsSrv.getSelectedNumberOfTickets(); x++) {
+        if($scope.reservation(x).FName==null){
+            $scope.FNameShow=true;
+            return;
+        }
+        else
+            $scope.FNameShow=false;
+
+        if($scope.reservation(x).LName==null){
+            $scope.LNameShow=true;
+            return;
+        }
+        else
+            $scope.LNameShow=false;
+
+        if($scope.reservation(x).issueDate==null){
+            $scope.IssueDateShow=true;
+            return;
+        }
+        else
+            $scope.IssueDateShow=false;
+
+         if($scope.reservation(x).expiryDate==null){
+            $scope.ExpiryDateShow=true;
+            return;
+        }
+        else
+            $scope.ExpiryDateShow=false;
+
+        
+     }
         $location.url('/payment');
     };
 });
