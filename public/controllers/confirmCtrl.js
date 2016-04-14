@@ -8,15 +8,15 @@ App.controller('confirmCtrl', function($scope, FlightsSrv, OutReturnSrv, Confirm
     $scope.tickets = FlightsSrv.getSelectedNumberOfTickets();
     $scope.price = OutReturnSrv.getSelectedPrice();
 
-    $scope.setTicketEmail = function(value) {
+    var setTicketEmail = function(value) {
         ConfirmSrv.setEmail(value);
     };
 
-    $scope.setTicketPhoneNo = function(value) {
+    var setTicketPhoneNo = function(value) {
         ConfirmSrv.setPhoneNo(value);
     };
 
-    $scope.setTicketReservation = function(value) {
+    var setTicketReservation = function(value) {
         ConfirmSrv.setReservation(value);
     };
     $scope.isGreaterThanTickets = function(num) {
