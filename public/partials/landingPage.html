@@ -110,9 +110,10 @@
                     <p class="intro-message">The Artful Flight Experience</p>
                     <div class="type-wrap">
                         <div id="typed-strings">
-                            <p>Hoy, <strong>Iberia</strong> está cambiando</p>
-                            <p>Today, <strong>Iberia</strong> is changing</p>
-                            <p>Oh YES, <strong>OUR</strong> typers actually work.</p>
+                            <p><font color="white" >Hoy, <strong>Iberia</strong> está cambiando</font></p>
+                            <p><font color="white">Today, <strong>Iberia</strong> is changing</font></p>
+                            <p><font color="white">Oh YES, <strong>OUR</strong> typers actually work.</font></p>
+                            <p>   </p>
                         </div>
                         <span id="typed" style="white-space:pre;"></span>
                         </br>
@@ -127,7 +128,6 @@
                         </br>
                         </br>
                         </br>
-                        <p> Note: for the navigation bar to work, click on home first</p>
                     </div>
                 </div>
             </div>
@@ -156,14 +156,14 @@
                             <div class="form-group">
                                 <font class="col-sm-2 text-right" size="4" color="white"> From: </font>
                                 <div class="col-md-8 col-sm-8">
-                                    <input name="originAirports" id="originAirports" type="text" placeholder="Flying From" ng-model="selectedOrigin" uib-typeahead="airport.iata for airport in Airports | filter:$viewValue | limitTo:10" class="form-control" , typeahead-on-select="SetOriginAirport($item.iata)">
+                                    <input name="originAirports" id="originAirports" type="text" placeholder="Flying From" ng-model="selectedOrigin" uib-typeahead="airport.name for airport in Airports | filter:$viewValue | limitTo:10" class="form-control" , typeahead-on-select="SetOriginAirport($item.name.concat($item.iata))">
                                 </div>
                             </div>
                             </br>
                             <div class="form-group">
                                 <font class="col-sm-2 text-right" size="4" color="white"> To: </font>
                                 <div class="col-md-8 col-sm-8">
-                                    <input name="destinationAirports" id="destinationAirports" type="text" placeholder="Flying To" ng-model="selectedDestination" uib-typeahead="airport.iata for airport in Airports | filter:$viewValue | limitTo:10" class="form-control" , typeahead-on-select="SetDestinationAirport($item.iata)">
+                                    <input name="destinationAirports" id="destinationAirports" type="text" placeholder="Flying To" ng-model="selectedDestination" uib-typeahead="airport.name for airport in Airports | filter:$viewValue | limitTo:10" class="form-control" , typeahead-on-select="SetDestinationAirport($item.name.concat($item.iata))">
                                 </div>
                             </div>
                             </br>
@@ -255,7 +255,7 @@
     <div class="container pricing">
         <div class="row">
             <div class="col-md-10 col-md-offset-1 center section-title">
-                <h3>Offers</h3>
+                <h3><font color="white">Offers</font></h3>
             </div>
 
 
