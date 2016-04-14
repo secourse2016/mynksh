@@ -4,7 +4,7 @@ App.controller('confirmCtrl', function($scope, FlightsSrv, OutReturnSrv, Confirm
     $scope.roundTrip = FlightsSrv.getSelectedRoundTrip();
     if($scope.roundTrip === 'true')
         $scope.selectedReturnFlight = OutReturnSrv.getSelectedReturnFlight();
-    
+
     $scope.tickets = FlightsSrv.getSelectedNumberOfTickets();
     $scope.price = OutReturnSrv.getSelectedPrice();
 
@@ -32,9 +32,9 @@ App.controller('confirmCtrl', function($scope, FlightsSrv, OutReturnSrv, Confirm
     };
 
     $scope.goToPayment = function() {
-        setTicketEmail($scope.typedEmail);
-        setTicketPhoneNo($scope.typedPhoneNo);
-        setTicketReservation($scope.reservation);
+        $scope.setTicketEmail($scope.typedEmail);
+        $scope.setTicketPhoneNo($scope.typedPhoneNo);
+        $scope.setTicketReservation($scope.reservation);
         $location.url('/payment');
     };
 });

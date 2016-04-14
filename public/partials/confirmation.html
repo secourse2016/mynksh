@@ -1,6 +1,8 @@
-<div class="sticky-bar-wrap sticky-section">
+<div style="background: rgba(178,34,34, 1)">
+    <div class="sticky-section">
         <div id="topbar-hold" class="nav-hold container">
             <nav class="navbar" role="navigation">
+
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-responsive-collapse">
                         <span class="sr-only">Toggle navigation</span>
@@ -12,139 +14,157 @@
                         <span><img src="./assets/iberia-logo.png"></span>
                     </a>
                 </div>
+                <!-- Main Navigation menu Starts -->
+
+                <!-- Main Navigation menu ends-->
             </nav>
-        </div>  
+        </div>
+    </div>
 </div>
+<link rel="stylesheet" href="css/style.css" />
 
-<div class="container">
-    <section id="section-download" class="download-wrap">
-        <div class="container download center">
-            <div class="row">
-                <div class="col-md-8 col-md-offset-2">
-                    <div class="col-md-10 col-md-offset-1 center section-title">
-                        <h3>Confirmation</h3>
-                    </div>
-                    <!-- <div class='content'> -->
-                    <form class="form-horizontal">
-                        <div id='Confirmation'>
-                            <div class="mainContainer col-lg-12" >
-                                <form class="contact-form support-form">
-                                        <div class="form-group row">
-                                            <font class="text-right" size="5" color="black"> From:
-                <font class="text-right" size="4" color="black"> </font> {{selectedOutgoingFlight.origin}}</font>
-                                        </div>
-                                        <div class="form-group row">
-                                            <font class="text-right" size="5" color="black"> To:
-                <font class="text-right" size="4" color="black"></font>  {{selectedOutgoingFlight.destination}}  </font>
-                                        </div>
-                                        <div class="form-group row">
-                                            <font class="text-right" size="5" color="black"> Outgoing Date:
-                <font class="text-right" size="4" color="black"></font>  {{selectedOutgoingFlight.departureTime}} </font>
-                                        </div>
-                                        <div class="form-group row" ng-show="roundTrip === 'true'">
-                                            <font class="text-right" size="5" color="black"> Return Date:
-                <font class="text-right" size="4" color="black"></font>  {{selectedReturnFlight.departureTime}} </font>
-                                        </div>
-                                        <div class="form-group row">
-                                            <font class="text-right" size="5" color="black"> Tickets:
-                <font class="text-right" size="4" color="black"> </font>  {{tickets}}</font>
-                                        </div>
-                                        <div class="form-group row">
-                                            <font class="text-right" size="5" color="black"> Price:
-                <font class="text-right" size="4" color="black"> </font>  {{price | currency: "€"}}</font>
-                                        </div>
-                                </form>
-                            </div>
+<!-- <div class="container"> -->
+<section id="section-download" class="download-wrap" style="background: rgba(255,255,255, .8)">
+    <div class="container download center">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="col-md-10 col-md-offset-1 center section-title">
+                    <h3 style=" color:rgba(0,0,0, 1)">Confirmation</h3>
+                </div>
+                <!-- <div class='content'> -->
+                <!-- <form class="form-horizontal"> -->
 
-                            </br>
-                            <div class="col-md-10 col-md-offset-1 center section-title">
-                                <h3>Contact Details</h3>
-                            </div>
-                            </br>
-                            </br>
-                            </br>
-                            <div class="mainContainer" style="height:150px; width:500px">
-                                <div class="form-group">
-                                    <font class="col-sm-4 text-right" size="4" color="black">Phone number: </font>
-                                    <div class="col-md-8 col-sm-8 text-left">
-                                        <input type="text" placeholder="e.g.109013840923" ng-model="typePhoneno"></input>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <font class="col-sm-4 text-right" size="4" color="black">Email: </font>
-                                    <div class="col-md-8 col-sm-8 text-left">
-                                        <input type="string" placeholder="e.g. Hazem.279@gmail.com" ng-model="typedEmail"></input>
-                                    </div>
-                                </div>
-                            </div>
-                            </br>
-                            <div class="col-md-10 col-md-offset-1 center section-title">
-                                <h3>Passenger Details</h3>
-                                <div class="mainContainer">
-                                    </br>
-                                    <div ng-repeat="n in reservation">
-                                        <div class="form-group">
-                                            <font class="col-sm-4 text-right" size="4" color="black">Passenger {{n.refNo}} </font>
-                                        </div>
-                                        <div class="form-group">
-                                            <font class="col-sm-4 text-right" size="4" color="black">First Name: </font>
-                                            <div class="col-md-8 col-sm-8 text-left">
-                                                <input type="string" placeholder="e.g. Hazem" ng-model="n.FName"></input>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <font class="col-sm-4 text-right" size="4" color="black">Last Name: </font>
-                                            <div class="col-md-8 col-sm-8 text-left">
-                                                <input type="string" placeholder="e.g. Elessawy" ng-model="n.LName"></input>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <font class="col-sm-4 text-right" size="4" color="black">Passport Number: </font>
-                                            <div class="col-md-8 col-sm-8 text-left">
-                                                <input type="string" placeholder="" ng-model="n.passportNo"></input>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <font class="col-sm-4 text-right" size="4" color="black">Country of issue: </font>
-                                            <div class="col-md-8 col-sm-8 text-left">
-                                                <div ng-include="'./assets/countries.html'"/>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <font class="col-sm-4 text-right" size="4" color="black">Issue Date: </font>
-                                            <div class="col-md-8 col-sm-8 text-left">
-                                                <input type="string" placeholder="e.g. 17/4/2016" ng-model="n.issueDate"></input>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <font class="col-sm-4 text-right" size="4" color="black">Expiry Date: </font>
-                                            <div class="col-md-8 col-sm-8 text-left">
-                                                <input type="string" placeholder="e.g. 17/4/2020" ng-model="n.expiryDate"></input>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- <button type="button" class="btn btn-primary btn-lg" style="position:relative; left:280px" ng-click='incCounter()'>Test</button> -->
-                            <br>
-                            </h2>
+                <div class="mainContainer col-lg-12">
+                    <form class="contact-form support-form">
+                        <div class="form-group">
+                            <font class="col-sm-8 text-left" size="5" color="black"> From:
+                <font  size="4" color="grey"> {{selectedOutgoingFlight.origin}}</font></font>
+
                         </div>
-                        </blockquote>
-                        <br>
-                        <div class="tickets row">
-                            <!-- {{number}} -->
+                        <div class="form-group">
+                            <font class="col-sm-8 text-left" size="5" color="black"> To:
+                <font  size="4" color="grey">  {{selectedOutgoingFlight.destination}}  </font></font>
                         </div>
-
-
-                        <div>
-                            <button type="button" class="btn btn-primary btn-lg" style="position:right" ng-click="goToPayment()">
-                                <b>Continue to payment</b> </button>
+                        <div class="form-group">
+                            <font class="col-sm-8 text-left" size="5" color="black"> Outgoing Date:
+                <font  size="4" color="grey">  {{selectedOutgoingFlight.departureTime}} </font></font>
                         </div>
+                        <div class="form-group" ng-show="roundTrip === 'true'">
+                            <font class="col-sm-8 text-left" size="5" color="black"> Return Date:
+                <font  size="4" color="grey">  {{selectedReturnFlight.departureTime}} </font></font>
+                        </div>
+                        <div class="form-group">
+                            <font class="col-sm-8 text-left" size="5" color="black"> Tickets:
+                <font  size="4" color="grey"> {{tickets}}</font></font>
+                        </div>
+                        <div class="form-group">
+                            <font class="col-sm-8 text-left" size="5" color="black"> Price:
+                <font  size="4" color="grey">  {{price | currency: "€"}}</font></font>
+                        </div>
+                    </form>
                 </div>
 
-                </form>
+
+                <div class="col-md-10 col-md-offset-1 center section-title">
+                    </br>
+                    </br>
+                    <h4 style=" color:rgba(178,34,34, 1)">Passenger Details</h4>
+                </div>
+                <div class="mainContainer col-lg-12">
+                    <form class="contact-form support-form">
+                        </br>
+                        <div class="form-group">
+                            <font class="col-sm-8 text-left" size="5" color="grey"><b>Contact Details</b></font>
+                        </div>
+                        </br>
+                        <div class="form-group">
+                            <font class="col-sm-4 text-left" size="4" color="black">Phone number: </font>
+                            <div class="col-md-8 col-sm-8 text-left">
+                                <input class="form-control" style="width:73%" type="text" placeholder="e.g.109013840923" ng-model="typePhoneno">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <font class="col-sm-4 text-left" size="4" color="black">Email:</font>
+                            <div class="col-md-8 col-sm-8 text-left">
+                                <input class="form-control" style="width:73%" type="text" placeholder="e.g. Hazem.279@gmail.com" ng-model="typedEmail">
+                            </div>
+                        </div>
+                        </br>
+                        </br>
+                        <div ng-repeat="n in reservation">
+                            <form class="contact-form support-form">
+                                <div class="col-lg-12">
+                                    </br>
+                                    </br>
+                                    <div class="form-group">
+                                        <font class="col-sm-8 text-left" size="5" color="grey"><b>Passenger {{n.refNo}}
+                                            </br>
+                                          </br></b></font>
+                                    </div>
+                                    </br>
+                                    </br>
+                                    <div class="form-group">
+                                        <font class="col-sm-4 text-left" size="4" color="black">First Name:</font>
+                                        <div class="col-md-8 col-sm-8 text-left">
+                                            <input class="form-control" style="width:73%" type="text" placeholder="e.g. Hazem" ng-model="n.FName">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <font class="col-sm-4 text-left" size="4" color="black">Last Name:</font>
+                                        <div class="col-md-8 col-sm-8 text-left">
+                                            <input class="form-control" style="width:73%" type="text" placeholder="e.g. Elessawy" ng-model="n.LName">
+                                        </div>
+
+                                    </div>
+                                    <div class="form-group">
+                                        <font class="col-sm-4 text-left" size="4" color="black">Passport Number:</font>
+                                        <div class="col-md-8 col-sm-8 text-left">
+                                            <input class="form-control" style="width:73%" type="text" placeholder="" ng-model="n.passportNo">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <font class="col-sm-4 text-left" size="4" color="black">Country of issue:</font>
+                                        <div class="col-md-8 col-sm-8 text-left">
+                                            <div ng-include="'./assets/countries.html'"></div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <font class="col-sm-4 text-left" size="4" color="black">Issue Date:</font>
+                                        <div class="col-md-8 col-sm-8 text-left">
+                                            <input class="form-control" style="width:73%" type="text" placeholder="e.g. 17/4/2016" ng-model="n.issueDate">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <font class="col-sm-4 text-left" size="4" color="black">Expiry Date:</font>
+                                        <div class="col-md-8 col-sm-8 text-left">
+                                            <input class="form-control" style="width:73%" type="text" placeholder="e.g. 17/4/2016" ng-model="n.expiryDate">
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </form>
+                </div>
+
             </div>
 
+
         </div>
-</div>
+
+        <div class="tickets row">
+            <!-- {{number}} -->
+        </div>
+
+
+        <div>
+            </br>
+            </br>
+            <button type="button" class="btn btn-primary btn-lg" style="position:right background:rgba(178,34,34, 1)" ng-click="goToPayment()">
+                <b>Continue to payment</b> </button>
+        </div>
+    </div>
+
+
+
+</section>
 <!-- could need an extra div closing -->
