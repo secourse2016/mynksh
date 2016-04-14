@@ -182,7 +182,7 @@ font-weight: 700;
 }
 
 .section-overlay {
-	background: rgba(0, 0, 0, .3) !important;
+	background: rgba(0, 0, 0, .5) !important;
 	z-index: 5;
 }
 
