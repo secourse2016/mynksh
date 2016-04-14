@@ -1,6 +1,6 @@
 canvas {
     background: black;
-    background: linear-gradient(to bottom, rgba(178,34,34, 1), rgba(0,0,99,0) 400%);
+    background: linear-gradient(to bottom, rgba(178,34,34, 0), rgba(0,0,99,0) 400%);
 }
 div.marquee {
     white-space: nowrap;

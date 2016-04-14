@@ -952,7 +952,7 @@ margin-right: 8px;
 
 /* ================ Download Section ================ */
 #section-download {
-	background-color: rgba(178,34,34, 1);
+	background-color: rgba(128,0,0, 1);
 }
 
 .container.download {
@@ -1056,7 +1056,7 @@ margin-right: 8px;
 #section-footer {
 	padding-top: 80px;
 	padding-bottom: 80px;
-	background: #B22222;
+	background: rgba(128,0,0, 1);
 	color:#e5e5e5;
 }
 
