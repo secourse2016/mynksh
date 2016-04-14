@@ -854,7 +854,7 @@ margin-right: 8px;
 
 
 .best-pricing .pricing-head {
-	background: #333;
+	background: rgba(178,34,34, 1);
 }
 
 .best-pricing .price h3 {
