@@ -15,9 +15,9 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, OutReturnSrv, payment
         $scope.tab = "";
     };
 
-    $scope.Success = "fail to pay please try again later";
-    $scope.goToBriefConfirmation = function() {
-        $location.url('/');
+    
+    $scope.Congrats = function() {
+        $location.url('/congrats');
     };
 
 
