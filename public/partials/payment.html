@@ -58,8 +58,8 @@
 
                     <div class="container form ">
                         <!-- <form class="form-horizontal" role="form" name="reviewForm" novalidate> -->
-                          <form class="contact-form support-form">
-                            <div class="form-group" >
+                          <form class="contact-form support-form" name="reviewForm" novalidate="">
+                            <div class="form-group">
                             </br>
                                 <!-- <label class="control-label col-sm-2 labelform" for="country" style="width: 150px; position: relative; top: 8px; right: 64px;">Issuer country*:</label> -->
                                 <font size="3" color="black" class="col-sm-4 text-left">Issuer Country<font color="red" >*</font>:</font>
@@ -222,7 +222,7 @@
                             </div>
 
 
-
+                          <!-- </form> -->
                         </form>
                     </div>
                     <!--  end of form    -->
@@ -302,35 +302,29 @@
 <div class="col-md-12">
 <h4 class="col-md-6">Total price :</h4>
 </br></br>
-            <h1 class="col-md-6 text-center"> {{totalPrice}} €</br></h1>
+      <h1 class="col-md-8 text-center"> {{totalPrice}} €</br></h1>
   </div>
 
   <div class="col-md-12">
-              <a>
+              <a ng-click="Congrats()">
                 <div class="col-md-12 col-sm-12 text-right">
-              <button type="button" class="btn btn-primary btn-lg" style="background:rgba(178,34,34, 1)"
+              <button type="button" class="btn btn-primary btn-lg" style="background:rgba(178,34,34, 1)" ng-disabled="reviewForm.$invalid && reviewForm2.$invalid"
               ng-click="SetCountry(selectedCountry);SetCardType(selectedType) ; SetCaradNo(selectedCardNumber);SetMonth(selectedMonth);
               SetYear(selectedYear);SetCVV(selectedCVV); SetFirstName(selectedFirstName) ; SetSurname(selectedSecondName) ;
               SetPassengers(SelectedPassengers); SetStret(selectedStret) ; SetInformation(selectedExtra) ; SetPostalcode(selectedPostalcode) ;
-              SetCity(SelectedCity); postIntoBooking() ;goToBriefConfirmation();Congrats()" >Pay</button>
+              SetCity(SelectedCity); postIntoBooking()">Pay</button>
             </a>
               <a href="http://mynksh.com">
-                <button type="button" class="btn btn-primary btn-lg" style="background:rgba(178,34,34, 1)" >Cancel</button>
+                <button type="button" class="btn btn-primary btn-lg" style="background:rgba(178,34,34, 1)">Cancel</button>
               </a>
 
           </div>
         </br>
       </br>
         </div>
-
-
             <font color="grey" > Total price, includes air fare, taxes (except those charged at certain airports at the time of check-in), handling fees, operator charges and selected options. If you choose to pay for your trip with one of these cards, a surcharge of 1% of
                 the final amount on long-haul flights and 2% on all other flights will apply per booking. This also includes the charge for using a credit card. </br>
                 </br></font>
-
-
-
-
 </div>
 </div>
 </div>
