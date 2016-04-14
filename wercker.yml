@@ -2,7 +2,7 @@ box: node
 build:
    steps:
       - npm-install
-      - npm-test
+      - npm-start
 
 deploy:
    aws:
