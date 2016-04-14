@@ -1,11 +1,7 @@
-
-
-
-
-<div class="sticky-bar-wrap" style="background: rgba(178,34,34, 1)">
+<div  style="background: rgba(178,34,34, 1)">
     <div class="sticky-section">
         <div id="topbar-hold" class="nav-hold container">
-            <nav class="navbar" role="navigation">
+            <nav class="navbar" role="navigation" >
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-responsive-collapse">
                         <span class="sr-only">Toggle navigation</span>
@@ -14,8 +10,6 @@
                         <span class="icon-bar"></span>
                     </button>
                 </div>
-
-                </br>
                 <!-- Main Navigation menu Starts -->
                   <!--=== Site Name ===-->
                     <!-- <a class="site-name navbar-brand" href="#"><span>E</span>gret</a> -->
@@ -47,7 +41,8 @@
     <div class="mainContainer col-lg-12" >
         <form class="contact-form support-form">
     <div class="leftInput">
-        <font size="5" color="black" class="text-left">Form of Payment </font>
+    </br>
+        <font size="5" color="black" class="text-left" style=" color:rgba(178,34,34, 1)" >Payment Form </font>
         <!-- <h6 align="right" class="Astric">* Compulsory field</h6> -->
         <hr>
         <!--  i have two tabs because of visa and paypal   -->
@@ -233,7 +228,9 @@
                     <!--  end of form    -->
                 </div>
                 <div class="tab-pane fade {{tab2}} " id="profile">
-                    <h1>this feature is comming soon</h1>
+                </br>
+                    <font size="6" style=" color:rgba(178,34,34, 1)">This feature is coming <strong>soon</strong>!</font>
+</br>
                 </div>
 
 
@@ -286,8 +283,10 @@
 
 
 </div>
-<div  class="middle">
-<h3 style=" color:#E01619"> Price breakdown</h3>
+<div  class="middle text-center">
+</br>
+  <font size="5" color="black" class="text-left" style=" color:rgba(178,34,34, 1)" > Price breakdown</font>
+</br>
 </div>
 
 <div class="bottom">
@@ -295,16 +294,20 @@
 <div class="checkbox" style="position:relative; left:50px; top:30px">
 <label><input type="checkbox" value="" required>I have read and accept the terms and conditions and conditions of contract.</label>
 </div>
-
+</br>
 </form>
+</br>
 
 
 <div class="col-md-12">
-<h4 class="col-md-4">Total price :</br></h4>
-            <h1 class="col-md-8 text-left"> {{totalPrice}} €</br></h1>
-          </div>
+<h4 class="col-md-6">Total price :</h4>
+</br></br>
+            <h1 class="col-md-6 text-center"> {{totalPrice}} €</br></h1>
+  </div>
+
+  <div class="col-md-12">
               <a href="http://mynksh.com">
-                <div class="col-md-8 col-sm-8 ">
+                <div class="col-md-12 col-sm-12 text-right">
               <button type="button" class="btn btn-primary btn-lg" style="background:rgba(178,34,34, 1)" ng-disabled="!reviewForm.$valid && !reviewForm.$valid2"
               ng-click="SetCountry(selectedCountry);SetCardType(selectedType) ; SetCaradNo(selectedCardNumber);SetMonth(selectedMonth);
               SetYear(selectedYear);SetCVV(selectedCVV); SetFirstName(selectedFirstName) ; SetSurname(selectedSecondName) ;
@@ -316,11 +319,17 @@
               </a>
 
           </div>
+        </br>
+      </br>
+        </div>
 
-            <p> Total price, includes air fare, taxes (except those charged at certain airports at the time of check-in), handling fees, operator charges and selected options. If you choose to pay for your trip with one of these cards, a surcharge of 1% of
-                the final amount on long-haul flights and 2% on all other flights will apply per booking. This also includes the charge for using a credit card. </p>
 
-    </div>
+            <font color="grey" > Total price, includes air fare, taxes (except those charged at certain airports at the time of check-in), handling fees, operator charges and selected options. If you choose to pay for your trip with one of these cards, a surcharge of 1% of
+                the final amount on long-haul flights and 2% on all other flights will apply per booking. This also includes the charge for using a credit card. </br>
+                </br></font>
+
+
+
 
 </div>
 </div>
