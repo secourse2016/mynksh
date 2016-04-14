@@ -61,12 +61,13 @@
                 <div class="tab-pane fade {{tab}}">
                     <!--  payment form  -->
 
-                    <div class="container form">
-                        <form class="form-horizontal" role="form" name="reviewForm" novalidate>
-
+                    <div class="container form ">
+                        <!-- <form class="form-horizontal" role="form" name="reviewForm" novalidate> -->
+                          <form class="contact-form support-form">
                             <div class="form-group" >
+                            </br>
                                 <!-- <label class="control-label col-sm-2 labelform" for="country" style="width: 150px; position: relative; top: 8px; right: 64px;">Issuer country*:</label> -->
-                                <font size="3" color="black" class="col-sm-4 text-left">Issuer Country:</font>
+                                <font size="3" color="black" class="col-sm-4 text-left">Issuer Country<font color="red" >*</font>:</font>
                                 <div class="col-md-8 col-sm-8 text-left" >
                                   <input name="Country" id="Country" type="text" placeholder="issuer country" ng-model="selectedCountry" uib-typeahead="country.name for country in Country | filter:$viewValue | limitTo:10" class="form-control" , typeahead-on-select="setSelectedCountry($item.name)"
                                                 required>
@@ -75,10 +76,11 @@
                             </div>
 
                             <div class="form-group">
-                                <font size="3" color="black" class="col-sm-4 text-left">Type of card: </font>
+                              </br>
+                                <font size="3" color="black" class="col-sm-4 text-left">Type of card<font color="red" >*</font>: </font>
                                 <div class="col-md-8 col-sm-8 text-left" >
                                     <div class="dropdown">
-                                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"> Type : {{selectedType}}
+                                        <button class="btn btn-primary dropdown-toggle" style="background:rgba(178,34,34, 1)" type="button" data-toggle="dropdown"> Type : {{selectedType}}
                                             <span class="caret"></span></button>
                                         <ul class="dropdown-menu">
                                             <select name="MonthC" ng-model="selectedType">
@@ -101,17 +103,19 @@
 
 
                             <div class="form-group">
-                                <font size="3" color="black" class="col-sm-4 text-left">Card number:</font>
+                              </br>
+                                <font size="3" color="black" class="col-sm-4 text-left">Card number<font color="red" >*</font>:</font>
                                 <div class="col-md-8 col-sm-8 text-left">
                                     <input type="number" class="form-control" id="Surname" placeholder="519603203xxxxxxx" ng-model="selectedCardNumber" required>
                                 </div>
                             </div>
 
-                            <div class="form-group" style="position:relative; width: 350px; top:-10px">
-                                <label class="control-label col-sm-2 labelform" for="country" style="width: 150px; position: relative; top: 8px; right: 64px;">Expiry date*:</label>
-                                <div class="col-sm-10 col-lg-offset-0 col-lg-6" style="position:inherit top:-10px position: relative; position: relative; top: 10px; left:-60px; height:40px">
+                            <div class="form-group" >
+                              </br>
+                                <font size="3" color="black" class="col-sm-4 text-left">Expiry date<font color="red" >*</font>:</font>
+                                <div class="col-md-8 col-sm-8 text-left">
                                     <div class="dropdown" selectedMonth="Month">
-                                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"> Month {{selectedMonth}}
+                                        <button class="btn btn-primary dropdown-toggle" style="background:rgba(178,34,34, 1)" type="button" data-toggle="dropdown"> Month {{selectedMonth}}
                                             <span class="caret"></span></button>
                                         <ul class="dropdown-menu">
                                             <select name="MonthC" ng-model="selectedMonth">
@@ -133,7 +137,7 @@
                                         </ul>
                                     </div>
                                     <div class="dropdown" style="top:-34px; left:90px">
-                                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"> Year {{selectedYear}}
+                                        <button class="btn btn-primary dropdown-toggle" style="background:rgba(178,34,34, 1)"type="button" data-toggle="dropdown"> Year {{selectedYear}}
                                             <span class="caret"></span></button>
                                         <ul class="dropdown-menu">
                                             <select name="MonthC" ng-model="selectedYear">
@@ -153,59 +157,71 @@
                                 </div>
                             </div>
 
-                            <div class="form-group" style="position:relative; top:-10px">
-                                <label class="control-label col-sm-2" for="email">Security code*:</label>
-                                <div class="col-sm-10 col-lg-6" style="top:10px">
+                            <div class="form-group">
+                              </br>
+                                <font size="3" color="black" class="col-sm-4 text-left">Security code<font color="red" >*</font>:</font>
+                                <div class="col-md-8 col-sm-8 text-left">
                                     <input type="number" class="form-control" id="CVV" placeholder="CVV" ng-model="selectedCVV" required>
                                 </div>
                             </div>
 
-                            <div class="form-group" style="position:relative; top:-20px">
-                                <label class="control-label col-sm-2" for="email">First name*:</label>
-                                <div class="col-sm-10 col-lg-6" style="top:8px">
+                            <div class="form-group">
+                              </br>
+                            </br>
+                                <font size="3" color="black" class="col-sm-4 text-left">First name<font color="red" >*</font>:</font>
+                                <div class="col-md-8 col-sm-8 text-left">
                                     <input type="text" class="form-control" id="First-name" placeholder="eg.Mostafa" ng-model="selectedFirstName" required>
                                 </div>
                             </div>
 
-                            <div class="form-group" style="position:relative; top:-30px">
-                                <label class="control-label col-sm-2" for="email">Surname*:</label>
-                                <div class="col-sm-10 col-lg-6" style="top:8px">
+                            <div class="form-group">
+                              </br>
+
+                                <font size="3" color="black" class="col-sm-4 text-left">Surname<font color="red" >*</font>:</font>
+                                <div class="col-md-8 col-sm-8 text-left">
                                     <input type="text" class="form-control" id="Surname" placeholder="eg: hassan" ng-model="selectedSecondName" required>
                                 </div>
                             </div>
 
-                            <div class="form-group" style="position:relative; top:-30px">
-                                <label class="control-label col-sm-2" for="email">accompanying passengers:</label>
-                                <div class="col-sm-10 col-lg-6" style="top:8px">
+                            <div class="form-group">
+                              </br>
+                                <font size="3" color="black" class="col-sm-6 text-left">Accompanying Passengers:</font>
+                                <div class="col-md-6 col-sm-6 text-right">
                                     <input type="text" class="form-control" id="passengers" placeholder="Name1 , Name 2 , Name 3 " ng-model="SelectedPassengers">
                                 </div>
                             </div>
 
-                            <div class="form-group" style="position:relative; top:-38px">
-                                <label class="control-label col-sm-2" for="email">Street*:</label>
-                                <div class="col-sm-10 col-lg-6" style="top:8px">
+
+
+                            <div class="form-group">
+                              </br>
+                                <font size="3" color="black" class="col-sm-4 text-left">Street<font color="red" >*</font>:</font>
+                                <div class="col-md-8 col-sm-8 text-left">
                                     <input type="text" class="form-control" id="Street" placeholder="1-221 QUEBEC ST VICTORIA BC" ng-model="selectedStret" required>
                                 </div>
                             </div>
 
-                            <div class="form-group" style="position:relative; top:-38px">
-                                <label class="control-label col-sm-2" for="email">Additional information*:</label>
-                                <div class="col-sm-10 col-lg-6" style="top:8px">
+                            <div class="form-group" >
+                              </br>
+                                <font size="3" color="black" class="col-sm-6 text-left">Additional Information<font color="red" >*</font>:</font>
+                                <div class="col-md-6 col-sm-6 text-left">
                                     <input type="text" class="form-control" id="info" placeholder="extra" ng-model="selectedExtra" required>
                                 </div>
                             </div>
 
 
-                            <div class="form-group" style="position:relative; top:-48px">
-                                <label class="control-label col-sm-2" for="email">Postal code*:</label>
-                                <div class="col-sm-10 col-lg-6" style="top:8px">
+                            <div class="form-group">
+                              </br>
+                                <font size="3" color="black" class="col-sm-4 text-left">Postal code<font color="red" >*</font>:</font>
+                                <div class="col-md-8 col-sm-8 text-left">
                                     <input type="text" class="form-control" id="postal-code" placeholder="V8V 1W2" ng-model="selectedPostalcode" required>
                                 </div>
                             </div>
 
-                            <div class="form-group" style="position:relative; top:-58px">
-                                <label class="control-label col-sm-2" for="email">City*:</label>
-                                <div class="col-sm-10 col-lg-6" style="top:8px">
+                            <div class="form-group">
+                              </br>
+                                <font size="3" color="black" class="col-sm-4 text-left">City<font color="red" >*</font>:</font>
+                                  <div class="col-md-8 col-sm-8 text-left">
                                     <input type="text" class="form-control" id="city" placeholder="QUEBEC" ng-model="SelectedCity" required>
                                 </div>
                             </div>
@@ -231,13 +247,14 @@
 
 
     </div>
+</form>
 
 
 
     <div class="rightDev">
-        <h3 class="FormOfPayment">Your travel plan </h3>
+        <font size="5"class="FormOfPayment">Personal Travel Plan </font>
         <hr>
-        <h3 class="FormOfPayment">Outbound</h3>
+        <font size="5"class="FormOfPayment">Outbound</font>
         <hr>
         <div>
             {{Porigin}} _ {{Pdest}}
@@ -249,7 +266,7 @@
             <br> {{PrDate}}
             <br>
         </div>
-        <h3 class="FormOfPayment">Return</h3>
+        <font size="5"class="FormOfPayment">Return</font>
         <hr>
         <div>
             {{P_round_origin}} _ {{P_round_dest}}
@@ -261,16 +278,16 @@
             <br> {{P_round_rDate}}
             <br>
         </div>
-        <h3 class="FormOfPayment">Passengers</h3>
+        <font size="5"class="FormOfPayment">Passengers</font>
         <hr>
         <div>
-            <h4> {{noOfPassengers}} Passnger(s) <h4>  <br>
+          <font size="4"class="FormOfPayment">{{noOfPassengers}} Passengers(s) </font>  <br>
 </div>
 
 
 </div>
 <div  class="middle">
-<h1 style="position:relative; top:20px;  left:20px; color:#E01619"> Price breakdown</h1>
+<h3 style=" color:#E01619"> Price breakdown</h3>
 </div>
 
 <div class="bottom">
@@ -282,25 +299,31 @@
 </form>
 
 
-<div style="position:relative; padding-left:30px ; top:50px">
-<h4>Total price :</h4>
-            <h1> {{totalPrice}} €
+<div class="col-md-12">
+<h4 class="col-md-4">Total price :</br></h4>
+            <h1 class="col-md-8 text-left"> {{totalPrice}} €</br></h1>
+          </div>
               <a href="http://mynksh.com">
-              <button type="button" class="btn btn-primary btn-lg" style="position:relative; left:280px" ng-disabled="!reviewForm.$valid && !reviewForm.$valid2"
+                <div class="col-md-8 col-sm-8 ">
+              <button type="button" class="btn btn-primary btn-lg" style="background:rgba(178,34,34, 1)" ng-disabled="!reviewForm.$valid && !reviewForm.$valid2"
               ng-click="SetCountry(selectedCountry);SetCardType(selectedType) ; SetCaradNo(selectedCardNumber);SetMonth(selectedMonth);
               SetYear(selectedYear);SetCVV(selectedCVV); SetFirstName(selectedFirstName) ; SetSurname(selectedSecondName) ;
               SetPassengers(SelectedPassengers); SetStret(selectedStret) ; SetInformation(selectedExtra) ; SetPostalcode(selectedPostalcode) ;
               SetCity(SelectedCity); postIntoBooking() ;goToBriefConfirmation()" onclick="" >Pay</button>
             </a>
               <a href="http://mynksh.com">
-                <button type="button" class="btn btn-primary btn-lg" style="position:relative; left:280px" >Cancel</button>
+                <button type="button" class="btn btn-primary btn-lg" style="background:rgba(178,34,34, 1)" >Cancel</button>
               </a>
-            </h1>
+
+          </div>
 
             <p> Total price, includes air fare, taxes (except those charged at certain airports at the time of check-in), handling fees, operator charges and selected options. If you choose to pay for your trip with one of these cards, a surcharge of 1% of
                 the final amount on long-haul flights and 2% on all other flights will apply per booking. This also includes the charge for using a credit card. </p>
-        </div>
+
     </div>
 
 </div>
 </div>
+</div>
+</div>
+</section>
