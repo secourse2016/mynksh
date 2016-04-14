@@ -1,6 +1,3 @@
-/**
- * Flights Controller
- */
 App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $location) {
 
     function outgoingInfo() {
@@ -27,9 +24,9 @@ App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $locati
             $scope.RadioSelected=true;
             return ;
         }
-        else 
+        else
             $scope.RadioSelected=false;
-        
+
         if($scope.outgoingCabin == null){
             $scope.OutgoingPriceSelected=true;
             return ;
@@ -44,12 +41,12 @@ App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $locati
             }
             else
                 $scope.RadioSelected = false;
-            
+
             if($scope.returnCabin == null){
                 $scope.ReturnPriceSelected=true;
                 return ;
             }
-            else 
+            else
                 $scope.ReturnPriceSelected=false;
         }
         $scope.OutgoingPriceSelected=false;
@@ -62,7 +59,7 @@ App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $locati
             OutReturnSrv.setSelectedReturnFlight($scope.selectedReturnFlight);
             OutReturnSrv.setSelectedReturnOperatedBy('iberia');
             OutReturnSrv.setSelectedReturnCabin($scope.returnCabin);
-        }    
+        }
 // if(angular.isUndefined($scope.returnPrice) || $scope.outgoingPrice === null)
         //   OutReturnSrv.setSelectedPrice($scope.returnPrice);
         // else if(angular.isUndefined($scope.returnPrice) || $scope.returnPrice === null)
@@ -70,10 +67,6 @@ App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $locati
         // else
              OutReturnSrv.setSelectedPrice($scope.outgoingPrice + $scope.returnPrice);
              $location.url('/confirm');
-     
-    
-      
-        
 
     };
 
