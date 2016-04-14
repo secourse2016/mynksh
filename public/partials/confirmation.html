@@ -65,101 +65,104 @@
                                 </form>
                             </div>
 
-                            </br>
 
                             <div class="col-md-10 col-md-offset-1 center section-title">
-                              <!-- <div class="col-md-10 col-md-offset-1 center section-title">
-                                  <h3><font color="black">Contact Details</font></h3>
-                              </div>
-                              </br>
-                              </br>
-                              </br>
-                              <div class="mainContainer" style="height:150px; width:500px">
-                                  <div class="form-group">
-                                      <font class="col-sm-4 text-right" size="4" color="black">Phone number: </font>
-                                      <div class="col-md-8 col-sm-8 text-left">
-                                          <input type="text" placeholder="e.g.109013840923" ng-model="typePhoneno"></input>
-                                      </div>
-                                  </div>
-                                  <div class="form-group">
-                                      <font class="col-sm-4 text-right" size="4" color="black">Email: </font>
-                                      <div class="col-md-8 col-sm-8 text-left">
-                                          <input type="string" placeholder="e.g. Hazem.279@gmail.com" ng-model="typedEmail"></input>
-                                      </div>
-                                  </div>
-                              </div>
-                              </br> -->
                             </br>
+                            </br>
+
                                 <h3><font color="black">Passenger Details</font></h3>
                               </div>
                                 <div class="mainContainer col-lg-12" >
                                     <form class="contact-form support-form">
                                     </br>
                                     <div class="form-group">
-                                      <font class="col-sm-8 text-center" size="5" color="black">Contact Details</font>
+                                      <font class="col-sm-8 text-left" size="5" color="black"><b>Contact Details</b></font>
                                     </div>
                                   </br>
                                     <div class="form-group">
-                                        <font class="col-sm-8 text-left" size="4" color="black">Phone number:
-                                          <input type="text" placeholder="e.g.109013840923" ng-model="typePhoneno"></input></font>
+                                        <font class="col-sm-4 text-left" size="4" color="black">Phone number: </font>
+                                        <div class="col-md-8 col-sm-8 text-left">
+                                          <input type="text" placeholder="e.g.109013840923" ng-model="typePhoneno"></input>
+                                        </div>
                                     </div>
                                     <div class="form-group">
-                                        <font class="col-sm-8 text-left" size="4" color="black">Email:
-                                            <input type="string" placeholder="e.g. Hazem.279@gmail.com" ng-model="typedEmail"></input></font>
+                                        <font class="col-sm-4 text-left" size="4" color="black">Email:</font>
+                                        <div class="col-md-8 col-sm-8 text-left">
+                                            <input type="string" placeholder="e.g. Hazem.279@gmail.com" ng-model="typedEmail"></input>
+                                        </div>
                                     </div>
                                     </br>
                                     </br>
                                     <div ng-repeat="n in reservation">
-                                    </br>
-                                    </br>
+                                      <form class="contact-form support-form">
+                                          <div class="col-lg-12">
+                                          </br>
+                                          </br>
                                         <div class="form-group">
-                                          </br>
-                                          </br>
-                                            <font class=" col-sm-8 text-center" size="5" color="black">Passenger {{n.refNo}} </font>
+                                            <font class="col-sm-8 text-left" size="5" color="black"><b>Passenger {{n.refNo}}
+                                            </br>
+                                          </br></b></font>
                                         </div>
                                         </br>
                                         </br>
                                         <div class="form-group">
-                                            <font class=" col-sm-8 text-left" size="4" color="black">First Name:
-                                                <input type="string" placeholder="e.g. Hazem" ng-model="n.FName"></input><font>
+                                            <font class="col-sm-4 text-left" size="4" color="black">First Name:</font>
+                                            <div class="col-md-8 col-sm-8 text-left">
+                                                <input type="string" placeholder="e.g. Hazem" ng-model="n.FName"></input>
+                                              </div>
                                         </div>
                                         <div class="form-group">
-                                            <font class="text-left" size="4" color="black">Last Name:
-                                                <input type="string" placeholder="e.g. Elessawy" ng-model="n.LName"></input></font>
+                                            <font class="col-sm-4 text-left" size="4" color="black">Last Name:</font>
+                                                <div class="col-md-8 col-sm-8 text-left">
+                                                <input type="string" placeholder="e.g. Elessawy" ng-model="n.LName"></input>
+                                              </div>
 
                                         </div>
                                         <div class="form-group">
-                                            <font class=" text-left" size="4" color="black">Passport Number:
-                                                <input type="string" placeholder="" ng-model="n.passportNo" ></input></font>
+                                            <font class="col-sm-4 text-left" size="4" color="black">Passport Number:</font>
+                                                <div class="col-md-8 col-sm-8 text-left">
+                                                <input type="string" placeholder="" ng-model="n.passportNo" ></input>
+                                              </div>
                                         </div>
                                         <div class="form-group">
-                                            <font class="text-left" size="4" color="black">Country of issue:
-                                                <div ng-include="'./assets/countries.html'"/> </font>
+                                            <font class="col-sm-4 text-left" size="4" color="black">Country of issue:</font>
+                                              <div class="col-md-8 col-sm-8 text-left">
+                                                <div ng-include="'./assets/countries.html'"></div>
+                                              </div>
                                         </div>
                                         <div class="form-group">
-                                            <font class="text-left" size="4" color="black">Issue Date:
-                                                <input type="string" placeholder="e.g. 17/4/2016" ng-model="n.issueDate"></input></font>
+                                            <font class="col-sm-4 text-left" size="4" color="black">Issue Date:</font>
+                                              <div class="col-md-8 col-sm-8 text-left">
+                                                <input type="string" placeholder="e.g. 17/4/2016" ng-model="n.issueDate"></input>
+                                              </div>
                                         </div>
                                         <div class="form-group">
-                                            <font class="text-left" size="4" color="black">Expiry Date:
-                                                <input type="string" placeholder="e.g. 17/4/2020" ng-model="n.expiryDate"></input></font>
+                                            <font class="col-sm-4 text-left" size="4" color="black">Expiry Date:</font>
+                                              <div class="col-md-8 col-sm-8 text-left">
+                                                <input type="string" placeholder="e.g. 17/4/2020" ng-model="n.expiryDate"></input>
+                                              </div>
+
                                         </div>
+                                      </div>
+                                    </form>
                                     </div>
+
                                 </div>
+
                               </form>
                             </div>
-                            <!-- <button type="button" class="btn btn-primary btn-lg" style="position:relative; left:280px" ng-click='incCounter()'>Test</button> -->
-                            <br>
-                            </h2>
+
+
                         </div>
-                        </blockquote>
-                        <br>
+
                         <div class="tickets row">
                             <!-- {{number}} -->
                         </div>
 
 
                         <div>
+                        </br>
+                        </br>
                             <button type="button" class="btn btn-primary btn-lg" style="position:right" ng-click="goToPayment()">
                                 <b>Continue to payment</b> </button>
                         </div>
