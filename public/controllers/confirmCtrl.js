@@ -4,7 +4,7 @@ App.controller('confirmCtrl', function($scope, FlightsSrv, OutReturnSrv, Confirm
     $scope.roundTrip = FlightsSrv.getSelectedRoundTrip();
     if($scope.roundTrip === 'true')
         $scope.selectedReturnFlight = OutReturnSrv.getSelectedReturnFlight();
-    
+
     $scope.tickets = FlightsSrv.getSelectedNumberOfTickets();
     $scope.price = OutReturnSrv.getSelectedPrice();
 
@@ -32,9 +32,64 @@ App.controller('confirmCtrl', function($scope, FlightsSrv, OutReturnSrv, Confirm
     };
 
     $scope.goToPayment = function() {
-        setTicketEmail($scope.typedEmail);
-        setTicketPhoneNo($scope.typedPhoneNo);
-        setTicketReservation($scope.reservation);
+
+        if($scope.typedPhoneno==null){
+            $scope.PhoneNoShow=true;
+            return ;
+        }
+        else
+            $scope.PhoneNoShow=false;
+
+        $scope.setTicketPhoneNo($scope.typedPhoneno);
+
+        if($scope.typedEmail==null){
+            $scope.EmailShow=true;
+            return ;
+        }
+        else
+            $scope.EmailShow=false;
+
+        $scope.setTicketEmail($scope.typedEmail);
+
+        for (var x = 1; x <= FlightsSrv.getSelectedNumberOfTickets(); x++) {
+        if($scope.reservation[x-1].FName==null){
+            $scope.FNameShow=true;
+            return ;
+        }
+        else
+            $scope.FNameShow=false;
+
+        if($scope.reservation[x-1].LName==null){
+            $scope.LNameShow=true;
+            return ;
+        }
+        else
+            $scope.LNameShow=false;
+
+        if($scope.reservation[x-1].issueDate==null){
+            $scope.IssueDateShow=true;
+            return ;
+        }
+        else
+            $scope.IssueDateShow=false;
+
+         if($scope.reservation[x-1].expiryDate==null){
+            $scope.ExpiryDateShow=true;
+            return ;
+        }
+        else
+            $scope.ExpiryDateShow=false;
+
+            if($scope.reservation[x-1].passportNo==null){
+            $scope.PassportNumberShow=true;
+            return ;
+        }
+        else
+            $scope.PassportNumberShow=false;
+
+
+     }
+        $scope.setTicketReservation($scope.reservation);
         $location.url('/payment');
     };
 });
