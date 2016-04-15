@@ -5,8 +5,7 @@ App.controller('confirmCtrl', function($scope, FlightsSrv, OutReturnSrv, Confirm
     if($scope.roundTrip === 'true')
         $scope.selectedReturnFlight = OutReturnSrv.getSelectedReturnFlight();
 
-    // $scope.tickets = FlightsSrv.getSelectedNumberOfTickets();
-    $scope.tickets =2;
+    $scope.tickets = FlightsSrv.getSelectedNumberOfTickets();
     $scope.price = OutReturnSrv.getSelectedPrice();
 
     $scope.format='dd/MM/yyyy'
