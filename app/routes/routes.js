@@ -24,4 +24,11 @@ module.exports = function(app, mongo) {
     app.get('/api/returnInfo', function(req, res) {
         res.json(require('../../modules/returnInfo.json'));
     });
+    /* SEED DB */
+    app.get('/db/seed', function(req, res) {
+    });      
+
+    /* DELETE DB */
+    app.get('/db/delete', function(req, res) {
+    });      
 };
