@@ -4,7 +4,7 @@ var debug = require('debug')('m:server');
 var http = require('http');
 var db = require('./config/db.js');
 
-<<<<<<< HEAD
+
 //var flights=require('./modules/flights.json');
 
 
@@ -12,8 +12,7 @@ var db = require('./config/db.js');
 /**
  * Get port from environment and store in Express.
  */
-=======
->>>>>>> 8175327daf38ff69e127a4e69603be83e8e0f0ba
+
 
 var port = normalizePort(process.env.PORT || '3000');
 
