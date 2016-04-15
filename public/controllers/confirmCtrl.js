@@ -5,8 +5,11 @@ App.controller('confirmCtrl', function($scope, FlightsSrv, OutReturnSrv, Confirm
     if($scope.roundTrip === 'true')
         $scope.selectedReturnFlight = OutReturnSrv.getSelectedReturnFlight();
 
-    $scope.tickets = FlightsSrv.getSelectedNumberOfTickets();
+    // $scope.tickets = FlightsSrv.getSelectedNumberOfTickets();
+    $scope.tickets =2;
     $scope.price = OutReturnSrv.getSelectedPrice();
+
+    $scope.format='dd/MM/yyyy'
 
     var setTicketEmail = function(value) {
         ConfirmSrv.setEmail(value);
@@ -25,7 +28,7 @@ App.controller('confirmCtrl', function($scope, FlightsSrv, OutReturnSrv, Confirm
 
     $scope.reservation = [];
 
-    for (var bookingRef = 1; bookingRef <= FlightsSrv.getSelectedNumberOfTickets(); bookingRef++) {
+    for (var bookingRef = 1; bookingRef <= $scope.tickets; bookingRef++) {
         var ticket = {};
         ticket.refNo = bookingRef;
         $scope.reservation.push(ticket);
