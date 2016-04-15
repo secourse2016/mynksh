@@ -49,24 +49,20 @@ App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $locati
             else
                 $scope.ReturnPriceSelected=false;
         }
-        $scope.OutgoingPriceSelected=false;
-        $scope.RadioSelected=false;
-        $scope.ReturnPriceSelected=false;
+
         OutReturnSrv.setSelectedOutFlight($scope.selectedOutgoingFlight);
         OutReturnSrv.setSelectedOutOperatedBy('iberia');
         OutReturnSrv.setSelectedOutCabin($scope.outgoingCabin);
-        if ($scope.roundTrip === 'true') {
+        if ($scope.roundTrip == 'true') {
             OutReturnSrv.setSelectedReturnFlight($scope.selectedReturnFlight);
             OutReturnSrv.setSelectedReturnOperatedBy('iberia');
             OutReturnSrv.setSelectedReturnCabin($scope.returnCabin);
+            OutReturnSrv.setSelectedPrice(($scope.outgoingPrice + $scope.returnPrice)*$scope.tickets);
         }
-// if(angular.isUndefined($scope.returnPrice) || $scope.outgoingPrice === null)
-        //   OutReturnSrv.setSelectedPrice($scope.returnPrice);
-        // else if(angular.isUndefined($scope.returnPrice) || $scope.returnPrice === null)
-        //   OutReturnSrv.setSelectedPrice($scope.outgoingPrice);
-        // else
-             OutReturnSrv.setSelectedPrice($scope.outgoingPrice + $scope.returnPrice);
-             $location.url('/confirm');
+        else
+            OutReturnSrv.setSelectedPrice($scope.outgoingPrice*$scope.tickets);
+
+        $location.url('/confirm');
 
     };
 
@@ -76,6 +72,9 @@ App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $locati
     $scope.dest = FlightsSrv.getSelectedDestinationAirport();
     $scope.oDate = FlightsSrv.getSelectedOutDate();
     $scope.rDate = FlightsSrv.getSelectedReturnDate();
+    $scope.tickets = FlightsSrv.getSelectedNumberOfTickets();
+    $scope.outgoingPrice = 0;
+    $scope.returnPrice = 0;
 
     outgoingInfo();
     returnInfo();
