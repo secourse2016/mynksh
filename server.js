@@ -1,31 +1,37 @@
 
-var app = require('./app/app');
+var app = require('./app/app.js');
 var debug = require('debug')('m:server');
 var http = require('http');
-var db = require('./config/db.js');
+//var flights=require('./modules/flights.json');
+
+
+
+/**
+ * Get port from environment and store in Express.
+ */
 
 
 var port = normalizePort(process.env.PORT || '3000');
 
 app.set('port', port);
 
-/**
- * Create HTTP server.
- */
+// /**
+//  * Create HTTP server.
+//  */
 
 var server = http.createServer(app);
 
-/**
- * Listen on provided port, on all network interfaces.
- */
+// /**
+//  * Listen on provided port, on all network interfaces.
+//  */
 
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
 
-/**
- * Normalize a port into a number, string, or false.
- */
+// /**
+//  * Normalize a port into a number, string, or false.
+//  */
 
 function normalizePort(val) {
   var port = parseInt(val, 10);
@@ -41,11 +47,11 @@ function normalizePort(val) {
   }
 
   return false;
-}
+};
 
-/**
- * Event listener for HTTP server "error" event.
- */
+// /**
+//  * Event listener for HTTP server "error" event.
+//  */
 
 function onError(error) {
   if (error.syscall !== 'listen') {
@@ -69,11 +75,13 @@ function onError(error) {
     default:
       throw error;
   }
-}
+};
 
-/**
- * Event listener for HTTP server "listening" event.
- */
+// /**
+//  * Event listener for HTTP server "listening" event.
+//  */
+
+//seeding database
 
 function onListening() {
   var addr = server.address();
@@ -81,8 +89,5 @@ function onListening() {
     ? 'pipe ' + addr
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
-}
 
-//seeding database
-db.seed(function(err,seeded){});
-
+};
