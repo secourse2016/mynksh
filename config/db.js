@@ -23,6 +23,7 @@ var flights = require('../modules/flights.json');
     var connect = exports.connect = function(cb) {
         mongo.connect(dbURL, function(err, db) {
             DB = db;
+            console.log("connected to db successfully!");
             cb(err, db);
         });
     };
