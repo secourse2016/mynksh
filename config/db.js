@@ -13,10 +13,11 @@ exports.close = function() {
     DB.close();
 };
 
-exports.seed = function(collectionName,post) {
+exports.seed = function(collectionName,post,cb) {
           db().collection(collectionName).insert(post, {w:1},function(err, result) {
               // assert.equal(null, err);
               console.log("Seeding done for collection : " + collectionName);
+              cb();
           });
 };
 
