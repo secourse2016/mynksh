@@ -30,7 +30,7 @@ var assert=require('assert');
     };
 
     var clearDB = function(done) {
-        DB.listCollections().toArray().then(function (collections) {
+    DB.listCollections().toArray().then(function (collections) {
         collections.forEach(function (c) {
             DB.collection(c.name).removeMany();   
         });
@@ -38,24 +38,23 @@ var assert=require('assert');
     }).catch(done);
     };
 
-    var seed = function(cb) {
-        DB.clearDB(function(err)
-        {
-            assert.equal(null, err);
-            DB.db().collection('flights').insert(flights, function(err, seeded) {
-                if(err)
-                {
-                    cb(err,false);
+   exports.seed = function(cb) { 
+    connect(function(err,DB){  
+        var collection = DB.collection('flights');
+        collection.count({}, function(err, docs) {
+            if (docs > 0){
+                cb(err,false);
                 }
-                else
-                    cb(err,true);
-                
+            else{
+                collection.insert(flights,{w:1}, function(err, result) {});
+                cb(err,true);
+                }
             });
+            });
+        };
 
-    });
-    };
 exports.connect= connect;
 exports.db= db;
 exports.close= close;
 exports.clearDB= clearDB;
-exports.seed= seed;
+//exports.seed= seed;

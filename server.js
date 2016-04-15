@@ -2,9 +2,7 @@
 var app = require('./app/app.js');
 var debug = require('debug')('m:server');
 var http = require('http');
-var db = require('./config/db.js');
-
-
+var DB = require('./config/db.js');
 //var flights=require('./modules/flights.json');
 
 
@@ -94,16 +92,17 @@ function onListening() {
   debug('Listening on ' + bind);
 
 };
-console.log('before seed');
-db.connect(function(err,db) {
-    console.log('connected to db');
-    db.seed(function() 
-    {
 
-    });
+DB.connect(function(err,db) {
+    console.log('connected to db');
+    DB.seed(function() 
+    {
+      console.log('seeded db');
+        
     });
 });
-}
+
+
 
 
 
