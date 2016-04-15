@@ -1,23 +1,10 @@
-// db.connect(function(err) {
-// 	console.log('connected to db');
-// 	db.seed(null,function() {
-// 		console.log('seeded db');
-// 		app.listen(3000, function() {
-// 			console.log('app listening on port 3000!');
-// 		})
-// 	})
-// })
-// #!/usr/bin/env node
-
-/**
- * Module dependencies.
- */
 
 var app = require('./app/app.js');
 var debug = require('debug')('m:server');
 var http = require('http');
 var db = require('./config/db.js');
 
+<<<<<<< HEAD
 //var flights=require('./modules/flights.json');
 
 
@@ -25,6 +12,8 @@ var db = require('./config/db.js');
 /**
  * Get port from environment and store in Express.
  */
+=======
+>>>>>>> 8175327daf38ff69e127a4e69603be83e8e0f0ba
 
 var port = normalizePort(process.env.PORT || '3000');
 
@@ -96,12 +85,15 @@ function onError(error) {
 //  * Event listener for HTTP server "listening" event.
 //  */
 
+//seeding database
+
 function onListening() {
   var addr = server.address();
   var bind = typeof addr === 'string'
     ? 'pipe ' + addr
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
+
 };
 console.log('before seed');
 db.connect(function(err,db) {
@@ -112,3 +104,7 @@ db.connect(function(err,db) {
     });
     });
 });
+}
+
+
+
