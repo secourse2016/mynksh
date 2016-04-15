@@ -1,9 +1,7 @@
 var mongo = require('mongodb').MongoClient;
 var DB = null;
 var dbURL = 'mongodb://localhost:27017/mynksh';
-var flights = require('../modules/flights.json');
-var assert = require('assert');
-
+var assert=require('assert');
 //will remove every thing in the database then  seed post to the database
 
 var db = exports.db = function() {
@@ -15,11 +13,12 @@ exports.close = function() {
     DB.close();
 };
 
-exports.seed = function(post,cb) {
-      DB.clearDB(function(err) {
+exports.seed = function(collectionName,post,cb) {
+      clearDB(function(err) {
           assert.equal(null, err);
-          DB.db().collection('flights').insert(post, function(err, result) {
+          db().collection(collectionName).insert(post, {w:1},function(err, result) {
               assert.equal(null, err);
+              console.log("Seeding done for collection : " + collectionName);
               cb(err);
           });
       });
