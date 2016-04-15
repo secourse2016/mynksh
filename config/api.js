@@ -1,5 +1,7 @@
 var mongo = require('./db.js');
 var flights = require('../modules/flights.json');
+var airports = require('../modules/airports.json');
+var bookings = require('../modules/bookings.json');
 var assert = require('assert');
 
 var seedDB = exports.seedDB = function(cb) {
@@ -8,8 +10,12 @@ var seedDB = exports.seedDB = function(cb) {
     mongo.connect(function(err, mdb) {
         mongo.clearDB(function(err) {
             assert.equal(null, err);
-            mongo.seed("flights", flights);
-            mongo.close();
+            mongo.seed('flights', flights,function(){
+
+              mongo.close();
+            });
+            // mongo.seed("airports", flights);
+            // mongo.seed("bookings", flights);
             // }
             // cb(err,true);
         });
