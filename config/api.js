@@ -10,13 +10,15 @@ var seedDB = exports.seedDB = function(cb) {
     mongo.connect(function(err, mdb) {
         mongo.clearDB(function(err) {
             assert.equal(null, err);
-            mongo.seed('flights', flights,function(){
-
-              mongo.close();
+            mongo.seed('flights', flights, function() {
+                mongo.seed('airports', airports, function() {
+                    mongo.seed('bookings', bookings, function() {
+                        mongo.close();
+                    });
+                });
             });
             // mongo.seed("airports", flights);
             // mongo.seed("bookings", flights);
-            // }
             // cb(err,true);
         });
 
