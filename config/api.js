@@ -8,7 +8,8 @@ var seedDB = exports.seedDB = function(cb) {
     mongo.connect(function(err, mdb) {
         mongo.clearDB(function(err) {
             assert.equal(null, err);
-            mongo.seed("flights", flights, function(error) {});
+            mongo.seed("flights", flights);
+            mongo.close();
             // }
             // cb(err,true);
         });
