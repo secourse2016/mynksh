@@ -13,15 +13,11 @@ exports.close = function() {
     DB.close();
 };
 
-exports.seed = function(collectionName,post,cb) {
-      clearDB(function(err) {
-          assert.equal(null, err);
+exports.seed = function(collectionName,post) {
           db().collection(collectionName).insert(post, {w:1},function(err, result) {
-              assert.equal(null, err);
+              // assert.equal(null, err);
               console.log("Seeding done for collection : " + collectionName);
-              cb(err);
           });
-      });
   };
 
 var connect = exports.connect = function(cb) {
