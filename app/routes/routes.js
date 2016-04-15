@@ -27,11 +27,11 @@ module.exports = function(app, mongo) {
 //         collection.find({"origin": req.params.origin,"destination": req.params.destination,
 //             "departureTime": req.params.departingDate, "arrivalTime":req.params.returningDate
 //             ,"SeatMap.Cabin":req.params.cabin}).toArray(function(err, flights) {
-        
+
 //         res.json(flights);
-//            });    
+//            });
 //       });
-// });  
+// });
 
    app.get('/api/flights/search/:origin/:departingDate/:cabin', function(req, res) {
         var cost = 0;
@@ -46,15 +46,15 @@ module.exports = function(app, mongo) {
             {
                 cost=flights[0].bCost;
             }
-        if ((eOrB == "economy" && flights[0].availableESeats > 0)  || (eOrB == "business" && flights[0].availableBSeats >0)) {  
-        outgoingFlights = 
+        if ((eOrB == "economy" && flights[0].availableESeats > 0)  || (eOrB == "business" && flights[0].availableBSeats >0)) {
+        outgoingFlights =
         {
           "flightNumber"      :   flights[0].flightNumber,
           "aircraftType"      :   flights[0].aircraftType,
           "aircraftModel"     :   flights[0].aircraftModel,
           "departureDateTime" :   flights[0].departureTime,
           "arrivalDateTime"   :   flights[0].arrivalTime,
-          "cost"              :   cost,  
+          "cost"              :   cost,
           "currency"          :   "EUR",
           "origin"            :   req.params.origin,
           "destination"       :   flights[0].destination,
@@ -64,11 +64,21 @@ module.exports = function(app, mongo) {
     }
         else
            outgoingFlights = {};
-        
+
        res.send(JSON.stringify({outgoingFlights}, null, 3));
-           });    
+           });
       });
-    }); 
+    });
 
 
+    app.get('/api/returnInfo', function(req, res) {
+        res.json(require('../../modules/returnInfo.json'));
+    });
+    /* SEED DB */
+    app.get('/db/seed', function(req, res) {
+    });
+
+    /* DELETE DB */
+    app.get('/db/delete', function(req, res) {
+    });
 };
