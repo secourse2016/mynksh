@@ -18,17 +18,18 @@ exports.seed = function(collectionName,post) {
               // assert.equal(null, err);
               console.log("Seeding done for collection : " + collectionName);
           });
-  };
+};
 
-var connect = exports.connect = function(cb) {
+exports.connect = function(cb) {
     mongo.connect(dbURL, function(err, db) {
+      if (err) console.log("[error] mongo connection: ", err);
         DB = db;
         console.log("connected to db successfully!");
         cb(err, db);
     });
 };
 
-var clearDB = exports.clearDB = function(done) {
+exports.clearDB = function(done) {
     DB.listCollections().toArray().then(function(collections) {
         collections.forEach(function(c) {
             DB.collection(c.name).removeMany();
