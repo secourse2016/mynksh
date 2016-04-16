@@ -2,7 +2,7 @@ App.controller('confirmCtrl', function($scope, FlightsSrv, OutReturnSrv, Confirm
 
     $scope.selectedOutgoingFlight = OutReturnSrv.getSelectedOutFlight();
     $scope.roundTrip = FlightsSrv.getSelectedRoundTrip();
-    if($scope.roundTrip === 'true')
+    if ($scope.roundTrip === 'true')
         $scope.selectedReturnFlight = OutReturnSrv.getSelectedReturnFlight();
 
     $scope.tickets = FlightsSrv.getSelectedNumberOfTickets();
@@ -10,7 +10,7 @@ App.controller('confirmCtrl', function($scope, FlightsSrv, OutReturnSrv, Confirm
     $scope.price = OutReturnSrv.getSelectedPrice();
     $scope.currentDate = new Date();
 
-    $scope.format='d/M/yyyy'
+    $scope.format = 'd/M/yyyy'
 
     var setTicketEmail = function(value) {
         ConfirmSrv.setEmail(value);
