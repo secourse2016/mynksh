@@ -9,7 +9,9 @@ module.exports = function(app, mongo) {
 
     /* GET ALL STATES ENDPOINT */
     app.get('/api/data/airports', function(req, res) {
-        res.json(require('../../modules/airports.json'));
+        mongo.getAirports(function(err,airports){
+          res.json(airports);
+        })
     });
 
     app.post('/api/data/bookings', function(req, res) {
