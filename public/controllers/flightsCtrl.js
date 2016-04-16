@@ -1,16 +1,32 @@
 App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $location) {
 
-    function outgoingInfo() {
-        OutReturnSrv.getOutgoingInfo().success(function(outgoingInfo) {
-            $scope.outgoingInfo = outgoingInfo;
+  $scope.roundTrip = FlightsSrv.getSelectedRoundTrip();
+  $scope.origin = FlightsSrv.getSelectedOriginAirport();
+  $scope.dest = FlightsSrv.getSelectedDestinationAirport();
+  $scope.oDate = FlightsSrv.getSelectedOutDate();
+  $scope.rDate = FlightsSrv.getSelectedReturnDate();
+  $scope.tickets = FlightsSrv.getSelectedNumberOfTickets();
+  $scope.outgoingPrice = 0;
+  $scope.returnPrice = 0;
+
+    function roundTripInfo(origin,dest,oDate,rDate) {
+        OutReturnSrv.getRoundTripInfo(origin,dest,oDate,rDate).success(function(flights) {
+            $scope.outgoingInfo = flights.outgoingFlight;
+            $scope.returnInfo = flights.returnFlight;
         });
     };
 
-    function returnInfo() {
-        OutReturnSrv.getReturnInfo().success(function(returnInfo) {
-            $scope.returnInfo = returnInfo;
+    function oneWayTripInfo(origin,dest,oDate) {
+        OutReturnSrv.getOneWayTripInfo(origin,dest,oDate).success(function(flights) {
+            $scope.outgoingInfo = flights.outgoingFlight;
         });
     };
+
+    if($scope.roundTrip === true)
+      roundTripInfo($scope.origin,$scope.dest,$scope.oDate,$scope.rDate);
+    else
+      oneWayTripInfo($scope.origin,$scope.dest,$scope.oDate);
+
     $scope.stringToDate = function(date) {
         return new Date(date);
     };
@@ -62,17 +78,6 @@ App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $locati
     };
 
     $scope.angular = angular;
-    $scope.roundTrip = FlightsSrv.getSelectedRoundTrip();
-    $scope.origin = FlightsSrv.getSelectedOriginAirport();
-    $scope.dest = FlightsSrv.getSelectedDestinationAirport();
-    $scope.oDate = FlightsSrv.getSelectedOutDate();
-    $scope.rDate = FlightsSrv.getSelectedReturnDate();
-    $scope.tickets = FlightsSrv.getSelectedNumberOfTickets();
-    $scope.outgoingPrice = 0;
-    $scope.returnPrice = 0;
-
-    outgoingInfo();
-    returnInfo();
 
     //calculating the price
 
