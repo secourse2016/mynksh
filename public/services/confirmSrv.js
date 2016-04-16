@@ -10,10 +10,10 @@ App.factory('ConfirmSrv', function($http) {
             return this.reservation;
         },
         setEmail: function(value) {
-            this.email = value;
+            this.Email = value;
         },
         getEmail: function() {
-            return this.email;
+            return this.Email;
         },
         setPhoneNo: function(value) {
             this.phoneNo = value;

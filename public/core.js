@@ -31,5 +31,13 @@ App.config(function($routeProvider) {
         templateUrl: '/partials/confirmation.html',
         controller: 'confirmCtrl',
         controllerAs: 'sotre'
+    })
+
+    // // route for the congrats page
+
+    .when('/congrats', {
+        templateUrl: '/partials/congrats.html'
     });
+
+
 });
