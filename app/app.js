@@ -33,7 +33,7 @@ app.use(express.static(path.join(__dirname, '../public')));
 //       next();
 // });
 
-require('./routes/routes')(app,api);
+require('./routes/routes')(app, api);
 // app.use('/', routes);
 // app.use('/users', users);
 
