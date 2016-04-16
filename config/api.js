@@ -44,33 +44,39 @@ exports.searchFlights = function(origin, destination, departingDate, cabin, cb) 
             "destination": destination,
             "departureTime": departingDate
 
-           // "arrivalTime": departingDate
         }).toArray(function(err, flights) {
-            if (flights.length == 0)
-                return;
+            if (flights[0] == undefined){
+                cb(err,{});
+            }
+            else{
             if (economyOrBusiness == "economy") {
                 cost = flights[0].eCost;
             } else {
                 cost = flights[0].bCost;
             }
+
             if ((economyOrBusiness == "economy" && flights[0].availableESeats > 0) || (economyOrBusiness == "business" && flights[0].availableBSeats > 0)) {
+                var departureDate =flights[0].departureTime; 
+         		var ArrivalDate   =flights[0].arrivalTime; 
                 rflights = {
-                    "flightNumber": flights[0].flightNumber,
-                    "aircraftType": flights[0].aircraftType,
-                    "aircraftModel": flights[0].aircraftModel,
-                    "departureDateTime": flights[0].departureTime,
-                    "arrivalDateTime": flights[0].arrivalTime,
-                    "cost": cost,
-                    "currency": "EUR",
-                    "origin": origin,
-                    "destination": flights[0].destination,
-                    "class": economyOrBusiness,
-                    "Airline": "IBERIA"
+                    "flightNumber"     : flights[0].flightNumber,
+                    "aircraftType"     : flights[0].aircraftType,
+                    "aircraftModel"    : flights[0].aircraftModel,
+                    "departureDateTime": moment(departureDate, 'MMMM d, y h:mm:ss').toDate().getTime(),
+                    "arrivalDateTime"  : moment(ArrivalDate, 'MMMM d, y h:mm:ss').toDate().getTime(),
+                    "cost"             : cost,
+                    "currency"		   : "EUR",
+                    "origin"		   : origin,
+                    "destination"      : flights[0].destination,
+                    "class"            : economyOrBusiness,
+                    "Airline"          : "IBERIA"
                 };
             } else
                 rflights = {};
+                cb(err, rflights);
+            }
             mongo.close();
-            cb(err, rflights);
+            
         });
     });
 }
