@@ -7,6 +7,8 @@ var cons = require('consolidate');
 var api = require('../config/api.js')
 var app = express();
 
+// Export environment vars first thing
+require('dotenv').load();
 // view engine setup
 app.engine('html', cons.swig)
 app.set('views', path.join(__dirname, '../public'));
@@ -21,17 +23,17 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(express.static(path.join(__dirname, '../public')));
 
-app.use('/db',function(req,res,next){
-      req.db = api;
-      next();
-});
+// app.use('/db',function(req,res,next){
+//       req.db = api;
+//       next();
+// });
+//
+// app.use('/api',function(req,res,next){
+//       req.db = api;
+//       next();
+// });
 
-app.use('/api',function(req,res,next){
-      req.db = api;
-      next();
-});
-
-require('./routes/routes')(app);
+require('./routes/routes')(app,api);
 // app.use('/', routes);
 // app.use('/users', users);
 
