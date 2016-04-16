@@ -3,8 +3,8 @@ var path = require('path');
 // var favicon = require('serve-favicon');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
-var db = require('../config/db.js');
 var cons = require('consolidate');
+var api = require('../config/api.js')
 var app = express();
 
 // view engine setup
@@ -21,6 +21,15 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(express.static(path.join(__dirname, '../public')));
 
+app.use('/db',function(req,res,next){
+      req.db = api;
+      next();
+});
+
+app.use('/api',function(req,res,next){
+      req.db = api;
+      next();
+});
 
 require('./routes/routes')(app);
 // app.use('/', routes);

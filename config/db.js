@@ -1,7 +1,7 @@
 var mongo = require('mongodb').MongoClient;
 var DB = null;
 var dbURL = 'mongodb://localhost:27017/mynksh';
-var assert=require('assert');
+var assert= require('assert');
 //will remove every thing in the database then  seed post to the database
 
 var db = exports.db = function() {
