@@ -10,7 +10,13 @@ App.controller('landingCtrl', function($scope, FlightsSrv, $location) {
     //    //to do
     //    console.log(val)
     // });
-    $scope.roundTrip = "true";
+    // $scope.roundTrip = "true";
+
+    $scope.roundTrip="roundtrip";
+    $scope.isShown = function(roundTrip) {
+        return roundTrip === $scope.roundTrip;
+    };
+
     $scope.open1 = function() {
         $scope.popup1.opened = true;
     };
@@ -114,7 +120,7 @@ App.controller('landingCtrl', function($scope, FlightsSrv, $location) {
     startingDay: 1
   };
 
-  
+
 
   var tomorrow = new Date();
   tomorrow.setDate(tomorrow.getDate() + 1);
@@ -147,4 +153,6 @@ App.controller('landingCtrl', function($scope, FlightsSrv, $location) {
 
     return '';
   };
+
+
 });
