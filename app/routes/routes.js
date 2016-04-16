@@ -76,6 +76,7 @@ module.exports = function(app, mongo) {
     });
     /* SEED DB */
     app.get('/db/seed', function(req, res) {
+      req.db.seedDB();
     });
 
     /* DELETE DB */
