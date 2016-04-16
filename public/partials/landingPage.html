@@ -19,6 +19,7 @@
             $("#typed").typed('reset');
         });
     });
+
 </script>
 
 <!--==== Essential files ====-->
@@ -34,7 +35,7 @@
 
 <!--==== Custom Script files ====-->
 <script type="text/javascript" src="js/custom.js"></script>
-
+<!-- <script type="text/javascript" src="js/landingPage.js"></script> -->
 
 <!-- <script type="text/javascript" src="js/jquery.nicescroll.min.js"></script> -->
 <!-- <script type="text/javascript" src="js/jquery.combinedScroll.js"></script> -->
@@ -167,30 +168,36 @@
                                 </div>
                             </div>
                             </br>
+
+
                             <div class="form-group">
                                 <font class="col-sm-2 col-xs-4 text-right" size="4" color="white"> Outgoing: </font>
                                 <div class="col-md-8 col-sm-8 col-xs-4">
-                                    <p class="input-group">
-                                        <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="$parent.dto" is-open="popup1.opened" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
-                                        <span class="input-group-btn">
+                                    <div class="input-group ">
+                                        <input type="text" class="form-control"  min-date= "minDate" uib-datepicker-popup="{{format}}" ng-model="$parent.dto" is-open="popup1.opened" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+                                        <span class="input-group-btn ">
                                           <button type="button"
                                             class="btn btn-default"
                                             ng-click="open1()">
                                           <i class="glyphicon glyphicon-calendar"></i>
                                           </button>
                                         </span>
-                                    </p>
+                                    </div>
                                 </div>
+
                             </div>
+
+
                             </br>
+
                             <div class="form-group">
                                 <font class="col-sm-2 col-xs-4 text-right" size="4" color="white"> Returning: </font>
                                 <div class="col-md-8 col-sm-8 col-xs-4">
                                     <p class="input-group">
-                                        <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="$parent.dtr" is-open="popup2.opened" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+                                        <input type="text" class="form-control " min-date= "minDate" uib-datepicker-popup="{{format}}" ng-model="$parent.dtr" is-open="popup2.opened" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
                                         <span class="input-group-btn">
                                           <button type="button"
-                                          class="btn btn-default"
+                                          class="btn btn-default "
                                           ng-click="open2()">
                                           <i class="glyphicon glyphicon-calendar"></i>
                                         </button>
@@ -613,4 +620,6 @@
 	</div> -->
 
 </div>
+
+
 <!--=== Footer section Ends ===-->
