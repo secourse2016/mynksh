@@ -28,6 +28,7 @@
         "istanbul": "~0.4.2",
         "nodemon": "~1.9.1",
         "jsonwebtoken": "5.4.0",
-        "dotenv": "1.2.0"
+        "dotenv": "1.2.0",
+        "moment": "~2.12.0"
     }
 }
