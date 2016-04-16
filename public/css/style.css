@@ -262,7 +262,7 @@ font-weight: 700;
 	height: 80px;
 	z-index: 1025;
 	transition: all .3s ease-in;
-	background: rgba(178,34,34, 1);
+	background: rgba(128,0,0, 1);
 }
 
 .nav-bg {
