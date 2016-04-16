@@ -58,7 +58,7 @@ exports.searchFlights = function(origin, destination, departingDate, cabin, cb) 
             if ((economyOrBusiness == "economy" && flights[0].availableESeats > 0) || (economyOrBusiness == "business" && flights[0].availableBSeats > 0)) {
                 var departureDate =flights[0].departureTime; 
          		var ArrivalDate   =flights[0].arrivalTime; 
-                rflights = {
+                rflights = [{
                     "flightNumber"     : flights[0].flightNumber,
                     "aircraftType"     : flights[0].aircraftType,
                     "aircraftModel"    : flights[0].aircraftModel,
@@ -70,7 +70,7 @@ exports.searchFlights = function(origin, destination, departingDate, cabin, cb) 
                     "destination"      : flights[0].destination,
                     "class"            : economyOrBusiness,
                     "Airline"          : "IBERIA"
-                };
+                }];
             } else
                 rflights = {};
                 cb(err, rflights);
