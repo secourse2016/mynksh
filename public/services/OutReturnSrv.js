@@ -1,10 +1,10 @@
 App.factory('OutReturnSrv', function($http) {
     return {
-        getOutgoingInfo: function() {
-            return $http.get('/api/outgoingInfo');
+        getRoundTripInfo: function(origin, dest, oDate, rDate) {
+            return $http.get('/api/flights/search/' + origin + '/' + dest + '/' + oDate + '/' + rDate + '/economy');
         },
-        getReturnInfo: function() {
-            return $http.get('/api/returnInfo');
+        getOneWayTripInfo: function(origin, dest, oDate) {
+            return $http.get('/api/flights/search/' + origin + '/' + dest + '/' + oDate + '/economy');
         },
         setSelectedOutFlight: function(value) {
             this.selectedOutFlight = value;

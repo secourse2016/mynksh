@@ -2,21 +2,25 @@ App.controller('confirmCtrl', function($scope, FlightsSrv, OutReturnSrv, Confirm
 
     $scope.selectedOutgoingFlight = OutReturnSrv.getSelectedOutFlight();
     $scope.roundTrip = FlightsSrv.getSelectedRoundTrip();
-    if($scope.roundTrip === 'true')
+    if ($scope.roundTrip === 'true')
         $scope.selectedReturnFlight = OutReturnSrv.getSelectedReturnFlight();
-    
-    $scope.tickets = FlightsSrv.getSelectedNumberOfTickets();
-    $scope.price = OutReturnSrv.getSelectedPrice();
 
-    $scope.setTicketEmail = function(value) {
+    $scope.tickets = FlightsSrv.getSelectedNumberOfTickets();
+    // $scope.tickets= 2;
+    $scope.price = OutReturnSrv.getSelectedPrice();
+    $scope.currentDate = new Date();
+
+    $scope.format = 'd/M/yyyy'
+
+    var setTicketEmail = function(value) {
         ConfirmSrv.setEmail(value);
     };
 
-    $scope.setTicketPhoneNo = function(value) {
+    var setTicketPhoneNo = function(value) {
         ConfirmSrv.setPhoneNo(value);
     };
 
-    $scope.setTicketReservation = function(value) {
+    var setTicketReservation = function(value) {
         ConfirmSrv.setReservation(value);
     };
     $scope.isGreaterThanTickets = function(num) {
@@ -25,15 +29,15 @@ App.controller('confirmCtrl', function($scope, FlightsSrv, OutReturnSrv, Confirm
 
     $scope.reservation = [];
 
-    for (var bookingRef = 1; bookingRef <= FlightsSrv.getSelectedNumberOfTickets(); bookingRef++) {
+    for (var bookingRef = 1; bookingRef <= $scope.tickets; bookingRef++) {
         var ticket = {};
         ticket.refNo = bookingRef;
         $scope.reservation.push(ticket);
     };
 
     $scope.goToPayment = function() {
+        setTicketPhoneNo($scope.typedPhoneno);
         setTicketEmail($scope.typedEmail);
-        setTicketPhoneNo($scope.typedPhoneNo);
         setTicketReservation($scope.reservation);
         $location.url('/payment');
     };
