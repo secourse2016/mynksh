@@ -9,15 +9,9 @@ function animate(selector) {
         var c = (1 - Math.abs(2 * lightness - 1)) * saturation;
         var h = 3 * hue / Math.PI;
         var x = c * (1 - (h % 2 - 1));
-        var r1 = (h < 1 || 5 <= h) ? c
-               : (h < 2 || 4 <= h) ? x
-               : 0;
-        var g1 = (1 <= h && h < 3) ? c
-               : (h < 4) ? x
-               : 0;
-        var b1 = (3 <= h && h < 5) ? c
-               : (2 <= h) ? x
-               : 0;
+        var r1 = (h < 1 || 5 <= h) ? c : (h < 2 || 4 <= h) ? x : 0;
+        var g1 = (1 <= h && h < 3) ? c : (h < 4) ? x : 0;
+        var b1 = (3 <= h && h < 5) ? c : (2 <= h) ? x : 0;
         var m = lightness - c / 2;
         var r = Math.floor(256 * (r1 + m));
         var g = Math.floor(256 * (g1 + m));
@@ -83,8 +77,8 @@ Animation.prototype.start = function start() {
         }
     };
 
-    this.redrawInterval = setInterval(redraw, 25 /* ms */);
-    this.factoryInterval = setInterval(launch, 1500 /* ms */);
+    this.redrawInterval = setInterval(redraw, 25 /* ms */ );
+    this.factoryInterval = setInterval(launch, 1500 /* ms */ );
 }
 
 Animation.prototype.stop = function stop() {
@@ -106,8 +100,10 @@ function Firework(centerX, centerY, color) {
     for (var i = 0; i < this.particles.length; i++) {
         this.particles[i] = new Particle(
             this.centerX, this.centerY,
-            /* r= */ 0, /* θ= */ τ * Math.random(), /* φ= */ τ * Math.random(),
-            /* size= */ 2, color
+            /* r= */
+            0, /* θ= */ τ * Math.random(), /* φ= */ τ * Math.random(),
+            /* size= */
+            2, color
         );
     }
 }
@@ -117,9 +113,9 @@ Firework.prototype.update = function update() {
         this.particles[i].r += this.Δr;
         this.particles[i].recalcCartesianProjection();
 
-        this.Δr -= 0.00005 * this.Δr * this.Δr;                     // Air resist
-        this.particles[i].y += 0.00000008 * this.age * this.age;   // Gravity
-        this.particles[i].size *= 0.98;                            // Fade
+        this.Δr -= 0.00005 * this.Δr * this.Δr; // Air resist
+        this.particles[i].y += 0.00000008 * this.age * this.age; // Gravity
+        this.particles[i].size *= 0.98; // Fade
         this.age++;
     }
 };

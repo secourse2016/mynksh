@@ -14,7 +14,7 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, OutReturnSrv, payment
         $scope.tab2 = "active in";
         $scope.tab = "";
     };
-    
+
 
     $scope.Congrats = function() {
         $location.url('/congrats');

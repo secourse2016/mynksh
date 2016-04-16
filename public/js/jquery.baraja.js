@@ -11,652 +11,674 @@
 
 jQuery.fn.reverse = [].reverse;
 
-;( function( $, window, undefined ) {
-	
-	'use strict';
-
-	// global
-	var Modernizr = window.Modernizr;
-
-	$.Baraja = function( options, element ) {
-		
-		this.$el = $( element );
-		this._init( options );
-		
-	};
-
-	// the options
-	$.Baraja.defaults = {
-		// if we want to specify a selector that triggers the next() function. example: '#baraja-nav-next'
-		nextEl : '',
-		// if we want to specify a selector that triggers the previous() function
-		prevEl : '',
-		// default transition speed
-		speed : 300,
-		// default transition easing
-		easing : 'ease-in-out'
-	};
-
-	$.Baraja.prototype = {
-
-		_init : function( options ) {
-			
-			// options
-			this.options = $.extend( true, {}, $.Baraja.defaults, options );
-
-			var transEndEventNames = {
-				'WebkitTransition' : 'webkitTransitionEnd',
-				'MozTransition' : 'transitionend',
-				'OTransition' : 'oTransitionEnd',
-				'msTransition' : 'MSTransitionEnd',
-				'transition' : 'transitionend'
-			};
-			this.transEndEventName = transEndEventNames[ Modernizr.prefixed( 'transition' ) ];
-
-			this._setDefaultFanSettings();
-
-			this.$items = this.$el.children( 'li' );
-			this.itemsCount = this.$items.length;
-			if( this.itemsCount === 0 ) {
-				return false;
-			}
-			// support for CSS Transitions
-			this.supportTransitions = Modernizr.csstransitions;
-			// opened/closed deck
-			this.closed = true;
-			// lowest value for the z-index given to the items
-			this.itemZIndexMin = 1000;
-			// sets the item's z-index value
-			this._setStack();
-			// initialize some events
-			this._initEvents();
-
-		},
-		_setDefaultFanSettings : function() {
-
-			this.fanSettings = {
-				// speed for opening/closing
-				speed : 500,
-				// easing for opening/closing
-				easing : 'ease-out',
-				// difference/range of possible angles that the items will have
-				// example: with range:90 and center:false the first item
-				// will have 0deg and the last one 90deg;
-				// if center:true, then the first one will have 45deg
-				// and the last one -45deg; in both cases the difference is 90deg
-				range : 90,
-				// this defines the position of the first item 
-				// (to the right, to the left)
-				// and its angle (clockwise / counterclockwise)
-				direction : 'right',
-				// transform origin:
-				// you can also pass a minX and maxX, meaning the left value 
-				// will vary between minX and maxX 
-				origin : { x : 25, y : 100 },
-				// additional translation of each item
-				translation : 0,
-				// if the cards should be centered after the transform 
-				// is applied
-				center : true,
-				// add a random factor to the final transform
-				scatter : false
-			};
-
-		},
-		_validateDefaultFanSettings : function( settings ) {
-
-			if( !settings.origin ) {
-				settings.origin = this.fanSettings.origin;
-			}
-			else {
-				settings.origin.x = settings.origin.x || this.fanSettings.origin.x;
-				settings.origin.y = settings.origin.y || this.fanSettings.origin.y;
-			}
-			settings.speed = settings.speed || this.fanSettings.speed;
-			settings.easing = settings.easing || this.fanSettings.easing;
-			settings.direction = settings.direction || this.fanSettings.direction;
-			settings.range = settings.range || this.fanSettings.range;
-			settings.translation = settings.translation || this.fanSettings.translation;
-			if( settings.center == undefined ) {
-				settings.center = this.fanSettings.center
-			}
-			if( settings.scatter == undefined ) {
-				settings.scatter = this.fanSettings.scatter
-			}
-			
-			this.direction = settings.direction;
+;
+(function($, window, undefined) {
+
+    'use strict';
+
+    // global
+    var Modernizr = window.Modernizr;
+
+    $.Baraja = function(options, element) {
+
+        this.$el = $(element);
+        this._init(options);
+
+    };
+
+    // the options
+    $.Baraja.defaults = {
+        // if we want to specify a selector that triggers the next() function. example: '#baraja-nav-next'
+        nextEl: '',
+        // if we want to specify a selector that triggers the previous() function
+        prevEl: '',
+        // default transition speed
+        speed: 300,
+        // default transition easing
+        easing: 'ease-in-out'
+    };
+
+    $.Baraja.prototype = {
+
+        _init: function(options) {
+
+            // options
+            this.options = $.extend(true, {}, $.Baraja.defaults, options);
+
+            var transEndEventNames = {
+                'WebkitTransition': 'webkitTransitionEnd',
+                'MozTransition': 'transitionend',
+                'OTransition': 'oTransitionEnd',
+                'msTransition': 'MSTransitionEnd',
+                'transition': 'transitionend'
+            };
+            this.transEndEventName = transEndEventNames[Modernizr.prefixed('transition')];
+
+            this._setDefaultFanSettings();
+
+            this.$items = this.$el.children('li');
+            this.itemsCount = this.$items.length;
+            if (this.itemsCount === 0) {
+                return false;
+            }
+            // support for CSS Transitions
+            this.supportTransitions = Modernizr.csstransitions;
+            // opened/closed deck
+            this.closed = true;
+            // lowest value for the z-index given to the items
+            this.itemZIndexMin = 1000;
+            // sets the item's z-index value
+            this._setStack();
+            // initialize some events
+            this._initEvents();
+
+        },
+        _setDefaultFanSettings: function() {
+
+            this.fanSettings = {
+                // speed for opening/closing
+                speed: 500,
+                // easing for opening/closing
+                easing: 'ease-out',
+                // difference/range of possible angles that the items will have
+                // example: with range:90 and center:false the first item
+                // will have 0deg and the last one 90deg;
+                // if center:true, then the first one will have 45deg
+                // and the last one -45deg; in both cases the difference is 90deg
+                range: 90,
+                // this defines the position of the first item 
+                // (to the right, to the left)
+                // and its angle (clockwise / counterclockwise)
+                direction: 'right',
+                // transform origin:
+                // you can also pass a minX and maxX, meaning the left value 
+                // will vary between minX and maxX 
+                origin: {
+                    x: 25,
+                    y: 100
+                },
+                // additional translation of each item
+                translation: 0,
+                // if the cards should be centered after the transform 
+                // is applied
+                center: true,
+                // add a random factor to the final transform
+                scatter: false
+            };
 
-			return settings;
+        },
+        _validateDefaultFanSettings: function(settings) {
+
+            if (!settings.origin) {
+                settings.origin = this.fanSettings.origin;
+            } else {
+                settings.origin.x = settings.origin.x || this.fanSettings.origin.x;
+                settings.origin.y = settings.origin.y || this.fanSettings.origin.y;
+            }
+            settings.speed = settings.speed || this.fanSettings.speed;
+            settings.easing = settings.easing || this.fanSettings.easing;
+            settings.direction = settings.direction || this.fanSettings.direction;
+            settings.range = settings.range || this.fanSettings.range;
+            settings.translation = settings.translation || this.fanSettings.translation;
+            if (settings.center == undefined) {
+                settings.center = this.fanSettings.center
+            }
+            if (settings.scatter == undefined) {
+                settings.scatter = this.fanSettings.scatter
+            }
 
-		},
-		_setStack : function( $items ) {
+            this.direction = settings.direction;
 
-			var self = this;
-			$items = $items || this.$items;
+            return settings;
 
-			$items.each( function( i ) {
+        },
+        _setStack: function($items) {
 
-				$( this ).css( 'z-index', self.itemZIndexMin + self.itemsCount - 1 - i );
+            var self = this;
+            $items = $items || this.$items;
 
-			} );
+            $items.each(function(i) {
 
-		},
-		_updateStack : function( $el, dir ) {
+                $(this).css('z-index', self.itemZIndexMin + self.itemsCount - 1 - i);
 
-			var currZIndex = Number( $el.css( 'z-index' ) ),
-				newZIndex = dir === 'next' ? this.itemZIndexMin - 1 : this.itemZIndexMin + this.itemsCount,
-				extra = dir === 'next' ? '+=1' : '-=1';
-			
-			$el.css( 'z-index', newZIndex );
+            });
 
-			this.$items.filter( function() {
+        },
+        _updateStack: function($el, dir) {
 
-				var zIdx = Number( $( this ).css( 'z-index' ) ),
-					cond = dir === 'next' ? zIdx < currZIndex : zIdx > currZIndex
-				
-				return cond;
+            var currZIndex = Number($el.css('z-index')),
+                newZIndex = dir === 'next' ? this.itemZIndexMin - 1 : this.itemZIndexMin + this.itemsCount,
+                extra = dir === 'next' ? '+=1' : '-=1';
 
-			} ).css( 'z-index', extra );
+            $el.css('z-index', newZIndex);
 
-		},
-		_initEvents : function() {
+            this.$items.filter(function() {
 
-			var self = this;
+                var zIdx = Number($(this).css('z-index')),
+                    cond = dir === 'next' ? zIdx < currZIndex : zIdx > currZIndex
 
-			if( this.options.nextEl !== '' ) {
+                return cond;
 
-				$( this.options.nextEl ).on( 'click.baraja', function() {
+            }).css('z-index', extra);
 
-					self._navigate( 'next' );
-					return false;
+        },
+        _initEvents: function() {
 
-				} );
+            var self = this;
 
-			}
+            if (this.options.nextEl !== '') {
 
-			if( this.options.prevEl !== '' ) {
+                $(this.options.nextEl).on('click.baraja', function() {
 
-				$( this.options.prevEl ).on( 'click.baraja', function() {
+                    self._navigate('next');
+                    return false;
 
-					self._navigate( 'prev' );
-					return false;
+                });
 
-				} );
+            }
 
-			}
+            if (this.options.prevEl !== '') {
 
-			this.$el.on( 'click.baraja', 'li', function() {
+                $(this.options.prevEl).on('click.baraja', function() {
 
-				if( !self.isAnimating ) {
+                    self._navigate('prev');
+                    return false;
 
-					self._move2front( $( this ) );
+                });
 
-				}
+            }
 
-			} );
+            this.$el.on('click.baraja', 'li', function() {
 
-		},
-		_resetTransition : function( $el ) {
+                if (!self.isAnimating) {
 
-			$el.css( {
-				'-webkit-transition' : 'none',
-				'-moz-transition' : 'none',
-				'-ms-transition' : 'none',
-				'-o-transition' : 'none',
-				'transition' : 'none'
-			} );
+                    self._move2front($(this));
 
-		},
-		_setOrigin : function( $el, x, y ) {
+                }
 
-			$el.css( 'transform-origin' , x + '% ' + y + '%' );
+            });
 
-		},
-		_setTransition : function( $el, prop, speed, easing, delay ) {
+        },
+        _resetTransition: function($el) {
 
-			if( !this.supportTransitions ) {
-				return false;
-			}
-			if( !prop ) {
-				prop = 'all';
-			}
-			if( !speed ) {
-				speed = this.options.speed;
-			}
-			if( !easing ) {
-				easing = this.options.easing;
-			}
-			if( !delay ) {
-				delay = 0;
-			}
+            $el.css({
+                '-webkit-transition': 'none',
+                '-moz-transition': 'none',
+                '-ms-transition': 'none',
+                '-o-transition': 'none',
+                'transition': 'none'
+            });
 
-			var styleCSS = '';
-			
-			prop === 'transform' ?
-				styleCSS = {
-					'-webkit-transition' : '-webkit-transform ' + speed + 'ms ' + easing + ' ' + delay + 'ms',
-					'-moz-transition' : '-moz-transform ' + speed + 'ms ' + easing + ' ' + delay + 'ms',
-					'-ms-transition' : '-ms-transform ' + speed + 'ms ' + easing + ' ' + delay + 'ms',
-					'-o-transition' : '-o-transform ' + speed + 'ms ' + easing + ' ' + delay + 'ms',
-					'transition' : 'transform ' + speed + 'ms ' + easing + ' ' + delay + 'ms'
-				} :
-				styleCSS = {
-					'-webkit-transition' : prop + ' ' + speed + 'ms ' + easing + ' ' + delay + 'ms',
-					'-moz-transition' : prop + ' ' + speed + 'ms ' + easing + ' ' + delay + 'ms',
-					'-ms-transition' : prop + ' ' + speed + 'ms ' + easing + ' ' + delay + 'ms',
-					'-o-transition' : prop + ' ' + speed + 'ms ' + easing + ' ' + delay + 'ms',
-					'transition' : prop + ' ' + speed + 'ms ' + easing + ' ' + delay + 'ms'
-				}
+        },
+        _setOrigin: function($el, x, y) {
 
-			$el.css( styleCSS );
+            $el.css('transform-origin', x + '% ' + y + '%');
 
-		},
-		_applyTransition : function( $el, styleCSS, fncomplete, force ) {
+        },
+        _setTransition: function($el, prop, speed, easing, delay) {
 
-			if( this.supportTransitions ) {
+            if (!this.supportTransitions) {
+                return false;
+            }
+            if (!prop) {
+                prop = 'all';
+            }
+            if (!speed) {
+                speed = this.options.speed;
+            }
+            if (!easing) {
+                easing = this.options.easing;
+            }
+            if (!delay) {
+                delay = 0;
+            }
 
-				if( fncomplete ) {
+            var styleCSS = '';
 
-					$el.on( this.transEndEventName, fncomplete );
+            prop === 'transform' ?
+                styleCSS = {
+                    '-webkit-transition': '-webkit-transform ' + speed + 'ms ' + easing + ' ' + delay + 'ms',
+                    '-moz-transition': '-moz-transform ' + speed + 'ms ' + easing + ' ' + delay + 'ms',
+                    '-ms-transition': '-ms-transform ' + speed + 'ms ' + easing + ' ' + delay + 'ms',
+                    '-o-transition': '-o-transform ' + speed + 'ms ' + easing + ' ' + delay + 'ms',
+                    'transition': 'transform ' + speed + 'ms ' + easing + ' ' + delay + 'ms'
+                } :
+                styleCSS = {
+                    '-webkit-transition': prop + ' ' + speed + 'ms ' + easing + ' ' + delay + 'ms',
+                    '-moz-transition': prop + ' ' + speed + 'ms ' + easing + ' ' + delay + 'ms',
+                    '-ms-transition': prop + ' ' + speed + 'ms ' + easing + ' ' + delay + 'ms',
+                    '-o-transition': prop + ' ' + speed + 'ms ' + easing + ' ' + delay + 'ms',
+                    'transition': prop + ' ' + speed + 'ms ' + easing + ' ' + delay + 'ms'
+                }
 
-					if( force ) {
-						fncomplete.call();
-					}
+            $el.css(styleCSS);
 
-				}
+        },
+        _applyTransition: function($el, styleCSS, fncomplete, force) {
 
-				setTimeout( function() { $el.css( styleCSS ); }, 25 );
+            if (this.supportTransitions) {
 
-			}
-			else {
+                if (fncomplete) {
 
-				$el.css( styleCSS );
+                    $el.on(this.transEndEventName, fncomplete);
 
-				if( fncomplete ) {
+                    if (force) {
+                        fncomplete.call();
+                    }
 
-					fncomplete.call();
-					
-				}
+                }
 
-			}
+                setTimeout(function() {
+                    $el.css(styleCSS);
+                }, 25);
 
-		},
-		_navigate : function( dir ) {
+            } else {
 
-			this.closed = false;
+                $el.css(styleCSS);
 
-			var self = this, 
-				extra = 15,
-				cond = dir === 'next' ? self.itemZIndexMin + self.itemsCount - 1 : self.itemZIndexMin,
-				$item = this.$items.filter( function() {
-					
-					return Number( $( this ).css( 'z-index' ) ) === cond;
+                if (fncomplete) {
 
-				} ),
-				translation = dir === 'next' ? $item.outerWidth( true ) + extra : $item.outerWidth( true ) * -1 - extra,
-				rotation = dir === 'next' ? 5 : 5 * -1;
-				
-			this._setTransition( $item, 'transform', this.options.speed, this.options.easing );
+                    fncomplete.call();
 
-			this._applyTransition( $item, { transform : 'translate(' + translation + 'px) rotate(' + rotation + 'deg)' }, function() {
+                }
 
-				$item.off( self.transEndEventName );
-				self._updateStack( $item, dir );
+            }
 
-				self._applyTransition( $item, { transform : 'translate(0px) rotate(0deg)' }, function() {
-					
-					$item.off( self.transEndEventName );
-					self.isAnimating = false;
-					self.closed = true;
+        },
+        _navigate: function(dir) {
 
-				} );
+            this.closed = false;
 
-			} );
+            var self = this,
+                extra = 15,
+                cond = dir === 'next' ? self.itemZIndexMin + self.itemsCount - 1 : self.itemZIndexMin,
+                $item = this.$items.filter(function() {
 
-		},
-		_move2front : function( $item ) {
+                    return Number($(this).css('z-index')) === cond;
 
-			this.isAnimating = true;
+                }),
+                translation = dir === 'next' ? $item.outerWidth(true) + extra : $item.outerWidth(true) * -1 - extra,
+                rotation = dir === 'next' ? 5 : 5 * -1;
 
-			var self = this,
-				isTop = Number( $item.css( 'z-index' ) ) === this.itemZIndexMin + this.itemsCount - 1,
-				callback = isTop ? function() { self.isAnimating = false; } : function() { return false; },
-				$item = isTop ? null : $item;
+            this._setTransition($item, 'transform', this.options.speed, this.options.easing);
 
-			// if it's the one with higher z-index, just close the baraja
-			if( !this.closed ) {
+            this._applyTransition($item, {
+                transform: 'translate(' + translation + 'px) rotate(' + rotation + 'deg)'
+            }, function() {
 
-				this._close( callback, $item );
+                $item.off(self.transEndEventName);
+                self._updateStack($item, dir);
 
-			}
-			else {
+                self._applyTransition($item, {
+                    transform: 'translate(0px) rotate(0deg)'
+                }, function() {
 
-				this._fan();
+                    $item.off(self.transEndEventName);
+                    self.isAnimating = false;
+                    self.closed = true;
 
-			}
+                });
 
-			if( isTop ) {
-				return false;
-			}
+            });
 
-			this._resetTransition( $item );
-			this._setOrigin( $item, 50, 50 );
+        },
+        _move2front: function($item) {
 
-			$item.css( {
-				opacity : 0,
-				transform : 'scale(2) translate(100px) rotate(20deg)'
-			} );
+            this.isAnimating = true;
 
-			this._updateStack( $item, 'prev' );
+            var self = this,
+                isTop = Number($item.css('z-index')) === this.itemZIndexMin + this.itemsCount - 1,
+                callback = isTop ? function() {
+                    self.isAnimating = false;
+                } : function() {
+                    return false;
+                },
+                $item = isTop ? null : $item;
 
-			setTimeout( function() {
+            // if it's the one with higher z-index, just close the baraja
+            if (!this.closed) {
 
-				self._setTransition( $item, 'all', self.options.speed, 'ease-in' );
-				self._applyTransition( $item, { transform : 'none', opacity : 1 }, function() {
+                this._close(callback, $item);
 
-					$item.off( self.transEndEventName );
-					self.isAnimating = false;
+            } else {
 
-				} );
+                this._fan();
 
-			}, this.options.speed / 2 );
+            }
 
-		},
-		_close : function( callback, $item ) {
+            if (isTop) {
+                return false;
+            }
 
-			var self = this,
-				$items = self.$items,
-				force = this.closed ? true : false;
+            this._resetTransition($item);
+            this._setOrigin($item, 50, 50);
 
-			if( $item ) {
-				$items = $items.not( $item );
-			}
+            $item.css({
+                opacity: 0,
+                transform: 'scale(2) translate(100px) rotate(20deg)'
+            });
 
-			this._applyTransition( $items, { transform : 'none' }, function() {
-				
-				self.closed = true;
-				$items.off( self.transEndEventName );
-				self._resetTransition( $items );
-				setTimeout(function() {
-					
-					self._setOrigin( $items, 50, 50 );
-					
-					if( callback ) {
-						callback.call();
-					}
+            this._updateStack($item, 'prev');
 
-				}, 25);
+            setTimeout(function() {
 
-			}, force );
+                self._setTransition($item, 'all', self.options.speed, 'ease-in');
+                self._applyTransition($item, {
+                    transform: 'none',
+                    opacity: 1
+                }, function() {
 
-		},
-		_fan : function( settings ) {
+                    $item.off(self.transEndEventName);
+                    self.isAnimating = false;
 
-			var self = this;
+                });
 
-			this.closed = false;
+            }, this.options.speed / 2);
 
-			settings = this._validateDefaultFanSettings( settings || {} );
-			
-			// set transform origins
-			// if minX and maxX are passed:
-			if( settings.origin.minX && settings.origin.maxX ) {
+        },
+        _close: function(callback, $item) {
 
-				var max = settings.origin.maxX, min = settings.origin.minX,
-					stepOrigin = ( max - min ) / this.itemsCount;
+            var self = this,
+                $items = self.$items,
+                force = this.closed ? true : false;
 
-				this.$items.each( function( i ) {
+            if ($item) {
+                $items = $items.not($item);
+            }
 
-					var $el = $( this ),
-						pos = self.itemsCount - 1 - ( Number( $el.css( 'z-index' ) ) - self.itemZIndexMin ),
-						originX = pos * ( max - min + stepOrigin ) / self.itemsCount + min;
+            this._applyTransition($items, {
+                transform: 'none'
+            }, function() {
 
-					if( settings.direction === 'left' ) {
-								
-						originX = max + min - originX;
+                self.closed = true;
+                $items.off(self.transEndEventName);
+                self._resetTransition($items);
+                setTimeout(function() {
 
-					}
+                    self._setOrigin($items, 50, 50);
 
-					self._setOrigin( $( this ), originX, settings.origin.y );
+                    if (callback) {
+                        callback.call();
+                    }
 
-				} );
-			
-			}
-			else {
+                }, 25);
 
-				this._setOrigin( this.$items, settings.origin.x , settings.origin.y );
+            }, force);
 
-			}
+        },
+        _fan: function(settings) {
 
-			this._setTransition( this.$items, 'transform', settings.speed, settings.easing );
+            var self = this;
 
-			var stepAngle = settings.range / ( this.itemsCount - 1 ),
-				stepTranslation = settings.translation / ( this.itemsCount - 1 ),
-				cnt = 0;
-			
-			this.$items.each( function( i ) {
+            this.closed = false;
 
-				var $el = $( this ),
-					pos = self.itemsCount - 1 - ( Number( $el.css( 'z-index' ) ) - self.itemZIndexMin ),
-					val = settings.center ? settings.range / 2 : settings.range,
-					angle = val - stepAngle * pos,
-					position = stepTranslation * ( self.itemsCount - pos - 1 );
+            settings = this._validateDefaultFanSettings(settings || {});
 
-				if( settings.direction === 'left' ) {
-					
-					angle *= -1;
-					position *= -1;
+            // set transform origins
+            // if minX and maxX are passed:
+            if (settings.origin.minX && settings.origin.maxX) {
 
-				}
+                var max = settings.origin.maxX,
+                    min = settings.origin.minX,
+                    stepOrigin = (max - min) / this.itemsCount;
 
-				if( settings.scatter ) {
-					
-					var extraAngle = Math.floor( Math.random() * stepAngle ),
-						extraPosition = Math.floor( Math.random() * stepTranslation ) ;
-					
-					// not for the first item..
-					if( pos !== self.itemsCount - 1 ) {
+                this.$items.each(function(i) {
 
-						angle = settings.direction === 'left' ? angle + extraAngle : angle - extraAngle;
-						position = settings.direction === 'left' ? position - extraPosition : position + extraPosition;
+                    var $el = $(this),
+                        pos = self.itemsCount - 1 - (Number($el.css('z-index')) - self.itemZIndexMin),
+                        originX = pos * (max - min + stepOrigin) / self.itemsCount + min;
 
-					}
+                    if (settings.direction === 'left') {
 
-				}
+                        originX = max + min - originX;
 
-				// save..
-				$el.data( { translation : position, rotation : angle } );
+                    }
 
-				self._applyTransition( $el, { transform : 'translate(' + position + 'px) rotate(' + angle + 'deg)' }, function() {
+                    self._setOrigin($(this), originX, settings.origin.y);
 
-					++cnt;
-					$el.off( self.transEndEventName );
-					
-					if( cnt === self.itemsCount - 1 ) {
-						self.isAnimating = false;
-					}
+                });
 
-				} );
+            } else {
 
-			} );
+                this._setOrigin(this.$items, settings.origin.x, settings.origin.y);
 
-		},
-		// adds new elements to the deck
-		_add : function( $elems ) {
+            }
 
-			var self = this, 
-				newElemsCount = $elems.length, cnt = 0;
+            this._setTransition(this.$items, 'transform', settings.speed, settings.easing);
 
-			$elems.css( 'opacity', 0 ).appendTo( this.$el );
+            var stepAngle = settings.range / (this.itemsCount - 1),
+                stepTranslation = settings.translation / (this.itemsCount - 1),
+                cnt = 0;
 
-			// reset
-			this.$items = this.$el.children( 'li' );
-			this.itemsCount = this.$items.length;
-			
-			// set z-indexes
-			this._setStack( $elems );
-			
-			// animate new items
-			$elems.css( 'transform', 'scale(1.8) translate(200px) rotate(15deg)' ).reverse().each( function( i ) {
+            this.$items.each(function(i) {
 
-				var $el = $( this );
+                var $el = $(this),
+                    pos = self.itemsCount - 1 - (Number($el.css('z-index')) - self.itemZIndexMin),
+                    val = settings.center ? settings.range / 2 : settings.range,
+                    angle = val - stepAngle * pos,
+                    position = stepTranslation * (self.itemsCount - pos - 1);
 
-				self._setTransition( $el, 'all', 500, 'ease-out', i * 200 );
-				self._applyTransition( $el, { transform : 'none', opacity : 1 }, function() {
+                if (settings.direction === 'left') {
 
-					++cnt;
-					
-					$el.off( self.transEndEventName );
-					self._resetTransition( $el );
+                    angle *= -1;
+                    position *= -1;
 
-					if( cnt === newElemsCount ) {
-						self.isAnimating = false;
-					}
+                }
 
-				} );
+                if (settings.scatter) {
 
-			} );
+                    var extraAngle = Math.floor(Math.random() * stepAngle),
+                        extraPosition = Math.floor(Math.random() * stepTranslation);
 
-		},
-		_allowAction : function() {
+                    // not for the first item..
+                    if (pos !== self.itemsCount - 1) {
 
-			return this.itemsCount > 1;
+                        angle = settings.direction === 'left' ? angle + extraAngle : angle - extraAngle;
+                        position = settings.direction === 'left' ? position - extraPosition : position + extraPosition;
 
-		},
-		_prepare : function( callback ) {
+                    }
 
-			var self = this;
-			
-			if( !this.closed ) {
+                }
 
-				this._close( function() {
+                // save..
+                $el.data({
+                    translation: position,
+                    rotation: angle
+                });
 
-					callback.call();
+                self._applyTransition($el, {
+                    transform: 'translate(' + position + 'px) rotate(' + angle + 'deg)'
+                }, function() {
 
-				} );
+                    ++cnt;
+                    $el.off(self.transEndEventName);
 
-			}
-			else {
+                    if (cnt === self.itemsCount - 1) {
+                        self.isAnimating = false;
+                    }
 
-				callback.call();
+                });
 
-			}
+            });
 
-		},
-		_dispatch : function( action, args ) {
+        },
+        // adds new elements to the deck
+        _add: function($elems) {
 
-			var self = this;
+            var self = this,
+                newElemsCount = $elems.length,
+                cnt = 0;
 
-			if( ( ( action === this._fan || action === this._navigate ) && !this._allowAction() ) || this.isAnimating ) {
-				return false;
-			}
+            $elems.css('opacity', 0).appendTo(this.$el);
 
-			this.isAnimating = true;
-			
-			this._prepare( function() {
+            // reset
+            this.$items = this.$el.children('li');
+            this.itemsCount = this.$items.length;
 
-				action.call( self, args );
+            // set z-indexes
+            this._setStack($elems);
 
-			} );
+            // animate new items
+            $elems.css('transform', 'scale(1.8) translate(200px) rotate(15deg)').reverse().each(function(i) {
 
-		},
-		// public method: closes the deck
-		close : function( settings ) {
+                var $el = $(this);
 
-			if( this.isAnimating ) {
-				return false;
-			}
-			this._close();
+                self._setTransition($el, 'all', 500, 'ease-out', i * 200);
+                self._applyTransition($el, {
+                    transform: 'none',
+                    opacity: 1
+                }, function() {
 
-		},
-		// public method: shows next item
-		next : function() {
+                    ++cnt;
 
-			this._dispatch( this._navigate, 'next' );
+                    $el.off(self.transEndEventName);
+                    self._resetTransition($el);
 
-		},
-		// public method: shows previous item
-		previous : function() {
+                    if (cnt === newElemsCount) {
+                        self.isAnimating = false;
+                    }
 
-			this._dispatch( this._navigate, 'prev' );
+                });
 
-		},
-		// public method: opens the deck
-		fan : function( settings ) {
+            });
 
-			this._dispatch( this._fan, settings );
+        },
+        _allowAction: function() {
 
-		},
-		// public method: adds new elements
-		add : function ( $elems ) {
+            return this.itemsCount > 1;
 
-			this._dispatch( this._add, $elems );
+        },
+        _prepare: function(callback) {
 
-		}
+            var self = this;
 
-	};
-	
-	var logError = function( message ) {
+            if (!this.closed) {
 
-		if ( window.console ) {
+                this._close(function() {
 
-			window.console.error( message );
-		
-		}
+                    callback.call();
 
-	};
-	
-	$.fn.baraja = function( options ) {
+                });
 
-		var instance = $.data( this, 'baraja' );
-		
-		if ( typeof options === 'string' ) {
-			
-			var args = Array.prototype.slice.call( arguments, 1 );
-			
-			this.each(function() {
-			
-				if ( !instance ) {
+            } else {
 
-					logError( "cannot call methods on baraja prior to initialization; " +
-					"attempted to call method '" + options + "'" );
-					return;
-				
-				}
-				
-				if ( !$.isFunction( instance[options] ) || options.charAt(0) === "_" ) {
+                callback.call();
 
-					logError( "no such method '" + options + "' for baraja instance" );
-					return;
-				
-				}
-				
-				instance[ options ].apply( instance, args );
-			
-			});
-		
-		} 
-		else {
-		
-			this.each(function() {
-				
-				if ( instance ) {
+            }
 
-					instance._init();
-				
-				}
-				else {
+        },
+        _dispatch: function(action, args) {
 
-					instance = $.data( this, 'baraja', new $.Baraja( options, this ) );
-				
-				}
+            var self = this;
 
-			});
-		
-		}
-		
-		return instance;
-		
-	};
-	
-} )( jQuery, window );
+            if (((action === this._fan || action === this._navigate) && !this._allowAction()) || this.isAnimating) {
+                return false;
+            }
+
+            this.isAnimating = true;
+
+            this._prepare(function() {
+
+                action.call(self, args);
+
+            });
+
+        },
+        // public method: closes the deck
+        close: function(settings) {
+
+            if (this.isAnimating) {
+                return false;
+            }
+            this._close();
+
+        },
+        // public method: shows next item
+        next: function() {
+
+            this._dispatch(this._navigate, 'next');
+
+        },
+        // public method: shows previous item
+        previous: function() {
+
+            this._dispatch(this._navigate, 'prev');
+
+        },
+        // public method: opens the deck
+        fan: function(settings) {
+
+            this._dispatch(this._fan, settings);
+
+        },
+        // public method: adds new elements
+        add: function($elems) {
+
+            this._dispatch(this._add, $elems);
+
+        }
+
+    };
+
+    var logError = function(message) {
+
+        if (window.console) {
+
+            window.console.error(message);
+
+        }
+
+    };
+
+    $.fn.baraja = function(options) {
+
+        var instance = $.data(this, 'baraja');
+
+        if (typeof options === 'string') {
+
+            var args = Array.prototype.slice.call(arguments, 1);
+
+            this.each(function() {
+
+                if (!instance) {
+
+                    logError("cannot call methods on baraja prior to initialization; " +
+                        "attempted to call method '" + options + "'");
+                    return;
+
+                }
+
+                if (!$.isFunction(instance[options]) || options.charAt(0) === "_") {
+
+                    logError("no such method '" + options + "' for baraja instance");
+                    return;
+
+                }
+
+                instance[options].apply(instance, args);
+
+            });
+
+        } else {
+
+            this.each(function() {
+
+                if (instance) {
+
+                    instance._init();
+
+                } else {
+
+                    instance = $.data(this, 'baraja', new $.Baraja(options, this));
+
+                }
+
+            });
+
+        }
+
+        return instance;
+
+    };
+
+})(jQuery, window);
