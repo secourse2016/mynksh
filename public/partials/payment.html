@@ -38,18 +38,18 @@
         <h3><font color="black">Payment Data</font></h3>
     </div>
 
-    <div class="mainContainer col-lg-12" style="border-radius: 25px;">
+    <div class="mainContainer col-lg-12" style="border-radius: 25px; height:1400px;left:-100px;">
         <form class="contact-form support-form">
     <div class="leftInput" style="border-radius: 25px;">
-    </br>
+
         <!-- <font size="5" color="black" class="text-left" style=" color:rgba(178,34,34, 1)" >Payment Form </font> -->
         <!-- <h6 align="right" class="Astric">* Compulsory field</h6> -->
-        <hr>
+
         <!--  i have two tabs because of visa and paypal   -->
         <div class="tabs" style="position:relative; top:-20px;color:black">
             <ul class="nav nav-tabs navTab">
                 <li class=""><a href ng-click="tab1()" data-toggle="tab" aria-expanded="false"><font size="3" color="black" class="text-left">Card payment</font></a></li>
-                <li class=""><a href ng-click="tab2()" data-toggle="tab" aria-expanded="false"><font size="3" color="black" class="text-left">PayPal</a></li>
+                <li class=""><a href ng-click="tab2()" data-toggle="tab" aria-expanded="false"><font size="3" color="black" class="text-left">PayPal</font></a></li>
 
             </ul>
             <div id="myTabContent" class="tab-content">
@@ -230,7 +230,7 @@
                 <div class="tab-pane fade {{tab2}} " id="profile">
                 </br>
                     <font size="6" style=" color:rgba(178,34,34, 1)">This feature is coming <strong>soon</strong>!</font>
-</br>
+                  </br>
                 </div>
 
 
@@ -244,14 +244,15 @@
 
 
     </div>
-</form>
+
 
 
 
     <div class="rightDev">
-        <font size="5"class="FormOfPayment">Personal Travel Plan </font>
+      </br>
+        <font size="4"class="FormOfPayment" ><i>Personal Travel Plan</i> </font>
         <hr>
-        <font size="5"class="FormOfPayment">Outbound</font>
+        <font size="4"class="FormOfPayment"><i>Outbound</i></font>
         <hr>
         <div>
             {{Porigin}} _ {{Pdest}}
@@ -263,7 +264,7 @@
             <br> {{PrDate}}
             <br>
         </div>
-        <font size="5"class="FormOfPayment">Return</font>
+        <font size="4"class="FormOfPayment"><i>Return</i></font>
         <hr>
         <div>
             {{P_round_origin}} _ {{P_round_dest}}
@@ -275,16 +276,18 @@
             <br> {{P_round_rDate}}
             <br>
         </div>
-        <font size="5"class="FormOfPayment">Passengers</font>
+        <font size="4"class="FormOfPayment"><i>Passengers</i></font>
         <hr>
         <div>
-          <font size="4"class="FormOfPayment">{{noOfPassengers}} Passengers(s) </font>  <br>
+          <font size="3"class="FormOfPayment">{{noOfPassengers}} Passengers(s) </font>  <br>
 </div>
-
-
 </div>
+</form>
+</br>
+</br>
 <div  class="middle text-center">
 </br>
+
   <font size="5" color="black" class="text-left" style=" color:rgba(178,34,34, 1)" > Price breakdown</font>
 </br>
 </div>

@@ -1,9 +1,9 @@
 @charset "utf-8";
 .mainContainer {
-    margin-left: auto;
-    margin-right: auto;
+    /*margin-left: auto;
+    margin-right: auto;*/
     margin:center;
-    background-color: #ebebeb;
+    background-color: #ffffff;
     border-radius: 25px;
 }
 .leftInput {
@@ -18,7 +18,7 @@
     height: 814px;
     background-color: #ffffff;
     left: 740px;
-    top: -575px;
+    top: -600px;
     border-radius: 25px;
 }
 
@@ -26,7 +26,7 @@
     position: relative;
     width: 707px;
     height: 100px;
-    background-color: #FFFFFF;
+    background-color: #ebebeb;
     top: -750px;
     border-radius: 25px;
 }
@@ -34,7 +34,7 @@
     margin: auto;
     width: 707px;
     background-color: #ebebeb;
-    border-radius: 25px;
+    /*border-radius: 25px;*/
 }
 .bottom {
     position: relative;
