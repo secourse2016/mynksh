@@ -10,15 +10,28 @@ exports.seedDB = function(cb) {
             assert.equal(null, err);
             mongo.seed('flights', flights, function() {
                 mongo.seed('airports', airports, function() {
-                    mongo.seed('bookings', bookings, function() {
-                        mongo.close();
-                    });
+                    // mongo.seed('bookings', bookings, function() {
+                    mongo.close();
+                    // });
                 });
             });
         });
 
     });
 };
+
+exports.clearDB = function(cb) {
+    mongo.connect(function(err, mdb) {
+        mongo.clearDB(function() {
+            mongo.seed('airports', airports, function() {
+                mongo.clearDB(function() {
+                    mongo.close();
+                    cb();
+                });
+            });
+        });
+    });;
+}
 
 exports.searchFlights = function(origin, destination, departingDate, cabin, cb) {
     var cost = 0;
@@ -30,8 +43,8 @@ exports.searchFlights = function(origin, destination, departingDate, cabin, cb) 
             "destination": destination,
             "arrivalTime": departingDate
         }).toArray(function(err, flights) {
-          if(flights.length === 0)
-          return;
+            if (flights.length === 0)
+                return;
             if (economyOrBusiness == "economy") {
                 cost = flights[0].eCost;
             } else {
@@ -54,7 +67,7 @@ exports.searchFlights = function(origin, destination, departingDate, cabin, cb) 
             } else
                 rflights = {};
             mongo.close();
-            cb(err,rflights);
+            cb(err, rflights);
         });
     });
 }

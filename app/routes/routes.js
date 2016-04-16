@@ -21,9 +21,9 @@ module.exports = function(app, mongo) {
     app.use(function(req, res, next) {
         // check header or url parameters or post parameters for token
         var token = req.body.wt || req.query.wt || req.headers['x-access-token'] || 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJNWU5LU0giLCJpYXQiOjE0NjA3NzIyOTQsImV4cCI6MTQ5MjMwODI5NSwiYXVkIjoid3d3LnNlY291cnNlLmNvbSIsInN1YiI6Ik1ZTktTSCBJYmVyaWEiLCJUZWFtIjoiTVlOS1NIIn0.hZxhv8XAcu1cARgcrtfb0l_crF1-Ic1tJt9eUhIL0qQ';
-        console.log("{{{{ TOKEN }}}} => ", token);
+        // console.log("{{{{ TOKEN }}}} => ", token);
         var jwtSecret = process.env.JWTSECRET || 'CSEN603ROCKSi<8SE!';
-        console.log(jwtSecret);
+        // console.log(jwtSecret);
         // Get JWT contents:
         try {
             var payload = jwt.verify(token, jwtSecret);
@@ -64,5 +64,7 @@ module.exports = function(app, mongo) {
     });
 
     /* DELETE DB */
-    app.get('/db/delete', function(req, res) {});
+    app.get('/db/delete', function(req, res) {
+      mongo.clearDB();
+    });
 };
