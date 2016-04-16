@@ -43,6 +43,16 @@ exports.getAirports = function(cb) {
     });
 }
 
+exports.getBooking = function(cb) {
+    mongo.connect(function(err, db) {
+        var collection = db.collection('bookings');
+        collection.find().toArray(function(err,bookings){
+          cb(err,bookings);
+          mongo.close();
+        });
+    });
+}
+
 exports.searchFlights = function(origin, destination, departingDate, cabin, cb) {
     var cost = 0;
     var economyOrBusiness = cabin.toLowerCase();

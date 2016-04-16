@@ -9,14 +9,15 @@ module.exports = function(app, mongo) {
 
     /* GET ALL STATES ENDPOINT */
     app.get('/api/data/airports', function(req, res) {
-        mongo.getAirports(function(err,airports){
-          res.json(airports);
+        mongo.getAirports(function(err, airports) {
+            res.json(airports);
         })
     });
 
     app.post('/api/data/bookings', function(req, res) {
-        // res.json(require('../../modules/bookings.json'));
-        res.send(require('../../modules/bookings.json'));
+        mongo.getBooking(function(err, bookings) {
+            res.json(bookings);
+        })
     });
 
     /* Middlewear For Secure API Endpoints */
