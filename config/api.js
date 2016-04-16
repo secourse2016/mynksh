@@ -53,7 +53,7 @@ exports.searchFlights = function(origin, destination, departingDate, cabin, cb) 
                 };
             } else
                 rflights = {};
-            // mongo.close();
+            mongo.close();
             cb(err,rflights);
         });
     });
