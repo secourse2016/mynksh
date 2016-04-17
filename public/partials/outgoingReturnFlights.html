@@ -50,16 +50,14 @@
                 <tbody>
                     <form name="myform">
                         <tr ng-repeat="flight in outgoingInfo">
-                            <td>
-                                <input type="radio" ng-model="$parent.selectedOutgoingFlight" ng-value="{{flight}}" />
-                            </td>
+                            
                             <td>{{flight.flightNumber}}</td>
                             <td>Iberia</td>
                             <td>{{stringToDate(flight.departureTime) | date : 'shortTime'}}</td>
                             <td>{{stringToDate(flight.arrivalTime) | date : 'shortTime'}}</td>
                             <td>{{timediff(flight.departureTime,flight.arrivalTime)}}</td>
-                            <td><input type="radio" ng-model="$parent.outgoingCabin" value="economy" />{{flight.eCost | currency: "€"}}</td>
-                            <td><input type="radio" ng-model="$parent.outgoingCabin" value="business" />{{flight.bCost | currency: "€"}}</td>
+                            <td><input type="radio" ng-model="$parent.outgoingCabin" value="economy" ng-value="{{flight}}"  />{{flight.eCost | currency: "€"}}</td>
+                            <td><input type="radio" ng-model="$parent.outgoingCabin" value="business" ng-value="{{flight}}"  />{{flight.bCost | currency: "€"}}</td>
 
                                 <!-- <select ng-model="$parent.outgoingCabin" ng-show="$parent.angular.equals( $parent.selectedOutgoingFlight, flight)">
                                     <option value="economy">
