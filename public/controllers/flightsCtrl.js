@@ -5,23 +5,48 @@ App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $locati
   $scope.dest = FlightsSrv.getSelectedDestinationAirport().substring(2,5);
   $scope.oDate = FlightsSrv.getSelectedOutDate();
   $scope.rDate = FlightsSrv.getSelectedReturnDate();
-  $scope.tickets = FlightsSrv.getSelectedNumberOfTickets();
+  //$scope.tickets = FlightsSrv.getSelectedNumberOfTickets();
   $scope.outgoingPrice = 0;
   $scope.returnPrice = 0;
+  //$scope.cabin = FlightsSrv.getSelectedCabin();
+  $scope.cabin = "true";
+ 
 
     function roundTripInfo(origin,dest,oDate,rDate) {
-        OutReturnSrv.getRoundTripInfo(origin,dest,oDate,rDate).success(function(flights) {
+        if($scope.cabin === "true")
+        {
+            OutReturnSrv.getRoundTripInfo(origin,dest,oDate,rDate,"economy").success(function(flights) {
             $scope.outgoingInfo = flights.outgoingFlights;
             $scope.returnInfo = flights.returnFlights;
 
-        });
+            });
+        }
+        else
+        {
+            OutReturnSrv.getRoundTripInfo(origin,dest,oDate,rDate,"business").success(function(flights) {
+            $scope.outgoingInfo = flights.outgoingFlights;
+            $scope.returnInfo = flights.returnFlights;
+
+            });
+        }
+        
     };
      
 
     function oneWayTripInfo(origin,dest,oDate) {
-        OutReturnSrv.getOneWayTripInfo(origin,dest,oDate).success(function(flights) {
+        if($scope.cabin === "true")
+        {
+            OutReturnSrv.getOneWayTripInfo(origin,dest,oDate,"economy").success(function(flights) {
             $scope.outgoingInfo = flights.outgoingFlights;
         });
+        }
+        else
+        {
+            OutReturnSrv.getOneWayTripInfo(origin,dest,oDate,"business").success(function(flights) {
+            $scope.outgoingInfo = flights.outgoingFlights;
+        });
+        }
+        
     };
 
     function changeISOFormat(date)
@@ -78,7 +103,7 @@ App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $locati
         // OutReturnSrv.setSelectedOutCabin($scope.outgoingCabin);
         if ($scope.roundTrip == 'true') {
             OutReturnSrv.setSelectedReturnFlight($scope.selectedReturnFlight);
-            OutReturnSrv.setSelectedReturnOperatedBy('iberia');
+            OutReturnSrv.setSelectedReturnOperatedBy($scope.selectedReturnFlight.Airline);
             //OutReturnSrv.setSelectedReturnCabin($scope.returnCabin);
             OutReturnSrv.setSelectedPrice($scope.selectedOutgoingFlight.cost + $scope.selectedReturnFlight.cost);
         } else
