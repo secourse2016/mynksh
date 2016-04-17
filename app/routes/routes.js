@@ -44,9 +44,6 @@ module.exports = function(app, mongo) {
                 var flights = {};
                 flights.outgoingFlights = outgoingFlight;
                 flights.returnFlights = returnFlight;
-                if (Object.keys(outgoingFlight).length === 0 || Object.keys(returnFlight).length === 0)
-                    res.send("no flights found");
-                else
                     res.json(flights);
             });
         });
@@ -57,9 +54,6 @@ module.exports = function(app, mongo) {
         mongo.searchFlights(req.params.origin, req.params.destination, req.params.departingDate, req.params.cabin, function(err, outgoingFlight) {
             var flights = {};
             flights.outgoingFlights = outgoingFlight;
-            if (Object.keys(outgoingFlight).length === 0)
-                res.send("no flights found");
-            else
                 res.json(flights);
         });
     });
