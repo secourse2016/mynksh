@@ -26,14 +26,14 @@
 
 <!-- <div class="container"> -->
 <!-- <div class="mainContainer" > -->
+
 <section id="section-download" class="download-wrap" style="background: rgba(255,255,255, .8)">
     <div class="container download center">
         <div class='content'>
             <h1 class="animated fadeInDown header-font">Select your flights</h1>
             <div id='outgoing'>
                 <div class="animated slideInLeft">
-                    <h3><img src='../assets/outgoingPlane.png'>Outbound:From {{origin}} to {{dest}}
-  <small>{{oDate | date}}</small></h3>
+                    <h3><img src='../assets/outgoingPlane.png'>Outbound:From {{origin}} to {{dest}}</br><small> {{oDate | date}}</small></h3>
                 </div>
                 <table class="table table-striped table-hover table-bordered animated fadeInDown">
                     <thead>
@@ -54,30 +54,31 @@
                                     <input type="radio" ng-model="$parent.selectedOutgoingFlight" ng-value="{{flight}}" />
                                 </td>
                                 <td>{{flight.flightNumber}}</td>
-                                <td>Iberia</td>
-                                <td>{{stringToDate(flight.departureTime) | date : 'shortTime'}}</td>
-                                <td>{{stringToDate(flight.arrivalTime) | date : 'shortTime'}}</td>
-                                <td>{{timediff(flight.departureTime,flight.arrivalTime)}}</td>
+                                <td>{{flight.Airline}}</td>
+                                <td>{{stringToDate(flight.departureDateTime) | date : 'shortTime'}}</td>
+                                <td>{{stringToDate(flight.arrivalDateTime) | date : 'shortTime'}}</td>
+                                <td>{{timediff(flight.departureDateTime,flight.arrivalDateTime)}}</td>
                                 <td>
-                                    <select ng-model="$parent.outgoingCabin" ng-show="$parent.angular.equals( $parent.selectedOutgoingFlight, flight)">
+                                    <!-- <select ng-model="$parent.outgoingCabin" ng-show="$parent.angular.equals( $parent.selectedOutgoingFlight, flight)">
                                         <option value="economy">
-                                            Economy: {{flight.eCost | currency: "€"}}
+                                            Economy: {{flight.cost | currency: "€"}}
                                         </option>
                                         <option value="business">
-                                            Business: {{flight.bCost | currency: "€"}}
+                                            Business: {{flight.cost | currency: "€"}}
                                         </option>
-                                    </select>
+                                    </select> -->
+                                    {{flight.cost}}
                                 </td>
                             </tr>
                         </form>
                     </tbody>
                 </table>
             </div>
+            {{flight}}
             <div ng-show="roundTrip === 'true'">
                 <h1 class="animated fadeInDown header-font">Now select your return flight</h1>
                 <div id='return' class="animated slideInRight">
-                    <h3><img src='../assets/returnPlane.png'>Return: From {{dest}} to {{origin}}
-  <small>{{rDate | date}}</small></h3>
+                    <h3><img src='../assets/returnPlane.png'>Return: From {{dest}} to {{origin}}<small></br>{{rDate |date}}</small></h3>
                 </div>
                 <table class="table table-striped table-hover table-bordered animated fadeInDown">
                     <thead>
@@ -98,19 +99,20 @@
                                     <input type="radio" ng-model="$parent.selectedReturnFlight" ng-value="{{flight}}" />
                                 </td>
                                 <td>{{flight.flightNumber}}</td>
-                                <td>Iberia</td>
-                                <td>{{stringToDate(flight.departureTime) | date : 'shortTime'}}</td>
-                                <td>{{stringToDate(flight.arrivalTime) | date : 'shortTime'}}</td>
-                                <td>{{timediff(flight.departureTime,flight.arrivalTime)}}</td>
+                                <td>{{flight.Airline}}</td>
+                                <td>{{stringToDate(flight.departureDateTime) | date : 'shortTime'}}</td>
+                                <td>{{stringToDate(flight.arrivalDateTime) | date : 'shortTime'}}</td>
+                                <td>{{timediff(flight.departureDateTime,flight.arrivalDateTime)}}</td>
                                 <td>
-                                    <select ng-model="$parent.returnCabin" ng-show="$parent.angular.equals( $parent.selectedReturnFlight, flight)">
+                                    <!-- <select ng-model="$parent.returnCabin" ng-show="$parent.angular.equals( $parent.selectedReturnFlight, flight)">
                                         <option value="economy">
-                                            Economy: {{flight.eCost | currency : "€"}}
+                                            Economy: {{flight.cost | currency : "€"}}
                                         </option>
                                         <option value="business">
-                                            Business: {{flight.bCost | currency: "€"}}
+                                            Business: {{flight.cost | currency: "€"}}
                                         </option>
-                                    </select>
+                                    </select> -->
+                                    {{flight.cost}}
                                 </td>
                             </tr>
                         </form>
@@ -120,10 +122,11 @@
             <div id='price'>
                 <blockquote>
                     <p>Price of your tickets</p>
-                    <h3>{{(outgoingPrice + returnPrice) | currency:"€"}} x {{tickets}} = {{((outgoingPrice + returnPrice)*tickets) | currency:"€"}}</h3>
+                   <!--  <h3>{{(outgoingPrice + returnPrice) | currency:"€"}} x {{tickets}} = {{((outgoingPrice + returnPrice)*tickets) | currency:"€"}}</h3> -->
+                    <h3>{{(selectedReturnFlight.cost + selectedOutgoingFlight.cost) | currency:"€"}}</h3>
                     <span ng-show="RadioSelected" style="color: red">Flight(s) must be selected</span>
-                    <span ng-show="ReturnPriceSelected" style="color: red">A Return Price must be selected</span>
-                    <span ng-show="OutgoingPriceSelected" style="color: red">An Outgoing Price must be selected</span>
+                   <!--  <span ng-show="ReturnPriceSelected" style="color: red">A Return Price must be selected</span>
+                    <span ng-show="OutgoingPriceSelected" style="color: red">An Outgoing Price must b e selected</span>-->
                 </blockquote>
                 <a href class="btn btn-primary btn-lg hvr-underline-from-center" ng-click='BookFlight()'>Book Flight</a>
             </div>
