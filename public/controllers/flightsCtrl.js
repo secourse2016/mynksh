@@ -5,7 +5,7 @@ App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $locati
   $scope.dest = FlightsSrv.getSelectedDestinationAirport().substring(2,5);
   $scope.oDate = FlightsSrv.getSelectedOutDate();
   $scope.rDate = FlightsSrv.getSelectedReturnDate();
-  $scope.tickets = FlightsSrv.getSelectedNumberOfTickets();
+  $scope.tickets = 1;
   $scope.outgoingPrice = 0;
   $scope.returnPrice = 0;
 
@@ -16,7 +16,7 @@ App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $locati
 
         });
     };
-     
+
 
     function oneWayTripInfo(origin,dest,oDate) {
         OutReturnSrv.getOneWayTripInfo(origin,dest,oDate).success(function(flights) {
@@ -57,7 +57,7 @@ App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $locati
         // //     return;
         // // } else
         // //     $scope.OutgoingPriceSelected = false;
-        
+
 
         if ($scope.roundTrip == 'true') {
             if ($scope.selectedReturnFlight == null) {

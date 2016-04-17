@@ -53,9 +53,7 @@ App.controller('landingCtrl', function($scope, FlightsSrv, $location) {
         FlightsSrv.setSelectedDestinationAirport(destAirport);
     };
 
-
     $scope.SetOutDate = function(value) {
-
         FlightsSrv.setSelectedOutDate(value);
     };
     $scope.SetReturnDate = function(value) {
@@ -63,9 +61,6 @@ App.controller('landingCtrl', function($scope, FlightsSrv, $location) {
     };
     $scope.SetRoundTrip = function(value) {
         FlightsSrv.setSelectedRoundTrip(value);
-    };
-    $scope.SetSelectedNumberOfTickets = function(value) {
-        FlightsSrv.setSelectedNumberOfTickets(value);
     };
 
     /* Find All Available Flights  */
