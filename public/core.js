@@ -36,8 +36,8 @@ App.config(function($routeProvider) {
     // // route for the congrats page
 
     .when('/congrats', {
-        templateUrl: '/partials/congrats.html',
-        controller: 'congratsCtrl'
+        templateUrl: '/partials/congrats.html'
+
     });
 
 

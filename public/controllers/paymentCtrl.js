@@ -126,22 +126,19 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, OutReturnSrv, payment
       //
       //   var str1=randomstring;
 
-        var str= paymentSrv.getSelectedCaradNo();
+        var str1= paymentSrv.getSelectedCaradNo();
+        var str2= FlightsSrv.getSelectedOutDate();
+        var str3=FlightsSrv.getSelectedReturnDate();
+        var str=str1+","+str2+","+str3;
         var enc = window.btoa(str);
         var dec = window.atob(enc);
 
-        var res = "Encoded String: " + enc + "<br>" + "Decoded String: " + dec;
+        var res = "Booking Reference:(please copy it for further tracking) "+"<br>" + enc;
+        // "<br>" + "Decoded String: " + dec;
         document.getElementById("demo").innerHTML = res;
 
     };
 
-    // $scope.haveCardNo=0;
-    // $scope.validCardNo=function(){
-    //   // if(!(paymentSrv.getSelectedCaradNo() === ))
-    //   console.log(paymentSrv.getSelectedCaradNo());
-    //   $scope.haveCardNo=1;
-    //
-    // };
 
     //End of Narihan
 
