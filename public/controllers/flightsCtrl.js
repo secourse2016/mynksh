@@ -5,36 +5,27 @@ App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $locati
   $scope.dest = FlightsSrv.getSelectedDestinationAirport();
   $scope.oDate = FlightsSrv.getSelectedOutDate();
   $scope.rDate = FlightsSrv.getSelectedReturnDate();
+  $scope.tickets = FlightsSrv.getSelectedNumberOfTickets();
   $scope.outgoingPrice = 0;
   $scope.returnPrice = 0;
 
     function roundTripInfo(origin,dest,oDate,rDate) {
         OutReturnSrv.getRoundTripInfo(origin,dest,oDate,rDate).success(function(flights) {
-            $scope.outgoingInfo = flights.outgoingFlights;
-            $scope.returnInfo = flights.returnFlights;
-
+            $scope.outgoingInfo = flights.outgoingFlight;
+            $scope.returnInfo = flights.returnFlight;
         });
     };
-     
 
     function oneWayTripInfo(origin,dest,oDate) {
         OutReturnSrv.getOneWayTripInfo(origin,dest,oDate).success(function(flights) {
-            $scope.outgoingInfo = flights.outgoingFlights;
+            $scope.outgoingInfo = flights.outgoingFlight;
         });
     };
 
-    function changeISOFormat(date)
-    {
-       var monthNames = ["January", "February", "March", "April", "May", "June",
-        "July", "August", "September", "October", "November", "December"];
-        var d = new Date(date);
-        return monthNames[d.getMonth()] + " " + d.getDate() + ", " + d.getFullYear();
-    };
-
-    if($scope.roundTrip === 'true')
-      roundTripInfo($scope.origin,$scope.dest,changeISOFormat($scope.oDate),changeISOFormat($scope.rDate));
+    if($scope.roundTrip === true)
+      roundTripInfo($scope.origin,$scope.dest,$scope.oDate,$scope.rDate);
     else
-      oneWayTripInfo($scope.origin,$scope.dest,changeISOFormat($scope.oDate));
+      oneWayTripInfo($scope.origin,$scope.dest,$scope.oDate);
 
     $scope.stringToDate = function(date) {
         return new Date(date);
@@ -78,9 +69,9 @@ App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $locati
             OutReturnSrv.setSelectedReturnFlight($scope.selectedReturnFlight);
             OutReturnSrv.setSelectedReturnOperatedBy('iberia');
             OutReturnSrv.setSelectedReturnCabin($scope.returnCabin);
-            OutReturnSrv.setSelectedPrice($scope.outgoingPrice + $scope.returnPrice);
+            OutReturnSrv.setSelectedPrice(($scope.outgoingPrice + $scope.returnPrice) * $scope.tickets);
         } else
-            OutReturnSrv.setSelectedPrice($scope.outgoingPrice);
+            OutReturnSrv.setSelectedPrice($scope.outgoingPrice * $scope.tickets);
 
         $location.url('/confirm');
 
@@ -105,19 +96,19 @@ App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $locati
 
     $scope.calculateOutgoingPrice = function() {
         if ($scope.outgoingCabin === "economy") {
-            $scope.outgoingPrice = $scope.selectedOutgoingFlight.cost;
+            $scope.outgoingPrice = $scope.selectedOutgoingFlight.eCost;
         };
         if ($scope.outgoingCabin === "business") {
-            $scope.outgoingPrice = $scope.selectedOutgoingFlight.cost;
+            $scope.outgoingPrice = $scope.selectedOutgoingFlight.bCost;
         };
     };
 
     $scope.calculateReturningPrice = function() {
         if ($scope.returnCabin === "economy") {
-            $scope.returnPrice = $scope.selectedReturnFlight.cost;
+            $scope.returnPrice = $scope.selectedReturnFlight.eCost;
         };
         if ($scope.returnCabin === "business") {
-            $scope.returnPrice = $scope.selectedReturnFlight.cost;
+            $scope.returnPrice = $scope.selectedReturnFlight.bCost;
         };
     };
 
