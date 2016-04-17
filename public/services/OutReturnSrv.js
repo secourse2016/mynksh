@@ -25,12 +25,6 @@ App.factory('OutReturnSrv', function($http) {
             this.selectedPrice = value;
         },
 
-        setSelectedOutOperatedBy: function(value) {
-            this.selectedOutOperatedBy = value;
-        },
-        setSelectedReturnOperatedBy: function(value) {
-            this.selectedReturnOperatedBy = value;
-        },
         getSelectedOutFlight: function() {
             return this.selectedOutFlight;
         },
@@ -50,11 +44,5 @@ App.factory('OutReturnSrv', function($http) {
             return this.selectedPrice;
         },
 
-        getSelectedOutOperatedBy: function() {
-            return this.selectedOutOperatedBy;
-        },
-        getSelectedReturnOperatedBy: function() {
-            return this.selectedReturnOperatedBy;
-        },
     };
 });
