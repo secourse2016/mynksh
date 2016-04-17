@@ -12,7 +12,7 @@ describe('API', function() {
         // TODO: test with supertest
         request.get("/IBERIA").expect(404).end(function(err,res){
        done();
-      
+
       });      
     });
 
@@ -28,7 +28,7 @@ describe('API', function() {
  it('/api/flights/search/:origin/:destination/:departingDate/:cabin returns empty JSON object', function(done) {
 
     request.get("/api/flights/search/CAI/JED/June 13, 2016 11:13:00/economy").expect(200).end(function(err,res){
-         // console.log(res.body); 
+         // console.log(res.body);
           expect(res.body).to.be.a("object");
            done();
          });
@@ -37,7 +37,7 @@ describe('API', function() {
  it('/api/flights/search/:origin/:destination/:departingDate/:cabin returns 404 error!', function(done) {
 
     request.get("/api/flights/search/JED/April 13, 2016 11:13:00/economy").expect(404).end(function(err,res){
-          
+
            done();
          });
 
@@ -54,7 +54,7 @@ describe('API', function() {
    it('/api/flights/search/:origin/:destination/:departingDate/:returningDate/:cabin returns empty JSON object', function(done) {
 
     request.get("/api/flights/search/CAI/JED/June 13, 2016 11:13:00/April 13, 2016 05:50:00/economy").expect(200).end(function(err,res){
-         // console.log(res.body); 
+         // console.log(res.body);
           expect(res.body).to.be.a("object");
            done();
          });
@@ -63,7 +63,7 @@ describe('API', function() {
    it('/api/flights/search/:origin/:destination/:departingDate/:returningDate/:cabin returns 404 error!', function(done) {
 
     request.get("/api/flights/search/JED/April 13, 2016 11:13:00/April 13, 2016 05:50:00/economy").expect(404).end(function(err,res){
-          
+
            done();
          });
 
