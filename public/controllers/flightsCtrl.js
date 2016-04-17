@@ -1,8 +1,8 @@
 App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $location) {
 
   $scope.roundTrip = FlightsSrv.getSelectedRoundTrip();
-  $scope.origin = FlightsSrv.getSelectedOriginAirport();
-  $scope.dest = FlightsSrv.getSelectedDestinationAirport();
+  $scope.origin = FlightsSrv.getSelectedOriginAirport().substring(2,5);
+  $scope.dest = FlightsSrv.getSelectedDestinationAirport().substring(2,5);
   $scope.oDate = FlightsSrv.getSelectedOutDate();
   $scope.rDate = FlightsSrv.getSelectedReturnDate();
   $scope.tickets = FlightsSrv.getSelectedNumberOfTickets();
