@@ -3,6 +3,10 @@
  */
 App.factory('paymentSrv', function($http) {
     return {
+        postPay: function(firstName , lastName , passport , passportNumber , issueDate , expiryDate , email , phoneNumber , bookingRefNumber, flightNumber) {
+          console.log('i`m in srv');
+          return $http.get('/api/pay/'+ firstName + '/' + lastName + '/' + passport + '/' + passportNumber+'/'+issueDate+'/'+ expiryDate + '/' + email + '/' + phoneNumber + '/' + bookingRefNumber+'/'+flightNumber);
+      },
         getCountry: function() {
             return $http.get('/api/data/airports');
         },
