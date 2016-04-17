@@ -12,6 +12,10 @@ App.controller('landingCtrl', function($scope, FlightsSrv, $location) {
     // });
     // $scope.roundTrip = "true";
 
+    $scope.bookingRef = function() {
+        $location.url('/bookingRef');
+    };
+
     $scope.cabin="cabin";
 
     $scope.roundTrip="roundtrip";
