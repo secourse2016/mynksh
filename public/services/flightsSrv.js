@@ -35,6 +35,13 @@ App.factory('FlightsSrv', function($http) {
         },
         getSelectedRoundTrip: function() {
             return this.selectedRoundTrip;
+        },
+        setSelectedCabin: function(value) {
+            this.selectedCabin = value;
+        },
+        getSelectedCabin: function() {
+            return this.selectedCabin;
         }
+
     };
 });

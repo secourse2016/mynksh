@@ -11,6 +11,19 @@ App.controller('landingCtrl', function($scope, FlightsSrv, $location) {
     //    console.log(val)
     // });
     $scope.roundTrip = "true";
+    $scope.cabin = "true";
+
+    $scope.bookingRef = function() {
+        $location.url('/bookingRef');
+    };
+
+    // $scope.cabin="cabin";
+
+    // $scope.roundTrip="roundtrip";
+    $scope.isShown = function(roundTrip) {
+        return roundTrip === $scope.roundTrip;
+    };
+
     $scope.open1 = function() {
         $scope.popup1.opened = true;
     };
@@ -63,6 +76,11 @@ App.controller('landingCtrl', function($scope, FlightsSrv, $location) {
         FlightsSrv.setSelectedRoundTrip(value);
     };
 
+    $scope.SetCabin = function(value) {
+        FlightsSrv.setSelectedCabin(value);
+    };
+
+
     /* Find All Available Flights  */
     $scope.SearchFlights = function() {
         $location.url('/flights');
@@ -109,8 +127,6 @@ App.controller('landingCtrl', function($scope, FlightsSrv, $location) {
         startingDay: 1
     };
 
-
-
     var tomorrow = new Date();
     tomorrow.setDate(tomorrow.getDate() + 1);
     var afterTomorrow = new Date();
@@ -135,7 +151,6 @@ App.controller('landingCtrl', function($scope, FlightsSrv, $location) {
                 }
             }
         }
-
         return '';
     };
 });
