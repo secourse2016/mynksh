@@ -126,14 +126,32 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, OutReturnSrv, payment
       //
       //   var str1=randomstring;
 
+      //encode and get the first part of the outgoing date
         var str1= paymentSrv.getSelectedCaradNo();
         var str2= FlightsSrv.getSelectedOutDate();
+        var str4=JSON.stringify(str2);
+        var arr=str4.split("T");
+        var str2=arr[0];
+        var arr=str2.split("-");
+        var str2=arr[1]+"/"+arr[2];
+
+        //encode and get the first part of the return date
         var str3=FlightsSrv.getSelectedReturnDate();
+        var str5=JSON.stringify(str3);
+        var arr2=str5.split("T");
+        var str3=arr2[0];
+        var arr2=str3.split("-");
+        var str3=arr2[1]+"/"+arr2[2];
+        // var arr2=str4.split(/[ ,]+/);
+        // var str3=arr2[1]+"/"+arr2[2];
         var str=str1+","+str2+","+str3;
+        // var str="hey how are you";
+        // var arr=str.split(/[ ,]+/);
+        // var str2=arr[1]+"/"+arr[2];
         var enc = window.btoa(str);
         var dec = window.atob(enc);
 
-        var res = "Booking Reference:(please copy it for further tracking) "+"<br>" + enc;
+        var res = "Booking Reference:(please copy it for further tracking): "+ "<br>"+enc+"<br>" + "Decoded String: " + dec;
         // "<br>" + "Decoded String: " + dec;
         document.getElementById("demo").innerHTML = res;
 
