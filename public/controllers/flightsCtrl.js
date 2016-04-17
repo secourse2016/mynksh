@@ -6,8 +6,8 @@ App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $locati
   $scope.oDate = FlightsSrv.getSelectedOutDate();
   $scope.rDate = FlightsSrv.getSelectedReturnDate();
   $scope.tickets = FlightsSrv.getSelectedNumberOfTickets();
-  $scope.outgoingInfo=[];
-  $scope.returnInfo=[];
+  // $scope.outgoingInfo=[];
+  // $scope.returnInfo=[];
   $scope.eAvailable= true;
   $scope.bAvailable= true;
   $scope.outgoingPrice = 0;
@@ -17,9 +17,9 @@ App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $locati
         OutReturnSrv.getRoundTripInfo(origin,dest,oDate,rDate).success(function(flights) {
             // $scope.outgoingInfo = outgoingInfo.push(economyFlights.outgoingFlight);
             // $scope.returnInfo = returnInfo.push(economyFlights.returnFlight);
-            console.log(flights.outgoingFlight);
-            $scope.outgoingInfo.push(flights.outgoingFlight);
-            $scope.returnInfo.push(flights.returnFlight);
+            $scope.outgoingInfo = flights.outgoingFlights;
+            $scope.returnInfo = flights.returnFlights;
+
         });
         // OutReturnSrv.getRoundTripInfo(origin,dest,oDate,rDate,business).success(function(businessFlights) {
         //     $scope.outgoingInfo = outgoingInfo.push(businessFlights.outgoingFlight);
@@ -31,7 +31,7 @@ App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $locati
     function oneWayTripInfo(origin,dest,oDate) {
         OutReturnSrv.getOneWayTripInfo(origin,dest,oDate).success(function(flights) {
             // $scope.outgoingInfo = outgoingInfo.push(economyFlights.outgoingFlight);
-            $scope.outgoingInfo = flights.outgoingFlight;
+            $scope.outgoingInfo = flights.outgoingFlights;
         });
         //  OutReturnSrv.getOneWayTripInfo(origin,dest,oDate).success(function(businessFlights) {
         //     if(businessFlights.returnFlight === {})
@@ -49,10 +49,7 @@ App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $locati
     };
 
     if($scope.roundTrip === 'true')
-    {
-      console.log("roundTrip is true");
       roundTripInfo($scope.origin,$scope.dest,changeISOFormat($scope.oDate),changeISOFormat($scope.rDate));
-    }
     else
       oneWayTripInfo($scope.origin,$scope.dest,changeISOFormat($scope.oDate));
 
@@ -125,19 +122,19 @@ App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $locati
 
     $scope.calculateOutgoingPrice = function() {
         if ($scope.outgoingCabin === "economy") {
-            $scope.outgoingPrice = $scope.selectedOutgoingFlight.eCost;
+            $scope.outgoingPrice = $scope.selectedOutgoingFlight.cost;
         };
         if ($scope.outgoingCabin === "business") {
-            $scope.outgoingPrice = $scope.selectedOutgoingFlight.bCost;
+            $scope.outgoingPrice = $scope.selectedOutgoingFlight.cost;
         };
     };
 
     $scope.calculateReturningPrice = function() {
         if ($scope.returnCabin === "economy") {
-            $scope.returnPrice = $scope.selectedReturnFlight.eCost;
+            $scope.returnPrice = $scope.selectedReturnFlight.cost;
         };
         if ($scope.returnCabin === "business") {
-            $scope.returnPrice = $scope.selectedReturnFlight.bCost;
+            $scope.returnPrice = $scope.selectedReturnFlight.cost;
         };
     };
 
