@@ -54,6 +54,12 @@ module.exports = function(app, mongo) {
         });
     });
 
+    app.get('/api/pay/:firstName/:lastName/:passport/:passportNumber/:issueDate/:expiryDate/:email/:phoneNumber/:bookingRefNumber/:flightNumber', function(req, res) {
+        mongo.submitPay(req.params.firstName, req.params.lastName, req.params.passport, req.params.passportNumber,req.params.issueDate, req.params.expiryDate, req.params.email, req.params.phoneNumber, req.params.bookingRefNumber, req.params.flightNumber, function(err, data) {
+console.log('i`m in route');
+        });
+    });
+
 
     app.get('/api/returnInfo', function(req, res) {
         res.json(require('../../modules/returnInfo.json'));
