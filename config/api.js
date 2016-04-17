@@ -39,6 +39,7 @@ exports.searchFlights = function(origin, destination, departingDate, cabin, cb) 
     var economyOrBusiness = cabin.toLowerCase();
     mongo.connect(function(err, db) {
         var collection = db.collection('flights');
+        var date = new Date(departingDate);
         collection.find({
             "origin": origin,
             "destination": destination,
