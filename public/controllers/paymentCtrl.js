@@ -98,6 +98,8 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, OutReturnSrv, payment
     $scope.noOfPassengers = FlightsSrv.getSelectedNumberOfTickets();
     //   llsa  m3rfsh ha5odha mn meen
     $scope.totalPrice = OutReturnSrv.getSelectedPrice();
+    $scope.flightNoOut= OutReturnSrv.getSelectedOutFlight().flightNumber;
+    // $scope.flightNoIn= OutReturnSrv.getSelectedReturnFlight().flightNumber;
 
     $scope.Porigin = FlightsSrv.getSelectedOriginAirport();
     $scope.Pdest = FlightsSrv.getSelectedDestinationAirport();
@@ -127,24 +129,28 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, OutReturnSrv, payment
       //   var str1=randomstring;
 
       //encode and get the first part of the outgoing date
-        var str1= paymentSrv.getSelectedCaradNo();
-        var str2= FlightsSrv.getSelectedOutDate();
-        var str4=JSON.stringify(str2);
+        var card= paymentSrv.getSelectedCaradNo();
+        var outDate= FlightsSrv.getSelectedOutDate();
+        var str4=JSON.stringify(outDate);
         var arr=str4.split("T");
-        var str2=arr[0];
-        var arr=str2.split("-");
-        var str2=arr[1]+"/"+arr[2];
+        var outDate=arr[0];
+        var arr=outDate.split("-");
+        var outDate=arr[1]+"/"+arr[2];
 
         //encode and get the first part of the return date
-        var str3=FlightsSrv.getSelectedReturnDate();
-        var str5=JSON.stringify(str3);
-        var arr2=str5.split("T");
-        var str3=arr2[0];
-        var arr2=str3.split("-");
-        var str3=arr2[1]+"/"+arr2[2];
+        // var returnDate=FlightsSrv.getSelectedReturnDate();
+        // var str5=JSON.stringify(returnDate);
+        // var arr2=str5.split("T");
+        // var returnDate=arr2[0];
+        // var arr2=returnDate.split("-");
+        // var returnDate=arr2[1]+"/"+arr2[2];
         // var arr2=str4.split(/[ ,]+/);
         // var str3=arr2[1]+"/"+arr2[2];
-        var str=str1+","+str2+","+str3;
+        //
+        var outFlightNo=OutReturnSrv.getSelectedOutFlight().flightNumber;
+        // var returnFlightNo= OutReturnSrv.getSelectedReturnFlight().flightNumber;
+        var str=card+","+outDate+","+outFlightNo;
+        // +","+outFlightNo+","+returnFlightNo;
         // var str="hey how are you";
         // var arr=str.split(/[ ,]+/);
         // var str2=arr[1]+"/"+arr[2];

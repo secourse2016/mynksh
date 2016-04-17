@@ -48,5 +48,6 @@ App.factory('FlightsSrv', function($http) {
         getSelectedNumberOfTickets: function() {
             return this.selectedNumberOfTickets;
         }
+        
     };
 });
