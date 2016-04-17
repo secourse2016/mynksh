@@ -5,7 +5,6 @@ App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $locati
     $scope.dest = FlightsSrv.getSelectedDestinationAirport();
     $scope.oDate = FlightsSrv.getSelectedOutDate();
     $scope.rDate = FlightsSrv.getSelectedReturnDate();
-    $scope.tickets = 1;
     $scope.outgoingPrice = 0;
     $scope.returnPrice = 0;
     $scope.cabin = FlightsSrv.getSelectedCabin();
@@ -69,34 +68,17 @@ App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $locati
         } else
             $scope.RadioSelected = false;
 
-        // // if ($scope.outgoingCabin == null) {
-        // //     $scope.OutgoingPriceSelected = true;
-        // //     return;
-        // // } else
-        // //     $scope.OutgoingPriceSelected = false;
-
-
         if ($scope.roundTrip == 'true') {
             if ($scope.selectedReturnFlight == null) {
                 $scope.RadioSelected = true;
                 return;
             } else
                 $scope.RadioSelected = false;
-
-            // if ($scope.returnCabin == null) {
-            //     $scope.ReturnPriceSelected = true;
-            //     return;
-            // } else
-            //     $scope.ReturnPriceSelected = false;
         }
 
         OutReturnSrv.setSelectedOutFlight($scope.selectedOutgoingFlight);
-        OutReturnSrv.setSelectedOutOperatedBy($scope.selectedOutgoingFlight.Airline);
-        // OutReturnSrv.setSelectedOutCabin($scope.outgoingCabin);
         if ($scope.roundTrip == 'true') {
             OutReturnSrv.setSelectedReturnFlight($scope.selectedReturnFlight);
-            OutReturnSrv.setSelectedReturnOperatedBy($scope.selectedReturnFlight.Airline);
-            //OutReturnSrv.setSelectedReturnCabin($scope.returnCabin);
             OutReturnSrv.setSelectedPrice($scope.selectedOutgoingFlight.cost + $scope.selectedReturnFlight.cost);
         } else
             OutReturnSrv.setSelectedPrice($scope.selectedOutgoingFlight.cost);
@@ -104,40 +86,5 @@ App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $locati
         $location.url('/confirm');
 
     };
-
-    //$scope.angular = angular;
-
-    //calculating the price
-
-    // $scope.$watch('outgoingCabin', function() {
-    //     $scope.calculateOutgoingPrice();
-    // }, true);
-    // $scope.$watch('selectedOutgoingFlight', function() {
-    //     $scope.calculateOutgoingPrice();
-    // }, true);
-    // $scope.$watch('selectedReturnFlight', function() {
-    //     $scope.calculateReturningPrice();
-    // }, true);
-    // $scope.$watch('returnCabin', function() {
-    //     $scope.calculateReturningPrice();
-    // }, true);
-
-    // $scope.calculateOutgoingPrice = function() {
-    //     if ($scope.outgoingCabin === "economy") {
-    //         $scope.outgoingPrice = $scope.selectedOutgoingFlight.cost;
-    //     };
-    //     if ($scope.outgoingCabin === "business") {
-    //         $scope.outgoingPrice = $scope.selectedOutgoingFlight.cost;
-    //     };
-    // };
-
-    // $scope.calculateReturningPrice = function() {
-    //     if ($scope.returnCabin === "economy") {
-    //         $scope.returnPrice = $scope.selectedReturnFlight.cost;
-    //     };
-    //     if ($scope.returnCabin === "business") {
-    //         $scope.returnPrice = $scope.selectedReturnFlight.cost;
-    //     };
-    // };
 
 });
