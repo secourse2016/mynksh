@@ -9,13 +9,15 @@ exports.seedDB = function(cb) {
         mongo.clearDB(function(err) {
             assert.equal(null, err);
             mongo.seed('flights', flights, function() {
+              mongo.seed('bookings', bookings, function() {
                 mongo.seed('airports', airports, function() {
-                    // mongo.seed('bookings', bookings, function() {
+
                     mongo.close();
-                    // });
+
                 });
             });
         });
+    });
 
     });
 };
@@ -69,5 +71,76 @@ exports.searchFlights = function(origin, destination, departingDate, cabin, cb) 
             mongo.close();
             cb(err, rflights);
         });
+    });
+}
+//
+// "_id": "String",
+// 	"firstName": "String",
+// 	"lastName": "String",
+// 	"passport": "String",
+// 	"passportNumber": "String",
+// 	"issueDate": "Date",
+// 	"expiryDate": "Date",
+// 	"email" : "String",
+// 	"phoneNumber" : "String",
+// 	"bookingRefNumber": "String",
+// 	"receipt_number": "String",
+// 	"flightNumber": "String
+
+exports.submitPay = function(firstName , lastName , passport , passportNumber , issueDate , expiryDate , email , phoneNumber , bookingRefNumber, flightNumber, cb) {
+
+console.log('i`m in api');
+    mongo.connect(function(err, db) {
+
+// var cursor =db.collection('flights').find( );
+//    cursor.each(function(err, doc) {
+//       if (doc != null) {
+//          console.dir(doc);
+//       }
+//    });
+// update after find free seat
+
+
+var collection = db.collection('flights');
+collection.find({
+    "flightNumber": flightNumber
+}).toArray(function(err, flights) {
+    if (flights.length === 0){
+      cb(err,false);
+      mongo.close();
+      return;
+    }
+//flights[0].seat[flights[0].nextvf,m]
+
+                      db.collection.update(
+                      { "SeatMap": seatMap[flights[0].next] },
+                      {
+                      "bookingRefNumber": bookingRefNumber
+                      },
+                      { upsert: false }
+                      );
+
+              var collection = db.collection('bookings');
+                var document = {"firstName": firstName,
+                              	"lastName": lastName,
+                              	"passport": passport,
+                              	"passportNumber": passportNumber,
+                              	"issueDate": issueDate,
+                              	"expiryDate": expiryDate,
+                              	"email" : email,
+                              	"phoneNumber" : phoneNumber,
+                              	"bookingRefNumber": bookingRefNumber,
+                              	"flightNumber": flightNumber};
+                collection.insertOne(document, {w: 1}, function(err, records){
+                  mongo.close();
+                  cb(err,true);
+              });
+
+});
+
+
+
+
+
     });
 }
