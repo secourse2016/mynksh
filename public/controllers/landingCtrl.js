@@ -64,10 +64,6 @@ App.controller('landingCtrl', function($scope, FlightsSrv, $location) {
     $scope.SetRoundTrip = function(value) {
         FlightsSrv.setSelectedRoundTrip(value);
     };
-    $scope.SetSelectedNumberOfTickets = function(value) {
-        FlightsSrv.setSelectedNumberOfTickets(value);
-    };
-
     /* Find All Available Flights  */
     $scope.SearchFlights = function() {
         $location.url('/flights');
