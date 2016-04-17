@@ -58,16 +58,18 @@
                             <td>{{stringToDate(flight.departureTime) | date : 'shortTime'}}</td>
                             <td>{{stringToDate(flight.arrivalTime) | date : 'shortTime'}}</td>
                             <td>{{timediff(flight.departureTime,flight.arrivalTime)}}</td>
-                            <td>
-                                <select ng-model="$parent.outgoingCabin" ng-show="$parent.angular.equals( $parent.selectedOutgoingFlight, flight)">
+                            <td><input type="radio" ng-model="$parent.outgoingCabin" value="economy" />{{flight.eCost | currency: "€"}}</td>
+                            <td><input type="radio" ng-model="$parent.outgoingCabin" value="business" />{{flight.bCost | currency: "€"}}</td>
+
+                                <!-- <select ng-model="$parent.outgoingCabin" ng-show="$parent.angular.equals( $parent.selectedOutgoingFlight, flight)">
                                     <option value="economy">
                                         Economy: {{flight.eCost | currency: "€"}}
                                     </option>
                                     <option value="business">
                                         Business: {{flight.bCost | currency: "€"}}
                                     </option>
-                                </select>
-                            </td>
+                                </select> -->
+                            <!-- </td> -->
                         </tr>
                     </form>
                 </tbody>
