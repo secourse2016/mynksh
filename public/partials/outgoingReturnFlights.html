@@ -55,9 +55,9 @@
                                 </td>
                                 <td>{{flight.flightNumber}}</td>
                                 <td>Iberia</td>
-                                <td>{{stringToDate(flight.departureTime) | date : 'shortTime'}}</td>
-                                <td>{{stringToDate(flight.arrivalTime) | date : 'shortTime'}}</td>
-                                <td>{{timediff(flight.departureTime,flight.arrivalTime)}}</td>
+                                <td>{{stringToDate(flight.departureDateTime) | date : 'shortTime'}}</td>
+                                <td>{{stringToDate(flight.arrivalDateTime) | date : 'shortTime'}}</td>
+                                <td>{{timediff(flight.departureDateTime,flight.arrivalDateTime)}}</td>
                                 <td>
                                     <select ng-model="$parent.outgoingCabin" ng-show="$parent.angular.equals( $parent.selectedOutgoingFlight, flight)">
                                         <option value="economy">
@@ -99,9 +99,9 @@
                                 </td>
                                 <td>{{flight.flightNumber}}</td>
                                 <td>Iberia</td>
-                                <td>{{stringToDate(flight.departureTime) | date : 'shortTime'}}</td>
-                                <td>{{stringToDate(flight.arrivalTime) | date : 'shortTime'}}</td>
-                                <td>{{timediff(flight.departureTime,flight.arrivalTime)}}</td>
+                                <td>{{stringToDate(flight.departureDateTime) | date : 'shortTime'}}</td>
+                                <td>{{stringToDate(flight.arrivalDateTime) | date : 'shortTime'}}</td>
+                                <td>{{timediff(flight.departureDateTime,flight.arrivalDateTime)}}</td>
                                 <td>
                                     <select ng-model="$parent.returnCabin" ng-show="$parent.angular.equals( $parent.selectedReturnFlight, flight)">
                                         <option value="economy">
