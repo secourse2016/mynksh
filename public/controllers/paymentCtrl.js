@@ -1,7 +1,7 @@
 /**
  * payment Controller
  */
-App.controller('paymentCtrl', function($scope, FlightsSrv, OutReturnSrv, paymentSrv, $location) {
+App.controller('paymentCtrl', function($scope, FlightsSrv,ConfirmSrv, OutReturnSrv, paymentSrv, $location) {
     $scope.no = "node";
     $scope.tab = "active in";
 
@@ -29,7 +29,24 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, OutReturnSrv, payment
     //
     // });
     //   };
+// test post
 
+$scope.postAPay = function( ) {
+  console.log('i`m in ctrl');
+  $scope.firstName ="ha5odhma mn conf msh m3mola" ;
+  $scope.lastName = "isabardo ha5odha mn  conf";
+  $scope.passport = "same lsa msh m3mola  fl  conf srv";
+  $scope.passportNumber = "bardo lsa ";
+  $scope.issueDate = "22-5-2016" ;
+  $scope.expiryDate = "22-3-2020";
+  $scope.email = ConfirmSrv.getEmail();
+  $scope.phoneNumber = ConfirmSrv.getPhoneNo();
+  $scope.bookingRefNumber ="ha5do mn nary" ;
+  $scope.flightNumber = "flight.flightNumber";
+
+    paymentSrv.postPay($scope.firstName ,   $scope.lastName ,   $scope.passport ,   $scope.passportNumber ,   $scope.issueDate ,  $scope. expiryDate ,   $scope.email ,   $scope.phoneNumber ,   $scope.bookingRefNumber  ,   $scope.flightNumber);
+};
+//
 
     $scope.postIntoBooking = function() {
         var customer = {
@@ -53,6 +70,7 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, OutReturnSrv, payment
     /* set paymet form  */
     $scope.SetCountry = function(value) {
         paymentSrv.setSelectedCountry(value);
+
     };
 
     $scope.SetCardType = function(value) {
