@@ -6,38 +6,22 @@ App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $locati
   $scope.oDate = FlightsSrv.getSelectedOutDate();
   $scope.rDate = FlightsSrv.getSelectedReturnDate();
   $scope.tickets = FlightsSrv.getSelectedNumberOfTickets();
-  // $scope.outgoingInfo=[];
-  // $scope.returnInfo=[];
-  $scope.eAvailable= true;
-  $scope.bAvailable= true;
   $scope.outgoingPrice = 0;
   $scope.returnPrice = 0;
 
     function roundTripInfo(origin,dest,oDate,rDate) {
         OutReturnSrv.getRoundTripInfo(origin,dest,oDate,rDate).success(function(flights) {
-            // $scope.outgoingInfo = outgoingInfo.push(economyFlights.outgoingFlight);
-            // $scope.returnInfo = returnInfo.push(economyFlights.returnFlight);
             $scope.outgoingInfo = flights.outgoingFlights;
             $scope.returnInfo = flights.returnFlights;
 
         });
-        // OutReturnSrv.getRoundTripInfo(origin,dest,oDate,rDate,business).success(function(businessFlights) {
-        //     $scope.outgoingInfo = outgoingInfo.push(businessFlights.outgoingFlight);
-        //     $scope.returnInfo = returnInfo.push(businessFlights.returnFlight);
-        // });
     };
      
 
     function oneWayTripInfo(origin,dest,oDate) {
         OutReturnSrv.getOneWayTripInfo(origin,dest,oDate).success(function(flights) {
-            // $scope.outgoingInfo = outgoingInfo.push(economyFlights.outgoingFlight);
             $scope.outgoingInfo = flights.outgoingFlights;
         });
-        //  OutReturnSrv.getOneWayTripInfo(origin,dest,oDate).success(function(businessFlights) {
-        //     if(businessFlights.returnFlight === {})
-        //         $bAvailable= false;
-        //     $scope.returnInfo = returnInfo.push(businessFlights.returnFlight);
-        // });
     };
 
     function changeISOFormat(date)
