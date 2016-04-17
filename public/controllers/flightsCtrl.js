@@ -6,26 +6,55 @@ App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $locati
   $scope.oDate = FlightsSrv.getSelectedOutDate();
   $scope.rDate = FlightsSrv.getSelectedReturnDate();
   $scope.tickets = FlightsSrv.getSelectedNumberOfTickets();
+  $scope.outgoingInfo=[];
+  $scope.returnInfo=[];
+  $scope.eAvailable= true;
+  $scope.bAvailable= true;
   $scope.outgoingPrice = 0;
   $scope.returnPrice = 0;
 
     function roundTripInfo(origin,dest,oDate,rDate) {
         OutReturnSrv.getRoundTripInfo(origin,dest,oDate,rDate).success(function(flights) {
-            $scope.outgoingInfo = flights.outgoingFlight;
-            $scope.returnInfo = flights.returnFlight;
+            // $scope.outgoingInfo = outgoingInfo.push(economyFlights.outgoingFlight);
+            // $scope.returnInfo = returnInfo.push(economyFlights.returnFlight);
+            console.log(flights.outgoingFlight);
+            $scope.outgoingInfo.push(flights.outgoingFlight);
+            $scope.returnInfo.push(flights.returnFlight);
         });
+        // OutReturnSrv.getRoundTripInfo(origin,dest,oDate,rDate,business).success(function(businessFlights) {
+        //     $scope.outgoingInfo = outgoingInfo.push(businessFlights.outgoingFlight);
+        //     $scope.returnInfo = returnInfo.push(businessFlights.returnFlight);
+        // });
     };
+     
 
     function oneWayTripInfo(origin,dest,oDate) {
         OutReturnSrv.getOneWayTripInfo(origin,dest,oDate).success(function(flights) {
+            // $scope.outgoingInfo = outgoingInfo.push(economyFlights.outgoingFlight);
             $scope.outgoingInfo = flights.outgoingFlight;
         });
+        //  OutReturnSrv.getOneWayTripInfo(origin,dest,oDate).success(function(businessFlights) {
+        //     if(businessFlights.returnFlight === {})
+        //         $bAvailable= false;
+        //     $scope.returnInfo = returnInfo.push(businessFlights.returnFlight);
+        // });
     };
 
-    if($scope.roundTrip === true)
-      roundTripInfo($scope.origin,$scope.dest,$scope.oDate,$scope.rDate);
+    function changeISOFormat(date)
+    {
+       var monthNames = ["January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"];
+        var d = new Date(date);
+        return monthNames[d.getMonth()] + " " + d.getDate() + ", " + d.getFullYear();
+    };
+
+    if($scope.roundTrip === 'true')
+    {
+      console.log("roundTrip is true");
+      roundTripInfo($scope.origin,$scope.dest,changeISOFormat($scope.oDate),changeISOFormat($scope.rDate));
+    }
     else
-      oneWayTripInfo($scope.origin,$scope.dest,$scope.oDate);
+      oneWayTripInfo($scope.origin,$scope.dest,changeISOFormat($scope.oDate));
 
     $scope.stringToDate = function(date) {
         return new Date(date);

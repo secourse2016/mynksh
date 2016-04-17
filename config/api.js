@@ -42,7 +42,7 @@ exports.searchFlights = function(origin, destination, departingDate, cabin, cb) 
         collection.find({
             "origin": origin,
             "destination": destination,
-            "departureTime": departingDate
+            "departureTime": {'$regex': departingDate} 
 
            // "arrivalTime": departingDate
         }).toArray(function(err, flights) {
