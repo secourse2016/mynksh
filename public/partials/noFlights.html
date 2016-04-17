@@ -23,36 +23,21 @@
         </nav>
     </div>
 </div>
-</div>
-<link rel="stylesheet" type="text/css" href="congrats.css">
-
-
-<div id="viewport" style="width: 1000px; height: 1000px;">
-    <canvas id="sky" width="1217" height="1000">
-    </canvas>
-    <!-- Based on public domain image
-            http://pixabay.com/en/aeroplane-aircraft-airplane-flight-161999/ -->
-
-    <div class="marquee">
-
-        <a href='http://mynksh.com'>
-            <img src="http://i.stack.imgur.com/bGZ1m.png" width="80" height="43" title="Click me to go back to Iberia.">
-        </a>
-        <div id="banner">Congrats You booked with Iberia Airlines!</div>
+<link rel="stylesheet" href="css/style.css" />
+<section id="section-download" class="download-wrap" style="background: rgba(255,255,255, .8)">
+    <div class="container download center" style="border-radius: 25px;">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="col-md-10 col-md-offset-1 text-center">
+                    <h3><font color="black">Flights </font><br><br></h3>
+                </div>
+                <div class="col-md-8 col-md-offset-2">
+                    <p class="intro-message">No Flights on this day, please head back to
+                        <a href="http://www.mynksh.com">
+                            <p class="intro-message">home</p>
+                        </a> page.</p>
+                </div>
+            </div>
+        </div>
     </div>
-
-
-</div>
-
-
-<script type="text/javascript" src="../js/congrats.js"></script>
-
-<script type="text/javascript">
-    $(function() {
-        fillBanner('#banner');
-        var anim = animate('#sky');
-        setTimeout(function() {
-            anim.stop();
-        }, 60000);
-    });
-</script>
+</section>

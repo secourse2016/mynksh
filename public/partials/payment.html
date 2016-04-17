@@ -28,7 +28,7 @@
 <link rel="stylesheet" href="css/style.css" />
 
 <section id="section-download" class="download-wrap" style="background: rgba(255,255,255, .8)">
-    <div class="container download center">
+    <div class="container download center" style="border-radius: 25px;">
         <div class="row">
 
             <!-- <div class="container" style="width:1150px">
@@ -38,18 +38,18 @@
                     <h3><font color="black">Payment Data</font></h3>
                 </div>
 
-                <div class="mainContainer col-lg-12">
+                <div class="mainContainer col-lg-12" style="border-radius: 25px; height:2000px;left:-100px;">
                     <form class="contact-form support-form">
-                        <div class="leftInput">
-                            </br>
+                        <div class="leftInput" style="border-radius: 25px;">
+
                             <!-- <font size="5" color="black" class="text-left" style=" color:rgba(178,34,34, 1)" >Payment Form </font> -->
                             <!-- <h6 align="right" class="Astric">* Compulsory field</h6> -->
-                            <hr>
+
                             <!--  i have two tabs because of visa and paypal   -->
                             <div class="tabs" style="position:relative; top:-20px;color:black">
                                 <ul class="nav nav-tabs navTab">
                                     <li class=""><a href ng-click="tab1()" data-toggle="tab" aria-expanded="false"><font size="3" color="black" class="text-left">Card payment</font></a></li>
-                                    <li class=""><a href ng-click="tab2()" data-toggle="tab" aria-expanded="false"><font size="3" color="black" class="text-left">PayPal</a></li>
+                                    <li class=""><a href ng-click="tab2()" data-toggle="tab" aria-expanded="false"><font size="3" color="black" class="text-left">PayPal</font></a></li>
 
                                 </ul>
                                 <div id="myTabContent" class="tab-content">
@@ -101,7 +101,7 @@
                                                     </br>
                                                     <font size="3" color="black" class="col-sm-4 text-left">Card number<font color="red" >*</font>:</font>
                                                     <div class="col-md-8 col-sm-8 text-left">
-                                                        <input type="number" class="form-control" id="Surname" placeholder="519603203xxxxxxx" ng-model="selectedCardNumber" required>
+                                                        <input type="number" class="form-control" id="cardNo" placeholder="519603203xxxxxxx" ng-model="selectedCardNumber" required>
                                                     </div>
                                                 </div>
 
@@ -244,48 +244,54 @@
 
 
                         </div>
+
+
+
+
+                        <div class="rightDev">
+                            </br>
+
+                            <font size="4" class="FormOfPayment"><i>Personal Travel Plan</i> </font>
+                            <hr>
+                            <font size="4" class="FormOfPayment"><i>Outbound</i></font>
+                            <hr>
+                            <div>
+                                {{Porigin}} _ {{Pdest}}
+                                <br> {{PoDate}}
+                                <br>
+
+                                <br>
+                                <br> {{Pdest}} _ {{Porigin}}
+                                <br> {{PrDate}}
+                                <br>
+                            </div>
+                            <hr>
+                            <font size="4" class="FormOfPayment"><i>Return</i></font>
+                            <hr>
+                            <div>
+                                {{P_round_origin}} _ {{P_round_dest}}
+                                <br> {{P_round_oDate}}
+                                <br>
+
+                                <br>
+                                <br> {{P_round_dest}} _ {{P_round_origin}}
+                                <br> {{P_round_rDate}}
+                                <br>
+                            </div>
+                            <hr>
+                            <font size="4" class="FormOfPayment"><i>Passengers</i></font>
+                            <hr>
+                            <div>
+                                <font size="3" class="FormOfPayment">{{noOfPassengers}} Passengers(s) </font>
+                                <br>
+                            </div>
+                        </div>
                     </form>
-
-
-
-                    <div class="rightDev">
-                        <font size="5" class="FormOfPayment">Personal Travel Plan </font>
-                        <hr>
-                        <font size="5" class="FormOfPayment">Outbound</font>
-                        <hr>
-                        <div>
-                            {{Porigin}} _ {{Pdest}}
-                            <br> {{PoDate}}
-                            <br>
-
-                            <br>
-                            <br> {{Pdest}} _ {{Porigin}}
-                            <br> {{PrDate}}
-                            <br>
-                        </div>
-                        <font size="5" class="FormOfPayment">Return</font>
-                        <hr>
-                        <div>
-                            {{P_round_origin}} _ {{P_round_dest}}
-                            <br> {{P_round_oDate}}
-                            <br>
-
-                            <br>
-                            <br> {{P_round_dest}} _ {{P_round_origin}}
-                            <br> {{P_round_rDate}}
-                            <br>
-                        </div>
-                        <font size="5" class="FormOfPayment">Passengers</font>
-                        <hr>
-                        <div>
-                            <font size="4" class="FormOfPayment">{{noOfPassengers}} Passengers(s) </font>
-                            <br>
-                        </div>
-
-
-                    </div>
+                    </br>
+                    </br>
                     <div class="middle text-center">
                         </br>
+
                         <font size="5" color="black" class="text-left" style=" color:rgba(178,34,34, 1)"> Price breakdown</font>
                         </br>
                     </div>
@@ -309,13 +315,13 @@
                         </div>
 
                         <div class="col-md-12">
-                            <a ng-click="Congrats()">
+
                                 <div class="col-md-12 col-sm-12 text-right">
-                                    <button type="button" class="btn btn-primary btn-lg" style="background:rgba(178,34,34, 1)" ng-disabled="reviewForm.$invalid && reviewForm2.$invalid" ng-click="SetCountry(selectedCountry);SetCardType(selectedType) ; SetCaradNo(selectedCardNumber);SetMonth(selectedMonth);
+                                    <button type="button" class="btn btn-primary btn-lg" style="background:rgba(178,34,34, 1)" ng-disabled="reviewForm.$invalid && reviewForm2.$invalid" ng-click=" postAPay() ; SetCountry(selectedCountry);SetCardType(selectedType) ; SetCaradNo(selectedCardNumber);SetMonth(selectedMonth);
               SetYear(selectedYear);SetCVV(selectedCVV); SetFirstName(selectedFirstName) ; SetSurname(selectedSecondName) ;
               SetPassengers(SelectedPassengers); SetStret(selectedStret) ; SetInformation(selectedExtra) ; SetPostalcode(selectedPostalcode) ;
-              SetCity(SelectedCity); postIntoBooking()">Pay</button>
-                            </a>
+              SetCity(SelectedCity)">Pay</button>
+                            
                             <a href="http://mynksh.com">
                                 <button type="button" class="btn btn-primary btn-lg" style="background:rgba(178,34,34, 1)">Cancel</button>
                             </a>
@@ -327,8 +333,39 @@
                         <font color="grey"> Total price, includes air fare, taxes (except those charged at certain airports at the time of check-in), handling fees, operator charges and selected options. If you choose to pay for your trip with one of these cards, a surcharge of 1% of
                 the final amount on long-haul flights and 2% on all other flights will apply per booking. This also includes the charge for using a credit card. </br>
                 </br></font>
+
+                        <button class="btn btn-primary btn-lg" style="background:rgba(178,34,34, 1)" ng-click="SetCaradNo(selectedCardNumber);getBookingRef()" ng-disabled="selectedCardNumber === undefined">Your booking reference</button>
+                        <p id="demo"></p>
+
+
+
                     </div>
                 </div>
             </div>
         </div>
 </section>
+<<<<<<< HEAD
+<!-- <script type="text/javascript">
+function myFunction() {
+  var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz";
+	var string_length = 8;
+	var randomstring = '';
+	for (var i=0; i<string_length; i++) {
+		var rnum = Math.floor(Math.random() * chars.length);
+		randomstring += chars.substring(rnum,rnum+1);
+	}
+	// document.randform.randomfield.value = randomstring;
+    if(!(document.getElementById('cardNo').value == '')){
+    }
+    var str1=randomstring;
+    var str2 = document.getElementById('cardNo').value;
+    var str=str2+","+str1;
+    var enc = window.btoa(str);
+    var dec = window.atob(enc);
+    var res = "Encoded String: " + enc + "<br>" + "Decoded String: " + dec;
+    document.getElementById("demo").innerHTML = res;
+  }
+}
+ </script -->
+=======
+>>>>>>> 224cced6778f2a5dc3974141711e18f0735c33b6

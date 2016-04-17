@@ -1,40 +1,45 @@
 @charset "utf-8";
 .mainContainer {
-    margin-left: auto;
-    margin-right: auto;
+    /*margin-left: auto;
+    margin-right: auto;*/
     margin:center;
-    background-color: #ebebeb;
+    background-color: #ffffff;
+    border-radius: 25px;
 }
 .leftInput {
     position: relative;
     background-color: #ffffff;
     top: 50px;
+    border-radius: 25px;
 }
 .rightDev {
     position: relative;
     width: 230px;
-    height: 814px;
+    /*height: 814px;*/
     background-color: #ffffff;
     left: 740px;
-    top: -575px;
+    top: -600px;
+    border-radius: 25px;
 }
 
 .middle {
     position: relative;
     width: 707px;
     height: 100px;
-    background-color: #FFFFFF;
+    background-color: #ebebeb;
     top: -750px;
+    border-radius: 25px;
 }
 .body {
     margin: auto;
     width: 707px;
     background-color: #ebebeb;
+    /*border-radius: 25px;*/
 }
 .bottom {
     position: relative;
     width: 707px;
-
+    border-radius: 25px;
     background-color: #FFFFFF;
     top: -740px;
 }
