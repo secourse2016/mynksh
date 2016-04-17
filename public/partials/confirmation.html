@@ -48,23 +48,31 @@
                         </div>
                         <div class="form-group">
                             <font class="col-sm-8 text-left" size="5" color="black"> Outgoing Date:
-                <font  size="4" color="grey">  {{selectedOutgoingFlight.departureTime}} </font></font>
+                <font  size="4" color="grey">  {{selectedOutgoingFlight.departureDateTime}} </font></font>
                         </div>
                         <div class="form-group">
                             <font class="col-sm-8 text-left" size="5" color="black"> Outgoing Flight Number:
                 <font  size="4" color="grey">  {{selectedOutgoingFlight.flightNumber}} </font></font>
                         </div>
+                        <div class="form-group">
+                            <font class="col-sm-8 text-left" size="5" color="black"> Outgoing airline:
+                <font  size="4" color="grey">  {{selectedOutgoingFlight.Airline}}  </font></font>
+                        </div>
                         <div class="form-group" ng-show="roundTrip === 'true'">
                             <font class="col-sm-8 text-left" size="5" color="black"> Return Date:
-                <font  size="4" color="grey">  {{selectedReturnFlight.departureTime}} </font></font>
+                <font  size="4" color="grey">  {{selectedReturnFlight.departureDateTime}} </font></font>
                         </div>
                         <div class="form-group" ng-show="roundTrip === 'true'">
                             <font class="col-sm-8 text-left" size="5" color="black"> Return Flight Number:
                 <font  size="4" color="grey">  {{selectedReturnFlight.flightNumber}} </font></font>
                         </div>
+                        <div class="form-group" ng-show="roundTrip === 'true'">
+                            <font class="col-sm-8 text-left" size="5" color="black"> Return airline:
+                <font  size="4" color="grey">  {{selectedReturnFlight.Airline}} </font></font>
+                        </div>
                         <div class="form-group">
                             <font class="col-sm-8 text-left" size="5" color="black"> Price:
-                <font  size="4" color="grey">  {{price | currency: "€"}}</font></font>
+                <font  size="4" color="grey">  {{price | currency: selectedOutgoingFlight.currency+" "}}</font></font>
                         </div>
                       </div>
                     </div>
@@ -104,7 +112,7 @@
                                         </br>
                                         </br>
                                         <div class="form-group">
-                                            <font class="col-sm-8 text-left" size="5" color="grey"><b>Passenger information {{n.refNo}}
+                                            <font class="col-sm-8 text-left" size="5" color="grey"><b>Passenger information
                                             </br>
                                           </br></b></font>
                                         </div>
