@@ -14,21 +14,17 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, OutReturnSrv, payment
         $scope.tab2 = "active in";
         $scope.tab = "";
     };
-    
+
 
     $scope.Congrats = function() {
         $location.url('/congrats');
     };
 
 
-    // function postIntoBooking() { $http.post('../../modules/bookings.json',{text:$scope.totalPrice}).success(function(response){
-    //
-    //   $scope.Success = "success to pay";
-    //
-    //
-    //
-    // });
-    //   };
+    $scope.clicked="clicked";
+    $scope.isShown = function(clicked) {
+        return clicked === $scope.clicked;
+    };
 
 
     $scope.postIntoBooking = function() {

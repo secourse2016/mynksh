@@ -1,3 +1,18 @@
+<script language="javascript" type="text/javascript">
+function randomString() {
+	var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz";
+	var string_length = 8;
+	var randomstring = '';
+	for (var i=0; i<string_length; i++) {
+		var rnum = Math.floor(Math.random() * chars.length);
+		randomstring += chars.substring(rnum,rnum+1);
+	}
+	document.randform.randomfield.value = randomstring;
+}
+</script>
+
+
+
 <div  style="background: rgba(128,0,0, 1)">
     <div class="sticky-section">
         <div id="topbar-hold" class="nav-hold container">
@@ -38,7 +53,7 @@
         <h3><font color="black">Payment Data</font></h3>
     </div>
 
-    <div class="mainContainer col-lg-12" style="border-radius: 25px; height:1400px;left:-100px;">
+    <div class="mainContainer col-lg-12" style="border-radius: 25px; height:2000px;left:-100px;">
         <form class="contact-form support-form">
     <div class="leftInput" style="border-radius: 25px;">
 
@@ -250,6 +265,7 @@
 
     <div class="rightDev">
       </br>
+
         <font size="4"class="FormOfPayment" ><i>Personal Travel Plan</i> </font>
         <hr>
         <font size="4"class="FormOfPayment"><i>Outbound</i></font>
@@ -264,6 +280,7 @@
             <br> {{PrDate}}
             <br>
         </div>
+        <hr>
         <font size="4"class="FormOfPayment"><i>Return</i></font>
         <hr>
         <div>
@@ -276,6 +293,7 @@
             <br> {{P_round_rDate}}
             <br>
         </div>
+        <hr>
         <font size="4"class="FormOfPayment"><i>Passengers</i></font>
         <hr>
         <div>
