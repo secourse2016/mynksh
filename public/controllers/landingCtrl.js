@@ -12,6 +12,8 @@ App.controller('landingCtrl', function($scope, FlightsSrv, $location) {
     // });
     // $scope.roundTrip = "true";
 
+    $scope.cabin="cabin";
+
     $scope.roundTrip="roundtrip";
     $scope.isShown = function(roundTrip) {
         return roundTrip === $scope.roundTrip;
@@ -70,9 +72,13 @@ App.controller('landingCtrl', function($scope, FlightsSrv, $location) {
     $scope.SetRoundTrip = function(value) {
         FlightsSrv.setSelectedRoundTrip(value);
     };
+    $scope.SetCabin = function(value) {
+        FlightsSrv.setSelectedCabin(value);
+    };
     $scope.SetSelectedNumberOfTickets = function(value) {
         FlightsSrv.setSelectedNumberOfTickets(value);
     };
+
 
     /* Find All Available Flights  */
     $scope.SearchFlights = function() {
