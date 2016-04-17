@@ -38,6 +38,7 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, OutReturnSrv, payment
             url: "/api/data/bookings",
             contentType: "application/json"
         });
+
     };
 
     function countryCode() {
@@ -108,7 +109,41 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, OutReturnSrv, payment
     // dol lsa mstnyeko t3mlo  anko t5do l roud 3lshan 2a5od l dates bt3thom
     $scope.P_round_oDate = FlightsSrv.getSelectedOutDate();
     $scope.P_round_rDate = FlightsSrv.getSelectedReturnDate();
+    $scope.cardNo=paymentSrv.getSelectedCaradNo();
     countryCode();
+
+    //NARIHAN
+     $scope.getBookingRef= function() {
+      // var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz";
+    	// var string_length = 8;
+    	// var randomstring = '';
+    	// for (var i=0; i<string_length; i++) {
+    	// 	var rnum = Math.floor(Math.random() * chars.length);
+    	// 	randomstring += chars.substring(rnum,rnum+1);
+    	// }
+    	// // document.randform.randomfield.value = randomstring;
+      //
+      //
+      //   var str1=randomstring;
+
+        var str= paymentSrv.getSelectedCaradNo();
+        var enc = window.btoa(str);
+        var dec = window.atob(enc);
+
+        var res = "Encoded String: " + enc + "<br>" + "Decoded String: " + dec;
+        document.getElementById("demo").innerHTML = res;
+
+    };
+
+    // $scope.haveCardNo=0;
+    // $scope.validCardNo=function(){
+    //   // if(!(paymentSrv.getSelectedCaradNo() === ))
+    //   console.log(paymentSrv.getSelectedCaradNo());
+    //   $scope.haveCardNo=1;
+    //
+    // };
+
+    //End of Narihan
 
 
 });
