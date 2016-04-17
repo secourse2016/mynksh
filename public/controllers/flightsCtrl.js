@@ -8,8 +8,7 @@ App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $locati
     $scope.tickets = 1;
     $scope.outgoingPrice = 0;
     $scope.returnPrice = 0;
-    //$scope.cabin = FlightsSrv.getSelectedCabin();
-    $scope.cabin = "true";
+    $scope.cabin = FlightsSrv.getSelectedCabin();
 
 
     function roundTripInfo(origin, dest, oDate, rDate) {
@@ -26,7 +25,6 @@ App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $locati
 
             });
         }
-
     };
 
 

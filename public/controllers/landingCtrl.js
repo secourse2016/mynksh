@@ -75,11 +75,9 @@ App.controller('landingCtrl', function($scope, FlightsSrv, $location) {
     $scope.SetRoundTrip = function(value) {
         FlightsSrv.setSelectedRoundTrip(value);
     };
-
     $scope.SetCabin = function(value) {
         FlightsSrv.setSelectedCabin(value);
     };
-
 
     /* Find All Available Flights  */
     $scope.SearchFlights = function() {
