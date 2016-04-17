@@ -42,7 +42,7 @@ exports.searchFlights = function(origin, destination, departingDate, cabin, cb) 
         collection.find({
             "origin": origin,
             "destination": destination,
-            "departureTime": departingDate
+            "departureTime": {'$regex': departingDate} 
 
         }).toArray(function(err, flights) {
             if (flights[0] == undefined){
@@ -69,7 +69,8 @@ exports.searchFlights = function(origin, destination, departingDate, cabin, cb) 
                     "origin"		   : origin,
                     "destination"      : flights[0].destination,
                     "class"            : economyOrBusiness,
-                    "Airline"          : "IBERIA"
+                    "Airline"          : "IBERIA",
+
                 }];
             } else
                 rflights = {};
