@@ -45,6 +45,7 @@ module.exports = function(app, mongo) {
             });
         });
     });
+    
 
     app.get('/api/flights/search/:origin/:destination/:departingDate/:cabin', function(req, res) {
         mongo.searchFlights(req.params.origin, req.params.destination, req.params.departingDate, req.params.cabin, function(err, outgoingFlight) {
@@ -55,9 +56,7 @@ module.exports = function(app, mongo) {
     });
 
 
-    app.get('/api/returnInfo', function(req, res) {
-        res.json(require('../../modules/returnInfo.json'));
-    });
+    
     /* SEED DB */
     app.get('/db/seed', function(req, res) {
         mongo.seedDB();
