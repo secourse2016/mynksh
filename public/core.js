@@ -37,6 +37,19 @@ App.config(function($routeProvider) {
 
     .when('/congrats', {
         templateUrl: '/partials/congrats.html'
+
+    })
+
+    // route for the booking Reference page
+
+    .when('/bookingRef', {
+        templateUrl: '/partials/bookingRef.html'
+
+    })
+
+    .when('/noFlights', {
+        templateUrl: '/partials/noFlight.html'
+
     });
 
 
