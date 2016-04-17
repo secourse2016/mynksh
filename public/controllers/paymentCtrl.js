@@ -98,7 +98,7 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, OutReturnSrv, payment
         paymentSrv.setSelectedCity(value);
     };
 
-    $scope.noOfPassengers = FlightsSrv.getSelectedNumberOfTickets();
+    $scope.noOfPassengers = 1;
     //   llsa  m3rfsh ha5odha mn meen
     $scope.totalPrice = OutReturnSrv.getSelectedPrice();
 
