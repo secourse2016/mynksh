@@ -25,7 +25,7 @@ module.exports = function(app, mongo) {
         // check header or url parameters or post parameters for token
         var token = req.body.wt || req.query.wt || req.headers['x-access-token'] || 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJNWU5LU0giLCJpYXQiOjE0NjA3NzIyOTQsImV4cCI6MTQ5MjMwODI5NSwiYXVkIjoid3d3LnNlY291cnNlLmNvbSIsInN1YiI6Ik1ZTktTSCBJYmVyaWEiLCJUZWFtIjoiTVlOS1NIIn0.hZxhv8XAcu1cARgcrtfb0l_crF1-Ic1tJt9eUhIL0qQ';
         // console.log("{{{{ TOKEN }}}} => ", token);
-        var jwtSecret = process.env.JWTSECRET || 'CSEN603ROCKSi<8SE!';
+        var jwtSecret = process.env.JWTSECRET;
         // console.log(jwtSecret);
         // Get JWT contents:
         try {
@@ -64,15 +64,23 @@ module.exports = function(app, mongo) {
         });
     });
 
+    app.get('/api/pay/:firstName/:lastName/:passport/:passportNumber/:issueDate/:expiryDate/:email/:phoneNumber/:bookingRefNumber/:flightNumber', function(req, res) {
+        mongo.submitPay(req.params.firstName, req.params.lastName, req.params.passport, req.params.passportNumber, req.params.issueDate, req.params.expiryDate, req.params.email, req.params.phoneNumber, req.params.bookingRefNumber, req.params.flightNumber, function(err, data) {
+            console.log('i`m in route');
+        });
+    });
+
 
 
     /* SEED DB */
     app.get('/db/seed', function(req, res) {
         mongo.seedDB();
+        res.send("Seeding done");
     });
 
     /* DELETE DB */
     app.get('/db/delete', function(req, res) {
         mongo.clearDB();
+        res.send("DB clear");
     });
 };

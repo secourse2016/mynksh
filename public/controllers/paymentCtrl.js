@@ -1,7 +1,7 @@
 /**
  * payment Controller
  */
-App.controller('paymentCtrl', function($scope, FlightsSrv, OutReturnSrv, paymentSrv, $location) {
+App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturnSrv, paymentSrv, $location) {
     $scope.no = "node";
     $scope.tab = "active in";
 
@@ -21,12 +21,37 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, OutReturnSrv, payment
     };
 
 
-    $scope.clicked="clicked";
+    $scope.clicked = "clicked";
     $scope.isShown = function(clicked) {
         return clicked === $scope.clicked;
     };
 
+    // function postIntoBooking() { $http.post('../../modules/bookings.json',{text:$scope.totalPrice}).success(function(response){
+    //
+    //   $scope.Success = "success to pay";
+    //
+    //
+    //
+    // });
+    //   };
+    // test post
 
+    $scope.postAPay = function() {
+        console.log('i`m in ctrl');
+        $scope.firstName = "ha5odhma mn conf msh m3mola";
+        $scope.lastName = "isabardo ha5odha mn  conf";
+        $scope.passport = "same lsa msh m3mola  fl  conf srv";
+        $scope.passportNumber = "bardo lsa ";
+        $scope.issueDate = "22-5-2016";
+        $scope.expiryDate = "22-3-2020";
+        $scope.email = ConfirmSrv.getEmail();
+        $scope.phoneNumber = ConfirmSrv.getPhoneNo();
+        $scope.bookingRefNumber = "ha5do mn nary";
+        $scope.flightNumber = "flight.flightNumber";
+
+        paymentSrv.postPay($scope.firstName, $scope.lastName, $scope.passport, $scope.passportNumber, $scope.issueDate, $scope.expiryDate, $scope.email, $scope.phoneNumber, $scope.bookingRefNumber, $scope.flightNumber);
+    };
+    //
     $scope.postIntoBooking = function() {
         var customer = {
             contact_name: "Scott",
@@ -50,6 +75,7 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, OutReturnSrv, payment
     /* set paymet form  */
     $scope.SetCountry = function(value) {
         paymentSrv.setSelectedCountry(value);
+
     };
 
     $scope.SetCardType = function(value) {
@@ -98,7 +124,7 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, OutReturnSrv, payment
     $scope.noOfPassengers = 1;
     //   llsa  m3rfsh ha5odha mn meen
     $scope.totalPrice = OutReturnSrv.getSelectedPrice();
-    $scope.flightNoOut= OutReturnSrv.getSelectedOutFlight().flightNumber;
+    $scope.flightNoOut = OutReturnSrv.getSelectedOutFlight().flightNumber;
     // $scope.flightNoIn= OutReturnSrv.getSelectedReturnFlight().flightNumber;
 
     $scope.Porigin = FlightsSrv.getSelectedOriginAirport();
@@ -111,31 +137,31 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, OutReturnSrv, payment
     // dol lsa mstnyeko t3mlo  anko t5do l roud 3lshan 2a5od l dates bt3thom
     $scope.P_round_oDate = FlightsSrv.getSelectedOutDate();
     $scope.P_round_rDate = FlightsSrv.getSelectedReturnDate();
-    $scope.cardNo=paymentSrv.getSelectedCaradNo();
+    $scope.cardNo = paymentSrv.getSelectedCaradNo();
     countryCode();
 
     //NARIHAN
-     $scope.getBookingRef= function() {
-      // var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz";
-    	// var string_length = 8;
-    	// var randomstring = '';
-    	// for (var i=0; i<string_length; i++) {
-    	// 	var rnum = Math.floor(Math.random() * chars.length);
-    	// 	randomstring += chars.substring(rnum,rnum+1);
-    	// }
-    	// // document.randform.randomfield.value = randomstring;
-      //
-      //
-      //   var str1=randomstring;
+    $scope.getBookingRef = function() {
+        // var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz";
+        // var string_length = 8;
+        // var randomstring = '';
+        // for (var i=0; i<string_length; i++) {
+        // 	var rnum = Math.floor(Math.random() * chars.length);
+        // 	randomstring += chars.substring(rnum,rnum+1);
+        // }
+        // // document.randform.randomfield.value = randomstring;
+        //
+        //
+        //   var str1=randomstring;
 
-      //encode and get the first part of the outgoing date
-        var card= paymentSrv.getSelectedCaradNo();
-        var outDate= FlightsSrv.getSelectedOutDate();
-        var str4=JSON.stringify(outDate);
-        var arr=str4.split("T");
-        var outDate=arr[0];
-        var arr=outDate.split("-");
-        var outDate=arr[1]+"/"+arr[2];
+        //encode and get the first part of the outgoing date
+        var card = paymentSrv.getSelectedCaradNo();
+        var outDate = FlightsSrv.getSelectedOutDate();
+        var str4 = JSON.stringify(outDate);
+        var arr = str4.split("T");
+        var outDate = arr[0];
+        var arr = outDate.split("-");
+        var outDate = arr[1] + "/" + arr[2];
 
         //encode and get the first part of the return date
         // var returnDate=FlightsSrv.getSelectedReturnDate();
@@ -147,9 +173,9 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, OutReturnSrv, payment
         // var arr2=str4.split(/[ ,]+/);
         // var str3=arr2[1]+"/"+arr2[2];
         //
-        var outFlightNo=OutReturnSrv.getSelectedOutFlight().flightNumber;
+        var outFlightNo = OutReturnSrv.getSelectedOutFlight().flightNumber;
         // var returnFlightNo= OutReturnSrv.getSelectedReturnFlight().flightNumber;
-        var str=card+","+outDate+","+outFlightNo;
+        var str = card + "," + outDate + "," + outFlightNo;
         // +","+outFlightNo+","+returnFlightNo;
         // var str="hey how are you";
         // var arr=str.split(/[ ,]+/);
@@ -157,7 +183,7 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, OutReturnSrv, payment
         var enc = window.btoa(str);
         var dec = window.atob(enc);
 
-        var res = "Booking Reference:(please copy it for further tracking): "+ "<br>"+enc+"<br>" + "Decoded String: " + dec;
+        var res = "Booking Reference:(please copy it for further tracking): " + "<br>" + enc + "<br>" + "Decoded String: " + dec;
         // "<br>" + "Decoded String: " + dec;
         document.getElementById("demo").innerHTML = res;
 
