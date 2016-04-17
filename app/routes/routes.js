@@ -13,6 +13,7 @@ module.exports = function(app, mongo) {
     });
 
     app.post('/api/data/bookings', function(req, res) {
+        // res.json(require('../../modules/bookings.json'));
         res.send(require('../../modules/bookings.json'));
     });
 
@@ -40,28 +41,23 @@ module.exports = function(app, mongo) {
                 var flights = {};
                 flights.outgoingFlights = outgoingFlight;
                 flights.returnFlights = returnFlight;
-                if(Object.keys(outgoingFlight).length === 0 || Object.keys(returnFlight).length === 0 )
-                    res.send("no flights found");               
-                else
-                    res.json(flights);
+                res.json(flights);
             });
         });
     });
-    
 
     app.get('/api/flights/search/:origin/:destination/:departingDate/:cabin', function(req, res) {
         mongo.searchFlights(req.params.origin, req.params.destination, req.params.departingDate, req.params.cabin, function(err, outgoingFlight) {
             var flights = {};
             flights.outgoingFlights = outgoingFlight;
-            if(Object.keys(outgoingFlight).length === 0)
-                res.send("no flights found");
-            else
-                res.json(flights);
+            res.json(flights);
         });
     });
 
 
-    
+    app.get('/api/returnInfo', function(req, res) {
+        res.json(require('../../modules/returnInfo.json'));
+    });
     /* SEED DB */
     app.get('/db/seed', function(req, res) {
         mongo.seedDB();
