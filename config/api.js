@@ -69,7 +69,7 @@ exports.searchFlights = function(origin, destination, departingDate, cabin, cb) 
 
         }).toArray(function(err, flights) {
             if (flights[0] == undefined) {
-                cb(err, {});
+                cb(err, []);
             } else {
                 if (economyOrBusiness == "economy") {
                     cost = flights[0].eCost;
