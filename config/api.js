@@ -103,11 +103,11 @@ exports.searchFlights = function(origin, destination, departingDate, cabin, cb) 
 exports.submitPay = function(firstName , lastName , passport , passportNumber , issueDate , expiryDate , email , phoneNumber , bookingRefNumber, flightNumber , businessOrEconomic, cb) {
 var selectedSeat = 0;
 
-console.log(businessOrEconomic);
+// console.log(businessOrEconomic);
 
 
 
-console.log('i`m in api');
+// console.log('i`m in api');
     mongo.connect(function(err, db) {
 
       //  db.collection("flights").drop();
@@ -132,7 +132,7 @@ console.log('i`m in api');
       }
 
   //flights[0].seat[flights[0].nextvf,m]
- console.log(flights[0]);
+ // console.log(flights[0]);
 
 //  console.log(flights[0].SeatMap[0]);
   // flights[0].SeatMap[0]
@@ -161,7 +161,7 @@ flights[0].nextBusSeat = flights[0].nextBusSeat +1 ;
 }
 
 //
-console.log("selectedSeat :"+selectedSeat);
+// console.log("selectedSeat :"+selectedSeat);
   flights[0].SeatMap[selectedSeat].bookingRefNumber = bookingRefNumber  ;
 
 db.collection("flights").remove({"flightNumber": flightNumber } , function(err, records){

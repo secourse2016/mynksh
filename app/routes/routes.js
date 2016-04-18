@@ -66,7 +66,7 @@ module.exports = function(app, mongo) {
 
 
     app.get('/api/flights/search/:origin/:destination/:departingDate/:cabin', function(req, res) {
-      console.log("Ay 7aga");
+      // console.log("Ay 7aga");
         if (moment(req.params.departingDate, 'MMMM D, YYYY').format('MMMM D, YYYY') === req.params.departingDate)
             var departDate = req.params.departingDate;
         else
@@ -80,7 +80,7 @@ module.exports = function(app, mongo) {
 
     app.get('/api/pay/:firstName/:lastName/:passport/:passportNumber/:issueDate/:expiryDate/:email/:phoneNumber/:bookingRefNumber/:flightNumber/:flightCabin', function(req, res) {
         mongo.submitPay(req.params.firstName, req.params.lastName, req.params.passport, req.params.passportNumber, req.params.issueDate, req.params.expiryDate, req.params.email, req.params.phoneNumber, req.params.bookingRefNumber, req.params.flightNumber,req.params.flightCabin,function(err, data) {
-            console.log('i`m in route');
+            // console.log('i`m in route');
         });
     });
 

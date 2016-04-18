@@ -29,7 +29,7 @@ App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $locati
         });
     }
 
-    pingAirlineS('CAI', 'JED', 'April 13, 1995');
+    // pingAirlineS('CAI', 'JED', 'April 13, 1995');
 
     function pingAirlineS(origin, dest, oDate) {
         OutReturnSrv.getairLinesInfo().success(function(airlines) {
