@@ -108,18 +108,7 @@ exports.submitPay = function(firstName , lastName , passport , passportNumber , 
 var selectedSeat = 0;
 
 console.log(businessOrEconomic);
-if(bookingRefNumber === "true"){   // economy
-//check on availableESeats of economy
 
-// if avaliable dec availableESeats and dec next Eseat 
-
-} else {
-  //check on availableESeats of business
-
-  // if avaliable dec availableBSeats and inc next Bseat
-
-
-}
 
 
 console.log('i`m in api');
@@ -147,29 +136,57 @@ console.log('i`m in api');
       }
 
   //flights[0].seat[flights[0].nextvf,m]
-//  console.log(flights[0].SeatMap[0]);
-  flights[0].SeatMap[selectedSeat].bookingRefNumber = bookingRefNumber  ;
+ console.log(flights[0]);
+
 //  console.log(flights[0].SeatMap[0]);
   // flights[0].SeatMap[0]
 
 //  remove then insert
+if(bookingRefNumber === "true"){   // economy
+//check on availableESeats of economy
+if(!(flights[0].availableESeats ===0)){
+  selectedSeat = flights[0].nextEcoSeat ;
+  flights[0].availableESeats = flights[0].availableESeats -1;
+   flights[0].nextEcoSeat =  flights[0].nextEcoSeat -1 ;
+}
+// if avaliable dec availableESeats and dec next Eseat
+
+} else {
+  //check on availableESeats of business
+  if(!(flights[0].availableBSeats ===0)){
+selectedSeat = flights[0].nextBusSeat ;
+flights[0].availableBSeats = flights[0].availableBSeats  -1 ;
+flights[0].nextBusSeat = flights[0].nextBusSeat +1 ;
+
+  }
+  // if avaliable dec availableBSeats and inc next Bseat
+
+
+}
+
+//
+console.log("selectedSeat :"+selectedSeat);
+  flights[0].SeatMap[selectedSeat].bookingRefNumber = bookingRefNumber  ;
 
 db.collection("flights").remove({"flightNumber": flightNumber } , function(err, records){
 
 //
             var collection = db.collection('flights');
-              var document = { "departureTime": flights[0].departureTime,
-                                "availableBSeats": flights[0].availableBSeats,
-                                "origin": flights[0].origin,
-                                "availableESeats": flights[0].availableESeats,
-                                "destination": flights[0].destination,
-                                "bCost": flights[0].bCost,
-                                "flightNumber": flights[0].flightNumber,
-                                "capacity": flights[0].capacity,
-                                "aircraftType": flights[0].aircraftType,
-                                "arrivalTime": flights[0].arrivalTime,
-                                "aircraftModel": flights[0].aircraftModel,
-                                "SeatMap":flights[0].SeatMap };
+              var document = { "departureTime":   flights[0].departureTime,
+                                "availableBSeats":   flights[0].availableBSeats,
+                                "origin":   flights[0].origin,
+                                "availableESeats":   flights[0].availableESeats,
+                                "destination":   flights[0].destination,
+                                "bCost":   flights[0].bCost,
+                                "nextBusSeat":   flights[0].nextBusSeat,
+                                "flightNumber":   flights[0].flightNumber,
+                                "capacity":   flights[0].capacity,
+                                "aircraftType":   flights[0].aircraftType,
+                                "arrivalTime":   flights[0].arrivalTime,
+                                "nextEcoSeat":   flights[0].nextEcoSeat,
+                                "aircraftModel":   flights[0].aircraftModel,
+                                "SeatMap":   flights[0].SeatMap
+                              };
               collection.insertOne(document, {w: 1}, function(err, records){
                 var collection = db.collection('bookings');
                   var document = {"firstName": firstName,
@@ -181,7 +198,9 @@ db.collection("flights").remove({"flightNumber": flightNumber } , function(err, 
                                   "email" : email,
                                   "phoneNumber" : phoneNumber,
                                   "bookingRefNumber": bookingRefNumber,
-                                  "flightNumber": flightNumber};
+                                  "flightNumber": flightNumber ,
+                                  "seatNum": flights[0].SeatMap[selectedSeat].seatNum
+                                };
                   collection.insertOne(document, {w: 1}, function(err, records){
                     mongo.close();
                     cb(err,true);
