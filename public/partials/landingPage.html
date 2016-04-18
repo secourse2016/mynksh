@@ -154,8 +154,8 @@
                             <div class="form-group">
                                 <font class="col-sm-2 text-right" size="4" color="white"> From: </font>
                                 <div class="col-md-8 col-sm-8">
-                                    <input name="selectedOrigin" id="selectedOrigin"  type="text"  placeholder="Flying From" ng-model="selectedOrigin" ng-required='true' uib-typeahead="airport.name for airport in Airports | filter:$viewValue | limitTo:10" class="form-control" , typeahead-on-select="SetOriginAirport($item.iata)" >
-                                    <span style='color:white' ng-show="(flights.selectedOrigin.$error.required) ">Origin Airport required</span>
+                                    <input name="originAirports" id="originAirports"  type="text"  placeholder="Flying From" ng-model="selectedOrigin" ng-required='true' uib-typeahead="airport.name for airport in Airports | filter:$viewValue | limitTo:10" class="form-control" , typeahead-on-select="SetOriginAirport($item.iata)" >
+                                    <span style='color:white' ng-show="(flights.originAirports.$error.required) ">Origin Airport required</span>
                                 </div>
                             </div>
                             </br>
@@ -271,8 +271,8 @@
                             </form>
                         </div>
                     </form>
-                    <button type="submit" ng-disabled='flights.$invalid' class="fancy-button button-line button-white large zoom subform" id='btnSearch' ng-click="SetOutDate(dto);
-                    SetReturnDate(dtr); SetRoundTrip(roundTrip); SetCabin(cabin); SearchFlights()">
+                    <button type="submit" ng-disabled='flights.$invalid' class="fancy-button button-line button-white large zoom subform" id='btnSearch'
+                    ng-click="SetOutDate(dto);SetReturnDate(dtr); SetRoundTrip(roundTrip); SetCabin(cabin); SearchFlights()">
 
 
                         Search Flights
@@ -313,15 +313,15 @@
                     </div>
 
                     <ul class="package-features">
-                        <li ng-model="selectedOrigin===Cairo International Airport" id="selectedOrigin"><span class="color-scheme fa fa-check">From:</span>Cairo</li>
-                        <li ng-model="selectedDestination===King Abdulaziz International Airport" id="destinationAirports"><span class="color-scheme fa fa-check">To:</span>Jeddah</li>
-                        <li ng-model="roundTrip===true"><span class="color-scheme fa fa-check">Round Trip</span></li>
-                        <li ng-model="cabin===true"><span class="color-scheme fa fa-check">Economy</span>class</li>
-                        <li ng-model="$parent.dto===20/4/2016"><span class="color-scheme fa fa-check">Outgoing:</span> 20/4/2016</li>
-                        <li ng-model="$parent.dtr===25/4/2016"><span class="color-scheme fa fa-check">Returning:</span> 25/4/2016</li>
+                        <li  id="selectedOrigin"><span class="color-scheme fa fa-check">From:</span>Cairo</li>
+                        <li  id="destinationAirports"><span class="color-scheme fa fa-check">To:</span>Jeddah</li>
+                        <li ><span class="color-scheme fa fa-check">Round Trip</span></li>
+                        <li ><span class="color-scheme fa fa-check">Economy</span>class</li>
+                        <li ><span class="color-scheme fa fa-check">Outgoing:</span> 20/4/2016</li>
+                        <li ><span class="color-scheme fa fa-check">Returning:</span> 25/4/2016</li>
                     </ul>
                     <div class="sign-up">
-                        <a ng-click='SetOutDate(dto);SetReturnDate(dtr); SetRoundTrip(roundTrip); SetCabin(cabin); SetOriginAirport(selectedOrigin);SetDestinationAirport(selectedDestination);SearchFlights()' class="fancy-button button-line btn-col vertical">
+                        <a ng-click='SearchFlights()' class="fancy-button button-line btn-col vertical">
 								Book it UP!
 								<span class="icon">
 									<i class="fa fa-hand-o-up"></i>
