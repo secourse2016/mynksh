@@ -2,6 +2,7 @@
 App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturnSrv, paymentSrv, $location) {
     $scope.no = "node";
     $scope.tab = "active in";
+    $scope.reservation = ConfirmSrv.getReservation();
 
     $scope.tab1 = function() {
         $scope.tab = "active in";
@@ -35,15 +36,6 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
     // test post
 
     $scope.postAPay = function() {
-        console.log('i`m in ctrl');
-        $scope.firstName = "ha5odhma mn conf msh m3mola";
-        $scope.lastName = "isabardo ha5odha mn  conf";
-        $scope.passport = "same lsa msh m3mola  fl  conf srv";
-        $scope.passportNumber = "bardo lsa ";
-        $scope.issueDate = "22-5-2016";
-        $scope.expiryDate = "22-3-2020";
-        $scope.email = ConfirmSrv.getEmail();
-        $scope.phoneNumber = ConfirmSrv.getPhoneNo();
         $scope.bookingRefNumber = "ha5do mn nary";
         $scope.flightNumber = "flight.flightNumber";
 

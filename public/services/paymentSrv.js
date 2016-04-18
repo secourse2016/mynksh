@@ -1,9 +1,9 @@
 
 App.factory('paymentSrv', function($http) {
     return {
-        postPay: function(firstName , lastName , passport , passportNumber , issueDate , expiryDate , email , phoneNumber , bookingRefNumber, flightNumber) {
+        postPay: function(reservation, bookingRefNumber, flightNumber) {
           console.log('i`m in srv');
-          return $http.get('/api/pay/'+ firstName + '/' + lastName + '/' + passport + '/' + passportNumber+'/'+issueDate+'/'+ expiryDate + '/' + email + '/' + phoneNumber + '/' + bookingRefNumber+'/'+flightNumber);
+          return $http.get('/api/pay/'+ reservation.FName + '/' + reservation.LName + '/' + reservation.passportNo+'/'+reservation.issueDate+'/'+ reservation.expiryDate + '/' + reservation.email + '/' + reservation.phoneno + '/' + bookingRefNumber+'/'+flightNumber);
       },
         getCountry: function() {
             return $http.get('/api/data/airports');
