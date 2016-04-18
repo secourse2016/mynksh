@@ -2,14 +2,15 @@
 App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturnSrv, paymentSrv, $location) {
 
     $scope.tab = "active in";
-    $scope.reservation = ConfirmSrv.getReservation();    
+    $scope.reservation = ConfirmSrv.getReservation();
     $scope.totalPrice = OutReturnSrv.getSelectedPrice();
+    $scope.cabin=FlightsSrv.getSelectedCabin();
     var roundTrip = FlightsSrv.getSelectedRoundTrip();
     var outgoingFlight= OutReturnSrv.getSelectedOutFlight();
     if(roundTrip == 'true')
         returnFlight = OutReturnSrv.getSelectedReturnFlight();
     $scope.outCurrency = outgoingFlight.currency;
-    
+
     $scope.tab1 = function() {
         $scope.tab = "active in";
         $scope.tab2 = "";
@@ -33,9 +34,9 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
 
     var postAPay = function() {
         $scope.bookingRefNumber = "ha5do mn nary";
-        paymentSrv.postPay($scope.reservation, $scope.bookingRefNumber, outgoingFlight);
+        paymentSrv.postPay($scope.reservation, $scope.bookingRefNumber, outgoingFlight ,   $scope.cabin);
         if(roundTrip =='true')
-            paymentSrv.postPay($scope.reservation, $scope.bookingRefNumber, returnFlight);
+            paymentSrv.postPay($scope.reservation, $scope.bookingRefNumber, returnFlight ,   $scope.cabin);
     };
 
     var SetCardType = function(value) {
@@ -73,13 +74,13 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
 
     $scope.payAction = function() {
         postAPay();
-        SetCardType($scope.selectedType); 
+        SetCardType($scope.selectedType);
         SetCardNo($scope.selectedCardNumber);
         SetMonth($scope.selectedMonth);
         SetYear($scope.selectedYear);
-        SetCVV($scope.selectedCVV); 
-        SetStreet($scope.selectedStreet); 
-        SetInformation($scope.selectedExtra); 
+        SetCVV($scope.selectedCVV);
+        SetStreet($scope.selectedStreet);
+        SetInformation($scope.selectedExtra);
         SetPostalcode($scope.selectedPostalcode);
         SetCity($scope.SelectedCity);
         Congrats();
