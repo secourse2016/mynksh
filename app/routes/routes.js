@@ -31,7 +31,7 @@ module.exports = function(app, mongo) {
     /* Middlewear For Secure API Endpoints */
     app.use(function(req, res, next) {
         // check header or url parameters or post parameters for token
-        var token = req.body.wt || req.query.wt || req.headers['x-access-token'] || 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJNWU5LU0giLCJpYXQiOjE0NjA3NzIyOTQsImV4cCI6MTQ5MjMwODI5NSwiYXVkIjoid3d3LnNlY291cnNlLmNvbSIsInN1YiI6Ik1ZTktTSCBJYmVyaWEiLCJUZWFtIjoiTVlOS1NIIn0.hZxhv8XAcu1cARgcrtfb0l_crF1-Ic1tJt9eUhIL0qQ';
+        var token = req.body.wt || req.query.wt || req.headers['x-access-token'];
         // console.log("{{{{ TOKEN }}}} => ", token);
         var jwtSecret = process.env.JWTSECRET;
         // console.log(jwtSecret);
