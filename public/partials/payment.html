@@ -60,7 +60,6 @@
                                             <form class="contact-form support-form" name="reviewForm" novalidate="">
                                                 <div class="form-group">
                                                     </br>
-                                                    <!-- <label class="control-label col-sm-2 labelform" for="country" style="width: 150px; position: relative; top: 8px; right: 64px;">Issuer country*:</label> -->
                                                     <font size="3" color="black" class="col-sm-4 text-left">Issuer Country<font color="red" >*</font>:</font>
                                                     <div class="col-md-8 col-sm-8 text-left">
                                                         <input name="Country" id="Country" type="text" placeholder="issuer country" ng-model="selectedCountry" uib-typeahead="country.name for country in Country | filter:$viewValue | limitTo:10" class="form-control" , typeahead-on-select="setSelectedCountry($item.name)"
@@ -260,12 +259,12 @@
                             <hr>
                             <div>
                                 {{P_round_origin}} - {{P_round_dest}}
-                                <br> {{P_round_oDate | date : 'd/M/yyyy'}}}
+                                <br> {{P_round_oDate | date : 'd/M/yyyy'}}
                                 <br>
 
                                 <br>
-                                <br> {{P_round_dest}} _ {{P_round_origin}}
-                                <br> {{P_round_rDate | date : 'd/M/yyyy'}}}
+                                <br> {{P_round_dest}} - {{P_round_origin}}
+                                <br> {{P_round_rDate | date : 'd/M/yyyy'}}
                                 <br>
                             </div>
                         </div>
