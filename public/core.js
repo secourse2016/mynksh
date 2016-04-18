@@ -31,5 +31,31 @@ App.config(function($routeProvider) {
         templateUrl: '/partials/confirmation.html',
         controller: 'confirmCtrl',
         controllerAs: 'sotre'
+    })
+
+    // // route for the congrats page
+
+    .when('/congrats', {
+        templateUrl: '/partials/congrats.html'
+
+    })
+
+    // route for the booking Reference page
+
+    .when('/bookingRef', {
+        templateUrl: '/partials/bookingRef.html',
+        controller: 'bookingRefCtrl'
+
+    })
+
+    .when('/noFlights', {
+        templateUrl: '/partials/noFlight.html'
+
+    })
+    .when('/teamMembers', {
+        templateUrl: '/partials/teamMembers.html'
+
     });
+
+
 });

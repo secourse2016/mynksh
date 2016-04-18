@@ -3,53 +3,23 @@
  */
 App.factory('ConfirmSrv', function($http) {
     return {
-        setFName: function(value) {
-            this.fname = value;
+        setReservation: function(value) {
+            this.reservation = value;
         },
-        getFName: function(value) {
-            return this.fname;
-        },
-        setLName: function(value) {
-            this.lastName = value;
-        },
-        getLName: function(value) {
-            return this.lastName;
-        },
-        setIssueDate: function(value) {
-            this.issueDate = value;
-        },
-        getIssueDate: function(value) {
-            return this.issueDate;
-        },
-        setExpiryDate: function(value) {
-            this.expiryDate = value;
-        },
-        getExpiryDate: function(value) {
-            return this.expiryDate;
+        getReservation: function() {
+            return this.reservation;
         },
         setEmail: function(value) {
-            this.email = value;
+            this.Email = value;
         },
-        getEmail: function(value) {
-            return this.email;
+        getEmail: function() {
+            return this.Email;
         },
         setPhoneNo: function(value) {
             this.phoneNo = value;
         },
-        getPhoneNo: function(value) {
+        getPhoneNo: function() {
             return this.phoneNo;
-        },
-        setPassportNo: function(value) {
-            this.passportNo = value;
-        },
-        gePassportNo: function(value) {
-            return this.passportNo;
-        },
-        setPassportType: function(value) {
-            this.passportNo = value;
-        },
-        gePassportType: function(value) {
-            return this.passportNo;
         }
     };
 });

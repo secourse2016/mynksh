@@ -182,7 +182,7 @@ font-weight: 700;
 }
 
 .section-overlay {
-	background: rgba(0, 0, 0, .7) !important;
+	background: rgba(0, 0, 0, .5) !important;
 	z-index: 5;
 }
 
@@ -262,11 +262,11 @@ font-weight: 700;
 	height: 80px;
 	z-index: 1025;
 	transition: all .3s ease-in;
-	background: rgba(0,0,0, .15);
+	background: rgba(128,0,0, 1);
 }
 
 .nav-bg {
-	background: rgba(0,0,0, .6);
+	background: rgba(0,0,0, .1);
 }
 
 .site-name {
@@ -854,7 +854,7 @@ margin-right: 8px;
 
 
 .best-pricing .pricing-head {
-	background: #333;
+	background: rgba(178,34,34, 1);
 }
 
 .best-pricing .price h3 {
@@ -952,7 +952,7 @@ margin-right: 8px;
 
 /* ================ Download Section ================ */
 #section-download {
-	background-color: #333;
+	background-color: rgba(128,0,0, 1);
 }
 
 .container.download {
@@ -1056,7 +1056,7 @@ margin-right: 8px;
 #section-footer {
 	padding-top: 80px;
 	padding-bottom: 80px;
-	background: #333;
+	background: rgba(128,0,0, 1);
 	color:#e5e5e5;
 }
 
