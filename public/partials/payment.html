@@ -39,17 +39,13 @@
                 </div>
 
                 <div class="mainContainer col-lg-12" style="border-radius: 25px; height:2000px;left:-100px;">
-                    <form class="contact-form support-form">
                         <div class="leftInput" style="border-radius: 25px;">
-
-                            <!-- <font size="5" color="black" class="text-left" style=" color:rgba(178,34,34, 1)" >Payment Form </font> -->
-                            <!-- <h6 align="right" class="Astric">* Compulsory field</h6> -->
 
                             <!--  i have two tabs because of visa and paypal   -->
                             <div class="tabs" style="position:relative; top:-20px;color:black">
                                 <ul class="nav nav-tabs navTab">
                                     <li class=""><a href ng-click="tab1()" data-toggle="tab" aria-expanded="false"><font size="3" color="black" class="text-left">Card payment</font></a></li>
-                                    <li class=""><a href ng-click="tab2()" data-toggle="tab" aria-expanded="false"><font size="3" color="black" class="text-left">PayPal</font></a></li>
+                                    <li class=""><a href ng-click="tab2()" ng-show='false' data-toggle="tab" aria-expanded="false"><font size="3" color="black" class="text-left">PayPal</font></a></li>
 
                                 </ul>
                                 <div id="myTabContent" class="tab-content">
@@ -57,18 +53,7 @@
                                         <!--  payment form  -->
 
                                         <div class="container form ">
-                                            <!-- <form class="form-horizontal" role="form" name="reviewForm" novalidate> -->
                                             <form class="contact-form support-form" name="reviewForm" novalidate="">
-                                                <!-- <div class="form-group">
-                                                    </br>
-                                                    <font size="3" color="black" class="col-sm-4 text-left">Issuer Country<font color="red" >*</font>:</font>
-                                                    <div class="col-md-8 col-sm-8 text-left">
-                                                        <input name="Country" id="Country" type="text" placeholder="issuer country" ng-model="selectedCountry" uib-typeahead="country.name for country in Country | filter:$viewValue | limitTo:10" class="form-control" , typeahead-on-select="setSelectedCountry($item.name)"
-                                                            required>
-
-                                                    </div>
-                                                </div> -->
-
                                                 <div class="form-group">
                                                     </br>
                                                     <font size="3" color="black" class="col-sm-4 text-left">Type of card<font color="red" >*</font>: </font>
@@ -209,8 +194,6 @@
                                                     </div>
                                                 </div>
 
-
-                                                <!-- </form> -->
                                             </form>
                                         </div>
                                         <!--  end of form    -->
@@ -228,12 +211,8 @@
                             </div>
                             <!--  end of tabs    -->
 
-
-
-
                         </div>
 
-                    </form>
                     </br>
                     </br>
                         </br>
@@ -241,17 +220,17 @@
                         <font size="5" color="black" class="text-left" style=" color:rgba(178,34,34, 1)"> Price breakdown</font>
                         </br>
 
-                    
+                            <form name='reviewForm2'>
                             <div class="checkbox" style="position:relative; left:50px; top:30px">
-                                <label>
-                                    <input type="checkbox" value="" required>I have read and accept the terms and conditions and conditions of contract.</label>
+                                <label><input type="checkbox" value="" required>I have read and accept the terms and conditions and conditions of contract.</label>
                             </div>
+                            </form>
                         </br>
                         </br>
 
 
                         <div class="col-md-12">
-                            <h4 ><b>Total price : </b>{totalPrice | currency : 'EUR '}}</br></h4>
+                            <h4 ><b>Total price : </b>{{totalPrice | currency : 'EUR '}}</br></h4>
                             </br>
                             </br>
                         </div>
@@ -259,7 +238,7 @@
                         <div class="col-md-12">
 
                                 <div class="col-md-12 col-sm-12 text-right">
-                                    <button type="button" class="btn btn-primary btn-lg" style="background:rgba(178,34,34, 1)" ng-disabled="reviewForm.$invalid && reviewForm2.$invalid" ng-click=" postAPay() ; SetCountry(selectedCountry);SetCardType(selectedType) ; SetCaradNo(selectedCardNumber);SetMonth(selectedMonth);
+                                    <button type="button" class="btn btn-primary btn-lg" style="background:rgba(178,34,34, 1)" ng-disabled="reviewForm.$invalid || reviewForm2.$invalid" ng-click=" postAPay() ; SetCountry(selectedCountry);SetCardType(selectedType) ; SetCardNo(selectedCardNumber);SetMonth(selectedMonth);
               SetYear(selectedYear);SetCVV(selectedCVV); SetFirstName(selectedFirstName) ; SetSurname(selectedSecondName) ;
               SetPassengers(SelectedPassengers); SetStret(selectedStret) ; SetInformation(selectedExtra) ; SetPostalcode(selectedPostalcode) ;
               SetCity(SelectedCity)">Pay</button>
@@ -276,7 +255,7 @@
                 the final amount on long-haul flights and 2% on all other flights will apply per booking. This also includes the charge for using a credit card. </br>
                 </br></font>
 
-                        <button class="btn btn-primary btn-lg" style="background:rgba(178,34,34, 1)" ng-click="SetCaradNo(selectedCardNumber);getBookingRef()" ng-disabled="selectedCardNumber === undefined">Your booking reference</button>
+                        <button class="btn btn-primary btn-lg" style="background:rgba(178,34,34, 1)" ng-click="SetCardNo(selectedCardNumber);getBookingRef()" ng-disabled="selectedCardNumber === undefined">Your booking reference</button>
                         <p id="demo"></p>
 
 

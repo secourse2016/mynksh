@@ -1,9 +1,13 @@
 
 App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturnSrv, paymentSrv, $location) {
-    $scope.no = "node";
+
     $scope.tab = "active in";
     $scope.reservation = ConfirmSrv.getReservation();
-
+    var roundTrip = FlightsSrv.getSelectedRoundTrip();
+    var outgoingFlight= OutReturnSrv.getSelectedOutFlight();
+    if(roundTrip == 'true')
+        returnFlight = OutReturnSrv.getSelectedReturnFlight();
+    
     $scope.tab1 = function() {
         $scope.tab = "active in";
         $scope.tab2 = "";
@@ -25,54 +29,19 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
         return clicked === $scope.clicked;
     };
 
-    // function postIntoBooking() { $http.post('../../modules/bookings.json',{text:$scope.totalPrice}).success(function(response){
-    //
-    //   $scope.Success = "success to pay";
-    //
-    //
-    //
-    // });
-    //   };
-    // test post
-
     $scope.postAPay = function() {
         $scope.bookingRefNumber = "ha5do mn nary";
-        $scope.flightNumber = "flight.flightNumber";
-
-        paymentSrv.postPay($scope.firstName, $scope.lastName, $scope.passport, $scope.passportNumber, $scope.issueDate, $scope.expiryDate, $scope.email, $scope.phoneNumber, $scope.bookingRefNumber, $scope.flightNumber);
-    };
-    //
-    $scope.postIntoBooking = function() {
-        var customer = {
-            contact_name: "Scott",
-            company_name: "HP"
-        };
-        $.ajax({
-            type: "POST",
-            data: JSON.stringify(customer),
-            url: "/api/data/bookings",
-            contentType: "application/json"
-        });
-
+        paymentSrv.postPay($scope.reservation, $scope.bookingRefNumber, outgoingFlight.flightNumber);
+        if(roundTrip =='true')
+            paymentSrv.postPay($scope.reservation, $scope.bookingRefNumber, returnFlight.flightNumber);
     };
 
-    function countryCode() {
-        paymentSrv.getCountry().success(function(country) {
-            $scope.Country = country;
-        });
-    };
-
-    /* set paymet form  */
-    $scope.SetCountry = function(value) {
-        paymentSrv.setSelectedCountry(value);
-
-    };
-
+    //reviewed
     $scope.SetCardType = function(value) {
         paymentSrv.setSelectedCardType(value);
     };
 
-    $scope.SetCaradNo = function(value) {
+    $scope.SetCardNo = function(value) {
         paymentSrv.setSelectedCaradNo(value);
     };
 

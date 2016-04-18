@@ -1,30 +1,20 @@
 
 App.factory('paymentSrv', function($http) {
     return {
-        postPay: function(reservation, bookingRefNumber, flightNumber) {
-          console.log('i`m in srv');
-          return $http.get('/api/pay/'+ reservation.FName + '/' + reservation.LName + '/' + reservation.passportNo+'/'+reservation.issueDate+'/'+ reservation.expiryDate + '/' + reservation.email + '/' + reservation.phoneno + '/' + bookingRefNumber+'/'+flightNumber);
-      },
-        getCountry: function() {
-            return $http.get('/api/data/airports');
-        },
-        setSelectedCountry: function(value) {
-            this.SelectedCountry = value;
-        },
-        getSelectedCountry: function(value) {
-            this.SelectedCountry = value;
-        },
 
+        postPay: function(reservation, bookingRefNumber, flightNumber) {
+          return $http.get('/api/pay/'+ reservation.FName + '/' + reservation.LName + '/' + reservation.country'/' + reservation.passportNo+'/'+reservation.issueDate+'/'+ reservation.expiryDate + '/' + reservation.email + '/' + reservation.phoneno + '/' + bookingRefNumber+'/'+flightNumber);
+        },
         getSelectedCardType: function() {
             return this.SelectedCardType;
         },
         setSelectedCardType: function(value) {
             this.SelectedCardType = value;
         },
-        getSelectedCaradNo: function() {
+        getSelectedCardNo: function() {
             return this.SelectedCaradNo;
         },
-        setSelectedCaradNo: function(value) {
+        setSelectedCardNo: function(value) {
             this.SelectedCaradNo = value;
         },
         getSelectedMonth: function() {
@@ -44,28 +34,6 @@ App.factory('paymentSrv', function($http) {
         },
         setSelectedCVV: function(value) {
             this.SelectedCVV = value;
-        },
-
-
-
-
-        getSelectedFirstName: function() {
-            return this.selectedFirstName;
-        },
-        setSelectedFirstName: function(value) {
-            this.selectedFirstName = value;
-        },
-        getSelectedSurname: function() {
-            return this.selectedSurname;
-        },
-        setSelectedSurname: function(value) {
-            this.selectedSurname = value;
-        },
-        getSelectedPassengers: function() {
-            return this.SelectedPassengers;
-        },
-        setSelectedPassengers: function(value) {
-            this.SelectedPassengers = value;
         },
         getSelectedStreet: function() {
             return this.selectedStret;
