@@ -10,11 +10,11 @@ exports.seedDB = function(cb) {
         mongo.clearDB(function(err) {
             assert.equal(null, err);
             mongo.seed('flights', flights, function() {
-                // mongo.seed('bookings', bookings, function() {
+                mongo.seed('bookings', bookings, function() {
                     mongo.seed('airports', airports, function() {
                         mongo.close();
                     });
-                // });
+                });
             });
         });
 
