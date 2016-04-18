@@ -229,7 +229,7 @@
                             </br>
 
                             <div class="form-group">
-                                <font class=" col-sm-4 text-left" size="4" color="white"> Ping Other Airlines
+                                <font class=" col-sm-4 text-left" size="4" color="white"> Ping Other Airlines{{pinging}}
                                     <input ng-model="pinging" type="checkbox" value="true" />
                                 </font>
 
@@ -262,7 +262,7 @@
                         </div>
                     </form>
                     <button type="submit"  ng-disabled="reviewForm.$invalid " class="fancy-button button-line button-white large zoom subform" id='btnSearch'
-                    ng-click="SetOutDate(dto);SetReturnDate(dtr); SetRoundTrip(roundTrip); SetCabin(cabin); setPinging(pinging); SearchFlights()">
+                    ng-click="SetOutDate(dto);SetReturnDate(dtr); SetRoundTrip(roundTrip); SetCabin(cabin); SetPinging(pinging); SearchFlights()">
                         Search Flights
                         <!-- <a type="button" class="btn btn-clear btn-sm btn-min-block " id='btnSearch' ng-click='SearchFlights()'>Search Flights</a> -->
                         <span class="icon">

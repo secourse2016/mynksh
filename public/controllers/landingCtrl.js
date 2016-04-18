@@ -11,7 +11,7 @@ App.controller('landingCtrl', function($scope, FlightsSrv, $location) {
     //    console.log(val)
     // });
     $scope.pinging="false";
-    
+
     $scope.roundTrip = "true";
     $scope.cabin = "true";
 
@@ -83,6 +83,9 @@ App.controller('landingCtrl', function($scope, FlightsSrv, $location) {
     };
     $scope.SetCabin = function(value) {
         FlightsSrv.setSelectedCabin(value);
+    };
+    $scope.SetPinging = function(value) {
+        FlightsSrv.setPinging(value);
     };
 
     /* Find All Available Flights  */
