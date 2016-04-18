@@ -8,10 +8,24 @@ App.controller('bookingRefCtrl', function($scope, FlightsSrv, $location, Booking
 
     $scope.retreiveBookingRef = function() {
       $http.get('/api/bookings/search/' + BookingSrv.getSelectedBookingRef()).success(function(flight) {
-              $scope.firstName = flight.firstName;
-              $scope.lastName = flight.lastName;
-              $scope.passport = flight.passport;
-              
+             // if(flight.length ==1){
+              var firstName = flight[0].firstName;
+              var lastName = flight[0].lastName;
+              var passport = flight[0].passportNumber;
+              var seatO = flight[0].seatNum;
+              var arrivalTimeO=flight[0].arrivalTime;
+              var departureTimeO=flight[0].departureTime;
+              var originO=flight[0].origin;
+              var destinationO=flight[0].destination;
+            if(flight.length ==2){
+              var seatR = flight[1].seatNum;
+              var flightNumR=flight[1].flightNumber;
+              var arrivalTimeR=flight[1].arrivalTime;
+               var departureTimeR=flight[1].departureTime;
+               var originR=flight[1].origin;
+               var destinationR=flight[1].destination;
+            }
+        console.log(flight);        
         var input = BookingSrv.getSelectedBookingRef();
         //var div = document.getElementById('divID');
 
@@ -23,8 +37,19 @@ App.controller('bookingRefCtrl', function($scope, FlightsSrv, $location, Booking
         var arr = atobConv.split(",");
         var visaNum = arr[0];
         var outDate = arr[1];
-        var flightNum = arr[2];
-        var res = "Hello, " + $scope.firstName + " " + $scope.lastName + "!" + "<br>" + "Your Passport is " + $scope.passport + "<br>" + "Your Visa Number is " + visaNum + "<br>" + "Your Outgoing Flight is On " + outDate + "<br>" + "Your Flight Number is " + flightNum;
+        var flightNumO = arr[2];
+        var res = "Hello, " + firstName + " " + lastName + "!" + 
+        "<br>" + "Your Passport is " + passport + "<br>" +"Your Visa Number is " + visaNum +"<br>"
+         + "Your Seat Number in the flight from "+originO+"on "+arrivalTimeO+"to "+destinationO+"on "+departureTimeO+"is "+seat0+
+          "<br>"+ "Your Flight number is " + flightNumO;
+          if(flight.length==2){
+            var res = "Hello, " + firstName + " " + lastName + "!" + 
+        "<br>" + "Your Passport is " + passport + "<br>" +"Your Visa Number is " + visaNum +"<br>"
+         + "Your Seat Number on the flight from "+originO+"on "+arrivalTimeO+"to "+destinationO+"on "+
+         departureTimeO+"is "+seatO+ "<br>"+ "Your Flight number is " + flightNumO+"<br>"+"Your Seat Number on the flight from "
+         +originR+"on "+arrivalTimeR+"to "+destinationR+"on "+
+         departureTimeR+"is "+seatR+ "<br>"+ "Your Flight number is " + flightNumR;
+          }
         document.getElementById("divID").innerHTML = res;
       });
     }

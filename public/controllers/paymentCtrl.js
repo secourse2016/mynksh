@@ -32,7 +32,7 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
     };
 
     var postAPay = function() {
-        $scope.bookingRefNumber = "ha5do mn nary";
+        $scope.bookingRefNumber = "MTExMTExMTExMTExMTExMSwwNC8yMCxNWU5LU0gxNjI=" ;
         paymentSrv.postPay($scope.reservation, $scope.bookingRefNumber, outgoingFlight ,   $scope.cabin);
         if(roundTrip =='true')
             paymentSrv.postPay($scope.reservation, $scope.bookingRefNumber, returnFlight ,   $scope.cabin);
