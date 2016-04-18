@@ -10,14 +10,6 @@ App.controller('confirmCtrl', function($scope, FlightsSrv, OutReturnSrv, Confirm
 
     $scope.format = 'd/M/yyyy'
 
-    var setTicketEmail = function(value) {
-        ConfirmSrv.setEmail(value);
-    };
-
-    var setTicketPhoneNo = function(value) {
-        ConfirmSrv.setPhoneNo(value);
-    };
-
     var setTicketReservation = function(value) {
         ConfirmSrv.setReservation(value);
     };
@@ -28,8 +20,6 @@ App.controller('confirmCtrl', function($scope, FlightsSrv, OutReturnSrv, Confirm
     $scope.reservation = [];
 
     $scope.goToPayment = function() {
-        setTicketPhoneNo($scope.typedPhoneno);
-        setTicketEmail($scope.typedEmail);
         setTicketReservation($scope.reservation);
         $location.url('/payment');
     };
