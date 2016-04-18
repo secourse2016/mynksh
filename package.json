@@ -26,8 +26,15 @@
         "supertest": "~1.2.0",
         "chai": "~3.5.0",
         "istanbul": "~0.4.2",
+<<<<<<< HEAD
         "jsonwebtoken": "5.4.0",
         "dotenv": "1.2.0",
 	      "moment": "2.0.0"
+=======
+        "nodemon": "~1.9.1",
+        "jsonwebtoken": "5.4.0",
+        "dotenv": "1.2.0",
+        "moment": "*"
+>>>>>>> ba55e326e92dad736f6a57255b151afe3061a44b
     }
 }

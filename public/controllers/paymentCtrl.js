@@ -1,4 +1,3 @@
-
 App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturnSrv, paymentSrv, $location) {
 
     $scope.tab = "active in";

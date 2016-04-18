@@ -17,6 +17,10 @@ App.controller('landingCtrl', function($scope, FlightsSrv, $location) {
         $location.url('/bookingRef');
     };
 
+    $scope.teamMembers = function() {
+        $location.url('/teamMembers');
+    };
+
     // $scope.cabin="cabin";
 
     // $scope.roundTrip="roundtrip";

@@ -20,6 +20,8 @@ App.controller('confirmCtrl', function($scope, FlightsSrv, OutReturnSrv, Confirm
     $scope.reservation = [];
 
     $scope.goToPayment = function() {
+        setTicketPhoneNo($scope.typedPhoneno);
+        setTicketEmail($scope.typedEmail);
         setTicketReservation($scope.reservation);
         $location.url('/payment');
     };
