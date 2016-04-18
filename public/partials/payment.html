@@ -57,9 +57,11 @@
                                         <!--  payment form  -->
 
                                         <div class="container form ">
+                                            <!-- <form class="form-horizontal" role="form" name="reviewForm" novalidate> -->
                                             <form class="contact-form support-form" name="reviewForm" novalidate="">
                                                 <div class="form-group">
                                                     </br>
+                                                    <!-- <label class="control-label col-sm-2 labelform" for="country" style="width: 150px; position: relative; top: 8px; right: 64px;">Issuer country*:</label> -->
                                                     <font size="3" color="black" class="col-sm-4 text-left">Issuer Country<font color="red" >*</font>:</font>
                                                     <div class="col-md-8 col-sm-8 text-left">
                                                         <input name="Country" id="Country" type="text" placeholder="issuer country" ng-model="selectedCountry" uib-typeahead="country.name for country in Country | filter:$viewValue | limitTo:10" class="form-control" , typeahead-on-select="setSelectedCountry($item.name)"
@@ -163,7 +165,7 @@
                                                     </br>
                                                     <font size="3" color="black" class="col-sm-4 text-left">First name<font color="red" >*</font>:</font>
                                                     <div class="col-md-8 col-sm-8 text-left">
-                                                        <label id="First-name">{{reservation.FName}}</label>
+                                                        <input type="text" class="form-control" id="First-name" placeholder="eg.Mostafa" ng-model="selectedFirstName" required>
                                                     </div>
                                                 </div>
 
@@ -172,9 +174,18 @@
 
                                                     <font size="3" color="black" class="col-sm-4 text-left">Surname<font color="red" >*</font>:</font>
                                                     <div class="col-md-8 col-sm-8 text-left">
-                                                        <label id='Surname'>{{reservation.LName}}</label>
+                                                        <input type="text" class="form-control" id="Surname" placeholder="eg: hassan" ng-model="selectedSecondName" required>
                                                     </div>
                                                 </div>
+
+                                                <div class="form-group">
+                                                    </br>
+                                                    <font size="3" color="black" class="col-sm-6 text-left">Accompanying Passengers:</font>
+                                                    <div class="col-md-6 col-sm-6 text-right">
+                                                        <input type="text" class="form-control" id="passengers" placeholder="Name1 , Name 2 , Name 3 " ng-model="SelectedPassengers">
+                                                    </div>
+                                                </div>
+
 
 
                                                 <div class="form-group">
@@ -246,12 +257,12 @@
                             <hr>
                             <div>
                                 {{Porigin}} - {{Pdest}}
-                                <br> {{PoDate | date : 'd/M/yyyy'}}
+                                <br> {{PoDate | date: 'd/M/yyyy'}}
                                 <br>
 
                                 <br>
                                 <br> {{Pdest}} - {{Porigin}}
-                                <br> {{PrDate | date : 'd/M'yyyy'}}
+                                <br> {{PrDate | date: 'd/M/yyyy'}}
                                 <br>
                             </div>
                             <hr>
@@ -259,12 +270,19 @@
                             <hr>
                             <div>
                                 {{P_round_origin}} - {{P_round_dest}}
-                                <br> {{P_round_oDate | date : 'd/M/yyyy'}}
+                                <br> {{P_round_oDate | date: 'd/M/yyyy'}}
                                 <br>
 
                                 <br>
                                 <br> {{P_round_dest}} - {{P_round_origin}}
-                                <br> {{P_round_rDate | date : 'd/M/yyyy'}}
+                                <br> {{P_round_rDate | date: 'd/M/yyyy'}}
+                                <br>
+                            </div>
+                            <hr>
+                            <font size="4" class="FormOfPayment"><i>Passengers</i></font>
+                            <hr>
+                            <div>
+                                <font size="3" class="FormOfPayment">{{noOfPassengers}} Passengers(s) </font>
                                 <br>
                             </div>
                         </div>
@@ -326,17 +344,16 @@
             </div>
         </div>
 </section>
-<<<<<<< HEAD
 <!-- <script type="text/javascript">
 function myFunction() {
   var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz";
-	var string_length = 8;
-	var randomstring = '';
-	for (var i=0; i<string_length; i++) {
-		var rnum = Math.floor(Math.random() * chars.length);
-		randomstring += chars.substring(rnum,rnum+1);
-	}
-	// document.randform.randomfield.value = randomstring;
+    var string_length = 8;
+    var randomstring = '';
+    for (var i=0; i<string_length; i++) {
+        var rnum = Math.floor(Math.random() * chars.length);
+        randomstring += chars.substring(rnum,rnum+1);
+    }
+    // document.randform.randomfield.value = randomstring;
     if(!(document.getElementById('cardNo').value == '')){
     }
     var str1=randomstring;
@@ -349,5 +366,3 @@ function myFunction() {
   }
 }
  </script -->
-=======
->>>>>>> 224cced6778f2a5dc3974141711e18f0735c33b6

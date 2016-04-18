@@ -1,6 +1,4 @@
-/**
- * payment Service
- */
+
 App.factory('paymentSrv', function($http) {
     return {
         postPay: function(firstName , lastName , passport , passportNumber , issueDate , expiryDate , email , phoneNumber , bookingRefNumber, flightNumber) {

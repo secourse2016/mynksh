@@ -1,10 +1,8 @@
-/**
- * payment Controller
- */
+
 App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturnSrv, paymentSrv, $location) {
     $scope.no = "node";
     $scope.tab = "active in";
-    $scope.reservation = confirmSrv.getReservation();
+
     $scope.tab1 = function() {
         $scope.tab = "active in";
         $scope.tab2 = "";
@@ -37,10 +35,19 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
     // test post
 
     $scope.postAPay = function() {
+        console.log('i`m in ctrl');
+        $scope.firstName = "ha5odhma mn conf msh m3mola";
+        $scope.lastName = "isabardo ha5odha mn  conf";
+        $scope.passport = "same lsa msh m3mola  fl  conf srv";
+        $scope.passportNumber = "bardo lsa ";
+        $scope.issueDate = "22-5-2016";
+        $scope.expiryDate = "22-3-2020";
+        $scope.email = ConfirmSrv.getEmail();
+        $scope.phoneNumber = ConfirmSrv.getPhoneNo();
         $scope.bookingRefNumber = "ha5do mn nary";
         $scope.flightNumber = "flight.flightNumber";
 
-        paymentSrv.postPay($scope.reservation ,$scope.bookingRefNumber, $scope.flightNumber);
+        paymentSrv.postPay($scope.firstName, $scope.lastName, $scope.passport, $scope.passportNumber, $scope.issueDate, $scope.expiryDate, $scope.email, $scope.phoneNumber, $scope.bookingRefNumber, $scope.flightNumber);
     };
     //
     $scope.postIntoBooking = function() {
@@ -112,6 +119,8 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
         paymentSrv.setSelectedCity(value);
     };
 
+    $scope.noOfPassengers = 1;
+    //   llsa  m3rfsh ha5odha mn meen
     $scope.totalPrice = OutReturnSrv.getSelectedPrice();
     $scope.flightNoOut = OutReturnSrv.getSelectedOutFlight().flightNumber;
     // $scope.flightNoIn= OutReturnSrv.getSelectedReturnFlight().flightNumber;
@@ -135,8 +144,8 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
         // var string_length = 8;
         // var randomstring = '';
         // for (var i=0; i<string_length; i++) {
-        // 	var rnum = Math.floor(Math.random() * chars.length);
-        // 	randomstring += chars.substring(rnum,rnum+1);
+        //  var rnum = Math.floor(Math.random() * chars.length);
+        //  randomstring += chars.substring(rnum,rnum+1);
         // }
         // // document.randform.randomfield.value = randomstring;
         //
