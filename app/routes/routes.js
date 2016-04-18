@@ -66,6 +66,7 @@ module.exports = function(app, mongo) {
 
 
     app.get('/api/flights/search/:origin/:destination/:departingDate/:cabin', function(req, res) {
+      console.log("Ay 7aga");
         if (moment(req.params.departingDate, 'MMMM D, YYYY').format('MMMM D, YYYY') === req.params.departingDate)
             var departDate = req.params.departingDate;
         else

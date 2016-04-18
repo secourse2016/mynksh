@@ -23,6 +23,7 @@ App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $locati
                 $http.get(c.ip + '/api/flights/search/' + origin + '/' + dest + '/' + departDate + '/' + outDate + '/' + tclass).success(function(flight) {
                     flights.outgoingFlights.push(flight.outgoingFlights);
                     flights.returnFlights.push(flight.returnFlights);
+
                 });
             });
         });
@@ -36,8 +37,9 @@ App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $locati
             airlines.forEach(function(c) {
                 var tclass = ($scope.cabin === "true") ? "economy" : "business";
                 var departDate = moment(oDate).toDate().getTime();
-                $http.get(c.ip + '/api/flights/search/' + origin + '/' + dest + '/' + departDate + '/' + tclass).success(function(flight) {
+                $http.get('/api/flights/search/' + origin + '/' + dest + '/' + departDate + '/' + tclass).success(function(flight) {
                     flights.outgoingFlights.push(flight.outgoingFlights);
+                    console.log(flight.outgoingFlights);
                 });
             });
         });
