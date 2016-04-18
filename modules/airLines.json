@@ -13,7 +13,7 @@
   },
   {
     "name" : "AirFrance Airlines",
-    "ip" : "http://52.34.160.140/"
+    "ip" : "http://52.34.160.140"
   },
   {
     "name" : "British Airlines",
@@ -41,11 +41,11 @@
   },
   {
     "name" : "Japan Airlines",
-    "ip" : "http://54.187.208.145/"
+    "ip" : "http://54.187.208.145"
   },
   {
     "name" : "Singapora Airlines",
-    "ip" : "http://sebitsplease.com.s3-website-us-east-1.amazonaws.com/"
+    "ip" : "http://sebitsplease.com.s3-website-us-east-1.amazonaws.com"
   },
   {
     "name" : "Dragon Airlines",
@@ -53,7 +53,7 @@
   },
   {
     "name" : "Austrian Airlines",
-    "ip" : "http://ec2-52-90-41-197.compute-1.amazonaws.com/"
+    "ip" : "http://ec2-52-90-41-197.compute-1.amazonaws.com"
   },
   {
     "name" : "Oceanic Airlines",
@@ -65,7 +65,7 @@
   },
   {
     "name" : "Air Madagascar Airlines",
-    "ip" : "http://54.191.202.17/"
+    "ip" : "http://54.191.202.17"
   },
   {
     "name" : "South African Airlines",
@@ -85,11 +85,11 @@
   },
   {
     "name" : "Malaysia Airlines",
-    "ip" : "http://52.32.109.147/"
+    "ip" : "http://52.32.109.147"
   },
   {
     "name" : "United Airlines",
-    "ip" : "http://54.187.103.196:3000/"
+    "ip" : "http://54.187.103.196:3000"
   },
   {
     "name" : "Alitalia Airlines",
@@ -97,11 +97,11 @@
   },
   {
     "name" : "Northwest Airlines",
-    "ip" : "http://52.36.169.206/"
+    "ip" : "http://52.36.169.206"
   },
   {
     "name" : "Cathay Pacific Airlines",
-    "ip" : "http://ec2-52-91-94-227.compute-1.amazonaws.com/"
+    "ip" : "http://ec2-52-91-94-227.compute-1.amazonaws.com"
   },
   {
     "name" : "Luftahansa Airlines",

@@ -1,5 +1,6 @@
 var jwt = require('jsonwebtoken');
 var moment = require('moment');
+var airlines = require('../../modules/airLines.json');
 
 module.exports = function(app, mongo) {
 
@@ -13,6 +14,12 @@ module.exports = function(app, mongo) {
         mongo.getAirports(function(err, airports) {
             res.json(airports);
         })
+    });
+
+    app.get('/api/data/airlines', function(req, res) {
+        // mongo.getAirports(function(err, airports) {
+        res.json(airlines);
+        // })
     });
 
     app.post('/api/data/bookings', function(req, res) {
@@ -45,7 +52,7 @@ module.exports = function(app, mongo) {
             var outDate = req.params.returningDate;
         } else {
             var departDate = moment(parseInt(req.params.departingDate)).format('MMMM D, YYYY');
-            var outDate = moment(parseInt(req.params.departingDate)).format('MMMM D, YYYY');
+            var outDate = moment(parseInt(req.params.returningDate)).format('MMMM D, YYYY');
         }
         mongo.searchFlights(req.params.origin, req.params.destination, departDate, req.params.cabin, function(err, outgoingFlight) {
             mongo.searchFlights(req.params.destination, req.params.origin, outDate, req.params.cabin, function(err, returnFlight) {
@@ -69,6 +76,7 @@ module.exports = function(app, mongo) {
             res.json(flights);
         });
     });
+
 
     app.get('/api/pay/:firstName/:lastName/:passport/:passportNumber/:issueDate/:expiryDate/:email/:phoneNumber/:bookingRefNumber/:flightNumber', function(req, res) {
         mongo.submitPay(req.params.firstName, req.params.lastName, req.params.passport, req.params.passportNumber, req.params.issueDate, req.params.expiryDate, req.params.email, req.params.phoneNumber, req.params.bookingRefNumber, req.params.flightNumber, function(err, data) {

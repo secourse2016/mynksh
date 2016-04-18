@@ -1,5 +1,8 @@
 App.factory('OutReturnSrv', function($http) {
     return {
+        getairLinesInfo: function() {
+            return $http.get('/api/data/airlines');
+        },
         getRoundTripInfo: function(origin, dest, oDate, rDate, cabin) {
             return $http.get('/api/flights/search/' + origin + '/' + dest + '/' + oDate + '/' + rDate + '/' + cabin);
         },

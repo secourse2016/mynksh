@@ -88,8 +88,7 @@ exports.searchFlights = function(origin, destination, departingDate, cabin, cb) 
                         "origin": origin,
                         "destination": flights[0].destination,
                         "class": economyOrBusiness,
-                        "Airline": "IBERIA",
-
+                        "Airline": "IBERIA"
                     }];
                 } else
                     rflights = {};
