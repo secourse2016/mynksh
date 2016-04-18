@@ -3,7 +3,7 @@ App.factory('paymentSrv', function($http) {
     return {
 
         postPay: function(reservation, bookingRefNumber, flightNumber) {
-          return $http.get('/api/pay/'+ reservation.FName + '/' + reservation.LName + '/' + reservation.country'/' + reservation.passportNo+'/'+reservation.issueDate+'/'+ reservation.expiryDate + '/' + reservation.email + '/' + reservation.phoneno + '/' + bookingRefNumber+'/'+flightNumber);
+          return $http.get('/api/pay/'+ reservation.FName + '/' + reservation.LName + '/' + reservation.country + '/' + reservation.passportNo+'/'+reservation.issueDate+'/'+ reservation.expiryDate + '/' + reservation.email + '/' + reservation.phoneno + '/' + bookingRefNumber+'/'+flightNumber);
         },
         getSelectedCardType: function() {
             return this.SelectedCardType;
@@ -12,10 +12,10 @@ App.factory('paymentSrv', function($http) {
             this.SelectedCardType = value;
         },
         getSelectedCardNo: function() {
-            return this.SelectedCaradNo;
+            return this.SelectedCardNo;
         },
         setSelectedCardNo: function(value) {
-            this.SelectedCaradNo = value;
+            this.SelectedCardNo = value;
         },
         getSelectedMonth: function() {
             return this.SelectedMonth;
@@ -38,19 +38,19 @@ App.factory('paymentSrv', function($http) {
         getSelectedStreet: function() {
             return this.selectedStret;
         },
-        setselectedStret: function(value) {
+        setSelectedStreet: function(value) {
             this.selectedStret = value;
         },
-        getSelectedinformation: function() {
+        getSelectedInformation: function() {
             return this.Selectedinformation;
         },
-        setSelectedinformation: function(value) {
+        setSelectedInformation: function(value) {
             this.Selectedinformation = value;
         },
         getSelectedPostalcode: function() {
             return this.selectedPostalcode;
         },
-        setselectedPostalcode: function(value) {
+        setSelectedPostalcode: function(value) {
             this.selectedPostalcode = value;
         },
         getSelectedCity: function() {

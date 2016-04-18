@@ -2,7 +2,8 @@
 App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturnSrv, paymentSrv, $location) {
 
     $scope.tab = "active in";
-    $scope.reservation = ConfirmSrv.getReservation();
+    $scope.reservation = ConfirmSrv.getReservation();    
+    $scope.totalPrice = OutReturnSrv.getSelectedPrice();
     var roundTrip = FlightsSrv.getSelectedRoundTrip();
     var outgoingFlight= OutReturnSrv.getSelectedOutFlight();
     if(roundTrip == 'true')
@@ -36,13 +37,12 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
             paymentSrv.postPay($scope.reservation, $scope.bookingRefNumber, returnFlight.flightNumber);
     };
 
-    //reviewed
     $scope.SetCardType = function(value) {
         paymentSrv.setSelectedCardType(value);
     };
 
     $scope.SetCardNo = function(value) {
-        paymentSrv.setSelectedCaradNo(value);
+        paymentSrv.setSelectedCardNo(value);
     };
 
     $scope.SetMonth = function(value) {
@@ -57,17 +57,7 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
         paymentSrv.setSelectedCVV(value);
     };
 
-    $scope.SetFirstName = function(value) {
-        paymentSrv.setSelectedFirstName(value);
-    };
-
-    $scope.SetSurname = function(value) {
-        paymentSrv.setSelectedSurname(value);
-    };
-    $scope.SetPassengers = function(value) {
-        paymentSrv.setSelectedPassengers(value);
-    };
-    $scope.SetStret = function(value) {
+    $scope.SetStreet = function(value) {
         paymentSrv.setselectedStret(value);
     };
     $scope.SetInformation = function(value) {
@@ -80,23 +70,6 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
         paymentSrv.setSelectedCity(value);
     };
 
-    $scope.noOfPassengers = 1;
-    //   llsa  m3rfsh ha5odha mn meen
-    $scope.totalPrice = OutReturnSrv.getSelectedPrice();
-    $scope.flightNoOut = OutReturnSrv.getSelectedOutFlight().flightNumber;
-    // $scope.flightNoIn= OutReturnSrv.getSelectedReturnFlight().flightNumber;
-
-    $scope.Porigin = FlightsSrv.getSelectedOriginAirport();
-    $scope.Pdest = FlightsSrv.getSelectedDestinationAirport();
-    $scope.PoDate = FlightsSrv.getSelectedOutDate();
-    $scope.PrDate = FlightsSrv.getSelectedReturnDate();
-
-    $scope.P_round_origin = FlightsSrv.getSelectedDestinationAirport();
-    $scope.P_round_dest = FlightsSrv.getSelectedOriginAirport();
-    // dol lsa mstnyeko t3mlo  anko t5do l roud 3lshan 2a5od l dates bt3thom
-    $scope.P_round_oDate = FlightsSrv.getSelectedOutDate();
-    $scope.P_round_rDate = FlightsSrv.getSelectedReturnDate();
-    $scope.cardNo = paymentSrv.getSelectedCaradNo();
     countryCode();
 
     //NARIHAN
@@ -114,7 +87,7 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
         //   var str1=randomstring;
 
         //encode and get the first part of the outgoing date
-        var card = paymentSrv.getSelectedCaradNo();
+        var card = $scope.selectedCardNumber;
         var outDate = FlightsSrv.getSelectedOutDate();
         var str4 = JSON.stringify(outDate);
         var arr = str4.split("T");
