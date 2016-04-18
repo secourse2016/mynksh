@@ -43,12 +43,17 @@ App.config(function($routeProvider) {
     // route for the booking Reference page
 
     .when('/bookingRef', {
-        templateUrl: '/partials/bookingRef.html'
+        templateUrl: '/partials/bookingRef.html',
+        controller: 'bookingRefCtrl'
 
     })
 
     .when('/noFlights', {
         templateUrl: '/partials/noFlight.html'
+
+    })
+    .when('/teamMembers', {
+        templateUrl: '/partials/teamMembers.html'
 
     });
 

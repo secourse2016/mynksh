@@ -1,6 +1,5 @@
 [
 {
-	"_id": "String",
 	"firstName": "String",
 	"lastName": "String",
 	"passport": "String",
@@ -9,12 +8,46 @@
 	"expiryDate": "Date",
 	"email": "String",
 	"phoneNumber" : "String",
-	"bookingRefNumber": "String",
+	"bookingRefNumber": "121String",
+	"receipt_number": "String",
+	"flightNumber": "String"
+},
+{
+	"firstName": "String",
+	"lastName": "String",
+	"passport": "String",
+	"passportNumber": "String",
+	"issueDate": "Date",
+	"expiryDate": "Date",
+	"email": "String",
+	"phoneNumber" : "String",
+	"bookingRefNumber": "122String",
+	"receipt_number": "String",
+	"flightNumber": "String"
+},{
+	"firstName": "String",
+	"lastName": "String",
+	"passport": "String",
+	"passportNumber": "String",
+	"issueDate": "Date",
+	"expiryDate": "Date",
+	"email": "String",
+	"phoneNumber" : "String",
+	"bookingRefNumber": "123String",
+	"receipt_number": "String",
+	"flightNumber": "String"
+}
+,{
+	"firstName": "String",
+	"lastName": "String",
+	"passport": "String",
+	"passportNumber": "String",
+	"issueDate": "Date",
+	"expiryDate": "Date",
+	"email": "String",
+	"phoneNumber" : "String",
+	"bookingRefNumber": "124String",
 	"receipt_number": "String",
 	"flightNumber": "String"
 }
 ]
-
-
-
-

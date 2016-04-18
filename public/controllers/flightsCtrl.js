@@ -1,4 +1,4 @@
-App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $location) {
+App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $location, $http) {
 
     $scope.roundTrip = FlightsSrv.getSelectedRoundTrip();
     $scope.origin = FlightsSrv.getSelectedOriginAirport();
@@ -8,6 +8,42 @@ App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $locati
     $scope.outgoingPrice = 0;
     $scope.returnPrice = 0;
     $scope.cabin = FlightsSrv.getSelectedCabin();
+
+    var flights = [];
+    flights.outgoingFlights = [];
+    flights.returnFlights = [];
+
+    function pingAirlineR(origin, dest, oDate, rDate) {
+        OutReturnSrv.getairLinesInfo().success(function(airlines) {
+            $scope.outgoingInfo = flights.outgoingFlights;
+            airlines.forEach(function(c) {
+                var tclass = ($scope.cabin === "true") ? "economy" : "business";
+                var departDate = moment(departDate).toDate().getTime();
+                var outDate = moment(oDate).toDate().getTime();
+                $http.get(c.ip + '/api/flights/search/' + origin + '/' + dest + '/' + departDate + '/' + outDate + '/' + tclass).success(function(flight) {
+                    flights.outgoingFlights.push(flight.outgoingFlights);
+                    flights.returnFlights.push(flight.returnFlights);
+
+                });
+            });
+        });
+    }
+
+    // pingAirlineS('CAI', 'JED', 'April 13, 1995');
+
+    function pingAirlineS(origin, dest, oDate) {
+        OutReturnSrv.getairLinesInfo().success(function(airlines) {
+            $scope.outgoingInfo = flights.outgoingFlights;
+            airlines.forEach(function(c) {
+                var tclass = ($scope.cabin === "true") ? "economy" : "business";
+                var departDate = moment(oDate).toDate().getTime();
+                $http.get('/api/flights/search/' + origin + '/' + dest + '/' + departDate + '/' + tclass).success(function(flight) {
+                    flights.outgoingFlights.push(flight.outgoingFlights);
+                    console.log(flight.outgoingFlights);
+                });
+            });
+        });
+    }
 
 
     function roundTripInfo(origin, dest, oDate, rDate) {
@@ -84,7 +120,6 @@ App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $locati
             OutReturnSrv.setSelectedPrice($scope.selectedOutgoingFlight.cost);
 
         $location.url('/confirm');
-
     };
 
 });
