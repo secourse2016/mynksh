@@ -40,23 +40,33 @@ module.exports = function(app, mongo) {
     });
 
     app.get('/api/flights/search/:origin/:destination/:departingDate/:returningDate/:cabin', function(req, res) {
-        mongo.searchFlights(req.params.origin, req.params.destination, req.params.departingDate, req.params.cabin, function(err, outgoingFlight) {
-            mongo.searchFlights(req.params.destination, req.params.origin, req.params.returningDate, req.params.cabin, function(err, returnFlight) {
+        if (moment(req.params.departingDate, 'MMMM D, YYYY').format('MMMM D, YYYY') === req.params.departingDate) {
+            var departDate = req.params.departingDate;
+            var outDate = req.params.returningDate;
+        } else {
+            var departDate = moment(parseInt(req.params.departingDate)).format('MMMM D, YYYY');
+            var outDate = moment(parseInt(req.params.departingDate)).format('MMMM D, YYYY');
+        }
+        mongo.searchFlights(req.params.origin, req.params.destination, departDate, req.params.cabin, function(err, outgoingFlight) {
+            mongo.searchFlights(req.params.destination, req.params.origin, outDate, req.params.cabin, function(err, returnFlight) {
                 var flights = {};
                 flights.outgoingFlights = outgoingFlight;
                 flights.returnFlights = returnFlight;
-                    res.json(flights);
+                res.json(flights);
             });
         });
     });
 
 
     app.get('/api/flights/search/:origin/:destination/:departingDate/:cabin', function(req, res) {
-      var departDate = moment(parseInt(req.params.departingDate)).format('MMMM D, YYYY');
-        mongo.searchFlights(req.params.origin, req.params.destination,departDate , req.params.cabin, function(err, outgoingFlight) {
+        if (moment(req.params.departingDate, 'MMMM D, YYYY').format('MMMM D, YYYY') === req.params.departingDate)
+            var departDate = req.params.departingDate;
+        else
+            var departDate = moment(parseInt(req.params.departingDate)).format('MMMM D, YYYY');
+        mongo.searchFlights(req.params.origin, req.params.destination, departDate, req.params.cabin, function(err, outgoingFlight) {
             var flights = {};
             flights.outgoingFlights = outgoingFlight;
-                res.json(flights);
+            res.json(flights);
         });
     });
 
@@ -67,9 +77,9 @@ module.exports = function(app, mongo) {
     });
 
     app.get('/api/bookings/search/:bookingRefNumber', function(req, res) {
-      mongo.searchBookings(req.params.bookingRefNumber,function(err,bookingRef){
-        res.json(bookingRef);
-      });
+        mongo.searchBookings(req.params.bookingRefNumber, function(err, bookingRef) {
+            res.json(bookingRef);
+        });
     });
 
 
