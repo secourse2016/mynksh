@@ -1,14 +1,13 @@
 
 Issuer country in payment
-typ of card/month/year in payment
+type of card/month/year in payment
 max and min of card number
 check if no flights in Outgoing
 403/404 errors check them
 posts using an Ajax call
-in confirmation date is displayed as a timestamp
 
 
-Post request the two have the same flight number not two diffrenet 
+Post request the two have the same flight number not two diffrenet
 
 SVG Library
 Swiper

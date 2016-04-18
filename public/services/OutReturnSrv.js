@@ -4,10 +4,14 @@ App.factory('OutReturnSrv', function($http) {
             return $http.get('/api/data/airlines');
         },
         getRoundTripInfo: function(origin, dest, oDate, rDate, cabin) {
-            return $http.get('/api/flights/search/' + origin + '/' + dest + '/' + oDate + '/' + rDate + '/' + cabin);
+            var jwt = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJNWU5LU0giLCJpYXQiOjE0NjA3NzIyOTQsImV4cCI6MTQ5MjMwODI5NSwiYXVkIjoid3d3LnNlY291cnNlLmNvbSIsInN1YiI6Ik1ZTktTSCBJYmVyaWEiLCJUZWFtIjoiTVlOS1NIIn0.hZxhv8XAcu1cARgcrtfb0l_crF1-Ic1tJt9eUhIL0qQ';
+            var path = '/api/flights/search/' + origin + '/' + dest + '/' + oDate + '/' + rDate + '/' + cabin + '?wt=' + jwt;
+            return $http.get(path);
         },
         getOneWayTripInfo: function(origin, dest, oDate, cabin) {
-            return $http.get('/api/flights/search/' + origin + '/' + dest + '/' + oDate + '/' + cabin);
+            var jwt = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJNWU5LU0giLCJpYXQiOjE0NjA3NzIyOTQsImV4cCI6MTQ5MjMwODI5NSwiYXVkIjoid3d3LnNlY291cnNlLmNvbSIsInN1YiI6Ik1ZTktTSCBJYmVyaWEiLCJUZWFtIjoiTVlOS1NIIn0.hZxhv8XAcu1cARgcrtfb0l_crF1-Ic1tJt9eUhIL0qQ';
+            var path = '/api/flights/search/' + origin + '/' + dest + '/' + oDate + '/' + cabin + '?wt=' + jwt;
+            return $http.get(path);
         },
         setSelectedOutFlight: function(value) {
             this.selectedOutFlight = value;
