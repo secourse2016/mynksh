@@ -10,11 +10,11 @@ exports.seedDB = function(cb) {
         mongo.clearDB(function(err) {
             assert.equal(null, err);
             mongo.seed('flights', flights, function() {
-                // mongo.seed('bookings', bookings, function() {
+                mongo.seed('bookings', bookings, function() {
                 mongo.seed('airports', airports, function() {
                     mongo.close();
                 });
-                // });
+                });
             });
         });
 
@@ -201,7 +201,11 @@ exports.submitPay = function(firstName, lastName, passport, passportNumber, issu
                         "phoneNumber": phoneNumber,
                         "bookingRefNumber": bookingRefNumber,
                         "flightNumber": flightNumber,
-                        "seatNum": flights[0].SeatMap[selectedSeat].seatNum
+                        "seatNum": flights[0].SeatMap[selectedSeat].seatNum,
+                        "origin": flights[0].origin,
+                        "destination": flights[0].destination,
+                        "arrivalTime": flights[0].arrivalTime,
+                        "departureTime": flights[0].departureTime
                     };
                     collection.insertOne(document, {
                         w: 1

@@ -10,6 +10,8 @@ App.controller('landingCtrl', function($scope, FlightsSrv, $location) {
     //    //to do
     //    console.log(val)
     // });
+    $scope.pinging="false";
+    
     $scope.roundTrip = "true";
     $scope.cabin = "true";
 

@@ -128,14 +128,16 @@
                         <p><span class="fa fa-check"></span></p>
                     </div>
 
-                    <form name='flights' class="contact-form support-form" >
+                    <form  class="contact-form support-form" >
                         <div class="col-lg-12">
                             <div class="form-group">
+                              <form name='flights'>
                                 <font class="col-sm-2 text-right" size="4" color="white"> From: </font>
                                 <div class="col-md-8 col-sm-8">
                                     <input name="originAirports" id="originAirports"  type="text"  placeholder="Flying From" ng-model="selectedOrigin" ng-required='true' uib-typeahead="airport.name for airport in Airports | filter:$viewValue | limitTo:10" class="form-control" , typeahead-on-select="SetOriginAirport($item.iata)"  required >
                                     <span style='color:white' ng-show="(flights.originAirports.$error.required) ">Origin Airport required</span>
                                 </div>
+                              </form>
                             </div>
                             </br>
                             <div class="form-group">
@@ -225,6 +227,15 @@
                             </div>
 
                             </br>
+
+                            <div class="form-group">
+                                <font class=" col-sm-4 text-left" size="4" color="white"> Ping Other Airlines
+                                    <input ng-model="pinging" type="checkbox" value="true" />
+                                </font>
+
+                            </div>
+
+
                             <!-- <div class="form-group">
                                 <font class=" col-sm-2 text-right" size="4" color="white"> Tickets Count:</font>
                                 <div class="col-sm-8 text-left">
@@ -251,7 +262,7 @@
                         </div>
                     </form>
                     <button type="submit"  ng-disabled="reviewForm.$invalid " class="fancy-button button-line button-white large zoom subform" id='btnSearch'
-                    ng-click="SetOutDate(dto);SetReturnDate(dtr); SetRoundTrip(roundTrip); SetCabin(cabin); SearchFlights()">
+                    ng-click="SetOutDate(dto);SetReturnDate(dtr); SetRoundTrip(roundTrip); SetCabin(cabin); setPinging(pinging); SearchFlights()">
                         Search Flights
                         <!-- <a type="button" class="btn btn-clear btn-sm btn-min-block " id='btnSearch' ng-click='SearchFlights()'>Search Flights</a> -->
                         <span class="icon">

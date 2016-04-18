@@ -32,7 +32,7 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
     };
 
     var postAPay = function() {
-        $scope.bookingRefNumber = "ha5do mn nary";
+        $scope.bookingRefNumber = $scope.getBookingRef() ;
         paymentSrv.postPay($scope.reservation, $scope.bookingRefNumber, outgoingFlight ,   $scope.cabin);
         if(roundTrip =='true')
             paymentSrv.postPay($scope.reservation, $scope.bookingRefNumber, returnFlight ,   $scope.cabin);
@@ -101,12 +101,12 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
 
         //encode and get the first part of the outgoing date
         var card = $scope.selectedCardNumber;
-        var outDate = FlightsSrv.getSelectedOutDate();
-        var str4 = JSON.stringify(outDate);
-        var arr = str4.split("T");
-        var outDate = arr[0];
-        var arr = outDate.split("-");
-        var outDate = arr[1] + "/" + arr[2];
+        // var outDate = FlightsSrv.getSelectedOutDate();
+        // var str4 = JSON.stringify(outDate);
+        // var arr = str4.split("T");
+        // var outDate = arr[0];
+        // var arr = outDate.split("-");
+        // var outDate = arr[1] + "/" + arr[2];
 
         //encode and get the first part of the return date
         // var returnDate=FlightsSrv.getSelectedReturnDate();
@@ -120,7 +120,7 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
         //
         var outFlightNo = OutReturnSrv.getSelectedOutFlight().flightNumber;
         // var returnFlightNo= OutReturnSrv.getSelectedReturnFlight().flightNumber;
-        var str = card + "," + outDate + "," + outFlightNo;
+        var str = card + ","  + outFlightNo;
         // +","+outFlightNo+","+returnFlightNo;
         // var str="hey how are you";
         // var arr=str.split(/[ ,]+/);
@@ -131,6 +131,8 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
         var res = "Booking Reference:(please copy it for further tracking): " + "<br>" + enc + "<br>" + "Decoded String: " + dec;
         // "<br>" + "Decoded String: " + dec;
         document.getElementById("demo").innerHTML = res;
+
+        return enc;
 
     };
 

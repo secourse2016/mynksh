@@ -34,7 +34,7 @@ App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $locati
                 var tclass = ($scope.cabin === "true") ? "economy" : "bussniess";
                 var departDate = moment(oDate).toDate().getTime();
                 var outDate = moment(oDate).toDate().getTime();
-                jwt = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJNWU5LU0giLCJpYXQiOjE0NjA3NzIyOTQsImV4cCI6MTQ5MjMwODI5NSwiYXVkIjoid3d3LnNlY291cnNlLmNvbSIsInN1YiI6Ik1ZTktTSCBJYmVyaWEiLCJUZWFtIjoiTVlOS1NIIn0.hZxhv8XAcu1cARgcrtfb0l_crF1-Ic1tJt9eUhIL0qQ';
+                var jwt = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJNWU5LU0giLCJpYXQiOjE0NjA3NzIyOTQsImV4cCI6MTQ5MjMwODI5NSwiYXVkIjoid3d3LnNlY291cnNlLmNvbSIsInN1YiI6Ik1ZTktTSCBJYmVyaWEiLCJUZWFtIjoiTVlOS1NIIn0.hZxhv8XAcu1cARgcrtfb0l_crF1-Ic1tJt9eUhIL0qQ';
                 $http.get(c.ip + '/api/flights/search/' + origin + '/' + dest + '/' + departDate + '/' + outDate + '/' + tclass + '?wt=' + jwt).success(function(flight) {
                     if (flight.outgoingFlights[0] != 'undefined' && flight.outgoingFlights[0].length != 0)
                         $scope.outgoingInfo.push(flight.outgoingFlights[0]);
