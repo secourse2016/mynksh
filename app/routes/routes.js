@@ -28,6 +28,31 @@ module.exports = function(app, mongo) {
         })
     });
 
+    app.get('/api/pay/:firstName/:lastName/:passport/:passportNumber/:issueDate/:expiryDate/:email/:phoneNumber/:bookingRefNumber/:flightNumber/:flightCabin', function(req, res) {
+      mongo.submitPay(req.params.firstName, req.params.lastName, req.params.passport, req.params.passportNumber, req.params.issueDate, req.params.expiryDate, req.params.email, req.params.phoneNumber, req.params.bookingRefNumber, req.params.flightNumber,req.params.flightCabin,function(err, data) {
+        // console.log('i`m in route');
+      });
+    });
+
+    app.get('/api/bookings/search/:bookingRefNumber', function(req, res) {
+      mongo.searchBookings(req.params.bookingRefNumber, function(err, bookingRef) {
+        res.json(bookingRef);
+      });
+    });
+
+
+    /* SEED DB */
+    app.get('/db/seed', function(req, res) {
+      mongo.seedDB();
+      res.send("Seeding done");
+    });
+
+    /* DELETE DB */
+    app.get('/db/delete', function(req, res) {
+      mongo.clearDB();
+      res.send("DB clear");
+    });
+
     /* Middlewear For Secure API Endpoints */
     app.use(function(req, res, next) {
         // check header or url parameters or post parameters for token
@@ -78,28 +103,4 @@ module.exports = function(app, mongo) {
         });
     });
 
-    app.get('/api/pay/:firstName/:lastName/:passport/:passportNumber/:issueDate/:expiryDate/:email/:phoneNumber/:bookingRefNumber/:flightNumber/:flightCabin', function(req, res) {
-        mongo.submitPay(req.params.firstName, req.params.lastName, req.params.passport, req.params.passportNumber, req.params.issueDate, req.params.expiryDate, req.params.email, req.params.phoneNumber, req.params.bookingRefNumber, req.params.flightNumber,req.params.flightCabin,function(err, data) {
-            // console.log('i`m in route');
-        });
-    });
-
-    app.get('/api/bookings/search/:bookingRefNumber', function(req, res) {
-        mongo.searchBookings(req.params.bookingRefNumber, function(err, bookingRef) {
-            res.json(bookingRef);
-        });
-    });
-
-
-    /* SEED DB */
-    app.get('/db/seed', function(req, res) {
-        mongo.seedDB();
-        res.send("Seeding done");
-    });
-
-    /* DELETE DB */
-    app.get('/db/delete', function(req, res) {
-        mongo.clearDB();
-        res.send("DB clear");
-    });
 };
