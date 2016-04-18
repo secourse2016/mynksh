@@ -37,38 +37,54 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
             paymentSrv.postPay($scope.reservation, $scope.bookingRefNumber, returnFlight.flightNumber);
     };
 
-    $scope.SetCardType = function(value) {
+    var SetCardType = function(value) {
         paymentSrv.setSelectedCardType(value);
     };
 
-    $scope.SetCardNo = function(value) {
+    var SetCardNo = function(value) {
         paymentSrv.setSelectedCardNo(value);
     };
 
-    $scope.SetMonth = function(value) {
+    var SetMonth = function(value) {
         paymentSrv.setSelectedMonth(value);
     };
 
-    $scope.SetYear = function(value) {
+    var SetYear = function(value) {
         paymentSrv.setSelectedYear(value);
     };
 
-    $scope.SetCVV = function(value) {
+    var SetCVV = function(value) {
         paymentSrv.setSelectedCVV(value);
     };
 
-    $scope.SetStreet = function(value) {
-        paymentSrv.setselectedStret(value);
+    var SetStreet = function(value) {
+        paymentSrv.setSelectedStreet(value);
     };
-    $scope.SetInformation = function(value) {
-        paymentSrv.setSelectedinformation(value);
+    var SetInformation = function(value) {
+        paymentSrv.setSelectedInformation(value);
     };
-    $scope.SetPostalcode = function(value) {
-        paymentSrv.setselectedPostalcode(value);
+    var SetPostalcode = function(value) {
+        paymentSrv.setSelectedPostalcode(value);
     };
-    $scope.SetCity = function(value) {
+    var SetCity = function(value) {
         paymentSrv.setSelectedCity(value);
     };
+
+    $scope.payAction() = function() {
+        postAPay() ; 
+        SetCountry(selectedCountry);
+        SetCardType(selectedType); 
+        SetCardNo(selectedCardNumber);
+        SetMonth(selectedMonth);
+        SetYear(selectedYear);SetCVV(selectedCVV); 
+        SetFirstName(selectedFirstName); 
+        SetSurname(selectedSecondName);
+        SetPassengers(SelectedPassengers);
+        SetStret(selectedStret); 
+        SetInformation(selectedExtra); 
+        SetPostalcode(selectedPostalcode);
+        SetCity(SelectedCity);
+    }
 
     countryCode();
 

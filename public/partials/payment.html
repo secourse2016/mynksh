@@ -238,10 +238,7 @@
                         <div class="col-md-12">
 
                                 <div class="col-md-12 col-sm-12 text-right">
-                                    <button type="button" class="btn btn-primary btn-lg" style="background:rgba(178,34,34, 1)" ng-disabled="reviewForm.$invalid || reviewForm2.$invalid" ng-click=" postAPay() ; SetCountry(selectedCountry);SetCardType(selectedType) ; SetCardNo(selectedCardNumber);SetMonth(selectedMonth);
-              SetYear(selectedYear);SetCVV(selectedCVV); SetFirstName(selectedFirstName) ; SetSurname(selectedSecondName) ;
-              SetPassengers(SelectedPassengers); SetStret(selectedStret) ; SetInformation(selectedExtra) ; SetPostalcode(selectedPostalcode) ;
-              SetCity(SelectedCity)">Pay</button>
+                                    <button type="button" class="btn btn-primary btn-lg" style="background:rgba(178,34,34, 1)" ng-disabled="reviewForm.$invalid || reviewForm2.$invalid" ng-click=" payAction();">Pay</button>
                             
                             <a href="http://mynksh.com">
                                 <button type="button" class="btn btn-primary btn-lg" style="background:rgba(178,34,34, 1)">Cancel</button>
@@ -255,7 +252,7 @@
                 the final amount on long-haul flights and 2% on all other flights will apply per booking. This also includes the charge for using a credit card. </br>
                 </br></font>
 
-                        <button class="btn btn-primary btn-lg" style="background:rgba(178,34,34, 1)" ng-click="SetCardNo(selectedCardNumber);getBookingRef()" ng-disabled="selectedCardNumber === undefined">Your booking reference</button>
+                        <button class="btn btn-primary btn-lg" style="background:rgba(178,34,34, 1)" ng-click="getBookingRef()" ng-disabled="selectedCardNumber === undefined">Your booking reference</button>
                         <p id="demo"></p>
 
 
