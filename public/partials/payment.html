@@ -165,7 +165,7 @@
                                                     </br>
                                                     <font size="3" color="black" class="col-sm-4 text-left">First name<font color="red" >*</font>:</font>
                                                     <div class="col-md-8 col-sm-8 text-left">
-                                                        <input type="text" class="form-control" id="First-name" placeholder="eg.Mostafa" ng-model="selectedFirstName" required>
+                                                        <label>{{reservation.FName}}</label>
                                                     </div>
                                                 </div>
 
@@ -174,7 +174,7 @@
 
                                                     <font size="3" color="black" class="col-sm-4 text-left">Surname<font color="red" >*</font>:</font>
                                                     <div class="col-md-8 col-sm-8 text-left">
-                                                        <input type="text" class="form-control" id="Surname" placeholder="eg: hassan" ng-model="selectedSecondName" required>
+                                                        <label>{{reservation.LName}}</label>
                                                     </div>
                                                 </div>
 
@@ -301,7 +301,7 @@
                             <h4 class="col-md-6">Total price :</h4>
                             </br>
                             </br>
-                            <h1 class="col-md-8 text-center"> {{totalPrice}} €</br></h1>
+                            <h1 class="col-md-8 text-center"> {{totalPrice | currency : 'EUR '}}</br></h1>
                         </div>
 
                         <div class="col-md-12">
