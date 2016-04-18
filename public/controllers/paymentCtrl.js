@@ -37,9 +37,7 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
     // test post
 
     $scope.postAPay = function() {
-        console.log('i`m in ctrl');
-        $scope.firstName = "ha5odhma mn conf msh m3mola";
-        $scope.lastName = "isabardo ha5odha mn  conf";
+        $scope.reservation = confirmSrv.getReservation();
         $scope.passport = "same lsa msh m3mola  fl  conf srv";
         $scope.passportNumber = "bardo lsa ";
         $scope.issueDate = "22-5-2016";
@@ -49,7 +47,7 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
         $scope.bookingRefNumber = "ha5do mn nary";
         $scope.flightNumber = "flight.flightNumber";
 
-        paymentSrv.postPay($scope.firstName, $scope.lastName, $scope.passport, $scope.passportNumber, $scope.issueDate, $scope.expiryDate, $scope.email, $scope.phoneNumber, $scope.bookingRefNumber, $scope.flightNumber);
+        paymentSrv.postPay($scope.reservation.firstName, $scope.reservation.lastName, $scope.passport, $scope.passportNumber, $scope.issueDate, $scope.expiryDate, $scope.email, $scope.phoneNumber, $scope.bookingRefNumber, $scope.flightNumber);
     };
     //
     $scope.postIntoBooking = function() {
@@ -121,8 +119,6 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
         paymentSrv.setSelectedCity(value);
     };
 
-    $scope.noOfPassengers = 1;
-    //   llsa  m3rfsh ha5odha mn meen
     $scope.totalPrice = OutReturnSrv.getSelectedPrice();
     $scope.flightNoOut = OutReturnSrv.getSelectedOutFlight().flightNumber;
     // $scope.flightNoIn= OutReturnSrv.getSelectedReturnFlight().flightNumber;
