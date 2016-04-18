@@ -8,6 +8,8 @@ App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $locati
     $scope.outgoingPrice = 0;
     $scope.returnPrice = 0;
     $scope.cabin = FlightsSrv.getSelectedCabin();
+    $scope.outFlightFound=true;
+    $scope.returnFlightFound= true;
 
     var flights = [];
     flights.outgoingFlights = [];
@@ -51,12 +53,30 @@ App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $locati
             OutReturnSrv.getRoundTripInfo(origin, dest, oDate, rDate, "economy").success(function(flights) {
                 $scope.outgoingInfo = flights.outgoingFlights;
                 $scope.returnInfo = flights.returnFlights;
+                // if(Object.keys(outgoingFlight).length === 0 || Object.keys(returnFlight).length === 0 )
+                //     res.send("no flights found");
+                if($scope.outgoingInfo.length === 0){
+                     console.log("outgoing empty");
+                    $scope.outFlightFound= false;
+                }
+                if($scope.returnInfo.length === 0){
+                     console.log("outgoing empty");
+                    $scope.returnFlightFound= false;
+                }
 
             });
         } else {
             OutReturnSrv.getRoundTripInfo(origin, dest, oDate, rDate, "business").success(function(flights) {
                 $scope.outgoingInfo = flights.outgoingFlights;
                 $scope.returnInfo = flights.returnFlights;
+                if($scope.outgoingInfo.length === 0){
+                    console.log("outgoing empty");
+                    $scope.outFlightFound= false;
+                }
+                if($scope.returnInfo.length === 0){
+                    console.log("outgoing empty");
+                    $scope.returnFlightFound= false;
+                }
 
             });
         }
@@ -67,10 +87,14 @@ App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $locati
         if ($scope.cabin === "true") {
             OutReturnSrv.getOneWayTripInfo(origin, dest, oDate, "economy").success(function(flights) {
                 $scope.outgoingInfo = flights.outgoingFlights;
+                if($scope.outgoingInfo.length === 0)
+                    $scope.outFlightFound= false;
             });
         } else {
             OutReturnSrv.getOneWayTripInfo(origin, dest, oDate, "business").success(function(flights) {
                 $scope.outgoingInfo = flights.outgoingFlights;
+                if($scope.outgoingInfo.length === 0)
+                    $scope.outFlightFound= false;
             });
         }
 
