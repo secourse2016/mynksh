@@ -40,7 +40,7 @@ App.controller('bookingRefCtrl', function($scope, FlightsSrv, $location, Booking
         var flightNumO = arr[2];
         var res = "Hello, " + firstName + " " + lastName + "!" + 
         "<br>" + "Your Passport is " + passport + "<br>" +"Your Visa Number is " + visaNum +"<br>"
-         + "Your Seat Number in the flight from "+originO+"on "+arrivalTimeO+"to "+destinationO+"on "+departureTimeO+"is "+seat0+
+         + "Your Seat Number in the flight from "+originO+"on "+arrivalTimeO+"to "+destinationO+"on "+departureTimeO+"is "+seatO+
           "<br>"+ "Your Flight number is " + flightNumO;
           if(flight.length==2){
             var res = "Hello, " + firstName + " " + lastName + "!" + 
