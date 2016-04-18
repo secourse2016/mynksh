@@ -11,9 +11,9 @@ exports.seedDB = function(cb) {
             assert.equal(null, err);
             mongo.seed('flights', flights, function() {
                 // mongo.seed('bookings', bookings, function() {
-                    mongo.seed('airports', airports, function() {
-                        mongo.close();
-                    });
+                mongo.seed('airports', airports, function() {
+                    mongo.close();
+                });
                 // });
             });
         });
@@ -59,14 +59,12 @@ exports.searchFlights = function(origin, destination, departingDate, cabin, cb) 
     var economyOrBusiness = cabin.toLowerCase();
     mongo.connect(function(err, db) {
         var collection = db.collection('flights');
-        var date = new Date(departingDate);
         collection.find({
             "origin": origin,
             "destination": destination,
             "departureTime": {
                 '$regex': departingDate
             }
-
         }).toArray(function(err, flights) {
             if (flights[0] == undefined) {
                 cb(err, []);
@@ -76,16 +74,15 @@ exports.searchFlights = function(origin, destination, departingDate, cabin, cb) 
                 } else {
                     cost = flights[0].bCost;
                 }
-
                 if ((economyOrBusiness == "economy" && flights[0].availableESeats > 0) || (economyOrBusiness == "business" && flights[0].availableBSeats > 0)) {
                     var departureDate = flights[0].departureTime;
-                    var ArrivalDate = flights[0].arrivalTime;
+                    var arrivalDate = flights[0].arrivalTime;
                     rflights = [{
                         "flightNumber": flights[0].flightNumber,
                         "aircraftType": flights[0].aircraftType,
                         "aircraftModel": flights[0].aircraftModel,
-                        "departureDateTime": moment(departureDate, 'MMMM d, y h:mm:ss').toDate().getTime(),
-                        "arrivalDateTime": moment(ArrivalDate, 'MMMM d, y h:mm:ss').toDate().getTime(),
+                        "departureDateTime": moment(departureDate, 'MMMM D, YYYY hh:mm:ss').toDate().getTime(),
+                        "arrivalDateTime": moment(arrivalDate, 'MMMM D, YYYY hh:mm:ss').toDate().getTime(),
                         "cost": cost,
                         "currency": "EUR",
                         "origin": origin,
@@ -161,17 +158,17 @@ exports.submitPay = function(firstName, lastName, passport, passportNumber, issu
     });
 }
 
-exports.searchBookings = function(bookingRef,cb) {
+exports.searchBookings = function(bookingRef, cb) {
     mongo.connect(function(err, db) {
-            var collection = db.collection('bookings');
-            collection.find({
-                "bookingRefNumber": bookingRef
-            }).toArray(function(err, ref) {
-                    if (ref[0] == undefined)
-                        cb(err, []);
-                    else
-                      cb(err, ref);
-                mongo.close();
-            });
+        var collection = db.collection('bookings');
+        collection.find({
+            "bookingRefNumber": bookingRef
+        }).toArray(function(err, ref) {
+            if (ref[0] == undefined)
+                cb(err, []);
+            else
+                cb(err, ref);
+            mongo.close();
+        });
     });
 }

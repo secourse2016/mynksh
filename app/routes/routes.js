@@ -1,4 +1,5 @@
 var jwt = require('jsonwebtoken');
+var moment = require('moment');
 
 module.exports = function(app, mongo) {
 
@@ -51,7 +52,8 @@ module.exports = function(app, mongo) {
 
 
     app.get('/api/flights/search/:origin/:destination/:departingDate/:cabin', function(req, res) {
-        mongo.searchFlights(req.params.origin, req.params.destination, req.params.departingDate, req.params.cabin, function(err, outgoingFlight) {
+      var departDate = moment(parseInt(req.params.departingDate)).format('MMMM D, YYYY');
+        mongo.searchFlights(req.params.origin, req.params.destination,departDate , req.params.cabin, function(err, outgoingFlight) {
             var flights = {};
             flights.outgoingFlights = outgoingFlight;
                 res.json(flights);

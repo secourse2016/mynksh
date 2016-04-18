@@ -84,7 +84,6 @@ App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $locati
             OutReturnSrv.setSelectedPrice($scope.selectedOutgoingFlight.cost);
 
         $location.url('/confirm');
-
     };
 
 });
