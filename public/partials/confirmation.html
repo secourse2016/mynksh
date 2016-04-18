@@ -150,7 +150,7 @@
                                         <div class="form-group">
                                             <font class="col-sm-4 text-left" size="4" color="black">Issue Date:</font>
                                             <div class="col-md-8 col-sm-8 text-left">
-                                                <input class="form-control" style="width:73%" name='issueDate' type="date" placeholder="e.g. 2016-04-12" ng-model="reservation.issueDate" ng-required='true' max='{{$parent.currentDate | date:"yyyy-MM-dd"}}'>
+                                                <input class="form-control" style="width:73%" name='issueDate' type="date" placeholder="e.g. 2016-04-12" ng-model="reservation.issueDate" ng-required='true' max='{{currentDate | date:"yyyy-MM-dd"}}'>
                                                 <span style='color:red' ng-show="(details.issueDate.$error.required || details.issueDate.$error.date) && details.issueDate.$dirty">Valid date is required (yyyy-MM-dd)</span>
                                                 <span style='color:red' ng-show="details.issueDate.$error.max && details.issueDate.$dirty">Issue date must be before the current date</span>
                                             </div>
@@ -158,10 +158,9 @@
                                         <div class="form-group">
                                             <font class="col-sm-4 text-left" size="4" color="black">Expiry Date:</font>
                                             <div class="col-md-8 col-sm-8 text-left">
-                                                <input class="form-control" style="width:73%" name='expiryDate' type="date" placeholder="e.g. 2017-04-12" ng-model="reservation.expiryDate" ng-required='true' min='{{n.issueDate}}' max='{{$parent.currentDate | date:"yyyy-MM-dd"}}'>
+                                                <input class="form-control" style="width:73%" name='expiryDate' type="date" placeholder="e.g. 2017-04-12" ng-model="reservation.expiryDate" ng-required='true' min='{{currentDate | date:"yyyy-MM-dd"}}'>
                                                 <span style='color:red' ng-show="(details.expiryDate.$error.required || details.expiryDate.$error.date) && details.expiryDate.$dirty">Valid date is required (yyyy-MM-dd)</span>
-                                                <span style='color:red' ng-show="details.expiryDate.$error.min && details.expiryDate.$dirty">Expiry date must be after the issue date</span>
-                                                <span style='color:red' ng-show="details.expiryDate.$error.max && details.expiryDate.$dirty">Passport is expired</span>
+                                                <span style='color:red' ng-show="details.expiryDate.$error.min && details.expiryDate.$dirty">Passport is expired</span>
                                             </div>
                                         </div>
                                     </div>
