@@ -51,6 +51,10 @@ App.config(function($routeProvider) {
     .when('/noFlights', {
         templateUrl: '/partials/noFlight.html'
 
+    })
+    .when('/teamMembers', {
+        templateUrl: '/partials/teamMembers.html'
+
     });
 
 
