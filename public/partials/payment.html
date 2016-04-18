@@ -161,7 +161,7 @@
                                                     <font size="3" color="black" class="col-sm-4 text-left">Street<font color="red" >*</font>:</font>
                                                     <div class="col-md-8 col-sm-8 text-left">
                                                         <input type="text" class="form-control" name="Street" placeholder="1-221 QUEBEC ST VICTORIA BC" ng-model="selectedStreet" ng-required='true'>
-                                                        <span style='colord:red' ng-show='reviewForm.Street.$error.required && reviewForm.Street.$dirty'>Street is required</span>
+                                                        <span style='color:red' ng-show='reviewForm.Street.$error.required && reviewForm.Street.$dirty'>Street is required</span>
                                                     </div>
                                                 </div>
 
@@ -177,9 +177,9 @@
                                                 <div class="form-group row">
                                                     <font size="3" color="black" class="col-sm-4 text-left">City<font color="red" >*</font>:</font>
                                                     <div class="col-md-8 col-sm-8 text-left">
-                                                        <input type="text" class="form-control" name="city" placeholder="Cairo" ng-model="SelectedCity" >
+                                                        <input type="text" class="form-control" name="city" placeholder="Cairo" ng-model="SelectedCity" ng-required='true' >
                                                     </div>
-                                                    <span style='colord:red' ng-show='reviewForm.city.$error.required && reviewForm.City.$dirty'>City is required</span>
+                                                    <span style='color:red' ng-show='reviewForm.city.$error.required && reviewForm.city.$dirty'>City is required</span>
                                                 </div>
                                                 <div class="form-group row">
                                                     <font size="3" color="black" class="col-sm-6 text-left">Additional Information:</font>
