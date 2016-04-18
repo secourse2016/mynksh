@@ -37,6 +37,7 @@ app.all('*', function(req, res, next) {
   res.header('Access-Control-Allow-Headers', 'X-Requested-With');
   next();
 });
+
 require('./routes/routes')(app, api);
 // app.use('/', routes);
 // app.use('/users', users);
