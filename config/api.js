@@ -185,6 +185,7 @@ exports.submitPay = function(firstName, lastName, passport, passportNumber, issu
                     "aircraftModel": flights[0].aircraftModel,
                     "SeatMap": flights[0].SeatMap
                 };
+                
                 collection.insertOne(document, {
                     w: 1
                 }, function(err, records) {
