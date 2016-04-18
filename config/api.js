@@ -21,7 +21,7 @@ exports.seedDB = function(cb) {
     });
 };
 
-var c =exports.clearDB = function(cb) {
+var c = exports.clearDB = function(cb) {
     mongo.connect(function(err, mdb) {
         mongo.clearDB(function() {
             mongo.seed('airports', airports, function() {
@@ -158,5 +158,21 @@ exports.submitPay = function(firstName, lastName, passport, passportNumber, issu
             });
 
         });
+    });
+}
+
+exports.searchBookings = function(bookingRef,cb) {
+    mongo.connect(function(err, db) {
+            var collection = db.collection('bookings');
+            collection.find({
+                "bookingRefNumber": bookingRef
+            }).toArray(function(err, ref) {
+                    if (ref[0] == undefined) {
+                        cb(err, []);
+                    } else
+                        rflights = ref;
+                    cb(err, rflights);
+                mongo.close();
+            });
     });
 }

@@ -1,3 +1,12 @@
+
+Issuer country in payment
+typ of card/month/year in payment
+max and min of card number
+check if no flights in Outgoing
+403/404 errors check them
+
+
+
 SVG Library
 Swiper
 WOW
@@ -11,7 +20,7 @@ Bootstrap:
     bootstrap magic
 
 Angular:
-	
+
 	ng-app="store" attach the application module to the page
 	ng-controller="StoreController as store" attach a controller to the page
 	ng-show / ng-hide display a section based on an Experession
@@ -32,10 +41,10 @@ Angular:
 		uppercase
 		limitTo:8
 		orderBy:'-date' -for descending order
-	
+
 	a controller can be used to asses the values and return desired value as a way of pulling logic from html pages
 	to add validation first turn off default html validation novalidate then mark required fields required {{FormName.$valid}}
-	
+
 	$routeProvider handdles routing
 		.when('/',{
 			templateUrl: URL,
@@ -58,10 +67,10 @@ Angular:
 			controller:function(){}
 			controllerAs: alias of controller
 		<h3 product-title></h3> Element Directive can be used for UI widgets and Attribute Directive for mixin behaviots
-	
+
 	Using modules
 		var app = angular.module(moduleName) make a diffrent module for every partial and include it in the main contoller dependecy
-	
+
 	Services
 		$http.get(filename, {additional keys}) to fetch JSON data from a web service and returns promise object with .success() and .error() http has .post and .delete functions also
 		$log logging messages to the javaScript console
