@@ -64,7 +64,11 @@ module.exports = function(app, mongo) {
         });
     });
 
-
+    app.get('/api/bookings/search/:bookingRefNumber', function(req, res) {
+        mongo.searchBookings(req.params.bookingRefNumber, function(err, bookingRef) {
+            res.json(bookingRef);
+        });
+    });
 
     /* SEED DB */
     app.get('/db/seed', function(req, res) {

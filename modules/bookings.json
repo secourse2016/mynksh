@@ -1,20 +1,3 @@
-[
-{
-	"_id": "String",
-	"firstName": "String",
-	"lastName": "String",
-	"passport": "String",
-	"passportNumber": "String",
-	"issueDate": "Date",
-	"expiryDate": "Date",
-	"email": "String",
-	"phoneNumber" : "String",
-	"bookingRefNumber": "String",
-	"receipt_number": "String",
-	"flightNumber": "String"
-}
-]
-
-
-
-
+version https://git-lfs.github.com/spec/v1
+oid sha256:a83cfbc525bf054f6c8d4b419ecf7a6d6117210d95798e0a228703ff58d190c4
+size 318

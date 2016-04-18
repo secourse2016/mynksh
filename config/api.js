@@ -10,11 +10,11 @@ exports.seedDB = function(cb) {
         mongo.clearDB(function(err) {
             assert.equal(null, err);
             mongo.seed('flights', flights, function() {
-                mongo.seed('bookings', bookings, function() {
+               mongo.seed('bookings', bookings, function() {
                     mongo.seed('airports', airports, function() {
                         mongo.close();
                     });
-                });
+               });
             });
         });
 
@@ -159,4 +159,19 @@ exports.submitPay = function(firstName, lastName, passport, passportNumber, issu
 
         });
     });
-}
+  };
+
+    exports.searchBookings = function(bookingRef, cb) {
+        mongo.connect(function(err, db) {
+            var collection = db.collection('bookings');
+            collection.find({
+                "bookingRefNumber": bookingRef
+            }).toArray(function(err, ref) {
+                if (ref[0] == undefined)
+                    cb(err, []);
+                else
+                    cb(err, ref[0]);
+                mongo.close();
+            });
+        });
+    }
