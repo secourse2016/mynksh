@@ -3,7 +3,7 @@ var flights = require('../modules/flights.json');
 var airports = require('../modules/airports.json');
 var bookings = require('../modules/bookings.json');
 var assert = require('assert');
-var moment = require('moment');
+// var moment = require('moment');
 
 exports.seedDB = function(cb) {
     mongo.connect(function(err, mdb) {
