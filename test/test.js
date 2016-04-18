@@ -16,7 +16,6 @@ describe('API', function() {
       });      
     });
 
-
     it('/api/flights/search/:origin/:destination/:departingDate/:cabin returns an array of JSON object(s)', function(done) {
 
     request.get("/api/flights/search/CAI/JED/April 13, 2016 11:13:00/economy").expect(200).end(function(err,res){
@@ -68,6 +67,5 @@ describe('API', function() {
          });
 
     });
-
 
 });
