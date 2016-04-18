@@ -6,10 +6,8 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
     $scope.cabin=FlightsSrv.getSelectedCabin();
     var roundTrip = FlightsSrv.getSelectedRoundTrip();
     var outgoingFlight= OutReturnSrv.getSelectedOutFlight();
-    console.log(outgoingFlight.flightNumber);
     if(roundTrip == 'true')
         returnFlight = OutReturnSrv.getSelectedReturnFlight();
-        console.log(returnFlight.flightNumber);
     $scope.outCurrency = outgoingFlight.currency;
 
     $scope.tab1 = function() {
