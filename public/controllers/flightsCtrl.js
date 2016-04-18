@@ -9,6 +9,16 @@ App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $locati
     $scope.returnPrice = 0;
     $scope.cabin = FlightsSrv.getSelectedCabin();
 
+    if ($scope.roundTrip === 'true')
+        pingAirlineR($scope.origin, $scope.dest, changeISOFormat($scope.oDate), changeISOFormat($scope.rDate));
+    else
+        pingAirlineS($scope.origin, $scope.dest, changeISOFormat($scope.oDate));
+
+    if ($scope.roundTrip === 'true')
+        roundTripInfo($scope.origin, $scope.dest, changeISOFormat($scope.oDate), changeISOFormat($scope.rDate));
+    else
+        oneWayTripInfo($scope.origin, $scope.dest, changeISOFormat($scope.oDate));
+
     var flights = [];
     flights.outgoingFlights = [];
     flights.returnFlights = [];
@@ -16,39 +26,22 @@ App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $locati
     function pingAirlineR(origin, dest, oDate, rDate) {
         OutReturnSrv.getairLinesInfo().success(function(airlines) {
             $scope.outgoingInfo = flights.outgoingFlights;
-            airlines.forEach(function(c) {
-                var tclass = ($scope.cabin === "true") ? "economy" : "business";
-                var departDate = moment(departDate).toDate().getTime();
-                var outDate = moment(oDate).toDate().getTime();
-                $http.get(c.ip + '/api/flights/search/' + origin + '/' + dest + '/' + departDate + '/' + outDate + '/' + tclass).success(function(flight) {
-                    flights.outgoingFlights.push(flight.outgoingFlights);
-                    flights.returnFlights.push(flight.returnFlights);
-
-                });
-            });
-        });
-    }
-    function pingAirlineR(origin, dest, oDate, rDate) {
-        OutReturnSrv.getairLinesInfo().success(function(airlines) {
-            $scope.outgoingInfo = flights.outgoingFlights;
             $scope.returnInfo = flights.returnFlights;
             airlines.forEach(function(c) {
                 var tclass = ($scope.cabin === "true") ? "economy" : "bussniess";
                 var departDate = moment(oDate).toDate().getTime();
+                var outDate = moment(oDate).toDate().getTime();
                 jwt = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJNWU5LU0giLCJpYXQiOjE0NjA3NzIyOTQsImV4cCI6MTQ5MjMwODI5NSwiYXVkIjoid3d3LnNlY291cnNlLmNvbSIsInN1YiI6Ik1ZTktTSCBJYmVyaWEiLCJUZWFtIjoiTVlOS1NIIn0.hZxhv8XAcu1cARgcrtfb0l_crF1-Ic1tJt9eUhIL0qQ';
-                $http.get(c.ip + '/api/flights/search/' + origin + '/' + dest + '/' + departDate + '/' + tclass + '?wt=' + jwt).success(function(flight) {
-                    $scope.outgoingInfo.push(flight.outgoingFlights[0]);
-                    $scope.returnInfo.push(flight.returnFlights[0]);
-                    console.log(flight.outgoingFlights);
+                $http.get(c.ip + '/api/flights/search/' + origin + '/' + dest + '/' + departDate + '/' + outDate + '/' + tclass + '?wt=' + jwt).success(function(flight) {
+                    if (flight.outgoingFlights[0] != 'undefined' && flight.outgoingFlights[0].length != 0)
+                        $scope.outgoingInfo.push(flight.outgoingFlights[0]);
+                    if (flight.returnFlights[0] != 'undefined' && flight.returnFlights[0].length != 0)
+                        $scope.returnInfo.push(flight.returnFlights[0]);
+                    // console.log(flight.outgoingFlights);
                 });
             });
         });
     };
-
-    if ($scope.roundTrip === 'true')
-        pingAirlineR($scope.origin, $scope.dest, changeISOFormat($scope.oDate), changeISOFormat($scope.rDate));
-    else
-        pingAirlineS($scope.origin, $scope.dest, changeISOFormat($scope.oDate));
 
     function pingAirlineS(origin, dest, oDate) {
         OutReturnSrv.getairLinesInfo().success(function(airlines) {
@@ -58,8 +51,9 @@ App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $locati
                 var departDate = moment(oDate).toDate().getTime();
                 jwt = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJNWU5LU0giLCJpYXQiOjE0NjA3NzIyOTQsImV4cCI6MTQ5MjMwODI5NSwiYXVkIjoid3d3LnNlY291cnNlLmNvbSIsInN1YiI6Ik1ZTktTSCBJYmVyaWEiLCJUZWFtIjoiTVlOS1NIIn0.hZxhv8XAcu1cARgcrtfb0l_crF1-Ic1tJt9eUhIL0qQ';
                 $http.get(c.ip + '/api/flights/search/' + origin + '/' + dest + '/' + departDate + '/' + tclass + '?wt=' + jwt).success(function(flight) {
-                    $scope.outgoingInfo.push(flight.outgoingFlights[0]);
-                    console.log(flight.outgoingFlights);
+                    if (flight.outgoingFlights[0] != 'undefined' && flight.outgoingFlights[0].length != 0)
+                        $scope.outgoingInfo.push(flight.outgoingFlights[0]);
+                    // console.log(flight.outgoingFlights);
                 });
             });
         });
@@ -103,11 +97,6 @@ App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $locati
         var d = new Date(date);
         return monthNames[d.getMonth()] + " " + d.getDate() + ", " + d.getFullYear();
     };
-
-    if ($scope.roundTrip === 'true')
-        roundTripInfo($scope.origin, $scope.dest, changeISOFormat($scope.oDate), changeISOFormat($scope.rDate));
-    else
-        oneWayTripInfo($scope.origin, $scope.dest, changeISOFormat($scope.oDate));
 
     $scope.stringToDate = function(date) {
         return new Date(date);
