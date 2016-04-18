@@ -28,22 +28,42 @@ App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $locati
             });
         });
     }
-    pingAirlineS('CAI', 'JED', '1460478300000');
+    function pingAirlineR(origin, dest, oDate, rDate) {
+        OutReturnSrv.getairLinesInfo().success(function(airlines) {
+            $scope.outgoingInfo = flights.outgoingFlights;
+            $scope.returnInfo = flights.returnFlights;
+            airlines.forEach(function(c) {
+                var tclass = ($scope.cabin === "true") ? "economy" : "bussniess";
+                var departDate = moment(oDate).toDate().getTime();
+                jwt = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJNWU5LU0giLCJpYXQiOjE0NjA3NzIyOTQsImV4cCI6MTQ5MjMwODI5NSwiYXVkIjoid3d3LnNlY291cnNlLmNvbSIsInN1YiI6Ik1ZTktTSCBJYmVyaWEiLCJUZWFtIjoiTVlOS1NIIn0.hZxhv8XAcu1cARgcrtfb0l_crF1-Ic1tJt9eUhIL0qQ';
+                $http.get(c.ip + '/api/flights/search/' + origin + '/' + dest + '/' + departDate + '/' + tclass + '?wt=' + jwt).success(function(flight) {
+                    $scope.outgoingInfo.push(flight.outgoingFlights[0]);
+                    $scope.returnInfo.push(flight.returnFlights[0]);
+                    console.log(flight.outgoingFlights);
+                });
+            });
+        });
+    };
+
+    if ($scope.roundTrip === 'true')
+        pingAirlineR($scope.origin, $scope.dest, changeISOFormat($scope.oDate), changeISOFormat($scope.rDate));
+    else
+        pingAirlineS($scope.origin, $scope.dest, changeISOFormat($scope.oDate));
 
     function pingAirlineS(origin, dest, oDate) {
         OutReturnSrv.getairLinesInfo().success(function(airlines) {
             $scope.outgoingInfo = flights.outgoingFlights;
-            // airlines.forEach(function(c) {
-                var tclass = ($scope.cabin === "true") ? "bussniess" : "economy";
-                // var departDate = moment(oDate).toDate().getTime();
+            airlines.forEach(function(c) {
+                var tclass = ($scope.cabin === "true") ? "economy" : "bussniess";
+                var departDate = moment(oDate).toDate().getTime();
                 jwt = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJNWU5LU0giLCJpYXQiOjE0NjA3NzIyOTQsImV4cCI6MTQ5MjMwODI5NSwiYXVkIjoid3d3LnNlY291cnNlLmNvbSIsInN1YiI6Ik1ZTktTSCBJYmVyaWEiLCJUZWFtIjoiTVlOS1NIIn0.hZxhv8XAcu1cARgcrtfb0l_crF1-Ic1tJt9eUhIL0qQ';
-                $http.get('http://ec2-52-90-41-197.compute-1.amazonaws.com' + '/api/flights/search/' + origin + '/' + dest + '/' + oDate + '/' + tclass + '?token=' + jwt).success(function(flight) {
+                $http.get(c.ip + '/api/flights/search/' + origin + '/' + dest + '/' + departDate + '/' + tclass + '?wt=' + jwt).success(function(flight) {
                     $scope.outgoingInfo.push(flight.outgoingFlights[0]);
                     console.log(flight.outgoingFlights);
-                // });
+                });
             });
         });
-    }
+    };
 
 
     function roundTripInfo(origin, dest, oDate, rDate) {
@@ -84,10 +104,10 @@ App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $locati
         return monthNames[d.getMonth()] + " " + d.getDate() + ", " + d.getFullYear();
     };
 
-    // if ($scope.roundTrip === 'true')
-    //     roundTripInfo($scope.origin, $scope.dest, changeISOFormat($scope.oDate), changeISOFormat($scope.rDate));
-    // else
-    //     oneWayTripInfo($scope.origin, $scope.dest, changeISOFormat($scope.oDate));
+    if ($scope.roundTrip === 'true')
+        roundTripInfo($scope.origin, $scope.dest, changeISOFormat($scope.oDate), changeISOFormat($scope.rDate));
+    else
+        oneWayTripInfo($scope.origin, $scope.dest, changeISOFormat($scope.oDate));
 
     $scope.stringToDate = function(date) {
         return new Date(date);
