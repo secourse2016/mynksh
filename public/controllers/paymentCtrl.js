@@ -32,7 +32,7 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
     };
 
     var postAPay = function() {
-        $scope.bookingRefNumber = "MTExMTExMTExMTExMTExMSwwNC8yMCxNWU5LU0gxNjI=" ;
+        $scope.bookingRefNumber = $scope.getBookingRef() ;
         paymentSrv.postPay($scope.reservation, $scope.bookingRefNumber, outgoingFlight ,   $scope.cabin);
         if(roundTrip =='true')
             paymentSrv.postPay($scope.reservation, $scope.bookingRefNumber, returnFlight ,   $scope.cabin);
@@ -131,6 +131,8 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
         var res = "Booking Reference:(please copy it for further tracking): " + "<br>" + enc + "<br>" + "Decoded String: " + dec;
         // "<br>" + "Decoded String: " + dec;
         document.getElementById("demo").innerHTML = res;
+
+        return enc;
 
     };
 

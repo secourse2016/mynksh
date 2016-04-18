@@ -17,6 +17,7 @@ App.controller('bookingRefCtrl', function($scope, FlightsSrv, $location, Booking
               var departureTimeO=flight[0].departureTime;
               var originO=flight[0].origin;
               var destinationO=flight[0].destination;
+              var flightNumO=flight[0].flightNumber;
             if(flight.length ==2){
               var seatR = flight[1].seatNum;
               var flightNumR=flight[1].flightNumber;
@@ -37,18 +38,18 @@ App.controller('bookingRefCtrl', function($scope, FlightsSrv, $location, Booking
         var arr = atobConv.split(",");
         var visaNum = arr[0];
         var outDate = arr[1];
-        var flightNumO = arr[2];
-        var res = "Hello, " + firstName + " " + lastName + "!" + 
+        // var flightNumO = arr[2];
+        var res = "Hello, " +firstName + " " + lastName + "!" + 
         "<br>" + "Your Passport is " + passport + "<br>" +"Your Visa Number is " + visaNum +"<br>"
-         + "Your Seat Number in the flight from "+originO+"on "+arrivalTimeO+"to "+destinationO+"on "+departureTimeO+"is "+seatO+
+         + "Your Seat Number in the flight from "+originO+" on "+arrivalTimeO+" to "+destinationO+" on "+departureTimeO+" is "+seatO+
           "<br>"+ "Your Flight number is " + flightNumO;
           if(flight.length==2){
             var res = "Hello, " + firstName + " " + lastName + "!" + 
         "<br>" + "Your Passport is " + passport + "<br>" +"Your Visa Number is " + visaNum +"<br>"
-         + "Your Seat Number on the flight from "+originO+"on "+arrivalTimeO+"to "+destinationO+"on "+
-         departureTimeO+"is "+seatO+ "<br>"+ "Your Flight number is " + flightNumO+"<br>"+"Your Seat Number on the flight from "
-         +originR+"on "+arrivalTimeR+"to "+destinationR+"on "+
-         departureTimeR+"is "+seatR+ "<br>"+ "Your Flight number is " + flightNumR;
+         + "Your Seat Number on the flight from "+originO+" on "+arrivalTimeO+" to "+destinationO+" on "+
+         departureTimeO+" is "+seatO+ "<br>"+ "Your Flight number is " + flightNumO+"<br>"+"Your Seat Number on the flight from "
+         +originR+" on "+arrivalTimeR+" to "+destinationR+" on "+
+         departureTimeR+" is "+seatR+ "<br>"+ "Your Flight number is " + flightNumR;
           }
         document.getElementById("divID").innerHTML = res;
       });
