@@ -128,14 +128,16 @@
                         <p><span class="fa fa-check"></span></p>
                     </div>
 
-                    <form name='flights' class="contact-form support-form" >
+                    <form  class="contact-form support-form" >
                         <div class="col-lg-12">
                             <div class="form-group">
+                              <form name='flights'>
                                 <font class="col-sm-2 text-right" size="4" color="white"> From: </font>
                                 <div class="col-md-8 col-sm-8">
-                                    <input name="originAirports" id="originAirports"  type="text"  placeholder="Flying From" ng-model="selectedOrigin" ng-required='true' uib-typeahead="airport.name for airport in Airports | filter:$viewValue | limitTo:10" class="form-control" , typeahead-on-select="SetOriginAirport($item.iata)" >
+                                    <input name="originAirports"  type="text"  placeholder="Flying From" ng-model="selectedOrigin" ng-required='true' uib-typeahead="airport.name for airport in Airports | filter:$viewValue | limitTo:10" class="form-control" , typeahead-on-select="SetOriginAirport($item.iata)" >
                                     <span style='color:white' ng-show="(flights.originAirports.$error.required) ">Origin Airport required</span>
                                 </div>
+                              </form>
                             </div>
                             </br>
                             <div class="form-group">
