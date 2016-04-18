@@ -1,12 +1,24 @@
 App.controller('bookingRefCtrl', function($scope, FlightsSrv, $location,BookingSrv) {
 
-$scope.bookingRef = paymentSrv.getSelectedCaradNo();
-$scope.retreiveBookingRef=function(){
-  var input =
-  var div = document.getElementById('divID');
+  $scope.SetBookingRef = function(value) {
+      BookingSrv.setSelectedBookingRef(value);
+  };
+$scope.bookingref= BookingSrv.getSelectedBookingRef();
 
-  var dec = window.atob(input);
+$scope.retreiveBookingRef=function(){
+  var input =BookingSrv.getSelectedBookingRef();
+  //var div = document.getElementById('divID');
+
+  var atobConv = window.atob(input);
   //var res = "Booking Reference:(please copy it for further tracking): " + "<br>" + enc + "<br>" + "Decoded String: " + dec;
-  div.innerHTML = div.innerHTML + input.value+dec.value;
+
+  // "<br>" + "Decoded String: " + dec;
+
+  var arr = atobConv.split(",");
+  var visaNum = arr[0];
+  var outDate=arr[1];
+  var flightNum=arr[2];
+  var res="Your Visa Numer is "+visaNum+"<br>"+"Your Outgoing Flight is On "+outDate+"<br>"+"Your Flight Numer is "+flightNum;
+  document.getElementById("divID").innerHTML = res;
 }
 });
