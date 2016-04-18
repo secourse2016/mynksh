@@ -59,16 +59,15 @@
                                         <div class="container form ">
                                             <!-- <form class="form-horizontal" role="form" name="reviewForm" novalidate> -->
                                             <form class="contact-form support-form" name="reviewForm" novalidate="">
-                                                <div class="form-group">
+                                                <!-- <div class="form-group">
                                                     </br>
-                                                    <!-- <label class="control-label col-sm-2 labelform" for="country" style="width: 150px; position: relative; top: 8px; right: 64px;">Issuer country*:</label> -->
                                                     <font size="3" color="black" class="col-sm-4 text-left">Issuer Country<font color="red" >*</font>:</font>
                                                     <div class="col-md-8 col-sm-8 text-left">
                                                         <input name="Country" id="Country" type="text" placeholder="issuer country" ng-model="selectedCountry" uib-typeahead="country.name for country in Country | filter:$viewValue | limitTo:10" class="form-control" , typeahead-on-select="setSelectedCountry($item.name)"
                                                             required>
 
                                                     </div>
-                                                </div>
+                                                </div> -->
 
                                                 <div class="form-group">
                                                     </br>
@@ -153,7 +152,6 @@
                                                 </div>
 
                                                 <div class="form-group">
-                                                    </br>
                                                     <font size="3" color="black" class="col-sm-4 text-left">Security code<font color="red" >*</font>:</font>
                                                     <div class="col-md-8 col-sm-8 text-left">
                                                         <input type="number" class="form-control" id="CVV" placeholder="CVV" ng-model="selectedCVV" required>
@@ -235,70 +233,27 @@
 
                         </div>
 
-
-
-
-                        <div class="rightDev">
-                            </br>
-
-                            <font size="4" class="FormOfPayment"><i>Personal Travel Plan</i> </font>
-                            <hr>
-                            <font size="4" class="FormOfPayment"><i>Outbound</i></font>
-                            <hr>
-                            <div>
-                                {{Porigin}} - {{Pdest}}
-                                <br> {{PoDate | date: 'd/M/yyyy'}}
-                                <br>
-
-                                <br>
-                                <br> {{Pdest}} - {{Porigin}}
-                                <br> {{PrDate | date: 'd/M/yyyy'}}
-                                <br>
-                            </div>
-                            <hr>
-                            <font size="4" class="FormOfPayment"><i>Return</i></font>
-                            <hr>
-                            <div>
-                                {{P_round_origin}} - {{P_round_dest}}
-                                <br> {{P_round_oDate | date: 'd/M/yyyy'}}
-                                <br>
-
-                                <br>
-                                <br> {{P_round_dest}} - {{P_round_origin}}
-                                <br> {{P_round_rDate | date: 'd/M/yyyy'}}
-                                <br>
-                            </div>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                        </div>
                     </form>
                     </br>
                     </br>
-                    <div class="middle text-center">
                         </br>
 
                         <font size="5" color="black" class="text-left" style=" color:rgba(178,34,34, 1)"> Price breakdown</font>
                         </br>
-                    </div>
 
-                    <div class="bottom">
-                        <form name="reviewForm2" novalidate>
+                    
                             <div class="checkbox" style="position:relative; left:50px; top:30px">
                                 <label>
                                     <input type="checkbox" value="" required>I have read and accept the terms and conditions and conditions of contract.</label>
                             </div>
-                            </br>
-                        </form>
+                        </br>
                         </br>
 
 
                         <div class="col-md-12">
-                            <h4 class="col-md-6">Total price :</h4>
+                            <h4 ><b>Total price : </b>{totalPrice | currency : 'EUR '}}</br></h4>
                             </br>
                             </br>
-                            <h1 class="col-md-8 text-center"> {{totalPrice | currency : 'EUR '}}</br></h1>
                         </div>
 
                         <div class="col-md-12">
@@ -326,7 +281,7 @@
 
 
 
-                    </div>
+                
                 </div>
             </div>
         </div>
