@@ -1,6 +1,30 @@
+  <script type="text/javascript" src="./js/typed.js"></script>
+<script>
+    $(function() {
+        $("#typed").typed({
+            // strings: ["Typed.js is a <strong>jQuery</strong> plugin.", "It <em>types</em> out sentences.", "And then deletes them.", "Try it out!"],
+            stringsElement: $('#typed-strings'),
+            typeSpeed: 30,
+            backDelay: 500,
+            loop: true,
+            contentType: 'html', // or text
+            // defaults to false for infinite loop
+            loopCount: false,
+            resetCallback: function() {
+                newTyped();
+            }
+        });
+        $(".reset").click(function() {
+            $("#typed").typed('reset');
+        });
+    });
+</script>
+
+
+
+
 <!--==== Essential files ====-->
 <script type="text/javascript" src="js/jquery-2.2.0.min.js"></script>
-<!-- <script type="text/javascript" src="js/bootstrapValidator.min.js"></script> -->
 <script type="text/javascript" src="js/modernizr.js"></script>
 <script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
 
@@ -11,11 +35,6 @@
 
 <!--==== Custom Script files ====-->
 <script type="text/javascript" src="js/custom.js"></script>
-<!-- <script type="text/javascript" src="js/landingPage.js"></script> -->
-
-<!-- <script type="text/javascript" src="js/jquery.nicescroll.min.js"></script> -->
-<!-- <script type="text/javascript" src="js/jquery.combinedScroll.js"></script> -->
-<!-- <link rel="stylesheet" href="css/jquery.vegas.css"/> -->
 <script type="text/javascript" src="js/jquery.vegas.min.js"></script>
 
 <!--==== Slider and Card style plugin ====-->
@@ -23,10 +42,7 @@
 <script type="text/javascript" src="js/jquery.baraja.js"></script>
 <link rel="stylesheet" href="css/baraja.css" />
 <script type="text/javascript" src="js/jquery.bxslider.min.js"></script>
-
-<!-- <link rel="stylesheet" id="scheme-source" href="css/schemes/gray.css" /> -->
 <link rel="stylesheet" href="css/font-awesome.min.css" />
-<!-- <link rel="stylesheet" href="css/linea-icon.css" /> -->
 <link rel="stylesheet" href="css/fancy-buttons.css" />
 
 <!--=== Other CSS files ===-->
@@ -38,42 +54,82 @@
 
 <script type="text/javascript" src="js/jquery.ajaxchimp.min.js"></script>
 
-<div id="header" class="header-section">
     <!-- sticky-bar Starts-->
-    <div class="sticky-bar-wrap">
-        <div class="sticky-section">
-            <div id="topbar-hold" class="nav-hold container">
-                <nav class="navbar" role="navigation">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-responsive-collapse">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <a href='http://mynksh.com'>
-                            <span><img src="./assets/iberia-logo.png"></span>
-                        </a>
-                    </div>
+    <div id="header" class="header-section">
+        <!-- sticky-bar Starts-->
+        <div class="sticky-bar-wrap">
+            <div class="sticky-section">
+                <div id="topbar-hold" class="nav-hold container">
+                    <nav class="navbar" role="navigation">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a href='http://mynksh.com'>
+                                <span><img src="./assets/iberia-logo.png"></span>
+                            </a>
+                        </div>
 
-
-                </nav>
+                        <!-- Main Navigation menu Starts -->
+                        <div class="collapse navbar-collapse navbar-responsive-collapse">
+                            <ul class="nav navbar-nav navbar-right">
+                                <li class="current"><a href="#header">Team Intro</a></li>
+                                <li ><a href="#section-feature">Names</a></li>
+                                <li ><a href="#section-feature">Accounts</a></li>
+                                <li ><a href="#section-feature">Send Feedback</a></li>
+                            </ul>
+                        </div>
+                        <!-- Main Navigation menu ends-->
+                    </nav>
+                </div>
             </div>
         </div>
-    </div>
+
 
     <div id="section-home" class="home-section-wrap center">
         <div class="section-overlay"></div>
         <div class="container home">
             <div class="row">
                 <h1 class="well-come">Team Members</h1>
+                <div class="col-md-8 col-md-offset-2">
+                    <p class="intro-message">The MYNKSH Team</p>
+                    <div class="type-wrap">
+                        <div id="typed-strings">
+                            <p><font color="white">The <strong>BOND</strong> unites us.</font></p>
+                            <p><font color="white">The <strong>M</strong> Mostafa Ibrahim.</font></p>
+                            <p><font color="white">The <strong>Y</strong> Yara Sobhy.</font></p>
+                            <p><font color="white">The <strong>Y</strong> Youssef Radi.</font></p>
+                            <p><font color="white">The <strong>N</strong> Narihan Ellaithy.</font></p>
+                            <p><font color="white">The <strong>K</strong> Mohamed Kefahy.</font></p>
+                            <p><font color="white">The <strong>S</strong> Safa Ads.</font></p>
+                            <p><font color="white">The <strong>H</strong> Hazem Ayman.</font></p>
+                            <p><font color="white">And we are <strong>MYNKSH</strong></font></p>
+                        </div>
+                        <span id="typed" style="white-space:pre;"></span>
+                        </br>
+                        </br>
+                        </br>
+                        </br>
+                        </br>
+                        </br>
+                        </br>
+                        </br>
+                        </br>
+                        </br>
+                        </br>
+                        </br>
+                    </div>
+                </div>
               </div>
             </div>
           </div>
+</div>
 
-
-<section id="section-feature" class="feature-wrap">
-    <div class="container features center">
+<section id="section-feature" class="feature-wrap" style="background: rgba(128,0,0, 1)">
+    <div class="container features center" >
         <div class="row">
             <div class="col-lg-12">
                 <!--Features container Starts -->
