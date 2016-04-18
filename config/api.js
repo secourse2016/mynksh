@@ -167,11 +167,10 @@ exports.searchBookings = function(bookingRef,cb) {
             collection.find({
                 "bookingRefNumber": bookingRef
             }).toArray(function(err, ref) {
-                    if (ref[0] == undefined) {
+                    if (ref[0] == undefined)
                         cb(err, []);
-                    } else
-                        rflights = ref;
-                    cb(err, rflights);
+                    else
+                      cb(err, ref);
                 mongo.close();
             });
     });

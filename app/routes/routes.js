@@ -64,8 +64,8 @@ module.exports = function(app, mongo) {
         });
     });
 
-    app.get('/api/flights/search/:bookingRefNumber', function(req, res) {
-      exports.searchBookings(req.params.bookingRefNumber,function(err,bookingRef){
+    app.get('/api/bookings/search/:bookingRefNumber', function(req, res) {
+      mongo.searchBookings(req.params.bookingRefNumber,function(err,bookingRef){
         res.json(bookingRef);
       });
     });
