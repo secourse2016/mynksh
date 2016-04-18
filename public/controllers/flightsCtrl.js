@@ -8,8 +8,11 @@ App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $locati
     $scope.outgoingPrice = 0;
     $scope.returnPrice = 0;
     $scope.cabin = FlightsSrv.getSelectedCabin();
-    $scope.outFlightFound=true;
-    $scope.returnFlightFound= true;
+    $scope.outFlightFound = true;
+    $scope.returnFlightFound = true;
+    $scope.outgoingInfo = [];
+    $scope.returnInfo = [];
+
 
     if ($scope.roundTrip === 'true')
         pingAirlineR($scope.origin, $scope.dest, changeISOFormat($scope.oDate), changeISOFormat($scope.rDate));
@@ -27,8 +30,6 @@ App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $locati
 
     function pingAirlineR(origin, dest, oDate, rDate) {
         OutReturnSrv.getairLinesInfo().success(function(airlines) {
-            $scope.outgoingInfo = flights.outgoingFlights;
-            $scope.returnInfo = flights.returnFlights;
             airlines.forEach(function(c) {
                 var tclass = ($scope.cabin === "true") ? "economy" : "bussniess";
                 var departDate = moment(oDate).toDate().getTime();
@@ -47,7 +48,6 @@ App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $locati
 
     function pingAirlineS(origin, dest, oDate) {
         OutReturnSrv.getairLinesInfo().success(function(airlines) {
-            $scope.outgoingInfo = flights.outgoingFlights;
             airlines.forEach(function(c) {
                 var tclass = ($scope.cabin === "true") ? "economy" : "bussniess";
                 var departDate = moment(oDate).toDate().getTime();
@@ -65,31 +65,35 @@ App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $locati
     function roundTripInfo(origin, dest, oDate, rDate) {
         if ($scope.cabin === "true") {
             OutReturnSrv.getRoundTripInfo(origin, dest, oDate, rDate, "economy").success(function(flights) {
-                $scope.outgoingInfo = flights.outgoingFlights;
-                $scope.returnInfo = flights.returnFlights;
+                if (flights.outgoingFlights[0] != 'undefined' && flights.outgoingFlights[0].length != 0)
+                    $scope.outgoingInfo.push(flights.outgoingFlights[0]);
+                if (flights.returnFlights[0] != 'undefined' && flights.returnFlights[0].length != 0)
+                    $scope.returnInfo.push(flights.returnFlights[0]);
                 // if(Object.keys(outgoingFlight).length === 0 || Object.keys(returnFlight).length === 0 )
                 //     res.send("no flights found");
-                if($scope.outgoingInfo.length === 0){
-                     console.log("outgoing empty");
-                    $scope.outFlightFound= false;
+                if ($scope.outgoingInfo.length === 0) {
+                    console.log("outgoing empty");
+                    $scope.outFlightFound = false;
                 }
-                if($scope.returnInfo.length === 0){
-                     console.log("outgoing empty");
-                    $scope.returnFlightFound= false;
+                if ($scope.returnInfo.length === 0) {
+                    console.log("outgoing empty");
+                    $scope.returnFlightFound = false;
                 }
 
             });
         } else {
             OutReturnSrv.getRoundTripInfo(origin, dest, oDate, rDate, "business").success(function(flights) {
-                $scope.outgoingInfo = flights.outgoingFlights;
-                $scope.returnInfo = flights.returnFlights;
-                if($scope.outgoingInfo.length === 0){
+                if (flights.outgoingFlights[0] != 'undefined' && flights.outgoingFlights[0].length != 0)
+                    $scope.outgoingInfo.push(flights.outgoingFlights[0]);
+                if (flights.returnFlights[0] != 'undefined' && flights.returnFlights[0].length != 0)
+                    $scope.returnInfo.push(flights.returnFlights[0]);
+                if ($scope.outgoingInfo.length === 0) {
                     console.log("outgoing empty");
-                    $scope.outFlightFound= false;
+                    $scope.outFlightFound = false;
                 }
-                if($scope.returnInfo.length === 0){
+                if ($scope.returnInfo.length === 0) {
                     console.log("outgoing empty");
-                    $scope.returnFlightFound= false;
+                    $scope.returnFlightFound = false;
                 }
 
             });
@@ -100,15 +104,17 @@ App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $locati
     function oneWayTripInfo(origin, dest, oDate) {
         if ($scope.cabin === "true") {
             OutReturnSrv.getOneWayTripInfo(origin, dest, oDate, "economy").success(function(flights) {
-                $scope.outgoingInfo = flights.outgoingFlights;
-                if($scope.outgoingInfo.length === 0)
-                    $scope.outFlightFound= false;
+                if (flights.outgoingFlights[0] != 'undefined' && flights.outgoingFlights[0].length != 0)
+                    $scope.outgoingInfo.push(flights.outgoingFlights[0]);
+                if ($scope.outgoingInfo.length === 0)
+                    $scope.outFlightFound = false;
             });
         } else {
             OutReturnSrv.getOneWayTripInfo(origin, dest, oDate, "business").success(function(flights) {
-                $scope.outgoingInfo = flights.outgoingFlights;
-                if($scope.outgoingInfo.length === 0)
-                    $scope.outFlightFound= false;
+                if (flights.outgoingFlights[0] != 'undefined' && flights.outgoingFlights[0].length != 0)
+                    $scope.outgoingInfo.push(flights.outgoingFlights[0]);
+                if ($scope.outgoingInfo.length === 0)
+                    $scope.outFlightFound = false;
             });
         }
 
