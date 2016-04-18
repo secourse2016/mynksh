@@ -12,12 +12,12 @@ App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $locati
     $scope.returnFlightFound = true;
     $scope.outgoingInfo = [];
     $scope.returnInfo = [];
-
-
-    if ($scope.roundTrip === 'true')
-        pingAirlineR($scope.origin, $scope.dest, changeISOFormat($scope.oDate), changeISOFormat($scope.rDate));
-    else
-        pingAirlineS($scope.origin, $scope.dest, changeISOFormat($scope.oDate));
+    
+    if (FlightsSrv.getPinging().toString() === 'true')
+        if ($scope.roundTrip === 'true')
+            pingAirlineR($scope.origin, $scope.dest, changeISOFormat($scope.oDate), changeISOFormat($scope.rDate));
+        else
+            pingAirlineS($scope.origin, $scope.dest, changeISOFormat($scope.oDate));
 
     if ($scope.roundTrip === 'true')
         roundTripInfo($scope.origin, $scope.dest, changeISOFormat($scope.oDate), changeISOFormat($scope.rDate));
