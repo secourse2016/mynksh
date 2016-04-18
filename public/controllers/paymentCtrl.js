@@ -1,10 +1,15 @@
-/**
- * payment Controller
- */
-App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturnSrv, paymentSrv, $location) {
-    $scope.no = "node";
-    $scope.tab = "active in";
 
+App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturnSrv, paymentSrv, $location) {
+
+    $scope.tab = "active in";
+    $scope.reservation = ConfirmSrv.getReservation();    
+    $scope.totalPrice = OutReturnSrv.getSelectedPrice();
+    var roundTrip = FlightsSrv.getSelectedRoundTrip();
+    var outgoingFlight= OutReturnSrv.getSelectedOutFlight();
+    if(roundTrip == 'true')
+        returnFlight = OutReturnSrv.getSelectedReturnFlight();
+    $scope.outCurrency = outgoingFlight.currency;
+    
     $scope.tab1 = function() {
         $scope.tab = "active in";
         $scope.tab2 = "";
@@ -16,7 +21,7 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
     };
 
 
-    $scope.Congrats = function() {
+    var Congrats = function() {
         $location.url('/congrats');
     };
 
@@ -26,115 +31,59 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
         return clicked === $scope.clicked;
     };
 
-    // function postIntoBooking() { $http.post('../../modules/bookings.json',{text:$scope.totalPrice}).success(function(response){
-    //
-    //   $scope.Success = "success to pay";
-    //
-    //
-    //
-    // });
-    //   };
-    // test post
-
-    $scope.postAPay = function() {
-        $scope.reservation = confirmSrv.getReservation();
-        $scope.passport = "same lsa msh m3mola  fl  conf srv";
-        $scope.passportNumber = "bardo lsa ";
-        $scope.issueDate = "22-5-2016";
-        $scope.expiryDate = "22-3-2020";
-        $scope.email = ConfirmSrv.getEmail();
-        $scope.phoneNumber = ConfirmSrv.getPhoneNo();
+    var postAPay = function() {
         $scope.bookingRefNumber = "ha5do mn nary";
-        $scope.flightNumber = "flight.flightNumber";
-
-        paymentSrv.postPay($scope.reservation.firstName, $scope.reservation.lastName, $scope.passport, $scope.passportNumber, $scope.issueDate, $scope.expiryDate, $scope.email, $scope.phoneNumber, $scope.bookingRefNumber, $scope.flightNumber);
-    };
-    //
-    $scope.postIntoBooking = function() {
-        var customer = {
-            contact_name: "Scott",
-            company_name: "HP"
-        };
-        $.ajax({
-            type: "POST",
-            data: JSON.stringify(customer),
-            url: "/api/data/bookings",
-            contentType: "application/json"
-        });
-
+        paymentSrv.postPay($scope.reservation, $scope.bookingRefNumber, outgoingFlight);
+        if(roundTrip =='true')
+            paymentSrv.postPay($scope.reservation, $scope.bookingRefNumber, returnFlight);
     };
 
-    function countryCode() {
-        paymentSrv.getCountry().success(function(country) {
-            $scope.Country = country;
-        });
-    };
-
-    /* set paymet form  */
-    $scope.SetCountry = function(value) {
-        paymentSrv.setSelectedCountry(value);
-
-    };
-
-    $scope.SetCardType = function(value) {
+    var SetCardType = function(value) {
         paymentSrv.setSelectedCardType(value);
     };
 
-    $scope.SetCaradNo = function(value) {
-        paymentSrv.setSelectedCaradNo(value);
+    var SetCardNo = function(value) {
+        paymentSrv.setSelectedCardNo(value);
     };
 
-    $scope.SetMonth = function(value) {
+    var SetMonth = function(value) {
         paymentSrv.setSelectedMonth(value);
     };
 
-    $scope.SetYear = function(value) {
+    var SetYear = function(value) {
         paymentSrv.setSelectedYear(value);
     };
 
-    $scope.SetCVV = function(value) {
+    var SetCVV = function(value) {
         paymentSrv.setSelectedCVV(value);
     };
 
-    $scope.SetFirstName = function(value) {
-        paymentSrv.setSelectedFirstName(value);
+    var SetStreet = function(value) {
+        paymentSrv.setSelectedStreet(value);
     };
-
-    $scope.SetSurname = function(value) {
-        paymentSrv.setSelectedSurname(value);
+    var SetInformation = function(value) {
+        paymentSrv.setSelectedInformation(value);
     };
-    $scope.SetPassengers = function(value) {
-        paymentSrv.setSelectedPassengers(value);
+    var SetPostalcode = function(value) {
+        paymentSrv.setSelectedPostalcode(value);
     };
-    $scope.SetStret = function(value) {
-        paymentSrv.setselectedStret(value);
-    };
-    $scope.SetInformation = function(value) {
-        paymentSrv.setSelectedinformation(value);
-    };
-    $scope.SetPostalcode = function(value) {
-        paymentSrv.setselectedPostalcode(value);
-    };
-    $scope.SetCity = function(value) {
+    var SetCity = function(value) {
         paymentSrv.setSelectedCity(value);
     };
 
-    $scope.totalPrice = OutReturnSrv.getSelectedPrice();
-    $scope.flightNoOut = OutReturnSrv.getSelectedOutFlight().flightNumber;
-    // $scope.flightNoIn= OutReturnSrv.getSelectedReturnFlight().flightNumber;
-
-    $scope.Porigin = FlightsSrv.getSelectedOriginAirport();
-    $scope.Pdest = FlightsSrv.getSelectedDestinationAirport();
-    $scope.PoDate = FlightsSrv.getSelectedOutDate();
-    $scope.PrDate = FlightsSrv.getSelectedReturnDate();
-
-    $scope.P_round_origin = FlightsSrv.getSelectedDestinationAirport();
-    $scope.P_round_dest = FlightsSrv.getSelectedOriginAirport();
-    // dol lsa mstnyeko t3mlo  anko t5do l roud 3lshan 2a5od l dates bt3thom
-    $scope.P_round_oDate = FlightsSrv.getSelectedOutDate();
-    $scope.P_round_rDate = FlightsSrv.getSelectedReturnDate();
-    $scope.cardNo = paymentSrv.getSelectedCaradNo();
-    countryCode();
+    $scope.payAction = function() {
+        postAPay();
+        SetCardType($scope.selectedType); 
+        SetCardNo($scope.selectedCardNumber);
+        SetMonth($scope.selectedMonth);
+        SetYear($scope.selectedYear);
+        SetCVV($scope.selectedCVV); 
+        SetStreet($scope.selectedStreet); 
+        SetInformation($scope.selectedExtra); 
+        SetPostalcode($scope.selectedPostalcode);
+        SetCity($scope.SelectedCity);
+        Congrats();
+    };
 
     //NARIHAN
     $scope.getBookingRef = function() {
@@ -142,8 +91,8 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
         // var string_length = 8;
         // var randomstring = '';
         // for (var i=0; i<string_length; i++) {
-        // 	var rnum = Math.floor(Math.random() * chars.length);
-        // 	randomstring += chars.substring(rnum,rnum+1);
+        //  var rnum = Math.floor(Math.random() * chars.length);
+        //  randomstring += chars.substring(rnum,rnum+1);
         // }
         // // document.randform.randomfield.value = randomstring;
         //
@@ -151,7 +100,7 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
         //   var str1=randomstring;
 
         //encode and get the first part of the outgoing date
-        var card = paymentSrv.getSelectedCaradNo();
+        var card = $scope.selectedCardNumber;
         var outDate = FlightsSrv.getSelectedOutDate();
         var str4 = JSON.stringify(outDate);
         var arr = str4.split("T");

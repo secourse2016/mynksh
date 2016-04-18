@@ -45,7 +45,7 @@ App.factory('OutReturnSrv', function($http) {
 
         getSelectedPrice: function() {
             return this.selectedPrice;
-        },
+        }
 
     };
 });
