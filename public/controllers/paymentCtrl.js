@@ -8,6 +8,7 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
     var outgoingFlight= OutReturnSrv.getSelectedOutFlight();
     if(roundTrip == 'true')
         returnFlight = OutReturnSrv.getSelectedReturnFlight();
+    $scope.outCurrency = outgoingFlight.currency;
     
     $scope.tab1 = function() {
         $scope.tab = "active in";
@@ -20,7 +21,7 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
     };
 
 
-    $scope.Congrats = function() {
+    var Congrats = function() {
         $location.url('/congrats');
     };
 
@@ -30,11 +31,11 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
         return clicked === $scope.clicked;
     };
 
-    $scope.postAPay = function() {
+    var postAPay = function() {
         $scope.bookingRefNumber = "ha5do mn nary";
-        paymentSrv.postPay($scope.reservation, $scope.bookingRefNumber, outgoingFlight.flightNumber);
+        paymentSrv.postPay($scope.reservation, $scope.bookingRefNumber, outgoingFlight);
         if(roundTrip =='true')
-            paymentSrv.postPay($scope.reservation, $scope.bookingRefNumber, returnFlight.flightNumber);
+            paymentSrv.postPay($scope.reservation, $scope.bookingRefNumber, returnFlight);
     };
 
     var SetCardType = function(value) {
@@ -70,23 +71,19 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
         paymentSrv.setSelectedCity(value);
     };
 
-    $scope.payAction() = function() {
-        postAPay() ; 
-        SetCountry(selectedCountry);
-        SetCardType(selectedType); 
-        SetCardNo(selectedCardNumber);
-        SetMonth(selectedMonth);
-        SetYear(selectedYear);SetCVV(selectedCVV); 
-        SetFirstName(selectedFirstName); 
-        SetSurname(selectedSecondName);
-        SetPassengers(SelectedPassengers);
-        SetStret(selectedStret); 
-        SetInformation(selectedExtra); 
-        SetPostalcode(selectedPostalcode);
-        SetCity(SelectedCity);
-    }
-
-    countryCode();
+    $scope.payAction = function() {
+        postAPay();
+        SetCardType($scope.selectedType); 
+        SetCardNo($scope.selectedCardNumber);
+        SetMonth($scope.selectedMonth);
+        SetYear($scope.selectedYear);
+        SetCVV($scope.selectedCVV); 
+        SetStreet($scope.selectedStreet); 
+        SetInformation($scope.selectedExtra); 
+        SetPostalcode($scope.selectedPostalcode);
+        SetCity($scope.SelectedCity);
+        Congrats();
+    };
 
     //NARIHAN
     $scope.getBookingRef = function() {

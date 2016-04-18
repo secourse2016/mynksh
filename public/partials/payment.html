@@ -38,24 +38,24 @@
                     <h3><font color="black">Payment Data</font></h3>
                 </div>
 
-                <div class="mainContainer col-lg-12" style="border-radius: 25px; height:2000px;left:-100px;">
+                <div class="mainContainer col-lg-12" style="border-radius: 25px;">
                         <div class="leftInput" style="border-radius: 25px;">
 
                             <!--  i have two tabs because of visa and paypal   -->
                             <div class="tabs" style="position:relative; top:-20px;color:black">
                                 <ul class="nav nav-tabs navTab">
-                                    <li class=""><a href ng-click="tab1()" data-toggle="tab" aria-expanded="false"><font size="3" color="black" class="text-left">Card payment</font></a></li>
+                                    <li class=""><a href ng-click="tab1()" data-toggle="tab" aria-expanded="false"><font size="5" color="black" class="text-left">Card payment</font></a></li>
                                     <li class=""><a href ng-click="tab2()" ng-show='false' data-toggle="tab" aria-expanded="false"><font size="3" color="black" class="text-left">PayPal</font></a></li>
 
                                 </ul>
                                 <div id="myTabContent" class="tab-content">
                                     <div class="tab-pane fade {{tab}}">
                                         <!--  payment form  -->
-
+                                        <br>
+                                        <br>
                                         <div class="container form ">
                                             <form class="contact-form support-form" name="reviewForm" novalidate="">
-                                                <div class="form-group">
-                                                    </br>
+                                                <div class="form-group row">
                                                     <font size="3" color="black" class="col-sm-4 text-left">Type of card<font color="red" >*</font>: </font>
                                                     <div class="col-md-8 col-sm-8 text-left">
                                                         <div class="dropdown">
@@ -81,16 +81,21 @@
                                                 </div>
 
 
-                                                <div class="form-group">
-                                                    </br>
+                                                <div class="form-group row">
                                                     <font size="3" color="black" class="col-sm-4 text-left">Card number<font color="red" >*</font>:</font>
                                                     <div class="col-md-8 col-sm-8 text-left">
-                                                        <input type="number" class="form-control" id="cardNo" placeholder="519603203xxxxxxx" ng-model="selectedCardNumber" required>
+                                                        <input type="number" class="form-control" id="cardNo" placeholder="519603203xxxxxxx" ng-model="selectedCardNumber" required ng-minlength='16' ng-maxlength='16'>
                                                     </div>
                                                 </div>
 
-                                                <div class="form-group">
-                                                    </br>
+                                                <div class="form-group row">
+                                                    <font size="3" color="black" class="col-sm-4 text-left">Security code<font color="red" >*</font>:</font>
+                                                    <div class="col-md-8 col-sm-8 text-left">
+                                                        <input type="number" class="form-control" id="CVV" placeholder="CVV" ng-model="selectedCVV" required ng-minlength='3' ng-maxlength='3'>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
                                                     <font size="3" color="black" class="col-sm-4 text-left">Expiry date<font color="red" >*</font>:</font>
                                                     <div class="col-md-8 col-sm-8 text-left">
                                                         <div class="dropdown" selectedMonth="Month">
@@ -136,41 +141,28 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="form-group">
-                                                    <font size="3" color="black" class="col-sm-4 text-left">Security code<font color="red" >*</font>:</font>
-                                                    <div class="col-md-8 col-sm-8 text-left">
-                                                        <input type="number" class="form-control" id="CVV" placeholder="CVV" ng-model="selectedCVV" required>
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    </br>
-                                                    </br>
+                                                <div class="form-group row">
                                                     <font size="3" color="black" class="col-sm-4 text-left">First name<font color="red" >*</font>:</font>
                                                     <div class="col-md-8 col-sm-8 text-left">
-                                                        <label>{{reservation.FName}}</label>
+                                                        <label style='color:black'>{{reservation.FName}}</label>
                                                     </div>
                                                 </div>
 
-                                                <div class="form-group">
-                                                    </br>
-
+                                                <div class="form-group row">
                                                     <font size="3" color="black" class="col-sm-4 text-left">Surname<font color="red" >*</font>:</font>
                                                     <div class="col-md-8 col-sm-8 text-left">
-                                                        <label>{{reservation.LName}}</label>
+                                                        <label style='color:black'>{{reservation.LName}}</label>
                                                     </div>
                                                 </div>
 
-                                                <div class="form-group">
-                                                    </br>
+                                                <div class="form-group row">
                                                     <font size="3" color="black" class="col-sm-4 text-left">Street<font color="red" >*</font>:</font>
                                                     <div class="col-md-8 col-sm-8 text-left">
-                                                        <input type="text" class="form-control" id="Street" placeholder="1-221 QUEBEC ST VICTORIA BC" ng-model="selectedStret" required>
+                                                        <input type="text" class="form-control" id="Street" placeholder="1-221 QUEBEC ST VICTORIA BC" ng-model="selectedStreet" required>
                                                     </div>
                                                 </div>
 
-                                                <div class="form-group">
-                                                    </br>
+                                                <div class="form-group row">
                                                     <font size="3" color="black" class="col-sm-6 text-left">Additional Information<font color="red" >*</font>:</font>
                                                     <div class="col-md-6 col-sm-6 text-left">
                                                         <input type="text" class="form-control" id="info" placeholder="extra" ng-model="selectedExtra" required>
@@ -178,16 +170,14 @@
                                                 </div>
 
 
-                                                <div class="form-group">
-                                                    </br>
+                                                <div class="form-group row">
                                                     <font size="3" color="black" class="col-sm-4 text-left">Postal code<font color="red" >*</font>:</font>
                                                     <div class="col-md-8 col-sm-8 text-left">
-                                                        <input type="text" class="form-control" id="postal-code" placeholder="V8V 1W2" ng-model="selectedPostalcode" required>
+                                                        <input type="text" class="form-control" id="postal-code" placeholder="V8V 1W2" ng-model="selectedPostalcode" required ng-minlength='5' ng-maxlength='5'>
                                                     </div>
                                                 </div>
 
-                                                <div class="form-group">
-                                                    </br>
+                                                <div class="form-group row">
                                                     <font size="3" color="black" class="col-sm-4 text-left">City<font color="red" >*</font>:</font>
                                                     <div class="col-md-8 col-sm-8 text-left">
                                                         <input type="text" class="form-control" id="city" placeholder="QUEBEC" ng-model="SelectedCity" required>
@@ -219,18 +209,15 @@
 
                         <font size="5" color="black" class="text-left" style=" color:rgba(178,34,34, 1)"> Price breakdown</font>
                         </br>
-
-                            <form name='reviewForm2'>
                             <div class="checkbox" style="position:relative; left:50px; top:30px">
-                                <label><input type="checkbox" value="" required>I have read and accept the terms and conditions and conditions of contract.</label>
+                                <label><input type="checkbox" ng-model='accepted' ng-true-value='true' ng-false-value='false' required>I have read and accept the terms and conditions and conditions of contract.</label>
                             </div>
-                            </form>
                         </br>
                         </br>
 
 
                         <div class="col-md-12">
-                            <h4 ><b>Total price : </b>{{totalPrice | currency : 'EUR '}}</br></h4>
+                            <h4 ><b>Total price : </b>{{totalPrice | currency : outCurrency+' '}}</br></h4>
                             </br>
                             </br>
                         </div>
@@ -238,7 +225,7 @@
                         <div class="col-md-12">
 
                                 <div class="col-md-12 col-sm-12 text-right">
-                                    <button type="button" class="btn btn-primary btn-lg" style="background:rgba(178,34,34, 1)" ng-disabled="reviewForm.$invalid || reviewForm2.$invalid" ng-click=" payAction();">Pay</button>
+                                    <button type="button" class="btn btn-primary btn-lg" style="background:rgba(178,34,34, 1)" ng-disabled="reviewForm.$invalid || !accepted" ng-click=" payAction();">Pay</button>
                             
                             <a href="http://mynksh.com">
                                 <button type="button" class="btn btn-primary btn-lg" style="background:rgba(178,34,34, 1)">Cancel</button>
@@ -253,6 +240,7 @@
                 </br></font>
 
                         <button class="btn btn-primary btn-lg" style="background:rgba(178,34,34, 1)" ng-click="getBookingRef()" ng-disabled="selectedCardNumber === undefined">Your booking reference</button>
+                        <br>
                         <p id="demo"></p>
 
 

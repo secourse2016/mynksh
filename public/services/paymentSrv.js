@@ -2,8 +2,10 @@
 App.factory('paymentSrv', function($http) {
     return {
 
-        postPay: function(reservation, bookingRefNumber, flightNumber) {
-          return $http.get('/api/pay/'+ reservation.FName + '/' + reservation.LName + '/' + reservation.country + '/' + reservation.passportNo+'/'+reservation.issueDate+'/'+ reservation.expiryDate + '/' + reservation.email + '/' + reservation.phoneno + '/' + bookingRefNumber+'/'+flightNumber);
+        postPay: function(reservation, bookingRefNumber, flight) {
+          return $http.get('/api/pay/'+ reservation.FName + '/' + reservation.LName + '/' + reservation.country + '/' + reservation.passportNo+'/'+
+            reservation.issueDate+'/'+ reservation.expiryDate + '/' + reservation.email + '/' + reservation.phoneno + '/' + bookingRefNumber+'/'+
+            flight.flightNumber+'/'+flight.cabin);
         },
         getSelectedCardType: function() {
             return this.SelectedCardType;
