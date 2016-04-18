@@ -149,19 +149,21 @@
                         <p><span class="fa fa-check"></span></p>
                     </div>
 
-                    <form class="contact-form support-form">
+                    <form name='flights' class="contact-form support-form" >
                         <div class="col-lg-12">
                             <div class="form-group">
                                 <font class="col-sm-2 text-right" size="4" color="white"> From: </font>
                                 <div class="col-md-8 col-sm-8">
-                                    <input name="originAirports" id="originAirports" type="text" placeholder="Flying From" ng-model="selectedOrigin" uib-typeahead="airport.name for airport in Airports | filter:$viewValue | limitTo:10" class="form-control" , typeahead-on-select="SetOriginAirport($item.iata)">
+                                    <input name="selectedOrigin" id="selectedOrigin"  type="text"  placeholder="Flying From" ng-model="selectedOrigin" ng-required='true' uib-typeahead="airport.name for airport in Airports | filter:$viewValue | limitTo:10" class="form-control" , typeahead-on-select="SetOriginAirport($item.iata)" >
+                                    <span style='color:white' ng-show="(flights.selectedOrigin.$error.required) ">Origin Airport required</span>
                                 </div>
                             </div>
                             </br>
                             <div class="form-group">
                                 <font class="col-sm-2 text-right" size="4" color="white"> To: </font>
                                 <div class="col-md-8 col-sm-8">
-                                    <input name="destinationAirports" id="destinationAirports" type="text" placeholder="Flying To" ng-model="selectedDestination" uib-typeahead="airport.name for airport in Airports | filter:$viewValue | limitTo:10" class="form-control" , typeahead-on-select="SetDestinationAirport($item.iata)">
+                                    <input name="destinationAirports" id="destinationAirports" type="text"  placeholder="Flying To" ng-model="selectedDestination" uib-typeahead="airport.name for airport in Airports | filter:$viewValue | limitTo:10" class="form-control" , typeahead-on-select="SetDestinationAirport($item.iata)" ng-required='true'>
+                                    <span style='color:white' ng-show="(flights.destinationAirports.$error.required)  && flights.destinationAirports.$dirty ">Destination Airport required</span>
                                 </div>
                             </div>
                             </br>
@@ -269,7 +271,7 @@
                             </form>
                         </div>
                     </form>
-                    <button type="submit" class="fancy-button button-line button-white large zoom subform" id='btnSearch' ng-click="SetOutDate(dto);
+                    <button type="submit" ng-disabled='flights.$invalid' class="fancy-button button-line button-white large zoom subform" id='btnSearch' ng-click="SetOutDate(dto);
                     SetReturnDate(dtr); SetRoundTrip(roundTrip); SetCabin(cabin); SearchFlights()">
 
 
