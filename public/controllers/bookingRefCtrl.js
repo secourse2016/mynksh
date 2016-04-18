@@ -18,7 +18,7 @@ $scope.retreiveBookingRef=function(){
   var visaNum = arr[0];
   var outDate=arr[1];
   var flightNum=arr[2];
-  var res="Your Visa Numer is "+visaNum+"<br>"+"Your Outgoing Flight is On "+outDate+"<br>"+"Your Flight Numer is "+flightNum;
+  var res="Your Visa Numer is "+visaNum+"<br>"+"Your Outgoing Flight is On "+outDate+"<br>"+"Your Flight Number is "+flightNum;
   document.getElementById("divID").innerHTML = res;
 }
 });
