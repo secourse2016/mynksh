@@ -19,16 +19,16 @@ App.factory('FlightsSrv', function($http) {
             return this.selectedDestinationAirport;
         },
         setSelectedOutDate: function(value) {
-            this.setSelectedOutDate = value;
+            this.selectedOutDate = value;
         },
         getSelectedOutDate: function() {
-            return this.setSelectedOutDate;
+            return this.selectedOutDate;
         },
         setSelectedReturnDate: function(value) {
-            this.setSelectedReturnDate = value;
+            this.selectedReturnDate = value;
         },
         getSelectedReturnDate: function() {
-            return this.setSelectedReturnDate;
+            return this.selectedReturnDate;
         },
         setSelectedRoundTrip: function(value) {
             this.selectedRoundTrip = value;
@@ -36,11 +36,12 @@ App.factory('FlightsSrv', function($http) {
         getSelectedRoundTrip: function() {
             return this.selectedRoundTrip;
         },
-        setSelectedNumberOfTickets: function(value) {
-            this.selectedNumberOfTickets = value;
+        setSelectedCabin: function(value) {
+            this.selectedCabin = value;
         },
-        getSelectedNumberOfTickets: function() {
-            return this.selectedNumberOfTickets;
+        getSelectedCabin: function() {
+            return this.selectedCabin;
         }
+
     };
 });
