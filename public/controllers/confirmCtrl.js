@@ -9,7 +9,7 @@ App.controller('confirmCtrl', function($scope, FlightsSrv, OutReturnSrv, Confirm
     // $scope.tickets= 2;
     $scope.price = OutReturnSrv.getSelectedPrice();
     $scope.currentDate = new Date();
-
+    $scope.min = Math.min;
     $scope.format = 'd/M/yyyy'
 
     var setTicketEmail = function(value) {
