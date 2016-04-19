@@ -4,7 +4,8 @@ var path = require('path');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
 var cons = require('consolidate');
-var api = require('../config/api.js')
+var api = require('../config/api.js');
+var cors = require('cors');
 var app = express();
 
 // Export environment vars first thing
@@ -16,6 +17,7 @@ app.set('view engine', 'html');
 
 // uncomment after placing your favicon in /public
 // app.use(favicon(path.join(__dirname, '../public/assets', 'favicon.ico')));
+app.use(cors());
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -32,9 +34,9 @@ app.use(express.static(path.join(__dirname, '../public')));
 //       req.db = api;
 //       next();
 // });
-app.use('*', function(req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Headers', 'X-Requested-With');
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
 
