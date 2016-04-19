@@ -106,7 +106,7 @@
                                                         <!-- <button class="btn btn-primary dropdown-toggle" style="background:rgba(178,34,34, 1)" type="button" data-toggle="dropdown"> Month {{selectedMonth}} -->
                                                             <!-- <span class="caret"></span></button> -->
                                                         <!-- <ul class="dropdown-menu"> -->
-                                                            <select name="month" ng-model="selectedMonth" ng-required='true'  style='color:black'>
+                                              <select name="month" ng-model="selectedMonth" ng-required='true'  style='color:black'>
                                                                 <option value="1" ng-model="selectedMonth" style='color:black'>1</option>
                                                                 <option value="2" ng-model="selectedMonth" style='color:black'>2</option>
                                                                 <option value="3" ng-model="selectedMonth" style='color:black'>3</option>
@@ -130,7 +130,7 @@
                                                             <select name="year" ng-model="selectedYear" ng-required='true' style='color:black'>
                                                                 <option value="2015" ng-model="selectedYear" style='color:black'>2015</option>
                                                                 <option value="2016" ng-model="selectedYear" style='color:black'>2016</option>
-                                                                <option value="2017" ng-model="selectedYear" style='color:black'>2017</option>
+                                                                <option value="2017" ng-model="selectedYear" style='color:black' style='color:black'>2017</option>
                                                                 <option value="2018" ng-model="selectedYear" style='color:black'>2018</option>
                                                                 <option value="2019" ng-model="selectedYear" style='color:black'>2019</option>
                                                                 <option value="2020" ng-model="selectedYear" style='color:black'>2020</option>
@@ -247,34 +247,14 @@
 
                     <button class="btn btn-primary btn-lg" style="background:rgba(178,34,34, 1)" ng-click="getBookingRef()" ng-disabled="selectedCardNumber === undefined">Your booking reference</button>
                     <br>
-                    <p id="demo"></p>
-
-
-
-
+                    <p id="ptag">
+                    </p>
+                    <textarea class="js-copytextarea" id="demo"></textarea>
+                    <button class="js-textareacopybtn">Copy Textarea</button>
+                     
+                     
                 </div>
             </div>
         </div>
 </section>
-<!-- <script type="text/javascript">
-function myFunction() {
-  var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz";
-    var string_length = 8;
-    var randomstring = '';
-    for (var i=0; i<string_length; i++) {
-        var rnum = Math.floor(Math.random() * chars.length);
-        randomstring += chars.substring(rnum,rnum+1);
-    }
-    // document.randform.randomfield.value = randomstring;
-    if(!(document.getElementById('cardNo').value == '')){
-    }
-    var str1=randomstring;
-    var str2 = document.getElementById('cardNo').value;
-    var str=str2+","+str1;
-    var enc = window.btoa(str);
-    var dec = window.atob(enc);
-    var res = "Encoded String: " + enc + "<br>" + "Decoded String: " + dec;
-    document.getElementById("demo").innerHTML = res;
-  }
-}
- </script -->
+

@@ -10,11 +10,11 @@ exports.seedDB = function(cb) {
         mongo.clearDB(function(err) {
             assert.equal(null, err);
             mongo.seed('flights', flights, function() {
-                mongo.seed('bookings', bookings, function() {
+                // mongo.seed('bookings', bookings, function() {
                 mongo.seed('airports', airports, function() {
                     mongo.close();
                 });
-                });
+                // });
             });
         });
 
@@ -66,7 +66,7 @@ exports.searchFlights = function(origin, destination, departingDate, cabin, cb) 
                 '$regex': departingDate
             }
         }).toArray(function(err, flights) {
-            if (flights[0] == undefined) {
+            if (flights.length === 0) {
                 cb(err, []);
             } else {
                 if (economyOrBusiness == "economy")
@@ -101,25 +101,9 @@ exports.searchFlights = function(origin, destination, departingDate, cabin, cb) 
 
 exports.submitPay = function(firstName, lastName, passport, passportNumber, issueDate, expiryDate, email, phoneNumber, bookingRefNumber, flightNumber, businessOrEconomic, cb) {
     var selectedSeat = 0;
-
-    // console.log(businessOrEconomic);
-
-
-
     // console.log('i`m in api');
     mongo.connect(function(err, db) {
-
-        //  db.collection("flights").drop();
-        // db.collection("flights").remove({"flightNumber": "MYNKSH3"});
-
-        // var cursor =db.collection('flights').find( );
-        //    cursor.each(function(err, doc) {
-        //       if (doc != null) {
-        //          console.dir(doc);
-        //       }
-        //    });
         // update after find free seat
-
         var collection = db.collection('flights');
         collection.find({
             "flightNumber": flightNumber
@@ -129,15 +113,8 @@ exports.submitPay = function(firstName, lastName, passport, passportNumber, issu
                 mongo.close();
                 return;
             }
-
-            //flights[0].seat[flights[0].nextvf,m]
-            // console.log(flights[0]);
-
-            //  console.log(flights[0].SeatMap[0]);
-            // flights[0].SeatMap[0]
-
             //  remove then insert
-            if (bookingRefNumber === "true") { // economy
+            if (businessOrEconomic === "true") { // economy
                 //check on availableESeats of economy
                 if (!(flights[0].availableESeats === 0)) {
                     selectedSeat = flights[0].nextEcoSeat;
@@ -155,10 +132,7 @@ exports.submitPay = function(firstName, lastName, passport, passportNumber, issu
 
                 }
                 // if avaliable dec availableBSeats and inc next Bseat
-
-
             }
-
             //
             // console.log("selectedSeat :"+selectedSeat);
             flights[0].SeatMap[selectedSeat].bookingRefNumber = bookingRefNumber;
@@ -166,7 +140,6 @@ exports.submitPay = function(firstName, lastName, passport, passportNumber, issu
             db.collection("flights").remove({
                 "flightNumber": flightNumber
             }, function(err, records) {
-
                 //
                 var collection = db.collection('flights');
                 var document = {
@@ -214,23 +187,8 @@ exports.submitPay = function(firstName, lastName, passport, passportNumber, issu
                         cb(err, true);
                     });
                 });
-
-
-                //
-
-
             });
-
-
-
         });
-
-
-
-
-
-
-
     });
 }
 
