@@ -30,10 +30,12 @@
         	margin-top: 0;
         	padding: 8px 0;text-align: center;">Flights </font><br><br></h3>
             </div>
+            <div class="form-group">
             <div ng-hide="outFlightFound">
                <h3>There are no flights available on selected date. Go back to
                <a href= "http://mynksh.com">Iberia</a>.</h3>
             </div>
+          </div>
             <div ng-show="outFlightFound" >
             <h1 class="animated fadeInDown header-font">Select your flights</h1>
             <div id='outgoing'>
@@ -71,7 +73,7 @@
                             </tbody>
                 </table>
             </div>
-            
+
             <div ng-show="roundTrip === 'true'">
                 <h1 class="animated fadeInDown header-font">Now select your return flight</h1>
                 <div id='return'  class="animated slideInRight">
