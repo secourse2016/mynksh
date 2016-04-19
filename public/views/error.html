@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>{{message}}</title>
+    <title>{{error}}</title>
 
     <style>
         @import "compass/css3";
@@ -11,7 +11,7 @@
             background: #000;
             overflow: hidden;
         }
-        
+
         svg {
             width: 1000px;
             height: 100px;
@@ -188,7 +188,7 @@
                 -webkit-font-smoothing: antialiased;
                 -moz-osx-font-smoothing: grayscale;
             }
-            
+
             ]]>
         </style>
 
@@ -242,16 +242,16 @@
         </defs>
 
         <g>
-            <text x="0" y="100">404 NOT FOUND
+            <text x="0" y="100">ERROR
             </text>
         </g>
 
     </svg>
 
 
-    <!-- <H1>{{status}}</H1>
-        <H2>{{message}}</H2>
-        <H3>{{error}}</H3> -->
+    <H1 style='color:white'>{{status}}</H1>
+    <H2 style='color:white'>{{message}}</H2>
+    <H3 style='color:white'>{{error}}</H3>
     <canvas id="c"></canvas>
 
 

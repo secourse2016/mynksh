@@ -72,7 +72,7 @@ module.exports = function(app, mongo) {
             next();
         } catch (err) {
             console.error('[ERROR]: JWT Error reason:', err);
-            res.send('403 error');
+            res.status(403).sendFile(__dirname + '/public/index.html');
         }
     });
 
