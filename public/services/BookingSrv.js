@@ -1,7 +1,7 @@
 App.factory('BookingSrv', function($http) {
   return{
     getBookingInfo: function( Origin, Dest, rDate, Cabin,SeatNumber) {
-        return $http.get('/api/flights/bookings/' + Origin + '/' + Dest + '/' + rDate + '/' + Cabin + '/' + SeatNumber);
+        return $http.get('/data/flights/bookings/' + Origin + '/' + Dest + '/' + rDate + '/' + Cabin + '/' + SeatNumber);
     },
 
   getSelectedBookingRef: function() {

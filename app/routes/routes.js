@@ -22,33 +22,35 @@ module.exports = function(app, mongo) {
     });
 
     /* GET ALL STATES ENDPOINT */
-    app.get('/api/data/airports', function(req, res) {
+    app.get('/data/airports', function(req, res) {
         mongo.getAirports(function(err, airports) {
             res.json(airports);
         })
     });
 
-    app.get('/api/data/airlines', function(req, res) {
+    app.get('/data/airlines', function(req, res) {
         // mongo.getAirports(function(err, airports) {
-        res.json(airlines);
+        mongo.getAirLines(function(err, airports) {
+            res.json(airports);
+        })
         // })
     });
 
-    app.post('/api/data/bookings', function(req, res) {
+    app.post('/data/bookings', function(req, res) {
         mongo.getBooking(function(err, bookings) {
             res.json(bookings);
         })
     });
 
-    app.get('/api/pay/:firstName/:lastName/:passport/:passportNumber/:issueDate/:expiryDate/:email/:phoneNumber/:bookingRefNumber/:flightNumber/:flightCabin', function(req, res) {
+    app.get('/data/pay/:firstName/:lastName/:passport/:passportNumber/:issueDate/:expiryDate/:email/:phoneNumber/:bookingRefNumber/:flightNumber/:flightCabin', function(req, res) {
       mongo.submitPay(req.params.firstName, req.params.lastName, req.params.passport, req.params.passportNumber, req.params.issueDate, req.params.expiryDate, req.params.email, req.params.phoneNumber, req.params.bookingRefNumber, req.params.flightNumber,req.params.flightCabin,function(err, data) {
-        var card = $scope.selectedCardNumber;
-        var outFlightNo = OutReturnSrv.getSelectedOutFlight().flightNumber;
-        var str = card + "," + outFlightNo;
-        var enc = window.btoa(str);
-        var dec = window.atob(enc);
-
-        var res = enc;
+        // var card = $scope.selectedCardNumber;
+        // var outFlightNo = OutReturnSrv.getSelectedOutFlight().flightNumber;
+        // var str = card + "," + outFlightNo;
+        // var enc = window.btoa(str);
+        // var dec = window.atob(enc);
+        //
+        // var res = enc;
       });
     });
 

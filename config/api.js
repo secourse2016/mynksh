@@ -2,6 +2,7 @@ var mongo = require('./db.js');
 var flights = require('../modules/flights.json');
 var airports = require('../modules/airports.json');
 var bookings = require('../modules/bookings.json');
+var airlines = require('../modules/airLines.json');
 var assert = require('assert');
 var moment = require('moment');
 
@@ -10,18 +11,20 @@ exports.seedDB = function(cb) {
     mongo.clearDB(function(err) {
         assert.equal(null, err);
         mongo.seed('flights', flights, function() {
-            // mongo.seed('bookings', bookings, function() {
-            mongo.seed('airports', airports, function() {
-                // mongo.close();
+            mongo.seed('airLines', airlines, function() {
+                // mongo.seed('bookings', bookings, function() {
+                mongo.seed('airports', airports, function() {
+                    // mongo.close();
+                });
+                // });
             });
-            // });
         });
     });
 
     // });
 };
 
-var c = exports.clearDB = function(cb) {
+exports.clearDB = function(cb) {
     // mongo.connect(function(err, mdb) {
     mongo.clearDB(function() {
         // mongo.seed('airports', airports, function() {
@@ -36,7 +39,17 @@ var c = exports.clearDB = function(cb) {
 
 exports.getAirports = function(cb) {
     // mongo.connect(function(err, db) {
-    var collection = db.collection('airports');
+    var collection = mongo.db().collection('airports');
+    collection.find().toArray(function(err, airports) {
+        cb(err, airports);
+        // mongo.close();
+        // });
+    });
+}
+
+exports.getAirLines = function(cb) {
+    // mongo.connect(function(err, db) {
+    var collection = mongo.db().collection('airLines');
     collection.find().toArray(function(err, airports) {
         cb(err, airports);
         // mongo.close();
@@ -46,7 +59,7 @@ exports.getAirports = function(cb) {
 
 exports.getBooking = function(cb) {
     // mongo.connect(function(err, db) {
-    var collection = db.collection('bookings');
+    var collection = mongo.db().collection('bookings');
     collection.find().toArray(function(err, bookings) {
         cb(err, bookings);
         // mongo.close();
@@ -58,7 +71,7 @@ exports.searchFlights = function(origin, destination, departingDate, cabin, cb) 
     var cost = 0;
     var economyOrBusiness = cabin.toLowerCase();
     // mongo.connect(function(err, db) {
-    var collection = db.collection('flights');
+    var collection = mongo.db().collection('flights');
     collection.find({
         "origin": origin,
         "destination": destination,
@@ -103,7 +116,7 @@ exports.submitPay = function(firstName, lastName, passport, passportNumber, issu
     // console.log('i`m in api');
     // mongo.connect(function(err, db) {
     // update after find free seat
-    var collection = db.collection('flights');
+    var collection = mongo.db().collection('flights');
     collection.find({
         "flightNumber": flightNumber
     }).toArray(function(err, flights) {
@@ -136,11 +149,11 @@ exports.submitPay = function(firstName, lastName, passport, passportNumber, issu
         // console.log("selectedSeat :"+selectedSeat);
         flights[0].SeatMap[selectedSeat].bookingRefNumber = bookingRefNumber;
 
-        db.collection("flights").remove({
+        mongo.db().collection("flights").remove({
             "flightNumber": flightNumber
         }, function(err, records) {
             //
-            var collection = db.collection('flights');
+            var collection = mongo.db().collection('flights');
             var document = {
                 "departureTime": flights[0].departureTime,
                 "availableBSeats": flights[0].availableBSeats,
@@ -161,7 +174,7 @@ exports.submitPay = function(firstName, lastName, passport, passportNumber, issu
             collection.insertOne(document, {
                 w: 1
             }, function(err, records) {
-                var collection = db.collection('bookings');
+                var collection = mongo.db().collection('bookings');
                 var document = {
                     "firstName": firstName,
                     "lastName": lastName,
@@ -193,7 +206,7 @@ exports.submitPay = function(firstName, lastName, passport, passportNumber, issu
 
 exports.searchBookings = function(bookingRef, cb) {
     // mongo.connect(function(err, db) {
-    var collection = db.collection('bookings');
+    var collection = mongo.db().collection('bookings');
     collection.find({
         "bookingRefNumber": bookingRef
     }).toArray(function(err, ref) {
