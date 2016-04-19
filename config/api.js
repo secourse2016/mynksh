@@ -50,8 +50,8 @@ exports.getAirports = function(cb) {
 exports.getAirLines = function(cb) {
     // mongo.connect(function(err, db) {
     var collection = mongo.db().collection('airLines');
-    collection.find().toArray(function(err, airports) {
-        cb(err, airports);
+    collection.find().toArray(function(err, airLines) {
+        cb(err, airLines);
         // mongo.close();
         // });
     });
