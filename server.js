@@ -10,7 +10,7 @@ var http = require('http');
  */
 
 
-var port = normalizePort(process.env.PORT || '80');
+var port = normalizePort(process.env.PORT || '8080');
 
 app.set('port', port);
 
