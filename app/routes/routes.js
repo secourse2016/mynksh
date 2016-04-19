@@ -6,7 +6,7 @@ module.exports = function(app, mongo) {
 
     /* RENDER MAIN PAGE */
     app.get('/', function(req, res) {
-        res.sendFile(__dirname + '/public/index.html');
+        res.sendFile(__dirname + '../../public/index.html');
     });
 
     /* SEED DB */
@@ -72,7 +72,7 @@ module.exports = function(app, mongo) {
             next();
         } catch (err) {
             console.error('[ERROR]: JWT Error reason:', err);
-            res.status(403).sendFile(__dirname + '/public/index.html');
+            res.status(403).sendFile(__dirname + '../../public/views/error.html');
         }
     });
 
