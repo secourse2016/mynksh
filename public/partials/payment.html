@@ -247,34 +247,14 @@
 
                     <button class="btn btn-primary btn-lg" style="background:rgba(178,34,34, 1)" ng-click="getBookingRef()" ng-disabled="selectedCardNumber === undefined">Your booking reference</button>
                     <br>
-                    <p id="demo"></p>
-
-
-
-
+                    <p id="ptag">
+                    </p>
+                    <textarea class="js-copytextarea" id="demo"></textarea>
+                    <button class="js-textareacopybtn">Copy Textarea</button>
+                     
+                     
                 </div>
             </div>
         </div>
 </section>
-<!-- <script type="text/javascript">
-function myFunction() {
-  var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz";
-    var string_length = 8;
-    var randomstring = '';
-    for (var i=0; i<string_length; i++) {
-        var rnum = Math.floor(Math.random() * chars.length);
-        randomstring += chars.substring(rnum,rnum+1);
-    }
-    // document.randform.randomfield.value = randomstring;
-    if(!(document.getElementById('cardNo').value == '')){
-    }
-    var str1=randomstring;
-    var str2 = document.getElementById('cardNo').value;
-    var str=str2+","+str1;
-    var enc = window.btoa(str);
-    var dec = window.atob(enc);
-    var res = "Encoded String: " + enc + "<br>" + "Decoded String: " + dec;
-    document.getElementById("demo").innerHTML = res;
-  }
-}
- </script -->
+
