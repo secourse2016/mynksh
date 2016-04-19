@@ -4,11 +4,11 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
     $scope.reservation = ConfirmSrv.getReservation();
     $scope.totalPrice = OutReturnSrv.getSelectedPrice();
     $scope.cabin=FlightsSrv.getSelectedCabin();
-    var roundTrip = FlightsSrv.getSelectedRoundTrip();
+    var roundTrip = FlightsSrv.getSelectedRoundTrip();   
+    $scope.outCurrency = outgoingFlight.currency;
     var outgoingFlight= OutReturnSrv.getSelectedOutFlight();
     if(roundTrip == 'true')
         returnFlight = OutReturnSrv.getSelectedReturnFlight();
-    $scope.outCurrency = outgoingFlight.currency;
 
     $scope.tab1 = function() {
         $scope.tab = "active in";
@@ -118,7 +118,7 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
         // var arr2=str4.split(/[ ,]+/);
         // var str3=arr2[1]+"/"+arr2[2];
         //
-        var outFlightNo = OutReturnSrv.getSelectedOutFlight().flightNumber;
+        var outFlightNo = outgoingFlight.flightNumber;
         // var returnFlightNo= OutReturnSrv.getSelectedReturnFlight().flightNumber;
         var str = card + ","  + outFlightNo;
         // +","+outFlightNo+","+returnFlightNo;
