@@ -190,14 +190,14 @@
         "city": "Berlin"
     },
     {
-        "iata": "MXP",
-        "lon": "8.71237",
+        "iata": "LIN",
+        "lon": "9.279157",
         "iso": "IT",
         "status": 1,
-        "name": "Malpensa International Airport",
+        "name": "Linate Airport",
         "continent": "EU",
         "type": "airport",
-        "lat": "45.627403",
+        "lat": "45.460957",
         "size": "large",
         "city": "Milan"
     },
