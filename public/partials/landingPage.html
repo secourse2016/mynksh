@@ -198,7 +198,9 @@
                                     <font class="col-sm-2 col-xs-4 text-right" size="4" color="white"> Returning: </font>
                                     <div class="col-md-8 col-sm-8 col-xs-4">
                                         <p class="input-group">
-                                            <input type="text" class="form-control " min-date="$parent.dto" uib-datepicker-popup="{{format}}" ng-model="$parent.dtr" is-open="popup2.opened"  close-text="Close" alt-input-formats="altInputFormats" />
+
+                                            <input type="text" class="form-control" min-date="$parent.dto" uib-datepicker-popup="{{format}}" ng-model="$parent.dtr" is-open="popup2.opened" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+
                                             <span class="input-group-btn">
                                         <button type="button"
                                         class="btn btn-default "
@@ -229,7 +231,7 @@
                             </br>
 
                             <div class="form-group">
-                                <font class=" col-sm-4 text-left" size="4" color="white"> Ping Other Airlines{{pinging}}
+                                <font class=" col-sm-4 text-left" size="4" color="white"> Ping Other Airlines
                                     <input ng-model="pinging" type="checkbox" value="true" />
                                 </font>
 

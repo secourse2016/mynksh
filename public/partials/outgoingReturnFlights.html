@@ -65,7 +65,7 @@
                                         <td>{{stringToDate(flight.departureDateTime) | date : 'shortTime'}}</td>
                                         <td>{{stringToDate(flight.arrivalDateTime) | date : 'shortTime'}}</td>
                                         <td>{{timediff(flight.departureDateTime,flight.arrivalDateTime)}}</td>
-                                        <td>{{flight.cost | currency:"€"}}</td>
+                                        <td>{{flight.cost | currency: flight.currency+" "}} </td>
                                     </tr>
                                 </form>
                             </tbody>
@@ -100,7 +100,7 @@
                                 <td>{{stringToDate(flight.departureDateTime) | date : 'shortTime'}}</td>
                                 <td>{{stringToDate(flight.arrivalDateTime) | date : 'shortTime'}}</td>
                                 <td>{{timediff(flight.departureDateTime,flight.arrivalDateTime)}}</td>
-                                <td>{{flight.cost | currency:"€"}}</td>
+                                <td>{{flight.cost | currency: flight.currency+" "}}</td>
                             </tr>
                         </form>
                     </tbody>
