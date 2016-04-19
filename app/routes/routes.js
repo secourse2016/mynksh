@@ -36,10 +36,10 @@ module.exports = function(app, mongo) {
         // })
     });
 
-    app.post('/data/bookings', function(req, res) {
-        mongo.getBooking(function(err, bookings) {
-            res.json(bookings);
-        })
+    app.get('/data/bookings/search/:bookingRefNumber', function(req, res) {
+      mongo.searchBookings(req.params.bookingRefNumber, function(err, bookingRef) {
+        res.json(bookingRef);
+      });
     });
 
     app.get('/data/pay/:firstName/:lastName/:passport/:passportNumber/:issueDate/:expiryDate/:email/:phoneNumber/:bookingRefNumber/:flightNumber/:flightCabin', function(req, res) {
@@ -51,12 +51,6 @@ module.exports = function(app, mongo) {
         // var dec = window.atob(enc);
         //
         // var res = enc;
-      });
-    });
-
-    app.get('/api/bookings/search/:bookingRefNumber', function(req, res) {
-      mongo.searchBookings(req.params.bookingRefNumber, function(err, bookingRef) {
-        res.json(bookingRef);
       });
     });
 
