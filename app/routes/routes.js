@@ -6,40 +6,8 @@ module.exports = function(app, mongo) {
 
     /* RENDER MAIN PAGE */
     app.get('/', function(req, res) {
-        res.sendFile(__dirname + '/public/index.html');
+        res.sendFile(__dirname + '../../public/index.html');
     });
-
-    /* GET ALL STATES ENDPOINT */
-    app.get('/api/data/airports', function(req, res) {
-        mongo.getAirports(function(err, airports) {
-            res.json(airports);
-        })
-    });
-
-    app.get('/api/data/airlines', function(req, res) {
-        // mongo.getAirports(function(err, airports) {
-        res.json(airlines);
-        // })
-    });
-
-    app.post('/api/data/bookings', function(req, res) {
-        mongo.getBooking(function(err, bookings) {
-            res.json(bookings);
-        })
-    });
-
-    app.get('/api/pay/:firstName/:lastName/:passport/:passportNumber/:issueDate/:expiryDate/:email/:phoneNumber/:bookingRefNumber/:flightNumber/:flightCabin', function(req, res) {
-      mongo.submitPay(req.params.firstName, req.params.lastName, req.params.passport, req.params.passportNumber, req.params.issueDate, req.params.expiryDate, req.params.email, req.params.phoneNumber, req.params.bookingRefNumber, req.params.flightNumber,req.params.flightCabin,function(err, data) {
-        // console.log('i`m in route');
-      });
-    });
-
-    app.get('/api/bookings/search/:bookingRefNumber', function(req, res) {
-      mongo.searchBookings(req.params.bookingRefNumber, function(err, bookingRef) {
-        res.json(bookingRef);
-      });
-    });
-
 
     /* SEED DB */
     app.get('/db/seed', function(req, res) {
@@ -53,8 +21,47 @@ module.exports = function(app, mongo) {
       res.send("DB clear");
     });
 
+    /* GET ALL STATES ENDPOINT */
+    app.get('/data/airports', function(req, res) {
+        mongo.getAirports(function(err, airports) {
+            res.json(airports);
+        })
+    });
+
+    app.get('/data/airlines', function(req, res) {
+        // mongo.getAirports(function(err, airports) {
+        mongo.getAirLines(function(err, airports) {
+            res.json(airports);
+        })
+        // })
+    });
+
+    app.post('/data/bookings', function(req, res) {
+        mongo.getBooking(function(err, bookings) {
+            res.json(bookings);
+        })
+    });
+
+    app.get('/data/pay/:firstName/:lastName/:passport/:passportNumber/:issueDate/:expiryDate/:email/:phoneNumber/:bookingRefNumber/:flightNumber/:flightCabin', function(req, res) {
+      mongo.submitPay(req.params.firstName, req.params.lastName, req.params.passport, req.params.passportNumber, req.params.issueDate, req.params.expiryDate, req.params.email, req.params.phoneNumber, req.params.bookingRefNumber, req.params.flightNumber,req.params.flightCabin,function(err, data) {
+        // var card = $scope.selectedCardNumber;
+        // var outFlightNo = OutReturnSrv.getSelectedOutFlight().flightNumber;
+        // var str = card + "," + outFlightNo;
+        // var enc = window.btoa(str);
+        // var dec = window.atob(enc);
+        //
+        // var res = enc;
+      });
+    });
+
+    app.get('/api/bookings/search/:bookingRefNumber', function(req, res) {
+      mongo.searchBookings(req.params.bookingRefNumber, function(err, bookingRef) {
+        res.json(bookingRef);
+      });
+    });
+
     /* Middlewear For Secure API Endpoints */
-    app.use(function(req, res, next) {
+    app.use('/api/flights/search',function(req, res, next) {
         // check header or url parameters or post parameters for token
         var token = req.body.wt || req.query.wt || req.headers['x-access-token'];
         // console.log("{{{{ TOKEN }}}} => ", token);
@@ -67,7 +74,7 @@ module.exports = function(app, mongo) {
             next();
         } catch (err) {
             console.error('[ERROR]: JWT Error reason:', err);
-            res.send('403 error');
+            res.status(403).sendFile(__dirname + '../../public/views/error.html');
         }
     });
 

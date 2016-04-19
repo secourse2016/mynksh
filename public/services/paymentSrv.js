@@ -3,7 +3,7 @@ App.factory('paymentSrv', function($http) {
     return {
 
         postPay: function(reservation, bookingRefNumber, flight , cabin) {
-          return $http.get('/api/pay/'+ reservation.FName + '/' + reservation.LName + '/' + reservation.country + '/' + reservation.passportNo+'/'+
+          return $http.get('/data/pay/'+ reservation.FName + '/' + reservation.LName + '/' + reservation.country + '/' + reservation.passportNo+'/'+
             reservation.issueDate+'/'+ reservation.expiryDate + '/' + reservation.email + '/' + reservation.phoneno + '/' + bookingRefNumber+'/'+
             flight.flightNumber+'/'+cabin);
         },

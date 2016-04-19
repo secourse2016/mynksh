@@ -26,6 +26,7 @@ var server = http.createServer(app);
 
 server.listen(port, function() {
     console.log('App is ON and listening on PORT:' + port);
+    require('./config/db').init(process.env.MONGODB_URL);
 });
 server.on('error', onError);
 server.on('listening', onListening);

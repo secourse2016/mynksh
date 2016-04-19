@@ -7,7 +7,7 @@ App.controller('bookingRefCtrl', function($scope, FlightsSrv, $location, Booking
     $scope.bookingref = BookingSrv.getSelectedBookingRef();
 
     $scope.retreiveBookingRef = function() {
-      $http.get('/api/bookings/search/' + BookingSrv.getSelectedBookingRef()).success(function(flight) {
+      $http.get('/data/bookings/search/' + BookingSrv.getSelectedBookingRef()).success(function(flight) {
              // if(flight.length ==1){
               var firstName = flight[0].firstName;
               var lastName = flight[0].lastName;
@@ -26,7 +26,7 @@ App.controller('bookingRefCtrl', function($scope, FlightsSrv, $location, Booking
                var originR=flight[1].origin;
                var destinationR=flight[1].destination;
             }
-        console.log(flight);        
+        console.log(flight);
         var input = BookingSrv.getSelectedBookingRef();
         //var div = document.getElementById('divID');
 
@@ -39,12 +39,12 @@ App.controller('bookingRefCtrl', function($scope, FlightsSrv, $location, Booking
         var visaNum = arr[0];
         var outDate = arr[1];
         // var flightNumO = arr[2];
-        var res = "Hello, " +firstName + " " + lastName + "!" + 
+        var res = "Hello, " +firstName + " " + lastName + "!" +
         "<br>" + "Your Passport is " + passport + "<br>" +"Your Visa Number is " + visaNum +"<br>"
          + "Your Seat Number in the flight from "+originO+" on "+arrivalTimeO+" to "+destinationO+" on "+departureTimeO+" is "+seatO+
           "<br>"+ "Your Flight number is " + flightNumO;
           if(flight.length==2){
-            var res = "Hello, " + firstName + " " + lastName + "!" + 
+            var res = "Hello, " + firstName + " " + lastName + "!" +
         "<br>" + "Your Passport is " + passport + "<br>" +"Your Visa Number is " + visaNum +"<br>"
          + "Your Seat Number on the flight from "+originO+" on "+arrivalTimeO+" to "+destinationO+" on "+
          departureTimeO+" is "+seatO+ "<br>"+ "Your Flight number is " + flightNumO+"<br>"+"Your Seat Number on the flight from "
