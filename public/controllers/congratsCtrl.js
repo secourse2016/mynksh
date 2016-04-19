@@ -4,4 +4,6 @@ App.controller('congratsCtrl', function($scope, $location,paymentSrv) {
             //     $location.url('/congrats');
             // };
 
+            
+
         }
