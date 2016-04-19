@@ -9,6 +9,18 @@ module.exports = function(app, mongo) {
         res.sendFile(__dirname + '/public/index.html');
     });
 
+    /* SEED DB */
+    app.get('/db/seed', function(req, res) {
+      mongo.seedDB();
+      res.send("Seeding done");
+    });
+
+    /* DELETE DB */
+    app.get('/db/delete', function(req, res) {
+      mongo.clearDB();
+      res.send("DB clear");
+    });
+
     /* GET ALL STATES ENDPOINT */
     app.get('/api/data/airports', function(req, res) {
         mongo.getAirports(function(err, airports) {
@@ -44,19 +56,6 @@ module.exports = function(app, mongo) {
       mongo.searchBookings(req.params.bookingRefNumber, function(err, bookingRef) {
         res.json(bookingRef);
       });
-    });
-
-
-    /* SEED DB */
-    app.get('/db/seed', function(req, res) {
-      mongo.seedDB();
-      res.send("Seeding done");
-    });
-
-    /* DELETE DB */
-    app.get('/db/delete', function(req, res) {
-      mongo.clearDB();
-      res.send("DB clear");
     });
 
     /* Middlewear For Secure API Endpoints */
