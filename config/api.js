@@ -124,8 +124,7 @@ exports.submitPay = function(firstName, lastName, passport, passportNumber, issu
         collection.find({
             "flightNumber": flightNumber
         }).toArray(function(err, flights) {
-            // changed the condition from flights.length == 0 to this as the previous was not working -Kefa7y
-            if (flights === undefined) {
+            if (flights.length === 0) {
                 cb(err, false);
                 mongo.close();
                 return;
