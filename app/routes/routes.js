@@ -30,8 +30,8 @@ module.exports = function(app, mongo) {
 
     app.get('/data/airlines', function(req, res) {
         // mongo.getAirports(function(err, airports) {
-        mongo.getAirLines(function(err, airports) {
-            res.json(airports);
+        mongo.getAirLines(function(err, airLines) {
+            res.json(airLines);
         })
         // })
     });
