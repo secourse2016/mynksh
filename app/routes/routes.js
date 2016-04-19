@@ -41,17 +41,17 @@ module.exports = function(app, mongo) {
     });
 
 
-    /* SEED DB */
-    app.get('/db/seed', function(req, res) {
-      mongo.seedDB();
-      res.send("Seeding done");
-    });
+    // /* SEED DB */
+    // app.get('/db/seed', function(req, res) {
+    //   mongo.seedDB();
+    //   res.send("Seeding done");
+    // });
 
-    /* DELETE DB */
-    app.get('/db/delete', function(req, res) {
-      mongo.clearDB();
-      res.send("DB clear");
-    });
+    // /* DELETE DB */
+    // app.get('/db/delete', function(req, res) {
+    //   mongo.clearDB();
+    //   res.send("DB clear");
+    // });
 
     /* Middlewear For Secure API Endpoints */
     app.use(function(req, res, next) {
