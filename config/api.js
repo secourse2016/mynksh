@@ -10,11 +10,11 @@ exports.seedDB = function(cb) {
         mongo.clearDB(function(err) {
             assert.equal(null, err);
             mongo.seed('flights', flights, function() {
-                mongo.seed('bookings', bookings, function() {
+                // mongo.seed('bookings', bookings, function() {
                 mongo.seed('airports', airports, function() {
                     mongo.close();
                 });
-                });
+                // });
             });
         });
 
@@ -66,7 +66,7 @@ exports.searchFlights = function(origin, destination, departingDate, cabin, cb) 
                 '$regex': departingDate
             }
         }).toArray(function(err, flights) {
-            if (flights[0] == undefined) {
+            if (flights.length === 0) {
                 cb(err, []);
             } else {
                 if (economyOrBusiness == "economy")
