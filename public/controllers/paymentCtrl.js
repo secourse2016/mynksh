@@ -36,7 +36,7 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
     var postAPay = function() {
         if (roundTrip == 'true')
             paymentSrv.postPay($scope.reservation, outgoingFlight, returnFlight, $scope.cabin).success(function(data){
-                paymentSrv.setBookingRefNo(data.encoding);
+               paymentSrv.setBookingRefNo(data.encoding);
             });
         else 
             paymentSrv.postPay($scope.reservation, outgoingFlight, $scope.cabin).success(function(data){
