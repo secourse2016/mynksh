@@ -113,8 +113,6 @@ exports.searchFlights = function(origin, destination, departingDate, cabin, cb) 
 
 exports.submitPay = function(firstName, lastName, passport, passportNumber, issueDate, expiryDate, email, phoneNumber, bookingRefNumber, flightNumber, businessOrEconomic, cb) {
     var selectedSeat = 0;
-    // console.log('i`m in api');
-    // mongo.connect(function(err, db) {
     // update after find free seat
     var collection = mongo.db().collection('flights');
     collection.find({
@@ -122,7 +120,6 @@ exports.submitPay = function(firstName, lastName, passport, passportNumber, issu
     }).toArray(function(err, flights) {
         if (flights.length === 0) {
             cb(err, false);
-            // mongo.close();
             return;
         }
         //  remove then insert
@@ -217,4 +214,38 @@ exports.searchBookings = function(bookingRef, cb) {
         // mongo.close();
         // });
     });
+
+exports.generateBookingRef = function(){
+    var selectedSeat = 0;
+    // update after find free seat
+    var collection = mongo.db().collection('flights');
+    collection.find({
+        "flightNumber": flightNumber
+    }).toArray(function(err, flights) {
+        if (flights.length === 0) {
+            cb(err, false);
+            return;
+        }
+        //  remove then insert
+        if (businessOrEconomic === "true") { // economy
+            //check on availableESeats of economy
+            if (!(flights[0].availableESeats === 0)) {
+                selectedSeat = flights[0].nextEcoSeat;
+                flights[0].availableESeats = flights[0].availableESeats - 1;
+                flights[0].nextEcoSeat = flights[0].nextEcoSeat - 1;
+            }
+            // if avaliable dec availableESeats and dec next Eseat
+
+        } else {
+            //check on availableESeats of business
+            if (!(flights[0].availableBSeats === 0)) {
+                selectedSeat = flights[0].nextBusSeat;
+                flights[0].availableBSeats = flights[0].availableBSeats - 1;
+                flights[0].nextBusSeat = flights[0].nextBusSeat + 1;
+
+            }
+            // if avaliable dec availableBSeats and inc next Bseat
+        }
+}};
+
 }

@@ -35,9 +35,10 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
 
     var postAPay = function() {
         $scope.bookingRefNumber = $scope.getBookingRef();
-        paymentSrv.postPay($scope.reservation, $scope.bookingRefNumber, outgoingFlight, $scope.cabin);
         if (roundTrip == 'true')
-            paymentSrv.postPay($scope.reservation, $scope.bookingRefNumber, returnFlight, $scope.cabin);
+            paymentSrv.postPay($scope.reservation, $scope.bookingRefNumber, outgoingFlight, returnFlight, $scope.cabin);
+        else 
+            paymentSrv.postPay($scope.reservation, $scope.bookingRefNumber, outgoingFlight, $scope.cabin);
     };
 
     var SetCardType = function(value) {
