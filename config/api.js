@@ -214,10 +214,10 @@ exports.searchBookings = function(bookingRef, cb) {
         // mongo.close();
         // });
     });
+};
 
-exports.generateBookingRef = function(){
+exports.generateBookingRef = function(flightNumber,businessOrEconomic ,cb){
     var selectedSeat = 0;
-    // update after find free seat
     var collection = mongo.db().collection('flights');
     collection.find({
         "flightNumber": flightNumber
@@ -226,26 +226,17 @@ exports.generateBookingRef = function(){
             cb(err, false);
             return;
         }
-        //  remove then insert
-        if (businessOrEconomic === "true") { // economy
-            //check on availableESeats of economy
-            if (!(flights[0].availableESeats === 0)) {
+        if (businessOrEconomic === "true") {
+            if (!(flights[0].availableESeats === 0)) 
                 selectedSeat = flights[0].nextEcoSeat;
-                flights[0].availableESeats = flights[0].availableESeats - 1;
-                flights[0].nextEcoSeat = flights[0].nextEcoSeat - 1;
-            }
-            // if avaliable dec availableESeats and dec next Eseat
-
         } else {
-            //check on availableESeats of business
-            if (!(flights[0].availableBSeats === 0)) {
+            if (!(flights[0].availableBSeats === 0)) 
                 selectedSeat = flights[0].nextBusSeat;
-                flights[0].availableBSeats = flights[0].availableBSeats - 1;
-                flights[0].nextBusSeat = flights[0].nextBusSeat + 1;
-
             }
-            // if avaliable dec availableBSeats and inc next Bseat
-        }
-}};
+        seatnum = flights[0].SeatMap[selectedSeat].seatNum;
+        var encoded = new Buffer(seatnum + ','+ flightNumber).toString('base64');
+        cb(err , encoded);
+    });
+};
 
-}
+
