@@ -168,7 +168,8 @@ exports.submitPay = function(firstName, lastName, passport, passportNumber, issu
                 "arrivalTime": flights[0].arrivalTime,
                 "nextEcoSeat": flights[0].nextEcoSeat,
                 "aircraftModel": flights[0].aircraftModel,
-                "SeatMap": flights[0].SeatMap
+                "SeatMap": flights[0].SeatMap,
+                "eCost": flights[0].eCost
             };
 
             collection.insertOne(document, {
