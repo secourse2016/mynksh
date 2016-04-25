@@ -1,6 +1,7 @@
 var jwt = require('jsonwebtoken');
 var moment = require('moment');
 var airlines = require('../../modules/airLines.json');
+var http = require('http');
 
 module.exports = function(app, mongo) {
 
@@ -11,14 +12,14 @@ module.exports = function(app, mongo) {
 
     /* SEED DB */
     app.get('/db/seed', function(req, res) {
-      mongo.seedDB();
-      res.send("Seeding done");
+        mongo.seedDB();
+        res.send("Seeding done");
     });
 
     /* DELETE DB */
     app.get('/db/delete', function(req, res) {
-      mongo.clearDB();
-      res.send("DB clear");
+        mongo.clearDB();
+        res.send("DB clear");
     });
 
     /* GET ALL STATES ENDPOINT */
@@ -31,31 +32,67 @@ module.exports = function(app, mongo) {
     app.get('/data/airlines', function(req, res) {
         // mongo.getAirports(function(err, airports) {
         mongo.getAirLines(function(err, airLines) {
-            res.json(airLines);
-        })
-        // })
+                res.json(airLines);
+            })
+            // })
     });
 
     app.get('/data/bookings/search/:bookingRefNumber', function(req, res) {
-      mongo.searchBookings(req.params.bookingRefNumber, function(err, bookingRef) {
-        res.json(bookingRef);
-      });
+        mongo.searchBookings(req.params.bookingRefNumber, function(err, bookingRef) {
+            res.json(bookingRef);
+        });
     });
 
     app.get('/data/pay/:firstName/:lastName/:passport/:passportNumber/:issueDate/:expiryDate/:email/:phoneNumber/:bookingRefNumber/:flightNumber/:flightCabin', function(req, res) {
-      mongo.submitPay(req.params.firstName, req.params.lastName, req.params.passport, req.params.passportNumber, req.params.issueDate, req.params.expiryDate, req.params.email, req.params.phoneNumber, req.params.bookingRefNumber, req.params.flightNumber,req.params.flightCabin,function(err, data) {
-        // var card = $scope.selectedCardNumber;
-        // var outFlightNo = OutReturnSrv.getSelectedOutFlight().flightNumber;
-        // var str = card + "," + outFlightNo;
-        // var enc = window.btoa(str);
-        // var dec = window.atob(enc);
-        //
-        // var res = enc;
-      });
+        mongo.submitPay(req.params.firstName, req.params.lastName, req.params.passport, req.params.passportNumber, req.params.issueDate, req.params.expiryDate, req.params.email, req.params.phoneNumber, req.params.bookingRefNumber, req.params.flightNumber, req.params.flightCabin, function(err, data) {
+            // var card = $scope.selectedCardNumber;
+            // var outFlightNo = OutReturnSrv.getSelectedOutFlight().flightNumber;
+            // var str = card + "," + outFlightNo;
+            // var enc = window.btoa(str);
+            // var dec = window.atob(enc);
+            //
+            // var res = enc;
+        });
+    });
+
+    app.get('/api/others/search/:ip/:origin/:destination/:departingDate/:returningDate/:cabin/:wt', function(req, res1) {
+        var options = {
+            host: req.params.ip,
+            path: '/api/flights/search/' + req.params.origin + '/' + req.params.destination + '/' + req.params.departingDate +
+                '/' + req.params.returningDate + '/' + req.params.cabin + '/?wt=' + req.params.wt,
+            json: true
+        };
+        http.get(options, function(res) {
+                var body = '';
+                res.on('data', function(chunk) {
+                    body += chunk;
+                });
+                res.on('end', function() {
+                    try {
+                        var fbResponse = JSON.parse(body);
+                        res1.send(fbResponse);
+                    } catch (err) {}
+                });
+            })
+            .on('error', function(e) {
+                // res1.status(500).send("Error");
+                // console.log(e);
+            })
+            .setTimeout(1000, function() {
+                res1.status(500).send("Error");
+                this.abort();
+            });
+    });
+
+    app.get('/api/others/search/:ip/:origin/:destination/:departingDate/:cabin/:wt', function(req, res) {
+        http.get("http://" + req.params.ip + '/api/flights/search/' + req.params.origin + '/' + req.params.destination + '/' + req.params.departingDate +
+            '/' + req.params.returningDate + '/' + req.params.cabin + '/?wt=' + req.params.wt).success(function(flights) {
+            res.json(flights);
+        });
     });
 
     /* Middlewear For Secure API Endpoints */
-    app.use('/api/flights/search',function(req, res, next) {
+    app.use('/api/flights/search', function(req, res, next) {
         // check header or url parameters or post parameters for token
         var token = req.body.wt || req.query.wt || req.headers['x-access-token'];
         // console.log("{{{{ TOKEN }}}} => ", token);
