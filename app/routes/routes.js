@@ -85,7 +85,6 @@ module.exports = function(app, mongo) {
                         res1.status(500).send("Error");
                     } catch (err) {}
                 }
-                // this.abort();
             });
         }).on('error', function(e) {
             clearTimeout(timeout);
@@ -101,11 +100,49 @@ module.exports = function(app, mongo) {
         var timeout = setTimeout(fn, 1000);
     });
 
-    app.get('/api/others/search/:ip/:origin/:destination/:departingDate/:cabin/:wt', function(req, res) {
-        http.get("http://" + req.params.ip + '/api/flights/search/' + req.params.origin + '/' + req.params.destination + '/' + req.params.departingDate +
-            '/' + req.params.returningDate + '/' + req.params.cabin + '/?wt=' + req.params.wt).success(function(flights) {
-            res.json(flights);
+    app.get('/api/others/search/:ip/:origin/:destination/:departingDate/:cabin/:wt', function(req, res1) {
+        var options = {
+            host: req.params.ip,
+            path: '/api/flights/search/' + req.params.origin + '/' + req.params.destination + '/' + req.params.departingDate +
+                  '/' + req.params.cabin + '/?wt=' + req.params.wt,
+            json: true
+        };
+        var timeout_wrapper = function(req) {
+            return function() {
+                // do some logging, cleaning, etc. depending on req
+                req.abort();
+            };
+        };
+        var request = http.get(options, function(res) {
+            var body = '';
+            res.on('data', function(chunk) {
+                body += chunk;
+                clearTimeout(timeout);
+                timeout = setTimeout(fn, 10000);
+            });
+            res.on('end', function() {
+                try {
+                    clearTimeout(timeout);
+                    var fbResponse = JSON.parse(body);
+                    res1.send(fbResponse);
+                } catch (err) {
+                    try {
+                        res1.status(500).send("Error");
+                    } catch (err) {}
+                }
+            });
+        }).on('error', function(e) {
+            clearTimeout(timeout);
+            try {
+                res1.status(500).send("Error");
+            } catch (err) {}
+            this.abort();
         });
+        // generate timeout handler
+        var fn = timeout_wrapper(request);
+
+        // set initial timeout
+        var timeout = setTimeout(fn, 1000);
     });
 
     /* Middlewear For Secure API Endpoints */
