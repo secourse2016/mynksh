@@ -193,5 +193,28 @@ module.exports = function(app, mongo) {
             res.json(flights);
         });
     });
+    app.post('/booking', function(req, res) {
+
+    // retrieve the token
+    var stripeToken = req.body.paymentToken;
+    var flightCost  = req.body.cost;
+
+    // attempt to create a charge using token
+    stripe.charges.create({
+      amount: flightCost,
+      currency: "Euro",
+      source: stripeToken,
+      description: "test"
+    }, function(err, data) {
+    if (err) res.send({ refNum: null, errorMessage: err});
+    else
+       // payment successful
+       // create reservation in database
+       // get booking reference number and send it back to the user
+       // mongo.ad
+
+    });
+
+});
 
 };
