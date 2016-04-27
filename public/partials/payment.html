@@ -95,7 +95,7 @@
                                             <div class="form-group row">
                                                 <font size="3" color="black" class="col-sm-4 text-left">Security code<font color="red" >*</font>:</font>
                                                 <div class="col-md-8 col-sm-8 text-left">
-                                                    <input type="number" class="form-control" name="CVV" placeholder="CVV" ng-model="selectedCVV" ng-required='true' ng-minlength='3' ng-maxlength='3'>
+                                                    <input type="number" class="form-control" name="CVV" placeholder="CVC" ng-model="selectedCVV" ng-required='true' ng-minlength='3' ng-maxlength='3'>
                                                 </div>
                                                 <span style='color:red' ng-show='(reviewForm.CVV.$error.number || reviewForm.CVV.$error.required) && reviewForm.CVV.$dirty'>A valid card number is required.</span>
                                                 <span style='color:red' ng-show='(reviewForm.CVV.$error.minlength || reviewForm.CVV.$error.maxlength) && reviewForm.CVV.$dirty'>Card number must be 3 digits.</span>
@@ -234,13 +234,15 @@
                     <div class="col-md-12">
 
                         <div class="col-md-12 col-sm-12 text-right">
-                            <button type="button" class="btn btn-primary btn-lg" style="background:rgba(178,34,34, 1)" ng-disabled="reviewForm.$invalid || !accepted" ng-click=" payAction();">Pay</button>
+                            <button type="button" class="btn btn-primary btn-lg" style="background:rgba(178,34,34, 1)" ng-disabled="reviewForm.$invalid || !accepted || stripeError" ng-click=" payAction();">Pay</button>
 
                             <a href="http://mynksh.com">
                                 <button type="button" class="btn btn-primary btn-lg" style="background:rgba(178,34,34, 1)">Cancel</button>
                             </a>
                             <div ng-show="reviewForm.$invalid || !accepted">
                                 <h4 style="color=" white "">  please complete all form entry first   </h4> </div>
+                            <div ng-show="stripeError">
+                                <h4 style="color=" white ""> {{stripeErrorDescription}}  </h4> </div>
                         </div>
                         </br>
                         </br>
