@@ -28,11 +28,17 @@
 
 
 <div id="viewport" style="width: 1000px; height: 1000px;">
+    <div class="mainContainer col-lg-12" style="border-radius: 25px;">
+        <br>
+        <p>Booking Reference:(please copy it for further tracking): </p>
+        <textarea class="js-copytextarea"readonly>{{bookingRefNo}}</textarea>
+        <button class="js-textareacopybtn" ng-click='copy();'>Copy Textarea</button>
+
+    </div>
     <canvas id="sky" width="1217" height="1000">
     </canvas>
     <!-- Based on public domain image
             http://pixabay.com/en/aeroplane-aircraft-airplane-flight-161999/ -->
-
     <div class="marquee">
 
         <a href='http://mynksh.com'>
@@ -44,7 +50,7 @@
 
 </div>
 
-
+<!-- 
 <script type="text/javascript" src="../js/congrats.js"></script>
 
 <script type="text/javascript">
@@ -56,3 +62,4 @@
         }, 60000);
     });
 </script>
+ -->

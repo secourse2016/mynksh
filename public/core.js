@@ -36,8 +36,9 @@ App.config(function($routeProvider) {
     // // route for the congrats page
 
     .when('/congrats', {
-        templateUrl: '/partials/congrats.html'
-
+        templateUrl: '/partials/congrats.html',
+        controller: 'congratsCtrl',
+        controllerAs: 'congrats'
     })
 
     // route for the booking Reference page

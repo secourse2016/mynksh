@@ -38,11 +38,11 @@ App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $locati
                 $http.get('/api/others/search/'+ c.ip + '/' + origin + '/' + dest + '/' + departDate + '/' + outDate + '/' + tclass + '/' + jwt).success(function(flight) {
                   console.log(flight);
                     if (flight.outgoingFlights != undefined && flight.outgoingFlights[0] != undefined && flight.outgoingFlights[0] != undefined && flight.outgoingFlights[0].length != 0) {
-                        flight.outgoingFlights[0].cost = Number(flight.outgoingFlights[0].cost)
+                        flight.outgoingFlights[0].cost = Number(flight.outgoingFlights[0].cost);
                         $scope.outgoingInfo.push(flight.outgoingFlights[0]);
                     }
                     if (flight.returnFlights != undefined && flight.returnFlights[0] != undefined && flight.returnFlights[0] != undefined && flight.returnFlights[0].length != 0) {
-                        flight.outgoingFlights[0].cost = Number(flight.outgoingFlights[0].cost)
+                        flight.returnFlights[0].cost = Number(flight.returnFlights[0].cost);
                         $scope.returnInfo.push(flight.returnFlights[0]);
                     }
                     // console.log(flight.outgoingFlights);
@@ -59,7 +59,7 @@ App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $locati
                 jwt = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJNWU5LU0giLCJpYXQiOjE0NjA3NzIyOTQsImV4cCI6MTQ5MjMwODI5NSwiYXVkIjoid3d3LnNlY291cnNlLmNvbSIsInN1YiI6Ik1ZTktTSCBJYmVyaWEiLCJUZWFtIjoiTVlOS1NIIn0.hZxhv8XAcu1cARgcrtfb0l_crF1-Ic1tJt9eUhIL0qQ';
                 $http.get('/api/others/search/' + c.ip + '/' + origin + '/' + dest + '/' + departDate + '/' + tclass + '/' + jwt).success(function(flight) {
                     if (flight.outgoingFlights != undefined && flight.outgoingFlights[0] != undefined && flight.outgoingFlights[0] != undefined && flight.outgoingFlights[0].length != 0) {
-                        flight.outgoingFlights[0].cost = Number(flight.outgoingFlights[0].cost)
+                        flight.outgoingFlights[0].cost = Number(flight.outgoingFlights[0].cost);
                         $scope.outgoingInfo.push(flight.outgoingFlights[0]);
                     }
                     // console.log(flight.outgoingFlights);
