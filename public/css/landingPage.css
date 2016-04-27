@@ -17,6 +17,12 @@
     border-color: #FFF;
     margin-right: 15px;
 }
+.ng-invalid.ng-dirty {
+    border-color: #FA787E;
+}
+.ng-valid.ng-dirty {
+    border-color: #78FA89;
+}
 .btn-clear:hover
 {
     color: #000;

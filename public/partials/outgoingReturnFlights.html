@@ -19,7 +19,7 @@
     </div>
 </div>
 
-<section id="section-download" class="download-wrap" style="background: rgba(255,255,255, .8)">
+<section id="section-download" class="download-wrap" style="background: rgba(255,255,255, .8); height:100%">
     <div class="container download center">
         <div class='content'>
             <div class="col-md-10 col-md-offset-1 text-center">
@@ -30,7 +30,13 @@
         	margin-top: 0;
         	padding: 8px 0;text-align: center;">Flights </font><br><br></h3>
             </div>
-
+            <div class="form-group">
+            <div ng-hide="outFlightFound">
+               <h3>There are no flights available on selected date. Go back to
+               <a href= "http://mynksh.com">Iberia</a>.</h3>
+            </div>
+          </div>
+            <div ng-show="outFlightFound" >
             <h1 class="animated fadeInDown header-font">Select your flights</h1>
             <div id='outgoing'>
                 <div class="animated slideInLeft">
@@ -67,9 +73,10 @@
                             </tbody>
                 </table>
             </div>
+
             <div ng-show="roundTrip === 'true'">
                 <h1 class="animated fadeInDown header-font">Now select your return flight</h1>
-                <div id='return' class="animated slideInRight">
+                <div id='return'  class="animated slideInRight">
                     <h3><img src='../assets/returnPlane.png'>Return: From {{dest}} to {{origin}}<small></br>{{rDate |date}}</small></h3>
                 </div>
                 <table class="table table-striped table-hover table-bordered animated fadeInDown">
@@ -109,8 +116,8 @@
                 </blockquote>
                 <a href class="btn btn-primary btn-lg hvr-underline-from-center" ng-click='BookFlight()'>Book Flight</a>
             </div>
+        </div>
             </br>
-            {{selectedOutgoingFlight}}
         </div>
     </div>
 </section>

@@ -5,9 +5,11 @@ App.controller('confirmCtrl', function($scope, FlightsSrv, OutReturnSrv, Confirm
     if ($scope.roundTrip === 'true')
         $scope.selectedReturnFlight = OutReturnSrv.getSelectedReturnFlight();
 
+    $scope.tickets = 1;
+    // $scope.tickets= 2;
     $scope.price = OutReturnSrv.getSelectedPrice();
     $scope.currentDate = new Date();
-
+    $scope.min = Math.min;
     $scope.format = 'd/M/yyyy'
 
     var setTicketEmail = function(value) {
@@ -24,8 +26,6 @@ App.controller('confirmCtrl', function($scope, FlightsSrv, OutReturnSrv, Confirm
     $scope.isGreaterThanTickets = function(num) {
         return num < $scope.number;
     };
-
-    $scope.reservation = [];
 
     $scope.goToPayment = function() {
         setTicketPhoneNo($scope.typedPhoneno);

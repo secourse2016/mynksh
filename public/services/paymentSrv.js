@@ -1,33 +1,23 @@
-/**
- * payment Service
- */
+
 App.factory('paymentSrv', function($http) {
     return {
-        postPay: function(firstName , lastName , passport , passportNumber , issueDate , expiryDate , email , phoneNumber , bookingRefNumber, flightNumber) {
-          console.log('i`m in srv');
-          return $http.get('/api/pay/'+ firstName + '/' + lastName + '/' + passport + '/' + passportNumber+'/'+issueDate+'/'+ expiryDate + '/' + email + '/' + phoneNumber + '/' + bookingRefNumber+'/'+flightNumber);
-      },
-        getCountry: function() {
-            return $http.get('/api/data/airports');
-        },
-        setSelectedCountry: function(value) {
-            this.SelectedCountry = value;
-        },
-        getSelectedCountry: function(value) {
-            this.SelectedCountry = value;
-        },
 
+        postPay: function(reservation, bookingRefNumber, flight , cabin) {
+          return $http.get('/data/pay/'+ reservation.FName + '/' + reservation.LName + '/' + reservation.country + '/' + reservation.passportNo+'/'+
+            reservation.issueDate+'/'+ reservation.expiryDate + '/' + reservation.email + '/' + reservation.phoneno + '/' + bookingRefNumber+'/'+
+            flight.flightNumber+'/'+cabin);
+        },
         getSelectedCardType: function() {
             return this.SelectedCardType;
         },
         setSelectedCardType: function(value) {
             this.SelectedCardType = value;
         },
-        getSelectedCaradNo: function() {
-            return this.SelectedCaradNo;
+        getSelectedCardNo: function() {
+            return this.SelectedCardNo;
         },
-        setSelectedCaradNo: function(value) {
-            this.SelectedCaradNo = value;
+        setSelectedCardNo: function(value) {
+            this.SelectedCardNo = value;
         },
         getSelectedMonth: function() {
             return this.SelectedMonth;
@@ -47,44 +37,22 @@ App.factory('paymentSrv', function($http) {
         setSelectedCVV: function(value) {
             this.SelectedCVV = value;
         },
-
-
-
-
-        getSelectedFirstName: function() {
-            return this.selectedFirstName;
-        },
-        setSelectedFirstName: function(value) {
-            this.selectedFirstName = value;
-        },
-        getSelectedSurname: function() {
-            return this.selectedSurname;
-        },
-        setSelectedSurname: function(value) {
-            this.selectedSurname = value;
-        },
-        getSelectedPassengers: function() {
-            return this.SelectedPassengers;
-        },
-        setSelectedPassengers: function(value) {
-            this.SelectedPassengers = value;
-        },
         getSelectedStreet: function() {
             return this.selectedStret;
         },
-        setselectedStret: function(value) {
+        setSelectedStreet: function(value) {
             this.selectedStret = value;
         },
-        getSelectedinformation: function() {
+        getSelectedInformation: function() {
             return this.Selectedinformation;
         },
-        setSelectedinformation: function(value) {
+        setSelectedInformation: function(value) {
             this.Selectedinformation = value;
         },
         getSelectedPostalcode: function() {
             return this.selectedPostalcode;
         },
-        setselectedPostalcode: function(value) {
+        setSelectedPostalcode: function(value) {
             this.selectedPostalcode = value;
         },
         getSelectedCity: function() {

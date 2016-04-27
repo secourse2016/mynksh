@@ -4,7 +4,7 @@
 App.factory('FlightsSrv', function($http) {
     return {
         getAirportCodes: function() {
-            return $http.get('/api/data/airports');
+            return $http.get('/data/airports');
         },
         setSelectedOriginAirport: function(value) {
             this.selectedOriginAirport = value;
@@ -41,6 +41,12 @@ App.factory('FlightsSrv', function($http) {
         },
         getSelectedCabin: function() {
             return this.selectedCabin;
+        },
+        setPinging: function(value) {
+            this.selectedPinging = value;
+        },
+        getPinging: function() {
+            return this.selectedPinging;
         }
 
     };

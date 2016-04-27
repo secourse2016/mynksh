@@ -1,0 +1,285 @@
+
+
+
+
+
+<!--==== Essential files ====-->
+<script type="text/javascript" src="js/jquery-2.2.0.min.js"></script>
+<script type="text/javascript" src="js/modernizr.js"></script>
+<script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
+
+<!--==== Scroll and navigation plugins ====-->
+<script type="text/javascript" src="js/jquery.nav.js"></script>
+<script type="text/javascript" src="js/jquery.appear.js"></script>
+<script type="text/javascript" src="js/jquery.fitvids.js"></script>
+
+<!--==== Custom Script files ====-->
+<script type="text/javascript" src="js/custom.js"></script>
+<script type="text/javascript" src="js/jquery.vegas.min.js"></script>
+
+<!--==== Slider and Card style plugin ====-->
+<link rel="stylesheet" href="css/animate.css" />
+<script type="text/javascript" src="js/jquery.baraja.js"></script>
+<link rel="stylesheet" href="css/baraja.css" />
+<script type="text/javascript" src="js/jquery.bxslider.min.js"></script>
+<link rel="stylesheet" href="css/font-awesome.min.css" />
+<link rel="stylesheet" href="css/fancy-buttons.css" />
+
+<!--=== Other CSS files ===-->
+
+  <script type="text/javascript" src="./js/typed.js"></script>
+<script>
+    $(function() {
+        $("#typed").typed({
+            // strings: ["Typed.js is a <strong>jQuery</strong> plugin.", "It <em>types</em> out sentences.", "And then deletes them.", "Try it out!"],
+            stringsElement: $('#typed-strings'),
+            typeSpeed: 30,
+            backDelay: 500,
+            loop: true,
+            contentType: 'html', // or text
+            // defaults to false for infinite loop
+            loopCount: false,
+            resetCallback: function() {
+                newTyped();
+            }
+        });
+        $(".reset").click(function() {
+            $("#typed").typed('reset');
+        });
+    });
+</script>
+<!--=== Main Stylesheets ===-->
+<link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="css/responsive.css" />
+
+<script type="text/javascript" src="js/jquery.ajaxchimp.min.js"></script>
+
+    <!-- sticky-bar Starts-->
+    <div id="header" class="header-section">
+        <!-- sticky-bar Starts-->
+        <div class="sticky-bar-wrap">
+            <div class="sticky-section">
+                <div id="topbar-hold" class="nav-hold container">
+                    <nav class="navbar" role="navigation">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a href='http://mynksh.com'>
+                                <span><img src="./assets/iberia-logo.png"></span>
+                            </a>
+                        </div>
+
+                        <!-- Main Navigation menu Starts -->
+                        <div class="collapse navbar-collapse navbar-responsive-collapse">
+                            <ul class="nav navbar-nav navbar-right">
+                                <li class="current"><a href="#header">Home</a></li>
+                                <li ><a href="#section-feature">Names</a></li>
+                                <li ><a href="#section-feature">Accounts</a></li>
+                                <li ><a href="#section-feature">Send Feedback</a></li>
+                            </ul>
+                        </div>
+                        <!-- Main Navigation menu ends-->
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+
+    <div id="section-home" class="home-section-wrap center">
+        <div class="section-overlay"></div>
+        <div class="container home">
+            <div class="row">
+                <h1 class="well-come">Team Members</h1>
+                <div class="col-md-8 col-md-offset-2">
+                    <p class="intro-message">The MYNKSH Team</p>
+                    <div class="type-wrap">
+                        <div id="typed-strings">
+                            <p><font color="white">The <strong>BOND</strong> unites us.</font></p>
+                            <p><font color="white">The <strong>M</strong> Mostafa Ibrahim.</font></p>
+                            <p><font color="white">The <strong>Y</strong> Yara Sobhy.</font></p>
+                            <p><font color="white">The <strong>Y</strong> Youssef Radi.</font></p>
+                            <p><font color="white">The <strong>N</strong> Narihan Ellaithy.</font></p>
+                            <p><font color="white">The <strong>K</strong> Mohamed Kefahy.</font></p>
+                            <p><font color="white">The <strong>S</strong> Safa Ads.</font></p>
+                            <p><font color="white">The <strong>H</strong> Hazem Ayman.</font></p>
+                            <p><font color="white">And we are <strong>MYNKSH</strong></font></p>
+                        </div>
+                        <span id="typed" style="white-space:pre;"></span>
+                        </br>
+                        </br>
+                        </br>
+                        </br>
+                        </br>
+                        </br>
+                        </br>
+                        </br>
+                        </br>
+                        </br>
+                        </br>
+                        </br>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+</div>
+
+<section id="section-feature" class="feature-wrap" style="background: rgba(128,0,0, 1)">
+    <div class="container features center" >
+        <div class="row">
+            <div class="col-lg-12">
+                <!--Features container Starts -->
+                <ul id="card-ul" class="features-hold baraja-container">
+
+                    <!-- Single Feature Starts -->
+                    <li class="single-feature" title="Card style">
+                        <img src="images/1.jpg" alt="" class="feature-image" />
+                        <!-- Feature Icon -->
+                        <h4 class="feature-title color-scheme">Narihan Ellaithy</h4>
+                        <p class="feature-text">
+                            Front-End Developer
+                        </p>
+
+                        <a href="https://www.facebook.com/narihanellaithy" class="fancy-button button-line btn-col small vertical">
+										Details
+										<span class="icon">
+											<i class="fa fa-leaf"></i>
+										</span>
+									</a>
+
+                    </li>
+                    <!-- Single Feature Ends -->
+
+                    <!-- Single Feature Starts -->
+                    <li class="single-feature" title="50+ SVG Icon included">
+                        <img src="images/2.jpg" alt="" class="feature-image" />
+                        <!-- Feature Icon -->
+                        <h4 class="feature-title color-scheme">Safa Ads</h4>
+                        <p class="feature-text">
+
+                            Back-end Developer
+                        </p>
+                        <a href="https://www.facebook.com/Safa.Muhammed?fref=ts" class="fancy-button button-line btn-col small zoom">
+									Details
+									<span class="icon">
+										<i class="fa fa-leaf"></i>
+									</span>
+								</a>
+                    </li>
+                    <!-- Single Feature Ends -->
+                    <!-- Single Feature Starts -->
+                    <li class="single-feature" title="MailChimp Ready">
+                        <img src="images/3.jpg" alt="" class="feature-image" />
+                        <!-- Feature Icon -->
+                        <h4 class="feature-title color-scheme">Yara Sobhy</h4>
+                        <p class="feature-text">
+                            Back and Frnt-End Developer
+                        </p>
+                        <a href="https://www.facebook.com/Yara.Sobhy?fref=ts" class="fancy-button button-line btn-col small zoom">
+									Details
+									<span class="icon">
+										<i class="fa fa-leaf"></i>
+									</span>
+								</a>
+                    </li>
+                    <!-- Single Feature Ends -->
+                    <!-- Single Feature Starts -->
+                    <li class="single-feature" title="4 home style">
+                        <img src="images/4.jpg" alt="" class="feature-image" />
+                        <!-- Feature Icon -->
+                        <h4 class="feature-title color-scheme">Youssef Radi</h4>
+                        <p class="feature-text">
+                            Back-end developer
+                        </p>
+                        <a href="https://www.facebook.com/YoussufRadi?fref=ts" class="fancy-button button-line btn-col small zoom">
+									Details
+									<span class="icon">
+										<i class="fa fa-leaf"></i>
+									</span>
+								</a>
+                    </li>
+                    <!-- Single Feature Ends -->
+                    <!-- Single Feature Starts -->
+                    <li class="single-feature" title="Parallax Backgrounds">
+                        <img src="images/5.jpg" alt="" class="feature-image" />
+                        <!-- Feature Icon -->
+                        <h4 class="feature-title color-scheme">Mohamed Ashraf</h4>
+                        <p class="feature-text">
+                            Back-end developer
+                        </p>
+                        <a href="https://www.facebook.com/Kefa7y?pnref=friends.search" class="fancy-button button-line btn-col small zoom">
+									Details
+									<span class="icon">
+										<i class="fa fa-leaf"></i>
+									</span>
+								</a>
+                    </li>
+                    <!-- Single Feature Ends -->
+                    <!-- Single Feature Starts -->
+                    <li class="single-feature" title="Ajax contact form">
+                        <img src="images/6.jpg" alt="" class="feature-image" />
+                        <!-- Feature Icon -->
+                        <h4 class="feature-title color-scheme">Hazem Ayman</h4>
+                        <p class="feature-text">
+                            Front and Back-end developer
+                        </p>
+                        <a href="https://www.facebook.com/hazem.ayman.14?pnref=friends.search" class="fancy-button button-line btn-col small zoom">
+									Details
+									<span class="icon">
+										<i class="fa fa-leaf"></i>
+									</span>
+								</a>
+                    </li>
+                    <!-- Single Feature Ends -->
+                    <!-- Single Feature Starts -->
+                    <li class="single-feature" title="unlimited Google fonts">
+                        <img src="images/7.jpg" alt="" class="feature-image" />
+                        <!-- Feature Icon -->
+                        <h4 class="feature-title color-scheme">Mostafa Ibrahim</h4>
+                        <p class="feature-text">
+                            Developer
+                        </p>
+                        <a href="https://www.facebook.com/mostafaebrahimhassan" class="fancy-button button-line btn-col small zoom">
+									Details
+									<span class="icon">
+										<i class="fa fa-leaf"></i>
+									</span>
+								</a>
+                    </li>
+                    <!-- Single Feature Ends -->
+
+                </ul>
+                <!--Features container Ends -->
+
+                <!-- Features Controls Starts -->
+                <div class="features-control relative">
+                    <button class="control-icon fancy-button button-line no-text btn-col bell" id="feature-prev" title="Previous">
+                        <span class="icon">
+                <i class="fa fa-arrow-left"></i>
+              </span>
+                    </button>
+                    <button class="control-icon fancy-button button-line no-text btn-col zoom" id="feature-expand" title="Expand">
+                        <span class="icon">
+                <i class="fa fa-expand"></i>
+              </span>
+                    </button>
+                    <button class="control-icon fancy-button button-line no-text btn-col zoom" id="feature-close" title="Collapse">
+                        <span class="icon">
+                <i class="fa fa-compress"></i>
+              </span>
+                    </button>
+                    <button class="control-icon fancy-button button-line no-text btn-col bell" id="feature-next" title="Next">
+                        <span class="icon">
+                <i class="fa fa-arrow-right"></i>
+              </span>
+                    </button>
+                </div>
+                <!-- Features Controls Ends -->
+            </div>
+        </div>
+    </div>
+</section>

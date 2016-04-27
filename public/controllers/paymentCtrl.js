@@ -1,9 +1,16 @@
-/**
- * payment Controller
- */
 App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturnSrv, paymentSrv, $location) {
-    $scope.no = "node";
+
     $scope.tab = "active in";
+    $scope.reservation = ConfirmSrv.getReservation();
+    $scope.totalPrice = OutReturnSrv.getSelectedPrice();
+    $scope.cabin = FlightsSrv.getSelectedCabin();
+    var roundTrip = FlightsSrv.getSelectedRoundTrip();
+    var outgoingFlight = OutReturnSrv.getSelectedOutFlight();
+    if (roundTrip == 'true')
+        returnFlight = OutReturnSrv.getSelectedReturnFlight();
+    $scope.outCurrency = outgoingFlight.currency;
+
+
 
     $scope.tab1 = function() {
         $scope.tab = "active in";
@@ -16,7 +23,7 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
     };
 
 
-    $scope.Congrats = function() {
+    var Congrats = function() {
         $location.url('/congrats');
     };
 
@@ -26,188 +33,152 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
         return clicked === $scope.clicked;
     };
 
-    // function postIntoBooking() { $http.post('../../modules/bookings.json',{text:$scope.totalPrice}).success(function(response){
-    //
-    //   $scope.Success = "success to pay";
-    //
-    //
-    //
-    // });
-    //   };
-    // test post
-
-    $scope.postAPay = function() {
-        console.log('i`m in ctrl');
-        $scope.firstName = "ha5odhma mn conf msh m3mola";
-        $scope.lastName = "isabardo ha5odha mn  conf";
-        $scope.passport = "same lsa msh m3mola  fl  conf srv";
-        $scope.passportNumber = "bardo lsa ";
-        $scope.issueDate = "22-5-2016";
-        $scope.expiryDate = "22-3-2020";
-        $scope.email = ConfirmSrv.getEmail();
-        $scope.phoneNumber = ConfirmSrv.getPhoneNo();
-        $scope.bookingRefNumber = "ha5do mn nary";
-        $scope.flightNumber = "flight.flightNumber";
-
-        paymentSrv.postPay($scope.firstName, $scope.lastName, $scope.passport, $scope.passportNumber, $scope.issueDate, $scope.expiryDate, $scope.email, $scope.phoneNumber, $scope.bookingRefNumber, $scope.flightNumber);
-    };
-    //
-    $scope.postIntoBooking = function() {
-        var customer = {
-            contact_name: "Scott",
-            company_name: "HP"
-        };
-        $.ajax({
-            type: "POST",
-            data: JSON.stringify(customer),
-            url: "/api/data/bookings",
-            contentType: "application/json"
-        });
-
+    var postAPay = function() {
+        $scope.bookingRefNumber = $scope.getBookingRef();
+        paymentSrv.postPay($scope.reservation, $scope.bookingRefNumber, outgoingFlight, $scope.cabin);
+        if (roundTrip == 'true')
+            paymentSrv.postPay($scope.reservation, $scope.bookingRefNumber, returnFlight, $scope.cabin);
     };
 
-    function countryCode() {
-        paymentSrv.getCountry().success(function(country) {
-            $scope.Country = country;
-        });
-    };
-
-    /* set paymet form  */
-    $scope.SetCountry = function(value) {
-        paymentSrv.setSelectedCountry(value);
-
-    };
-
-    $scope.SetCardType = function(value) {
+    var SetCardType = function(value) {
         paymentSrv.setSelectedCardType(value);
     };
 
-    $scope.SetCaradNo = function(value) {
-        paymentSrv.setSelectedCaradNo(value);
+    var SetCardNo = function(value) {
+        paymentSrv.setSelectedCardNo(value);
     };
 
-    $scope.SetMonth = function(value) {
+    var SetMonth = function(value) {
         paymentSrv.setSelectedMonth(value);
     };
 
-    $scope.SetYear = function(value) {
+    var SetYear = function(value) {
         paymentSrv.setSelectedYear(value);
     };
 
-    $scope.SetCVV = function(value) {
+    var SetCVV = function(value) {
         paymentSrv.setSelectedCVV(value);
     };
 
-    $scope.SetFirstName = function(value) {
-        paymentSrv.setSelectedFirstName(value);
+    var SetStreet = function(value) {
+        paymentSrv.setSelectedStreet(value);
     };
-
-    $scope.SetSurname = function(value) {
-        paymentSrv.setSelectedSurname(value);
+    var SetInformation = function(value) {
+        paymentSrv.setSelectedInformation(value);
     };
-    $scope.SetPassengers = function(value) {
-        paymentSrv.setSelectedPassengers(value);
+    var SetPostalcode = function(value) {
+        paymentSrv.setSelectedPostalcode(value);
     };
-    $scope.SetStret = function(value) {
-        paymentSrv.setselectedStret(value);
-    };
-    $scope.SetInformation = function(value) {
-        paymentSrv.setSelectedinformation(value);
-    };
-    $scope.SetPostalcode = function(value) {
-        paymentSrv.setselectedPostalcode(value);
-    };
-    $scope.SetCity = function(value) {
+    var SetCity = function(value) {
         paymentSrv.setSelectedCity(value);
     };
 
-    $scope.noOfPassengers = 1;
-    //   llsa  m3rfsh ha5odha mn meen
-    $scope.totalPrice = OutReturnSrv.getSelectedPrice();
-    $scope.flightNoOut = OutReturnSrv.getSelectedOutFlight().flightNumber;
-    // $scope.flightNoIn= OutReturnSrv.getSelectedReturnFlight().flightNumber;
-
-    $scope.Porigin = FlightsSrv.getSelectedOriginAirport();
-    $scope.Pdest = FlightsSrv.getSelectedDestinationAirport();
-    $scope.PoDate = FlightsSrv.getSelectedOutDate();
-    $scope.PrDate = FlightsSrv.getSelectedReturnDate();
-
-    $scope.P_round_origin = FlightsSrv.getSelectedDestinationAirport();
-    $scope.P_round_dest = FlightsSrv.getSelectedOriginAirport();
-    // dol lsa mstnyeko t3mlo  anko t5do l roud 3lshan 2a5od l dates bt3thom
-    $scope.P_round_oDate = FlightsSrv.getSelectedOutDate();
-    $scope.P_round_rDate = FlightsSrv.getSelectedReturnDate();
-    $scope.cardNo = paymentSrv.getSelectedCaradNo();
-    countryCode();
+    $scope.payAction = function() {
+        postAPay();
+        SetCardType($scope.selectedType);
+        SetCardNo($scope.selectedCardNumber);
+        SetMonth($scope.selectedMonth);
+        SetYear($scope.selectedYear);
+        SetCVV($scope.selectedCVV);
+        SetStreet($scope.selectedStreet);
+        SetInformation($scope.selectedExtra);
+        SetPostalcode($scope.selectedPostalcode);
+        SetCity($scope.SelectedCity);
+        Congrats();
+    };
 
     //NARIHAN
     $scope.getBookingRef = function() {
-        // var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz";
-        // var string_length = 8;
-        // var randomstring = '';
-        // for (var i=0; i<string_length; i++) {
-        // 	var rnum = Math.floor(Math.random() * chars.length);
-        // 	randomstring += chars.substring(rnum,rnum+1);
-        // }
-        // // document.randform.randomfield.value = randomstring;
-        //
-        //
-        //   var str1=randomstring;
-
         //encode and get the first part of the outgoing date
-        var card = paymentSrv.getSelectedCaradNo();
-        var outDate = FlightsSrv.getSelectedOutDate();
-        var str4 = JSON.stringify(outDate);
-        var arr = str4.split("T");
-        var outDate = arr[0];
-        var arr = outDate.split("-");
-        var outDate = arr[1] + "/" + arr[2];
-
-        //encode and get the first part of the return date
-        // var returnDate=FlightsSrv.getSelectedReturnDate();
-        // var str5=JSON.stringify(returnDate);
-        // var arr2=str5.split("T");
-        // var returnDate=arr2[0];
-        // var arr2=returnDate.split("-");
-        // var returnDate=arr2[1]+"/"+arr2[2];
-        // var arr2=str4.split(/[ ,]+/);
-        // var str3=arr2[1]+"/"+arr2[2];
+        var card = $scope.selectedCardNumber;
         //
         var outFlightNo = OutReturnSrv.getSelectedOutFlight().flightNumber;
-        // var returnFlightNo= OutReturnSrv.getSelectedReturnFlight().flightNumber;
-        var str = card + "," + outDate + "," + outFlightNo;
-        // +","+outFlightNo+","+returnFlightNo;
-        // var str="hey how are you";
-        // var arr=str.split(/[ ,]+/);
-        // var str2=arr[1]+"/"+arr[2];
+        var str = card + "," + outFlightNo;
         var enc = window.btoa(str);
         var dec = window.atob(enc);
 
-        var res = "Booking Reference:(please copy it for further tracking): " + "<br>" + enc + "<br>" + "Decoded String: " + dec;
+        var res = enc;
+
         // "<br>" + "Decoded String: " + dec;
+        document.getElementById("ptag").innerHTML = "Booking Reference:(please copy it for further tracking):" + "<br>";
         document.getElementById("demo").innerHTML = res;
 
-    };
+        var copyTextareaBtn = document.querySelector('.js-textareacopybtn');
 
+        copyTextareaBtn.addEventListener('click', function(event) {
+            var copyTextarea = document.querySelector('.js-copytextarea');
+            copyTextarea.select();
+
+            try {
+                var successful = document.execCommand('copy');
+                var msg = successful ? 'successful' : 'unsuccessful';
+                console.log('Copying text command was ' + msg);
+            } catch (err) {
+                console.log('Oops, unable to copy');
+            }
+        });
+
+
+
+        //     document.getElementById("copyButton").addEventListener("click", function() {
+        //     copyToClipboard(enc);
+        //     });
+
+        // function copyToClipboard(elem) {
+        //       // create hidden text element, if it doesn't already exist
+        //     var targetId = "_hiddenCopyText_";
+        //     var isInput = elem.tagName === "INPUT" || elem.tagName === "TEXTAREA";
+        //     var origSelectionStart, origSelectionEnd;
+        //     if (isInput) {
+        //         // can just use the original source element for the selection and copy
+        //         target = elem;
+        //         origSelectionStart = elem.selectionStart;
+        //         origSelectionEnd = elem.selectionEnd;
+        //     } else {
+        //         // must use a temporary form element for the selection and copy
+        //         target = document.getElementById(targetId);
+        //         if (!target) {
+        //             var target = document.createElement("textarea");
+        //             target.style.position = "absolute";
+        //             target.style.left = "-9999px";
+        //             target.style.top = "0";
+        //             target.id = targetId;
+        //             document.body.appendChild(target);
+        //         }
+        //         target.textContent = elem.textContent;
+        //     }
+        //     // select the content
+        //     var currentFocus = document.activeElement;
+        //     target.focus();
+        //     target.setSelectionRange(0, target.value.length);
+
+        //     // copy the selection
+        //     var succeed;
+        //     try {
+        //           succeed = document.execCommand("copy");
+        //     } catch(e) {
+        //         succeed = false;
+        //     }
+        //     // restore original focus
+        //     if (currentFocus && typeof currentFocus.focus === "function") {
+        //         currentFocus.focus();
+        //     }
+
+        //     if (isInput) {
+        //         // restore prior selection
+        //         elem.setSelectionRange(origSelectionStart, origSelectionEnd);
+        //     } else {
+        //         // clear temporary content
+        //         target.textContent = "";
+        //     }
+        //     return succeed;
+        //     }
+
+
+        return enc;
+    };
 
     //End of Narihan
 
 
 });
-
-// App.directive('ngConfirmClick', [
-//     function(){
-//         return {
-//             priority: 1,
-//             terminal: true,
-//             link: function (scope, element, attr) {
-//                 var msg = attr.ngConfirmClick || "Are you sure?";
-//                 var clickAction = attr.ngClick;
-//                 element.bind('click',function (event) {
-//                     if ( window.confirm(msg) ) {
-//                         scope.$eval(clickAction)
-//                     }
-//                 });
-//             }
-//         };
-// }])

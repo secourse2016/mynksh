@@ -10,11 +10,17 @@ App.controller('landingCtrl', function($scope, FlightsSrv, $location) {
     //    //to do
     //    console.log(val)
     // });
+    $scope.pinging="false";
+
     $scope.roundTrip = "true";
     $scope.cabin = "true";
 
     $scope.bookingRef = function() {
         $location.url('/bookingRef');
+    };
+
+    $scope.teamMembers = function() {
+        $location.url('/teamMembers');
     };
 
     // $scope.cabin="cabin";
@@ -77,6 +83,9 @@ App.controller('landingCtrl', function($scope, FlightsSrv, $location) {
     };
     $scope.SetCabin = function(value) {
         FlightsSrv.setSelectedCabin(value);
+    };
+    $scope.SetPinging = function(value) {
+        FlightsSrv.setPinging(value);
     };
 
     /* Find All Available Flights  */
