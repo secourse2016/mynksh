@@ -2,6 +2,7 @@ var jwt = require('jsonwebtoken');
 var moment = require('moment');
 var airlines = require('../../modules/airLines.json');
 var http = require('http');
+var stripe = require('stripe')(process.env.StripeSecret);
 
 module.exports = function(app, mongo) {
 
