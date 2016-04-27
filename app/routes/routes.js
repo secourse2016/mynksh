@@ -1,6 +1,7 @@
 var jwt = require('jsonwebtoken');
 var moment = require('moment');
 var airlines = require('../../modules/airLines.json');
+var http = require('http');
 
 module.exports = function(app, mongo) {
 
@@ -11,14 +12,14 @@ module.exports = function(app, mongo) {
 
     /* SEED DB */
     app.get('/db/seed', function(req, res) {
-      mongo.seedDB();
-      res.send("Seeding done");
+        mongo.seedDB();
+        res.send("Seeding done");
     });
 
     /* DELETE DB */
     app.get('/db/delete', function(req, res) {
-      mongo.clearDB();
-      res.send("DB clear");
+        mongo.clearDB();
+        res.send("DB clear");
     });
 
     /* GET ALL STATES ENDPOINT */
@@ -31,15 +32,15 @@ module.exports = function(app, mongo) {
     app.get('/data/airlines', function(req, res) {
         // mongo.getAirports(function(err, airports) {
         mongo.getAirLines(function(err, airLines) {
-            res.json(airLines);
-        })
-        // })
+                res.json(airLines);
+            })
+            // })
     });
 
     app.get('/data/bookings/search/:bookingRefNumber', function(req, res) {
-      mongo.searchBookings(req.params.bookingRefNumber, function(err, bookingRef) {
-        res.json(bookingRef);
-      });
+        mongo.searchBookings(req.params.bookingRefNumber, function(err, bookingRef) {
+            res.json(bookingRef);
+        });
     });
 
     app.get('/data/pay/:firstName/:lastName/:passport/:passportNumber/:issueDate/:expiryDate/:email/:phoneNumber/:oFlightNumber/:flightCabin', function(req, res) {
@@ -69,10 +70,100 @@ module.exports = function(app, mongo) {
             booking.encoding = bookingRefNumber;
             res.json(booking);
         });
+
+    app.get('/api/others/search/:ip/:origin/:destination/:departingDate/:returningDate/:cabin/:wt', function(req, res1) {
+        var options = {
+            host: req.params.ip,
+            path: '/api/flights/search/' + req.params.origin + '/' + req.params.destination + '/' + req.params.departingDate +
+                '/' + req.params.returningDate + '/' + req.params.cabin + '/?wt=' + req.params.wt,
+            json: true
+        };
+        var timeout_wrapper = function(req) {
+            return function() {
+                // do some logging, cleaning, etc. depending on req
+                req.abort();
+            };
+        };
+        var request = http.get(options, function(res) {
+            var body = '';
+            res.on('data', function(chunk) {
+                body += chunk;
+                clearTimeout(timeout);
+                timeout = setTimeout(fn, 10000);
+            });
+            res.on('end', function() {
+                try {
+                    clearTimeout(timeout);
+                    var fbResponse = JSON.parse(body);
+                    res1.send(fbResponse);
+                } catch (err) {
+                    try {
+                        res1.status(500).send("Error");
+                    } catch (err) {}
+                }
+            });
+        }).on('error', function(e) {
+            clearTimeout(timeout);
+            try {
+                res1.status(500).send("Error");
+            } catch (err) {}
+            this.abort();
+        });
+        // generate timeout handler
+        var fn = timeout_wrapper(request);
+
+        // set initial timeout
+        var timeout = setTimeout(fn, 1000);
+    });
+
+    app.get('/api/others/search/:ip/:origin/:destination/:departingDate/:cabin/:wt', function(req, res1) {
+        var options = {
+            host: req.params.ip,
+            path: '/api/flights/search/' + req.params.origin + '/' + req.params.destination + '/' + req.params.departingDate +
+                  '/' + req.params.cabin + '/?wt=' + req.params.wt,
+            json: true
+        };
+        var timeout_wrapper = function(req) {
+            return function() {
+                // do some logging, cleaning, etc. depending on req
+                req.abort();
+            };
+        };
+        var request = http.get(options, function(res) {
+            var body = '';
+            res.on('data', function(chunk) {
+                body += chunk;
+                clearTimeout(timeout);
+                timeout = setTimeout(fn, 10000);
+            });
+            res.on('end', function() {
+                try {
+                    clearTimeout(timeout);
+                    var fbResponse = JSON.parse(body);
+                    res1.send(fbResponse);
+                } catch (err) {
+                    try {
+                        res1.status(500).send("Error");
+                    } catch (err) {}
+                }
+            });
+        }).on('error', function(e) {
+            clearTimeout(timeout);
+            try {
+                res1.status(500).send("Error");
+            } catch (err) {}
+            this.abort();
+        });
+        // generate timeout handler
+        var fn = timeout_wrapper(request);
+
+        // set initial timeout
+        var timeout = setTimeout(fn, 1000);
+>>>>>>> b02a510aead4bd69c1fc5f23a26fc651f0d7564d
     });
 
     /* Middlewear For Secure API Endpoints */
-    app.use('/api/flights/search',function(req, res, next) {
+    app.use('/api/flights/search', function(req, res, next) {
         // check header or url parameters or post parameters for token
         var token = req.body.wt || req.query.wt || req.headers['x-access-token'];
         // console.log("{{{{ TOKEN }}}} => ", token);
