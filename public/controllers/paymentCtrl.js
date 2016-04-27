@@ -1,6 +1,8 @@
 App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturnSrv, paymentSrv, $location) {
 
     $scope.tab = "active in";
+    $scope.stripeError=false;
+    $scope.stripeErrorDescription;
     $scope.reservation = ConfirmSrv.getReservation();
     $scope.totalPrice = OutReturnSrv.getSelectedPrice();
     $scope.cabin = FlightsSrv.getSelectedCabin();
@@ -74,7 +76,6 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
     };
 
     $scope.payAction = function() {
-        postAPay();
         SetCardType($scope.selectedType);
         SetCardNo($scope.selectedCardNumber);
         SetMonth($scope.selectedMonth);
@@ -84,7 +85,27 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
         SetInformation($scope.selectedExtra);
         SetPostalcode($scope.selectedPostalcode);
         SetCity($scope.SelectedCity);
+        createStripeToken();
+        postAPay();
         Congrats();
+    };
+
+    var createStripeToken= function() {
+
+        Stripe.card.createToken({
+            "number": paymentSrv.getSelectedCardNo(),
+            "cvc": paymentSrv.getSelectedCVV(), 
+            "exp_month": paymentSrv.getSelectedMonth(), 
+            "exp_year": paymentSrv.getSelectedYear()
+            },stripeResponseHandler);
+    };
+    var stripeResponseHandler= function(status, response){
+        if (response.error){
+            $stripeError=true;
+            $stripeErrorDescription= response.error.message;
+        } 
+        else
+            var token = response.id;
     };
 
     //NARIHAN
