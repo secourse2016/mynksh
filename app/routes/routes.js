@@ -70,7 +70,8 @@ module.exports = function(app, mongo) {
             booking.encoding = bookingRefNumber;
             res.json(booking);
         });
-
+    });
+    
     app.get('/api/others/search/:ip/:origin/:destination/:departingDate/:returningDate/:cabin/:wt', function(req, res1) {
         var options = {
             host: req.params.ip,
@@ -159,7 +160,6 @@ module.exports = function(app, mongo) {
 
         // set initial timeout
         var timeout = setTimeout(fn, 1000);
->>>>>>> b02a510aead4bd69c1fc5f23a26fc651f0d7564d
     });
 
     /* Middlewear For Secure API Endpoints */
