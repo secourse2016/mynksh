@@ -164,7 +164,7 @@ module.exports = function(app, mongo) {
         }
     });
 
-    app.get('/api/flights/search/:origin/:destination/:departingDate/:returningDate/:cabin', function(req, res) {
+    app.get('/api/flights/search/:origin/:destination/:departingDate/:returningDate/:cabin/:seats', function(req, res) {
         if (moment(req.params.departingDate, 'MMMM D, YYYY').format('MMMM D, YYYY') === req.params.departingDate) {
             var departDate = req.params.departingDate;
             var outDate = req.params.returningDate;
@@ -172,8 +172,8 @@ module.exports = function(app, mongo) {
             var departDate = moment(parseInt(req.params.departingDate)).format('MMMM D, YYYY');
             var outDate = moment(parseInt(req.params.returningDate)).format('MMMM D, YYYY');
         }
-        mongo.searchFlights(req.params.origin, req.params.destination, departDate, req.params.cabin, function(err, outgoingFlight) {
-            mongo.searchFlights(req.params.destination, req.params.origin, outDate, req.params.cabin, function(err, returnFlight) {
+        mongo.searchFlights(req.params.origin, req.params.destination, departDate, req.params.cabin, req.params.seats, function(err, outgoingFlight) {
+            mongo.searchFlights(req.params.destination, req.params.origin, outDate, req.params.cabin, req.params.seats, function(err, returnFlight) {
                 var flights = {};
                 flights.outgoingFlights = outgoingFlight;
                 flights.returnFlights = returnFlight;
@@ -183,12 +183,12 @@ module.exports = function(app, mongo) {
     });
 
 
-    app.get('/api/flights/search/:origin/:destination/:departingDate/:cabin', function(req, res) {
+    app.get('/api/flights/search/:origin/:destination/:departingDate/:cabin/:seats', function(req, res) {
         if (moment(req.params.departingDate, 'MMMM D, YYYY').format('MMMM D, YYYY') === req.params.departingDate)
             var departDate = req.params.departingDate;
         else
             var departDate = moment(parseInt(req.params.departingDate)).format('MMMM D, YYYY');
-        mongo.searchFlights(req.params.origin, req.params.destination, departDate, req.params.cabin, function(err, outgoingFlight) {
+        mongo.searchFlights(req.params.origin, req.params.destination, departDate, req.params.cabin, req.params.seats, function(err, outgoingFlight) {
             var flights = {};
             flights.outgoingFlights = outgoingFlight;
             res.json(flights);
@@ -212,7 +212,7 @@ module.exports = function(app, mongo) {
        // payment successful
        // create reservation in database
        // get booking reference number and send it back to the user
-       // mongo.ad
+       mongo.
 
     });
 
