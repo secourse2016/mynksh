@@ -118,7 +118,7 @@ module.exports = function(app, mongo) {
             res.on('data', function(chunk) {
                 body += chunk;
                 clearTimeout(timeout);
-                timeout = setTimeout(fn, 10000);
+                timeout = setTimeout(fn, 1000);
             });
             res.on('end', function() {
                 try {
