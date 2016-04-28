@@ -90,7 +90,7 @@ exports.searchFlights = function(origin, destination, departingDate, cabin, seat
                 cost = flights[0].eCost;
             else
                 cost = flights[0].bCost;
-            if ((economyOrBusiness == "economy" && flights[0].availableESeats > 0 && (flights[0].availableESeats+flights[0].availableBSeats)>reqSeats) || (economyOrBusiness == "business" && flights[0].availableBSeats > 0 && (flights[0].availableESeats+flights[0].availableBSeats)>reqSeats)) {
+            if ((economyOrBusiness == "economy" && flights[0].availableESeats+>reqSeats) || (economyOrBusiness == "business" && flights[0].availableBSeats>reqSeats)) {
                 var departureDate = flights[0].departureTime;
                 var arrivalDate = flights[0].arrivalTime;
                 rflights = [{

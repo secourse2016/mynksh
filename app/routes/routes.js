@@ -212,7 +212,6 @@ module.exports = function(app, mongo) {
        // payment successful
        // create reservation in database
        // get booking reference number and send it back to the user
-       mongo.
 
     });
 
