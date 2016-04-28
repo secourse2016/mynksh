@@ -34,10 +34,14 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
     };
 
     var postAPay = function() {
-        $scope.bookingRefNumber = $scope.getBookingRef();
-        paymentSrv.postPay($scope.reservation, $scope.bookingRefNumber, outgoingFlight, $scope.cabin);
         if (roundTrip == 'true')
-            paymentSrv.postPay($scope.reservation, $scope.bookingRefNumber, returnFlight, $scope.cabin);
+            paymentSrv.postPay($scope.reservation, outgoingFlight, returnFlight, $scope.cabin).success(function(data){
+               paymentSrv.setBookingRefNo(data.encoding);
+            });
+        else 
+            paymentSrv.postPay($scope.reservation, outgoingFlight, $scope.cabin).success(function(data){
+                paymentSrv.setBookingRefNo(data.encoding);
+            });
     };
 
     var SetCardType = function(value) {
@@ -86,99 +90,5 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
         SetCity($scope.SelectedCity);
         Congrats();
     };
-
-    //NARIHAN
-    $scope.getBookingRef = function() {
-        //encode and get the first part of the outgoing date
-        var card = $scope.selectedCardNumber;
-        //
-        var outFlightNo = OutReturnSrv.getSelectedOutFlight().flightNumber;
-        var str = card + "," + outFlightNo;
-        var enc = window.btoa(str);
-        var dec = window.atob(enc);
-
-        var res = enc;
-
-        // "<br>" + "Decoded String: " + dec;
-        document.getElementById("ptag").innerHTML = "Booking Reference:(please copy it for further tracking):" + "<br>";
-        document.getElementById("demo").innerHTML = res;
-
-        var copyTextareaBtn = document.querySelector('.js-textareacopybtn');
-
-        copyTextareaBtn.addEventListener('click', function(event) {
-            var copyTextarea = document.querySelector('.js-copytextarea');
-            copyTextarea.select();
-
-            try {
-                var successful = document.execCommand('copy');
-                var msg = successful ? 'successful' : 'unsuccessful';
-                console.log('Copying text command was ' + msg);
-            } catch (err) {
-                console.log('Oops, unable to copy');
-            }
-        });
-
-
-
-        //     document.getElementById("copyButton").addEventListener("click", function() {
-        //     copyToClipboard(enc);
-        //     });
-
-        // function copyToClipboard(elem) {
-        //       // create hidden text element, if it doesn't already exist
-        //     var targetId = "_hiddenCopyText_";
-        //     var isInput = elem.tagName === "INPUT" || elem.tagName === "TEXTAREA";
-        //     var origSelectionStart, origSelectionEnd;
-        //     if (isInput) {
-        //         // can just use the original source element for the selection and copy
-        //         target = elem;
-        //         origSelectionStart = elem.selectionStart;
-        //         origSelectionEnd = elem.selectionEnd;
-        //     } else {
-        //         // must use a temporary form element for the selection and copy
-        //         target = document.getElementById(targetId);
-        //         if (!target) {
-        //             var target = document.createElement("textarea");
-        //             target.style.position = "absolute";
-        //             target.style.left = "-9999px";
-        //             target.style.top = "0";
-        //             target.id = targetId;
-        //             document.body.appendChild(target);
-        //         }
-        //         target.textContent = elem.textContent;
-        //     }
-        //     // select the content
-        //     var currentFocus = document.activeElement;
-        //     target.focus();
-        //     target.setSelectionRange(0, target.value.length);
-
-        //     // copy the selection
-        //     var succeed;
-        //     try {
-        //           succeed = document.execCommand("copy");
-        //     } catch(e) {
-        //         succeed = false;
-        //     }
-        //     // restore original focus
-        //     if (currentFocus && typeof currentFocus.focus === "function") {
-        //         currentFocus.focus();
-        //     }
-
-        //     if (isInput) {
-        //         // restore prior selection
-        //         elem.setSelectionRange(origSelectionStart, origSelectionEnd);
-        //     } else {
-        //         // clear temporary content
-        //         target.textContent = "";
-        //     }
-        //     return succeed;
-        //     }
-
-
-        return enc;
-    };
-
-    //End of Narihan
-
 
 });
