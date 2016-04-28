@@ -24,6 +24,25 @@ module.exports = function(app, mongo) {
     });
 
     /* GET ALL STATES ENDPOINT */
+    app.post('/chargeCard', function(req, res){
+        console.log(req.body.id);
+        stripe.charges.create({
+            amount: 1000, 
+            currency: "eur",
+            source: req.body.id,
+            description: "Example charge"
+        }, function(err, charge) {
+            if (err && err.type === 'StripeCardError') {
+                console.log(JSON.stringify(err, null, 2));
+            }
+            else
+            {
+                console.log(charge);
+                //do actual booking
+            }
+        });
+    });
+    
     app.get('/data/airports', function(req, res) {
         mongo.getAirports(function(err, airports) {
             res.json(airports);

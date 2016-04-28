@@ -1,10 +1,10 @@
 /* Create Angular App Instance */
-App = angular.module('IBERIA', ['ui.bootstrap', 'ngRoute','angular-stripe']);
+App = angular.module('IBERIA', ['ui.bootstrap', 'ngRoute']);
 
 /**
  * Angular Routes
  */
-App.config(function($routeProvider,stripeProvider) {
+App.config(function($routeProvider) {
     $routeProvider
 
     // route for the landingPage page
@@ -56,6 +56,6 @@ App.config(function($routeProvider,stripeProvider) {
         templateUrl: '/partials/teamMembers.html'
 
     });
-    stripeProvider.setPublishableKey('pk_test_fWP8viqFbT95teED8zWD3ieK');
+    Stripe.setPublishableKey('pk_test_fWP8viqFbT95teED8zWD3ieK');
 
 });

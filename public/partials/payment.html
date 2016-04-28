@@ -234,15 +234,15 @@
                     <div class="col-md-12">
 
                         <div class="col-md-12 col-sm-12 text-right">
-                            <button type="button" class="btn btn-primary btn-lg" style="background:rgba(178,34,34, 1)" ng-disabled="reviewForm.$invalid || !accepted || stripeError" ng-click=" payAction();">Pay</button>
+                            <button type="button" class="btn btn-primary btn-lg" style="background:rgba(178,34,34, 1)" ng-disabled="reviewForm.$invalid || !accepted" ng-click=" payAction();">Pay</button>
 
                             <a href="http://mynksh.com">
                                 <button type="button" class="btn btn-primary btn-lg" style="background:rgba(178,34,34, 1)">Cancel</button>
                             </a>
                             <div ng-show="reviewForm.$invalid || !accepted">
-                                <h4 style="color=" white "">  please complete all form entry first   </h4> </div>
+                                <h4 style="color=" white "">  Please complete all form entry first   </h4> </div>
                             <div ng-show="stripeError">
-                                <h4 style="color=" white ""> {{stripeErrorDescription}}  </h4> </div>
+                                <h4 style="color=" white "">Stripe error: {{stripeErrorDescription}}</h4> </div>
                         </div>
                         </br>
                         </br>

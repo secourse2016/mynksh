@@ -7,6 +7,10 @@ App.factory('paymentSrv', function($http) {
             reservation.issueDate+'/'+ reservation.expiryDate + '/' + reservation.email + '/' + reservation.phoneno + '/' + bookingRefNumber+'/'+
             flight.flightNumber+'/'+cabin);
         },
+        chargeCard: function(stripeToken)
+        {
+            return $http.post('/chargeCard', stripeToken);
+        },
         getSelectedCardType: function() {
             return this.SelectedCardType;
         },

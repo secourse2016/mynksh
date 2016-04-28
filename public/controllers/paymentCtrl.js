@@ -2,7 +2,7 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
 
     $scope.tab = "active in";
     $scope.stripeError=false;
-    $scope.stripeErrorDescription;
+    $scope.stripeErrorDescription="";
     $scope.reservation = ConfirmSrv.getReservation();
     $scope.totalPrice = OutReturnSrv.getSelectedPrice();
     $scope.cabin = FlightsSrv.getSelectedCabin();
@@ -86,26 +86,41 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
         SetPostalcode($scope.selectedPostalcode);
         SetCity($scope.SelectedCity);
         createStripeToken();
-        postAPay();
-        Congrats();
+        
+        
     };
 
     var createStripeToken= function() {
 
         Stripe.card.createToken({
-            "number": paymentSrv.getSelectedCardNo(),
+            "number": paymentSrv.getSelectedCardNo().toString(),
             "cvc": paymentSrv.getSelectedCVV(), 
             "exp_month": paymentSrv.getSelectedMonth(), 
             "exp_year": paymentSrv.getSelectedYear()
-            },stripeResponseHandler);
+            }, stripeResponseHandler);
     };
     var stripeResponseHandler= function(status, response){
+        console.log("inside stripeResponseHandler");
         if (response.error){
-            $stripeError=true;
-            $stripeErrorDescription= response.error.message;
+            console.log("inside stripeResponseHandler if");
+            $scope.stripeError=true;
+            $scope.stripeErrorDescription= response.error.message;
         } 
         else
-            var token = response.id;
+        {
+           console.log("inside stripeResponseHandler else");
+           var token = response.id;
+           console.log(token);
+           paymentSrv.chargeCard(response).success(function(data, status, headers, config) {
+            alert(data);
+            })
+           .error(function(data, status, headers, config) {
+            alert(data);
+            });
+           postAPay();
+           Congrats();
+
+       }
     };
 
     //NARIHAN
