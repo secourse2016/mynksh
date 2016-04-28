@@ -34,10 +34,14 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
     };
 
     var postAPay = function() {
-        $scope.bookingRefNumber = $scope.getBookingRef();
-        paymentSrv.postPay($scope.reservation, $scope.bookingRefNumber, outgoingFlight, $scope.cabin);
         if (roundTrip == 'true')
-            paymentSrv.postPay($scope.reservation, $scope.bookingRefNumber, returnFlight, $scope.cabin);
+            paymentSrv.postPay($scope.reservation, outgoingFlight, returnFlight, $scope.cabin).success(function(data){
+               paymentSrv.setBookingRefNo(data.encoding);
+            });
+        else 
+            paymentSrv.postPay($scope.reservation, outgoingFlight, $scope.cabin).success(function(data){
+                paymentSrv.setBookingRefNo(data.encoding);
+            });
     };
 
     var SetCardType = function(value) {
@@ -87,7 +91,7 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
         Congrats();
     };
 
-    //NARIHAN
+
     $scope.getBookingRef = function() {
         //encode and get the first part of the outgoing date
         var card = $scope.selectedCardNumber;

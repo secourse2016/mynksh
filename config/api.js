@@ -113,8 +113,6 @@ exports.searchFlights = function(origin, destination, departingDate, cabin, cb) 
 
 exports.submitPay = function(firstName, lastName, passport, passportNumber, issueDate, expiryDate, email, phoneNumber, bookingRefNumber, flightNumber, businessOrEconomic, cb) {
     var selectedSeat = 0;
-    // console.log('i`m in api');
-    // mongo.connect(function(err, db) {
     // update after find free seat
     var collection = mongo.db().collection('flights');
     collection.find({
@@ -122,7 +120,6 @@ exports.submitPay = function(firstName, lastName, passport, passportNumber, issu
     }).toArray(function(err, flights) {
         if (flights.length === 0) {
             cb(err, false);
-            // mongo.close();
             return;
         }
         //  remove then insert
@@ -218,4 +215,29 @@ exports.searchBookings = function(bookingRef, cb) {
         // mongo.close();
         // });
     });
-}
+};
+
+exports.generateBookingRef = function(flightNumber,businessOrEconomic ,cb){
+    var selectedSeat = 0;
+    var collection = mongo.db().collection('flights');
+    collection.find({
+        "flightNumber": flightNumber
+    }).toArray(function(err, flights) {
+        if (flights.length === 0) {
+            cb(err, false);
+            return;
+        }
+        if (businessOrEconomic === "true") {
+            if (!(flights[0].availableESeats === 0)) 
+                selectedSeat = flights[0].nextEcoSeat;
+        } else {
+            if (!(flights[0].availableBSeats === 0)) 
+                selectedSeat = flights[0].nextBusSeat;
+            }
+        seatnum = flights[0].SeatMap[selectedSeat].seatNum;
+        var encoded = new Buffer(seatnum + ','+ flightNumber).toString('base64');
+        cb(err , encoded);
+    });
+};
+
+
