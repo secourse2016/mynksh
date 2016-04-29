@@ -100,27 +100,18 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
             }, stripeResponseHandler);
     };
     var stripeResponseHandler= function(status, response){
-        //console.log("inside stripeResponseHandler");
-        if (response.error){
-            //console.log("inside stripeResponseHandler if");
-            //$scope.stripeError=true;
+        if (response.error)
             alert(response.error.message);
-        } 
         else
         {
-           //console.log("inside stripeResponseHandler else");
-           var token = response.id;
-           console.log(token);
            paymentSrv.chargeCard(response)
            .success(function(data, status, headers, config) {
-            alert(data);
+                postAPay();
+                Congrats();
             })
            .error(function(data, status, headers, config) {
-            alert(data);
+                alert(data);
             });
-           //postAPay();
-           //Congrats();
-
        }
     };
 
