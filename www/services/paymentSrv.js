@@ -3,11 +3,11 @@ App.factory('paymentSrv', function($http) {
     return {
 
         postPay: function(reservation,  outgoingFlight , cabin) {
-            return $http.get('/data/pay/'+ reservation.FName + '/' + reservation.LName + '/' + reservation.country + '/' + reservation.passportNo+'/'+
+            return $http.get('http://localhost:8080/data/pay/'+ reservation.FName + '/' + reservation.LName + '/' + reservation.country + '/' + reservation.passportNo+'/'+
             reservation.issueDate+'/'+ reservation.expiryDate + '/' + reservation.email + '/' + reservation.phoneno + '/'+outgoingFlight.flightNumber+'/'+cabin);
         },
         postPay: function(reservation,  outgoingFlight , returnFlight , cabin) {
-            return $http.get('/data/pay/'+ reservation.FName + '/' + reservation.LName + '/' + reservation.country + '/' + reservation.passportNo+'/'+
+            return $http.get('http://localhost:8080/data/pay/'+ reservation.FName + '/' + reservation.LName + '/' + reservation.country + '/' + reservation.passportNo+'/'+
             reservation.issueDate+'/'+ reservation.expiryDate + '/' + reservation.email + '/' + reservation.phoneno + '/' +outgoingFlight.flightNumber+
             '/'+returnFlight.flightNumber+'/'+cabin);
         },
