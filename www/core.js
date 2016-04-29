@@ -24,7 +24,7 @@ App.config(function($stateProvider, $urlRouterProvider) {
 
   $stateProvider
 
-    .state('index', {
+  .state('index', {
     url: '/',
     templateUrl: '/partials/main.html',
     controller: ''
@@ -33,6 +33,33 @@ App.config(function($stateProvider, $urlRouterProvider) {
   .state('flights', {
     url: '/flights',
     templateUrl: '/partials/flights.html',
+    controller: ''
+  })
+
+  .state('payment', {
+    url: '/payment',
+    templateUrl: '/partials/payment.html',
+    controller: ''
+  })
+
+  // route for the confirmation page
+  .state('confirm', {
+    url: '/confirm',
+    templateUrl: '/partials/confirm.html',
+    controller: ''
+  })
+
+  // route for the congrats page
+  .state('congrats', {
+    url: '/congrats',
+    templateUrl: '/partials/congrats.html',
+    controller: ''
+  })
+
+  // route for the booking Reference page
+  .state('bookingRef', {
+    url: '/bookingRef',
+    templateUrl: '/partials/bookingRef.html',
     controller: ''
   });
 
