@@ -9,7 +9,10 @@ App.factory('paymentSrv', function($http) {
         },
         chargeCard: function(stripeToken)
         {
+            //return $http.post('/chargeCard', stripeToken);
+            console.log("in service");
             return $http.post('/chargeCard', stripeToken);
+            
         },
         getSelectedCardType: function() {
             return this.SelectedCardType;

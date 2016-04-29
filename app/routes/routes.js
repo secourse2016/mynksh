@@ -25,6 +25,7 @@ module.exports = function(app, mongo) {
 
     /* GET ALL STATES ENDPOINT */
     app.post('/chargeCard', function(req, res){
+        console.log("in routes");
         console.log(req.body.id);
         stripe.charges.create({
             amount: 1000, 
@@ -34,11 +35,13 @@ module.exports = function(app, mongo) {
         }, function(err, charge) {
             if (err && err.type === 'StripeCardError') {
                 console.log(JSON.stringify(err, null, 2));
+                res.send(err);
             }
             else
             {
+                console.log("app.post else part");
                 console.log(charge);
-                //do actual booking
+                res.send(charge);
             }
         });
     });

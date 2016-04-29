@@ -1,8 +1,8 @@
 App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturnSrv, paymentSrv, $location) {
 
     $scope.tab = "active in";
-    $scope.stripeError=false;
-    $scope.stripeErrorDescription="";
+    //$scope.stripeError=false;
+    //$scope.stripeErrorDescription="";
     $scope.reservation = ConfirmSrv.getReservation();
     $scope.totalPrice = OutReturnSrv.getSelectedPrice();
     $scope.cabin = FlightsSrv.getSelectedCabin();
@@ -100,25 +100,26 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
             }, stripeResponseHandler);
     };
     var stripeResponseHandler= function(status, response){
-        console.log("inside stripeResponseHandler");
+        //console.log("inside stripeResponseHandler");
         if (response.error){
-            console.log("inside stripeResponseHandler if");
-            $scope.stripeError=true;
-            $scope.stripeErrorDescription= response.error.message;
+            //console.log("inside stripeResponseHandler if");
+            //$scope.stripeError=true;
+            alert(response.error.message);
         } 
         else
         {
-           console.log("inside stripeResponseHandler else");
+           //console.log("inside stripeResponseHandler else");
            var token = response.id;
            console.log(token);
-           paymentSrv.chargeCard(response).success(function(data, status, headers, config) {
+           paymentSrv.chargeCard(response)
+           .success(function(data, status, headers, config) {
             alert(data);
             })
            .error(function(data, status, headers, config) {
             alert(data);
             });
-           postAPay();
-           Congrats();
+           //postAPay();
+           //Congrats();
 
        }
     };
