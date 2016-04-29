@@ -33,6 +33,13 @@
     <span style='color:red' ng-show='(reviewForm.cardNo.$error.number || reviewForm.cardNo.$error.required) && reviewForm.cardNo.$dirty'>Valid card number is required</span> 
  <span style='color:red' ng-show='(reviewForm.cardNo.$error.minlength || reviewForm.cardNo.$error.maxlength) && reviewForm.cardNo.$dirty'>Card number must be 16 digits</span>
   </label>
+   <label class="item item-input item-stacked-label">
+    <span class="input-label">Security code<font color="red">*</font></span>
+    <input type="text" name="CVV" ng-model="selectedCVV" ng-required='true' ng-minlength='3' ng-maxlength='3'>
+    <span style='color:red' ng-show='(reviewForm.CVV.$error.number || reviewForm.CVV.$error.required) && reviewForm.CVV.$dirty'>Valid security code is required</span>
+     <span style='color:red' ng-show='(reviewForm.CVV.$error.minlength || reviewForm.CVV.$error.maxlength) && reviewForm.CVV.$dirty'>Security code must be 3 digits or letters</span>
+  </label>
+  
 
 </div>
 </form>
