@@ -5,27 +5,21 @@
    <div>
        <h3><font color="black">Payment Data</font></h3>
    </div>
-    
-  </ion-content>
-
-
-  <!-- <ion-tabs class="tabs-icon-top tabs-color-active-positive"> -->
-
-    <!-- Dashboard Tab -->
-   <!--  <ion-tab title="Home" icon-off="ion-ios-pulse" icon-on="ion-ios-pulse-strong" href="#/">
-      <ion-nav-view name="tab-dash"></ion-nav-view>
-    </ion-tab> -->
-
-    <!-- Chats Tab -->
-    <!-- <ion-tab title="Offers" icon-off="ion-ios-chatboxes-outline" icon-on="ion-ios-chatboxes" href="#/offers">
-      <ion-nav-view name="tab-chats"></ion-nav-view>
-    </ion-tab> -->
-
-    <!-- Account Tab -->
-   <!--  <ion-tab title="Team" icon-off="ion-ios-gear-outline" icon-on="ion-ios-gear" href="#/team">
-      <ion-nav-view name="tab-account"></ion-nav-view>
-    </ion-tab> -->
-
-  <!-- </ion-tabs> -->
-
-</ion-view>
+   <div class="form-group row">
+   <font size="3" color="black" class="col-sm-4 text-left">Type of card:
+<font color="red">*</font>
+ <div class="col-md-8 col-sm-8 text-left">
+    <div class="dropdown">
+  <select name="MonthC" ng-model="selectedType" ng-required='true' style='color:black' >    <option value="" disabled selected>Please Select your Card Type</option> 
+      <option style='color:black' value="Personal Visa Card (no charge)" ng-model="selectedType">Personal Visa Card (no charge)</option> 
+      <option style='color:black' value="Visa Corporate Card (+6.64 €)" ng-model="selectedType">Visa Corporate Card (+6.64 €)</option> 
+      <option style='color:black' value="Personal MasterCard (no charge)" ng-model="selectedType">Personal MasterCard (no charge)</option> 
+      <option style='color:black' value="MasterCard Corporate (+6.64 €)" ng-model="selectedType">MasterCard Corporate (+6.64 €)</option> 
+      <option style='color:black' value="Personal American Express (no charge)" ng-model="selectedType">Personal American Express (no charge)</option> 
+      <option style='color:black' value="American Express Corporate (+6.64 €)" ng-model="selectedType">American Express Corporate (+6.64 €)</option> 
+      <option style='color:black' value="Diners Club (+6.64 €)" ng-model="selectedType">Diners Club (+6.64 €)</option> <option style='color:black' value="UATP/Airplus (+6.64 €)" ng-model="selectedType">UATP/Airplus (+6.64 €)</option> 
+      <option style='color:black' value="Carte Blanche (+6.64 €)" ng-model="selectedType">Carte Blanche (+6.64 €)</option> 
+      </select> <!-- </ul> -->
+    </div>
+</div> 
+ </ion-view>
