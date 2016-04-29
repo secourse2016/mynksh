@@ -39,7 +39,12 @@
     <span style='color:red' ng-show='(reviewForm.CVV.$error.number || reviewForm.CVV.$error.required) && reviewForm.CVV.$dirty'>Valid security code is required</span>
      <span style='color:red' ng-show='(reviewForm.CVV.$error.minlength || reviewForm.CVV.$error.maxlength) && reviewForm.CVV.$dirty'>Security code must be 3 digits or letters</span>
   </label>
-  
+   <label class="item item-input item-stacked-label">
+    <span class="input-label">Street<font color="red">*</font></span>
+    <input type="text" name="Street"ng-model="selectedStreet" ng-required='true'>
+     <span style='color:red' ng-show='reviewForm.Street.$error.required && reviewForm.Street.$dirty'>Street is required</span>
+  </label>
+
 
 </div>
 </form>
