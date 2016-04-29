@@ -2,6 +2,22 @@
 
     <ion-content class="has-header has-subheader">
 
+      <h2>Fly Like Iberia</h2>
+    <!-- <input name="originAirports" id="originAirports"  type="text"  placeholder="Flying From" ng-model="selectedOrigin" ng-required='true' uib-typeahead="airport.name for airport in Airports | filter:$viewValue | limitTo:10" class="form-control" , typeahead-on-select="SetOriginAirport($item.iata)"  required > -->
+
+    <div class="list list-inset">
+    <label class="item item-input item-floating-label" ng-class="{ 'has-error' : loginForm.txtemail.$invalid && loginForm.$submitted }">
+            <span class="input-label">From</span>
+            <input name="originAirports" id="originAirports" type="text" ng-model="user.email" placeholder="From" ng-model="selectedOrigin" uib-typeahead="airport.name for airport in Airports | filter:$viewValue | limitTo:10" class="form-control" , typeahead-on-select="SetOriginAirport($item.iata)"
+            required>
+          </label>
+          <!-- Edit this messages if you want -->
+          <div class="form-errors" ng-messages="loginForm.originAirports.$error" ng-if="loginForm.$submitted">
+            <div class="form-error" ng-message="required">This field is required.</div>
+          </div>
+        </div>
+
+
         <div class="list list-inset">
            <label class="item item-input item-stacked-label">
                 <span class="input-label">Flying From:</span>
@@ -15,8 +31,8 @@
            </label>
         </div>
 
-        <button class="button button-block button-calm" 
-              ng-click="SearchFlights(originAirport, destinationAirport)">Search</button>           
+        <button class="button button-block button-calm"
+              ng-click="SearchFlights(originAirport, destinationAirport)">Search</button>
         </div>
     </ion-content>
 
