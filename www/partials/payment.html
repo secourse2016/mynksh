@@ -5,13 +5,15 @@
    <div>
        <h3><font color="black">Payment Data</font></h3>
    </div>
-   <div class="form-group row">
-   <font size="3" color="black" class="col-sm-4 text-left">Type of card:
-<font color="red">*</font>
- <div class="col-md-8 col-sm-8 text-left">
-    <div class="dropdown">
-  <select name="MonthC" ng-model="selectedType" ng-required='true' style='color:black' >    <option value="" disabled selected>Please Select your Card Type</option> 
-      <option style='color:black' value="Personal Visa Card (no charge)" ng-model="selectedType">Personal Visa Card (no charge)</option> 
+   <div class="list">
+
+  <label class="item item-input item-select">
+    <div class="input-label">
+      Type of Card<font color="red">*</font>
+    </div>
+    <select name="MonthC" ng-model="selectedType" ng-required='true' style='color:black'>
+    <option value=""disabled selected>Card Type</option> 
+     <option style='color:black' value="Personal Visa Card (no charge)" ng-model="selectedType">Personal Visa Card (no charge)</option> 
       <option style='color:black' value="Visa Corporate Card (+6.64 €)" ng-model="selectedType">Visa Corporate Card (+6.64 €)</option> 
       <option style='color:black' value="Personal MasterCard (no charge)" ng-model="selectedType">Personal MasterCard (no charge)</option> 
       <option style='color:black' value="MasterCard Corporate (+6.64 €)" ng-model="selectedType">MasterCard Corporate (+6.64 €)</option> 
@@ -19,7 +21,10 @@
       <option style='color:black' value="American Express Corporate (+6.64 €)" ng-model="selectedType">American Express Corporate (+6.64 €)</option> 
       <option style='color:black' value="Diners Club (+6.64 €)" ng-model="selectedType">Diners Club (+6.64 €)</option> <option style='color:black' value="UATP/Airplus (+6.64 €)" ng-model="selectedType">UATP/Airplus (+6.64 €)</option> 
       <option style='color:black' value="Carte Blanche (+6.64 €)" ng-model="selectedType">Carte Blanche (+6.64 €)</option> 
-      </select> <!-- </ul> -->
-    </div>
-</div> 
+
+     
+    </select>
+  </label>
+
+</div>
  </ion-view>
