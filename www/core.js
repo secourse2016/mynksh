@@ -36,6 +36,18 @@ App.config(function($stateProvider, $urlRouterProvider) {
     controller: ''
   })
 
+  .state('offer', {
+    url: '/offers',
+    templateUrl: '/partials/offers.html',
+    controller: ''
+  })
+
+  .state('AboutUs', {
+    url: '/AboutUs',
+    templateUrl: '/partials/AboutUs.html',
+    controller: ''
+  })
+
   // .state('payment', {
   //   url: '/payment',
   //   templateUrl: '/partials/payment.html',
