@@ -1,5 +1,5 @@
 /* Create Angular App Instance */
-App = angular.module('IBERIA', ['ionic']);
+App = angular.module('IBERIA', ['ionic','ngCordova']);
 
 App.run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {

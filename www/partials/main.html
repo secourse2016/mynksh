@@ -3,7 +3,8 @@
     <ion-content class="has-header has-subheader">
 
 
-      <h2 style="text-align:center;color:rgba(128,0,0, 1)">Fly Like Iberia</h2>
+      <h1 style="text-align:center;color:rgba(128,0,0, 1)">Fly Like Iberia</h1>
+      <h4 style="text-align:center;color:rgba(0,0,0, 1)">The Artful Flight Experience</h4>
     <!-- <input name="originAirports" id="originAirports"  type="text"  placeholder="Flying From" ng-model="selectedOrigin" ng-required='true' uib-typeahead="airport.name for airport in Airports | filter:$viewValue | limitTo:10" class="form-control" , typeahead-on-select="SetOriginAirport($item.iata)"  required > -->
 
 
@@ -32,6 +33,15 @@
                        <div class="form-errors" ng-messages="loginForm.destinationAirports.$error" ng-if="loginForm.$submitted">
                          <div class="form-error" ng-message="required">This field is required.</div>
                        </div>
+
+                       <ion-list>
+                         <h4 style="text-align:center;color:rgba(128,0,0, 1)">Select a type of flight</h4>
+                         <ion-radio ng-model="roundTrip" ng-value="false">One Way</ion-radio>
+                         <ion-radio ng-model="roundTrip" ng-value="true">Round Trip</ion-radio>
+                       </ion-list>
+
+                       
+
 
               </form>
            <!-- <label class="item item-input item-stacked-label">
