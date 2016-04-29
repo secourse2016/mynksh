@@ -1,19 +1,22 @@
-<ion-view title="Booking">
+<ion-view title="Landing">
 
-    <ion-content class="has-header has-subheader">
+  <ion-content class="has-header has-subheader">
+
 
 
       <h1 style="text-align:center;color:rgba(128,0,0, 1)">Fly Like Iberia</h1>
       <h4 style="text-align:center;color:rgba(0,0,0, 1)">The Artful Flight Experience</h4>
+
     <!-- <input name="originAirports" id="originAirports"  type="text"  placeholder="Flying From" ng-model="selectedOrigin" ng-required='true' uib-typeahead="airport.name for airport in Airports | filter:$viewValue | limitTo:10" class="form-control" , typeahead-on-select="SetOriginAirport($item.iata)"  required > -->
 
 
 
-        <div class="list list-inset">
-           <!-- <label class="item item-input item-stacked-label">
+    <div class="list list-inset">
+      <!-- <label class="item item-input item-stacked-label">
                 <span class="input-label">Flying From:</span>
                 <input type="text" placeholder="CAI" ng-model="originAirport">
            </label> -->
+
            <form id="loginForm">
                 <label class="item item-input item-floating-label" ng-class="{ 'has-error' : loginForm.originAirports.$invalid && loginForm.$submitted }">
                    <span class="input-label">Flying From</span>
@@ -40,19 +43,39 @@
                          <ion-radio ng-model="roundTrip" ng-value="true">Round Trip</ion-radio>
                        </ion-list>
 
-                       
+
 
 
               </form>
            <!-- <label class="item item-input item-stacked-label">
+      <!-- <label class="item item-input item-stacked-label">
+
                 <span class="input-label">Flying To:</span>
                 <input type="text" placeholder="FRA" ng-model="destinationAirport">
            </label> -->
-        </div>
+    </div>
 
-        <button style="left:125px" class="button button-outline button-assertive"
-              ng-click="SearchFlights(originAirport, destinationAirport)">Search Flights</button>
-        </div>
-    </ion-content>
+    <button style="left:125px" class="button button-outline button-assertive" ng-click="SearchFlights(originAirport, destinationAirport)">Search Flights</button>
+    </div>
+  </ion-content>
+
+  <ion-tabs class="tabs-icon-top tabs-color-active-positive">
+
+    <!-- Dashboard Tab -->
+    <ion-tab title="Home" icon-off="ion-ios-pulse" icon-on="ion-ios-pulse-strong" href="#/">
+      <ion-nav-view name="tab-dash"></ion-nav-view>
+    </ion-tab>
+
+    <!-- Chats Tab -->
+    <ion-tab title="Offers" icon-off="ion-ios-chatboxes-outline" icon-on="ion-ios-chatboxes" href="#/offers">
+      <ion-nav-view name="tab-chats"></ion-nav-view>
+    </ion-tab>
+
+    <!-- Account Tab -->
+    <ion-tab title="About Us" icon-off="ion-ios-gear-outline" icon-on="ion-ios-gear" href="#/AboutUs">
+      <ion-nav-view name="tab-account"></ion-nav-view>
+    </ion-tab>
+
+  </ion-tabs>
 
 </ion-view>
