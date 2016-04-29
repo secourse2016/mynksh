@@ -35,6 +35,12 @@ App.config(function($stateProvider, $urlRouterProvider) {
     templateUrl: '/partials/flights.html',
     controller: ''
   })
+  .state('payment', {
+    url: '/payment',
+    templateUrl: '/partials/payment.html',
+    controller: 'paymentCtrl'
+  })
+
 
   // .state('payment', {
   //   url: '/payment',
