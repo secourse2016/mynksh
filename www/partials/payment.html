@@ -5,9 +5,11 @@
    <div>
        <h3><font color="black">Payment Data</font></h3>
    </div>
-   <div class="list">
 
-  <label class="item item-input item-select">
+   <form class="contact-form support-form" name="reviewForm" novalidate=""> 
+ 
+<div class="list">
+ <label class="item item-input item-select">
     <div class="input-label">
       Type of Card<font color="red">*</font>
     </div>
@@ -25,6 +27,14 @@
      
     </select>
   </label>
+<label class="item item-input item-stacked-label">
+    <span class="input-label">Card Number<font color="red">*</font></span>
+    <input type="tel" class="form-control" name="cardNo" ng-model="selectedCardNumber" ng-required='true' ng-minlength='16' ng-maxlength='16'>
+    <span style='color:red' ng-show='(reviewForm.cardNo.$error.number || reviewForm.cardNo.$error.required) && reviewForm.cardNo.$dirty'>Valid card number is required</span> 
+ <span style='color:red' ng-show='(reviewForm.cardNo.$error.minlength || reviewForm.cardNo.$error.maxlength) && reviewForm.cardNo.$dirty'>Card number must be 16 digits</span>
+  </label>
 
 </div>
+</form>
+
  </ion-view>
