@@ -1,6 +1,6 @@
 <ion-view view-title="Confirmation">
   <ion-content class="padding">
-          <font class="text-left" size="5" color="grey"><b>Flight information</b></br></br></font>
+          <font size="5" color="grey"><b>Flight information</b></br></br></font>
           <div>
             <p>From: {{selectedOutgoingFlight.origin}}</p>
             <p>To: {{selectedOutgoingFlight.destination}}</p>
@@ -19,21 +19,21 @@
               <form name='details'>
                 </br>
                 <div>
-                  <font class="text-left" size="5" color="grey"><b>Contact Details</b></font>
+                  <font size="5" color="grey"><b>Contact Details</b></font>
                 </div>
                 </br>
                 <div>
-                  <font class="text-left" size="4" color="black">Phone number: </font>
-                  <div class="text-left">
+                  <font size="4" color="black">Phone number: </font>
+                  <div>
                     <input style="width:73%" type="number" placeholder="e.g.0224190971" ng-model="reservation.phoneno" name='phone' ng-required='true' ng-maxlength='12' ng-minlength='10'>
                     <span style='color:red' ng-show="(details.phone.$error.required || details.phone.$error.number) && details.phone.$dirty">Valid phone number is required</span>
                     <span style='color:red' ng-show="((details.phone.$error.minlength || details.phone.$error.maxlength) && details.phone.$dirty) ">Phone number should be from 10 to 12 digits</span>
                   </div>
                 </div>
                 <div>
-                  <font class="text-left" size="4" color="black">Email:</font>
-                  <div class="text-left">
-                    <input class="form-control" style="width:73%" type="email" placeholder="e.g. Hazem.279@gmail.com" ng-model="reservation.email" ng-required='true' name='email'>
+                  <font size="4" color="black">Email:</font>
+                  <div>
+                    <input class="form-control" style="width:73%" type="email" placeholder="e.g. John@gmail.com" ng-model="reservation.email" ng-required='true' name='email'>
                     <span style='color:red' ng-show="(details.email.$error.required || details.email.$error.email) && details.email.$dirty">Valid email is required</span>
                   </div>
                 </div>
@@ -42,53 +42,51 @@
                 <div>
                       </br>
                       </br>
-                      <div >
-                        <font class=" text-left" size="5" color="grey"><b>Passenger information
-                                            </br>
-                                          </br></b></font>
+                      <div>
+                        <font size="5" color="grey"><b>Passenger information</br></br></b></font>
                       </div>
                       </br>
                       </br>
-                      <div >
-                        <font class=" text-left" size="4" color="black">First Name:</font>
-                        <div class=" text-left">
-                          <input class="form-control" name='FName' style="width:73%" type="text" placeholder="e.g. Hazem" ng-model="reservation.FName" ng-required='true' ng-pattern="/^[a-zA-Z]*$/">
+                      <div>
+                        <font size="4" color="black">First Name:</font>
+                        <div>
+                          <input class="form-control" name='FName' style="width:73%" type="text" placeholder="e.g. John" ng-model="reservation.FName" ng-required='true' ng-pattern="/^[a-zA-Z]*$/">
                           <span style='color:red' ng-show="(details.FName.$error.pattern || details.FName.$error.required) && details.FName.$dirty">Valid first name is required (no numbers, spaces, or special symbols)</span>
                         </div>
                       </div>
-                      <div >
-                        <font class="text-left" size="4" color="black">Last Name:</font>
-                        <div class="text-left">
-                          <input class="form-control" name='LName' style="width:73%" type="text" placeholder="e.g. Elessawy" ng-model="reservation.LName" ng-required='true' ng-pattern="/^[a-zA-Z]*$/">
+                      <div>
+                        <font size="4" color="black">Last Name:</font>
+                        <div>
+                          <input class="form-control" name='LName' style="width:73%" type="text" placeholder="e.g. Doe" ng-model="reservation.LName" ng-required='true' ng-pattern="/^[a-zA-Z]*$/">
                           <span style='color:red' ng-show="(details.LName.$error.pattern || details.LName.$error.required) && details.LName.$dirty">Valid last name is required (no numbers, spaces, or special symbols)</span>
                         </div>
 
                       </div>
-                      <div >
-                        <font class=" text-left" size="4" color="black">Passport Number:</font>
-                        <div class=" text-left">
+                      <div>
+                        <font size="4" color="black">Passport Number:</font>
+                        <div>
                           <input class="form-control" name='pNo' style="width:73%" type="number" placeholder="" ng-model="reservation.passportNo" ng-required='true' ng-maxlength='9' ng-minlength='9' placeholder="e.g. 123456789">
                           <span style='color:red' ng-show="(details.pNo.$error.required || details.pNo.$error.number) && details.pNo.$dirty">Valid passport number is required</span>
                           <span style='color:red' ng-show="((details.pNo.$error.minlength || details.pNo.$error.maxlength) && details.pNo.$dirty) ">Passport number should be 9 digits long</span>
                         </div>
                       </div>
-                      <div >
-                        <font class=" text-left" size="4" color="black">Country of issue:</font>
-                        <div class=" text-left">
+                      <div>
+                        <font size="4" color="black">Country of issue:</font>
+                        <div>
                           <div ng-include="'./assets/countries.html'"></div>
                         </div>
                       </div>
-                      <div >
-                        <font class=" text-left" size="4" color="black">Issue Date:</font>
-                        <div class=" text-left">
+                      <div>
+                        <font size="4" color="black">Issue Date:</font>
+                        <div>
                           <input class="form-control" style="width:73%" name='issueDate' type="date" placeholder="e.g. 2016-04-12" ng-model="reservation.issueDate" ng-required='true' max='{{currentDate | date:"yyyy-MM-dd"}}'>
                           <span style='color:red' ng-show="(details.issueDate.$error.required || details.issueDate.$error.date) && details.issueDate.$dirty">Valid date is required (yyyy-MM-dd)</span>
                           <span style='color:red' ng-show="ddetails.issueDate.$error.max && details.issueDate.$dirty">Issue date must be before the current date</span>
                         </div>
                       </div>
-                      <div >
-                        <font class=" text-left" size="4" color="black">Expiry Date:</font>
-                        <div class=" text-left">
+                      <div>
+                        <font size="4" color="black">Expiry Date:</font>
+                        <div>
                           <input class="form-control" style="width:73%" name='expiryDate' type="date" placeholder="e.g. 2017-04-12" ng-model="reservation.expiryDate" ng-required='true' min='{{currentDate | date:"yyyy-MM-dd"}}'>
                           <span style='color:red' ng-show="(details.expiryDate.$error.required || details.expiryDate.$error.date) && details.expiryDate.$dirty">Valid date is required (yyyy-MM-dd)</span>
                           <span style='color:red' ng-show="details.expiryDate.$error.min && details.expiryDate.$dirty">Passport is expired</span>
