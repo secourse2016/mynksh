@@ -67,9 +67,13 @@ exports.getBooking = function(cb) {
     });
 }
 
-exports.searchFlights = function(origin, destination, departingDate, cabin, cb) {
+exports.searchFlights = function(origin, destination, departingDate, cabin, seats, cb) {
     var cost = 0;
     var economyOrBusiness = cabin.toLowerCase();
+    var reqSeats= seats;
+    if(reqSeats=null || reqSeats=0)
+        reqSeats=1;
+    
     // mongo.connect(function(err, db) {
     var collection = mongo.db().collection('flights');
     collection.find({
@@ -86,7 +90,7 @@ exports.searchFlights = function(origin, destination, departingDate, cabin, cb) 
                 cost = flights[0].eCost;
             else
                 cost = flights[0].bCost;
-            if ((economyOrBusiness == "economy" && flights[0].availableESeats > 0) || (economyOrBusiness == "business" && flights[0].availableBSeats > 0)) {
+            if ((economyOrBusiness == "economy" && flights[0].availableESeats>reqSeats) || (economyOrBusiness == "business" && flights[0].availableBSeats>reqSeats)) {
                 var departureDate = flights[0].departureTime;
                 var arrivalDate = flights[0].arrivalTime;
                 rflights = [{
@@ -219,4 +223,36 @@ exports.searchBookings = function(bookingRef, cb) {
         // mongo.close();
         // });
     });
+}
+exports.postBookings = function(firstName, lastName, passportNum, passportExpiryDate, dateOfBirth, nationality, email, cabin, cost, outgoingFlightId, returnFlightId, paymentToken, cb){
+    var economyOrBusiness = cabin.toLowerCase();
+    var collection = mongo.db().collection('bookings');
+    var document = { 
+        "firstName": firstName,
+        "lastName": lastName,
+        "passport": nationality,
+        "passportNumber": passportNum,
+        "expiryDate": passportExpiryDate,
+        "email": email,
+        "DateOfBirth": dateOfBirth
+    };
+    collection.insertOne(document,{
+                    w: 1
+                },function(err, records) {
+        var document= {
+        "cabin": economyOrBusiness,
+        "cost": cost,
+        "outgoingFlightId":outgoingFlightId,
+        "returnFlightId": returnFlightId,
+        "paymentToken": paymentToken
+    };
+    collection.insertOne(document,{
+                    w: 1
+                }, function(err, records) {
+                    // mongo.close();
+                    cb(err, true);
+                    // });
+                });
+    });
+    
 }
