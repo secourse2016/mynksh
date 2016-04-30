@@ -24,15 +24,15 @@ module.exports = function(app, mongo) {
     });
 
     /* GET ALL STATES ENDPOINT */
-    app.post('/chargeCard', function(req, res){
+    app.post('/booking', function(req, res){
         stripe.charges.create({
-            amount: 1000, 
+            amount: req.body.cost, 
             currency: "eur",
             source: req.body.id,
             description: "Example charge"
         }, function(err, charge) {
             if (err && err.type === 'StripeCardError') {
-                alert(JSON.stringify(err, null, 2));
+                res.send({ refNum: null, errorMessage: err});
             }
             else
             {
@@ -75,11 +75,11 @@ module.exports = function(app, mongo) {
         });
     });
 
-    app.get('/api/others/search/:ip/:origin/:destination/:departingDate/:returningDate/:cabin/:wt', function(req, res1) {
+    app.get('/api/others/search/:ip/:origin/:destination/:departingDate/:returningDate/:cabin/:seats/:wt', function(req, res1) {
         var options = {
             host: req.params.ip,
             path: '/api/flights/search/' + req.params.origin + '/' + req.params.destination + '/' + req.params.departingDate +
-                '/' + req.params.returningDate + '/' + req.params.cabin + '/?wt=' + req.params.wt,
+                '/' + req.params.returningDate + '/' + req.params.cabin + '/' + req.params.seats + '/?wt=' + req.params.wt,
             json: true
         };
         var timeout_wrapper = function(req) {
@@ -120,11 +120,11 @@ module.exports = function(app, mongo) {
         var timeout = setTimeout(fn, 1000);
     });
 
-    app.get('/api/others/search/:ip/:origin/:destination/:departingDate/:cabin/:wt', function(req, res1) {
+    app.get('/api/others/search/:ip/:origin/:destination/:departingDate/:cabin/:seats/:wt', function(req, res1) {
         var options = {
             host: req.params.ip,
             path: '/api/flights/search/' + req.params.origin + '/' + req.params.destination + '/' + req.params.departingDate +
-                  '/' + req.params.cabin + '/?wt=' + req.params.wt,
+                  '/' + req.params.cabin + '/' + req.params.seats + '/?wt=' + req.params.wt,
             json: true
         };
         var timeout_wrapper = function(req) {
