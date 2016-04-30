@@ -1,5 +1,5 @@
 /* Create Angular App Instance */
-App = angular.module('IBERIA', ['ionic','onezone-datepicker']);
+App = angular.module('IBERIA', ['ionic','onezone-datepicker','ui.router']);
 
 
 App.run(function($ionicPlatform) {
@@ -16,7 +16,13 @@ App.run(function($ionicPlatform) {
       StatusBar.styleDefault();
     }
   });
+
 });
+function ContentController($scope, $ionicSideMenuDelegate) {
+$scope.toggleLeft = function() {
+  $ionicSideMenuDelegate.toggleLeft();
+};
+}
 
 /**
  * Angular Routes
@@ -27,10 +33,15 @@ App.config(function($stateProvider, $urlRouterProvider) {
 
   .state('index', {
     url: '/',
+    templateUrl: '/partials/welcomingpage.html',
+    controller: 'welcomingCtrl'
+  })
+
+  .state('landing', {
+    url: '/landing',
     templateUrl: '/partials/main.html',
     controller: 'landingCtrl'
   })
-
   .state('flights', {
     url: '/flights',
     templateUrl: '/partials/flights.html',
