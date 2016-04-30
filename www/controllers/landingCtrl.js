@@ -14,26 +14,9 @@ App.controller('landingCtrl', function($scope, FlightsSrv, $location) {
 
     $scope.roundTrip = "true";
     $scope.cabin = "true";
-    //
-    // var options = {
-    //     date: new Date(),
-    //     mode: 'date', // or 'time'
-    //     minDate: new Date() - 10000,
-    //     allowOldDates: true,
-    //     allowFutureDates: false,
-    //     doneButtonLabel: 'DONE',
-    //     doneButtonColor: '#F2F3F4',
-    //     cancelButtonLabel: 'CANCEL',
-    //     cancelButtonColor: '#000000'
-    //   };
-    //
-    //   document.addEventListener("deviceready", function () {
-    //
-    //     $cordovaDatePicker.show(options).then(function(date){
-    //         alert(date);
-    //     });
-    //
-    //   }, false);
+    $scope.data = {
+     showDelete: false
+   };
 
     $scope.bookingRef = function() {
         $location.url('/bookingRef');
@@ -156,6 +139,26 @@ App.controller('landingCtrl', function($scope, FlightsSrv, $location) {
 
 
     $scope.onezoneDatepicker = {
+        date: new Date(), // MANDATORY
+        mondayFirst: false,
+        months: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+        daysOfTheWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+        startDate: new Date(2016,03,03),
+        endDate: new Date(2024, 1, 26),
+        disablePastDays: true,
+        disableSwipe: false,
+        disableWeekend: false,
+        // disableDates: disableDates,
+        // disableDaysOfWeek: disableDaysOfWeek,
+        showDatepicker: false,
+        showTodayButton: true,
+        calendarMode: false,
+        hideCancelButton: false,
+        hideSetButton: false,
+
+
+    };
+    $scope.onezoneDatepicker2 = {
         date: new Date(), // MANDATORY
         mondayFirst: false,
         months: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],

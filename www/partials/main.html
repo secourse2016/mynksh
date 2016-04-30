@@ -40,17 +40,38 @@
 
                        <ion-list>
                          <h4 style="text-align:center;color:rgba(128,0,0, 1)">Select a type of flight</h4>
-                         <ion-radio ng-model="roundTrip" ng-value="false">One Way</ion-radio>
-                         <ion-radio ng-model="roundTrip" ng-value="true">Round Trip</ion-radio>
+                         <ion-radio ng-click="data.showDelete = true" ng-model="roundTrip" value="false">One Way</ion-radio>
+                         <ion-radio ng-click="data.showDelete = false" ng-model="roundTrip" value="true">Round Trip</ion-radio>
                        </ion-list>
 
+                       <div ng-show="!data.showDelete">
                         <ion-list>
+                          <h4 style="text-align:center;color:rgba(128,0,0, 1)">Outgoing date</h4>
                        <onezone-datepicker datepicker-object="onezoneDatepicker">
-                         <button class="button button-block button-outline button-positive show-onezone-datepicker">
+                         <button class="button button-block button-outline button-assertive show-onezone-datepicker">
                            {{onezoneDatepicker.date | date:'dd MMMM yyyy'}}
                          </button>
                        </onezone-datepicker>
+                     </ion-list>
+                       <ion-list>
+                       <h4 style="text-align:center;color:rgba(128,0,0, 1)">Return date</h4>
+                    <onezone-datepicker datepicker-object="onezoneDatepicker2">
+                      <button class="button button-block button-outline button-assertive show-onezone-datepicker">
+                        {{onezoneDatepicker2.date | date:'dd MMMM yyyy'}}
+                      </button>
+                    </onezone-datepicker>
                         </ion-list>
+                      </div>
+                      <div ng-show="data.showDelete">
+                       <ion-list>
+                         <h4 style="text-align:center;color:rgba(128,0,0, 1)">Outgoing date</h4>
+                      <onezone-datepicker datepicker-object="onezoneDatepicker">
+                        <button class="button button-block button-outline button-assertive show-onezone-datepicker">
+                          {{onezoneDatepicker.date | date:'dd MMMM yyyy'}}
+                        </button>
+                      </onezone-datepicker>
+                    </ion-list>
+                     </div>
 
 
 
