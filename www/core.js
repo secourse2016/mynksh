@@ -28,8 +28,11 @@ function ContentController($scope, $ionicSideMenuDelegate) {
 /**
  * Angular Routes
  */
-App.config(function($stateProvider, $urlRouterProvider, $mdIconProvider) {
+App.config(function($stateProvider, $urlRouterProvider, $mdIconProvider,$mdDateLocaleProvider) {
 
+  $mdDateLocaleProvider.formatDate = function(date) {
+    return moment(date).format('D/M/YYYY');
+  };
 
   $stateProvider
 

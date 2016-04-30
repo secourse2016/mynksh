@@ -9,8 +9,11 @@ App.controller('confirmCtrl', function($scope, FlightsSrv, OutReturnSrv, Confirm
     // $scope.tickets= 2;
     $scope.price = OutReturnSrv.getSelectedPrice();
     $scope.currentDate = new Date();
-    $scope.min = Math.min;
-    $scope.format = 'd/M/yyyy'
+    $scope.reservation = {};
+    $scope.reservation.issueDate = new Date();
+    $scope.reservation.expiryDate = new Date();
+    $scope.minDate = new Date($scope.currentDate.getFullYear() -5,$scope.currentDate.getMonth(),$scope.currentDate.getDate());
+    $scope.maxDate = new Date($scope.currentDate.getFullYear() +5,$scope.currentDate.getMonth(),$scope.currentDate.getDate());
 
     var setTicketEmail = function(value) {
         ConfirmSrv.setEmail(value);

@@ -1,5 +1,6 @@
 <ion-view view-title="Confirmation">
   <ion-content class="padding" style='background: linear-gradient(to bottom right,#D3D3D3,white,white,#D3D3D3)'>
+    <form name='details'>
           <font size="5" color="grey"><b>Flight information</b></br></br></font>
           <div class='serif'>
             <p>From: {{selectedOutgoingFlight.origin}}</p>
@@ -16,7 +17,6 @@
               <h4 style=" color:rgba(178,34,34, 1)"><b>Passenger Details</b></h4>
             </div>
             <div>
-              <form name='details'>
                 </br>
                   <div>
                   <font size="5" color="grey"><b>Contact Details</b></font>
@@ -65,23 +65,26 @@
                         <div ng-include src="'./assets/countries.html'"></div>
                         <md-tooltip md-visible='true' md-direction='top'>Choose a country</md-tooltip>
                       </md-input-container>
-                      <md-input-container class="md-block" flex-gt-sm>
+                      <div>
                         <label style='font-size: 1.5em;color:black'>Issue Date:</label>
-                          <input name='issueDate' type="date" ng-model="reservation.issueDate" ng-required='true' max='{{currentDate | date:"yyyy-MM-dd"}}'>
-                          <span style='color:red' ng-show="(details.issueDate.$error.required || details.issueDate.$error.date) && details.issueDate.$dirty">Valid date is required (yyyy-MM-dd)</span>
-                          <span style='color:red' ng-show="ddetails.issueDate.$error.max && details.issueDate.$dirty">Issue date must be before the current date</span>
-                          <md-tooltip md-visible='true' md-direction='top'>e.g. 2014-02-02</md-tooltip>
-                      </md-input-container>
+                          <md-datepicker name='issueDate' type="date" ng-model="reservation.issueDate" ng-required='true' md-max-date='currentDate' md-min-date='minDate'></md-datepicker>
+                          <span style='color:red' ng-show="(details.issueDate.$error.required || details.issueDate.$error.valid) && details.issueDate.$dirty"></br>Valid date is required (d/M/yyyy)</span>
+                          <span style='color:red' ng-show="details.issueDate.$error.mindate && details.issueDate.$dirty"></br>Date is too early</span>
+                          <span style='color:red' ng-show="details.issueDate.$error.maxdate && details.issueDate.$dirty"></br>Passport is not issued yet</span>
+                          <md-tooltip md-visible='true' md-direction='top'>e.g. 22/12/2015</md-tooltip>
+                      </div>
                       <md-input-container class="md-block" flex-gt-sm>
                         <label style='font-size: 1.5em;color:black'>Expiry Date:</label>
                           <input name='expiryDate' type="date" ng-model="reservation.expiryDate" ng-required='true' min='{{currentDate | date:"yyyy-MM-dd"}}'>
                           <span style='color:red' ng-show="(details.expiryDate.$error.required || details.expiryDate.$error.date) && details.expiryDate.$dirty">Valid date is required (yyyy-MM-dd)</span>
                           <span style='color:red' ng-show="details.expiryDate.$error.min && details.expiryDate.$dirty">Passport is expired</span>
-                        <md-tooltip md-visible='true' md-direction='top'>e.g. 2017-02-02</md-tooltip></div>
+                        <md-tooltip md-visible='true' md-direction='top'>e.g. 2017-02-02</md-tooltip>
                       </md-input-container>
                 </div>
             </div>
-    <button type="button" ng-disabled='details.$invalid' class="btn" style="background:rgba(178,34,34, 1);margin-top: 15px" ng-click="goToPayment()">Proceed to payment</button>
+            <div class='center'>
+    <md-button ng-disabled='details.$invalid' class="md-raised md-primary" ng-click="goToPayment()">Proceed to payment</md-button>
+  </div>
     </form>
   </ion-content>
 </ion-view>
