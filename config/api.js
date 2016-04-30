@@ -224,27 +224,21 @@ exports.searchBookings = function(bookingRef, cb) {
         // });
     });
 }
-exports.postBookings = function(firstName, lastName, passportNum, passportExpiryDate, dateOfBirth, nationality, email, cabin, cost, outgoingFlightId, returnFlightId, paymentToken, cb){
-    var economyOrBusiness = cabin.toLowerCase();
+exports.postBookings = function(booking, cb){
     var collection = mongo.db().collection('bookings');
     var document = { 
-        "firstName": firstName,
-        "lastName": lastName,
-        "passport": nationality,
-        "passportNumber": passportNum,
-        "expiryDate": passportExpiryDate,
-        "email": email,
-        "DateOfBirth": dateOfBirth
-    };
-    collection.insertOne(document,{
-                    w: 1
-                },function(err, records) {
-        var document= {
-        "cabin": economyOrBusiness,
-        "cost": cost,
-        "outgoingFlightId":outgoingFlightId,
-        "returnFlightId": returnFlightId,
-        "paymentToken": paymentToken
+        "firstName": booking.passengerDetails.firstName,
+        "lastName": booking.passengerDetails.lastName,
+        "passport": booking.passengerDetails.nationality,
+        "passportNumber": booking.passengerDetails.passportNum,
+        "expiryDate": booking.passengerDetails.passportExpiryDate,
+        "email": booking.passengerDetails.email,
+        "DateOfBirth": booking.passengerDetails.dateOfBirth
+        "cabin": booking.class,
+        "cost": booking.cost,
+        "outgoingFlightId":booking.outgoingFlightId,
+        "returnFlightId": booking.returnFlightId,
+        "paymentToken": booking.paymentToken
     };
     collection.insertOne(document,{
                     w: 1
@@ -253,6 +247,7 @@ exports.postBookings = function(firstName, lastName, passportNum, passportExpiry
                     cb(err, true);
                     // });
                 });
-    });
+
+         });
     
 }
