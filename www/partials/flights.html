@@ -1,12 +1,15 @@
 <script>
-
 </script>
 <style>
-listdemoListControls {
-  /* Add some right padding so that the text doesn't overlap the buttons */ }
+  listdemoListControls {
+    /* Add some right padding so that the text doesn't overlap the buttons */
+  }
+
   .listdemoListControls md-divider {
     margin-top: 10px;
-    margin-bottom: 10px; }
+    margin-bottom: 10px;
+  }
+
   .listdemoListControls md-list-item > p,
   .listdemoListControls md-list-item > .md-list-item-inner > p,
   .listdemoListControls md-list-item .md-list-item-inner > p,
@@ -18,15 +21,25 @@ listdemoListControls {
     -ms-user-select: none;
     /* IE 10+ */
     user-select: none;
-    /* Likely future */ }
+    /* Likely future */
+  }
+
   .listdemoListControls .secondary-button-padding p {
-    padding-right: 100px; }
+    padding-right: 100px;
+  }
+
+  .selected {
+    color: red;
+    box-shadow: inset 0px 0px 0px 25px #b0b0b0;
+  }
+
+  `
 </style>
 <ion-view title="Flights">
 
   <ion-content class="has-header has-subheader">
     <div class="col-md-10 col-md-offset-1 text-center">
-        <h3><font color="black" size="10" style="
+      <h3><font color="black" size="10" style="
     border-top: 1px solid;
     border-bottom: 1px solid;
     display: inline-block;
@@ -34,53 +47,60 @@ listdemoListControls {
     padding: 8px 0;text-align: center;">Flights </font><br><br></h3>
     </div>
 
-    <div ng-show="outFlightFound" >
     <h1 class="animated fadeInDown header-font">Select your flights</h1>
-    <div id='outgoing'>
-        <div class="animated slideInLeft">
-            <h3><img src='../assets/outgoingPlane.png'>Outbound:From {{origin}} to {{dest}}
+    <div class="animated slideInLeft">
+      <h3><img src='../assets/outgoingPlane.png'>Outbound:From {{origin}} to {{dest}}
               <small></br>{{oDate | date}}</small></h3>
-
-        </div>
-
-        <md-list ng-cloak>  <md-subheader class="md-no-sticky">Outgoing flights</md-subheader>
-          <md-list-item ng-repeat="group in groups">
-            <ion-item class="item-stable"
-                      ng-click="toggleGroup(group)"
-                      ng-class="{active: isGroupShown(group)}">
-                <i class="icon" ng-class="isGroupShown(group) ? 'ion-minus' : 'ion-plus'"></i>
-              &nbsp;
-              Group {{group.name}}
-            </ion-item>
-            <ion-item class="item-accordion"
-                      ng-repeat="item in group.items"
-                      ng-show="isGroupShown(group)">
-              {{item}}
-            </ion-item>
-          </md-list-item>
-        </md-list-item>
-
-
-    <!-- <md-list ng-cloak>
+    </div>
+    <md-list ng-cloak>
       <md-subheader class="md-no-sticky">Outgoing flights</md-subheader>
-      <md-list-item ng-repeat="topping in toppings">
-        <p> {{ topping.name }} </p>
-          <p> {{ topping.name }} </p>
-
-        <md-checkbox class="md-secondary" ng-model="$parent.wanted" ng-value= "{{topping.wanted}}"></md-checkbox>
-      </md-list-item>
-
+      <div ng-repeat="flight in outgoingInfo">
+        <md-list-item id="OutList" class="item-stable" ng-click="toggleGroup(flight)" ng-class="{active: isGroupShown(flight), selected: isSelected(flight)}" />
+        <i class="icon" ng-class="isGroupShown(flight) ? 'ion-minus' : 'ion-plus'"></i> &nbsp; Flight: {{flight.flightNumber}} By: ({{flight.Airline}})
+        </md-list-item>
+        <md-list-item class="item-accordion" ng-show="isGroupShown(flight)">Departure Time: {{stringToDate(flight.departureDateTime) | date : 'shortTime'}} </md-list-item>
+        <md-list-item class="item-accordion" ng-show="isGroupShown(flight)">Arrival Time: {{stringToDate(flight.arrivalDateTime) | date : 'shortTime'}} </md-list-item>
+        <md-list-item class="item-accordion" ng-show="isGroupShown(flight)">Duration: {{timediff(flight.departureDateTime,flight.arrivalDateTime)}} </md-list-item>
+        <md-list-item class="item-accordion" ng-show="isGroupShown(flight)">Cost: {{flight.cost | currency: flight.currency+" "}} </md-list-item>
+        <md-list-item class="item-accordion" ng-show="isGroupShown(flight)" id="OutgoingList">
+          <md-radio-group ng-model="$parent.selectedOutgoingFlight">
+            <md-radio-button ng-value="{{flight}}" class="md-primary" ng-click="SetSelectedOutgoingFlight(flight)">Select this flight</md-radio-button>
+          </md-radio-group>
+        </md-list-item>
+      </div>
     </md-list>
-{{wanted}}asdas -->
 
-    <!-- <ion-list>
-            <ion-item type="item-text-wrap" class="item-avatar"
-                      href="#">
-                <img src="/pics/John_Williams.jpg"/>
-                {{flight.origin}} - {{flight.destination}}
-                <p>LH 549 09:45 AM - 05:15 PM</p>
-            </ion-item>
-        </ion-list> -->
+    <div ng-show="roundTrip === 'true'">
+        <div id='return'  class="animated slideInRight">
+            <h3><img src='../assets/returnPlane.png'>Return: From {{dest}} to {{origin}}<small></br>{{rDate |date}}</small></h3>
+        </div>
+      <md-list ng-cloak>
+        <md-subheader class="md-no-sticky">Return flights</md-subheader>
+        <div ng-repeat="flight in returnInfo">
+          <md-list-item id="OutList" class="item-stable" ng-click="toggleGroup(flight)" ng-class="{active: isGroupShown(flight), selected: isSelected(flight)}" />
+          <i class="icon" ng-class="isGroupShown(flight) ? 'ion-minus' : 'ion-plus'"></i> &nbsp; Flight: {{flight.flightNumber}} By: ({{flight.Airline}})
+          </md-list-item>
+          <md-list-item class="item-accordion" ng-show="isGroupShown(flight)">Departure Time: {{stringToDate(flight.departureDateTime) | date : 'shortTime'}} </md-list-item>
+          <md-list-item class="item-accordion" ng-show="isGroupShown(flight)">Arrival Time: {{stringToDate(flight.arrivalDateTime) | date : 'shortTime'}} </md-list-item>
+          <md-list-item class="item-accordion" ng-show="isGroupShown(flight)">Duration: {{timediff(flight.departureDateTime,flight.arrivalDateTime)}} </md-list-item>
+          <md-list-item class="item-accordion" ng-show="isGroupShown(flight)">Cost: {{flight.cost | currency: flight.currency+" "}} </md-list-item>
+          <md-list-item class="item-accordion" ng-show="isGroupShown(flight)" id="OutgoingList">
+            <md-radio-group ng-model="$parent.selectedReturnFlight">
+              <md-radio-button ng-value="{{flight}}" class="md-primary" ng-click="SetSelectedReturnFlight(flight)">Select this flight</md-radio-button>
+            </md-radio-group>
+          </md-list-item>
+        </div>
+      </md-list>
+
+      <div id='price'>
+          <blockquote>
+              <p>Price:</p>
+              <h3>{{(selectedReturnFlight.cost + selectedOutgoingFlight.cost) | currency:"€"}}</h3>
+              <span ng-show="RadioSelected" style="color: red">Flight(s) must be selected</span>
+          </blockquote>
+          <a href class="btn btn-primary btn-lg hvr-underline-from-center" ng-click='BookFlight()'>Book Flight</a>
+      </div>
+
   </ion-content>
 
 </ion-view>

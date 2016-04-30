@@ -1,7 +1,7 @@
 App.factory('OutReturnSrv', function($http) {
     return {
         getairLinesInfo: function() {
-            return $http.get('/data/airlines');
+            return $http.get('http://localhost:8080/data/airlines');
         },
         getRoundTripInfo: function(origin, dest, oDate, rDate, cabin) {
             var jwt = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJNWU5LU0giLCJpYXQiOjE0NjA3NzIyOTQsImV4cCI6MTQ5MjMwODI5NSwiYXVkIjoid3d3LnNlY291cnNlLmNvbSIsInN1YiI6Ik1ZTktTSCBJYmVyaWEiLCJUZWFtIjoiTVlOS1NIIn0.hZxhv8XAcu1cARgcrtfb0l_crF1-Ic1tJt9eUhIL0qQ';

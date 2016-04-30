@@ -1,12 +1,20 @@
 App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $location, $http) {
 
+  $scope.SetSelectedOutgoingFlight = function(value) {
+    $scope.selectedOutgoingFlight = value;
+  };
+  $scope.SetSelectedReturnFlight = function(value) {
+    $scope.selectedReturnFlight = value;
+  };
   $scope.toggleGroup = function(group) {
     group.show = !group.show;
   };
   $scope.isGroupShown = function(group) {
     return group.show;
   };
-
+  $scope.isSelected = function(group) {
+    return (($scope.selectedOutgoingFlight != undefined) && ($scope.selectedOutgoingFlight === group)) || (($scope.selectedReturnFlight != undefined) && ($scope.selectedReturnFlight === group));
+  };
 
   // $scope.roundTrip = FlightsSrv.getSelectedRoundTrip();
   // $scope.origin = FlightsSrv.getSelectedOriginAirport();
@@ -28,11 +36,13 @@ App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $locati
   $scope.rDate = 'May 2, 2016';
   $scope.cabin = 'economy';
 
+
+
   // if (FlightsSrv.getPinging().toString() === 'true')
-  //     if ($scope.roundTrip === 'true')
-  //         pingAirlineR($scope.origin, $scope.dest, changeISOFormat($scope.oDate), changeISOFormat($scope.rDate));
-  //     else
-  //         pingAirlineS($scope.origin, $scope.dest, changeISOFormat($scope.oDate));
+  if ($scope.roundTrip === 'true')
+    pingAirlineR($scope.origin, $scope.dest, changeISOFormat($scope.oDate), changeISOFormat($scope.rDate));
+  else
+    pingAirlineS($scope.origin, $scope.dest, changeISOFormat($scope.oDate));
 
   if ($scope.roundTrip === 'true')
     roundTripInfo($scope.origin, $scope.dest, changeISOFormat($scope.oDate), changeISOFormat($scope.rDate));
