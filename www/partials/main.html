@@ -19,7 +19,7 @@
 
            <form id="loginForm">
                 <label class="item item-input item-floating-label" ng-class="{ 'has-error' : loginForm.originAirports.$invalid && loginForm.$submitted }">
-                   <span class="input-label">Flying From</span>
+                   <span class="input-label ion-plane">Flying From</span>
                    <input name="originAirports" id="originAirports" type="text" placeholder="Flying From" ng-model="selectedOrigin" uib-typeahead="airport.name for airport in Airports | filter:$viewValue | limitTo:10" class="form-control" , typeahead-on-select="SetOriginAirport($item.iata)"
                    required>
                  </label>
@@ -29,7 +29,7 @@
                  </div>
 
                     <label class="item item-input item-floating-label" ng-class="{ 'has-error' : loginForm.destinationAirports.$invalid && loginForm.$submitted }">
-                        <span class="input-label">Flying To</span>
+                        <span class="input-label ion-plane">Flying To</span>
                         <input name="destinationAirports" id="destinationAirports" type="text"  placeholder="Flying To" ng-model="selectedDestination" uib-typeahead="airport.name for airport in Airports | filter:$viewValue | limitTo:10" class="form-control" , typeahead-on-select="SetDestinationAirport($item.iata)" ng-required='true' required>
                     </label>
 
@@ -71,6 +71,15 @@
                       </onezone-datepicker>
                     </ion-list>
                      </div>
+
+                     <ion-list>
+                       <h4 style="text-align:center;color:rgba(128,0,0, 1)">Select a cabin</h4>
+                       <ion-radio ng-click="data.showCabin = false" ng-model="cabin" value="false">Economy</ion-radio>
+                       <ion-radio ng-click="data.showCabin = true" ng-model="cabin" value="true">Business</ion-radio>
+                     </ion-list>
+                     <ion-list>
+                       <ion-radio ng-click="data.showPinging= true" ng-model="pinging" value="false">Pinging Other Airlines</ion-radio>
+                     </ion-list>
 
 
 

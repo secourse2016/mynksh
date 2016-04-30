@@ -10,12 +10,13 @@ App.controller('landingCtrl', function($scope, FlightsSrv, $location) {
     //    //to do
     //    console.log(val)
     // });
-    $scope.pinging="false";
-
+    $scope.pinging="true";
     $scope.roundTrip = "true";
     $scope.cabin = "true";
     $scope.data = {
-     showDelete: false
+     showDelete: false,
+     showCabin:true,
+     showPinging:false
    };
 
     $scope.bookingRef = function() {
@@ -27,7 +28,7 @@ App.controller('landingCtrl', function($scope, FlightsSrv, $location) {
     // $scope.cabin="cabin";
 
     // $scope.roundTrip="roundtrip";
-  
+
 
     $scope.open1 = function() {
         $scope.popup1.opened = true;
