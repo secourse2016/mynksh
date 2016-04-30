@@ -22,16 +22,12 @@ App.controller('landingCtrl', function($scope, FlightsSrv, $location) {
         $location.url('/bookingRef');
     };
 
-    $scope.teamMembers = function() {
-        $location.url('/teamMembers');
-    };
+
 
     // $scope.cabin="cabin";
 
     // $scope.roundTrip="roundtrip";
-    $scope.isShown = function(roundTrip) {
-        return roundTrip === $scope.roundTrip;
-    };
+  
 
     $scope.open1 = function() {
         $scope.popup1.opened = true;

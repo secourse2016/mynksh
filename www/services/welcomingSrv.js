@@ -6,43 +6,42 @@ App.factory('welcomingSrv', function() {
     id: 0,
     name: 'Narihan Ellaithy',
     lastText: 'Front End developer',
-    face: 'img/ionic.png'
+    face: 'img/1.jpg'
   }, {
     id: 1,
-    name: 'Max Lynx',
-    lastText: 'Hey, it\'s me',
-    face: 'img/ionic.png'
+    name: 'Safa Ads',
+    lastText: 'Back End developer',
+    face: 'img/2.jpg'
   }, {
     id: 2,
-    name: 'Adam Bradleyson',
-    lastText: 'I should buy a boat',
-    face: 'img/ionic.jpg'
+    name: 'Yara Sobhy',
+    lastText: 'Back End developer',
+    face: 'img/3.jpg'
   }, {
     id: 3,
-    name: 'Perry Governor',
-    lastText: 'Look at my mukluks!',
-    face: 'img/ionic.png'
+    name: 'Youssef Radi',
+    lastText: 'Front and Back End developer',
+    face: 'img/4.jpg'
   }, {
     id: 4,
-    name: 'Mike Harrington',
-    lastText: 'This is wicked good ice cream.',
-    face: 'img/ionic.png'
+    name: 'Mohamed Ashraf',
+    lastText: 'Back and Front End developer',
+    face: 'img/5.jpg'
+  },{
+    id: 5,
+    name: 'Hazem Ayman',
+    lastText: 'Front End developer',
+    face: 'img/6.jpg'
+  },{
+    id: 6,
+    name: 'Mostafa Ibrahim',
+    lastText: 'Front and Back End developer',
+    face: 'img/7.jpg'
   }];
 
   return {
     all: function() {
       return chats;
-    },
-    remove: function(chat) {
-      chats.splice(chats.indexOf(chat), 1);
-    },
-    get: function(chatId) {
-      for (var i = 0; i < chats.length; i++) {
-        if (chats[i].id === parseInt(chatId)) {
-          return chats[i];
-        }
-      }
-      return null;
     }
   };
 });

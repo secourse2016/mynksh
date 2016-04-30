@@ -16,7 +16,5 @@ App.controller('welcomingCtrl', function($scope, welcomingSrv, $state, $ionicSli
     $scope.slideIndex = index;
   };
   $scope.chats = welcomingSrv.all();
-  $scope.remove = function(chat) {
-    welcomingSrv.remove(chat);
-  };
+
 });
