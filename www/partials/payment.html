@@ -103,7 +103,7 @@
      <span style='color:red' ng-show='reviewForm.city.$error.required && reviewForm.city.$dirty'>City is required</span>
   </label>
 <!--   //<div class="item item-text-wrap" id = "pay"> -->
-  <center><h4><font color="Maroon" Style="margain:125px"> Total price : {{totalPrice}} </font></h4></center>
+  <center><h4><font color="Maroon" Style="margain:125px">Total Price: {{totalPrice | currency : outCurrency+' '}} </font></h4></center>
  <!--  Total price : {{totalPrice}}  -->
 <!--   </div> -->
 <button class="button button-full button-assertive" ng-disabled="reviewForm.$invalid"
