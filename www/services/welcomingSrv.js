@@ -42,6 +42,13 @@ App.factory('welcomingSrv', function() {
   return {
     all: function() {
       return chats;
+    },get: function(chatId) {
+      for (var i = 0; i < chats.length; i++) {
+        if (chats[i].id === parseInt(chatId)) {
+          return chats[i];
+        }
+      }
+      return null;
     }
   };
 });

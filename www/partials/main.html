@@ -1,14 +1,14 @@
 
 <ion-view title="Landing">
 
-
   <ion-content class="has-header has-subheader">
 
 
 
-      <h2 style="text-align:center;color:rgba(128,0,0, 1)">Book Flight</h2>
+      <h4 style="text-align:center;color:rgba(128,0,0, 1)">Book Flight</h4>
 
     <!-- <input name="originAirports" id="originAirports"  type="text"  placeholder="Flying From" ng-model="selectedOrigin" ng-required='true' uib-typeahead="airport.name for airport in Airports | filter:$viewValue | limitTo:10" class="form-control" , typeahead-on-select="SetOriginAirport($item.iata)"  required > -->
+
 
 
     <div class="list list-inset">
@@ -38,14 +38,14 @@
                        </div>
 
                        <ion-list>
-                         <h4 style="text-align:center;color:rgba(128,0,0, 1)">Select a type of flight</h4>
+                         <h5 style="text-align:center;color:rgba(128,0,0, 1)">Select a type of flight</h5>
                          <ion-radio ng-click="data.showDelete = true" ng-model="roundTrip" value="false">One Way</ion-radio>
                          <ion-radio ng-click="data.showDelete = false" ng-model="roundTrip" value="true">Round Trip</ion-radio>
                        </ion-list>
 
                        <div ng-show="!data.showDelete">
                         <ion-list>
-                          <h4 style="text-align:center;color:rgba(128,0,0, 1)">Outgoing date</h4>
+                          <h5 style="text-align:center;color:rgba(128,0,0, 1)">Outgoing date</h5>
                        <onezone-datepicker datepicker-object="onezoneDatepicker">
                          <button class="button button-block button-outline button-assertive show-onezone-datepicker">
                            {{onezoneDatepicker.date | date:'dd MMMM yyyy'}}
@@ -53,7 +53,7 @@
                        </onezone-datepicker>
                      </ion-list>
                        <ion-list>
-                       <h4 style="text-align:center;color:rgba(128,0,0, 1)">Return date</h4>
+                       <h5 style="text-align:center;color:rgba(128,0,0, 1)">Return date</h5>
                     <onezone-datepicker datepicker-object="onezoneDatepicker2">
                       <button class="button button-block button-outline button-assertive show-onezone-datepicker">
                         {{onezoneDatepicker2.date | date:'dd MMMM yyyy'}}
@@ -77,9 +77,12 @@
                        <ion-radio ng-click="data.showCabin = false" ng-model="cabin" value="false">Economy</ion-radio>
                        <ion-radio ng-click="data.showCabin = true" ng-model="cabin" value="true">Business</ion-radio>
                      </ion-list>
+
+
                      <ion-list>
                        <ion-radio ng-click="data.showPinging= true" ng-model="pinging" value="false">Pinging Other Airlines</ion-radio>
                      </ion-list>
+
 
 
 
@@ -96,5 +99,7 @@
     <button style="left:125px" class="button button-outline button-assertive" ng-click="SearchFlights(originAirport, destinationAirport)">Search Flights</button>
     </div>
   </ion-content>
+
+
 
 </ion-view>

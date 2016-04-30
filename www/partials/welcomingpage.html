@@ -87,11 +87,13 @@ body {
               <img src="/img/iberia-logo.png">
             </div></font></b>
             <br><br>
-            <h4 style="text-align:center;color:rgba(0,0,0, 1)">The Artful Flight Experience</h4>
+            <font style="text-align:center;color:rgba(0,0,0, 1)" size=3>The Artful Flight Experience</font>
 
           </ion-slide>
+
           <ion-slide>
-            <h3>Team Members</h3>
+            <font size=6>Team Members</font>
+            <br>
 
             <!-- <div id="list">
               <h5>MYNKSH:</h5>
@@ -102,15 +104,15 @@ body {
               </ol>
             </div> -->
             <ion-list>
-              <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="chat in chats" type="item-text-wrap" >
+              <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="chat in chats" type="item-text-wrap" href="#/chat-detail/{{chat.id}}">
                 <img ng-src="{{chat.face}}">
                 <h2>{{chat.name}}</h2>
                 <p>{{chat.lastText}}</p>
                 <i class="icon ion-chevron-right icon-accessory"></i>
 
 
-      </ion-item>
-    </ion-list>
+              </ion-item>
+            </ion-list>
           </ion-slide>
           <ion-slide style="background-color:rgba(128,0,0, 1)">
             <br><br><br><br><br><br><br>

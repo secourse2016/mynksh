@@ -45,6 +45,13 @@ App.config(function($stateProvider, $urlRouterProvider, $mdIconProvider) {
     templateUrl: 'partials/tabs.html',
     controller: 'tabsCtrl'
   })
+  .state('chat-detail', {
+      url: '/chat-detail/:chatId',
+
+          templateUrl: 'partials/chat-detail.html',
+          controller: 'ChatDetailCtrl'
+
+    })
 
   // Each tab has its own nav history stack:
 
