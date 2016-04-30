@@ -2,10 +2,14 @@
 App.factory('paymentSrv', function($http) {
     return {
 
-        postPay: function(reservation, bookingRefNumber, flight , cabin) {
-          return $http.get('/data/pay/'+ reservation.FName + '/' + reservation.LName + '/' + reservation.country + '/' + reservation.passportNo+'/'+
-            reservation.issueDate+'/'+ reservation.expiryDate + '/' + reservation.email + '/' + reservation.phoneno + '/' + bookingRefNumber+'/'+
-            flight.flightNumber+'/'+cabin);
+        postPay: function(reservation,  outgoingFlight , cabin) {
+            return $http.get('/data/pay/'+ reservation.FName + '/' + reservation.LName + '/' + reservation.country + '/' + reservation.passportNo+'/'+
+            reservation.issueDate+'/'+ reservation.expiryDate + '/' + reservation.email + '/' + reservation.phoneno + '/'+outgoingFlight.flightNumber+'/'+cabin);
+        },
+        postPay: function(reservation,  outgoingFlight , returnFlight , cabin) {
+            return $http.get('/data/pay/'+ reservation.FName + '/' + reservation.LName + '/' + reservation.country + '/' + reservation.passportNo+'/'+
+            reservation.issueDate+'/'+ reservation.expiryDate + '/' + reservation.email + '/' + reservation.phoneno + '/' +outgoingFlight.flightNumber+
+            '/'+returnFlight.flightNumber+'/'+cabin);
         },
         getSelectedCardType: function() {
             return this.SelectedCardType;
@@ -54,6 +58,12 @@ App.factory('paymentSrv', function($http) {
         },
         setSelectedPostalcode: function(value) {
             this.selectedPostalcode = value;
+        },
+        getBookingRefNo: function() {
+            return this.bookingRefNo;
+        },
+        setBookingRefNo: function(value) {
+            this.bookingRefNo = value;
         },
         getSelectedCity: function() {
             return this.SelectedCity;

@@ -37,3 +37,7 @@ node_modules
 # Mac.
 .DS_STORE
 data/
+
+platforms/
+
+www/lib/

@@ -44,18 +44,35 @@ module.exports = function(app, mongo) {
         });
     });
 
-    app.get('/data/pay/:firstName/:lastName/:passport/:passportNumber/:issueDate/:expiryDate/:email/:phoneNumber/:bookingRefNumber/:flightNumber/:flightCabin', function(req, res) {
-        mongo.submitPay(req.params.firstName, req.params.lastName, req.params.passport, req.params.passportNumber, req.params.issueDate, req.params.expiryDate, req.params.email, req.params.phoneNumber, req.params.bookingRefNumber, req.params.flightNumber, req.params.flightCabin, function(err, data) {
-            // var card = $scope.selectedCardNumber;
-            // var outFlightNo = OutReturnSrv.getSelectedOutFlight().flightNumber;
-            // var str = card + "," + outFlightNo;
-            // var enc = window.btoa(str);
-            // var dec = window.atob(enc);
-            //
-            // var res = enc;
+    app.get('/data/pay/:firstName/:lastName/:passport/:passportNumber/:issueDate/:expiryDate/:email/:phoneNumber/:oFlightNumber/:flightCabin', function(req, res) {
+
+        mongo.generateBookingRef(req.params.oFlightNumber , req.params.flightCabin , function (err , bookingRefNumber){
+            mongo.submitPay(req.params.firstName, req.params.lastName, req.params.passport, req.params.passportNumber, req.params.issueDate, req.params.expiryDate, req.params.email, 
+            req.params.phoneNumber, bookingRefNumber, req.params.oFlightNumber,req.params.flightCabin,function(err, data) {
+
+            });
+            var booking ={};
+            booking.encoding = bookingRefNumber;
+            res.json(booking);
         });
     });
 
+    app.get('/data/pay/:firstName/:lastName/:passport/:passportNumber/:issueDate/:expiryDate/:email/:phoneNumber/:oFlightNumber/:rFlightNumber/:flightCabin', function(req, res) {
+        mongo.generateBookingRef(req.params.oFlightNumber , req.params.flightCabin , function (err , bookingRefNumber){
+            mongo.submitPay(req.params.firstName, req.params.lastName, req.params.passport, req.params.passportNumber, req.params.issueDate, req.params.expiryDate, req.params.email, 
+            req.params.phoneNumber, bookingRefNumber, req.params.oFlightNumber,req.params.flightCabin,function(err, data) {
+
+            });
+            mongo.submitPay(req.params.firstName, req.params.lastName, req.params.passport, req.params.passportNumber, req.params.issueDate, req.params.expiryDate, req.params.email, 
+            req.params.phoneNumber, bookingRefNumber, req.params.rFlightNumber,req.params.flightCabin,function(err, data) {
+
+            });
+            var booking ={};
+            booking.encoding = bookingRefNumber;
+            res.json(booking);
+        });
+    });
+    
     app.get('/api/others/search/:ip/:origin/:destination/:departingDate/:returningDate/:cabin/:wt', function(req, res1) {
         var options = {
             host: req.params.ip,
@@ -119,7 +136,7 @@ module.exports = function(app, mongo) {
             res.on('data', function(chunk) {
                 body += chunk;
                 clearTimeout(timeout);
-                timeout = setTimeout(fn, 10000);
+                timeout = setTimeout(fn, 1000);
             });
             res.on('end', function() {
                 try {
