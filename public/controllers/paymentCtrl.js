@@ -91,4 +91,39 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
         Congrats();
     };
 
+
+    $scope.getBookingRef = function() {
+        //encode and get the first part of the outgoing date
+        var card = $scope.selectedCardNumber;
+        //
+        var outFlightNo = OutReturnSrv.getSelectedOutFlight().flightNumber;
+        var str = card + "," + outFlightNo;
+        var enc = window.btoa(str);
+        var dec = window.atob(enc);
+
+        var res = enc;
+
+        // "<br>" + "Decoded String: " + dec;
+        document.getElementById("ptag").innerHTML = "Booking Reference:(please copy it for further tracking):" + "<br>";
+        document.getElementById("demo").innerHTML = res;
+
+        var copyTextareaBtn = document.querySelector('.js-textareacopybtn');
+
+        copyTextareaBtn.addEventListener('click', function(event) {
+            var copyTextarea = document.querySelector('.js-copytextarea');
+            copyTextarea.select();
+
+            try {
+                var successful = document.execCommand('copy');
+                var msg = successful ? 'successful' : 'unsuccessful';
+                console.log('Copying text command was ' + msg);
+            } catch (err) {
+                console.log('Oops, unable to copy');
+            }
+        });
+
+        return enc;
+    };
+
+
 });

@@ -77,6 +77,12 @@ App.config(function($stateProvider, $urlRouterProvider, $mdIconProvider) {
     templateUrl: 'partials/confirmation.html',
     controller: 'confirmCtrl'
   })
+  .state('payment', {
+    url: '/payment',
+    templateUrl: '/partials/payment.html',
+    controller: 'paymentCtrl'
+  })
+
 
   // .state('payment', {
   //   url: '/payment',
