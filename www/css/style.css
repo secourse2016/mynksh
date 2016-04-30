@@ -1,1 +1,6 @@
 /* Empty. Add your own CSS if you like */
+.serif > p  {
+  font-family:"Times New Roman", Times, serif;
+  font-size: 1.5em;
+  color:black;
+}

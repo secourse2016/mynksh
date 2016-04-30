@@ -1,14 +1,14 @@
 <ion-view view-title="Confirmation">
   <ion-content class="padding" style='background: linear-gradient(to bottom right,#D3D3D3,white,white,#D3D3D3)'>
           <font size="5" color="grey"><b>Flight information</b></br></br></font>
-          <div>
+          <div class='serif'>
             <p>From: {{selectedOutgoingFlight.origin}}</p>
             <p>To: {{selectedOutgoingFlight.destination}}</p>
             <p>Outgoing Date: {{selectedOutgoingFlight.departureDateTime | date: 'd/M/yyyy HH:mm'}}</p>
-            <p>Outgoing Flight Number: {{selectedOutgoingFlight.flightNumber}}</p>
+            <p>Outgoing Flight #: {{selectedOutgoingFlight.flightNumber}}</p>
             <p>Outgoing airline: {{selectedOutgoingFlight.Airline}}</p>
             <p ng-show="roundTrip == 'true'">Return Date: {{selectedReturnFlight.departureDateTime | date: 'd/M/yyyy HH:mm'}}</p>
-            <p ng-show="roundTrip == 'true'">Return Flight Number: {{selectedReturnFlight.flightNumber}}</p>
+            <p ng-show="roundTrip == 'true'">Return Flight #: {{selectedReturnFlight.flightNumber}}</p>
             <p ng-show="roundTrip == 'true'">Return airline: {{selectedReturnFlight.Airline}}</p>
             <p>Price: {{price | currency: selectedOutgoingFlight.currency+" "}}</p>
           </div>
