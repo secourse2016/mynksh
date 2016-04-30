@@ -160,7 +160,7 @@ App.controller('landingCtrl', function($scope, FlightsSrv, $location) {
         mondayFirst: false,
         months: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
         daysOfTheWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
-        startDate: new Date(),
+        startDate: new Date(2016,03,03),
         endDate: new Date(2024, 1, 26),
         disablePastDays: true,
         disableSwipe: false,
