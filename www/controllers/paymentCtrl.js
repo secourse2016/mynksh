@@ -19,19 +19,6 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
     returnFlight = {};
   $scope.outCurrency = '$';
 
-  $scope.selectedType;
-  $scope.getSelectedText = function() {
-    if ($scope.selectedType !== undefined) {
-      return "You have selected: " + $scope.selectedType;
-    } else {
-      return "Please select an item";
-    }
-  };
-
-  $scope.setSelectedVisa = function(value) {
-    $scope.selectedType = value;
-  };
-
   $scope.tab1 = function() {
     $scope.tab = "active in";
     $scope.tab2 = "";
