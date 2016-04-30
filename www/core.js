@@ -24,58 +24,54 @@ App.config(function($stateProvider, $urlRouterProvider) {
 
   $stateProvider
 
-  .state('index', {
-    url: '/',
-    templateUrl: '/partials/main.html',
-    controller: 'landingCtrl'
+  // setup an abstract state for the tabs directive
+    .state('tab', {
+    url: '/home',
+    abstract: true,
+    templateUrl: 'partials/tabs.html'
+  })
+
+  // Each tab has its own nav history stack:
+
+  .state('tab.book', {
+    url: '/book',
+    views: {
+      'tab-dash': {
+        templateUrl: 'partials/main.html',
+        controller: 'landingCtrl'
+      }
+    }
+  })
+
+  .state('tab.offers', {
+    url: '/offers',
+    views: {
+      'tab-chats': {
+        templateUrl: 'partials/offers.html',
+        controller: 'landingCtrl'
+      }
+    }
+  })
+
+  .state('tab.AboutUs', {
+    url: '/AboutUs',
+    views: {
+      'tab-account': {
+        templateUrl: 'partials/AboutUs.html',
+        controller: 'landingCtrl'
+      }
+    }
   })
 
   .state('flights', {
     url: '/flights',
-    templateUrl: '/partials/flights.html',
-    controller: ''
+    templateUrl: 'partials/flights.html',
+    controller: 'flightsCtrl'
   })
 
-  .state('offer', {
-    url: '/offers',
-    templateUrl: '/partials/offers.html',
-    controller: ''
-  })
-
-  .state('AboutUs', {
-    url: '/AboutUs',
-    templateUrl: '/partials/AboutUs.html',
-    controller: ''
-  })
-
-  // .state('payment', {
-  //   url: '/payment',
-  //   templateUrl: '/partials/payment.html',
-  //   controller: ''
-  // })
-  //
-  // // route for the confirmation page
-  // .state('confirm', {
-  //   url: '/confirm',
-  //   templateUrl: '/partials/confirm.html',
-  //   controller: ''
-  // })
-  //
-  // // route for the congrats page
-  // .state('congrats', {
-  //   url: '/congrats',
-  //   templateUrl: '/partials/congrats.html',
-  //   controller: ''
-  // })
-  //
-  // // route for the booking Reference page
-  // .state('bookingRef', {
-  //   url: '/bookingRef',
-  //   templateUrl: '/partials/bookingRef.html',
-  //   controller: ''
-  // })
   ;
 
-  $urlRouterProvider.otherwise('/#');
+  // if none of the above states are matched, use this as the fallback
+  $urlRouterProvider.otherwise('/home/book');
 
 });
