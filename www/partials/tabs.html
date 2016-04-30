@@ -1,24 +1,24 @@
-<!--
-Create tabs with an icon and label, using the tabs-positive style.
-Each tab's child <ion-nav-view> directive will have its own
-navigation history that also transitions its views in and out.
--->
-<ion-tabs class="tabs-icon-top tabs-color-active-positive">
 
-  <!-- Dashboard Tab -->
-  <ion-tab title="Home" icon-off="ion-ios-pulse" icon-on="ion-ios-pulse-strong" href="#/home/book">
-    <ion-nav-view name="tab-dash"></ion-nav-view>
-  </ion-tab>
+<ion-view>
+  <ion-content style="background-color:rgba(128,0,0, 1)">
+    <br><br><br>
+<h2 style="text-align:center;color:rgba(128,0,0, 0.8)"><div>
+  <img src="/img/iberia-logo.png">
+</div></h2>
 
-  <!-- Chats Tab -->
-  <ion-tab title="Offers" icon-off="ion-ios-chatboxes-outline" icon-on="ion-ios-chatboxes" href="#/home/offers">
-    <ion-nav-view name="tab-chats"></ion-nav-view>
-  </ion-tab>
-
-  <!-- Account Tab -->
-  <ion-tab title="About Us" icon-off="ion-ios-gear-outline" icon-on="ion-ios-gear" href="#/home/AboutUs">
-    <ion-nav-view name="tab-account"></ion-nav-view>
-  </ion-tab>
-
-
-</ion-tabs>
+  <ion-list >
+  <button class="button button-light ion-plane button-full button-clear no-animation"
+          ng-click="bookingFlight()" >
+    Book Your Flight
+  </button>
+  <button class="button button-light ion-android-search button-full button-clear no-animation"
+          ng-click="bookingPrev()" >
+    Your previous bookings
+  </button>
+  <button class="button button-light ion-cash button-full button-clear no-animation"
+          ng-click="promotions()" >
+    Our promotions
+  </button>
+</ion-list>
+</ion-content>
+</ion-view>

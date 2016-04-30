@@ -14,7 +14,15 @@
 
   <!-- ionic/angularjs js -->
   <script src="lib/ionic/js/ionic.bundle.js"></script>
+
+
+
+<script src="lib/onezone-datepicker/dist/onezone-datepicker.min.js"></script>
   <!-- <script src="lib/ionic/js/angular/angular-resource.min.js"></script> -->
+
+  <!-- <script src="lib/ionic/js/angular/angular-resource.min.js"></script> -->
+
+
 
   <!-- cordova script (this will be a 404 during development) -->
   <script src="cordova.js"></script>
@@ -27,14 +35,15 @@
   <script src="/controllers/paymentCtrl.js"></script>
   <script src="/controllers/bookingRefCtrl.js"></script>
   <script src="/controllers/congratsCtrl.js"></script>
-
+  <script src="/controllers/welcomingCtrl.js"></script>
+  <script src="/controllers/tabsCtrl.js"></script>
   <!-- services -->
   <script src="/services/paymentSrv.js"></script>
   <script src="/services/flightsSrv.js"></script>
   <script src="/services/OutReturnSrv.js"></script>
   <script src="/services/confirmSrv.js"></script>
   <script src="/services/BookingSrv.js"></script>
-
+  <script src="/services/welcomingSrv.js"></script>
 
   <script src="/js/moment.min.js"></script>
   <script src="/js/angular-moment.min.js"></script>
@@ -64,17 +73,26 @@
 <body ng-app="IBERIA">
   <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script type="text/javascript" src="lib/Materialize/bin/materialize.js"></script>
+
+
+
   <!-- TOP NAVBAR -->
-  <ion-nav-bar class="bar-stable nav-title-slide-ios7">
-    <ion-nav-back-button class="button-icon icon  ion-ios7-arrow-back">
-      Back
-    </ion-nav-back-button>
-  </ion-nav-bar>
+
+
+  <ion-nav-bar class="bar-stable">
+      <ion-nav-back-button>
+      </ion-nav-back-button>
+    </ion-nav-bar>
+
+
   <!-- TOP NAVBAR -->
 
   <!-- ANGULAR DYNAMIC TEMPLATING -->
-  <ion-nav-view></ion-nav-view>
+<ion-nav-view></ion-nav-view>
   <!-- ANGULAR DYNAMIC TEMPLATING -->
+
+
 </body>
+
 
 </html>
