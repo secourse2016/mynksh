@@ -49,7 +49,7 @@ App.factory('welcomingSrv', function() {
     phone:'+20 100 060 4877',
     num: 0,
     face: 'img/4.jpg',
-    flip:''
+    flip:'img/angry2.gif'
   }, {
     id: 4,
     name: 'Mohamed Ashraf',
@@ -61,7 +61,7 @@ App.factory('welcomingSrv', function() {
     num: 5,
     status:'************...teeeettt.',
     face: 'img/5.jpg',
-    flip:''
+    flip:'img/angry.gif'
   },{
     id: 5,
     name: 'Hazem Ayman',
@@ -73,7 +73,7 @@ App.factory('welcomingSrv', function() {
     instagram: 'N/A',
     num: 5,
     face: 'img/6.jpg',
-    flip:''
+    flip:'img/chill.gif'
   },{
     id: 6,
     name: 'Mostafa Ibrahim',
