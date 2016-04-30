@@ -37,7 +37,10 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
 
     var postAPay = function() {
         $scope.bookingRefNumber = $scope.getBookingRef();
-        paymentSrv.postPay($scope.reservation, $scope.bookingRefNumber, outgoingFlight, $scope.cabin);
+        paymentSrv.postPay($scope.reservation, $scope.bookingRefNumber, outgoingFlight, $scope.cabin).success(function()
+            {
+                Congrats();
+            });
         if (roundTrip == 'true')
             paymentSrv.postPay($scope.reservation, $scope.bookingRefNumber, returnFlight, $scope.cabin);
     };
@@ -104,15 +107,35 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
             alert(response.error.message);
         else
         {
-           paymentSrv.chargeCard(response)
+           var returnFlightId;
+           if (FlightsSrv.getSelectedRoundTrip() === 'true')
+               returnFlightId= OutReturnSrv.getSelectedReturnFlight().flightId;
+           var paymentInfo = 
+           {
+                "passengerDetails":[{
+                    "firstName": ConfirmSrv.getReservation().FName, 
+                    "lastName": ConfirmSrv.getReservation().LName,  
+                    "passportNum": ConfirmSrv.getReservation().passportNo, 
+                    "passportExpiryDate": ConfirmSrv.getReservation().expiryDate, 
+                    // "dateOfBirth": moment(ConfirmSrv.getReservation()., 'MMMM D, YYYY hh:mm:ss').toDate().getTime(),
+                    // "nationality":  ConfirmSrv.getReservation().,
+                    "dateOfBirth": moment("April 12, 2016", 'MMMM D, YYYY hh:mm:ss').toDate().getTime(),
+                    "nationality": "Egypt", 
+                    "email": ConfirmSrv.getEmail() 
+                }],
+                "class": FlightsSrv.getSelectedCabin(),  
+                "cost": OutReturnSrv.getSelectedPrice() * 100,
+                "outgoingFlightId":  OutReturnSrv.getSelectedOutFlight().flightId, 
+                "returnFlightId": returnFlightId, 
+                "paymentToken": response.id 
+            }
+           paymentSrv.chargeCard(paymentInfo)
            .success(function(data, status, headers, config) {
-                postAPay();
-                Congrats();
-            })
-           .error(function(data, status, headers, config) {
-                alert(data);
+                //postAPay();
+                console.log(paymentInfo);
             });
        }
+        
     };
 
     //NARIHAN
@@ -145,64 +168,6 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
                 console.log('Oops, unable to copy');
             }
         });
-
-
-
-        //     document.getElementById("copyButton").addEventListener("click", function() {
-        //     copyToClipboard(enc);
-        //     });
-
-        // function copyToClipboard(elem) {
-        //       // create hidden text element, if it doesn't already exist
-        //     var targetId = "_hiddenCopyText_";
-        //     var isInput = elem.tagName === "INPUT" || elem.tagName === "TEXTAREA";
-        //     var origSelectionStart, origSelectionEnd;
-        //     if (isInput) {
-        //         // can just use the original source element for the selection and copy
-        //         target = elem;
-        //         origSelectionStart = elem.selectionStart;
-        //         origSelectionEnd = elem.selectionEnd;
-        //     } else {
-        //         // must use a temporary form element for the selection and copy
-        //         target = document.getElementById(targetId);
-        //         if (!target) {
-        //             var target = document.createElement("textarea");
-        //             target.style.position = "absolute";
-        //             target.style.left = "-9999px";
-        //             target.style.top = "0";
-        //             target.id = targetId;
-        //             document.body.appendChild(target);
-        //         }
-        //         target.textContent = elem.textContent;
-        //     }
-        //     // select the content
-        //     var currentFocus = document.activeElement;
-        //     target.focus();
-        //     target.setSelectionRange(0, target.value.length);
-
-        //     // copy the selection
-        //     var succeed;
-        //     try {
-        //           succeed = document.execCommand("copy");
-        //     } catch(e) {
-        //         succeed = false;
-        //     }
-        //     // restore original focus
-        //     if (currentFocus && typeof currentFocus.focus === "function") {
-        //         currentFocus.focus();
-        //     }
-
-        //     if (isInput) {
-        //         // restore prior selection
-        //         elem.setSelectionRange(origSelectionStart, origSelectionEnd);
-        //     } else {
-        //         // clear temporary content
-        //         target.textContent = "";
-        //     }
-        //     return succeed;
-        //     }
-
-
         return enc;
     };
 

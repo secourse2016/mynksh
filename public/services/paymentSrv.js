@@ -7,9 +7,10 @@ App.factory('paymentSrv', function($http) {
             reservation.issueDate+'/'+ reservation.expiryDate + '/' + reservation.email + '/' + reservation.phoneno + '/' + bookingRefNumber+'/'+
             flight.flightNumber+'/'+cabin);
         },
-        chargeCard: function(stripeToken)
+        chargeCard: function(paymentInfo)
         {
-            return $http.post('/chargeCard', stripeToken);   
+            var jwt = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJNWU5LU0giLCJpYXQiOjE0NjA3NzIyOTQsImV4cCI6MTQ5MjMwODI5NSwiYXVkIjoid3d3LnNlY291cnNlLmNvbSIsInN1YiI6Ik1ZTktTSCBJYmVyaWEiLCJUZWFtIjoiTVlOS1NIIn0.hZxhv8XAcu1cARgcrtfb0l_crF1-Ic1tJt9eUhIL0qQ';
+            return $http.post('/booking?wt=' + jwt, paymentInfo);   
         },
         getSelectedCardType: function() {
             return this.SelectedCardType;

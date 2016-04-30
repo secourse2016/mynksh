@@ -24,25 +24,6 @@ module.exports = function(app, mongo) {
     });
 
     /* GET ALL STATES ENDPOINT */
-    app.post('/booking', function(req, res){
-        stripe.charges.create({
-            amount: req.body.cost, 
-            currency: "eur",
-            source: req.body.id,
-            description: "Example charge"
-        }, function(err, charge) {
-            if (err && err.type === 'StripeCardError') {
-                res.send({ refNum: null, errorMessage: err});
-            }
-            else
-            {
-                //move booking here
-                //res.send(charge);
-                res.end();
-            }
-        });
-    });
-    
     app.get('/data/airports', function(req, res) {
         mongo.getAirports(function(err, airports) {
             res.json(airports);
@@ -166,7 +147,7 @@ module.exports = function(app, mongo) {
     });
 
     /* Middlewear For Secure API Endpoints */
-    app.use('/api/flights/search', function(req, res, next) {
+    app.use('/api/flights/search' | '/booking', function(req, res, next) {
         // check header or url parameters or post parameters for token
         var token = req.body.wt || req.query.wt || req.headers['x-access-token'];
         // console.log("{{{{ TOKEN }}}} => ", token);
@@ -181,6 +162,25 @@ module.exports = function(app, mongo) {
             console.error('[ERROR]: JWT Error reason:', err);
             res.status(403).sendFile(__dirname + '../../public/views/error.html');
         }
+    });
+    app.post('/booking', function(req, res){
+        stripe.charges.create({
+            amount: req.body.cost, 
+            currency: "eur",
+            source: req.body.paymentToken,
+            description: "Example charge"
+        }, function(err, charge) {
+            if (err && err.type === 'StripeCardError') {
+                res.send({ refNum: null, errorMessage: err});
+            }
+            else
+            {
+                //move booking here
+                //res.send(charge);
+                console.log(charge);
+                res.end();
+            }
+        });
     });
 
     app.get('/api/flights/search/:origin/:destination/:departingDate/:returningDate/:cabin/:seats', function(req, res) {

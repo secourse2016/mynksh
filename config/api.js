@@ -91,7 +91,7 @@ exports.searchFlights = function(origin, destination, departingDate, cabin, seat
                 var departureDate = flights[0].departureTime;
                 var arrivalDate = flights[0].arrivalTime;
                 rflights = [{
-                    "flightID": flights[0]._id,
+                    "flightId": flights[0]._id,
                     "flightNumber": flights[0].flightNumber,
                     "aircraftType": flights[0].aircraftType,
                     "aircraftModel": flights[0].aircraftModel,
