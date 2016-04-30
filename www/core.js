@@ -37,6 +37,11 @@ App.config(function($stateProvider, $urlRouterProvider) {
     controller: 'welcomingCtrl'
   })
 
+  .state('tabs', {
+    url: '/tabs',
+    templateUrl: '/partials/tabs.html',
+    controller: ''
+  })
   .state('landing', {
     url: '/landing',
     templateUrl: '/partials/main.html',
