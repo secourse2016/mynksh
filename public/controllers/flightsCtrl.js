@@ -31,11 +31,12 @@ App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $locati
     function pingAirlineR(origin, dest, oDate, rDate) {
         OutReturnSrv.getairLinesInfo().success(function(airlines) {
             airlines.forEach(function(c) {
+                var seats= 1;
                 var tclass = ($scope.cabin === "true") ? "economy" : "business";
                 var departDate = moment(oDate).toDate().getTime();
                 var outDate = moment(oDate).toDate().getTime();
                 var jwt = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJNWU5LU0giLCJpYXQiOjE0NjA3NzIyOTQsImV4cCI6MTQ5MjMwODI5NSwiYXVkIjoid3d3LnNlY291cnNlLmNvbSIsInN1YiI6Ik1ZTktTSCBJYmVyaWEiLCJUZWFtIjoiTVlOS1NIIn0.hZxhv8XAcu1cARgcrtfb0l_crF1-Ic1tJt9eUhIL0qQ';
-                $http.get('/api/others/search/'+ c.ip + '/' + origin + '/' + dest + '/' + departDate + '/' + outDate + '/' + tclass + '/' + jwt).success(function(flight) {
+                $http.get('/api/others/search/'+ c.ip + '/' + origin + '/' + dest + '/' + departDate + '/' + outDate + '/' + tclass +'/' + seats + '/' + jwt).success(function(flight) {
                   console.log(flight);
                     if (flight.outgoingFlights != undefined && flight.outgoingFlights[0] != undefined && flight.outgoingFlights[0] != undefined && flight.outgoingFlights[0].length != 0) {
                         flight.outgoingFlights[0].cost = Number(flight.outgoingFlights[0].cost)
@@ -54,10 +55,11 @@ App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $locati
     function pingAirlineS(origin, dest, oDate) {
         OutReturnSrv.getairLinesInfo().success(function(airlines) {
             airlines.forEach(function(c) {
+                var seats= 1;
                 var tclass = ($scope.cabin === "true") ? "economy" : "business";
                 var departDate = moment(oDate).toDate().getTime();
                 jwt = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJNWU5LU0giLCJpYXQiOjE0NjA3NzIyOTQsImV4cCI6MTQ5MjMwODI5NSwiYXVkIjoid3d3LnNlY291cnNlLmNvbSIsInN1YiI6Ik1ZTktTSCBJYmVyaWEiLCJUZWFtIjoiTVlOS1NIIn0.hZxhv8XAcu1cARgcrtfb0l_crF1-Ic1tJt9eUhIL0qQ';
-                $http.get('/api/others/search/' + c.ip + '/' + origin + '/' + dest + '/' + departDate + '/' + tclass + '/' + jwt).success(function(flight) {
+                $http.get('/api/others/search/' + c.ip + '/' + origin + '/' + dest + '/' + departDate + '/' + tclass +'/' + seats + '/' + jwt).success(function(flight) {
                     if (flight.outgoingFlights != undefined && flight.outgoingFlights[0] != undefined && flight.outgoingFlights[0] != undefined && flight.outgoingFlights[0].length != 0) {
                         flight.outgoingFlights[0].cost = Number(flight.outgoingFlights[0].cost)
                         $scope.outgoingInfo.push(flight.outgoingFlights[0]);
