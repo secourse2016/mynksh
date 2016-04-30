@@ -68,18 +68,19 @@
                       <div>
                         <label style='font-size: 1.5em;color:black'>Issue Date:</label>
                           <md-datepicker name='issueDate' type="date" ng-model="reservation.issueDate" ng-required='true' md-max-date='currentDate' md-min-date='minDate'></md-datepicker>
-                          <span style='color:red' ng-show="(details.issueDate.$error.required || details.issueDate.$error.valid) && details.issueDate.$dirty"></br>Valid date is required (d/M/yyyy)</span>
-                          <span style='color:red' ng-show="details.issueDate.$error.mindate && details.issueDate.$dirty"></br>Date is too early</span>
-                          <span style='color:red' ng-show="details.issueDate.$error.maxdate && details.issueDate.$dirty"></br>Passport is not issued yet</span>
+                          <span style='color:red' ng-show="details.issueDate.$error.required || details.issueDate.$error.valid"></br>Valid date is required (d/M/yyyy)</span>
+                          <span style='color:red' ng-show="details.issueDate.$error.mindate"></br>Date is too early</span>
+                          <span style='color:red' ng-show="details.issueDate.$error.maxdate"></br>Passport is not issued yet</span>
                           <md-tooltip md-visible='true' md-direction='top'>e.g. 22/12/2015</md-tooltip>
                       </div>
-                      <md-input-container class="md-block" flex-gt-sm>
+                      <div>
                         <label style='font-size: 1.5em;color:black'>Expiry Date:</label>
-                          <input name='expiryDate' type="date" ng-model="reservation.expiryDate" ng-required='true' min='{{currentDate | date:"yyyy-MM-dd"}}'>
-                          <span style='color:red' ng-show="(details.expiryDate.$error.required || details.expiryDate.$error.date) && details.expiryDate.$dirty">Valid date is required (yyyy-MM-dd)</span>
-                          <span style='color:red' ng-show="details.expiryDate.$error.min && details.expiryDate.$dirty">Passport is expired</span>
-                        <md-tooltip md-visible='true' md-direction='top'>e.g. 2017-02-02</md-tooltip>
-                      </md-input-container>
+                          <md-datepicker name='expiryDate' type="date" ng-model="reservation.expiryDate" ng-required='true' md-min-date='currentDate' md-max-date='maxDate'></md-datepicker>
+                          <span style='color:red' ng-show="details.expiryDate.$error.required || details.expiryDate.$error.valid"></br>Valid date is required (d/M/yyyy)</span>
+                          <span style='color:red' ng-show="details.expiryDate.$error.mindate"></br>Passport is expired</span>
+                          <span style='color:red' ng-show="details.expiryDate.$error.maxdate"></br>Date is too far</span>
+                        <md-tooltip md-visible='true' md-direction='top'>e.g. 22/12/2017</md-tooltip>
+                      </div>
                 </div>
             </div>
             <div class='center'>
