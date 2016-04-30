@@ -54,7 +54,7 @@ App.config(function($stateProvider, $urlRouterProvider, $mdIconProvider) {
     controller: 'landingCtrl'
   })
 
-  .state('offers', {
+  .state('offer', {
     url: '/offers',
     templateUrl: 'partials/offers.html',
     controller: 'landingCtrl'
