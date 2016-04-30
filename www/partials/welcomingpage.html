@@ -1,4 +1,4 @@
-<ion-view title="Welcome">
+<ion-view>
 <!-- <ion-side-menus> -->
 <!-- Left menu -->
 <!-- <ion-side-menu side="left">
@@ -32,7 +32,8 @@ body {
 }
 
 #logo {
-  margin: 30px 0px;
+  margin: 30px 30px;
+  /*background-color: rgba(128,0,0, 1);*/
 }
 
 #list {
@@ -55,51 +56,63 @@ body {
 
 </style>
 <!-- <script id="templates/intro.html" type="text/ng-template"> -->
-      <ion-view view-title="Intro">
+      <ion-view >
+
         <ion-nav-buttons side="left">
-          <button class="button button-positive button-clear no-animation"
+          <button class="button button-assertive button-clear no-animation"
                   ng-click="startApp()" ng-show="!slideIndex">
             Skip Intro
           </button>
-          <button class="button button-positive button-clear no-animation"
+          <button class="button button-assertive button-clear no-animation"
                   ng-click="previous()" ng-show="slideIndex > 0">
             Previous Slide
           </button>
         </ion-nav-buttons>
         <ion-nav-buttons side="right">
-          <button class="button button-positive button-clear no-animation"
+          <button class="button button-assertive button-clear no-animation"
                   ng-click="next()" ng-show="slideIndex != 2">
             Next
           </button>
-          <button class="button button-positive button-clear no-animation"
+          <button class="button button-assertive button-clear no-animation"
                   ng-click="startApp()" ng-show="slideIndex == 2">
             Start using MyApp
           </button>
         </ion-nav-buttons>
-        <ion-slide-box on-slide-changed="slideChanged(index)">
-          <ion-slide>
-            <h3>Thank you for choosing the Awesome App!</h3>
-            <div id="logo">
-              <img src="http://code.ionicframework.com/assets/img/app_icon.png">
-            </div>
-            <p>
-              We've worked super hard to make you happy.
-            </p>
-            <p>
-              But if you are angry, too bad.
-            </p>
+
+        <ion-slide-box  on-slide-changed="slideChanged(index)">
+          <ion-slide style="background-color:rgba(128,0,0, 1)">
+            <br><br><br><br><br><br><br><br><br>
+
+            <b><font style="text-align:center;color:white" size=10 >Fly Like   <div id="logo">
+              <img src="/img/iberia-logo.png">
+            </div></font></b>
+            <br><br>
+            <h4 style="text-align:center;color:rgba(0,0,0, 1)">The Artful Flight Experience</h4>
+
           </ion-slide>
           <ion-slide>
-            <h3>Using Awesome</h3>
+            <h3>Team Members</h3>
 
-            <div id="list">
-              <h5>Just three steps:</h5>
+            <!-- <div id="list">
+              <h5>MYNKSH:</h5>
               <ol>
-                <li>Be awesome</li>
-                <li>Stay awesome</li>
+                <li>Narihan Ellaithy</li>
+                <li>Safa Ads</li>
                 <li>There is no step 3</li>
               </ol>
-            </div>
+            </div> -->
+            <ion-list>
+              <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="chat in chats" type="item-text-wrap" href="#/tab/chats/{{chat.id}}">
+                <img ng-src="{{chat.face}}">
+                <h2>{{chat.name}}</h2>
+                <p>{{chat.lastText}}</p>
+                <i class="icon ion-chevron-right icon-accessory"></i>
+
+        <ion-option-button class="button-assertive" ng-click="remove(chat)">
+          Delete
+        </ion-option-button>
+      </ion-item>
+    </ion-list>
           </ion-slide>
           <ion-slide>
             <h3>Any questions?</h3>

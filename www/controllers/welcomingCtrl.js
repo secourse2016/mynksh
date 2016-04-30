@@ -1,4 +1,4 @@
-App.controller('welcomingCtrl', function($scope, $state, $ionicSlideBoxDelegate) {
+App.controller('welcomingCtrl', function($scope, welcomingSrv, $state, $ionicSlideBoxDelegate) {
 
   // Called to navigate to the main app
   $scope.startApp = function() {
@@ -14,5 +14,9 @@ App.controller('welcomingCtrl', function($scope, $state, $ionicSlideBoxDelegate)
   // Called each time the slide changes
   $scope.slideChanged = function(index) {
     $scope.slideIndex = index;
+  };
+  $scope.chats = welcomingSrv.all();
+  $scope.remove = function(chat) {
+    welcomingSrv.remove(chat);
   };
 });
