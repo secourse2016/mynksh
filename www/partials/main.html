@@ -71,33 +71,44 @@
                       </onezone-datepicker>
                     </ion-list>
                      </div>
-
+                       </form>
+                </div>
+                <div class="list list-inset">
+                  <form id="loginForm">
                      <ion-list>
                        <h4 style="text-align:center;color:rgba(128,0,0, 1)">Select a cabin</h4>
                        <ion-radio ng-click="data.showCabin = false" ng-model="cabin" value="false">Economy</ion-radio>
                        <ion-radio ng-click="data.showCabin = true" ng-model="cabin" value="true">Business</ion-radio>
                      </ion-list>
+                   </form>
+                </div>
+                <div class="list list-inset">
+                  <form id="loginForm">
 
 
                      <ion-list>
-                       <ion-radio ng-click="data.showPinging= true" ng-model="pinging" value="false">Pinging Other Airlines</ion-radio>
+                       <ion-radio ng-click="data.showPinging= !data.showPinging" ng-model="pinging" ng-value="false">Ping Other Airlines</ion-radio>
+                       <ion-radio ng-click="data.showPinging= !data.showPinging" ng-model="pinging" ng-value="true">Don't ping other Airlines</ion-radio>
                      </ion-list>
 
+                   </form>
+                   </div>
 
 
 
 
-              </form>
+
+
            <!-- <label class="item item-input item-stacked-label">
       <!-- <label class="item item-input item-stacked-label">
 
                 <span class="input-label">Flying To:</span>
                 <input type="text" placeholder="FRA" ng-model="destinationAirport">
            </label> -->
-    </div>
 
-    <button style="left:125px" class="button button-outline button-assertive" ng-click="SearchFlights(originAirport, destinationAirport)">Search Flights</button>
-    </div>
+
+    <button style="left:125px" class="button button-outline button-assertive" ng-click="SearchFlights(originAirport, destinationAirport)">Search Flights</button><br><br>
+
   </ion-content>
 
 

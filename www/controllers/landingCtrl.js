@@ -18,6 +18,13 @@ App.controller('landingCtrl', function($scope, FlightsSrv, $location) {
      showCabin:true,
      showPinging:false
    };
+   $scope.$on('$ionicView.enter', function(e) {
+     });
+    //  function reload(){
+    //         var current = $state.current;
+    //         var params = angular.copy($stateParams);
+    //         $state.transitionTo(current, params, { reload: true, inherit: true, notify: true });
+
 
     $scope.bookingRef = function() {
         $location.url('/bookingRef');
