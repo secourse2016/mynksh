@@ -31,76 +31,74 @@ function ContentController($scope, $ionicSideMenuDelegate) {
 App.config(function($stateProvider, $urlRouterProvider, $mdIconProvider) {
 
 
-      $stateProvider
+  $stateProvider
 
-      // setup an abstract state for the tabs directive
-      .state('welcome', {
-        url: '/',
-        templateUrl: '/partials/welcomingpage.html',
-        controller: 'welcomingCtrl'
-      })
+  // setup an abstract state for the tabs directive
+    .state('welcome', {
+    url: '/',
+    templateUrl: '/partials/welcomingpage.html',
+    controller: 'welcomingCtrl'
+  })
 
-        .state('tabs', {
-        url: '/home',
-        templateUrl: 'partials/tabs.html',
-        controller: 'tabsCtrl'
-      })
+  .state('tabs', {
+    url: '/home',
+    templateUrl: 'partials/tabs.html',
+    controller: 'tabsCtrl'
+  })
 
-      // Each tab has its own nav history stack:
+  // Each tab has its own nav history stack:
 
-      .state('landing', {
-          url: '/book',
-          templateUrl: 'partials/main.html',
-          controller: 'landingCtrl'
-        })
+  .state('landing', {
+    url: '/book',
+    templateUrl: 'partials/main.html',
+    controller: 'landingCtrl'
+  })
 
-        .state('offers', {
-          url: '/offers',
-          templateUrl: 'partials/offers.html',
-          controller: 'landingCtrl'
-        })
+  .state('offers', {
+    url: '/offers',
+    templateUrl: 'partials/offers.html',
+    controller: 'landingCtrl'
+  })
 
-        .state('AboutUs', {
-          url: '/AboutUs',
-          templateUrl: 'partials/AboutUs.html',
-          controller: 'landingCtrl'
-        })
+  .state('AboutUs', {
+    url: '/AboutUs',
+    templateUrl: 'partials/AboutUs.html',
+    controller: 'landingCtrl'
+  })
 
-        .state('flights', {
-          url: '/flights',
-          templateUrl: 'partials/flights.html',
-          controller: 'flightsCtrl'
-        })
+  .state('flights', {
+    url: '/flights',
+    templateUrl: 'partials/flights.html',
+    controller: 'flightsCtrl'
+  })
 
+  .state('confirm', {
+    url: '/confirm',
+    templateUrl: 'partials/confirmation.html',
+    controller: 'confirmCtrl'
+  })
 
-        // .state('payment', {
-        //   url: '/payment',
-        //   templateUrl: '/partials/payment.html',
-        //   controller: ''
-        // })
-        //
-        // // route for the confirmation page
-        // .state('confirm', {
-        //   url: '/confirm',
-        //   templateUrl: '/partials/confirm.html',
-        //   controller: ''
-        // })
-        //
-        // // route for the congrats page
-        // .state('congrats', {
-        //   url: '/congrats',
-        //   templateUrl: '/partials/congrats.html',
-        //   controller: ''
-        // })
-        //
-        // // route for the booking Reference page
-        .state('bookingRef', {
-          url: '/bookingRef',
-          templateUrl: '/partials/bookingRef.html',
-          controller: ''
-        });
+  // .state('payment', {
+  //   url: '/payment',
+  //   templateUrl: '/partials/payment.html',
+  //   controller: ''
+  // })
+  //
+  // // route for the congrats page
+  // .state('congrats', {
+  //   url: '/congrats',
+  //   templateUrl: '/partials/congrats.html',
+  //   controller: ''
+  // })
+  //
+  // // route for the booking Reference page
+  .state('bookingRef', {
+    url: '/bookingRef',
+    templateUrl: '/partials/bookingRef.html',
+    controller: ''
+  });
 
-        // if none of the above states are matched, use this as the fallback
-        $urlRouterProvider.otherwise('/');
+  // if none of the above states are matched, use this as the fallback
+  $urlRouterProvider.otherwise('/');
 
-      });
+});
