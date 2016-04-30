@@ -24,10 +24,16 @@ App.config(function($stateProvider, $urlRouterProvider) {
 
   $stateProvider
 
+  // .state('index', {
+  //   url: '/',
+  //   templateUrl: '/partials/main.html',
+  //   controller: 'landingCtrl'
+  // })
+
   .state('index', {
     url: '/',
     templateUrl: '/partials/main.html',
-    controller: 'landingCtrl'
+    controller: 'paymentCtrl'
   })
 
   .state('flights', {
