@@ -14,7 +14,7 @@
 
   <!-- ionic/angularjs js -->
   <script src="lib/ionic/js/ionic.bundle.js"></script>
-  <script src="lib/ionic/js/angular/angular-resource.min.js"></script>
+  <!-- <script src="lib/ionic/js/angular/angular-resource.min.js"></script> -->
 
   <!-- cordova script (this will be a 404 during development) -->
   <script src="cordova.js"></script>
@@ -34,9 +34,33 @@
   <script src="/services/OutReturnSrv.js"></script>
   <script src="/services/confirmSrv.js"></script>
   <script src="/services/BookingSrv.js"></script>
+
+  <!--Materilize-->
+  <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.indigo-pink.min.css">
+  <script defer src="https://code.getmdl.io/1.1.3/material.min.js"></script>
+  <!--Import materialize.css-->
+  <link type="text/css" rel="stylesheet" href="/lib/Materialize/bin/materialize.css" media="screen,projection" />
+
+  <!-- Angular Material requires Angular.js Libraries -->
+  <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.css">
+  <!-- <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script> -->
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-animate.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-aria.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-messages.min.js"></script>
+  <!-- Angular Material Library -->
+  <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.js"></script>
+
+  <!--Let browser know website is optimized for mobile-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!--Import jQuery before materialize.js-->
 </head>
 
 <body ng-app="IBERIA">
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script type="text/javascript" src="lib/Materialize/bin/materialize.js"></script>
   <!-- TOP NAVBAR -->
   <ion-nav-bar class="bar-stable nav-title-slide-ios7">
     <ion-nav-back-button class="button-icon icon  ion-ios7-arrow-back">

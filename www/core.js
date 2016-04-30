@@ -1,5 +1,5 @@
 /* Create Angular App Instance */
-App = angular.module('IBERIA', ['ionic']);
+App = angular.module('IBERIA', ['ionic' , 'ngMaterial']);
 
 App.run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -20,7 +20,8 @@ App.run(function($ionicPlatform) {
 /**
  * Angular Routes
  */
-App.config(function($stateProvider, $urlRouterProvider) {
+App.config(function($stateProvider, $urlRouterProvider, $mdIconProvider) {
+
 
   $stateProvider
 
