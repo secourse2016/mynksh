@@ -11,9 +11,7 @@
                         <span class="icon-bar"></span>
                     </button>
                 </div>
-                <!-- Main Navigation menu Starts -->
-                <!--=== Site Name ===-->
-                <!-- <a class="site-name navbar-brand" href="#"><span>E</span>gret</a> -->
+                
                 <a href='http://mynksh.com'>
                     <!-- <div id='logo'> -->
                     <span><img src='./assets/iberia-logo.png'></span>
@@ -97,8 +95,8 @@
                                                 <div class="col-md-8 col-sm-8 text-left">
                                                     <input type="number" class="form-control" name="CVV" placeholder="CVV" ng-model="selectedCVV" ng-required='true' ng-minlength='3' ng-maxlength='3'>
                                                 </div>
-                                                <span style='color:red' ng-show='(reviewForm.CVV.$error.number || reviewForm.CVV.$error.required) && reviewForm.CVV.$dirty'>A valid card number is required.</span>
-                                                <span style='color:red' ng-show='(reviewForm.CVV.$error.minlength || reviewForm.CVV.$error.maxlength) && reviewForm.CVV.$dirty'>Card number must be 3 digits.</span>
+                                                <span style='color:red' ng-show='(reviewForm.CVV.$error.number || reviewForm.CVV.$error.required) && reviewForm.CVV.$dirty'>A valid security code is required.</span>
+                                                <span style='color:red' ng-show='(reviewForm.CVV.$error.minlength || reviewForm.CVV.$error.maxlength) && reviewForm.CVV.$dirty'>Security code must be 3 digits.</span>
                                             </div>
 
                                             <div class="form-group row">
