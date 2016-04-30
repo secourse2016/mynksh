@@ -6,36 +6,57 @@ App.factory('welcomingSrv', function() {
     id: 0,
     name: 'Narihan Ellaithy',
     lastText: 'Front End developer',
+    gender: 'Female',
+    facebook: 'Narihan Ellaithy',
+    instagram: '@narihanellaithy',
     face: 'img/1.jpg'
   }, {
     id: 1,
     name: 'Safa Ads',
     lastText: 'Back End developer',
+    gender: 'Female',
+    facebook: 'Narihan Ellaithy',
+    instagram: '@narihanellaithy',
     face: 'img/2.jpg'
   }, {
     id: 2,
     name: 'Yara Sobhy',
     lastText: 'Back End developer',
+    gender: 'Female',
+    facebook: 'Narihan Ellaithy',
+    instagram: '@narihanellaithy',
     face: 'img/3.jpg'
   }, {
     id: 3,
     name: 'Youssef Radi',
     lastText: 'Front and Back End developer',
+    gender: 'male',
+    facebook: 'Narihan Ellaithy',
+    instagram: '@narihanellaithy',
     face: 'img/4.jpg'
   }, {
     id: 4,
     name: 'Mohamed Ashraf',
     lastText: 'Back and Front End developer',
+    gender: 'male',
+    facebook: 'Narihan Ellaithy',
+    instagram: '@narihanellaithy',
     face: 'img/5.jpg'
   },{
     id: 5,
     name: 'Hazem Ayman',
     lastText: 'Front End developer',
+    gender: 'male',
+    facebook: 'Narihan Ellaithy',
+    instagram: '@narihanellaithy',
     face: 'img/6.jpg'
   },{
     id: 6,
     name: 'Mostafa Ibrahim',
     lastText: 'Front and Back End developer',
+    gender: 'male',
+    facebook: 'Narihan Ellaithy',
+    instagram: '@narihanellaithy',
     face: 'img/7.jpg'
   }];
 
