@@ -2,7 +2,7 @@ App.controller('welcomingCtrl', function($scope, welcomingSrv, $state, $ionicSli
 
   // Called to navigate to the main app
   $scope.startApp = function() {
-    $state.go('landing');
+    $state.go('tabs');
   };
   $scope.next = function() {
     $ionicSlideBoxDelegate.next();

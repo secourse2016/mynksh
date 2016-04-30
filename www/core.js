@@ -40,7 +40,7 @@ App.config(function($stateProvider, $urlRouterProvider) {
   .state('tabs', {
     url: '/tabs',
     templateUrl: '/partials/tabs.html',
-    controller: ''
+    controller: 'tabsCtrl'
   })
   .state('landing', {
     url: '/landing',
@@ -86,11 +86,11 @@ App.config(function($stateProvider, $urlRouterProvider) {
   // })
   //
   // // route for the booking Reference page
-  // .state('bookingRef', {
-  //   url: '/bookingRef',
-  //   templateUrl: '/partials/bookingRef.html',
-  //   controller: ''
-  // })
+  .state('bookingRef', {
+    url: '/bookingRef',
+    templateUrl: '/partials/bookingRef.html',
+    controller: ''
+  })
   ;
 
   $urlRouterProvider.otherwise('/#');

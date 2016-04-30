@@ -1,16 +1,20 @@
 <ion-view>
   <ion-content class="has-header has-subheader">
+<h2 style="text-align:center;color:rgba(128,0,0, 1)">Choose</h2>
+
+  <ion-list>
   <button class="button button-assertive button-full button-clear no-animation"
-          ng-click="bookingFlight()" ng-show="!slideIndex">
+          ng-click="bookingFlight()" >
     Book Your Flight
   </button>
   <button class="button button-assertive button-full button-clear no-animation"
-          ng-click="bookingPrev()" ng-show="!slideIndex">
+          ng-click="bookingPrev()" >
     Your previous bookings
   </button>
   <button class="button button-assertive button-full button-clear no-animation"
-          ng-click="promotions()" ng-show="!slideIndex">
+          ng-click="promotions()" >
     Our promotions
   </button>
+</ion-list>
 </ion-content>
 </ion-view>
