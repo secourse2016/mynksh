@@ -100,6 +100,10 @@
     <input type="text" class="form-control" name="city" ng-model="SelectedCity" ng-required='true'>
      <span style='color:red' ng-show='reviewForm.city.$error.required && reviewForm.city.$dirty'>City is required</span>
   </label>
+  <div class="item item-text-wrap" id = "pay">
+  Total price : {{totalPrice}} 
+    <!-- Total price : {{totalPrice | currency : outCurrency+' '}} -->
+  </div>
 </div>
 </form>
 
