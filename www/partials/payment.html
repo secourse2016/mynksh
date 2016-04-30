@@ -8,16 +8,20 @@
    <center><h3><font color="Maroon" Style="margain:125px">Payment</font></h3></center>
        <!-- <h3><font color="Maroon" Style="margain:125px">Payment</font></h3> -->
    </div>
-
+ 
    <form class="contact-form support-form" name="reviewForm" novalidate=""> 
+   <div class="list">
+
+
+</div>
  
 <div class="list">
  <label class="item item-input item-select">
     <div class="input-label">
-      Type of Card<font color="red">*</font>
+      Card type<font color="red">*</font>
     </div>
     <select  name="MonthC" ng-model="selectedType" ng-required='true' style='color:black'>
-    <option value=""disabled selected>Card Type</option> 
+    <option value=""disabled selected>Choose your card type</option> 
      <option style='color:black' value="Personal Visa Card (no charge)" ng-model="selectedType">Personal Visa Card (no charge)</option> 
       <option style='color:black' value="Visa Corporate Card (+6.64 €)" ng-model="selectedType">Visa Corporate Card (+6.64 €)</option> 
       <option style='color:black' value="Personal MasterCard (no charge)" ng-model="selectedType">Personal MasterCard (no charge)</option> 

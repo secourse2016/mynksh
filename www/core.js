@@ -33,18 +33,7 @@ App.config(function($stateProvider, $urlRouterProvider, $mdIconProvider) {
 
   $stateProvider
 
-<<<<<<< HEAD
-  // .state('index', {
-  //   url: '/',
-  //   templateUrl: '/partials/main.html',
-  //   controller: 'landingCtrl'
-  // })
 
-  .state('index', {
-    url: '/',
-    templateUrl: '/partials/main.html',
-    controller: 'paymentCtrl'
-=======
   // setup an abstract state for the tabs directive
     .state('welcome', {
     url: '/',
@@ -76,7 +65,6 @@ App.config(function($stateProvider, $urlRouterProvider, $mdIconProvider) {
     url: '/AboutUs',
     templateUrl: 'partials/AboutUs.html',
     controller: 'landingCtrl'
->>>>>>> 2c875ccf2036d1d5282775e5789c63ef7bd31bd9
   })
 
   .state('flights', {

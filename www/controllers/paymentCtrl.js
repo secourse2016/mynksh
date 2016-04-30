@@ -2,7 +2,7 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
 
     $scope.tab = "active in";
     //$scope.reservation = ConfirmSrv.getReservation();
-    // $scope.totalPrice = OutReturnSrv.getSelectedPrice();
+   // $scope.totalPrice = OutReturnSrv.getSelectedPrice();
     $scope.totalPrice = 100;
    // $scope.cabin = FlightsSrv.getSelectedCabin();
     //var roundTrip = FlightsSrv.getSelectedRoundTrip();
@@ -10,8 +10,6 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
     //if (roundTrip == 'true')
         //returnFlight = OutReturnSrv.getSelectedReturnFlight();
     //$scope.outCurrency = outgoingFlight.currency;
-
-
 
     $scope.tab1 = function() {
         $scope.tab = "active in";
