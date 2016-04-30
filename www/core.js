@@ -101,7 +101,7 @@ App.config(function($stateProvider, $urlRouterProvider, $mdIconProvider) {
   .state('bookingRef', {
     url: '/bookingRef',
     templateUrl: '/partials/bookingRef.html',
-    controller: ''
+    controller: 'bookingRefCtrl'
   });
 
   // if none of the above states are matched, use this as the fallback
