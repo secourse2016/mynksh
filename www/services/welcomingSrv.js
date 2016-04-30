@@ -12,7 +12,8 @@ App.factory('welcomingSrv', function() {
     phone:'N/A',
     status:'Life is too short for this',
     num: 900,
-    face: 'img/1.jpg'
+    face: 'img/1.jpg',
+    flip:''
   }, {
     id: 1,
     name: 'Safa Ads',
@@ -23,7 +24,8 @@ App.factory('welcomingSrv', function() {
     phone:'N/A',
     status:'الحياه جميله مع القهوه و فيروز',
     num: 90,
-    face: 'img/2.jpg'
+    face: 'img/2.jpg',
+    flip:'img/coffee.gif'
   }, {
     id: 2,
     name: 'Yara Sobhy',
@@ -31,10 +33,11 @@ App.factory('welcomingSrv', function() {
     gender: 'Female',
     facebook: 'Yara Sobhy',
     instagram: '@yarasobhy',
-    status:'See you later ya Kefahy',
+    status:'See you tomorrow ya Kefahy',
     phone:'N/A',
     num: 10,
-    face: 'img/3.jpg'
+    face: 'img/3.jpg',
+    flip:'img/flipHair.gif'
   }, {
     id: 3,
     name: 'Youssef Radi',
@@ -45,7 +48,8 @@ App.factory('welcomingSrv', function() {
     status:'I do not change your code #IDo, malek ya safa2?!',
     phone:'+20 100 060 4877',
     num: 0,
-    face: 'img/4.jpg'
+    face: 'img/4.jpg',
+    flip:''
   }, {
     id: 4,
     name: 'Mohamed Ashraf',
@@ -56,7 +60,8 @@ App.factory('welcomingSrv', function() {
     phone:'N/A',
     num: 5,
     status:'************...teeeettt.',
-    face: 'img/5.jpg'
+    face: 'img/5.jpg',
+    flip:''
   },{
     id: 5,
     name: 'Hazem Ayman',
@@ -67,7 +72,8 @@ App.factory('welcomingSrv', function() {
     status:'Not available... begad',
     instagram: 'N/A',
     num: 5,
-    face: 'img/6.jpg'
+    face: 'img/6.jpg',
+    flip:''
   },{
     id: 6,
     name: 'Mostafa Ibrahim',
@@ -78,7 +84,8 @@ App.factory('welcomingSrv', function() {
     instagram: 'N/A',
     num: 5,
     phone:'N/A',
-    face: 'img/7.jpg'
+    face: 'img/7.jpg',
+    flip:''
   }];
 
   return {
