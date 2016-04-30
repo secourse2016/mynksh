@@ -5,7 +5,8 @@
 
 
    <div>
-       <h3><font color="black">Payment Data</font></h3>
+   <center><h3><font color="Maroon" Style="margain:125px">Payment</font></h3></center>
+       <!-- <h3><font color="Maroon" Style="margain:125px">Payment</font></h3> -->
    </div>
 
    <form class="contact-form support-form" name="reviewForm" novalidate=""> 
@@ -101,9 +102,10 @@
     <input type="text" class="form-control" name="city" ng-model="SelectedCity" ng-required='true'>
      <span style='color:red' ng-show='reviewForm.city.$error.required && reviewForm.city.$dirty'>City is required</span>
   </label>
-  <div class="item item-text-wrap" id = "pay">
-  Total price : {{totalPrice}} 
-  </div>
+<!--   //<div class="item item-text-wrap" id = "pay"> -->
+  <center><h4><font color="Maroon" Style="margain:125px"> Total price : {{totalPrice}} </font></h4></center>
+ <!--  Total price : {{totalPrice}}  -->
+<!--   </div> -->
 <button class="button button-full button-assertive" ng-disabled="reviewForm.$invalid"
 ng-click=" payAction();">
   pay
