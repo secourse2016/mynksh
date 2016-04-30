@@ -1,5 +1,6 @@
 /* Create Angular App Instance */
-App = angular.module('IBERIA', ['ionic','ngCordova']);
+App = angular.module('IBERIA', ['ionic','onezone-datepicker']);
+
 
 App.run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {

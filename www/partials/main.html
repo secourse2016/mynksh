@@ -1,3 +1,4 @@
+
 <ion-view title="Landing">
 
   <ion-content class="has-header has-subheader">
@@ -43,6 +44,14 @@
                          <ion-radio ng-model="roundTrip" ng-value="true">Round Trip</ion-radio>
                        </ion-list>
 
+                        <ion-list>
+                       <onezone-datepicker datepicker-object="onezoneDatepicker">
+                         <button class="button button-block button-outline button-positive show-onezone-datepicker">
+                           {{onezoneDatepicker.date | date:'dd MMMM yyyy'}}
+                         </button>
+                       </onezone-datepicker>
+                        </ion-list>
+
 
 
 
@@ -59,23 +68,6 @@
     </div>
   </ion-content>
 
-  <ion-tabs class="tabs-icon-top tabs-color-active-positive">
 
-    <!-- Dashboard Tab -->
-    <ion-tab title="Home" icon-off="ion-ios-pulse" icon-on="ion-ios-pulse-strong" href="#/">
-      <ion-nav-view name="tab-dash"></ion-nav-view>
-    </ion-tab>
-
-    <!-- Chats Tab -->
-    <ion-tab title="Offers" icon-off="ion-ios-chatboxes-outline" icon-on="ion-ios-chatboxes" href="#/offers">
-      <ion-nav-view name="tab-chats"></ion-nav-view>
-    </ion-tab>
-
-    <!-- Account Tab -->
-    <ion-tab title="About Us" icon-off="ion-ios-gear-outline" icon-on="ion-ios-gear" href="#/AboutUs">
-      <ion-nav-view name="tab-account"></ion-nav-view>
-    </ion-tab>
-
-  </ion-tabs>
 
 </ion-view>

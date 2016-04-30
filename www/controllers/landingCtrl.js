@@ -154,30 +154,52 @@ App.controller('landingCtrl', function($scope, FlightsSrv, $location) {
         startingDay: 1
     };
 
-    var tomorrow = new Date();
-    tomorrow.setDate(tomorrow.getDate() + 1);
-    var afterTomorrow = new Date();
-    afterTomorrow.setDate(tomorrow.getDate() + 1);
-    $scope.events = [{
-        date: tomorrow,
-        status: 'full'
-    }, {
-        date: afterTomorrow,
-        status: 'partially'
-    }];
 
-    $scope.getDayClass = function(date, mode) {
-        if (mode === 'day') {
-            var dayToCheck = new Date(date).setHours(0, 0, 0, 0);
+    $scope.onezoneDatepicker = {
+        date: new Date(), // MANDATORY
+        mondayFirst: false,
+        months: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+        daysOfTheWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+        startDate: new Date(),
+        endDate: new Date(2024, 1, 26),
+        disablePastDays: true,
+        disableSwipe: false,
+        disableWeekend: false,
+        // disableDates: disableDates,
+        // disableDaysOfWeek: disableDaysOfWeek,
+        showDatepicker: false,
+        showTodayButton: true,
+        calendarMode: false,
+        hideCancelButton: false,
+        hideSetButton: false,
 
-            for (var i = 0; i < $scope.events.length; i++) {
-                var currentDay = new Date($scope.events[i].date).setHours(0, 0, 0, 0);
 
-                if (dayToCheck === currentDay) {
-                    return $scope.events[i].status;
-                }
-            }
-        }
-        return '';
     };
+
+    // var tomorrow = new Date();
+    // tomorrow.setDate(tomorrow.getDate() + 1);
+    // var afterTomorrow = new Date();
+    // afterTomorrow.setDate(tomorrow.getDate() + 1);
+    // $scope.events = [{
+    //     date: tomorrow,
+    //     status: 'full'
+    // }, {
+    //     date: afterTomorrow,
+    //     status: 'partially'
+    // }];
+    //
+    // $scope.getDayClass = function(date, mode) {
+    //     if (mode === 'day') {
+    //         var dayToCheck = new Date(date).setHours(0, 0, 0, 0);
+    //
+    //         for (var i = 0; i < $scope.events.length; i++) {
+    //             var currentDay = new Date($scope.events[i].date).setHours(0, 0, 0, 0);
+    //
+    //             if (dayToCheck === currentDay) {
+    //                 return $scope.events[i].status;
+    //             }
+    //         }
+    //     }
+    //     return '';
+    // };
 });
