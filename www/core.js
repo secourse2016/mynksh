@@ -83,13 +83,6 @@ App.config(function($stateProvider, $urlRouterProvider, $mdIconProvider) {
     controller: 'paymentCtrl'
   })
 
-
-  // .state('payment', {
-  //   url: '/payment',
-  //   templateUrl: '/partials/payment.html',
-  //   controller: ''
-  // })
-  //
   // // route for the congrats page
   // .state('congrats', {
   //   url: '/congrats',
