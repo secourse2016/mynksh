@@ -38,7 +38,7 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
             paymentSrv.postPay($scope.reservation, outgoingFlight, returnFlight, $scope.cabin).success(function(data){
                paymentSrv.setBookingRefNo(data.encoding);
             });
-        else 
+        else
             paymentSrv.postPay($scope.reservation, outgoingFlight, $scope.cabin).success(function(data){
                 paymentSrv.setBookingRefNo(data.encoding);
             });
