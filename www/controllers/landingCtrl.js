@@ -18,6 +18,8 @@ App.controller('landingCtrl', function($scope, FlightsSrv, $location) {
      showCabin:true,
      showPinging:false
    };
+   $scope.dto=new Date();
+    $scope.dtr=new Date();
    $scope.$on('$ionicView.enter', function(e) {
      });
     //  function reload(){

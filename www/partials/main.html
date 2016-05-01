@@ -46,29 +46,32 @@
                        <div ng-show="!data.showDelete">
                         <ion-list>
                           <h5 style="text-align:center;color:rgba(128,0,0, 1)">Outgoing date</h5>
-                       <onezone-datepicker datepicker-object="onezoneDatepicker">
-                         <button class="button button-block button-outline button-assertive show-onezone-datepicker">
+                       <!-- <onezone-datepicker ng-model="dto" datepicker-object="onezoneDatepicker" >
+                         <button class="button button-block button-outline button-assertive show-onezone-datepicker" >
                            {{onezoneDatepicker.date | date:'dd MMMM yyyy'}}
                          </button>
-                       </onezone-datepicker>
+                       </onezone-datepicker> -->
+                       <md-datepicker ng-model="dto" md-placeholder="Enter date"></md-datepicker>
                      </ion-list>
                        <ion-list>
                        <h5 style="text-align:center;color:rgba(128,0,0, 1)">Return date</h5>
-                    <onezone-datepicker datepicker-object="onezoneDatepicker2">
-                      <button class="button button-block button-outline button-assertive show-onezone-datepicker">
+                    <!-- <onezone-datepicker datepicker-object="onezoneDatepicker2" >
+                      <button ng-model="dtr" class="button button-block button-outline button-assertive show-onezone-datepicker" >
                         {{onezoneDatepicker2.date | date:'dd MMMM yyyy'}}
                       </button>
-                    </onezone-datepicker>
+                    </onezone-datepicker> -->
+                    <md-datepicker ng-model="dtr" md-placeholder="Enter date"></md-datepicker>
                         </ion-list>
                       </div>
                       <div ng-show="data.showDelete">
                        <ion-list>
                          <h4 style="text-align:center;color:rgba(128,0,0, 1)">Outgoing date</h4>
-                      <onezone-datepicker datepicker-object="onezoneDatepicker">
-                        <button class="button button-block button-outline button-assertive show-onezone-datepicker">
+                      <!-- <onezone-datepicker datepicker-object="onezoneDatepicker"  > -->
+                        <md-datepicker ng-model="dto" md-placeholder="Enter date"></md-datepicker>
+                        <!-- <button class="button button-block button-outline button-assertive show-onezone-datepicker" ng-model="dto" ng-value="{{onezoneDatepicker.date}}">
                           {{onezoneDatepicker.date | date:'dd MMMM yyyy'}}
                         </button>
-                      </onezone-datepicker>
+                      </onezone-datepicker> -->
                     </ion-list>
                      </div>
                        </form>
@@ -87,8 +90,8 @@
 
 
                      <ion-list>
-                       <ion-radio ng-click="data.showPinging= !data.showPinging" ng-model="pinging" ng-value="false">Ping Other Airlines</ion-radio>
-                       <ion-radio ng-click="data.showPinging= !data.showPinging" ng-model="pinging" ng-value="true">Don't ping other Airlines</ion-radio>
+                       <md-checkbox style="color:black" ng-model="pinging" aria-label="Ping Other Airlines">Ping Other Arlines</md-checkbox>
+                       <!-- <input ng-model="pinging" type="checkbox" value="true" /> -->
                      </ion-list>
 
                    </form>
@@ -107,7 +110,7 @@
            </label> -->
 
 
-    <button style="left:125px" class="button button-outline button-assertive" ng-click="SearchFlights(originAirport, destinationAirport)">Search Flights</button><br><br>
+    <button style="left:125px" class="button button-outline button-assertive" ng-click="SetOutDate(dto);SetReturnDate(dtr); SetRoundTrip(roundTrip); SetCabin(cabin); SetPinging(pinging); SearchFlights()">Search Flights</button><br><br>
 
   </ion-content>
 
