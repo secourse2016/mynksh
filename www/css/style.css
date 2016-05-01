@@ -24,3 +24,11 @@
   border-radius: 50px 15px;
   padding: 6% 0 3% 3%;
 }
+
+.stroke{
+  color: black;
+  font-size: 1.5em;
+  -webkit-text-fill-color: white; /* Will override color (regardless of order) */
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: black;
+}
