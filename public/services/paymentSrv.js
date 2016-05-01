@@ -1,6 +1,9 @@
 
 App.factory('paymentSrv', function($http) {
     return {
+      getOtherStripePupKey: function(airlineName) {
+          return $http.get('/data/otherStripeKey/'+airlineName);
+      },
       getSingleairLineIp: function(airlineName) {
           return $http.get('/data/singleAirlines/'+airlineName);
       },
