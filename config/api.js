@@ -58,11 +58,15 @@ exports.getAirLines = function(cb) {
 }
 
 //get from data base ip
-exports.getAirLinesIP = function(airLineName,cb) {
+exports.getAirLineIP = function(airLineName,cb) {
     var collection = mongo.db().collection('airLines');
-    collection.findOne({"name" : airLineName}).toArray(function(err, airLine) {
-var airLinesIP = airLines.ip;
-        cb(err, airLinesIP);
+    collection.findOne({"name" : airLineName} ,function(err, airLine) {
+      if(airLine === null){
+      cb(err, "No ip with this Name");
+
+}
+var airLineIP = airLine.ip;
+        cb(err, airLineIP);
     });
 }
 
