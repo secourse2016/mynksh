@@ -37,6 +37,14 @@ module.exports = function(app, mongo) {
             // })
     });
 
+    app.get('/data/seatMap/:flight', function(req, res) {
+        // mongo.getAirports(function(err, airports) {
+        mongo.getSeatMap(req.params.flight,function(err, airLines) {
+                res.json(airLines);
+            })
+            // })
+    });
+
     app.get('/data/bookings/search/:bookingRefNumber', function(req, res) {
         mongo.searchBookings(req.params.bookingRefNumber, function(err, bookingRef) {
             res.json(bookingRef);
@@ -46,7 +54,7 @@ module.exports = function(app, mongo) {
     app.get('/data/pay/:firstName/:lastName/:passport/:passportNumber/:issueDate/:expiryDate/:email/:phoneNumber/:oFlightNumber/:flightCabin', function(req, res) {
 
         mongo.generateBookingRef(req.params.oFlightNumber , req.params.flightCabin , function (err , bookingRefNumber){
-            mongo.submitPay(req.params.firstName, req.params.lastName, req.params.passport, req.params.passportNumber, req.params.issueDate, req.params.expiryDate, req.params.email, 
+            mongo.submitPay(req.params.firstName, req.params.lastName, req.params.passport, req.params.passportNumber, req.params.issueDate, req.params.expiryDate, req.params.email,
             req.params.phoneNumber, bookingRefNumber, req.params.oFlightNumber,req.params.flightCabin,function(err, data) {
 
             });
@@ -58,11 +66,11 @@ module.exports = function(app, mongo) {
 
     app.get('/data/pay/:firstName/:lastName/:passport/:passportNumber/:issueDate/:expiryDate/:email/:phoneNumber/:oFlightNumber/:rFlightNumber/:flightCabin', function(req, res) {
         mongo.generateBookingRef(req.params.oFlightNumber , req.params.flightCabin , function (err , bookingRefNumber){
-            mongo.submitPay(req.params.firstName, req.params.lastName, req.params.passport, req.params.passportNumber, req.params.issueDate, req.params.expiryDate, req.params.email, 
+            mongo.submitPay(req.params.firstName, req.params.lastName, req.params.passport, req.params.passportNumber, req.params.issueDate, req.params.expiryDate, req.params.email,
             req.params.phoneNumber, bookingRefNumber, req.params.oFlightNumber,req.params.flightCabin,function(err, data) {
 
             });
-            mongo.submitPay(req.params.firstName, req.params.lastName, req.params.passport, req.params.passportNumber, req.params.issueDate, req.params.expiryDate, req.params.email, 
+            mongo.submitPay(req.params.firstName, req.params.lastName, req.params.passport, req.params.passportNumber, req.params.issueDate, req.params.expiryDate, req.params.email,
             req.params.phoneNumber, bookingRefNumber, req.params.rFlightNumber,req.params.flightCabin,function(err, data) {
 
             });
@@ -71,7 +79,7 @@ module.exports = function(app, mongo) {
             res.json(booking);
         });
     });
-    
+
     app.get('/api/others/search/:ip/:origin/:destination/:departingDate/:returningDate/:cabin/:wt', function(req, res1) {
         var options = {
             host: req.params.ip,

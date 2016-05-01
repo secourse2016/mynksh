@@ -57,6 +57,16 @@ exports.getAirLines = function(cb) {
     });
 }
 
+exports.getSeatMap = function(flight, cb) {
+    // mongo.connect(function(err, db) {
+    var collection = mongo.db().collection('flights');
+    collection.find({"flightNumber" : flight}).toArray(function(err, airLines) {
+        cb(err, airLines[0].SeatMap);
+        // mongo.close();
+        // });
+    });
+}
+
 exports.getBooking = function(cb) {
     // mongo.connect(function(err, db) {
     var collection = mongo.db().collection('bookings');
@@ -228,10 +238,10 @@ exports.generateBookingRef = function(flightNumber,businessOrEconomic ,cb){
             return;
         }
         if (businessOrEconomic === "true") {
-            if (!(flights[0].availableESeats === 0)) 
+            if (!(flights[0].availableESeats === 0))
                 selectedSeat = flights[0].nextEcoSeat;
         } else {
-            if (!(flights[0].availableBSeats === 0)) 
+            if (!(flights[0].availableBSeats === 0))
                 selectedSeat = flights[0].nextBusSeat;
             }
         seatnum = flights[0].SeatMap[selectedSeat].seatNum;
@@ -239,5 +249,3 @@ exports.generateBookingRef = function(flightNumber,businessOrEconomic ,cb){
         cb(err , encoded);
     });
 };
-
-
