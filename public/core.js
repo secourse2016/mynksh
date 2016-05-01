@@ -56,6 +56,6 @@ App.config(function($routeProvider) {
         templateUrl: '/partials/teamMembers.html'
 
     });
-    Stripe.setPublishableKey('pk_test_fWP8viqFbT95teED8zWD3ieK');
+  
 
 });
