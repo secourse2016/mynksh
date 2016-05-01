@@ -30,6 +30,8 @@ module.exports = function(app, mongo) {
         })
     });
 
+
+
     app.get('/data/airlines', function(req, res) {
         // mongo.getAirports(function(err, airports) {
         mongo.getAirLines(function(err, airLines) {
@@ -163,9 +165,12 @@ module.exports = function(app, mongo) {
             res.status(403).sendFile(__dirname + '../../public/views/error.html');
         }
     });
-    app.post('/booking', function(req, res){
+    app.post('/booking', function(req, res1){
+      if((req.body.ip) === "our ip an amsh 3arfo :D"){
+
+
         stripe.charges.create({
-            amount: req.body.cost, 
+            amount: req.body.cost,
             currency: "eur",
             source: req.body.paymentToken,
             description: "Example charge"
@@ -175,12 +180,57 @@ module.exports = function(app, mongo) {
             }
             else
             {
-                //move booking here
+                //move booking here / m7tagen nzbt l submit 3lshan ta5od mn l body parser 
                 //res.send(charge);
                 console.log(charge);
                 res.end();
             }
         });
+      } else {    // i will make post request sending all data which will posting in database to others Airlines
+
+        var options = {
+            host: req.body.ip,
+            path: '/booking',
+            json: true
+        };
+        var timeout_wrapper = function(req) {
+            return function() {
+                // do some logging, cleaning, etc. depending on req
+                req.abort();
+            };
+        };
+        var request = http.post(options,req.body,function(res) {
+            var body = '';
+            res.on('data', function(chunk) {
+                body += chunk;
+                clearTimeout(timeout);
+                timeout = setTimeout(fn, 10000);
+            });
+            res.on('end', function() {
+                try {
+                    clearTimeout(timeout);
+                    var fbResponse = JSON.parse(body);
+                    res1.send(fbResponse);
+                } catch (err) {
+                    try {
+                        res1.status(500).send("Error");
+                    } catch (err) {}
+                }
+            });
+        }).on('error', function(e) {
+            clearTimeout(timeout);
+            try {
+                res1.status(500).send("Error");
+            } catch (err) {}
+            this.abort();
+        });
+        // generate timeout handler
+        var fn = timeout_wrapper(request);
+
+        // set initial timeout
+        var timeout = setTimeout(fn, 1000);
+
+      }
     });
 
     app.get('/api/flights/search/:origin/:destination/:departingDate/:returningDate/:cabin/:seats', function(req, res) {
@@ -201,6 +251,12 @@ module.exports = function(app, mongo) {
         });
     });
 
+    // return /stripe/pubkey
+    app.get('/stripe/pubkey', function(req, res) {
+            res.end('pk_test_fWP8viqFbT95teED8zWD3ieK');
+
+    });
+    //end of return /stripe/pubkey
 
     app.get('/api/flights/search/:origin/:destination/:departingDate/:cabin/:seats', function(req, res) {
         if (moment(req.params.departingDate, 'MMMM D, YYYY').format('MMMM D, YYYY') === req.params.departingDate)
@@ -213,6 +269,6 @@ module.exports = function(app, mongo) {
             res.json(flights);
         });
     });
- 
+
 
 };
