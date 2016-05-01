@@ -32,6 +32,14 @@ App.factory('OutReturnSrv', function($http) {
             this.selectedPrice = value;
         },
 
+        setSelectedOutgoingSeat: function(value) {
+            this.selectedOutgoingSeat = value;
+        },
+
+        setSelectedReturnSeat: function(value) {
+            this.selectedReturnSeat = value;
+        },
+
         getSelectedOutFlight: function() {
             return this.selectedOutFlight;
         },
@@ -49,6 +57,14 @@ App.factory('OutReturnSrv', function($http) {
 
         getSelectedPrice: function() {
             return this.selectedPrice;
+        },
+
+        getSelectedOutgoingSeat: function() {
+            return this.selectedOutgoingSeat;
+        },
+
+        getSelectedReturnSeat: function(value) {
+            return this.selectedReturnSeat;
         }
 
     };
