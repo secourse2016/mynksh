@@ -15,4 +15,3 @@ App.controller('congratsCtrl', function($scope,paymentSrv) {
         }
     };
 });
-
