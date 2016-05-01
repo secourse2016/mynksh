@@ -169,21 +169,22 @@ module.exports = function(app, mongo) {
                 res.send({ refNum: null, errorMessage: err});
             }
             else
-            {
+            {   
                 //move booking here
                 if(req.body.returnFlightId===undefined)
                 {
-                    mongo.submitPay(req.body.passengerDetails[0].firstName, req.body.passengerDetails[0].lastName, req.body.passengerDetails[0].passportNum,req.body.passengerDetails[0].passportExpiryDate, req.body.passengerDetails[0].dateOfBirth, req.body.passengerDetails[0].nationality, req.body.passengerDetails[0].email, req.body.class, req.body.cost, req.body.outgoingFlightId, function(err, data) {
-                            console.log("RefNum  " + data + "err" + err);
+                    mongo.submitPay(req.body.passengerDetails[0].firstName, req.body.passengerDetails[0].lastName, req.body.passengerDetails[0].passportNum,req.body.passengerDetails[0].passportExpiryDate, req.body.passengerDetails[0].dateOfBirth, req.body.passengerDetails[0].nationality, req.body.passengerDetails[0].email, req.body.class, req.body.cost, req.body.outgoingFlightId, true, function(err, data) {
+                            //console.log("RefNum  " + data + "err" + err);
                             res.send({refNum: data, errorMessage: null});
                     });
 
                 }
                 else
                 {
-                    mongo.submitPay(req.body.passengerDetails[0].firstName, req.body.passengerDetails[0].lastName, req.body.passengerDetails[0].passportNum,req.body.passengerDetails[0].passportExpiryDate, req.body.passengerDetails[0].dateOfBirth, req.body.passengerDetails[0].nationality, req.body.passengerDetails[0].email, req.body.class, req.body.cost, req.body.outgoingFlightId, function(err, data) {
-                        mongo.submitPay(req.body.passengerDetails[0].firstName, req.body.passengerDetails[0].lastName, req.body.passengerDetails[0].passportNum,req.body.passengerDetails[0].passportExpiryDate, req.body.passengerDetails[0].dateOfBirth, req.body.passengerDetails[0].nationality, req.body.passengerDetails[0].email, req.body.class, req.body.cost, req.body.returnFlightId, function(err, data) {
-                            console.log("RefNum  " + data + "err" + err);
+                    mongo.submitPay(req.body.passengerDetails[0].firstName, req.body.passengerDetails[0].lastName, req.body.passengerDetails[0].passportNum,req.body.passengerDetails[0].passportExpiryDate, req.body.passengerDetails[0].dateOfBirth, req.body.passengerDetails[0].nationality, req.body.passengerDetails[0].email, req.body.class, req.body.cost, req.body.outgoingFlightId, true, function(err, data) {
+                        //console.log(data);
+                        mongo.submitPay(req.body.passengerDetails[0].firstName, req.body.passengerDetails[0].lastName, req.body.passengerDetails[0].passportNum,req.body.passengerDetails[0].passportExpiryDate, req.body.passengerDetails[0].dateOfBirth, req.body.passengerDetails[0].nationality, req.body.passengerDetails[0].email, req.body.class, req.body.cost, req.body.returnFlightId, data, function(err, data) {
+                            //console.log("RefNum  " + data + "err" + err);
                             res.send({refNum: data, errorMessage: null});
                         });
                     });

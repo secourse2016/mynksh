@@ -116,7 +116,7 @@ exports.searchFlights = function(origin, destination, departingDate, cabin, seat
     });
 }
 
-exports.submitPay = function(firstName, lastName, passportNumber, expiryDate, dateOfBirth, passport,  email, businessOrEconomic, cost,   flightId, cb) {
+exports.submitPay = function(firstName, lastName, passportNumber, expiryDate, dateOfBirth, passport,  email, businessOrEconomic, cost,   flightId, generateOrUseOld, cb) {
     var selectedSeat = 0;
     // update after find free seat
     
@@ -125,25 +125,25 @@ exports.submitPay = function(firstName, lastName, passportNumber, expiryDate, da
         cb("flightId was not passed", null);
         return;
     }
-    console.log(flightId);
+    //console.log(flightId);
     var collection = mongo.db().collection('flights');
     collection.find({
         "_id": new ObjectId(flightId)
     }).toArray(function(err, flights) {
         if (flights.length === 0) {
-            console.log("flight not found");
+            //console.log("flight not found");
             cb("This flight " + flightId + "is not supported be IBERIA", null);
             // mongo.close();
             return;
         }
-        console.log("flight found");
+        //console.log("flight found");
         //  remove then insert
         if (businessOrEconomic === "true") { // economy
             //check on availableESeats of economy
             if (!(flights[0].availableESeats === 0)) {
                 selectedSeat = flights[0].nextEcoSeat;
                 flights[0].availableESeats = flights[0].availableESeats - 1;
-                flights[0].nextEcoSeat = flights[0].nextEcoSeat - 1;
+                flights[0].nextEcoSeat = flights[0].nextEcoSeat + 1;
             }
             // if avaliable dec availableESeats and dec next Eseat
 
@@ -152,19 +152,20 @@ exports.submitPay = function(firstName, lastName, passportNumber, expiryDate, da
             if (!(flights[0].availableBSeats === 0)) {
                 selectedSeat = flights[0].nextBusSeat;
                 flights[0].availableBSeats = flights[0].availableBSeats - 1;
-                flights[0].nextBusSeat = flights[0].nextBusSeat + 1;
+                flights[0].nextBusSeat = flights[0].nextBusSeat - 1;
 
             }
             // if avaliable dec availableBSeats and inc next Bseat
         }
         //
         // console.log("selectedSeat :"+selectedSeat);
-        var bookingReference="";
-        generateBookingRef(flights[0].flightNumber,businessOrEconomic, cb(err,encoded)
-        {
-            bookingReference=encoded;
-        });
-        flights[0].SeatMap[selectedSeat].bookingRefNumber = bookingRef;
+        var bookingReference;
+        if(generateOrUseOld===true)
+            bookingReference= generateBookingRef(flights[0].SeatMap[selectedSeat].seatNum, flights[0].flightNumber,businessOrEconomic);
+        else
+            bookingReference= generateOrUseOld;
+        flights[0].SeatMap[selectedSeat].bookingRefNumber = bookingReference; 
+        
 
         mongo.db().collection("flights").remove({
             "_id": new ObjectId(flightId)
@@ -260,28 +261,28 @@ exports.searchBookings = function(bookingRef, cb) {
 //     });
 //     console.log("ïnsert into db done");
 // }
-};
 
-exports.generateBookingRef = function(flightNumber,businessOrEconomic ,cb){
-    var selectedSeat = 0;
-    var collection = mongo.db().collection('flights');
-    collection.find({
-        "flightNumber": flightNumber
-    }).toArray(function(err, flights) {
-        if (flights.length === 0) {
-            cb(err, false);
-            return;
-        }
-        if (businessOrEconomic === "true") {
-            if (!(flights[0].availableESeats === 0)) 
-                selectedSeat = flights[0].nextEcoSeat;
-        } else {
-            if (!(flights[0].availableBSeats === 0)) 
-                selectedSeat = flights[0].nextBusSeat;
-            }
-        seatnum = flights[0].SeatMap[selectedSeat].seatNum;
+
+var generateBookingRef = function(seatnum, flightNumber,businessOrEconomic){
+    // var selectedSeat = 0;
+    // var collection = mongo.db().collection('flights');
+    // collection.find({
+    //     "flightNumber": flightNumber
+    // }).toArray(function(err, flights) {
+    //     if (flights.length === 0) {
+    //         cb(err, false);
+    //         return;
+    //     }
+    //     if (businessOrEconomic === "true") {
+    //         if (!(flights[0].availableESeats === 0)) 
+    //             selectedSeat = flights[0].nextEcoSeat;
+    //     } else {
+    //         if (!(flights[0].availableBSeats === 0)) 
+    //             selectedSeat = flights[0].nextBusSeat;
+    //         }
+    //     seatnum = flights[0].SeatMap[selectedSeat].seatNum;
         var encoded = new Buffer(seatnum + ','+ flightNumber).toString('base64');
-        cb(err , encoded);
-    });
+        return encoded;
+    //});
 };
 
