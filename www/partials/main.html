@@ -1,5 +1,5 @@
 
-<ion-view title="Landing">
+<ion-view >
 
   <ion-content class="has-header has-subheader">
 
@@ -8,8 +8,6 @@
       <h4 style="text-align:center;color:rgba(128,0,0, 1)">Book Flight</h4>
 
     <!-- <input name="originAirports" id="originAirports"  type="text"  placeholder="Flying From" ng-model="selectedOrigin" ng-required='true' uib-typeahead="airport.name for airport in Airports | filter:$viewValue | limitTo:10" class="form-control" , typeahead-on-select="SetOriginAirport($item.iata)"  required > -->
-
-
 
     <div class="list list-inset">
       <!-- <label class="item item-input item-stacked-label">
@@ -89,8 +87,8 @@
                   <form id="loginForm">
                      <ion-list>
                        <h4 style="text-align:center;color:rgba(128,0,0, 1)">Select a cabin</h4>
-                       <ion-radio ng-click="data.showCabin = false" ng-model="cabin" value="false">Economy</ion-radio>
-                       <ion-radio ng-click="data.showCabin = true" ng-model="cabin" value="true">Business</ion-radio>
+                       <ion-radio ng-click="data.showCabin = false" ng-model="cabin" value="true">Economy</ion-radio>
+                       <ion-radio ng-click="data.showCabin = true" ng-model="cabin" value="false">Business</ion-radio>
                      </ion-list>
                    </form>
                 </div>

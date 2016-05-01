@@ -13,7 +13,7 @@ App.factory('welcomingSrv', function() {
     status:'Life is too short for this',
     num: 900,
     face: 'img/1.jpg',
-    flip:''
+    flip:'img/queen.gif'
   }, {
     id: 1,
     name: 'Safa Ads',
@@ -85,7 +85,7 @@ App.factory('welcomingSrv', function() {
     num: 5,
     phone:'N/A',
     face: 'img/7.jpg',
-    flip:''
+    flip:'img/complicated.gif'
   }];
 
   return {
