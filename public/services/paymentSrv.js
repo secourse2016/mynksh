@@ -1,7 +1,9 @@
 
 App.factory('paymentSrv', function($http) {
     return {
-
+      getSingleairLineIp: function(airlineName) {
+          return $http.get('/data/singleAirlines/'+airlineName);
+      },
         postPay: function(reservation, bookingRefNumber, flight , cabin) {
           return $http.get('/data/pay/'+ reservation.FName + '/' + reservation.LName + '/' + reservation.country + '/' + reservation.passportNo+'/'+
             reservation.issueDate+'/'+ reservation.expiryDate + '/' + reservation.email + '/' + reservation.phoneno + '/' + bookingRefNumber+'/'+
@@ -10,7 +12,7 @@ App.factory('paymentSrv', function($http) {
         chargeCard: function(paymentInfo)
         {
             var jwt = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJNWU5LU0giLCJpYXQiOjE0NjA3NzIyOTQsImV4cCI6MTQ5MjMwODI5NSwiYXVkIjoid3d3LnNlY291cnNlLmNvbSIsInN1YiI6Ik1ZTktTSCBJYmVyaWEiLCJUZWFtIjoiTVlOS1NIIn0.hZxhv8XAcu1cARgcrtfb0l_crF1-Ic1tJt9eUhIL0qQ';
-            return $http.post('/booking?wt=' + jwt, paymentInfo);   
+            return $http.post('/booking?wt=' + jwt, paymentInfo);
         },
         getSelectedCardType: function() {
             return this.SelectedCardType;
