@@ -73,5 +73,8 @@ App.controller('mainController', ['$scope', '$http' , 'OutReturnSrv', function($
 
 if(node.selected ===3)
     alert('Sorry but this seat is to be reserved for another cabin : ' + node.displayName);
+    else
+    alert('This seat is already reserved : ' + node.displayName);
+
   };
 }]);
