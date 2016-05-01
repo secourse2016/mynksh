@@ -1,23 +1,17 @@
 App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturnSrv, paymentSrv, $location) {
 
-  $scope.tab = "active in";
-  // $scope.reservation = ConfirmSrv.getReservation();
-  // $scope.totalPrice = OutReturnSrv.getSelectedPrice();
-  // $scope.cabin = FlightsSrv.getSelectedCabin();
-  // var roundTrip = FlightsSrv.getSelectedRoundTrip();
-  // var outgoingFlight = OutReturnSrv.getSelectedOutFlight();
-  // if (roundTrip == 'true')
-  //     returnFlight = OutReturnSrv.getSelectedReturnFlight();
-  // $scope.outCurrency = outgoingFlight.currency;
 
-  $scope.reservation = {};
-  $scope.totalPrice = 2000;
-  $scope.cabin = 'economy';
-  var roundTrip = 'true';
-  var outgoingFlight = {};
-  if (roundTrip == 'true')
-    returnFlight = {};
-  $scope.outCurrency = '$';
+
+
+
+    $scope.tab = "active in";
+    $scope.reservation = ConfirmSrv.getReservation();
+    $scope.totalPrice = OutReturnSrv.getSelectedPrice();
+    $scope.cabin = FlightsSrv.getSelectedCabin();
+    var roundTrip = FlightsSrv.getSelectedRoundTrip();
+    var outgoingFlight = OutReturnSrv.getSelectedOutFlight();
+    if (roundTrip == 'true')
+    returnFlight = OutReturnSrv.getSelectedReturnFlight();
 
   $scope.tab1 = function() {
     $scope.tab = "active in";

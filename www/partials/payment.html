@@ -1,3 +1,4 @@
+
 <script src="../css/payment.css"></script>
 <ion-view title="payment">
 
@@ -5,7 +6,9 @@
 
 
     <div>
-      <h3><font color="black">Payment Data</font></h3>
+
+      <center><h3><font color="maroon">Payment data</font></h3></center>
+
     </div>
 
     <form class="contact-form support-form" name="reviewForm" novalidate="">
@@ -13,20 +16,26 @@
       <!-- <label class="item item-input item-select"> -->
       <div class="list">
         <div class="input-label">
-          <span class="input-label">Card Type<font color="red">*</font></span>
+        <!--   <span class="input-label">Card type<font color="red">*</font></span> -->
+          <font style="color:maroon">Card type</font>
           <md-input-container>
-            <label>Card Type<font color="red">*</font></label>
+            <label <font size="2" ><h6 style='color:maroon'>Choose your card type*</h6></font></label>
             <md-select ng-model="selectedType" ng-required='true'>
-              <md-optgroup label="items">
-                <md-option style='color:black' value="Personal Visa Card (no charge)">Personal Visa Card (no charge)</md-option>
-                <md-option style='color:black' value="Visa Corporate Card (+6.64 €)">Visa Corporate Card (+6.64 €)</md-option>
-                <md-option style='color:black' value="Personal MasterCard (no charge)">Personal MasterCard (no charge)</md-option>
-                <md-option style='color:black' value="MasterCard Corporate (+6.64 €)">MasterCard Corporate (+6.64 €)</md-option>
-                <md-option style='color:black' value="Personal American Express (no charge)">Personal American Express (no charge)</md-option>
-                <md-option style='color:black' value="American Express Corporate (+6.64 €)">American Express Corporate (+6.64 €)</md-option>
-                <md-option style='color:black' value="Diners Club (+6.64 €)">Diners Club (+6.64 €)</md-option>
-                <md-option style='color:black' value="UATP/Airplus (+6.64 €)">UATP/Airplus (+6.64 €)</md-option>
-                <md-option style='color:black' value="Carte Blanche (+6.64 €)">Carte Blanche (+6.64 €)</md-option>
+              <md-optgroup label="Card type">
+                <md-option style='color:black' value="Personal Visa Card (no charge)"
+                ng-model="selectedType">Personal Visa Card (no charge) </md-option>
+                <md-option style='color:black' value="Visa Corporate Card (+6.64 €)"
+                ng-model="selectedType">Visa Corporate Card (+6.64 €)</md-option>
+                <md-option style='color:black' value="Personal MasterCard (no charge)"
+                ng-model="selectedType">Personal MasterCard (no charge)</md-option>
+                <md-option style='color:black' value="MasterCard Corporate (+6.64 €)"
+                ng-model="selectedType">MasterCard Corporate (+6.64 €)</md-option>
+                <md-option style='color:black' value="Personal American Express (no charge)"ng-model="selectedType">
+                Personal American Express (no charge)</md-option>
+                <md-option style='color:black' value="American Express Corporate (+6.64 €)" ng-model="selectedType">American Express Corporate (+6.64 €)</md-option>
+                <md-option style='color:black' value="Diners Club (+6.64 €)" ng-model="selectedType">Diners Club (+6.64 €)</md-option>
+                <md-option style='color:black' value="UATP/Airplus (+6.64 €)" ng-model="selectedType">UATP/Airplus (+6.64 €)</md-option>
+                <md-option style='color:black' value="Carte Blanche (+6.64 €)" ng-model="selectedType">Carte Blanche (+6.64 €)</md-option>
               </md-optgroup>
             </md-select>
           </md-input-container>
@@ -36,84 +45,83 @@
         <!-- <label class="item item-input item-select"> -->
 
         <!-- <div class="input-label"> -->
-        <span class="input-label">Expiry Date<font color="red">*</font></span>
+        <span class="input-label" style= "color:maroon">Expiry date</font></span>
         <md-input-container>
-          <label>Month<font color="red">*</font></label>
+          <!-- <label style='color:maroon'><h6>Month</h6></label> -->
+            <label <font size="2" ><h6 style='color:maroon'>Month*</h6></font></label>
           <md-select ng-model="selectedMonth" ng-required='true' >
             <md-optgroup label="month">
-              <md-option value="1" style='color:black'>1</md-option>
-              <md-option value="2" style='color:black'>2</md-option>
-              <md-option value="3" style='color:black'>3</md-option>
-              <md-option value="4" style='color:black'>4</md-option>
-              <md-option value="5" style='color:black'>5</md-option>
-              <md-option value="6" style='color:black'>6</md-option>
-              <md-option value="7" style='color:black'>7</md-option>
-              <md-option value="8" style='color:black'>8</md-option>
-              <md-option value="9" style='color:black'>9</md-option>
-              <md-option value="10" style='color:black'>10</md-option>
-              <md-option value="11" style='color:black'>11</md-option>
-              <md-option value="12" style='color:black'>12</md-option>
+              <md-option value="1" ng-model="selectedMonth" style='color:black'>1</md-option>
+              <md-option value="2" ng-model="selectedMonth" style='color:black'>2</md-option>
+              <md-option value="3" ng-model="selectedMonth" style='color:black'>3</md-option>
+              <md-option value="4" ng-model="selectedMonth" style='color:black'>4</md-option>
+              <md-option value="5" ng-model="selectedMonth" style='color:black'>5</md-option>
+              <md-option value="6" ng-model="selectedMonth" style='color:black'>6</md-option>
+              <md-option value="7" ng-model="selectedMonth" style='color:black'>7</md-option>
+              <md-option value="8" ng-model="selectedMonth" style='color:black'>8</md-option>
+              <md-option value="9" ng-model="selectedMonth" style='color:black'>9</md-option>
+              <md-option value="10" ng-model="selectedMonth" style='color:black'>10</md-option>
+              <md-option value="11" ng-model="selectedMonth" style='color:black'>11</md-option>
+              <md-option value="12" ng-model="selectedMonth" style='color:black'>12</md-option>
             </md-optgroup>
           </md-select>
         </md-input-container>
-        
+
         <md-input-container>
-          <label>Year<font color="red">*</font></label>
+
+            <label <font size="2" ><h6 style='color:maroon'>Year*</h6></font></label>
           <md-select ng-model="selectedYear" ng-required='true'>
             <md-optgroup label="Year">
-              <md-option value="2015" style='color:black'>2015</md-option>
-              <md-option value="2016" style='color:black'>2016</md-option>
-              <md-option value="2017" style='color:black'>2017</md-option>
-              <md-option value="2018" style='color:black'>2018</md-option>
-              <md-option value="2019" style='color:black'>2019</md-option>
-              <md-option value="2020" style='color:black'>2020</md-option>
-              <md-option value="2021" style='color:black'>2021</md-option>
-              <md-option value="2022" style='color:black'>2022</md-option>
-              <md-option value="2023" style='color:black'>2023</md-option>
+              <md-option value="2015" ng-model="selectedYear" style='color:black'>2015</md-option>
+              <md-option value="2016" ng-model="selectedYear" style='color:black'>2016</md-option>
+              <md-option value="2017" ng-model="selectedYear" style='color:black'>2017</md-option>
+              <md-option value="2018" ng-model="selectedYear" style='color:black'>2018</md-option>
+              <md-option value="2019" ng-model="selectedYear" style='color:black'>2019</md-option>
+              <md-option value="2020" ng-model="selectedYear" style='color:black'>2020</md-option>
+              <md-option value="2021" ng-model="selectedYear" style='color:black'>2021</md-option>
+              <md-option value="2022" ng-model="selectedYear" style='color:black'>2022</md-option>
+              <md-option value="2023" ng-model="selectedYear" style='color:black'>2023</md-option>
             </md-optgroup>
           </md-select>
         </md-input-container>
-        <!-- </div> -->
-        <!-- </label> -->
 
 
-        <label class="item item-input item-stacked-label">
-          <span class="input-label">Card Number<font color="red">*</font></span>
-          <input type="number" class="form-control" name="cardNo" ng-model="selectedCardNumber" ng-required='true' ng-minlength='16' ng-maxlength='16'>
-          <span style='color:red' ng-show='(reviewForm.cardNo.$error.number || reviewForm.cardNo.$error.required) && reviewForm.cardNo.$dirty'>Valid card number is required</span>
-          <span style='color:red' ng-show='(reviewForm.cardNo.$error.minlength || reviewForm.cardNo.$error.maxlength) && reviewForm.cardNo.$dirty'>Card number must be 16 digits</span>
-        </label>
+<div class="list">
+  <label class="item item-input item-floating-label">
+    <span class="input-label" style="color:maroon" >Card Number</span>
+    <input type="number" placeholder="Card number*" class="form-control" name="cardNo" ng-model="selectedCardNumber" ng-required='true' ng-minlength='16' ng-maxlength='16'>
+    <span style='color:red' ng-show='(reviewForm.cardNo.$error.number || reviewForm.cardNo.$error.required) && reviewForm.cardNo.$dirty'>Valid card number is required</span>
+    <span style='color:red' ng-show='(reviewForm.cardNo.$error.minlength || reviewForm.cardNo.$error.maxlength) && reviewForm.cardNo.$dirty'>Card number must be 16 digits</span>
+  </label>
+  <label class="item item-input item-floating-label">
+    <span class="input-label" style="color:maroon">Security code</span>
+    <input type="text" placeholder="Security code*" name="CVV" ng-model="selectedCVV" ng-required='true' ng-minlength='3' ng-maxlength='3'>
+    <span style='color:red' ng-show='(reviewForm.CVV.$error.number || reviewForm.CVV.$error.required) && reviewForm.CVV.$dirty'>Valid security code is required</span>
+    <span style='color:red' ng-show='(reviewForm.CVV.$error.minlength || reviewForm.CVV.$error.maxlength) && reviewForm.CVV.$dirty'>Security code must be 3 digits or letters</span>
+  </label>
+  <label class="item item-input item-floating-label">
+    <span class="input-label" style="color:maroon" >Street</span>
+    <input type="text" name="Street" placeholder="Street*" ng-model="selectedStreet" ng-required='true'>
+    <span style='color:red' ng-show='reviewForm.Street.$error.required && reviewForm.Street.$dirty'>Street is required</span>
+  </label>
+  <label class="item item-input item-floating-label">
+    <span class="input-label"style="color:maroon">Postal code</span>
+    <input type="text" name="postalCode" placeholder="Postal code" ng-model="selectedPostalcode" ng-required='true' ng-minlength='5' ng-maxlength='5'>
+    <span style='color:red' ng-show='(reviewForm.postalCode.$error.number || reviewForm.postalCode.$error.required) && reviewForm.postalCode.$dirty'>A valid postal code is required.</span>
+    <span style='color:red' ng-show='(reviewForm.postalCode.$error.minlength || reviewForm.postalCode.$error.maxlength)&& reviewForm.postalCode.$dirty'>Postal Code must be 5 characters.</span>
+  </label>
+  <label class="item item-input item-floating-label">
+    <span class="input-label" style="color:maroon">City</span>
+    <input type="text" class="form-control" name="city" placeholder="City" ng-model="SelectedCity" ng-required='true'>
+    <span style='color:red' ng-show='reviewForm.city.$error.required && reviewForm.city.$dirty'>City is required</span>
+  </label>
+</div>
 
-        <label class="item item-input item-stacked-label">
-          <span class="input-label">Security code<font color="red">*</font></span>
-          <input type="text" name="CVV" ng-model="selectedCVV" ng-required='true' ng-minlength='3' ng-maxlength='3'>
-          <span style='color:red' ng-show='(reviewForm.CVV.$error.number || reviewForm.CVV.$error.required) && reviewForm.CVV.$dirty'>Valid security code is required</span>
-          <span style='color:red' ng-show='(reviewForm.CVV.$error.minlength || reviewForm.CVV.$error.maxlength) && reviewForm.CVV.$dirty'>Security code must be 3 digits or letters</span>
-        </label>
 
-        <label class="item item-input item-stacked-label">
-          <span class="input-label">Street<font color="red">*</font></span>
-          <input type="text" name="Street" ng-model="selectedStreet" ng-required='true'>
-          <span style='color:red' ng-show='reviewForm.Street.$error.required && reviewForm.Street.$dirty'>Street is required</span>
-        </label>
+          <center><h4><font color="maroon">Price : {{totalPrice}}$</font></h4></center>
 
-        <label class="item item-input item-stacked-label">
-          <span class="input-label">Postal code<font color="red">*</font></span>
-          <input type="text" name="postalCode" placeholder="55555" ng-model="selectedPostalcode" ng-required='true' ng-minlength='5' ng-maxlength='5'>
-          <span style='color:red' ng-show='(reviewForm.postalCode.$error.number || reviewForm.postalCode.$error.required) && reviewForm.postalCode.$dirty'>A valid postal code is required.</span>
-          <span style='color:red' ng-show='(reviewForm.postalCode.$error.minlength || reviewForm.postalCode.$error.maxlength)&& reviewForm.postalCode.$dirty'>Postal Code must be 5 characters.</span>
-        </label>
-
-        <label class="item item-input item-stacked-label">
-          <span class="input-label">City<font color="red">*</font></span>
-          <input type="text" class="form-control" name="city" ng-model="SelectedCity" ng-required='true'>
-          <span style='color:red' ng-show='reviewForm.city.$error.required && reviewForm.city.$dirty'>City is required</span>
-        </label>
-        <div class="item item-text-wrap" id="pay">
-          Total price : {{totalPrice}}
-        </div>
-        <button class="button button-full button-assertive" ng-disabled="reviewForm.$invalid" ng-click=" payAction();">
-          pay
+        <button class="button button-full button-assertive" ng-disabled="reviewForm.$invalid" style="background:maroon" ng-click=" payAction();">
+          <font size="5" color="black">pay</font>
         </button>
       </div>
     </form>
