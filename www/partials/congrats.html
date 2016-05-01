@@ -16,6 +16,31 @@
           </center>
         </div>
 
+        <!-- <div class="list">
+
+          <div class="item item-input-inset">
+            <label class="item-input-wrapper">
+              <input type="text" placeholder="Email">
+            </label>
+            <button class="button button-small">
+              Copy booking reference
+            </button>
+          </div>
+
+        </div> -->
+        <ion-item>
+    <ion-label>Your booking reference </ion-label>
+    <ion-textarea class="js-copytextarea"readonly>booking ref:{{bookingRefNo}}</ion-textarea>
+    <!-- <textarea class="js-copytextarea"readonly>{{bookingRefNo}}</textarea> -->
+    <!-- <button class="js-textareacopybtn" ng-click='copy();'>Copy Textarea</button> -->
+  </ion-item>
+  <!-- ng-click='copy(); -->
+  <button class="button button-assertive">
+    copy text area
+  </button>
+
+{{bookingRefNo}}
+
 
       </ion-content>
 
