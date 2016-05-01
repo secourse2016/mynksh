@@ -17,7 +17,7 @@
         <!--   <span class="input-label">Card type<font color="red">*</font></span> -->
           <font>Card type<font color="red">*</font></font>
           <md-input-container>
-            <label>Choose your card type</label>
+            <label <font size="2" ><h6 style='color:maroon'>Choose your card type</h6></font></label>
             <md-select ng-model="selectedType" ng-required='true'>
               <md-optgroup label="Card type">
                 <md-option style='color:black' value="Personal Visa Card (no charge)"
@@ -45,7 +45,8 @@
         <!-- <div class="input-label"> -->
         <span class="input-label">Expiry date<font color="red">*</font></span>
         <md-input-container>
-          <label>Month</label>
+          <!-- <label style='color:maroon'><h6>Month</h6></label> -->
+            <label <font size="2" ><h6 style='color:maroon'>Month</h6></font></label>
           <md-select ng-model="selectedMonth" ng-required='true' >
             <md-optgroup label="month">
               <md-option value="1" ng-model="selectedMonth" style='color:black'>1</md-option>
@@ -63,9 +64,10 @@
             </md-optgroup>
           </md-select>
         </md-input-container>
-        
+
         <md-input-container>
-          <label>Year</label>
+
+            <label <font size="2" ><h6 style='color:maroon'>Year</h6></font></label>
           <md-select ng-model="selectedYear" ng-required='true'>
             <md-optgroup label="Year">
               <md-option value="2015" ng-model="selectedYear" style='color:black'>2015</md-option>
@@ -83,7 +85,38 @@
         <!-- </div> -->
         <!-- </label> -->
 
+        <!-- <div class="list">
+  <label class="item item-input item-floating-label">
+  <input  class="form-control" name="cardNo" type= "number" placeholder="Card number" ng-model="selectedCardNumber" ng-required='true' ng-minlength='16' ng-maxlength='16'>
+    <span class="input-label">Card Number<font color="red">*</font></span>
 
+  </label>
+</div>
+  <ion-list>
+
+
+  <ion-item>
+    <ion-label floating>Username</ion-label>
+    <ion-input type="text"></ion-input>
+  </ion-item>
+  </ion-list> -->
+  <!-- <md-input-container class="md-block" flex-gt-sm>
+    <label style='font-size: 1.5em;color:black'>Passport Number</label>
+      <input name='pNo' type="number" ng-model="reservation.passportNo" ng-required='true' ng-maxlength='9' ng-minlength='9'>
+      <span style='color:red' ng-show="(details.pNo.$error.required || details.pNo.$error.number) && details.pNo.$dirty">Valid passport number is required</span>
+      <span style='color:red' ng-show="((details.pNo.$error.minlength || details.pNo.$error.maxlength) && details.pNo.$dirty) ">Passport number should be 9 digits long</span>
+      <md-tooltip md-visible='true' md-direction='top'>e.g. 123456789</md-tooltip>
+  </md-input-container> -->
+<!--
+  <label class="item item-input item-floating-label">
+    <span class="input-label" style='color:maroon'>Last Name</span>
+    <input type="text" placeholder="Last Name">
+  </label>
+  <label class="item item-input item-floating-label">
+    <span class="input-label">Email</span>
+    <input type="text" placeholder="Email">
+  </label>
+</div> -->
         <label class="item item-input item-stacked-label">
           <span class="input-label">Card Number<font color="red">*</font></span>
           <input type="number" class="form-control" name="cardNo" ng-model="selectedCardNumber" ng-required='true' ng-minlength='16' ng-maxlength='16'>
@@ -117,12 +150,12 @@
           <span style='color:red' ng-show='reviewForm.city.$error.required && reviewForm.city.$dirty'>City is required</span>
         </label>
           <center><h4><font color="maroon">Price : {{totalPrice}}€</font></h4></center>
-        
-         <!-- ng-disabled="reviewForm.$invalid" -->
-        <button class="button button-full button-assertive" style="background:maroon" ng-click=" payAction();">
+
+         <!--  -->
+        <button class="button button-full button-assertive" ng-disabled="reviewForm.$invalid" style="background:maroon" ng-click=" payAction();">
           <font size="5" color="black">pay</font>
         </button>
       </div>
+      {{reservation.FName}}
     </form>
 </ion-view>
-
