@@ -2,7 +2,7 @@ App.controller('mainController', ['$scope', '$http' , 'OutReturnSrv', function($
 
   // $scope.flightNumber = OutReturnSrv.setSelectedOutFlight.flightNumber;
   $scope.flightNumber = 'MYNKSH20';
-
+  $scope.cabin = 'economy';
   $http.get('/data/seatMap/' + $scope.flightNumber).success(function(seatMap) {
     $scope.seatsData = $scope.Map(seatMap);
   });
@@ -19,7 +19,7 @@ App.controller('mainController', ['$scope', '$http' , 'OutReturnSrv', function($
       "selected": 0
     };
     for (var i = 1; i < seatMap.length + 1; i++) {
-      var state = (seatMap[i - 1].bookingRefNumber === undefined) ? 0 : 1;
+      var state = (seatMap[i - 1].Cabin === $scope.cabin)?((seatMap[i - 1].bookingRefNumber === undefined) ? 0 : 1):3;
       var node = {
         "type": 1,
         "uniqueName": seatMap[i - 1].seatNum,
@@ -71,6 +71,7 @@ App.controller('mainController', ['$scope', '$http' , 'OutReturnSrv', function($
     $scope.userEvent = 'user attempted to select occupied seat ' + node.displayName;
     $scope.$apply();
 
-    console.log('User attempted to select occupied seat : ' + node.displayName);
+if(node.selected ===3)
+    alert('Sorry but this seat is to be reserved for another cabin : ' + node.displayName);
   };
 }]);
