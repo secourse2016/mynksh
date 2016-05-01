@@ -227,7 +227,7 @@ exports.postBookings = function(booking, cb){
     var returnFlightId = booking.returnFlightId;
      var economyOrBusiness=false;
     if (booking.class==economy) {
-       economyOrBusiness=true
+       economyOrBusiness=true;
     }
     if(outgoingFlightId==null){
         var collection = mongo.db().collection('bookings');
@@ -239,22 +239,18 @@ exports.postBookings = function(booking, cb){
         "expiryDate": booking.passengerDetails.passportExpiryDate,
         "email": booking.passengerDetails.email,
         "DateOfBirth": booking.passengerDetails.dateOfBirth
-        "cabin": booking.class,
-        "cost": booking.cost,
+        // "cabin": booking.class,
+        // "cost": booking.cost,
         // "outgoingFlightId":booking.outgoingFlightId,
-        "returnFlightId": booking.returnFlightId,
-        "paymentToken": booking.paymentToken
+        // "returnFlightId": booking.returnFlightId,
+        // "paymentToken": booking.paymentToken
     };
     collection.insertOne(document, {
                     w: 1
-                }, function(err, records) {
-                    // mongo.close();
-                    cb(err, true);
-                    // });
                 });
     var collection = mongo.db().collection('flights');
-    var found =collection.find({"flightId":booking.returnFlightId}).toArray();
-    exports.generateBookingRef(found[0].flightNumber, economyOrBusiness);
+    var foundreturn =collection.find({"flightId":booking.returnFlightId}).toArray();
+    var foundreturncb =exports.generateBookingRef(found[0].flightNumber, economyOrBusiness);
     
 }
     else
@@ -267,22 +263,18 @@ exports.postBookings = function(booking, cb){
         "expiryDate": booking.passengerDetails.passportExpiryDate,
         "email": booking.passengerDetails.email,
         "DateOfBirth": booking.passengerDetails.dateOfBirth
-        "cabin": booking.class,
-        "cost": booking.cost,
-        "outgoingFlightId":booking.outgoingFlightId,
+        // "cabin": booking.class,
+        // "cost": booking.cost,
+        // "outgoingFlightId":booking.outgoingFlightId,
         // "returnFlightId": booking.returnFlightId,
-        "paymentToken": booking.paymentToken
+        // "paymentToken": booking.paymentToken
     };
     collection.insertOne(document, {
                     w: 1
-                }, function(err, records) {
-                    // mongo.close();
-                    cb(err, true);
-                    // });
                 });
     var collection = mongo.db().collection('flights');
-    var found =collection.find({"flightId":booking.outgoingFlightId}).toArray();
-    exports.generateBookingRef(found[0].flightNumber, economyOrBusiness);
+    var foundoutgoing =collection.find({"flightId":booking.outgoingFlightId}).toArray();
+    var foundoutgoingcb = exports.generateBookingRef(found[0].flightNumber, economyOrBusiness);
     
         }
         else{
@@ -294,27 +286,23 @@ exports.postBookings = function(booking, cb){
         "expiryDate": booking.passengerDetails.passportExpiryDate,
         "email": booking.passengerDetails.email,
         "DateOfBirth": booking.passengerDetails.dateOfBirth
-        "cabin": booking.class,
-        "cost": booking.cost,
-        "outgoingFlightId":booking.outgoingFlightId,
-        "returnFlightId": booking.returnFlightId,
-        "paymentToken": booking.paymentToken
+        // "cabin": booking.class,
+        // "cost": booking.cost,
+        // "outgoingFlightId":booking.outgoingFlightId,
+        // "returnFlightId": booking.returnFlightId,
+        // "paymentToken": booking.paymentToken
     };
     collection.insertOne(document, {
                     w: 1
-                }, function(err, records) {
-                    // mongo.close();
-                    cb(err, true);
-                    // });
                 });
     var collection = mongo.db().collection('flights');
     var foundoutgoing =collection.find({"flightId":booking.outgoingFlightId}).toArray();
-    exports.generateBookingRef(foundoutgoing[0].flightNumber, economyOrBusiness);
-    var foundreturn =collection.find({"flightId":booking.returnFlightId}).toArray();
-    exports.generateBookingRef(foundreturn[0].flightNumber, economyOrBusiness);
+    var foundoutgoingcb = exports.generateBookingRef(foundoutgoing[0].flightNumber, economyOrBusiness);
+    var foundreturn = collection.find({"flightId":booking.returnFlightId}).toArray();
+    var foundreturncb = exports.generateBookingRef(foundreturn[0].flightNumber, economyOrBusiness);
         }
-
-
+        cb(err, foundoutgoingcb);
+        cb(err, foundreturncb);
 }
   
     
