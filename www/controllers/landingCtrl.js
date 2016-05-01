@@ -84,7 +84,7 @@ App.controller('landingCtrl', function($scope, FlightsSrv, $location, $timeout, 
     var lowercaseQuery = angular.lowercase(query);
 
     return function filterFn(state) {
-      return (state.value.indexOf(lowercaseQuery) === 0);
+      return (state.name.indexOf(lowercaseQuery) === 0);
     };
 
   };
@@ -142,11 +142,11 @@ App.controller('landingCtrl', function($scope, FlightsSrv, $location, $timeout, 
 
   /* Record User's Selected Origin Airport  */
   $scope.SetOriginAirport = function(originAirport) {
-    FlightsSrv.setSelectedOriginAirport(originAirport);
+    FlightsSrv.setSelectedOriginAirport(originAirport.toUpperCase());
   };
 
   $scope.SetDestinationAirport = function(destAirport) {
-    FlightsSrv.setSelectedDestinationAirport(destAirport);
+    FlightsSrv.setSelectedDestinationAirport(destAirport.toUpperCase());
   };
 
   $scope.SetOutDate = function(value) {
