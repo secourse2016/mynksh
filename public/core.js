@@ -50,7 +50,7 @@ App.config(function($routeProvider) {
 
   })
 
-  .when('/seatmap', {
+  .when('/seatmap/:way', {
     templateUrl: '/partials/seatMap.html',
     controller: 'seatMapCtrl'
 

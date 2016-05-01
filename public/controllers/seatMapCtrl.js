@@ -1,8 +1,9 @@
-App.controller('seatMapCtrl', ['$scope', '$http' , 'OutReturnSrv', function($scope, $http, OutReturnSrv) {
+App.controller('seatMapCtrl', ['$scope', '$http', 'OutReturnSrv', '$routeParams', function($scope, $http, OutReturnSrv,$routeParams) {
 
   // $scope.flightNumber = OutReturnSrv.setSelectedOutFlight.flightNumber;
   $scope.flightNumber = 'MYNKSH20';
   $scope.cabin = 'business';
+  $scope.way = $routeParams.way;
   $http.get('/data/seatMap/' + $scope.flightNumber).success(function(seatMap) {
     $scope.seatsData = $scope.Map(seatMap);
   });
@@ -19,7 +20,7 @@ App.controller('seatMapCtrl', ['$scope', '$http' , 'OutReturnSrv', function($sco
       "selected": 0
     };
     for (var i = 1; i < seatMap.length + 1; i++) {
-      var state = (seatMap[i - 1].Cabin === $scope.cabin)?((seatMap[i - 1].bookingRefNumber === undefined) ? 0 : 1):3;
+      var state = (seatMap[i - 1].Cabin === $scope.cabin) ? ((seatMap[i - 1].bookingRefNumber === undefined) ? 0 : 1) : 3;
       var node = {
         "type": 1,
         "uniqueName": seatMap[i - 1].seatNum,
@@ -34,14 +35,14 @@ App.controller('seatMapCtrl', ['$scope', '$http' , 'OutReturnSrv', function($sco
           "rowName": rowName,
           "nodes": nodes
         });
-        rowName += rowName+1;
+        rowName += rowName + 1;
         nodes = [];
       } else if (i != 0 && seatMap[i - 1].Cabin === 'economy' && i % 8 === 0) {
         seatsData.rows.push({
           "rowName": rowName,
           "nodes": nodes
         });
-        rowName = rowName+1;
+        rowName = rowName + 1;
         nodes = [];
       } else if (i != 0 && i % 2 === 0) {
         nodes.push(emptyNode);
@@ -58,7 +59,10 @@ App.controller('seatMapCtrl', ['$scope', '$http' , 'OutReturnSrv', function($sco
   $scope.nodeSelected = function(node) {
     $scope.userEvent = 'user selected ' + node.displayName;
     $scope.$apply();
-
+    if ($scope.selectedNodes.length > $scope.tickets){
+      $scope.nodeDeselected(node);
+      console.log('kefaia 7aram');
+    }
   };
 
   $scope.nodeDeselected = function(node) {
