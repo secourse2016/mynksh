@@ -17,25 +17,30 @@
                 <input type="text" placeholder="CAI" ng-model="originAirport">
            </label> -->
 
-           <form id="loginForm">
-                <label class="item item-input item-floating-label" ng-class="{ 'has-error' : loginForm.originAirports.$invalid && loginForm.$submitted }">
-                   <span class="input-label ion-plane">Flying From</span>
-                   <input name="originAirports" id="originAirports" type="text" placeholder="Flying From" ng-model="selectedOrigin" uib-typeahead="airport.name for airport in Airports | filter:$viewValue | limitTo:10" class="form-control" , typeahead-on-select="SetOriginAirport($item.iata)"
-                   required>
-                 </label>
+           <!-- <form id="loginForm"> -->
 
+              <form name="flights">
+                <label class="item item-input item-floating-label">
+                   <span class="input-label ion-plane">Flying From</span>
+                   <input ng-required='true' name="originAirports" id="originAirports" type="text" placeholder="Flying From" ng-model="selectedOrigin" uib-typeahead="airport.name for airport in Airports | filter:$viewValue | limitTo:10" class="form-control" , typeahead-on-select="SetOriginAirport($item.iata)" >
+                 </label>
+                   <span style='color:red' ng-show="(flights.originAirports.$error.required) ">Origin Airport required</span>
+
+
+<!--
                  <div class="form-errors" ng-messages="loginForm.originAirports.$error" ng-if="loginForm.$submitted">
                    <div class="form-error" ng-message="required">This field is required.</div>
-                 </div>
+                 </div> -->
 
-                    <label class="item item-input item-floating-label" ng-class="{ 'has-error' : loginForm.destinationAirports.$invalid && loginForm.$submitted }">
+                    <label class="item item-input item-floating-label" >
                         <span class="input-label ion-plane">Flying To</span>
-                        <input name="destinationAirports" id="destinationAirports" type="text"  placeholder="Flying To" ng-model="selectedDestination" uib-typeahead="airport.name for airport in Airports | filter:$viewValue | limitTo:10" class="form-control" , typeahead-on-select="SetDestinationAirport($item.iata)" ng-required='true' required>
+                        <input ng-required='true' name="destinationAirports" id="destinationAirports" type="text"  placeholder="Flying To" ng-model="selectedDestination" uib-typeahead="airport.name for airport in Airports | filter:$viewValue | limitTo:10" class="form-control" , typeahead-on-select="SetDestinationAirport($item.iata)" >
                     </label>
-
-                       <div class="form-errors" ng-messages="loginForm.destinationAirports.$error" ng-if="loginForm.$submitted">
+                      <span style='color:red' ng-show="(flights.destinationAirports.$error.required) ">Destination Airport required</span>
+                    </form>
+                       <!-- <div class="form-errors" ng-messages="loginForm.destinationAirports.$error" ng-if="loginForm.$submitted">
                          <div class="form-error" ng-message="required">This field is required.</div>
-                       </div>
+                       </div> -->
 
                        <ion-list>
                          <h5 style="text-align:center;color:rgba(128,0,0, 1)">Select a type of flight</h5>
@@ -51,7 +56,7 @@
                            {{onezoneDatepicker.date | date:'dd MMMM yyyy'}}
                          </button>
                        </onezone-datepicker> -->
-                       <md-datepicker ng-model="dto" md-placeholder="Enter date"></md-datepicker>
+                       <md-datepicker ng-model="$parent.dto" md-placeholder="Enter date" required></md-datepicker>
                      </ion-list>
                        <ion-list>
                        <h5 style="text-align:center;color:rgba(128,0,0, 1)">Return date</h5>
@@ -60,14 +65,14 @@
                         {{onezoneDatepicker2.date | date:'dd MMMM yyyy'}}
                       </button>
                     </onezone-datepicker> -->
-                    <md-datepicker ng-model="dtr" md-placeholder="Enter date"></md-datepicker>
+                    <md-datepicker ng-model="$parent.dtr" md-placeholder="Enter date" required></md-datepicker>
                         </ion-list>
                       </div>
                       <div ng-show="data.showDelete">
                        <ion-list>
                          <h4 style="text-align:center;color:rgba(128,0,0, 1)">Outgoing date</h4>
                       <!-- <onezone-datepicker datepicker-object="onezoneDatepicker"  > -->
-                        <md-datepicker ng-model="dto" md-placeholder="Enter date"></md-datepicker>
+                        <md-datepicker ng-model="$parent.dto" md-placeholder="Enter date" required></md-datepicker>
                         <!-- <button class="button button-block button-outline button-assertive show-onezone-datepicker" ng-model="dto" ng-value="{{onezoneDatepicker.date}}">
                           {{onezoneDatepicker.date | date:'dd MMMM yyyy'}}
                         </button>
