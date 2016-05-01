@@ -1,5 +1,5 @@
 "use strict";
-
+var check = 0;
 var f = function($compile) {
   return {
     restrict: 'E',
@@ -24,7 +24,6 @@ var f = function($compile) {
         occupiedColourFg: attrs.occupiedColourFg || '#BB1F31',
         selectedColourBg: attrs.selectedColourBg || '#7854AF',
         selectedColourFg: attrs.selectedColourFg || '#472085',
-        blockedBg: attrs.selectedColourBg || '#000000',
         showRowLabel: attrs.showRowLabel || false,
         showSeatLabel: attrs.showSeatLabel || true
       };
@@ -95,10 +94,6 @@ var f = function($compile) {
           case 2:
             seatColour = scope.settings.selectedColourBg;
             textColour = scope.settings.selectedColourFg;
-            break;
-          case 3:
-            seatColour = scope.settings.blockedBg;
-            textColour = scope.settings.blockedBg;
 
             ctx.fillStyle = seatColour;
             ctx.fillRect(xPos, yPos, width, height);
@@ -115,6 +110,10 @@ var f = function($compile) {
             ctx.arc(boxCentrePointX, yPos + structure.eachSquare.height, structure.eachSquare.width * 0.35, 0, Math.PI, true);
             ctx.closePath();
             ctx.fill();
+            break;
+            // case 3:
+            //   seatColour = scope.settings.blockedBg;
+            //   textColour = scope.settings.selectedColourFg;
             return;
         }
 
@@ -220,7 +219,10 @@ var f = function($compile) {
                   scope.selectedNodes.splice(indexof, 1);
                   break;
                 case 2:
-                  scope.selectedNodes.push(clickedNode.node);
+                  if (check === 0){
+                      check =1;
+                    scope.selectedNodes.push(clickedNode.node);
+                  }
                   break;
               }
               scope.$apply();
@@ -233,7 +235,7 @@ var f = function($compile) {
             "$node": clickedNode.node
           });
           return;
-        } else if (clickedNode != null){
+        } else if (clickedNode != null) {
           switch (clickedNode.node.selected) {
             case 0:
               scope.onDeselected({
@@ -241,9 +243,12 @@ var f = function($compile) {
               });
               break;
             case 2:
+            if (check === 0){
+                check =1;
               scope.onSelected({
                 "$node": clickedNode.node
               });
+            }
               break;
           }
 
