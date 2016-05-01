@@ -29,8 +29,9 @@
   }
 
   .selected {
-    color: red;
-    box-shadow: inset 0px 0px 0px 25px #b0b0b0;
+    color: white;
+    background-color: rgba(128,0,0,1);
+    /*box-shadow: inset 0px 0px 0px 25px #b0b0b0;*/
   }
 
   `
@@ -47,7 +48,8 @@
     padding: 8px 0;text-align: center;">Flights </font><br><br></h3>
     </div>
 
-    <center><h4 class="animated fadeInDown header-font">Select your flights</h4></center>
+    <center>
+      <h4 class="animated fadeInDown header-font">Select your flights</h4></center>
     <div class="animated slideInLeft">
       <h5><img src='../assets/outgoingPlane.png'>Outbound:From {{origin}} to {{dest}}
               <small></br>{{oDate | date}}</small></h5>
@@ -61,10 +63,10 @@
         <md-list-item class="item-accordion" ng-show="isGroupShown(flight)">Departure Time: {{stringToDate(flight.departureDateTime) | date : 'shortTime'}} </md-list-item>
         <md-list-item class="item-accordion" ng-show="isGroupShown(flight)">Arrival Time: {{stringToDate(flight.arrivalDateTime) | date : 'shortTime'}} </md-list-item>
         <md-list-item class="item-accordion" ng-show="isGroupShown(flight)">Duration: {{timediff(flight.departureDateTime,flight.arrivalDateTime)}} </md-list-item>
-        <md-list-item class="item-accordion" ng-show="isGroupShown(flight)">Cost: {{flight.cost | currency: flight.currency+" "}} </md-list-item>
+        <md-list-item class="item-accordion" ng-show="isGroupShown(flight)">Cost: {{flight.cost | currency: "$"}} </md-list-item>
         <md-list-item class="item-accordion" ng-show="isGroupShown(flight)" id="OutgoingList">
-          <md-radio-group ng-model="$parent.selectedOutgoingFlight">
-            <md-radio-button ng-value="{{flight}}" class="md-primary" ng-click="SetSelectedOutgoingFlight(flight)">Select this flight</md-radio-button>
+          <md-radio-group ng-model="$parent.selectedOutgoingFlight" style="color:rgba(128,0,0,1) ">
+            <md-radio-button ng-value="{{flight}}" class="md-primary" ng-click="SetSelectedOutgoingFlight(flight); toggleGroup(flight)">Select this flight</md-radio-button>
           </md-radio-group>
         </md-list-item>
       </div>
@@ -83,10 +85,10 @@
           <md-list-item class="item-accordion" ng-show="isGroupShown(flight)">Departure Time: {{stringToDate(flight.departureDateTime) | date : 'shortTime'}} </md-list-item>
           <md-list-item class="item-accordion" ng-show="isGroupShown(flight)">Arrival Time: {{stringToDate(flight.arrivalDateTime) | date : 'shortTime'}} </md-list-item>
           <md-list-item class="item-accordion" ng-show="isGroupShown(flight)">Duration: {{timediff(flight.departureDateTime,flight.arrivalDateTime)}} </md-list-item>
-          <md-list-item class="item-accordion" ng-show="isGroupShown(flight)">Cost: {{flight.cost | currency: flight.currency+" "}} </md-list-item>
+          <md-list-item class="item-accordion" ng-show="isGroupShown(flight)">Cost: {{flight.cost | currency: "$"}} </md-list-item>
           <md-list-item class="item-accordion" ng-show="isGroupShown(flight)" id="OutgoingList">
             <md-radio-group ng-model="$parent.selectedReturnFlight">
-              <md-radio-button ng-value="{{flight}}" class="md-primary" ng-click="SetSelectedReturnFlight(flight)">Select this flight</md-radio-button>
+              <md-radio-button ng-value="{{flight}}" class="md-primary" ng-click="SetSelectedReturnFlight(flight); toggleGroup(flight)">Select this flight</md-radio-button>
             </md-radio-group>
           </md-list-item>
         </div>
@@ -95,12 +97,11 @@
     <div id='price'>
       <blockquote>
         <p>Price:</p>
-        <h3>{{(selectedReturnFlight.cost + selectedOutgoingFlight.cost) | currency:"€"}}</h3>
+        <h5>{{(selectedReturnFlight.cost + selectedOutgoingFlight.cost) | currency:"$"}}</h5>
         <span ng-show="RadioSelected" style="color: red">Flight(s) must be selected</span>
       </blockquote>
       <center><a class="button button-outline button-assertive" ng-click='BookFlight()'>Book Flight</a></center>
     </div>
-{{selectedReturnFlight}}
   </ion-content>
 
 </ion-view>
