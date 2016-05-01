@@ -6,7 +6,7 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
     $scope.cabin = FlightsSrv.getSelectedCabin();
     var roundTrip = FlightsSrv.getSelectedRoundTrip();
     var outgoingFlight = OutReturnSrv.getSelectedOutFlight();
-    if (roundTrip == 'true')
+    if (roundTrip === 'true')
         returnFlight = OutReturnSrv.getSelectedReturnFlight();
     $scope.outCurrency = outgoingFlight.currency;
 
@@ -34,12 +34,12 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
     };
 
     var postAPay = function() {
-        if (roundTrip == 'true')
-            paymentSrv.postPay($scope.reservation, outgoingFlight, returnFlight, $scope.cabin).success(function(data){
+        if (roundTrip === 'true')
+            paymentSrv.postPayR($scope.reservation, outgoingFlight, returnFlight, $scope.cabin).success(function(data){
                paymentSrv.setBookingRefNo(data.encoding);
             });
         else
-            paymentSrv.postPay($scope.reservation, outgoingFlight, $scope.cabin).success(function(data){
+            paymentSrv.postPayS($scope.reservation, outgoingFlight, $scope.cabin).success(function(data){
                 paymentSrv.setBookingRefNo(data.encoding);
             });
     };
