@@ -6,7 +6,9 @@
 
 
     <div>
+
       <center><h3><font color="maroon">Payment data</font></h3></center>
+
     </div>
 
     <form class="contact-form support-form" name="reviewForm" novalidate="">
@@ -82,80 +84,45 @@
             </md-optgroup>
           </md-select>
         </md-input-container>
-        <!-- </div> -->
-        <!-- </label> -->
 
-        <!-- <div class="list">
+
+<div class="list">
   <label class="item item-input item-floating-label">
-  <input  class="form-control" name="cardNo" type= "number" placeholder="Card number" ng-model="selectedCardNumber" ng-required='true' ng-minlength='16' ng-maxlength='16'>
-    <span class="input-label">Card Number<font color="red">*</font></span>
-
+    <span class="input-label" style="color:maroon" >Card Number</span>
+    <input type="number" placeholder="Card number" class="form-control" name="cardNo" ng-model="selectedCardNumber" ng-required='true' ng-minlength='16' ng-maxlength='16'>
+    <span style='color:red' ng-show='(reviewForm.cardNo.$error.number || reviewForm.cardNo.$error.required) && reviewForm.cardNo.$dirty'>Valid card number is required</span>
+    <span style='color:red' ng-show='(reviewForm.cardNo.$error.minlength || reviewForm.cardNo.$error.maxlength) && reviewForm.cardNo.$dirty'>Card number must be 16 digits</span>
+  </label>
+  <label class="item item-input item-floating-label">
+    <span class="input-label" style="color:maroon">Security code</span>
+    <input type="text" placeholder="Security code*" name="CVV" ng-model="selectedCVV" ng-required='true' ng-minlength='3' ng-maxlength='3'>
+    <span style='color:red' ng-show='(reviewForm.CVV.$error.number || reviewForm.CVV.$error.required) && reviewForm.CVV.$dirty'>Valid security code is required</span>
+    <span style='color:red' ng-show='(reviewForm.CVV.$error.minlength || reviewForm.CVV.$error.maxlength) && reviewForm.CVV.$dirty'>Security code must be 3 digits or letters</span>
+  </label>
+  <label class="item item-input item-floating-label">
+    <span class="input-label" style="color:maroon" >Street</span>
+    <input type="text" name="Street" placeholder="Street*" ng-model="selectedStreet" ng-required='true'>
+    <span style='color:red' ng-show='reviewForm.Street.$error.required && reviewForm.Street.$dirty'>Street is required</span>
+  </label>
+  <label class="item item-input item-floating-label">
+    <span class="input-label"style="color:maroon">Postal code</span>
+    <input type="text" name="postalCode" placeholder="Postal code" ng-model="selectedPostalcode" ng-required='true' ng-minlength='5' ng-maxlength='5'>
+    <span style='color:red' ng-show='(reviewForm.postalCode.$error.number || reviewForm.postalCode.$error.required) && reviewForm.postalCode.$dirty'>A valid postal code is required.</span>
+    <span style='color:red' ng-show='(reviewForm.postalCode.$error.minlength || reviewForm.postalCode.$error.maxlength)&& reviewForm.postalCode.$dirty'>Postal Code must be 5 characters.</span>
+  </label>
+  <label class="item item-input item-floating-label">
+    <span class="input-label" style="color:maroon">City</span>
+    <input type="text" class="form-control" name="city" placeholder="City" ng-model="SelectedCity" ng-required='true'>
+    <span style='color:red' ng-show='reviewForm.city.$error.required && reviewForm.city.$dirty'>City is required</span>
   </label>
 </div>
-  <ion-list>
 
 
-  <ion-item>
-    <ion-label floating>Username</ion-label>
-    <ion-input type="text"></ion-input>
-  </ion-item>
-  </ion-list> -->
-  <!-- <md-input-container class="md-block" flex-gt-sm>
-    <label style='font-size: 1.5em;color:black'>Passport Number</label>
-      <input name='pNo' type="number" ng-model="reservation.passportNo" ng-required='true' ng-maxlength='9' ng-minlength='9'>
-      <span style='color:red' ng-show="(details.pNo.$error.required || details.pNo.$error.number) && details.pNo.$dirty">Valid passport number is required</span>
-      <span style='color:red' ng-show="((details.pNo.$error.minlength || details.pNo.$error.maxlength) && details.pNo.$dirty) ">Passport number should be 9 digits long</span>
-      <md-tooltip md-visible='true' md-direction='top'>e.g. 123456789</md-tooltip>
-  </md-input-container> -->
-<!--
-  <label class="item item-input item-floating-label">
-    <span class="input-label" style='color:maroon'>Last Name</span>
-    <input type="text" placeholder="Last Name">
-  </label>
-  <label class="item item-input item-floating-label">
-    <span class="input-label">Email</span>
-    <input type="text" placeholder="Email">
-  </label>
-</div> -->
-        <label class="item item-input item-stacked-label">
-          <span class="input-label">Card Number<font color="red">*</font></span>
-          <input type="number" class="form-control" name="cardNo" ng-model="selectedCardNumber" ng-required='true' ng-minlength='16' ng-maxlength='16'>
-          <span style='color:red' ng-show='(reviewForm.cardNo.$error.number || reviewForm.cardNo.$error.required) && reviewForm.cardNo.$dirty'>Valid card number is required</span>
-          <span style='color:red' ng-show='(reviewForm.cardNo.$error.minlength || reviewForm.cardNo.$error.maxlength) && reviewForm.cardNo.$dirty'>Card number must be 16 digits</span>
-        </label>
-
-        <label class="item item-input item-stacked-label">
-          <span class="input-label">Security code<font color="red">*</font></span>
-          <input type="text" name="CVV" ng-model="selectedCVV" ng-required='true' ng-minlength='3' ng-maxlength='3'>
-          <span style='color:red' ng-show='(reviewForm.CVV.$error.number || reviewForm.CVV.$error.required) && reviewForm.CVV.$dirty'>Valid security code is required</span>
-          <span style='color:red' ng-show='(reviewForm.CVV.$error.minlength || reviewForm.CVV.$error.maxlength) && reviewForm.CVV.$dirty'>Security code must be 3 digits or letters</span>
-        </label>
-
-        <label class="item item-input item-stacked-label">
-          <span class="input-label">Street<font color="red">*</font></span>
-          <input type="text" name="Street" ng-model="selectedStreet" ng-required='true'>
-          <span style='color:red' ng-show='reviewForm.Street.$error.required && reviewForm.Street.$dirty'>Street is required</span>
-        </label>
-
-        <label class="item item-input item-stacked-label">
-          <span class="input-label">Postal code<font color="red">*</font></span>
-          <input type="text" name="postalCode" placeholder="55555" ng-model="selectedPostalcode" ng-required='true' ng-minlength='5' ng-maxlength='5'>
-          <span style='color:red' ng-show='(reviewForm.postalCode.$error.number || reviewForm.postalCode.$error.required) && reviewForm.postalCode.$dirty'>A valid postal code is required.</span>
-          <span style='color:red' ng-show='(reviewForm.postalCode.$error.minlength || reviewForm.postalCode.$error.maxlength)&& reviewForm.postalCode.$dirty'>Postal Code must be 5 characters.</span>
-        </label>
-
-        <label class="item item-input item-stacked-label">
-          <span class="input-label">City<font color="red">*</font></span>
-          <input type="text" class="form-control" name="city" ng-model="SelectedCity" ng-required='true'>
-          <span style='color:red' ng-show='reviewForm.city.$error.required && reviewForm.city.$dirty'>City is required</span>
-        </label>
           <center><h4><font color="maroon">Price : {{totalPrice}}€</font></h4></center>
 
-         <!--  -->
         <button class="button button-full button-assertive" ng-disabled="reviewForm.$invalid" style="background:maroon" ng-click=" payAction();">
           <font size="5" color="black">pay</font>
         </button>
       </div>
-      {{reservation.FName}}
     </form>
 </ion-view>
