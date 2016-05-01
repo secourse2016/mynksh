@@ -7,6 +7,7 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
     $scope.reservation = ConfirmSrv.getReservation();
     $scope.totalPrice = OutReturnSrv.getSelectedPrice();
     $scope.cabin = FlightsSrv.getSelectedCabin();
+    var stripeKey = "" ;
     var roundTrip = FlightsSrv.getSelectedRoundTrip();
     var outgoingFlight = OutReturnSrv.getSelectedOutFlight();
     if (roundTrip == 'true')
@@ -97,19 +98,29 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
     // give this methid name and it willl return ip
       function getIpFromName(airlineName) {
         paymentSrv.getSingleairLineIp(airlineName).success(function(airlinesiP) {
-          $sope.airlineIP = airlinesiP;
+          $scope.airlineIP = airlinesiP;
         });
       };
+      // get pup key
+      function getStripeKeyFromName(airlineIP) {
+        paymentSrv.getOtherStripePupKey(airlineIP).success(function(airlinesStripeKey) {
+          stripeKey = airlinesStripeKey;
+        });
+      };
+    //
 
     var createStripeToken= function() {
+//hna msh 3arf awsl lel airline
+      if( OutReturnSrv  === "IBERIA"){// if airline name not equal ours get ip of other airline thrn query to get the pupkey then set out stripe pup key
+        getIpFromName(airlineName);
+        getStripeKeyFromName($scope.airlineIP);
+        Stripe.setPublishableKey(stripeKey);
+
+
+      }
 
         Stripe.card.createToken({
-          if(){// if airline name not equal ours get ip of other airline thrn query to get the pupkey then set out stripe pup key
-            getIpFromName(airlineName);
-              $sope.airlineIP
-              
 
-          }
             "number": paymentSrv.getSelectedCardNo().toString(),
             "cvc": paymentSrv.getSelectedCVV(),
             "exp_month": paymentSrv.getSelectedMonth(),
@@ -147,6 +158,9 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
            paymentSrv.chargeCard(paymentInfo)
            .success(function(data, status, headers, config) {
                 //postAPay();
+                //reset stripe key
+                      Stripe.setPublishableKey('pk_test_fWP8viqFbT95teED8zWD3ieK');
+
                 console.log(paymentInfo);
             });
        }
