@@ -88,21 +88,14 @@ body {
             </div></font></b>
             <br><br>
             <!-- <font style="text-align:center;color:rgba(0,0,0, 1)" size=3>The Artful Flight Experience</font> -->
-
+            <br><br><br>  <br><br><br>  <br><br><br>
+            <i class="icon ion-chevron-right icon-accessory">Slide right for Intro</i>
           </ion-slide>
 
           <ion-slide>
             <font size=6>Team Members</font>
             <br>
 
-            <!-- <div id="list">
-              <h5>MYNKSH:</h5>
-              <ol>
-                <li>Narihan Ellaithy</li>
-                <li>Safa Ads</li>
-                <li>There is no step 3</li>
-              </ol>
-            </div> -->
             <ion-list>
               <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="chat in chats" type="item-text-wrap" href="#/chat-detail/{{chat.id}}">
                 <img ng-src="{{chat.face}}">
@@ -121,7 +114,13 @@ body {
               Manage your bookings, check-in online to avoid queues or log into your Iberia Plus account.
               You can check all flight schedules and see the departure and arrival status of Iberia flights.
               The Iberia website fully adapted to your mobile, so you can use it wherever you are.</font>
-          <br><br><br>  <i class="icon ion-chevron-right icon-accessory">Slide right to Book with Iberia</i>
+              <br><br><br><br><br><br><br>
+
+              <button class="button icon-right ion-chevron-right button-light no-animation"
+                      ng-click="startApp()" ng-show="slideIndex == 2">
+                Click here to start using Iberia
+              </button></i>
+
           </ion-slide>
         </ion-slide-box>
       </ion-view>
