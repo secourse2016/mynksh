@@ -1,5 +1,5 @@
 /* Create Angular App Instance */
-App = angular.module('IBERIA', ['ui.bootstrap', 'ngRoute']);
+App = angular.module('IBERIA', ['ui.bootstrap', 'ngRoute', 'keruC']);
 
 /**
  * Angular Routes
@@ -50,14 +50,15 @@ App.config(function($routeProvider) {
 
   })
 
-  .when('/noFlights', {
-      templateUrl: '/partials/noFlight.html'
+  .when('/seatMap', {
+    templateUrl: '/partials/seatMap.html'
 
-    })
-    .when('/teamMembers', {
-      templateUrl: '/partials/teamMembers.html'
+  })
 
-    });
+  .when('/teamMembers', {
+    templateUrl: '/partials/teamMembers.html'
+
+  });
 
 
 });
