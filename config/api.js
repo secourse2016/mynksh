@@ -57,6 +57,17 @@ exports.getAirLines = function(cb) {
     });
 }
 
+//get from data base ip
+exports.getAirLinesIP = function(airLineName,cb) {
+    var collection = mongo.db().collection('airLines');
+    collection.findOne({"name" : airLineName}).toArray(function(err, airLine) {
+var airLinesIP = airLines.ip;
+        cb(err, airLinesIP);
+    });
+}
+
+//
+
 exports.getBooking = function(cb) {
     // mongo.connect(function(err, db) {
     var collection = mongo.db().collection('bookings');
@@ -224,7 +235,7 @@ exports.searchBookings = function(bookingRef, cb) {
 exports.postBookings = function(firstName, lastName, passportNum, passportExpiryDate, dateOfBirth, nationality, email, cabin, cost, outgoingFlightId, returnFlightId, paymentToken, cb){
     var economyOrBusiness = cabin.toLowerCase();
     var collection = mongo.db().collection('bookings');
-    var document = { 
+    var document = {
         "firstName": firstName,
         "lastName": lastName,
         "passport": nationality,
@@ -251,5 +262,5 @@ exports.postBookings = function(firstName, lastName, passportNum, passportExpiry
                     // });
                 });
     });
-    
+
 }

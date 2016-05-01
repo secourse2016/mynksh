@@ -39,6 +39,25 @@ module.exports = function(app, mongo) {
             })
             // })
     });
+// get ip of given airline name
+    app.get('/data/singleAirlines/:airlineName', function(req, res) {
+        // mongo.getAirports(function(err, airports) {
+        mongo.getAirLinesIP(airlineName,function(err, airLinesIPAdress) {
+                res.json(airLinesIPAdress);
+            })
+
+    });
+// end of get ip method
+
+// get Stripe pup key of others airlines
+    app.get('/data/singleAirlines/:airlineName', function(req, res) {
+        // mongo.getAirports(function(err, airports) {
+        mongo.getAirLinesIP(airlineName,function(err, airLinesIPAdress) {
+                res.json(airLinesIPAdress);
+            })
+
+    });
+// end of get ip method
 
     app.get('/data/bookings/search/:bookingRefNumber', function(req, res) {
         mongo.searchBookings(req.params.bookingRefNumber, function(err, bookingRef) {
@@ -180,7 +199,7 @@ module.exports = function(app, mongo) {
             }
             else
             {
-                //move booking here / m7tagen nzbt l submit 3lshan ta5od mn l body parser 
+                //move booking here / m7tagen nzbt l submit 3lshan ta5od mn l body parser
                 //res.send(charge);
                 console.log(charge);
                 res.end();
