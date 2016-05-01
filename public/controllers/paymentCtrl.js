@@ -35,15 +35,17 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
         return clicked === $scope.clicked;
     };
 
-    var postAPay = function() {
-        $scope.bookingRefNumber = $scope.getBookingRef();
-        paymentSrv.postPay($scope.reservation, $scope.bookingRefNumber, outgoingFlight, $scope.cabin).success(function()
-            {
-                Congrats();
-            });
-        if (roundTrip == 'true')
-            paymentSrv.postPay($scope.reservation, $scope.bookingRefNumber, returnFlight, $scope.cabin);
-    };
+     // var postAPay = function() {
+    //     $scope.bookingRefNumber = $scope.getBookingRef();
+    //     paymentSrv.postPay($scope.reservation, $scope.bookingRefNumber, outgoingFlight, $scope.cabin).success(function()
+    //         {
+    //             if (roundTrip == 'true')
+    //                 paymentSrv.postPay($scope.reservation, $scope.bookingRefNumber, returnFlight, $scope.cabin).success(function(){
+    //                       Congrats();
+    //                 });
+    //         });
+        
+    // };
 
     var SetCardType = function(value) {
         paymentSrv.setSelectedCardType(value);
@@ -95,6 +97,8 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
 
     var createStripeToken= function() {
 
+        
+        Stripe.setPublishableKey('pk_test_fWP8viqFbT95teED8zWD3ieK');
         Stripe.card.createToken({
             "number": paymentSrv.getSelectedCardNo().toString(),
             "cvc": paymentSrv.getSelectedCVV(), 
@@ -116,12 +120,12 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
                     "firstName": ConfirmSrv.getReservation().FName, 
                     "lastName": ConfirmSrv.getReservation().LName,  
                     "passportNum": ConfirmSrv.getReservation().passportNo, 
-                    "passportExpiryDate": ConfirmSrv.getReservation().expiryDate, 
+                    "passportExpiryDate": ConfirmSrv.getReservation().expiryDate, //convert this to moment
                     // "dateOfBirth": moment(ConfirmSrv.getReservation()., 'MMMM D, YYYY hh:mm:ss').toDate().getTime(),
                     // "nationality":  ConfirmSrv.getReservation().,
                     "dateOfBirth": moment("April 12, 2016", 'MMMM D, YYYY hh:mm:ss').toDate().getTime(),
                     "nationality": "Egypt", 
-                    "email": ConfirmSrv.getEmail() 
+                    "email": ConfirmSrv.getReservation().email 
                 }],
                 "class": FlightsSrv.getSelectedCabin(),  
                 "cost": OutReturnSrv.getSelectedPrice() * 100,
@@ -131,7 +135,7 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
             }
            paymentSrv.chargeCard(paymentInfo)
            .success(function(data, status, headers, config) {
-                //postAPay();
+                Congrats();
                 console.log(paymentInfo);
             });
        }
