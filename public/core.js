@@ -52,7 +52,7 @@ App.config(function($routeProvider) {
 
   .when('/seatmap', {
     templateUrl: '/partials/seatMap.html',
-    controller: 'mainController'
+    controller: 'seatMapCtrl'
 
   })
 

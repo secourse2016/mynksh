@@ -1,8 +1,8 @@
-App.controller('mainController', ['$scope', '$http' , 'OutReturnSrv', function($scope, $http, OutReturnSrv) {
+App.controller('seatMapCtrl', ['$scope', '$http' , 'OutReturnSrv', function($scope, $http, OutReturnSrv) {
 
   // $scope.flightNumber = OutReturnSrv.setSelectedOutFlight.flightNumber;
   $scope.flightNumber = 'MYNKSH20';
-  $scope.cabin = 'economy';
+  $scope.cabin = 'business';
   $http.get('/data/seatMap/' + $scope.flightNumber).success(function(seatMap) {
     $scope.seatsData = $scope.Map(seatMap);
   });
@@ -71,10 +71,9 @@ App.controller('mainController', ['$scope', '$http' , 'OutReturnSrv', function($
     $scope.userEvent = 'user attempted to select occupied seat ' + node.displayName;
     $scope.$apply();
 
-if(node.selected ===3)
-    alert('Sorry but this seat is to be reserved for another cabin : ' + node.displayName);
+    if (node.selected === 3)
+      alert('Sorry but this seat is to be reserved for another Class : ' + node.displayName);
     else
-    alert('This seat is already reserved : ' + node.displayName);
-
+      alert('This seat is already reserved : ' + node.displayName);
   };
 }]);
