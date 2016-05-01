@@ -17,9 +17,9 @@
       <div class="list">
         <div class="input-label">
         <!--   <span class="input-label">Card type<font color="red">*</font></span> -->
-          <font>Card type<font color="red">*</font></font>
+          <font style="color:maroon">Card type</font>
           <md-input-container>
-            <label <font size="2" ><h6 style='color:maroon'>Choose your card type</h6></font></label>
+            <label <font size="2" ><h6 style='color:maroon'>Choose your card type*</h6></font></label>
             <md-select ng-model="selectedType" ng-required='true'>
               <md-optgroup label="Card type">
                 <md-option style='color:black' value="Personal Visa Card (no charge)"
@@ -45,10 +45,10 @@
         <!-- <label class="item item-input item-select"> -->
 
         <!-- <div class="input-label"> -->
-        <span class="input-label">Expiry date<font color="red">*</font></span>
+        <span class="input-label" style= "color:maroon">Expiry date</font></span>
         <md-input-container>
           <!-- <label style='color:maroon'><h6>Month</h6></label> -->
-            <label <font size="2" ><h6 style='color:maroon'>Month</h6></font></label>
+            <label <font size="2" ><h6 style='color:maroon'>Month*</h6></font></label>
           <md-select ng-model="selectedMonth" ng-required='true' >
             <md-optgroup label="month">
               <md-option value="1" ng-model="selectedMonth" style='color:black'>1</md-option>
@@ -69,7 +69,7 @@
 
         <md-input-container>
 
-            <label <font size="2" ><h6 style='color:maroon'>Year</h6></font></label>
+            <label <font size="2" ><h6 style='color:maroon'>Year*</h6></font></label>
           <md-select ng-model="selectedYear" ng-required='true'>
             <md-optgroup label="Year">
               <md-option value="2015" ng-model="selectedYear" style='color:black'>2015</md-option>
@@ -89,7 +89,7 @@
 <div class="list">
   <label class="item item-input item-floating-label">
     <span class="input-label" style="color:maroon" >Card Number</span>
-    <input type="number" placeholder="Card number" class="form-control" name="cardNo" ng-model="selectedCardNumber" ng-required='true' ng-minlength='16' ng-maxlength='16'>
+    <input type="number" placeholder="Card number*" class="form-control" name="cardNo" ng-model="selectedCardNumber" ng-required='true' ng-minlength='16' ng-maxlength='16'>
     <span style='color:red' ng-show='(reviewForm.cardNo.$error.number || reviewForm.cardNo.$error.required) && reviewForm.cardNo.$dirty'>Valid card number is required</span>
     <span style='color:red' ng-show='(reviewForm.cardNo.$error.minlength || reviewForm.cardNo.$error.maxlength) && reviewForm.cardNo.$dirty'>Card number must be 16 digits</span>
   </label>
