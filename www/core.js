@@ -36,6 +36,7 @@ App.config(function($stateProvider, $urlRouterProvider, $mdIconProvider,$mdDateL
 
   $stateProvider
 
+
   // setup an abstract state for the tabs directive
     .state('welcome', {
     url: '/',
