@@ -84,7 +84,7 @@ App.controller('landingCtrl', function($scope, FlightsSrv, $location, $timeout, 
     var lowercaseQuery = angular.lowercase(query);
 
     return function filterFn(state) {
-      return (state.name.indexOf(lowercaseQuery) === 0);
+      return (state.value.indexOf(lowercaseQuery) === 0);
     };
 
   };
