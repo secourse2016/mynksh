@@ -39,7 +39,7 @@
 
   <ion-content class="has-header has-subheader">
     <div class="col-md-10 col-md-offset-1 text-center">
-      <h3><font color="black" size="10" style="
+      <h3><font color="black" size="8" style="
     border-top: 1px solid;
     border-bottom: 1px solid;
     display: inline-block;
@@ -47,10 +47,10 @@
     padding: 8px 0;text-align: center;">Flights </font><br><br></h3>
     </div>
 
-    <h1 class="animated fadeInDown header-font">Select your flights</h1>
+    <center><h4 class="animated fadeInDown header-font">Select your flights</h4></center>
     <div class="animated slideInLeft">
-      <h3><img src='../assets/outgoingPlane.png'>Outbound:From {{origin}} to {{dest}}
-              <small></br>{{oDate | date}}</small></h3>
+      <h5><img src='../assets/outgoingPlane.png'>Outbound:From {{origin}} to {{dest}}
+              <small></br>{{oDate | date}}</small></h5>
     </div>
     <md-list ng-cloak>
       <md-subheader class="md-no-sticky">Outgoing flights</md-subheader>
@@ -71,9 +71,9 @@
     </md-list>
 
     <div ng-show="roundTrip === 'true'">
-        <div id='return'  class="animated slideInRight">
-            <h3><img src='../assets/returnPlane.png'>Return: From {{dest}} to {{origin}}<small></br>{{rDate |date}}</small></h3>
-        </div>
+      <div id='return' class="animated slideInRight">
+        <h5><img src='../assets/returnPlane.png'>Return: From {{dest}} to {{origin}}<small></br>{{rDate |date}}</small></h5>
+      </div>
       <md-list ng-cloak>
         <md-subheader class="md-no-sticky">Return flights</md-subheader>
         <div ng-repeat="flight in returnInfo">
@@ -91,15 +91,15 @@
           </md-list-item>
         </div>
       </md-list>
-
-      <div id='price'>
-          <blockquote>
-              <p>Price:</p>
-              <h3>{{(selectedReturnFlight.cost + selectedOutgoingFlight.cost) | currency:"€"}}</h3>
-              <span ng-show="RadioSelected" style="color: red">Flight(s) must be selected</span>
-          </blockquote>
-          <a href class="btn btn-primary btn-lg hvr-underline-from-center" ng-click='BookFlight()'>Book Flight</a>
-      </div>
+    </div>
+    <div id='price'>
+      <blockquote>
+        <p>Price:</p>
+        <h3>{{(selectedReturnFlight.cost + selectedOutgoingFlight.cost) | currency:"€"}}</h3>
+        <span ng-show="RadioSelected" style="color: red">Flight(s) must be selected</span>
+      </blockquote>
+      <center><a class="button button-outline button-assertive" ng-click='BookFlight()'>Book Flight</a></center>
+    </div>
 
   </ion-content>
 
