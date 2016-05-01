@@ -35,6 +35,7 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
         return clicked === $scope.clicked;
     };
 
+
      // var postAPay = function() {
     //     $scope.bookingRefNumber = $scope.getBookingRef();
     //     paymentSrv.postPay($scope.reservation, $scope.bookingRefNumber, outgoingFlight, $scope.cabin).success(function()
@@ -141,7 +142,6 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
        }
         
     };
-
     //NARIHAN
     $scope.getBookingRef = function() {
         //encode and get the first part of the outgoing date
@@ -176,6 +176,5 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
     };
 
     //End of Narihan
-
 
 });

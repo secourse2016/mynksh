@@ -118,8 +118,6 @@ exports.searchFlights = function(origin, destination, departingDate, cabin, seat
 
 exports.submitPay = function(firstName, lastName, passportNumber, expiryDate, dateOfBirth, passport,  email, businessOrEconomic, cost,   flightId, cb) {
     var selectedSeat = 0;
-    // console.log('i`m in api');
-    // mongo.connect(function(err, db) {
     // update after find free seat
     
     if(flightId===undefined)
@@ -161,7 +159,12 @@ exports.submitPay = function(firstName, lastName, passportNumber, expiryDate, da
         }
         //
         // console.log("selectedSeat :"+selectedSeat);
-        flights[0].SeatMap[selectedSeat].bookingRefNumber = "xxx";
+        var bookingReference="";
+        generateBookingRef(flights[0].flightNumber,businessOrEconomic, cb(err,encoded)
+        {
+            bookingReference=encoded;
+        });
+        flights[0].SeatMap[selectedSeat].bookingRefNumber = bookingRef;
 
         mongo.db().collection("flights").remove({
             "_id": new ObjectId(flightId)
@@ -197,7 +200,7 @@ exports.submitPay = function(firstName, lastName, passportNumber, expiryDate, da
                     "passportNumber": passportNumber,
                     "expiryDate": expiryDate,
                     "email": email,
-                    "bookingRefNumber": "xxx",//call new method
+                    "bookingRefNumber": bookingReference,//call new method
                     "flightNumber": flights[0].flightNumber,
                     "seatNum": flights[0].SeatMap[selectedSeat].seatNum,
                     "origin": flights[0].origin,
@@ -257,3 +260,28 @@ exports.searchBookings = function(bookingRef, cb) {
 //     });
 //     console.log("ïnsert into db done");
 // }
+};
+
+exports.generateBookingRef = function(flightNumber,businessOrEconomic ,cb){
+    var selectedSeat = 0;
+    var collection = mongo.db().collection('flights');
+    collection.find({
+        "flightNumber": flightNumber
+    }).toArray(function(err, flights) {
+        if (flights.length === 0) {
+            cb(err, false);
+            return;
+        }
+        if (businessOrEconomic === "true") {
+            if (!(flights[0].availableESeats === 0)) 
+                selectedSeat = flights[0].nextEcoSeat;
+        } else {
+            if (!(flights[0].availableBSeats === 0)) 
+                selectedSeat = flights[0].nextBusSeat;
+            }
+        seatnum = flights[0].SeatMap[selectedSeat].seatNum;
+        var encoded = new Buffer(seatnum + ','+ flightNumber).toString('base64');
+        cb(err , encoded);
+    });
+};
+

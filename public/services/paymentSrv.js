@@ -61,6 +61,12 @@ App.factory('paymentSrv', function($http) {
         setSelectedPostalcode: function(value) {
             this.selectedPostalcode = value;
         },
+        getBookingRefNo: function() {
+            return this.bookingRefNo;
+        },
+        setBookingRefNo: function(value) {
+            this.bookingRefNo = value;
+        },
         getSelectedCity: function() {
             return this.SelectedCity;
         },

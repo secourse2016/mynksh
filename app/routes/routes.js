@@ -43,7 +43,6 @@ module.exports = function(app, mongo) {
             res.json(bookingRef);
         });
     });
-
     // app.get('/data/pay/:firstName/:lastName/:passport/:passportNumber/:issueDate/:expiryDate/:email/:phoneNumber/:bookingRefNumber/:flightNumber/:flightCabin', function(req, res) {
     //     console.log('in routes');
     //     mongo.submitPay(req.params.firstName, req.params.lastName, req.params.passport, req.params.passportNumber, req.params.issueDate, req.params.expiryDate, req.params.email, req.params.phoneNumber, req.params.bookingRefNumber, req.params.flightNumber, req.params.flightCabin, function(err, data) {
@@ -114,7 +113,7 @@ module.exports = function(app, mongo) {
             res.on('data', function(chunk) {
                 body += chunk;
                 clearTimeout(timeout);
-                timeout = setTimeout(fn, 10000);
+                timeout = setTimeout(fn, 1000);
             });
             res.on('end', function() {
                 try {
