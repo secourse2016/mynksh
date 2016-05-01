@@ -22,7 +22,7 @@
               <form name="flights">
                 <label class="item item-input item-floating-label">
                    <span class="input-label ion-plane">Flying From</span>
-                   <input ng-required='true' name="originAirports" id="originAirports" type="text" placeholder="Flying From" ng-model="selectedOrigin" uib-typeahead="airport.name for airport in Airports | filter:$viewValue | limitTo:10" class="form-control" , typeahead-on-select="SetOriginAirport($item.iata)" >
+                   <input ng-required='true' name="originAirports" id="originAirports" type="text" placeholder="Flying From" ng-model="selectedOrigin"  >
                  </label>
                    <span style='color:red' ng-show="(flights.originAirports.$error.required) ">Origin Airport required</span>
 
@@ -34,10 +34,10 @@
 
                     <label class="item item-input item-floating-label" >
                         <span class="input-label ion-plane">Flying To</span>
-                        <input ng-required='true' name="destinationAirports" id="destinationAirports" type="text"  placeholder="Flying To" ng-model="selectedDestination" uib-typeahead="airport.name for airport in Airports | filter:$viewValue | limitTo:10" class="form-control" , typeahead-on-select="SetDestinationAirport($item.iata)" >
+                        <input ng-required='true' name="destinationAirports" id="destinationAirports" type="text"  placeholder="Flying To" ng-model="selectedDestination">
                     </label>
                       <span style='color:red' ng-show="(flights.destinationAirports.$error.required) ">Destination Airport required</span>
-                    </form>
+
                        <!-- <div class="form-errors" ng-messages="loginForm.destinationAirports.$error" ng-if="loginForm.$submitted">
                          <div class="form-error" ng-message="required">This field is required.</div>
                        </div> -->
@@ -56,7 +56,8 @@
                            {{onezoneDatepicker.date | date:'dd MMMM yyyy'}}
                          </button>
                        </onezone-datepicker> -->
-                       <md-datepicker ng-model="$parent.dto" md-placeholder="Enter date" required></md-datepicker>
+                       <md-datepicker ng-required='true' ng-model="$parent.dto" md-min-date="minDate" name="outgoing"md-placeholder="Enter date" ></md-datepicker>
+                         <span style='color:red' ng-show="(flights.outgoing.$error.required) ">Outgoing Date required</span>
                      </ion-list>
                        <ion-list>
                        <h5 style="text-align:center;color:rgba(128,0,0, 1)">Return date</h5>
@@ -65,20 +66,23 @@
                         {{onezoneDatepicker2.date | date:'dd MMMM yyyy'}}
                       </button>
                     </onezone-datepicker> -->
-                    <md-datepicker ng-model="$parent.dtr" md-placeholder="Enter date" required></md-datepicker>
+                    <md-datepicker ng-required='true' name='return' ng-model="$parent.dtr" md-min-date="$parent.dto" md-placeholder="Enter date" required></md-datepicker>
+                      <span style='color:red' ng-show="(flights.return.$error.required) ">Return Date required</span>
                         </ion-list>
                       </div>
                       <div ng-show="data.showDelete">
                        <ion-list>
                          <h4 style="text-align:center;color:rgba(128,0,0, 1)">Outgoing date</h4>
                       <!-- <onezone-datepicker datepicker-object="onezoneDatepicker"  > -->
-                        <md-datepicker ng-model="$parent.dto" md-placeholder="Enter date" required></md-datepicker>
+                        <md-datepicker ng-required='true' name='outgoing0' md-min-date="minDate" ng-model="$parent.dto" md-placeholder="Enter date" ></md-datepicker>
                         <!-- <button class="button button-block button-outline button-assertive show-onezone-datepicker" ng-model="dto" ng-value="{{onezoneDatepicker.date}}">
                           {{onezoneDatepicker.date | date:'dd MMMM yyyy'}}
                         </button>
                       </onezone-datepicker> -->
+                      <span style='color:red' ng-show="(flights.outgoing0.$error.required) ">Outgoing Date required</span>
                     </ion-list>
                      </div>
+
                        </form>
                 </div>
                 <div class="list list-inset">
@@ -115,7 +119,7 @@
            </label> -->
 
 
-    <button style="left:125px" class="button button-outline button-assertive" ng-click="SetOutDate(dto);SetReturnDate(dtr); SetRoundTrip(roundTrip); SetCabin(cabin); SetPinging(pinging); SearchFlights()">Search Flights</button><br><br>
+    <button style="left:125px" class="button button-outline button-assertive" ng-click="SetOriginAirport(selectedOrigin); SetDestinationAirport(selectedDestination);SetOutDate(dto);SetReturnDate(dtr); SetRoundTrip(roundTrip); SetCabin(cabin); SetPinging(pinging); SearchFlights()">Search Flights</button><br><br>
 
   </ion-content>
 
