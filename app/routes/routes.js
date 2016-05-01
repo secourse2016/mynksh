@@ -39,25 +39,7 @@ module.exports = function(app, mongo) {
             })
             // })
     });
-// get ip of given airline name
-    app.get('/data/singleAirlines/:airlineName', function(req, res) {
-        // mongo.getAirports(function(err, airports) {
-        mongo.getAirLinesIP(airlineName,function(err, airLinesIPAdress) {
-                res.json(airLinesIPAdress);
-            })
 
-    });
-// end of get ip method
-
-// get Stripe pup key of others airlines
-    app.get('/data/singleAirlines/:airlineName', function(req, res) {
-        // mongo.getAirports(function(err, airports) {
-        mongo.getAirLinesIP(airlineName,function(err, airLinesIPAdress) {
-                res.json(airLinesIPAdress);
-            })
-
-    });
-// end of get ip method
 
     app.get('/data/bookings/search/:bookingRefNumber', function(req, res) {
         mongo.searchBookings(req.params.bookingRefNumber, function(err, bookingRef) {
@@ -251,6 +233,65 @@ module.exports = function(app, mongo) {
 
       }
     });
+
+    // get ip of given airline name
+        app.get('/data/singleAirline/:airlineName', function(req, res) {
+            // mongo.getAirports(function(err, airports) {
+            mongo.getAirLineIP(req.params.airlineName,function(err, airLineIPAdress) {
+                    res.json(airLineIPAdress);
+                })
+
+        });
+    // end of get ip method
+
+    // get Stripe pup key of others airlines
+        app.get('/data/otherStripeKey/:airlineIP', function(req, res1) {
+          jwt = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJNWU5LU0giLCJpYXQiOjE0NjA3NzIyOTQsImV4cCI6MTQ5MjMwODI5NSwiYXVkIjoid3d3LnNlY291cnNlLmNvbSIsInN1YiI6Ik1ZTktTSCBJYmVyaWEiLCJUZWFtIjoiTVlOS1NIIn0.hZxhv8XAcu1cARgcrtfb0l_crF1-Ic1tJt9eUhIL0qQ';
+    //need edit
+    var options = {
+        host: req.params.airlineIP,
+        path: '/stripe/pubkey/'+'/?wt=' +jwt,
+        json: true
+    };
+    var timeout_wrapper = function(req) {
+        return function() {
+            // do some logging, cleaning, etc. depending on req
+            req.abort();
+        };
+    };
+    var request = http.get(options, function(res) {
+        var body = '';
+        res.on('data', function(chunk) {
+            body += chunk;
+            clearTimeout(timeout);
+            timeout = setTimeout(fn, 10000);
+        });
+        res.on('end', function() {
+            try {
+                clearTimeout(timeout);
+                var fbResponse = JSON.parse(body);
+                res1.send(fbResponse);
+            } catch (err) {
+                try {
+                    res1.status(500).send("Error");
+                } catch (err) {}
+            }
+        });
+    }).on('error', function(e) {
+        clearTimeout(timeout);
+        try {
+            res1.status(500).send("Error");
+        } catch (err) {}
+        this.abort();
+    });
+    // generate timeout handler
+    var fn = timeout_wrapper(request);
+
+    // set initial timeout
+    var timeout = setTimeout(fn, 1000);
+    // end of edit
+        });
+    // end of get ip method
 
     app.get('/api/flights/search/:origin/:destination/:departingDate/:returningDate/:cabin/:seats', function(req, res) {
         if (moment(req.params.departingDate, 'MMMM D, YYYY').format('MMMM D, YYYY') === req.params.departingDate) {
