@@ -104,9 +104,10 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
     var createStripeToken= function() {
 
         Stripe.card.createToken({
-          if(){// if airline name not equal ours get ip of other airline thrn query to get the pupkey then set out stripe pup key 
-
-
+          if(){// if airline name not equal ours get ip of other airline thrn query to get the pupkey then set out stripe pup key
+            getIpFromName(airlineName);
+              $sope.airlineIP
+              
 
           }
             "number": paymentSrv.getSelectedCardNo().toString(),
