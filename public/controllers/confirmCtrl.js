@@ -5,11 +5,16 @@ App.controller('confirmCtrl', function($scope, FlightsSrv, OutReturnSrv, Confirm
     if ($scope.roundTrip === 'true')
         $scope.selectedReturnFlight = OutReturnSrv.getSelectedReturnFlight();
 
-    $scope.tickets = 1;
-    // $scope.tickets= 2;
+    $scope.tickets = 2;
     $scope.price = OutReturnSrv.getSelectedPrice();
     $scope.currentDate = new Date();
+    //to be copied in ionic
+    $scope.reservations = [];
 
+    for(var i=1 ; i<=$scope.tickets ; i++){
+      $scope.reservations[i-1]= {'number':i};
+    };
+    //end of copy
     var setTicketEmail = function(value) {
         ConfirmSrv.setEmail(value);
     };
