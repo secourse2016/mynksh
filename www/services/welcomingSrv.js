@@ -45,7 +45,7 @@ App.factory('welcomingSrv', function() {
     gender: 'Male',
     facebook: 'Youssuf Radi',
     instagram: '@youssufradi',
-    status:'I do not change your code #IDo, malek ya safa2?!',
+    status:'I do not change your code #IDo, malek bas ya safa222222?!',
     phone:'+20 100 060 4877',
     num: 0,
     face: 'img/4.jpg',
