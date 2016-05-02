@@ -65,7 +65,7 @@ exports.getAirLineIP = function(airLineName, cb) {
   collection.find({
     "name": airLineName + " Airlines"
   }).toArray(function(err, airLine) {
-    if(airLines.length ===0)
+    if(airLine.length ===0)
       airLineIP= "52.58.24.76";
     if (airLine[0] === null) {
       cb(err, "No ip with this Name");
