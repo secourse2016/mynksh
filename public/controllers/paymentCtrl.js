@@ -3,7 +3,8 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
     $scope.tab = "active in";
     //$scope.stripeError=false;
     //$scope.stripeErrorDescription="";
-    $scope.airlineIP ="";
+    var airlineIP ="";
+    var flight_cost =  0 ;
     $scope.reservation = ConfirmSrv.getReservation();
     $scope.totalPrice = OutReturnSrv.getSelectedPrice();
     $scope.cabin = FlightsSrv.getSelectedCabin();
@@ -94,7 +95,25 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
         SetPostalcode($scope.selectedPostalcode);
         SetCity($scope.SelectedCity);
         //need here to check if one way or two and put this name attrubute inside createStripeToken method
-        createStripeToken();
+        if(FlightsSrv.getSelectedRoundTrip() === 'false'){ // if one way
+          var AirlineName =OutReturnSrv.getSelectedOutFlight().Airline  ;
+          createStripeToken(AirlineName , "out");
+
+        }
+        else { // else roundtrip
+          var AirlineName1  = OutReturnSrv.getSelectedOutFlight().Airline  ;  //  out flight
+          var AirlineName2 =  OutReturnSrv.getSelectedReturnFlight().Airline  ;  ;  // return flight
+
+            if ((AirlineName1 === AirlineName2 && AirlineName2 === "IBERIA")){
+          createStripeToken(AirlineName2,"");
+
+        }   else {
+
+          createStripeToken(AirlineName1,"out");
+          createStripeToken(AirlineName2,"");
+        }
+
+        }
 
 
     };
@@ -102,7 +121,7 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
     // give this methid name and it willl return ip
       function getIpFromName(airlineName) {
         paymentSrv.getSingleairLineIp(airlineName).success(function(airlinesiP) {
-          $scope.airlineIP = airlinesiP;
+          airlineIP = airlinesiP;
         });
       };
       // get pup key
@@ -113,18 +132,41 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
       };
     //
 
-    var createStripeToken= function(AirlineName) {
+    var createStripeToken= function(AirlineName ,outORreturn) {
+        Stripe.setPublishableKey('pk_test_fWP8viqFbT95teED8zWD3ieK');
 //hna msh 3arf awsl lel airline
+
       if( !(AirlineName  === "IBERIA")){// if airline name not equal ours get ip of other airline thrn query to get the pupkey then set out stripe pup key
-        getIpFromName(airlineName);
-        getStripeKeyFromName($scope.airlineIP);
+        getIpFromName(AirlineName);
+        getStripeKeyFromName(airlineIP);
         Stripe.setPublishableKey(stripeKey);
 
 
       }
 
+      console.log("flight : " + flight_cost);
 
-        Stripe.setPublishableKey('pk_test_fWP8viqFbT95teED8zWD3ieK');
+      if(outORreturn === "out"){// if out
+        flight_cost = OutReturnSrv.getSelectedOutFlight().cost;
+        console.log("flight 2: " + flight_cost) ;
+      }
+      else {// else return
+
+        flight_cost = OutReturnSrv.getSelectedReturnFlight().cost ;
+
+
+console.log("flight 3 : " + flight_cost) ;
+      }
+      var AirlineName1  = OutReturnSrv.getSelectedOutFlight().Airline  ;  //  out flight
+      var AirlineName2 =  OutReturnSrv.getSelectedReturnFlight().Airline  ;  ;  // return flight
+      if ( (!(outORreturn  === "out")) &&(AirlineName1 === AirlineName2 && AirlineName2 === "IBERIA")){
+                 console.log("inside of " + OutReturnSrv.getSelectedReturnFlight().cost) ;
+                 console.log("inside of " + (OutReturnSrv.getSelectedOutFlight().cost)) ;
+        flight_cost = (OutReturnSrv.getSelectedReturnFlight().cost)+ (OutReturnSrv.getSelectedOutFlight().cost) ;
+
+console.log("inside of ") ;
+      }
+      console.log("flight 4 : " + flight_cost) ;
         Stripe.card.createToken({
 
             "number": paymentSrv.getSelectedCardNo().toString(),
@@ -157,11 +199,11 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
 
                 }],
                 "class": FlightsSrv.getSelectedCabin(),
-                "cost": OutReturnSrv.getSelectedPrice() * 100,
+                "cost": flight_cost * 100,
                 "outgoingFlightId":  OutReturnSrv.getSelectedOutFlight().flightId,
                 "returnFlightId": returnFlightId,
                 "paymentToken": response.id ,
-                "IP":  $sope.airlineIP
+                "IP":  airlineIP
             }
            paymentSrv.chargeCard(paymentInfo)
            .success(function(data, status, headers, config) {
