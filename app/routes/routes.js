@@ -221,7 +221,7 @@ module.exports = function(app, mongo) {
                 body += chunk;
                 console.log("chunk " + body );
                 clearTimeout(timeout);
-                timeout = setTimeout(fn, 200000);
+                timeout = setTimeout(fn, 10000);
             });
             res.on('end', function() {
                 try {
@@ -248,7 +248,7 @@ module.exports = function(app, mongo) {
         var fn = timeout_wrapper(request);
 
         // set initial timeout
-        var timeout = setTimeout(fn, 10000);
+        var timeout = setTimeout(fn, 2000);
 
       }
     });
@@ -256,8 +256,10 @@ module.exports = function(app, mongo) {
     // get ip of given airline name
         app.get('/data/singleAirline/:airlineName', function(req, res) {
             // mongo.getAirports(function(err, airports) {
-            mongo.getAirLineIP(req.params.airlineName,function(err, airLineIPAdress) {
-                    res.json(airLineIPAdress);
+            mongo.getAirLineIP(req.params.airlineName,function(err,airLineIPAdress) {
+                console.log(airLineIPAdress);
+                    res.send(airLineIPAdress);
+
                 })
 
         });
@@ -272,7 +274,7 @@ module.exports = function(app, mongo) {
         host: req.params.airlineIP,
         path: '/stripe/pubkey?wt=' +jwt,
         port: 80 ,
-        json: true
+      //  json: true
     };
     var timeout_wrapper = function(req) {
         return function() {
@@ -310,7 +312,7 @@ module.exports = function(app, mongo) {
     var fn = timeout_wrapper(request);
 
     // set initial timeout
-    var timeout = setTimeout(fn, 8000);
+    var timeout = setTimeout(fn, 2000);
     // end of edit
         });
     // end of get ip method
