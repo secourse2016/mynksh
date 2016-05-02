@@ -1,13 +1,5 @@
 App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturnSrv, paymentSrv, $location) {
-  var getOtherPubKey = function(AirlineIP) {
-    paymentSrv.getOtherAirlineIP(AirlineIP).success(function(airlineIP) {
-      console.log(airlineIP);
-      paymentSrv.getOtherStripePubKey(airlineIP).success(function(key) {
-        console.log(key);
-      })
-    });
-  };
-  getOtherPubKey("IBERIA");
+
   $scope.tab = "active in";
   $scope.reservation = ConfirmSrv.getReservation();
   $scope.totalPrice = OutReturnSrv.getSelectedPrice();
@@ -89,6 +81,17 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
     paymentSrv.setSelectedCity(value);
   };
 
+  var getOtherPubKey = function(AirlineIP, cb) {
+    paymentSrv.getOtherAirlineIP(AirlineIP).success(function(airlineIP) {
+      console.log(airlineIP);
+      paymentSrv.getOtherStripePubKey(airlineIP).success(function(key) {
+        console.log(key,airlineIP);
+        cb(key);
+      })
+    });
+  };
+
+  var paymentInfo = {};
 
   $scope.payAction = function() {
     SetCardType($scope.selectedType);
@@ -100,70 +103,76 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
     SetInformation($scope.selectedExtra);
     SetPostalcode($scope.selectedPostalcode);
     SetCity($scope.SelectedCity);
+    var returnFlightId;
+    if (FlightsSrv.getSelectedRoundTrip() === 'true')
+      var returnFlightId = OutReturnSrv.getSelectedReturnFlight().flightId;
+    paymentInfo = {
+      "passengerDetails": [{
+        "firstName": ConfirmSrv.getReservation().FName,
+        "lastName": ConfirmSrv.getReservation().LName,
+        "passportNum": ConfirmSrv.getReservation().passportNo,
+        "passportExpiryDate": ConfirmSrv.getReservation().expiryDate, //convert this to moment
+        // "dateOfBirth": moment(ConfirmSrv.getReservation()., 'MMMM D, YYYY hh:mm:ss').toDate().getTime(),
+        // "nationality":  ConfirmSrv.getReservation().,
+        "dateOfBirth": moment("April 12, 2016", 'MMMM D, YYYY hh:mm:ss').toDate().getTime(),
+        "nationality": "Egypt",
+        "email": ConfirmSrv.getReservation().email
+
+      }],
+      "class": FlightsSrv.getSelectedCabin(),
+      "cost": flight_cost * 100,
+      "outgoingFlightId": OutReturnSrv.getSelectedOutFlight().flightId,
+      "returnFlightId": returnFlightId,
+      "paymentToken": response.id,
+      "IP": airlineIP
+    }
+    if (FlightsSrv.getSelectedRoundTrip() != 'true')
+      paymentInfo.returnFlightId = undefined;
     //need here to check if one way or two and put this name attrubute inside createStripeToken method
-    var state = -1;
-    if (FlightsSrv.getSelectedRoundTrip() === 'false') { // if one way
-      AirlineName1 = OutReturnSrv.getSelectedOutFlight().Airline; //  out flight
-      if (AirlineName1 === "IBERIA")
-        state = 0;
-      else
-        state = 1;
-    } else { // else roundtrip
-      AirlineName1 = OutReturnSrv.getSelectedOutFlight().Airline; //  out flight
-      AirlineName2 = OutReturnSrv.getSelectedReturnFlight().Airline;; // return flight
-      if (AirlineName1 === AirlineName2 && AirlineName2 === "IBERIA")
-        state = 2;
-      else
-        state = 3;
-    };
+    var AirlineName1 = OutReturnSrv.getSelectedOutFlight().Airline; //  out flight
+    var AirlineName2;
+    if (FlightsSrv.getSelectedRoundTrip() === 'true')
+      var AirlineName2 = OutReturnSrv.getSelectedReturnFlight().Airline;; // return flight
+    if (FlightsSrv.getSelectedRoundTrip() === 'false' || AirlineName1 === AirlineName2)
+      createStripeToken(AirlineName1);
+    else {
+      createStripeToken(AirlineName1);
+      createStripeToken(AirlineName2);
+    }
+
   }
-  var createStripeToken = function() {
+  var pingIp;
 
-    Stripe.setPublishableKey('pk_test_fWP8viqFbT95teED8zWD3ieK');
+  var createStripeToken = function(airline) {
 
-    Stripe.card.createToken({
-      "number": paymentSrv.getSelectedCardNo().toString(),
-      "cvc": paymentSrv.getSelectedCVV(),
-      "exp_month": paymentSrv.getSelectedMonth(),
-      "exp_year": paymentSrv.getSelectedYear()
-    }, stripeResponseHandler);
+    getOtherPubKey(airline, function(key,airlineIP) {
+      if(airlineIP === "IBERIA")
+        pingIp = "";
+      else
+        pingIp = "http://" + airlineIP;
+      Stripe.setPublishableKey(key);
+      Stripe.card.createToken({
+        "number": paymentSrv.getSelectedCardNo().toString(),
+        "cvc": paymentSrv.getSelectedCVV(),
+        "exp_month": paymentSrv.getSelectedMonth(),
+        "exp_year": paymentSrv.getSelectedYear()
+      }, stripeResponseHandler);
+
+    });
   };
 
   var stripeResponseHandler = function(status, response) {
     if (response.error)
       alert(response.error.message);
     else {
-      var returnFlightId;
-      if (FlightsSrv.getSelectedRoundTrip() === 'true')
-        returnFlightId = OutReturnSrv.getSelectedReturnFlight().flightId;
-      var paymentInfo = {
-        "passengerDetails": [{
-          "firstName": ConfirmSrv.getReservation().FName,
-          "lastName": ConfirmSrv.getReservation().LName,
-          "passportNum": ConfirmSrv.getReservation().passportNo,
-          "passportExpiryDate": ConfirmSrv.getReservation().expiryDate, //convert this to moment
-          // "dateOfBirth": moment(ConfirmSrv.getReservation()., 'MMMM D, YYYY hh:mm:ss').toDate().getTime(),
-          // "nationality":  ConfirmSrv.getReservation().,
-          "dateOfBirth": moment("April 12, 2016", 'MMMM D, YYYY hh:mm:ss').toDate().getTime(),
-          "nationality": "Egypt",
-          "email": ConfirmSrv.getReservation().email
-
-        }],
-        "class": FlightsSrv.getSelectedCabin(),
-        "cost": flight_cost * 100,
-        "outgoingFlightId": OutReturnSrv.getSelectedOutFlight().flightId,
-        "returnFlightId": returnFlightId,
-        "paymentToken": response.id,
-        "IP": airlineIP
-      }
-      paymentSrv.chargeCard(paymentInfo)
+      paymentSrv.chargeCard(paymentInfo, pingIp)
         .success(function(data, status, headers, config) {
-          console.log(data);
           paymentSrv.setBookingRefNo(data.refNum);
           //reset stripe key
-          Stripe.setPublishableKey('pk_test_fWP8viqFbT95teED8zWD3ieK');
-          Congrats();
-          console.log(paymentInfo);
+          getOtherPubKey(airline, function(key) {
+            Stripe.setPublishableKey(key);
+            Congrats();
+          });
         });
     }
 

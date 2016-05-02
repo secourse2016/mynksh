@@ -14,10 +14,6 @@ App.factory('paymentSrv', function($http) {
         return $http.get('http://' + airlineIP + '/stripe/pubkey/?wt=' + jwt);
       }
     },
-    getSingleairLineIp: function(airlineName) {
-      jwt = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJNWU5LU0giLCJpYXQiOjE0NjA3NzIyOTQsImV4cCI6MTQ5MjMwODI5NSwiYXVkIjoid3d3LnNlY291cnNlLmNvbSIsInN1YiI6Ik1ZTktTSCBJYmVyaWEiLCJUZWFtIjoiTVlOS1NIIn0.hZxhv8XAcu1cARgcrtfb0l_crF1-Ic1tJt9eUhIL0qQ';
-      return $http.get('/data/singleAirline/' + airlineName + '?wt=' + jwt);
-    },
 
 
     // postPay: function(reservation, bookingRefNumber, flight , cabin) {
@@ -27,9 +23,9 @@ App.factory('paymentSrv', function($http) {
     //     flight.flightNumber+'/'+cabin);
     // },
 
-    chargeCard: function(paymentInfo) {
+    chargeCard: function(paymentInfo, pingIp) {
       var jwt = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJNWU5LU0giLCJpYXQiOjE0NjA3NzIyOTQsImV4cCI6MTQ5MjMwODI5NSwiYXVkIjoid3d3LnNlY291cnNlLmNvbSIsInN1YiI6Ik1ZTktTSCBJYmVyaWEiLCJUZWFtIjoiTVlOS1NIIn0.hZxhv8XAcu1cARgcrtfb0l_crF1-Ic1tJt9eUhIL0qQ';
-      return $http.post('/booking?wt=' + jwt, paymentInfo);
+      return $http.post(pingIp + '/booking?wt=' + jwt, paymentInfo);
     },
     getSelectedCardType: function() {
       return this.SelectedCardType;
