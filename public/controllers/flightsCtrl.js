@@ -8,6 +8,7 @@ App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $locati
     $scope.outgoingPrice = 0;
     $scope.returnPrice = 0;
     $scope.cabin = FlightsSrv.getSelectedCabin();
+      console.log($scope.dest);
     $scope.outFlightFound = true;
     $scope.returnFlightFound = true;
     $scope.outgoingInfo = [];
