@@ -10,8 +10,16 @@ App.controller('landingCtrl', function($scope, FlightsSrv, $location) {
     //    //to do
     //    console.log(val)
     // });
-    $scope.pinging="false";
 
+    // $scope.originOffer1="N/A";
+    // $scope.destOffer1="N/A";
+    $scope.roundTripOff1="false";
+    $scope.cabinOff1="false";
+    $scope.pingOff1="false";
+    // $scope.dtoOff1=new Date();
+    // $scope.dtrOff1=new Date();
+
+    $scope.pinging="false";
     $scope.roundTrip = "true";
     $scope.cabin = "true";
     $scope.ticket = 1;
@@ -46,6 +54,14 @@ App.controller('landingCtrl', function($scope, FlightsSrv, $location) {
         $scope.dtr = new Date(year, month, day);
 
     };
+    $scope.SetSelectedOutDate = function(year, month, day) {
+        $scope.dtoOff1 = new Date(year, month, day);
+    };
+    $scope.SetSelectedReturnDate = function(year, month, day) {
+        $scope.dtrOff1 = new Date(year, month, day);
+
+    };
+
 
     $scope.popup1 = {
         opened: false

@@ -1,6 +1,20 @@
 App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturnSrv, paymentSrv, $location) {
 
+  $scope.tab = "active in";
+  $scope.reservation = ConfirmSrv.getReservation();
+  $scope.totalPrice = OutReturnSrv.getSelectedPrice();
+  $scope.cabin = FlightsSrv.getSelectedCabin();
+  var roundTrip = FlightsSrv.getSelectedRoundTrip();
+  var outgoingFlight = OutReturnSrv.getSelectedOutFlight();
+  if (roundTrip === 'true')
+    returnFlight = OutReturnSrv.getSelectedReturnFlight();
+  $scope.outCurrency = outgoingFlight.currency;
+
+
+
+  $scope.tab1 = function() {
     $scope.tab = "active in";
+<<<<<<< HEAD
     $scope.reservations = ConfirmSrv.getReservations();
     $scope.totalPrice = OutReturnSrv.getSelectedPrice();
     $scope.cabin = FlightsSrv.getSelectedCabin();
@@ -67,5 +81,4 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
         SetYear($scope.selectedYear);
         SetCVV($scope.selectedCVV);
     };
-
 });

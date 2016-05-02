@@ -26,7 +26,6 @@ App.controller('bookingRefCtrl', function($scope, FlightsSrv, $location, Booking
                var originR=flight[1].origin;
                var destinationR=flight[1].destination;
             }
-        console.log(flight);
         var input = BookingSrv.getSelectedBookingRef();
         //var div = document.getElementById('divID');
 

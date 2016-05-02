@@ -4,3 +4,14 @@ input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
 }
+
+
+#payButton {
+   background-color:black;
+   margin: 50%; 
+ /*  margin-left:auto;
+   margin-right:auto;
+   display:block;
+   margin-top:22%;
+   margin-bottom:0%*/
+}

@@ -25,9 +25,6 @@ App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $locati
     else
         oneWayTripInfo($scope.origin, $scope.dest, changeISOFormat($scope.oDate));
 
-    var flights = [];
-    flights.outgoingFlights = [];
-    flights.returnFlights = [];
 
     function pingAirlineR(origin, dest, oDate, rDate) {
         OutReturnSrv.getairLinesInfo().success(function(airlines) {
@@ -79,11 +76,9 @@ App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $locati
                 // if(Object.keys(outgoingFlight).length === 0 || Object.keys(returnFlight).length === 0 )
                 //     res.send("no flights found");
                 if ($scope.outgoingInfo.length === 0) {
-                    console.log("outgoing empty");
                     $scope.outFlightFound = false;
                 }
                 if ($scope.returnInfo.length === 0) {
-                    console.log("outgoing empty");
                     $scope.returnFlightFound = false;
                 }
 
@@ -95,11 +90,9 @@ App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $locati
                 if (flights.returnFlights[0] != undefined && flights.returnFlights[0].length != 0)
                     $scope.returnInfo.push(flights.returnFlights[0]);
                 if ($scope.outgoingInfo.length === 0) {
-                    console.log("outgoing empty");
                     $scope.outFlightFound = false;
                 }
                 if ($scope.returnInfo.length === 0) {
-                    console.log("outgoing empty");
                     $scope.returnFlightFound = false;
                 }
 

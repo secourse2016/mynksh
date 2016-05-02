@@ -36,6 +36,7 @@ App.config(function($stateProvider, $urlRouterProvider, $mdIconProvider,$mdDateL
 
   $stateProvider
 
+
   // setup an abstract state for the tabs directive
     .state('welcome', {
     url: '/',
@@ -48,6 +49,13 @@ App.config(function($stateProvider, $urlRouterProvider, $mdIconProvider,$mdDateL
     templateUrl: 'partials/tabs.html',
     controller: 'tabsCtrl'
   })
+  .state('chat-detail', {
+      url: '/chat-detail/:chatId',
+
+          templateUrl: 'partials/teamMemberDetails.html',
+          controller: 'ChatDetailCtrl'
+
+    })
 
   // Each tab has its own nav history stack:
 
@@ -87,17 +95,17 @@ App.config(function($stateProvider, $urlRouterProvider, $mdIconProvider,$mdDateL
   })
 
   // // route for the congrats page
-  // .state('congrats', {
-  //   url: '/congrats',
-  //   templateUrl: '/partials/congrats.html',
-  //   controller: ''
-  // })
+  .state('congrats', {
+    url: '/congrats',
+    templateUrl: '/partials/congrats.html',
+    controller: 'congratsCtrl'
+  })
   //
   // // route for the booking Reference page
   .state('bookingRef', {
     url: '/bookingRef',
     templateUrl: '/partials/bookingRef.html',
-    controller: ''
+    controller: 'bookingRefCtrl'
   });
 
   // if none of the above states are matched, use this as the fallback
