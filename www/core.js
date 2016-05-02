@@ -52,7 +52,7 @@ App.config(function($stateProvider, $urlRouterProvider, $mdIconProvider,$mdDateL
   .state('chat-detail', {
       url: '/chat-detail/:chatId',
 
-          templateUrl: 'partials/chat-detail.html',
+          templateUrl: 'partials/teamMemberDetails.html',
           controller: 'ChatDetailCtrl'
 
     })
