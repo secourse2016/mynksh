@@ -223,7 +223,7 @@ module.exports = function(app, mongo) {
             res.on('end', function() {
                 try {
                     clearTimeout(timeout);
-                    var fbResponse = JSON.parse(body);
+                    var fbResponse = JSON.stringify(body);
                     res1.send(fbResponse);
                 } catch (err) {
                     try {
@@ -242,7 +242,7 @@ module.exports = function(app, mongo) {
         var fn = timeout_wrapper(request);
 
         // set initial timeout
-        var timeout = setTimeout(fn, 1000);
+        var timeout = setTimeout(fn, 8000);
 
       }
     });
@@ -261,9 +261,11 @@ module.exports = function(app, mongo) {
         app.get('/data/otherStripeKey/:airlineIP', function(req, res1) {
           jwt = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJNWU5LU0giLCJpYXQiOjE0NjA3NzIyOTQsImV4cCI6MTQ5MjMwODI5NSwiYXVkIjoid3d3LnNlY291cnNlLmNvbSIsInN1YiI6Ik1ZTktTSCBJYmVyaWEiLCJUZWFtIjoiTVlOS1NIIn0.hZxhv8XAcu1cARgcrtfb0l_crF1-Ic1tJt9eUhIL0qQ';
     //need edit
+    console.log(req.params.airlineIP);
     var options = {
         host: req.params.airlineIP,
-        path: '/stripe/pubkey/'+'/?wt=' +jwt,
+        path: '/stripe/pubkey?wt=' +jwt,
+        port: 80 ,
         json: true
     };
     var timeout_wrapper = function(req) {
@@ -282,8 +284,9 @@ module.exports = function(app, mongo) {
         res.on('end', function() {
             try {
                 clearTimeout(timeout);
-                var fbResponse = JSON.parse(body);
+                var fbResponse = JSON.stringify(body);
                 res1.send(fbResponse);
+
             } catch (err) {
                 try {
                     res1.status(500).send("Error");
@@ -301,7 +304,7 @@ module.exports = function(app, mongo) {
     var fn = timeout_wrapper(request);
 
     // set initial timeout
-    var timeout = setTimeout(fn, 1000);
+    var timeout = setTimeout(fn, 8000);
     // end of edit
         });
     // end of get ip method
