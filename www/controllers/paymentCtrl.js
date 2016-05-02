@@ -12,7 +12,6 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
   var outgoingFlight = OutReturnSrv.getSelectedOutFlight();
   if (roundTrip === 'true') {
     $scope.returnFlight = OutReturnSrv.getSelectedReturnFlight();
-    console.log($scope.returnFlight);
   };
 
   $scope.tab1 = function() {
@@ -36,14 +35,16 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
     return clicked === $scope.clicked;
   };
 
-  var postAPay = function() {
+  var postAPay = function(cb) {
     if (roundTrip === 'true')
       paymentSrv.postPayR($scope.reservation, outgoingFlight, $scope.returnFlight, $scope.cabin).success(function(data) {
         paymentSrv.setBookingRefNo(data.encoding);
+        cb();
       });
     else
       paymentSrv.postPayS($scope.reservation, outgoingFlight, $scope.cabin).success(function(data) {
         paymentSrv.setBookingRefNo(data.encoding);
+        cb();
       });
   };
 
@@ -81,17 +82,18 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
   };
 
   $scope.payAction = function() {
-    postAPay();
-    SetCardType($scope.selectedType);
-    SetCardNo($scope.selectedCardNumber);
-    SetMonth($scope.selectedMonth);
-    SetYear($scope.selectedYear);
-    SetCVV($scope.selectedCVV);
-    SetStreet($scope.selectedStreet);
-    SetInformation($scope.selectedExtra);
-    SetPostalcode($scope.selectedPostalcode);
-    SetCity($scope.SelectedCity);
-    Congrats();
+    postAPay(function() {
+      SetCardType($scope.selectedType);
+      SetCardNo($scope.selectedCardNumber);
+      SetMonth($scope.selectedMonth);
+      SetYear($scope.selectedYear);
+      SetCVV($scope.selectedCVV);
+      SetStreet($scope.selectedStreet);
+      SetInformation($scope.selectedExtra);
+      SetPostalcode($scope.selectedPostalcode);
+      SetCity($scope.SelectedCity);
+      Congrats();
+    });
   };
 
 });

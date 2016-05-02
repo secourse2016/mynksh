@@ -4,31 +4,28 @@
 
 
 
-                  <h4 style="text-align:center;color:rgba(128,0,0, 1)">Track Booking</h4>
+    <h4 style="text-align:center;color:rgba(128,0,0, 1)">Track Booking</h4>
 
 
-                <div class="list list-inset">
-                    <!-- <font class="col-sm-4 text-right" size="4" color="black"> Booking Reference No.: </font> -->
-                    <form name='booking'>
-                      <label class="item item-input item-floating-label" ng-class="{ 'has-error' : loginForm.originAirports.$invalid && loginForm.$submitted }">
-                         <span class="input-label ion-plane">Booking Reference Number</span>
-                            <input type="text" placeholder="Booking Number" id="bookingref" name="bookingref" class="form-control" ng-model="selectedBookingRef" ng-required='true' onkeypress="myFunction()">
-                          </span>
-                        </label>
-                            <span style='color:red' ng-show="(booking.bookingref.$error.required)  && booking.bookingref.$dirty ">Booking Number is required</span>
+    <div class="list list-inset">
+      <!-- <font class="col-sm-4 text-right" size="4" color="black"> Booking Reference No.: </font> -->
+      <form name='booking'>
+        <label class="item item-input item-floating-label" ng-class="{ 'has-error' : loginForm.originAirports.$invalid && loginForm.$submitted }">
+          <span class="input-label ion-plane">Booking Reference Number</span>
+          <input type="text" placeholder="Booking Number" id="bookingref" name="bookingref" class="form-control" ng-model="selectedBookingRef" ng-required='true' onkeypress="myFunction()">
+          </span>
+        </label>
+        <span style='color:red' ng-show="(booking.bookingref.$error.required)  && booking.bookingref.$dirty ">Booking Number is required</span>
 
-                    </form>
-                  <h6 style="text-align:center">  <button  type="button" ng-disabled='booking.$invalid' class="btn btn-primary btn-lg" style="left:200px; background:rgba(178,34,34, 1);margin-top: 15px" ng-click="SetBookingRef(selectedBookingRef);retreiveBookingRef();showme=true">Search My Flight</button></h6>
-                </div>
+      </form>
+      <h6 style="text-align:center">  <button  type="button" ng-disabled='booking.$invalid' class="btn btn-primary btn-lg" style="left:200px; background:rgba(178,34,34, 1);margin-top: 15px" ng-click="SetBookingRef(selectedBookingRef);retreiveBookingRef();showme=true">Search My Flight</button></h6>
+    </div>
 
-                <!-- <div class="form-group" ng-show="showme">
-                    <div class="input-group">
-                <p id="divID"></p>
+    <div class="form-group" ng-show="showme">
+      <div class="input-group">
+        <p id="divID"></p>
+      </div>
+    </div>
 
-                    </div>
-
-
-            </div> -->
-
-</ion-content>
+  </ion-content>
 </ion-view>

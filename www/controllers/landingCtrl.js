@@ -12,7 +12,7 @@ App.controller('landingCtrl', function($scope, FlightsSrv, $location, $timeout, 
   // });
   // $scope.dto=new Date();
   // $scope.dtr=new Date();
-  $scope.pinging = "true";
+  $scope.pinging = "false";
   $scope.roundTrip = "true";
   $scope.cabin = "true";
   $scope.data = {
@@ -192,7 +192,9 @@ App.controller('landingCtrl', function($scope, FlightsSrv, $location, $timeout, 
     $scope.minDate = $scope.minDate ? null : new Date();
   };
 
-  $scope.toggleMin();
+$scope.toggleMin();
+  $scope.dto = $scope.minDate;
+  $scope.dtr = $scope.dto;
   $scope.maxDate = new Date(2020, 5, 22);
 
   $scope.open1 = function() {
