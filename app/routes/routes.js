@@ -162,8 +162,9 @@ module.exports = function(app, mongo) {
     });
 
     app.post('/booking', function(req, res1){
-      if((req.body.ip) === "our ip an amsh 3arfo :D"){
-
+          console.log("i`m in api /booking" + req.body.IP);
+      if((req.body.IP) === "52.58.24.76" ){
+          console.log("i`m in api /booking inside if ");
 
 
         stripe.charges.create({
@@ -173,7 +174,7 @@ module.exports = function(app, mongo) {
             description: "Example charge"
         }, function(err, charge) {
             if (err && err.type === 'StripeCardError') {
-                res.send({ refNum: null, errorMessage: err});
+                res1.send({ refNum: null, errorMessage: err});
             }
             else
 
@@ -183,7 +184,7 @@ module.exports = function(app, mongo) {
                 {
                     mongo.submitPay(req.body.passengerDetails[0].firstName, req.body.passengerDetails[0].lastName, req.body.passengerDetails[0].passportNum,req.body.passengerDetails[0].passportExpiryDate, req.body.passengerDetails[0].dateOfBirth, req.body.passengerDetails[0].nationality, req.body.passengerDetails[0].email, req.body.class, req.body.cost, req.body.outgoingFlightId, true, function(err, data) {
                             //console.log("RefNum  " + data + "err" + err);
-                            res.send({refNum: data, errorMessage: null});
+                            res1.send({refNum: data, errorMessage: null});
                     });
 
                 }
@@ -193,7 +194,7 @@ module.exports = function(app, mongo) {
                         //console.log(data);
                         mongo.submitPay(req.body.passengerDetails[0].firstName, req.body.passengerDetails[0].lastName, req.body.passengerDetails[0].passportNum,req.body.passengerDetails[0].passportExpiryDate, req.body.passengerDetails[0].dateOfBirth, req.body.passengerDetails[0].nationality, req.body.passengerDetails[0].email, req.body.class, req.body.cost, req.body.returnFlightId, data, function(err, data) {
                             //console.log("RefNum  " + data + "err" + err);
-                            res.send({refNum: data, errorMessage: null});
+                            res1.send({refNum: data, errorMessage: null});
                         });
                     });
                 }
@@ -201,11 +202,12 @@ module.exports = function(app, mongo) {
             }
         });
       } else {    // i will make post request sending all data which will posting in database to others Airlines
-
+          console.log("i`m in api /booking inside else " + req.body.IP);
         var options = {
-            host: req.body.ip,
+            host: req.body.IP,
             path: '/booking',
-            json: true
+            json: true ,
+            port : 80
         };
         var timeout_wrapper = function(req) {
             return function() {
@@ -217,32 +219,36 @@ module.exports = function(app, mongo) {
             var body = '';
             res.on('data', function(chunk) {
                 body += chunk;
+                console.log("chunk " + body );
                 clearTimeout(timeout);
-                timeout = setTimeout(fn, 10000);
+                timeout = setTimeout(fn, 200000);
             });
             res.on('end', function() {
                 try {
                     clearTimeout(timeout);
                     var fbResponse = JSON.stringify(body);
+                        console.log("fbResponse  " + fbResponse );
                     res1.send(fbResponse);
                 } catch (err) {
+                      console.log("err  " + err );
                     try {
                         res1.status(500).send("Error");
-                    } catch (err) {}
+                    } catch (err) {   console.log("err 2 " + err );}
                 }
             });
         }).on('error', function(e) {
+            console.log("err 3  " + e );
             clearTimeout(timeout);
             try {
                 res1.status(500).send("Error");
-            } catch (err) {}
+            } catch (err) {  console.log("err 4  " + err );}
             this.abort();
         });
         // generate timeout handler
         var fn = timeout_wrapper(request);
 
         // set initial timeout
-        var timeout = setTimeout(fn, 8000);
+        var timeout = setTimeout(fn, 10000);
 
       }
     });

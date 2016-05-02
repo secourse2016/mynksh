@@ -3,8 +3,10 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
     $scope.tab = "active in";
     //$scope.stripeError=false;
     //$scope.stripeErrorDescription="";
-    var airlineIP ="";
+    var airlineIP ="52.58.24.76";
     var flight_cost =  0 ;
+    var AirlineName1 ="";
+    var AirlineName2 = "" ;
     $scope.reservation = ConfirmSrv.getReservation();
     $scope.totalPrice = OutReturnSrv.getSelectedPrice();
     $scope.cabin = FlightsSrv.getSelectedCabin();
@@ -101,8 +103,8 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
 
         }
         else { // else roundtrip
-          var AirlineName1  = OutReturnSrv.getSelectedOutFlight().Airline  ;  //  out flight
-          var AirlineName2 =  OutReturnSrv.getSelectedReturnFlight().Airline  ;  ;  // return flight
+           AirlineName1  = OutReturnSrv.getSelectedOutFlight().Airline  ;  //  out flight
+           AirlineName2 =  OutReturnSrv.getSelectedReturnFlight().Airline  ;  ;  // return flight
 
             if ((AirlineName1 === AirlineName2 && AirlineName2 === "IBERIA")){
           createStripeToken(AirlineName2,"");
@@ -157,8 +159,6 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
 
 console.log("flight 3 : " + flight_cost) ;
       }
-      var AirlineName1  = OutReturnSrv.getSelectedOutFlight().Airline  ;  //  out flight
-      var AirlineName2 =  OutReturnSrv.getSelectedReturnFlight().Airline  ;  ;  // return flight
       if ( (!(outORreturn  === "out")) &&(AirlineName1 === AirlineName2 && AirlineName2 === "IBERIA")){
                  console.log("inside of " + OutReturnSrv.getSelectedReturnFlight().cost) ;
                  console.log("inside of " + (OutReturnSrv.getSelectedOutFlight().cost)) ;
@@ -207,8 +207,8 @@ console.log("inside of ") ;
             }
            paymentSrv.chargeCard(paymentInfo)
            .success(function(data, status, headers, config) {
-
-
+                console.log(data);
+                paymentSrv.setBookingRefNo(data.refNum);
                 //reset stripe key
                       Stripe.setPublishableKey('pk_test_fWP8viqFbT95teED8zWD3ieK');
 
