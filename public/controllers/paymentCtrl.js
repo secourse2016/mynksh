@@ -11,8 +11,6 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
     if(outgoingFlight != undefined)
       $scope.outCurrency = outgoingFlight.currency;
 
-    console.log($scope.reservations);
-
 
     $scope.tab1 = function() {
         $scope.tab = "active in";

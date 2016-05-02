@@ -111,7 +111,7 @@
             <div id='price'>
                 <blockquote>
                     <p>Price:</p>
-                    <h3>{{(selectedReturnFlight.cost + selectedOutgoingFlight.cost) | currency:"€"}}</h3>
+                    <h3>{{(selectedReturnFlight.cost + selectedOutgoingFlight.cost) | currency:"$"}} x {{tickets}} = {{(selectedReturnFlight.cost + selectedOutgoingFlight.cost)*tickets | currency:"$"}}</h3>
                     <span ng-show="RadioSelected" style="color: red">Flight(s) must be selected</span>
                 </blockquote>
                 <a href class="btn btn-primary btn-lg hvr-underline-from-center" ng-click='BookFlight()'>Book Flight</a>

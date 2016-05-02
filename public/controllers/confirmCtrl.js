@@ -5,7 +5,7 @@ App.controller('confirmCtrl', function($scope, FlightsSrv, OutReturnSrv, Confirm
     if ($scope.roundTrip === 'true')
         $scope.selectedReturnFlight = OutReturnSrv.getSelectedReturnFlight();
 
-    $scope.tickets = 1;
+    $scope.tickets = FlightsSrv.getTickets();
     $scope.price = OutReturnSrv.getSelectedPrice();
     $scope.currentDate = new Date();
     //to be copied in ionic

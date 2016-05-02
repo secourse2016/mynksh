@@ -5,6 +5,7 @@ App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $locati
     $scope.dest = FlightsSrv.getSelectedDestinationAirport();
     $scope.oDate = FlightsSrv.getSelectedOutDate();
     $scope.rDate = FlightsSrv.getSelectedReturnDate();
+    $scope.tickets = FlightsSrv.getTickets();
     $scope.outgoingPrice = 0;
     $scope.returnPrice = 0;
     $scope.cabin = FlightsSrv.getSelectedCabin();
@@ -160,7 +161,7 @@ App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $locati
         OutReturnSrv.setSelectedOutFlight($scope.selectedOutgoingFlight);
         if ($scope.roundTrip == 'true') {
             OutReturnSrv.setSelectedReturnFlight($scope.selectedReturnFlight);
-            OutReturnSrv.setSelectedPrice($scope.selectedOutgoingFlight.cost + $scope.selectedReturnFlight.cost);
+            OutReturnSrv.setSelectedPrice(($scope.selectedOutgoingFlight.cost + $scope.selectedReturnFlight.cost) * $scope.tickets);
         } else
             OutReturnSrv.setSelectedPrice($scope.selectedOutgoingFlight.cost);
 

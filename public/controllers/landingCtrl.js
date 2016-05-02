@@ -14,6 +14,7 @@ App.controller('landingCtrl', function($scope, FlightsSrv, $location) {
 
     $scope.roundTrip = "true";
     $scope.cabin = "true";
+    $scope.ticket = 1;
 
     $scope.bookingRef = function() {
         $location.url('/bookingRef');
@@ -64,6 +65,10 @@ App.controller('landingCtrl', function($scope, FlightsSrv, $location) {
     };
 
     /* Record User's Selected Origin Airport  */
+    $scope.setTickets = function (value){
+      FlightsSrv.setTickets(value);
+    };
+
     $scope.SetOriginAirport = function(originAirport) {
         FlightsSrv.setSelectedOriginAirport(originAirport);
     };
@@ -90,6 +95,7 @@ App.controller('landingCtrl', function($scope, FlightsSrv, $location) {
 
     /* Find All Available Flights  */
     $scope.SearchFlights = function() {
+        $scope.setTickets($scope.ticket);
         $location.url('/flights');
     };
 
