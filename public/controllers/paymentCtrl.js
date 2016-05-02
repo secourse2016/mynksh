@@ -171,7 +171,7 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
         .success(function(data, status, headers, config) {
           paymentSrv.setBookingRefNo(data.refNum);
           //reset stripe key
-          getOtherPubKey(airline, function(key) {
+          getOtherPubKey("IBERIA", function(key) {
             Stripe.setPublishableKey(key);
             Congrats();
           });
