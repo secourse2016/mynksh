@@ -73,23 +73,6 @@
     </md-input-container>
 
 
-  <label class="item item-input item-floating-label">
-    <span class="input-label" style="color:maroon" >Street</span>
-    <input type="text" name="Street" placeholder="Street*" ng-model="selectedStreet" ng-required='true'>
-    <span style='color:red' ng-show='reviewForm.Street.$error.required && reviewForm.Street.$dirty'>Street is required</span>
-  </label>
-  <label class="item item-input item-floating-label">
-    <span class="input-label"style="color:maroon">Postal code</span>
-    <input type="text" name="postalCode" placeholder="Postal code" ng-model="selectedPostalcode" ng-required='true' ng-minlength='5' ng-maxlength='5'>
-    <span style='color:red' ng-show='(reviewForm.postalCode.$error.number || reviewForm.postalCode.$error.required) && reviewForm.postalCode.$dirty'>A valid postal code is required.</span>
-    <span style='color:red' ng-show='(reviewForm.postalCode.$error.minlength || reviewForm.postalCode.$error.maxlength)&& reviewForm.postalCode.$dirty'>Postal Code must be 5 characters.</span>
-  </label>
-  <label class="item item-input item-floating-label">
-    <span class="input-label" style="color:maroon">City</span>
-    <input type="text" class="form-control" name="city" placeholder="City" ng-model="SelectedCity" ng-required='true'>
-    <span style='color:red' ng-show='reviewForm.city.$error.required && reviewForm.city.$dirty'>City is required</span>
-  </label>
-</div>
 
 
           <center><h4><font color="maroon">Price : {{totalPrice}}$</font></h4></center>
