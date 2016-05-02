@@ -301,7 +301,6 @@ var generateBookingRef = function(seatnum, flightNumber,businessOrEconomic){
     //             selectedSeat = flights[0].nextBusSeat;
     //         }
     //     seatnum = flights[0].SeatMap[selectedSeat].seatNum;
-        var encoded = new Buffer(seatnum + ','+ flightNumber).toString('base64');
-        return encoded;
+        return encoded = new Buffer(seatnum + ','+ flightNumber).toString('base64');
     //});
 };
