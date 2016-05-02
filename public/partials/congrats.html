@@ -13,7 +13,7 @@
                 <!-- Main Navigation menu Starts -->
                 <!--=== Site Name ===-->
                 <!-- <a class="site-name navbar-brand" href="#"><span>E</span>gret</a> -->
-                <a href='http://mynksh.com'>
+                <a href="#" onclick="location.href = document.referrer; return false;">
                     <!-- <div id='logo'> -->
                     <span><img src='./assets/iberia-logo.png'></span>
                     <!-- </div> -->
@@ -28,20 +28,21 @@
 
 
 <div id="viewport" style="width: 1000px; height: 1000px;">
-    <div class="mainContainer col-lg-12" style="border-radius: 25px;">
+    <div class="section-overlay"></div>
+    <center><div class="mainContainer col-lg-12" style="background-color:rgba(128,0,0,0.8);width:500px;height:150px;top:300px;left:350px;border-radius: 25px;">
         <br>
-        <p>Booking Reference:(please copy it for further tracking): </p>
-        <textarea class="js-copytextarea"readonly>{{bookingRefNo}}</textarea>
+        <font size=3 color=white>Booking Reference</font><br> <font size=2 color=grey>(please click on copy textarea for further tracking):</font><br>
+        <textarea class="js-copytextarea"readonly>{{bookingRefNo}}</textarea><br>
         <button class="js-textareacopybtn" ng-click='copy();'>Copy Textarea</button>
 
-    </div>
+    </div></center>
     <canvas id="sky" width="1217" height="1000">
     </canvas>
     <!-- Based on public domain image
             http://pixabay.com/en/aeroplane-aircraft-airplane-flight-161999/ -->
     <div class="marquee">
 
-        <a href='http://mynksh.com'>
+        <a onclick="location.href = document.referrer; return false;">
             <img src="http://i.stack.imgur.com/bGZ1m.png" width="80" height="43" title="Click me to go back to Iberia.">
         </a>
         <div id="banner">Congrats You booked with Iberia Airlines!</div>
@@ -50,7 +51,7 @@
 
 </div>
 
-<!-- 
+<!--
 <script type="text/javascript" src="../js/congrats.js"></script>
 
 <script type="text/javascript">

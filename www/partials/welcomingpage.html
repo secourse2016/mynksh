@@ -1,4 +1,4 @@
-<ion-view>
+<ion-view view-title="Welcome">
 <!-- <ion-side-menus> -->
 <!-- Left menu -->
 <!-- <ion-side-menu side="left">
@@ -65,7 +65,7 @@ body {
           </button>
           <button class="button button-assertive button-clear no-animation"
                   ng-click="previous()" ng-show="slideIndex > 0">
-            Previous Slide
+            Previous
           </button>
         </ion-nav-buttons>
         <ion-nav-buttons side="right">
@@ -83,34 +83,29 @@ body {
           <ion-slide style="background-color:rgba(128,0,0, 1)">
             <br><br><br><br><br><br><br><br><br>
 
-            <b><font style="text-align:center;color:white" size=10 >Fly Like   <div id="logo">
+            <b><font style="text-align:center;color:white" size=10 ><div id="logo">
               <img src="/img/iberia-logo.png">
             </div></font></b>
             <br><br>
-            <h4 style="text-align:center;color:rgba(0,0,0, 1)">The Artful Flight Experience</h4>
-
+            <!-- <font style="text-align:center;color:rgba(0,0,0, 1)" size=3>The Artful Flight Experience</font> -->
+            <br><br><br>  <br><br><br>  <br><br><br>
+            <i class="icon ion-chevron-right icon-accessory">Slide right for Intro</i>
           </ion-slide>
-          <ion-slide>
-            <h3>Team Members</h3>
 
-            <!-- <div id="list">
-              <h5>MYNKSH:</h5>
-              <ol>
-                <li>Narihan Ellaithy</li>
-                <li>Safa Ads</li>
-                <li>There is no step 3</li>
-              </ol>
-            </div> -->
+          <ion-slide>
+            <font size=6>Team Members</font>
+            <br>
+
             <ion-list>
-              <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="chat in chats" type="item-text-wrap" >
+              <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="chat in chats" type="item-text-wrap" href="#/chat-detail/{{chat.id}}">
                 <img ng-src="{{chat.face}}">
                 <h2>{{chat.name}}</h2>
                 <p>{{chat.lastText}}</p>
                 <i class="icon ion-chevron-right icon-accessory"></i>
 
 
-      </ion-item>
-    </ion-list>
+              </ion-item>
+            </ion-list>
           </ion-slide>
           <ion-slide style="background-color:rgba(128,0,0, 1)">
             <br><br><br><br><br><br><br>
@@ -119,7 +114,13 @@ body {
               Manage your bookings, check-in online to avoid queues or log into your Iberia Plus account.
               You can check all flight schedules and see the departure and arrival status of Iberia flights.
               The Iberia website fully adapted to your mobile, so you can use it wherever you are.</font>
-          <br><br><br>  <i class="icon ion-chevron-right icon-accessory">Slide right to Book with Iberia</i>
+              <br><br><br><br><br><br><br>
+
+              <button class="button icon-right ion-chevron-right button-light no-animation"
+                      ng-click="startApp()" ng-show="slideIndex == 2">
+                Click here to start using Iberia
+              </button></i>
+
           </ion-slide>
         </ion-slide-box>
       </ion-view>
