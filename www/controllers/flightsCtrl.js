@@ -38,8 +38,7 @@ App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $locati
 
 
 
-  // if (FlightsSrv.getPinging().toString() === 'true')
-  if ($scope.roundTrip === 'true')
+  if (FlightsSrv.getPinging().toString() === 'true')
     pingAirlineR($scope.origin, $scope.dest, changeISOFormat($scope.oDate), changeISOFormat($scope.rDate));
   else
     pingAirlineS($scope.origin, $scope.dest, changeISOFormat($scope.oDate));

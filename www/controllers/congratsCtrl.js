@@ -1,7 +1,7 @@
 App.controller('congratsCtrl', function($scope,$location,paymentSrv) {
 
-	// $scope.bookingRefNo = paymentSrv.getBookingRefNo();
-		$scope.bookingRefNo = "NUEsTVlOS1NINjgyfs";
+	$scope.bookingRefNo = paymentSrv.getBookingRefNo();
+		// $scope.bookingRefNo = "NUEsTVlOS1NINjgyfs";
 
 	$scope.copy = function(){
         var copyTextarea = document.querySelector('.js-copytextarea');
