@@ -10,6 +10,8 @@ App.controller('landingCtrl', function($scope, FlightsSrv, $location, $timeout, 
   //    //to do
   //    console.log(val)
   // });
+  // $scope.dto=new Date();
+  // $scope.dtr=new Date();
   $scope.pinging = "true";
   $scope.roundTrip = "true";
   $scope.cabin = "true";
