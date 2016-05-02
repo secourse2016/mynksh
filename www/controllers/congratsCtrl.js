@@ -16,7 +16,7 @@ App.controller('congratsCtrl', function($scope,$location,paymentSrv) {
         }
     };
 		$scope.landing = function() {
-				$location.url('/book');
+				$location.url('/home');
 		};
 
 });
