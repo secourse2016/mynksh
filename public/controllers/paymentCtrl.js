@@ -4,7 +4,9 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
   $scope.reservation = ConfirmSrv.getReservation();
   $scope.totalPrice = OutReturnSrv.getSelectedPrice();
   $scope.cabin = FlightsSrv.getSelectedCabin();
-
+  // console.log($scope.reservation);
+  // console.log($scope.totalPrice);
+  // console.log($scope.cabin);
 
   var roundTrip = FlightsSrv.getSelectedRoundTrip();
   var outgoingFlight = OutReturnSrv.getSelectedOutFlight();
@@ -85,8 +87,8 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
     paymentSrv.getOtherAirlineIP(AirlineIP).success(function(airlineIP) {
       console.log(airlineIP);
       paymentSrv.getOtherStripePubKey(airlineIP).success(function(key) {
-        console.log(key,airlineIP);
-        cb(key);
+        console.log(key);
+        cb(key, airlineIP);
       })
     });
   };
@@ -144,8 +146,8 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
 
   var createStripeToken = function(airline) {
 
-    getOtherPubKey(airline, function(key,airlineIP) {
-      if(airlineIP === "IBERIA")
+    getOtherPubKey(airline, function(key, airlineIP) {
+      if (airlineIP === "IBERIA")
         pingIp = "";
       else
         pingIp = "http://" + airlineIP;
