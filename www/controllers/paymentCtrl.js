@@ -1,11 +1,7 @@
 App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturnSrv, paymentSrv, $location) {
 
-
-
-
-
   $scope.tab = "active in";
-  $scope.reservation = ConfirmSrv.getReservation();
+  $scope.reservation = ConfirmSrv.getReservations();
   $scope.totalPrice = OutReturnSrv.getSelectedPrice();
   $scope.cabin = FlightsSrv.getSelectedCabin();
   var roundTrip = FlightsSrv.getSelectedRoundTrip();
@@ -13,17 +9,6 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
   if (roundTrip === 'true') {
     $scope.returnFlight = OutReturnSrv.getSelectedReturnFlight();
   };
-
-  $scope.tab1 = function() {
-    $scope.tab = "active in";
-    $scope.tab2 = "";
-  };
-
-  $scope.tab2 = function() {
-    $scope.tab2 = "active in";
-    $scope.tab = "";
-  };
-
 
   var Congrats = function() {
     $location.url('/congrats');
