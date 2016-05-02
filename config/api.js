@@ -60,14 +60,17 @@ exports.getAirLines = function(cb) {
 
 //get from data base ip
 exports.getAirLineIP = function(airLineName, cb) {
+  var airLineIP= "";
   var collection = mongo.db().collection('airLines');
   collection.find({
-    "name": airLineName
+    "name": airLineName + " Airlines"
   }).toArray(function(err, airLine) {
+    if(airLines.length ===0)
+      airLineIP= "52.58.24.76";
     if (airLine[0] === null) {
       cb(err, "No ip with this Name");
     }
-    var airLineIP = airLine[0].ip;
+    airLineIP = airLine[0].ip;
     cb(err, airLineIP);
   });
 }
