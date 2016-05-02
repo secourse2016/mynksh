@@ -1,65 +1,34 @@
-<div style="background: rgba(128,0,0, 1)">
-    <div class="sticky-section">
-        <div id="topbar-hold" class="nav-hold container">
-            <nav class="navbar" role="navigation">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-responsive-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                </div>
-                <!-- Main Navigation menu Starts -->
-                <!--=== Site Name ===-->
-                <!-- <a class="site-name navbar-brand" href="#"><span>E</span>gret</a> -->
-                <a href='http://mynksh.com'>
-                    <!-- <div id='logo'> -->
-                    <span><img src='./assets/iberia-logo.png'></span>
-                    <!-- </div> -->
-                </a>
-        </div>
-        <!-- Main Navigation menu ends-->
-        </nav>
-    </div>
-</div>
-</div>
+<ion-view view-title="Previous Booking">
 
-<link rel="stylesheet" href="css/style.css" />
-<section id="section-download" class="download-wrap" style="background: rgba(255,255,255, .8)">
-  
-    <div class="container download center" style="border-radius: 25px;">
-    <div class="col-md-2 text-left">
-  <form  action="http://mynksh.com">
-  <input type="submit" class="btn btn-primary btn-lg" style="position:left; background:rgba(178,34,34, 1);margin-top: -200px" value="Back to Iberia" ></form>
-</div>
-        <div class="row">
+  <ion-content class="has-header has-subheader">
 
-            <div class="col-md-8 col-md-offset-2">
-                <div class="col-md-10 col-md-offset-1 center section-title">
-                    <h3><font color="black">Tracking Booking</font></h3>
-                </div>
 
-                <div class="form-group">
-                    <font class="col-sm-4 text-right" size="4" color="black"> Booking Reference No.: </font>
-                    <form name='booking' class="contact-form support-form">
-                        <div class="col-md-8 col-sm-8">
+
+                  <h4 style="text-align:center;color:rgba(128,0,0, 1)">Track Booking</h4>
+
+
+                <div class="list list-inset">
+                    <!-- <font class="col-sm-4 text-right" size="4" color="black"> Booking Reference No.: </font> -->
+                    <form name='booking'>
+                      <label class="item item-input item-floating-label" ng-class="{ 'has-error' : loginForm.originAirports.$invalid && loginForm.$submitted }">
+                         <span class="input-label ion-plane">Booking Reference Number</span>
                             <input type="text" placeholder="Booking Number" id="bookingref" name="bookingref" class="form-control" ng-model="selectedBookingRef" ng-required='true' onkeypress="myFunction()">
+                          </span>
+                        </label>
                             <span style='color:red' ng-show="(booking.bookingref.$error.required)  && booking.bookingref.$dirty ">Booking Number is required</span>
-                        </div>
+
                     </form>
-                    <button type="button" ng-disabled='booking.$invalid' class="btn btn-primary btn-lg" style="position:right; background:rgba(178,34,34, 1);margin-top: 15px" ng-click="SetBookingRef(selectedBookingRef);retreiveBookingRef();showme=true">Search My Flight</button>
+                  <h6 style="text-align:center">  <button  type="button" ng-disabled='booking.$invalid' class="btn btn-primary btn-lg" style="left:200px; background:rgba(178,34,34, 1);margin-top: 15px" ng-click="SetBookingRef(selectedBookingRef);retreiveBookingRef();showme=true">Search My Flight</button></h6>
                 </div>
 
-                <div class="form-group" ng-show="showme">
+                <!-- <div class="form-group" ng-show="showme">
                     <div class="input-group">
                 <p id="divID"></p>
 
                     </div>
 
 
-            </div>
-            </div>
-        </div>
-    </div>
-</section>
+            </div> -->
+
+</ion-content>
+</ion-view>

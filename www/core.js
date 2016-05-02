@@ -49,6 +49,13 @@ App.config(function($stateProvider, $urlRouterProvider, $mdIconProvider,$mdDateL
     templateUrl: 'partials/tabs.html',
     controller: 'tabsCtrl'
   })
+  .state('chat-detail', {
+      url: '/chat-detail/:chatId',
+
+          templateUrl: 'partials/teamMemberDetails.html',
+          controller: 'ChatDetailCtrl'
+
+    })
 
   // Each tab has its own nav history stack:
 
@@ -98,7 +105,7 @@ App.config(function($stateProvider, $urlRouterProvider, $mdIconProvider,$mdDateL
   .state('bookingRef', {
     url: '/bookingRef',
     templateUrl: '/partials/bookingRef.html',
-    controller: ''
+    controller: 'bookingRefCtrl'
   });
 
   // if none of the above states are matched, use this as the fallback
