@@ -95,11 +95,11 @@ App.config(function($stateProvider, $urlRouterProvider, $mdIconProvider,$mdDateL
   })
 
   // // route for the congrats page
-  // .state('congrats', {
-  //   url: '/congrats',
-  //   templateUrl: '/partials/congrats.html',
-  //   controller: ''
-  // })
+  .state('congrats', {
+    url: '/congrats',
+    templateUrl: '/partials/congrats.html',
+    controller: 'congratsCtrl'
+  })
   //
   // // route for the booking Reference page
   .state('bookingRef', {

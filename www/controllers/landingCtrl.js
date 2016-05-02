@@ -160,7 +160,9 @@ App.controller('landingCtrl', function($scope, FlightsSrv, $location, $timeout, 
     $scope.minDate = $scope.minDate ? null : new Date();
   };
 
-  $scope.toggleMin();
+$scope.toggleMin();
+  $scope.dto = $scope.minDate;
+  $scope.dtr = $scope.dto;
   $scope.maxDate = new Date(2020, 5, 22);
 
   $scope.open1 = function() {

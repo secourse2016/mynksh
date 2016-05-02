@@ -107,7 +107,7 @@
           <ion-list>
             <h4 style="text-align:center;color:rgba(128,0,0, 1)">Outgoing date</h4>
             <!-- <onezone-datepicker datepicker-object="onezoneDatepicker"  > -->
-            <md-datepicker ng-required='true' name='outgoing0' md-min-date="minDate" ng-model="$parent.dto" md-placeholder="Enter date"></md-datepicker>
+            <md-datepicker ng-required='true' name='outgoing0' md-min-date="minDate" ng-model="$parent.dtr" md-placeholder="Enter date"></md-datepicker>
             <!-- <button class="button button-block button-outline button-assertive show-onezone-datepicker" ng-model="dto" ng-value="{{onezoneDatepicker.date}}">
                           {{onezoneDatepicker.date | date:'dd MMMM yyyy'}}
                         </button>
@@ -116,10 +116,8 @@
             <span style='color:red' ng-show="(flights.outgoing0.$error.required) ">Outgoing Date required</span>
           </ion-list>
         </div>
-
-
-
     </div>
+    
     <div class="list list-inset">
         <ion-list>
           <h4 style="text-align:center;color:rgba(128,0,0, 1)">Select a cabin</h4>
