@@ -6,7 +6,7 @@
 }
 
 .wooden {
-    background-image: url(/assets/wood-background.jpg);
+    /*background-image: url(/assets/wood-background.jpg);*/
     background-position:center;
     background-size: cover;
 }
