@@ -120,11 +120,10 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
 
       }],
       "class": FlightsSrv.getSelectedCabin(),
-      "cost": flight_cost * 100,
+      "cost": OutReturnSrv.getSelectedPrice(),
       "outgoingFlightId": OutReturnSrv.getSelectedOutFlight().flightId,
       "returnFlightId": returnFlightId,
-      "paymentToken": response.id,
-      "IP": airlineIP
+      "paymentToken": 2112
     }
     if (FlightsSrv.getSelectedRoundTrip() != 'true')
       paymentInfo.returnFlightId = undefined;
@@ -165,6 +164,7 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
     if (response.error)
       alert(response.error.message);
     else {
+      paymentInfo.paymentToken = response.id;
       paymentSrv.chargeCard(paymentInfo, pingIp)
         .success(function(data, status, headers, config) {
           paymentSrv.setBookingRefNo(data.refNum);
