@@ -40,7 +40,7 @@ App.config(function($stateProvider, $urlRouterProvider, $mdIconProvider,$mdDateL
   // setup an abstract state for the tabs directive
     .state('welcome', {
     url: '/',
-    templateUrl: '/partials/payment.html',
+    templateUrl: '/partials/welcomingpage.html',
     controller: 'welcomingCtrl'
   })
 

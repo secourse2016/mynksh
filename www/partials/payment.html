@@ -35,7 +35,7 @@
     <span class="input-label" style= "color:maroon; margin-left:10px;">Expiry date</font></span>
     <md-input-container>
       <!-- <label style='color:maroon'><h6>Month</h6></label> -->
-        <label <font size="2" ><h6 style='color:maroon'>Month*</h6></font></label>
+        <label <font size="2" ><h6 style='color:maroon'>Month</h6></font></label>
       <md-select ng-model="selectedMonth" ng-required='true' >
         <md-optgroup label="month">
           <md-option value="1" ng-model="selectedMonth" style='color:black'>1</md-option>
@@ -56,7 +56,7 @@
 
     <md-input-container>
 
-        <label <font size="2" ><h6 style='color:maroon'>Year*</h6></font></label>
+        <label <font size="2" ><h6 style='color:maroon'>Year</h6></font></label>
       <md-select ng-model="selectedYear" ng-required='true'>
         <md-optgroup label="Year">
           <md-option value="2015" ng-model="selectedYear" style='color:black'>2015</md-option>
@@ -76,10 +76,13 @@
 
 
           <center><h4><font color="maroon">Price : {{totalPrice}}$</font></h4></center>
+<!-- ng-disabled="reviewForm.$invalid" -->
+          <center><button class="button button-assertive"
+            style = "border: 1px solid #000; background:white;"ng-disabled="reviewForm.$invalid"  ng-click=" payAction();" ><font style="color:maroon">Book the flight</font></button></center>
 
-        <button class="button button-full button-assertive" ng-disabled="reviewForm.$invalid" style="background:maroon" ng-click=" payAction();">
+        <!-- <button class="button button-full button-assertive" ng-disabled="reviewForm.$invalid" style="background:maroon" ng-click=" payAction();">
           <font size="5" color="black">pay</font>
-        </button>
+        </button> -->
       </div>
     </form>
 </ion-view>
