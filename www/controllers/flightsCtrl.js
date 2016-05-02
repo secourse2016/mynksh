@@ -22,6 +22,7 @@ App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $locati
   $scope.oDate = FlightsSrv.getSelectedOutDate();
   $scope.rDate = FlightsSrv.getSelectedReturnDate();
   $scope.cabin = FlightsSrv.getSelectedCabin();
+
   $scope.outgoingPrice = 0;
   $scope.returnPrice = 0;
   $scope.outFlightFound = true;

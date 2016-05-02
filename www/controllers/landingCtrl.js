@@ -6,13 +6,8 @@ App.controller('landingCtrl', function($scope, FlightsSrv, $location, $timeout, 
   /*----------- Angular Bootstrap Datepicker -----------*/
   $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
   $scope.format = $scope.formats[0];
-  //   $scope.$watch('dt1',function(val){
-  //    //to do
-  //    console.log(val)
-  // });
-  // $scope.dto=new Date();
-  // $scope.dtr=new Date();
-  $scope.pinging = "true";
+
+  $scope.pinging = "false";
   $scope.roundTrip = "true";
   $scope.cabin = "true";
   $scope.data = {
@@ -20,21 +15,6 @@ App.controller('landingCtrl', function($scope, FlightsSrv, $location, $timeout, 
     showCabin: true,
     showPinging: false
   };
-  //  $scope.dto=new Date();
-  //   $scope.dtr=new Date();
-
-
-
-  //  $scope.$on('$ionicView.enter', function(e) {
-  //    });
-  //  function reload(){
-  //         var current = $state.current;
-  //         var params = angular.copy($stateParams);
-  //         $state.transitionTo(current, params, { reload: true, inherit: true, notify: true });
-
-
-  //.module('MyApp', ['ngMaterial', 'ngMessages', 'material.svgAssetsCache'])
-
 
 
   // list of `state` value/display objects
@@ -91,21 +71,9 @@ App.controller('landingCtrl', function($scope, FlightsSrv, $location, $timeout, 
 
   };
 
-
-
-
-
-
-
   $scope.bookingRef = function() {
     $location.url('/bookingRef');
   };
-
-
-
-  // $scope.cabin="cabin";
-
-  // $scope.roundTrip="roundtrip";
 
 
   $scope.open1 = function() {
@@ -223,15 +191,11 @@ App.controller('landingCtrl', function($scope, FlightsSrv, $location, $timeout, 
     disablePastDays: true,
     disableSwipe: false,
     disableWeekend: false,
-    // disableDates: disableDates,
-    // disableDaysOfWeek: disableDaysOfWeek,
     showDatepicker: false,
     showTodayButton: true,
     calendarMode: false,
     hideCancelButton: false,
     hideSetButton: false,
-
-
   };
   $scope.onezoneDatepicker2 = {
     date: new Date(), // MANDATORY
@@ -243,8 +207,6 @@ App.controller('landingCtrl', function($scope, FlightsSrv, $location, $timeout, 
     disablePastDays: true,
     disableSwipe: false,
     disableWeekend: false,
-    // disableDates: disableDates,
-    // disableDaysOfWeek: disableDaysOfWeek,
     showDatepicker: false,
     showTodayButton: true,
     calendarMode: false,
@@ -254,30 +216,4 @@ App.controller('landingCtrl', function($scope, FlightsSrv, $location, $timeout, 
 
   };
 
-  // var tomorrow = new Date();
-  // tomorrow.setDate(tomorrow.getDate() + 1);
-  // var afterTomorrow = new Date();
-  // afterTomorrow.setDate(tomorrow.getDate() + 1);
-  // $scope.events = [{
-  //     date: tomorrow,
-  //     status: 'full'
-  // }, {
-  //     date: afterTomorrow,
-  //     status: 'partially'
-  // }];
-  //
-  // $scope.getDayClass = function(date, mode) {
-  //     if (mode === 'day') {
-  //         var dayToCheck = new Date(date).setHours(0, 0, 0, 0);
-  //
-  //         for (var i = 0; i < $scope.events.length; i++) {
-  //             var currentDay = new Date($scope.events[i].date).setHours(0, 0, 0, 0);
-  //
-  //             if (dayToCheck === currentDay) {
-  //                 return $scope.events[i].status;
-  //             }
-  //         }
-  //     }
-  //     return '';
-  // };
 });
