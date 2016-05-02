@@ -1,323 +1,173 @@
 App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturnSrv, paymentSrv, $location) {
+  var getOtherPubKey = function(AirlineIP) {
+    paymentSrv.getOtherAirlineIP(AirlineIP).success(function(airlineIP) {
+      console.log(airlineIP);
+      paymentSrv.getOtherStripePubKey(airlineIP).success(function(key) {
+        console.log(key);
+      })
+    });
+  };
+  getOtherPubKey("IBERIA");
+  $scope.tab = "active in";
+  $scope.reservation = ConfirmSrv.getReservation();
+  $scope.totalPrice = OutReturnSrv.getSelectedPrice();
+  $scope.cabin = FlightsSrv.getSelectedCabin();
 
+
+  var roundTrip = FlightsSrv.getSelectedRoundTrip();
+  var outgoingFlight = OutReturnSrv.getSelectedOutFlight();
+  if (roundTrip == 'true')
+    returnFlight = OutReturnSrv.getSelectedReturnFlight();
+  $scope.outCurrency = outgoingFlight.currency;
+
+
+
+  $scope.tab1 = function() {
     $scope.tab = "active in";
-    $scope.reservation = ConfirmSrv.getReservation();
-    $scope.totalPrice = OutReturnSrv.getSelectedPrice();
-    $scope.cabin = FlightsSrv.getSelectedCabin();
+    $scope.tab2 = "";
+  };
+
+  $scope.tab2 = function() {
+    $scope.tab2 = "active in";
+    $scope.tab = "";
+  };
 
 
-    var roundTrip = FlightsSrv.getSelectedRoundTrip();
-    var outgoingFlight = OutReturnSrv.getSelectedOutFlight();
-    if (roundTrip == 'true')
-        returnFlight = OutReturnSrv.getSelectedReturnFlight();
-    $scope.outCurrency = outgoingFlight.currency;
+  var Congrats = function() {
+    $location.url('/congrats');
+  };
 
 
+  $scope.clicked = "clicked";
+  $scope.isShown = function(clicked) {
+    return clicked === $scope.clicked;
+  };
 
-    $scope.tab1 = function() {
-        $scope.tab = "active in";
-        $scope.tab2 = "";
+
+  // var postAPay = function() {
+  //     $scope.bookingRefNumber = $scope.getBookingRef();
+  //     paymentSrv.postPay($scope.reservation, $scope.bookingRefNumber, outgoingFlight, $scope.cabin).success(function()
+  //         {
+  //             if (roundTrip == 'true')
+  //                 paymentSrv.postPay($scope.reservation, $scope.bookingRefNumber, returnFlight, $scope.cabin).success(function(){
+  //                       Congrats();
+  //                 });
+  //         });
+
+  // };
+
+  var SetCardType = function(value) {
+    paymentSrv.setSelectedCardType(value);
+  };
+
+  var SetCardNo = function(value) {
+    paymentSrv.setSelectedCardNo(value);
+  };
+
+  var SetMonth = function(value) {
+    paymentSrv.setSelectedMonth(value);
+  };
+
+  var SetYear = function(value) {
+    paymentSrv.setSelectedYear(value);
+  };
+
+  var SetCVV = function(value) {
+    paymentSrv.setSelectedCVV(value);
+  };
+
+  var SetStreet = function(value) {
+    paymentSrv.setSelectedStreet(value);
+  };
+  var SetInformation = function(value) {
+    paymentSrv.setSelectedInformation(value);
+  };
+  var SetPostalcode = function(value) {
+    paymentSrv.setSelectedPostalcode(value);
+  };
+  var SetCity = function(value) {
+    paymentSrv.setSelectedCity(value);
+  };
+
+
+  $scope.payAction = function() {
+    SetCardType($scope.selectedType);
+    SetCardNo($scope.selectedCardNumber);
+    SetMonth($scope.selectedMonth);
+    SetYear($scope.selectedYear);
+    SetCVV($scope.selectedCVV);
+    SetStreet($scope.selectedStreet);
+    SetInformation($scope.selectedExtra);
+    SetPostalcode($scope.selectedPostalcode);
+    SetCity($scope.SelectedCity);
+    //need here to check if one way or two and put this name attrubute inside createStripeToken method
+    var state = -1;
+    if (FlightsSrv.getSelectedRoundTrip() === 'false') { // if one way
+      AirlineName1 = OutReturnSrv.getSelectedOutFlight().Airline; //  out flight
+      if (AirlineName1 === "IBERIA")
+        state = 0;
+      else
+        state = 1;
+    } else { // else roundtrip
+      AirlineName1 = OutReturnSrv.getSelectedOutFlight().Airline; //  out flight
+      AirlineName2 = OutReturnSrv.getSelectedReturnFlight().Airline;; // return flight
+      if (AirlineName1 === AirlineName2 && AirlineName2 === "IBERIA")
+        state = 2;
+      else
+        state = 3;
     };
+  }
+  var createStripeToken = function() {
 
-    $scope.tab2 = function() {
-        $scope.tab2 = "active in";
-        $scope.tab = "";
-    };
+    Stripe.setPublishableKey('pk_test_fWP8viqFbT95teED8zWD3ieK');
 
+    Stripe.card.createToken({
+      "number": paymentSrv.getSelectedCardNo().toString(),
+      "cvc": paymentSrv.getSelectedCVV(),
+      "exp_month": paymentSrv.getSelectedMonth(),
+      "exp_year": paymentSrv.getSelectedYear()
+    }, stripeResponseHandler);
+  };
 
-    var Congrats = function() {
-        $location.url('/congrats');
-    };
+  var stripeResponseHandler = function(status, response) {
+    if (response.error)
+      alert(response.error.message);
+    else {
+      var returnFlightId;
+      if (FlightsSrv.getSelectedRoundTrip() === 'true')
+        returnFlightId = OutReturnSrv.getSelectedReturnFlight().flightId;
+      var paymentInfo = {
+        "passengerDetails": [{
+          "firstName": ConfirmSrv.getReservation().FName,
+          "lastName": ConfirmSrv.getReservation().LName,
+          "passportNum": ConfirmSrv.getReservation().passportNo,
+          "passportExpiryDate": ConfirmSrv.getReservation().expiryDate, //convert this to moment
+          // "dateOfBirth": moment(ConfirmSrv.getReservation()., 'MMMM D, YYYY hh:mm:ss').toDate().getTime(),
+          // "nationality":  ConfirmSrv.getReservation().,
+          "dateOfBirth": moment("April 12, 2016", 'MMMM D, YYYY hh:mm:ss').toDate().getTime(),
+          "nationality": "Egypt",
+          "email": ConfirmSrv.getReservation().email
 
-
-    $scope.clicked = "clicked";
-    $scope.isShown = function(clicked) {
-        return clicked === $scope.clicked;
-    };
-
-
-     // var postAPay = function() {
-    //     $scope.bookingRefNumber = $scope.getBookingRef();
-    //     paymentSrv.postPay($scope.reservation, $scope.bookingRefNumber, outgoingFlight, $scope.cabin).success(function()
-    //         {
-    //             if (roundTrip == 'true')
-    //                 paymentSrv.postPay($scope.reservation, $scope.bookingRefNumber, returnFlight, $scope.cabin).success(function(){
-    //                       Congrats();
-    //                 });
-    //         });
-
-    // };
-
-    var SetCardType = function(value) {
-        paymentSrv.setSelectedCardType(value);
-    };
-
-    var SetCardNo = function(value) {
-        paymentSrv.setSelectedCardNo(value);
-    };
-
-    var SetMonth = function(value) {
-        paymentSrv.setSelectedMonth(value);
-    };
-
-    var SetYear = function(value) {
-        paymentSrv.setSelectedYear(value);
-    };
-
-    var SetCVV = function(value) {
-        paymentSrv.setSelectedCVV(value);
-    };
-
-    var SetStreet = function(value) {
-        paymentSrv.setSelectedStreet(value);
-    };
-    var SetInformation = function(value) {
-        paymentSrv.setSelectedInformation(value);
-    };
-    var SetPostalcode = function(value) {
-        paymentSrv.setSelectedPostalcode(value);
-    };
-    var SetCity = function(value) {
-        paymentSrv.setSelectedCity(value);
-    };
-
-    $scope.payAction = function() {
-        SetCardType($scope.selectedType);
-        SetCardNo($scope.selectedCardNumber);
-        SetMonth($scope.selectedMonth);
-        SetYear($scope.selectedYear);
-        SetCVV($scope.selectedCVV);
-        SetStreet($scope.selectedStreet);
-        SetInformation($scope.selectedExtra);
-        SetPostalcode($scope.selectedPostalcode);
-        SetCity($scope.SelectedCity);
-        //need here to check if one way or two and put this name attrubute inside createStripeToken method
-        if(FlightsSrv.getSelectedRoundTrip() === 'false'){ // if one way
-          var AirlineName =OutReturnSrv.getSelectedOutFlight().Airline;
-          createStripeToken(AirlineName , "out");
-
-        }
-        else { // else roundtrip
-           AirlineName1  = OutReturnSrv.getSelectedOutFlight().Airline  ;  //  out flight
-           AirlineName2 =  OutReturnSrv.getSelectedReturnFlight().Airline  ;  ;  // return flight
-
-            if ((AirlineName1 === AirlineName2 && AirlineName2 === "IBERIA")){
-          createStripeToken(AirlineName2,"");
-
-        }   else {
-
-          createStripeToken(AirlineName1,"out");
-          createStripeToken(AirlineName2,"");
-        }
-
-        }
-
-
-    };
-
-    // give this methid name and it willl return ip
-      function getIpFromName(airlineName) {
-        paymentSrv.getSingleairLineIp(airlineName).success(function(airlinesiP) {
-          airlineIP = airlinesiP;
-            console.log("airlineIP in ctrl" + airlineIP);
-              return airlineIP;
-        });
-      };
-      // get pup key
-      function getStripeKeyFromName(airlineIP) {
-        paymentSrv.getOtherStripePupKey(airlineIP).success(function(airlinesStripeKey) {
-          stripeKey = airlinesStripeKey;
-            console.log("stripeKey in ctrl" + stripeKey);
-              return stripeKey;
-        });
-      };
-    //
-
-    // create other tocken
-
-
-    // end
-
-    var createStripeToken= function(AirlineName ,outORreturn) {
-        
-        Stripe.setPublishableKey('pk_test_fWP8viqFbT95teED8zWD3ieK');
-//hna msh 3arf awsl lel airline
-
-      if( !(AirlineName  === "IBERIA")){// if airline name not equal ours get ip of other airline thrn query to get the pupkey then set out stripe pup key
-        // getIpFromName(AirlineName);
-        // console.log("inside if " +AirlineName);
-        //   console.log(airlineIP);
-        // getStripeKeyFromName(airlineIP);
-        // console.log(stripeKey);
-        // Stripe.setPublishableKey(stripeKey);
-      //  console.log("pup key " + getStripeKeyFromName("54.93.36.94"));
-
-
-        getIpFromName(AirlineName , function(err , cb){
-                  console.log("finsh ip ");
-
-              getStripeKeyFromName(airlineIP , function(err , data ){
-                    console.log("finsh key ");
-                    console.log("finsh key "+ data);
-
-                  Stripe.setPublishableKey(stripeKey);
-                      // hna hn7ot kol 7aga
-
-                      console.log("flight : " + flight_cost);
-
-                      if(outORreturn === "out"){// if out
-                        flight_cost = OutReturnSrv.getSelectedOutFlight().cost;
-                        console.log("flight 2: " + flight_cost) ;
-                      }
-                      else {// else return
-
-                        flight_cost = OutReturnSrv.getSelectedReturnFlight().cost ;
-
-
-                console.log("flight 3 : " + flight_cost) ;
-                      }
-                      if ( (!(outORreturn  === "out")) &&(AirlineName1 === AirlineName2 && AirlineName2 === "IBERIA")){
-                                 console.log("inside of " + OutReturnSrv.getSelectedReturnFlight().cost) ;
-                                 console.log("inside of " + (OutReturnSrv.getSelectedOutFlight().cost)) ;
-                        flight_cost = (OutReturnSrv.getSelectedReturnFlight().cost)+ (OutReturnSrv.getSelectedOutFlight().cost) ;
-
-                console.log("inside of ") ;
-                      }
-                      console.log("flight 4 : " + flight_cost) ;
-                        Stripe.card.createToken({
-
-                            "number": paymentSrv.getSelectedCardNo().toString(),
-                            "cvc": paymentSrv.getSelectedCVV(),
-                            "exp_month": paymentSrv.getSelectedMonth(),
-                            "exp_year": paymentSrv.getSelectedYear()
-                            }, stripeResponseHandler);
-
-                                cb(null,data);
-                        // nhayt kol 7aga
-
-
-
-
-              });
-
-
-
-
-          });
-
-
-      } // end of if
-      else {
-
-      console.log("flight : " + flight_cost);
-
-      if(outORreturn === "out"){// if out
-        flight_cost = OutReturnSrv.getSelectedOutFlight().cost;
-        console.log("flight 2: " + flight_cost) ;
+        }],
+        "class": FlightsSrv.getSelectedCabin(),
+        "cost": flight_cost * 100,
+        "outgoingFlightId": OutReturnSrv.getSelectedOutFlight().flightId,
+        "returnFlightId": returnFlightId,
+        "paymentToken": response.id,
+        "IP": airlineIP
       }
-      else {// else return
-
-        flight_cost = OutReturnSrv.getSelectedReturnFlight().cost ;
-
-
-console.log("flight 3 : " + flight_cost) ;
-      }
-      if ( (!(outORreturn  === "out")) &&(AirlineName1 === AirlineName2 && AirlineName2 === "IBERIA")){
-                 console.log("inside of " + OutReturnSrv.getSelectedReturnFlight().cost) ;
-                 console.log("inside of " + (OutReturnSrv.getSelectedOutFlight().cost)) ;
-        flight_cost = (OutReturnSrv.getSelectedReturnFlight().cost)+ (OutReturnSrv.getSelectedOutFlight().cost) ;
-
-console.log("inside of ") ;
-      }
-      console.log("flight 4 : " + flight_cost) ;
-        Stripe.card.createToken({
-
-            "number": paymentSrv.getSelectedCardNo().toString(),
-            "cvc": paymentSrv.getSelectedCVV(),
-            "exp_month": paymentSrv.getSelectedMonth(),
-            "exp_year": paymentSrv.getSelectedYear()
-            }, stripeResponseHandler);
-
-          }  // end of else
-    };
-    var stripeResponseHandler= function(status, response){
-        if (response.error)
-            alert(response.error.message);
-        else
-        {
-           var returnFlightId;
-           if (FlightsSrv.getSelectedRoundTrip() === 'true')
-               returnFlightId= OutReturnSrv.getSelectedReturnFlight().flightId;
-           var paymentInfo =
-           {
-                "passengerDetails":[{
-
-                    "firstName": ConfirmSrv.getReservation().FName,
-                    "lastName": ConfirmSrv.getReservation().LName,
-                    "passportNum": ConfirmSrv.getReservation().passportNo,
-                    "passportExpiryDate": ConfirmSrv.getReservation().expiryDate, //convert this to moment
-                    // "dateOfBirth": moment(ConfirmSrv.getReservation()., 'MMMM D, YYYY hh:mm:ss').toDate().getTime(),
-                    // "nationality":  ConfirmSrv.getReservation().,
-                    "dateOfBirth": moment("April 12, 2016", 'MMMM D, YYYY hh:mm:ss').toDate().getTime(),
-                    "nationality": "Egypt",
-                    "email": ConfirmSrv.getReservation().email
-
-                }],
-                "class": FlightsSrv.getSelectedCabin(),
-                "cost": flight_cost * 100,
-                "outgoingFlightId":  OutReturnSrv.getSelectedOutFlight().flightId,
-                "returnFlightId": returnFlightId,
-                "paymentToken": response.id ,
-                "IP":  airlineIP
-            }
-           paymentSrv.chargeCard(paymentInfo)
-           .success(function(data, status, headers, config) {
-                console.log(data);
-                paymentSrv.setBookingRefNo(data.refNum);
-                //reset stripe key
-                      Stripe.setPublishableKey('pk_test_fWP8viqFbT95teED8zWD3ieK');
-
-
-                Congrats();
-
-                console.log(paymentInfo);
-            });
-       }
-
-    };
-    //NARIHAN
-    $scope.getBookingRef = function() {
-        //encode and get the first part of the outgoing date
-        var card = $scope.selectedCardNumber;
-        //
-        var outFlightNo = OutReturnSrv.getSelectedOutFlight().flightNumber;
-        var str = card + "," + outFlightNo;
-        var enc = window.btoa(str);
-        var dec = window.atob(enc);
-
-        var res = enc;
-
-        // "<br>" + "Decoded String: " + dec;
-        document.getElementById("ptag").innerHTML = "Booking Reference:(please copy it for further tracking):" + "<br>";
-        document.getElementById("demo").innerHTML = res;
-
-        var copyTextareaBtn = document.querySelector('.js-textareacopybtn');
-
-        copyTextareaBtn.addEventListener('click', function(event) {
-            var copyTextarea = document.querySelector('.js-copytextarea');
-            copyTextarea.select();
-
-            try {
-                var successful = document.execCommand('copy');
-                var msg = successful ? 'successful' : 'unsuccessful';
-                console.log('Copying text command was ' + msg);
-            } catch (err) {
-                console.log('Oops, unable to copy');
-            }
+      paymentSrv.chargeCard(paymentInfo)
+        .success(function(data, status, headers, config) {
+          console.log(data);
+          paymentSrv.setBookingRefNo(data.refNum);
+          //reset stripe key
+          Stripe.setPublishableKey('pk_test_fWP8viqFbT95teED8zWD3ieK');
+          Congrats();
+          console.log(paymentInfo);
         });
-        return enc;
-    };
+    }
 
-    //End of Narihan
+  };
+  //End of Narihan
 
 });

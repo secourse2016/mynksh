@@ -43,9 +43,12 @@ module.exports = function(app, mongo) {
   // get ip of given airline name
   app.get('/data/singleAirline/:airlineName', function(req, res) {
     // mongo.getAirports(function(err, airports) {
-    mongo.getAirLineIP(req.params.airlineName, function(err, airLineIPAdress) {
-      res.json(airLineIPAdress);
-    })
+    if (req.params.airlineName === "IBERIA")
+      res.json("IBERIA");
+    else
+      mongo.getAirLineIP(req.params.airlineName, function(err, airLineIPAdress) {
+        res.json(airLineIPAdress);
+      })
 
   });
   // end of get ip method
@@ -342,7 +345,7 @@ module.exports = function(app, mongo) {
 
   // return /stripe/pubkey
   app.get('/stripe/pubkey', function(req, res) {
-    res.end('pk_test_fWP8viqFbT95teED8zWD3ieK');
+    res.json('pk_test_fWP8viqFbT95teED8zWD3ieK');
 
   });
   //end of return /stripe/pubkey
