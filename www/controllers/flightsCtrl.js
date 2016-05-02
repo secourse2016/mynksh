@@ -37,11 +37,12 @@ App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $locati
   // $scope.cabin = 'economy';
 
 
-
+  console.log(FlightsSrv.getPinging().toString());
   if (FlightsSrv.getPinging().toString() === 'true')
-    pingAirlineR($scope.origin, $scope.dest, changeISOFormat($scope.oDate), changeISOFormat($scope.rDate));
-  else
-    pingAirlineS($scope.origin, $scope.dest, changeISOFormat($scope.oDate));
+    if ($scope.roundTrip === 'true')
+      pingAirlineR($scope.origin, $scope.dest, changeISOFormat($scope.oDate), changeISOFormat($scope.rDate));
+    else
+      pingAirlineS($scope.origin, $scope.dest, changeISOFormat($scope.oDate));
 
   if ($scope.roundTrip === 'true')
     roundTripInfo($scope.origin, $scope.dest, changeISOFormat($scope.oDate), changeISOFormat($scope.rDate));
