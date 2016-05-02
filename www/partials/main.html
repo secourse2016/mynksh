@@ -89,7 +89,7 @@
                            {{onezoneDatepicker.date | date:'dd MMMM yyyy'}}
                          </button>
                        </onezone-datepicker> -->
-            <md-datepicker ng-required='true' ng-model="$parent.dto" md-min-date="minDate" name="outgoing" md-placeholder="Enter date"></md-datepicker>
+            <md-datepicker ng-required='true'  md-min-date="minDate" name="outgoing" md-placeholder="Enter date" ng-model="$parent.dto"></md-datepicker>
             <span style='color:red' ng-show="(flights.outgoing.$error.required) ">Outgoing Date required</span>
           </ion-list>
           <ion-list>
@@ -99,8 +99,8 @@
                         {{onezoneDatepicker2.date | date:'dd MMMM yyyy'}}
                       </button>
                     </onezone-datepicker> -->
-            <md-datepicker ng-required='true' name='return' ng-model="$parent.dtr" md-min-date="$parent.dto" md-placeholder="Enter date" ></md-datepicker>
-            <span style='color:red' ng-show="(flights.return.$error.required) ">Return Date required</span>
+            <md-datepicker ng-required='true' md-max-date='currentDate' name='return' ng-model="$parent.dtr" md-min-date="$parent.dto" md-placeholder="Enter date" ></md-datepicker>
+            <span style='color:red' ng-show="(flights.return.$error.required)">Return Date required</span>
           </ion-list>
         </div>
         <div ng-show="data.showDelete">
@@ -127,7 +127,7 @@
     </div>
     <div class="list list-inset">
         <ion-list>
-          <md-checkbox style="color:black" ng-model="pinging" aria-label="Ping Other Airlines" value="true">Ping Other Arlines</md-checkbox>
+          <md-checkbox style="color:black"  ng-model="pinging" value="true" aria-label="Ping Other Airlines" >Ping Other Arlines</md-checkbox>
           <!-- <input ng-model="pinging" type="checkbox" value="true" /> -->
         </ion-list>
     </div>
