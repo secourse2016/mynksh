@@ -2,15 +2,20 @@
 App.factory('paymentSrv', function($http) {
     return {
 
-        postPay: function(reservation,  outgoingFlight , cabin) {
+        postPayS: function(reservation,  outgoingFlight , cabin) {
             return $http.get('http://localhost:8080/data/pay/'+ reservation.FName + '/' + reservation.LName + '/' + reservation.country + '/' + reservation.passportNo+'/'+
             reservation.issueDate+'/'+ reservation.expiryDate + '/' + reservation.email + '/' + reservation.phoneno + '/'+outgoingFlight.flightNumber+'/'+cabin);
         },
-        postPay: function(reservation,  outgoingFlight , returnFlight , cabin) {
+        postPayR: function(reservation,  outgoingFlight , returnFlight , cabin) {
             return $http.get('http://localhost:8080/data/pay/'+ reservation.FName + '/' + reservation.LName + '/' + reservation.country + '/' + reservation.passportNo+'/'+
             reservation.issueDate+'/'+ reservation.expiryDate + '/' + reservation.email + '/' + reservation.phoneno + '/' +outgoingFlight.flightNumber+
             '/'+returnFlight.flightNumber+'/'+cabin);
         },
+        // postPay: function(reservation,  outgoingFlight , returnFlight , cabin) {
+        //     return $http.get('http://localhost:8080/data/pay/'+ "safa" + '/' + "radwa" + '/' + "cairo" + '/' + "0105"+'/'+
+        //     2016-01-01+'/'+   2016-0-01 + '/' + "radwa_Ads" + '/' + 01061575730 + '/' +outgoingFlight.flightNumber+
+        //     '/'+returnFlight.flightNumber+'/'+cabin);
+        // },
         getSelectedCardType: function() {
             return this.SelectedCardType;
         },
