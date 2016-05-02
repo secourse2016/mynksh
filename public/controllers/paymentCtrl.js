@@ -3,7 +3,7 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
     $scope.tab = "active in";
     //$scope.stripeError=false;
     //$scope.stripeErrorDescription="";
-    var airlineIP ="";
+    var airlineIP ="52.58.24.76";
     var flight_cost =  0 ;
     $scope.reservation = ConfirmSrv.getReservation();
     $scope.totalPrice = OutReturnSrv.getSelectedPrice();
