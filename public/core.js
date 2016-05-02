@@ -58,6 +58,6 @@ App.config(function($routeProvider) {
       templateUrl: '/partials/teamMembers.html'
 
     });
-    
+
 
 });

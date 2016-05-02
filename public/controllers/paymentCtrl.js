@@ -3,9 +3,11 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
     $scope.tab = "active in";
     //$scope.stripeError=false;
     //$scope.stripeErrorDescription="";
+    $scope.airlineIP ="";
     $scope.reservation = ConfirmSrv.getReservation();
     $scope.totalPrice = OutReturnSrv.getSelectedPrice();
     $scope.cabin = FlightsSrv.getSelectedCabin();
+    var stripeKey = "" ;
     var roundTrip = FlightsSrv.getSelectedRoundTrip();
     var outgoingFlight = OutReturnSrv.getSelectedOutFlight();
     if (roundTrip == 'true')
@@ -45,7 +47,7 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
     //                       Congrats();
     //                 });
     //         });
-        
+
     // };
 
     var SetCardType = function(value) {
@@ -91,19 +93,43 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
         SetInformation($scope.selectedExtra);
         SetPostalcode($scope.selectedPostalcode);
         SetCity($scope.SelectedCity);
+        //need here to check if one way or two and put this name attrubute inside createStripeToken method
         createStripeToken();
-        
-        
+
+
     };
 
-    var createStripeToken= function() {
+    // give this methid name and it willl return ip
+      function getIpFromName(airlineName) {
+        paymentSrv.getSingleairLineIp(airlineName).success(function(airlinesiP) {
+          $scope.airlineIP = airlinesiP;
+        });
+      };
+      // get pup key
+      function getStripeKeyFromName(airlineIP) {
+        paymentSrv.getOtherStripePupKey(airlineIP).success(function(airlinesStripeKey) {
+          stripeKey = airlinesStripeKey;
+        });
+      };
+    //
 
-        
+    var createStripeToken= function(AirlineName) {
+//hna msh 3arf awsl lel airline
+      if( !(AirlineName  === "IBERIA")){// if airline name not equal ours get ip of other airline thrn query to get the pupkey then set out stripe pup key
+        getIpFromName(airlineName);
+        getStripeKeyFromName($scope.airlineIP);
+        Stripe.setPublishableKey(stripeKey);
+
+
+      }
+
+
         Stripe.setPublishableKey('pk_test_fWP8viqFbT95teED8zWD3ieK');
         Stripe.card.createToken({
+
             "number": paymentSrv.getSelectedCardNo().toString(),
-            "cvc": paymentSrv.getSelectedCVV(), 
-            "exp_month": paymentSrv.getSelectedMonth(), 
+            "cvc": paymentSrv.getSelectedCVV(),
+            "exp_month": paymentSrv.getSelectedMonth(),
             "exp_year": paymentSrv.getSelectedYear()
             }, stripeResponseHandler);
     };
@@ -115,32 +141,42 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
            var returnFlightId;
            if (FlightsSrv.getSelectedRoundTrip() === 'true')
                returnFlightId= OutReturnSrv.getSelectedReturnFlight().flightId;
-           var paymentInfo = 
+           var paymentInfo =
            {
                 "passengerDetails":[{
-                    "firstName": ConfirmSrv.getReservation().FName, 
-                    "lastName": ConfirmSrv.getReservation().LName,  
-                    "passportNum": ConfirmSrv.getReservation().passportNo, 
+
+                    "firstName": ConfirmSrv.getReservation().FName,
+                    "lastName": ConfirmSrv.getReservation().LName,
+                    "passportNum": ConfirmSrv.getReservation().passportNo,
                     "passportExpiryDate": ConfirmSrv.getReservation().expiryDate, //convert this to moment
                     // "dateOfBirth": moment(ConfirmSrv.getReservation()., 'MMMM D, YYYY hh:mm:ss').toDate().getTime(),
                     // "nationality":  ConfirmSrv.getReservation().,
                     "dateOfBirth": moment("April 12, 2016", 'MMMM D, YYYY hh:mm:ss').toDate().getTime(),
-                    "nationality": "Egypt", 
-                    "email": ConfirmSrv.getReservation().email 
+                    "nationality": "Egypt",
+                    "email": ConfirmSrv.getReservation().email
+
                 }],
-                "class": FlightsSrv.getSelectedCabin(),  
+                "class": FlightsSrv.getSelectedCabin(),
                 "cost": OutReturnSrv.getSelectedPrice() * 100,
-                "outgoingFlightId":  OutReturnSrv.getSelectedOutFlight().flightId, 
-                "returnFlightId": returnFlightId, 
-                "paymentToken": response.id 
+                "outgoingFlightId":  OutReturnSrv.getSelectedOutFlight().flightId,
+                "returnFlightId": returnFlightId,
+                "paymentToken": response.id ,
+                "IP":  $sope.airlineIP
             }
            paymentSrv.chargeCard(paymentInfo)
            .success(function(data, status, headers, config) {
+
+
+                //reset stripe key
+                      Stripe.setPublishableKey('pk_test_fWP8viqFbT95teED8zWD3ieK');
+
+
                 Congrats();
+
                 console.log(paymentInfo);
             });
        }
-        
+
     };
     //NARIHAN
     $scope.getBookingRef = function() {
