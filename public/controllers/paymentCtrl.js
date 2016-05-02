@@ -1,15 +1,17 @@
 App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturnSrv, paymentSrv, $location) {
 
     $scope.tab = "active in";
-    $scope.reservation = ConfirmSrv.getReservation();
+    $scope.reservations = ConfirmSrv.getReservations();
     $scope.totalPrice = OutReturnSrv.getSelectedPrice();
     $scope.cabin = FlightsSrv.getSelectedCabin();
     var roundTrip = FlightsSrv.getSelectedRoundTrip();
     var outgoingFlight = OutReturnSrv.getSelectedOutFlight();
     if (roundTrip == 'true')
         returnFlight = OutReturnSrv.getSelectedReturnFlight();
-    $scope.outCurrency = outgoingFlight.currency;
+    if(outgoingFlight != undefined)
+      $scope.outCurrency = outgoingFlight.currency;
 
+    console.log($scope.reservations);
 
 
     $scope.tab1 = function() {
@@ -35,17 +37,13 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
 
     var postAPay = function() {
         if (roundTrip == 'true')
-            paymentSrv.postPay($scope.reservation, outgoingFlight, returnFlight, $scope.cabin).success(function(data){
+            paymentSrv.postPay($scope.reservations, outgoingFlight, returnFlight, $scope.cabin).success(function(data){
                paymentSrv.setBookingRefNo(data.encoding);
             });
         else
-            paymentSrv.postPay($scope.reservation, outgoingFlight, $scope.cabin).success(function(data){
+            paymentSrv.postPay($scope.reservations, outgoingFlight, $scope.cabin).success(function(data){
                 paymentSrv.setBookingRefNo(data.encoding);
             });
-    };
-
-    var SetCardType = function(value) {
-        paymentSrv.setSelectedCardType(value);
     };
 
     var SetCardNo = function(value) {
@@ -64,31 +62,12 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
         paymentSrv.setSelectedCVV(value);
     };
 
-    var SetStreet = function(value) {
-        paymentSrv.setSelectedStreet(value);
-    };
-    var SetInformation = function(value) {
-        paymentSrv.setSelectedInformation(value);
-    };
-    var SetPostalcode = function(value) {
-        paymentSrv.setSelectedPostalcode(value);
-    };
-    var SetCity = function(value) {
-        paymentSrv.setSelectedCity(value);
-    };
-
     $scope.payAction = function() {
         postAPay();
-        SetCardType($scope.selectedType);
         SetCardNo($scope.selectedCardNumber);
         SetMonth($scope.selectedMonth);
         SetYear($scope.selectedYear);
         SetCVV($scope.selectedCVV);
-        SetStreet($scope.selectedStreet);
-        SetInformation($scope.selectedExtra);
-        SetPostalcode($scope.selectedPostalcode);
-        SetCity($scope.SelectedCity);
-        Congrats();
     };
 
 });
