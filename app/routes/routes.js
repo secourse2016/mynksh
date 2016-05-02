@@ -46,18 +46,12 @@ module.exports = function(app, mongo) {
             res.json(bookingRef);
         });
     });
-
-    app.get('/data/pay/:firstName/:lastName/:passport/:passportNumber/:issueDate/:expiryDate/:email/:phoneNumber/:bookingRefNumber/:flightNumber/:flightCabin', function(req, res) {
-        mongo.submitPay(req.params.firstName, req.params.lastName, req.params.passport, req.params.passportNumber, req.params.issueDate, req.params.expiryDate, req.params.email, req.params.phoneNumber, req.params.bookingRefNumber, req.params.flightNumber, req.params.flightCabin, function(err, data) {
-            // var card = $scope.selectedCardNumber;
-            // var outFlightNo = OutReturnSrv.getSelectedOutFlight().flightNumber;
-            // var str = card + "," + outFlightNo;
-            // var enc = window.btoa(str);
-            // var dec = window.atob(enc);
-            //
-            // var res = enc;
-        });
-    });
+    // app.get('/data/pay/:firstName/:lastName/:passport/:passportNumber/:issueDate/:expiryDate/:email/:phoneNumber/:bookingRefNumber/:flightNumber/:flightCabin', function(req, res) {
+    //     console.log('in routes');
+    //     mongo.submitPay(req.params.firstName, req.params.lastName, req.params.passport, req.params.passportNumber, req.params.issueDate, req.params.expiryDate, req.params.email, req.params.phoneNumber, req.params.bookingRefNumber, req.params.flightNumber, req.params.flightCabin, function(err, data) {
+    //         res.end();
+    //     });
+    // });
 
     app.get('/api/others/search/:ip/:origin/:destination/:departingDate/:returningDate/:cabin/:seats/:wt', function(req, res1) {
         var options = {
@@ -122,7 +116,7 @@ module.exports = function(app, mongo) {
             res.on('data', function(chunk) {
                 body += chunk;
                 clearTimeout(timeout);
-                timeout = setTimeout(fn, 10000);
+                timeout = setTimeout(fn, 1000);
             });
             res.on('end', function() {
                 try {
@@ -166,8 +160,10 @@ module.exports = function(app, mongo) {
             res.status(403).sendFile(__dirname + '../../public/views/error.html');
         }
     });
+
     app.post('/booking', function(req, res1){
       if((req.body.ip) === "our ip an amsh 3arfo :D"){
+
 
 
         stripe.charges.create({
@@ -180,11 +176,28 @@ module.exports = function(app, mongo) {
                 res.send({ refNum: null, errorMessage: err});
             }
             else
+
             {
-                //move booking here / m7tagen nzbt l submit 3lshan ta5od mn l body parser
-                //res.send(charge);
-                console.log(charge);
-                res.end();
+                //move booking here
+                if(req.body.returnFlightId===undefined)
+                {
+                    mongo.submitPay(req.body.passengerDetails[0].firstName, req.body.passengerDetails[0].lastName, req.body.passengerDetails[0].passportNum,req.body.passengerDetails[0].passportExpiryDate, req.body.passengerDetails[0].dateOfBirth, req.body.passengerDetails[0].nationality, req.body.passengerDetails[0].email, req.body.class, req.body.cost, req.body.outgoingFlightId, true, function(err, data) {
+                            //console.log("RefNum  " + data + "err" + err);
+                            res.send({refNum: data, errorMessage: null});
+                    });
+
+                }
+                else
+                {
+                    mongo.submitPay(req.body.passengerDetails[0].firstName, req.body.passengerDetails[0].lastName, req.body.passengerDetails[0].passportNum,req.body.passengerDetails[0].passportExpiryDate, req.body.passengerDetails[0].dateOfBirth, req.body.passengerDetails[0].nationality, req.body.passengerDetails[0].email, req.body.class, req.body.cost, req.body.outgoingFlightId, true, function(err, data) {
+                        //console.log(data);
+                        mongo.submitPay(req.body.passengerDetails[0].firstName, req.body.passengerDetails[0].lastName, req.body.passengerDetails[0].passportNum,req.body.passengerDetails[0].passportExpiryDate, req.body.passengerDetails[0].dateOfBirth, req.body.passengerDetails[0].nationality, req.body.passengerDetails[0].email, req.body.class, req.body.cost, req.body.returnFlightId, data, function(err, data) {
+                            //console.log("RefNum  " + data + "err" + err);
+                            res.send({refNum: data, errorMessage: null});
+                        });
+                    });
+                }
+
             }
         });
       } else {    // i will make post request sending all data which will posting in database to others Airlines
