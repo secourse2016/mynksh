@@ -61,12 +61,12 @@ exports.getAirLines = function(cb) {
 //get from data base ip
 exports.getAirLineIP = function(airLineName,cb) {
     var collection = mongo.db().collection('airLines');
-    collection.find({"name": airLineName} ).toArray(function(err, airLine) {
-      if(airLine[0] === null){
+    collection.find({"name": (airLineName+" Airlines") } ).toArray(function(err, airLine) {
+      if(airLine === undefined || airLine[0] === undefined){
       cb(err, "No ip with this Name");
 
 }
-console.log(airLine[0]);
+console.log("airline in api"+airLine[0].ip);
 var airLineIP = airLine[0].ip;
         cb(err, airLineIP);
     });
