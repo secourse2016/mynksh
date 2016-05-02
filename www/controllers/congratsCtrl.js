@@ -1,7 +1,7 @@
-App.controller('congratsCtrl', function($scope,paymentSrv) {
+App.controller('congratsCtrl', function($scope,$location,paymentSrv) {
 
 	// $scope.bookingRefNo = paymentSrv.getBookingRefNo();
-		$scope.bookingRefNo = "US0011";
+		$scope.bookingRefNo = "NUEsTVlOS1NINjgyfs";
 
 	$scope.copy = function(){
         var copyTextarea = document.querySelector('.js-copytextarea');
@@ -15,4 +15,8 @@ App.controller('congratsCtrl', function($scope,paymentSrv) {
             console.log('Oops, unable to copy');
         }
     };
+		$scope.landing = function() {
+				$location.url('/book');
+		};
+
 });

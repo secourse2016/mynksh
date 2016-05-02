@@ -1,14 +1,11 @@
 
 <ion-view title="Congratulations!">
-  <!-- <link rel="stylesheet" href="../css/style.css" /> -->
-
 
       <ion-content style="background-color:maroon">
 
         <div id="logo">
-            <br><br><br>
+            <br><br>
           <center>
-            <!-- <h4 style='color:white'>Congratulations</h4> -->
             <center><h4 Style = 'color:white;family-font:"Lucida Sans Unicode"'>You booked with</h4>
               <br>
                   <img src="/img/iberia-logo.png">
@@ -17,28 +14,18 @@
           </center>
         </div>
 
-
-
-
-
   </ion-item>
-<br><br><br>
+<br><br>
 <font size ='4'  Style = 'color:white;family-font:"Lucida Sans Unicode" ; float:left'>Booking reference:</font>
   <textarea class="js-copytextarea"readonly  style="width: 150px; height: 50px; color:white; margin-left:180px; background-color: maroon">
   {{bookingRefNo}} </textarea>
-  <!-- <button class="button button-stable"  ng-click='copy();'>
-  Copy my booking reference
-</button> -->
 <center><button class="button button-outline button-positive" style = "border: 1px solid #000;
   background:maroon" ng-click='copy();'>
     <font style="color:white">Copy my booking reference</font>
 </button></center>
 <br><br>
 <center><button class="button icon-left ion-home"
-  style = "border: 1px solid #000; background:maroon"><font style="color:white">Go back to home page</font></button></center>
-
-
-
+  style = "border: 1px solid #000; background:maroon"  ng-click= 'landing();'><font style="color:white">Go back to home page</font></button></center>
 
       </ion-content>
 

@@ -91,7 +91,7 @@ App.config(function($stateProvider, $urlRouterProvider, $mdIconProvider,$mdDateL
   .state('congrats', {
     url: '/congrats',
     templateUrl: '/partials/congrats.html',
-    // controller: ''
+    controller: 'congratsCtrl'
   })
   //
   // // route for the booking Reference page
@@ -102,6 +102,6 @@ App.config(function($stateProvider, $urlRouterProvider, $mdIconProvider,$mdDateL
   });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/congrats');
+  $urlRouterProvider.otherwise('/');
 
 });
