@@ -234,7 +234,7 @@
                         <div class="col-md-12 col-sm-12 text-right">
                             <button type="button" class="btn btn-primary btn-lg" style="background:rgba(178,34,34, 1)" ng-disabled="reviewForm.$invalid || !accepted" ng-click=" payAction();">Pay</button>
 
-                            <a href="http://mynksh.com">
+                            <a href="#" onclick="location.href = document.referrer; return false;">
                                 <button type="button" class="btn btn-primary btn-lg" style="background:rgba(178,34,34, 1)">Cancel</button>
                             </a>
                             <div ng-show="reviewForm.$invalid || !accepted">
