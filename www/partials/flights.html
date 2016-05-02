@@ -71,9 +71,9 @@
     </md-list>
 
     <div ng-show="roundTrip === 'true'">
-        <div id='return'  class="animated slideInRight">
-            <h3><img src='../assets/returnPlane.png'>Return: From {{dest}} to {{origin}}<small></br>{{rDate |date}}</small></h3>
-        </div>
+      <div id='return' class="animated slideInRight">
+        <h3><img src='../assets/returnPlane.png'>Return: From {{dest}} to {{origin}}<small></br>{{rDate |date}}</small></h3>
+      </div>
       <md-list ng-cloak>
         <md-subheader class="md-no-sticky">Return flights</md-subheader>
         <div ng-repeat="flight in returnInfo">
@@ -93,12 +93,12 @@
       </md-list>
 
       <div id='price'>
-          <blockquote>
-              <p>Price:</p>
-              <h3>{{(selectedReturnFlight.cost + selectedOutgoingFlight.cost) | currency:"€"}}</h3>
-              <span ng-show="RadioSelected" style="color: red">Flight(s) must be selected</span>
-          </blockquote>
-          <a href class="btn btn-primary btn-lg hvr-underline-from-center" ng-click='BookFlight()'>Book Flight</a>
+        <blockquote>
+          <p>Price:</p>
+          <h3>{{(selectedReturnFlight.cost + selectedOutgoingFlight.cost) | currency:"€"}}</h3>
+          <span ng-show="RadioSelected" style="color: red">Flight(s) must be selected</span>
+        </blockquote>
+        <a href class="btn btn-primary btn-lg hvr-underline-from-center" ng-click='BookFlight()'>Book Flight</a>
       </div>
 
   </ion-content>
