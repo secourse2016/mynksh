@@ -1,16 +1,11 @@
 App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturnSrv, paymentSrv, $location) {
 
     $scope.tab = "active in";
-    //$scope.stripeError=false;
-    //$scope.stripeErrorDescription="";
-    var airlineIP ="52.58.24.76";
-    var flight_cost =  0 ;
-    var AirlineName1 ="";
-    var AirlineName2 = "" ;
     $scope.reservation = ConfirmSrv.getReservation();
     $scope.totalPrice = OutReturnSrv.getSelectedPrice();
     $scope.cabin = FlightsSrv.getSelectedCabin();
-    var stripeKey = "" ;
+
+
     var roundTrip = FlightsSrv.getSelectedRoundTrip();
     var outgoingFlight = OutReturnSrv.getSelectedOutFlight();
     if (roundTrip == 'true')
@@ -98,7 +93,7 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
         SetCity($scope.SelectedCity);
         //need here to check if one way or two and put this name attrubute inside createStripeToken method
         if(FlightsSrv.getSelectedRoundTrip() === 'false'){ // if one way
-          var AirlineName =OutReturnSrv.getSelectedOutFlight().Airline  ;
+          var AirlineName =OutReturnSrv.getSelectedOutFlight().Airline;
           createStripeToken(AirlineName , "out");
 
         }
@@ -124,27 +119,95 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
       function getIpFromName(airlineName) {
         paymentSrv.getSingleairLineIp(airlineName).success(function(airlinesiP) {
           airlineIP = airlinesiP;
+            console.log("airlineIP in ctrl" + airlineIP);
+              return airlineIP;
         });
       };
       // get pup key
       function getStripeKeyFromName(airlineIP) {
         paymentSrv.getOtherStripePupKey(airlineIP).success(function(airlinesStripeKey) {
           stripeKey = airlinesStripeKey;
+            console.log("stripeKey in ctrl" + stripeKey);
+              return stripeKey;
         });
       };
     //
 
+    // create other tocken
+
+
+    // end
+
     var createStripeToken= function(AirlineName ,outORreturn) {
+        
         Stripe.setPublishableKey('pk_test_fWP8viqFbT95teED8zWD3ieK');
 //hna msh 3arf awsl lel airline
 
       if( !(AirlineName  === "IBERIA")){// if airline name not equal ours get ip of other airline thrn query to get the pupkey then set out stripe pup key
-        getIpFromName(AirlineName);
-        getStripeKeyFromName(airlineIP);
-        Stripe.setPublishableKey(stripeKey);
+        // getIpFromName(AirlineName);
+        // console.log("inside if " +AirlineName);
+        //   console.log(airlineIP);
+        // getStripeKeyFromName(airlineIP);
+        // console.log(stripeKey);
+        // Stripe.setPublishableKey(stripeKey);
+      //  console.log("pup key " + getStripeKeyFromName("54.93.36.94"));
 
 
-      }
+        getIpFromName(AirlineName , function(err , cb){
+                  console.log("finsh ip ");
+
+              getStripeKeyFromName(airlineIP , function(err , data ){
+                    console.log("finsh key ");
+                    console.log("finsh key "+ data);
+
+                  Stripe.setPublishableKey(stripeKey);
+                      // hna hn7ot kol 7aga
+
+                      console.log("flight : " + flight_cost);
+
+                      if(outORreturn === "out"){// if out
+                        flight_cost = OutReturnSrv.getSelectedOutFlight().cost;
+                        console.log("flight 2: " + flight_cost) ;
+                      }
+                      else {// else return
+
+                        flight_cost = OutReturnSrv.getSelectedReturnFlight().cost ;
+
+
+                console.log("flight 3 : " + flight_cost) ;
+                      }
+                      if ( (!(outORreturn  === "out")) &&(AirlineName1 === AirlineName2 && AirlineName2 === "IBERIA")){
+                                 console.log("inside of " + OutReturnSrv.getSelectedReturnFlight().cost) ;
+                                 console.log("inside of " + (OutReturnSrv.getSelectedOutFlight().cost)) ;
+                        flight_cost = (OutReturnSrv.getSelectedReturnFlight().cost)+ (OutReturnSrv.getSelectedOutFlight().cost) ;
+
+                console.log("inside of ") ;
+                      }
+                      console.log("flight 4 : " + flight_cost) ;
+                        Stripe.card.createToken({
+
+                            "number": paymentSrv.getSelectedCardNo().toString(),
+                            "cvc": paymentSrv.getSelectedCVV(),
+                            "exp_month": paymentSrv.getSelectedMonth(),
+                            "exp_year": paymentSrv.getSelectedYear()
+                            }, stripeResponseHandler);
+
+                                cb(null,data);
+                        // nhayt kol 7aga
+
+
+
+
+              });
+
+
+
+
+          });
+
+
+      } // end of if
+      else {
 
       console.log("flight : " + flight_cost);
 
@@ -174,6 +237,8 @@ console.log("inside of ") ;
             "exp_month": paymentSrv.getSelectedMonth(),
             "exp_year": paymentSrv.getSelectedYear()
             }, stripeResponseHandler);
+
+          }  // end of else
     };
     var stripeResponseHandler= function(status, response){
         if (response.error)
