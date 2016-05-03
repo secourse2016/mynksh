@@ -1,21 +1,12 @@
 <script src="../css/payment.css">
 </script>
 <ion-view title="Payment">
-
   <ion-content class="has-header">
-
-
     <div>
-
       <center>
         <h4><font color="maroon">Payment Details</font></h4></center>
-
     </div>
-
     <form class="contact-form support-form" name="reviewForm" novalidate="">
-
-      <!-- <label class="item item-input item-select"> -->
-
       <div class="list">
         <label class="item item-input item-floating-label">
           <span class="input-label" style="color:maroon">Card Number</span>
@@ -29,10 +20,10 @@
           <span style='color:red' ng-show='(reviewForm.CVV.$error.number || reviewForm.CVV.$error.required) && reviewForm.CVV.$dirty'>Valid security code is required</span>
           <span style='color:red' ng-show='(reviewForm.CVV.$error.minlength || reviewForm.CVV.$error.maxlength) && reviewForm.CVV.$dirty'>Security code must be 3 digits or letters</span>
         </label>
+        
         <div class="list">
-
           <span class="input-label" style="color:maroon; margin-left:3%;">Expiry date</font></span>
-          <md-input-container  style="margin-left:3%">
+          <md-input-container style="margin-left:3%">
             <!-- <label style='color:maroon'><h6>Month</h6></label> -->
             <label <font size="2">
               <h6 style='color:maroon'>Month</h6></font>
@@ -74,17 +65,11 @@
             </md-select>
           </md-input-container>
         </div>
-
         <center>
           <h4><font color="maroon">Price : {{totalPrice}}$</font></h4></center>
-        <!-- ng-disabled="reviewForm.$invalid" -->
         <center>
           <button class="button button-assertive" style="border: 1px solid #000; background:white;" ng-disabled="reviewForm.$invalid" ng-click="SetCardNo(selectedCardNumber); SetMonth(selectedMonth); SetYear(selectedYear); SetCVV(selectedCVV);payAction();"><font style="color:maroon">Book the flight</font></button>
         </center>
-
-        <!-- <button class="button button-full button-assertive" ng-disabled="reviewForm.$invalid" style="background:maroon" ng-click=" payAction();">
-          <font size="5" color="black">pay</font>
-        </button> -->
       </div>
     </form>
 </ion-view>

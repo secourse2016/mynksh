@@ -23,22 +23,12 @@ App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $locati
   $scope.rDate = FlightsSrv.getSelectedReturnDate();
   $scope.cabin = FlightsSrv.getSelectedCabin();
   $scope.tickets = FlightsSrv.getTickets();
-  // $scope.tickets = 3;
-  // console.log(FlightsSrv.getTickets());
   $scope.outgoingPrice = 0;
   $scope.returnPrice = 0;
   $scope.outFlightFound = true;
   $scope.returnFlightFound = true;
   $scope.outgoingInfo = [];
   $scope.returnInfo = [];
-
-  // $scope.roundTrip = 'true';
-  // $scope.origin = 'CAI';
-  // $scope.dest = 'JED';
-  // $scope.oDate = 'April 30, 2016';
-  // $scope.rDate = 'May 2, 2016';
-  // $scope.cabin = 'economy';
-
 
   if (FlightsSrv.getPinging().toString() === 'true')
     if ($scope.roundTrip === 'true')
@@ -85,7 +75,6 @@ App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $locati
             flight.outgoingFlights[0].cost = Number(flight.outgoingFlights[0].cost);
             $scope.outgoingInfo.push(flight.outgoingFlights[0]);
           }
-          // console.log(flight.outgoingFlights);
         });
       });
     });
@@ -99,8 +88,6 @@ App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $locati
           $scope.outgoingInfo.push(flights.outgoingFlights[0]);
         if (flights.returnFlights[0] != undefined)
           $scope.returnInfo.push(flights.returnFlights[0]);
-        // if(Object.keys(outgoingFlight).length === 0 || Object.keys(returnFlight).length === 0 )
-        //     res.send("no flights found");
         if ($scope.outgoingInfo.length === 0) {
           $scope.outFlightFound = false;
         }

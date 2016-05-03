@@ -56,10 +56,6 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
   var paymentInfo = {};
 
   $scope.payAction = function() {
-    // SetCardNo($scope.selectedCardNumber);
-    // SetMonth($scope.selectedMonth);
-    // SetYear($scope.selectedYear);
-    // SetCVV($scope.selectedCVV);
     var returnFlightId;
     if (FlightsSrv.getSelectedRoundTrip() === 'true')
       var returnFlightId = OutReturnSrv.getSelectedReturnFlight().flightId;

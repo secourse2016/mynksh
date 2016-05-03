@@ -43,7 +43,7 @@
       display: none;
     }
   </style>
-  <ion-view>
+
 
     <ion-nav-buttons side="left">
       <button class="button button-assertive button-clear no-animation" ng-click="startApp()" ng-show="!slideIndex">
@@ -53,6 +53,7 @@
         Previous
       </button>
     </ion-nav-buttons>
+
     <ion-nav-buttons side="right">
       <button class="button button-assertive button-clear no-animation" ng-click="next()" ng-show="slideIndex != 2">
         Next
@@ -66,13 +67,11 @@
       <ion-slide style="background-color:rgba(128,0,0, 1)">
         <br><br><br><br>
         <br><br><br><br><br>
-
         <b><font style="text-align:center;color:white" size=10 ><div id="logo">
               <img src="/img/iberia-logo.png">
             </div></font></b>
         <br>
-        <br>
-        <br><br><br><br><br>
+        <br><br><br><br><br><br>
         <br><br><br><br>
         <i class="icon ion-chevron-right icon-accessory">Slide right for Intro</i>
       </ion-slide>
@@ -80,18 +79,16 @@
       <ion-slide>
         <font size=6>Team Members</font>
         <br>
-
         <ion-list>
           <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="chat in chats" type="item-text-wrap" href="#/chat-detail/{{chat.id}}">
             <img ng-src="{{chat.face}}">
             <h2>{{chat.name}}</h2>
             <p>{{chat.lastText}}</p>
             <i class="icon ion-chevron-right icon-accessory"></i>
-
-
           </ion-item>
         </ion-list>
       </ion-slide>
+
       <ion-slide style="background-color:rgba(128,0,0, 1)">
         <br><br><br><br>
         <br><br><br>
