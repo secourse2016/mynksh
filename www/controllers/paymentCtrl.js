@@ -7,10 +7,8 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
   var outgoingFlight = OutReturnSrv.getSelectedOutFlight();
   if (roundTrip == 'true')
     returnFlight = OutReturnSrv.getSelectedReturnFlight();
-  // $scope.outCurrency = outgoingFlight.currency;
+  $scope.outCurrency = outgoingFlight.currency;
 
-<<<<<<< HEAD
-=======
   function changeISOFormat(date) {
     var monthNames = ["January", "February", "March", "April", "May", "June",
       "July", "August", "September", "October", "November", "December"
@@ -19,8 +17,6 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
     return monthNames[d.getMonth()] + " " + d.getDate() + ", " + d.getFullYear();
   };
 
-  // dateFormat();
->>>>>>> c15ffcca08c3a0e4c0abd64d51e7e8d834ce8805
   var Congrats = function() {
     $location.url('/congrats');
   };
