@@ -187,24 +187,44 @@ exports.submitPay = function(firstName, lastName, passportNumber, expiryDate, da
 
 exports.check= function(passengerDetails, cabin, cost, outgoingFlightId, returnFlightId, cb)
 {
-  var err;
   if(cabin === undefined || cabin === null)
+  {
     cb("Please specify the cabin economy/business.");
+    return;
+  }
   var validCabin= cabin.toLowerCase();
   if(validCabin !== "economy" && validCabin !== "business")
+  {
     cb("The chosen calss is not supported by IBERIA.");
+    return;
+  }
   for(var i=0; i<passengerDetails.length; i++)
   {
     if(passengerDetails[i].firstName === undefined)
+    {
       cb("Passenger " + i + "'s first name was not defined.");
+      return;
+    }
     if(passengerDetails[i].lastName === undefined)
+    {
       cb("Passenger " + i + "'s last name was not defined.");
+      return;
+    }
     if(passengerDetails[i].passportNum === undefined)
+    {
       cb("Passenger " + i + "'s passport number was not defined.");
+      return;
+    }
     if(passengerDetails[i].passportNum === undefined)
+    {
       cb("Passenger " + i + "'s passport number was not defined.");
+      return;
+    }
     if(passengerDetails[i].dateOfBirth === undefined)
-      cb("Passenger " + i + "'s date of birth was not defined.");    
+    {
+      cb("Passenger " + i + "'s date of birth was not defined.");  
+      return;  
+    }
   }
   var tickets = passengerDetails.length;
   var outgoingCost=0;
@@ -219,18 +239,28 @@ exports.check= function(passengerDetails, cabin, cost, outgoingFlightId, returnF
         {
           returnCost=cbReturnCost;
           if(outgoingCost === -1)
+          {
             cb("The outgoing flight is not supported by Iberia.");
+            return;
+          }
           else if(returnCost === -1)
+          {
             cb("The return flight is not supported by Iberia.");
+            return;
+          }
           else
           {
             expectedCost= (outgoingCost + returnCost)*tickets;
     
           }
           if(expectedCost !== cost)
+          {
             cb("The cost of the trip is not as expected");
+            return;
+          }
         });
       });
+  cb(null);
 }
 var getFlightCost = function(flightId, cabin, price)
 {

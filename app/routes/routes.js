@@ -180,7 +180,7 @@ module.exports = function(app, mongo) {
       } else {
         mongo.check(req.body.passengerDetails, req.body.class, req.body.cost, req.body.outgoingFlightId, req.body.returnFlightId, function(err)
         {
-          if(err !== undefined)
+          if(err !== null)
             res1.send({refNum: null, errorMessage: err});
           else
           {
