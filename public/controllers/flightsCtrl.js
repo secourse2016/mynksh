@@ -25,10 +25,6 @@ App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $locati
     else
         oneWayTripInfo($scope.origin, $scope.dest, changeISOFormat($scope.oDate), $scope.seats);
 
-    // var flights = [];
-    // flights.outgoingFlights = [];
-    // flights.returnFlights = [];
-
     function pingAirlineR(origin, dest, oDate, rDate, seats) {
         OutReturnSrv.getairLinesInfo().success(function(airlines) {
             airlines.forEach(function(c) {
@@ -155,9 +151,9 @@ App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $locati
                 $scope.RadioSelected = false;
         }
 
-        OutReturnSrv.setSelectedOutFlight($scope.selectedOutgoingFlight * $scope.seats);
+        OutReturnSrv.setSelectedOutFlight($scope.selectedOutgoingFlight);
         if ($scope.roundTrip == 'true') {
-            OutReturnSrv.setSelectedReturnFlight($scope.selectedReturnFlight * $scope.seats);
+            OutReturnSrv.setSelectedReturnFlight($scope.selectedReturnFlight);
             OutReturnSrv.setSelectedPrice(($scope.selectedOutgoingFlight.cost + $scope.selectedReturnFlight.cost) * $scope.seats);
         } else
             OutReturnSrv.setSelectedPrice($scope.selectedOutgoingFlight.cost * $scope.seats);

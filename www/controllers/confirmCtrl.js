@@ -7,7 +7,7 @@ App.controller('confirmCtrl', function($scope, FlightsSrv, OutReturnSrv, Confirm
 
     $scope.tickets= FlightsSrv.getTickets();
     if( $scope.tickets == undefined)
-      $scope.tickets = 1;
+      $scope.tickets = 3;
     $scope.price = OutReturnSrv.getSelectedPrice();
     $scope.currentDate = new Date();
     $scope.minDate = new Date($scope.currentDate.getFullYear() -100,$scope.currentDate.getMonth(),$scope.currentDate.getDate());

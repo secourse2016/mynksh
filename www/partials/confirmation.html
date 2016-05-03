@@ -55,7 +55,7 @@
                       </md-input-container>
                       <div>
                         <label class='stroke'>Date of Birth*</label>
-                          <md-datepicker name='dateOfBirth{{$index}}' type="date" ng-model="reservation.dateOfBirth" ng-required='true' md-max-date='currentDate' md-min-date='minDate'></md-datepicker>
+                          <md-datepicker name='dateOfBirth{{$index}}' ng-model="reservation.dateOfBirth" ng-required='true' md-max-date='currentDate' md-min-date='minDate'></md-datepicker>
                           <span style='color:red' ng-show="details.dateOfBirth{{$index}}.$error.required || details.dateOfBirth{{$index}}.$error.valid"></br>Valid date is required (d/M/yyyy)</span>
                           <span style='color:red' ng-show="details.dateOfBirth{{$index}}.$error.mindate"></br>Date is too early</span>
                           <span style='color:red' ng-show="details.dateOfBirth{{$index}}.$error.maxdate"></br>Passport is not issued yet</span>
@@ -63,7 +63,7 @@
                       </div>
                       <div>
                         <label class='stroke'>Expiry Date</label>
-                          <md-datepicker name='expiryDate{{$index}}' type="date" ng-model="reservation.passportExpiryDate" md-min-date='currentDate' md-max-date='maxDate'></md-datepicker>
+                          <md-datepicker name='expiryDate{{$index}}' ng-model="reservation.passportExpiryDate" md-min-date='currentDate' md-max-date='maxDate'></md-datepicker>
                           <span style='color:red' ng-show="details.expiryDate{{$index}}.$error.valid"></br>Date format is (d/M/yyyy)</span>
                           <span style='color:red' ng-show="details.expiryDate{{$index}}.$error.mindate"></br>Passport is expired</span>
                           <span style='color:red' ng-show="details.expiryDate{{$index}}.$error.maxdate"></br>Date is too far</span>

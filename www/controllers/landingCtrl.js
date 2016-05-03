@@ -138,6 +138,7 @@ App.controller('landingCtrl', function($scope, FlightsSrv, $location, $timeout, 
   /* Find All Available Flights  */
   $scope.SearchFlights = function() {
     FlightsSrv.setTickets($scope.ticket);
+    console.log($scope.ticket);
     $location.url('/flights');
   };
 

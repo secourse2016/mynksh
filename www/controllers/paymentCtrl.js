@@ -30,7 +30,7 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
   };
 
   var SetCardNo = function(value) {
-    paymentSrv.setSelectedCardNo(value);
+    paymentSrv.getSelectedCardNo(value);
   };
 
   var SetMonth = function(value) {
@@ -98,6 +98,10 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
       else
         pingIp = "http://" + airlineIP;
       Stripe.setPublishableKey(key);
+      console.log(paymentSrv.getSelectedCardNo());
+      console.log(paymentSrv.getSelectedCVV());
+      console.log(paymentSrv.getSelectedMonth());
+      console.log(paymentSrv.getSelectedYear());
       Stripe.card.createToken({
         "number": paymentSrv.getSelectedCardNo().toString(),
         "cvc": paymentSrv.getSelectedCVV(),
