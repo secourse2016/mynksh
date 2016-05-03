@@ -9,16 +9,17 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
     returnFlight = OutReturnSrv.getSelectedReturnFlight();
   $scope.outCurrency = outgoingFlight.currency;
 
-  var newres = $scope.reservation;
   var dateFormat = function() {
-    // "dateOfBirth": moment("April 12, 2016", 'MMMM D, YYYY hh:mm:ss',
+    var newres = $scope.reservation;
     for (var i = 0; i < newres.length; i++) {
-      newres[i].dateOfBirth = moment(newres[i].dateOfBirth).toDate().getTime()
+      newres[i].dateOfBirth = newres[i].dateOfBirth.getTime();
       if (newres[i].passportExpiryDate === undefined)
-        newres[i].passportExpiryDate = moment(newres[i].passportExpiryDate).toDate().getTime()
+        newres[i].passportExpiryDate = newres[i].passportExpiryDate.getTime();
     }
-  }
-  dateFormat();
+    return newres;
+  };
+  
+  // dateFormat();
   var Congrats = function() {
     $location.url('/congrats');
   };
@@ -33,15 +34,15 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
     paymentSrv.getSelectedCardNo(value);
   };
 
-  scope.SetMonth = function(value) {
+  $scope.SetMonth = function(value) {
     paymentSrv.setSelectedMonth(value);
   };
 
-  scope.SetYear = function(value) {
+  $scope.SetYear = function(value) {
     paymentSrv.setSelectedYear(value);
   };
 
-  scope.SetCVV = function(value) {
+  $scope.SetCVV = function(value) {
     paymentSrv.setSelectedCVV(value);
   };
 
@@ -66,7 +67,7 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
     if (FlightsSrv.getSelectedRoundTrip() === 'true')
       var returnFlightId = OutReturnSrv.getSelectedReturnFlight().flightId;
     paymentInfo = {
-      "passengerDetails": newres,
+      "passengerDetails": reservation,
       "class": FlightsSrv.getSelectedCabin(),
       "cost": OutReturnSrv.getSelectedPrice(),
       "outgoingFlightId": OutReturnSrv.getSelectedOutFlight().flightId,
