@@ -169,12 +169,16 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
       paymentInfo.paymentToken = response.id;
       paymentSrv.chargeCard(paymentInfo, pingIp)
         .success(function(data, status, headers, config) {
+          console.log(data.refNum);
           paymentSrv.setBookingRefNo(data.refNum);
           //reset stripe key
           getOtherPubKey("IBERIA", function(key) {
             Stripe.setPublishableKey(key);
             Congrats();
           });
+        })
+        .error(function(data, status, headers, config){
+            alert(data.errorMessage);
         });
     }
 
