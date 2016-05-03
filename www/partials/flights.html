@@ -98,7 +98,7 @@
         <h5>{{(selectedReturnFlight.cost + selectedOutgoingFlight.cost) | currency:"$"}} x {{tickets}} = {{(selectedReturnFlight.cost + selectedOutgoingFlight.cost) * tickets | currency:"$"}}</h5>
         <span ng-show="RadioSelected" style="color: red">Flight(s) must be selected</span>
       </blockquote>
-      <center><a class="button button-outline button-assertive" ng-click='BookFlight()'>Book Flight</a></center>
+      <center><a class="button button-outline button-assertive" ng-click='BookFlight()'><font style="color:maroon">Book Flight</font></a></center>
     </div>
   </ion-content>
 

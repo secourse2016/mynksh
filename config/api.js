@@ -60,13 +60,13 @@ exports.getAirLines = function(cb) {
 
 //get from data base ip
 exports.getAirLineIP = function(airLineName, cb) {
-  var airLineIP= "";
+  var airLineIP = "";
   var collection = mongo.db().collection('airLines');
   collection.find({
     "name": airLineName + " Airlines"
   }).toArray(function(err, airLine) {
-    if(airLine.length ===0)
-      airLineIP= "52.58.24.76";
+    if (airLine.length === 0)
+      airLineIP = "52.58.24.76";
     if (airLine[0] === null) {
       cb(err, "No ip with this Name");
     }
@@ -124,7 +124,7 @@ exports.searchFlights = function(origin, destination, departingDate, cabin, seat
           "origin": origin,
           "destination": flights[0].destination,
           "class": economyOrBusiness,
-          "Airline": "IBERIA"
+          "Airline": "Iberia"
         }];
       } else
         rflights = {};
@@ -135,105 +135,79 @@ exports.searchFlights = function(origin, destination, departingDate, cabin, seat
   });
 }
 
-exports.submitPay = function(firstName, lastName, passportNumber, expiryDate, dateOfBirth, passport, email, businessOrEconomic, cost, flightId, generateOrUseOld, cb) {
+exports.submitPay = function(firstName, lastName, passportNumber, expiryDate, dateOfBirth, passport, email, businessOrEconomic, cost, flightId, generateOrUseOld, fWay, cb) {
   var selectedSeat = 0;
-  // update after find free seat
-
   if (flightId === undefined) {
     cb("flightId was not passed", null);
     return;
   }
-  //console.log(flightId);
   var collection = mongo.db().collection('flights');
   collection.find({
     "_id": new ObjectId(flightId)
   }).toArray(function(err, flights) {
     if (flights.length === 0) {
-      //console.log("flight not found");
-      cb("This flight " + flightId + "is not supported be IBERIA", null);
-      // mongo.close();
+      cb("This flight " + flightId + "is not supported be Iberia", null);
       return;
     }
-    //console.log("flight found");
-    //  remove then insert
-    if (businessOrEconomic === "true") { // economy
-      //check on availableESeats of economy
+    if (businessOrEconomic === "economy") { // economy
       if (!(flights[0].availableESeats === 0)) {
         selectedSeat = flights[0].nextEcoSeat;
         flights[0].availableESeats = flights[0].availableESeats - 1;
         flights[0].nextEcoSeat = flights[0].nextEcoSeat + 1;
       }
-      // if avaliable dec availableESeats and dec next Eseat
-
     } else {
       //check on availableESeats of business
       if (!(flights[0].availableBSeats === 0)) {
         selectedSeat = flights[0].nextBusSeat;
         flights[0].availableBSeats = flights[0].availableBSeats - 1;
         flights[0].nextBusSeat = flights[0].nextBusSeat - 1;
-
       }
-      // if avaliable dec availableBSeats and inc next Bseat
     }
-    //
-    // console.log("selectedSeat :"+selectedSeat);
+
     var bookingReference;
+    var bSeat = flights[0].nextBusSeat;
+    var eSeat = flights[0].nextEcoSeat;
     if (generateOrUseOld === true)
       bookingReference = generateBookingRef(flights[0].SeatMap[selectedSeat].seatNum, flights[0].flightNumber, businessOrEconomic);
     else
       bookingReference = generateOrUseOld;
     flights[0].SeatMap[selectedSeat].bookingRefNumber = bookingReference;
 
-
-    mongo.db().collection("flights").remove({
+    mongo.db().collection("flights").update({
       "_id": new ObjectId(flightId)
-    }, function(err, records) {
-      //
-      var collection = mongo.db().collection('flights');
-      var document = {
-        "departureTime": flights[0].departureTime,
-        "availableBSeats": flights[0].availableBSeats,
-        "origin": flights[0].origin,
-        "availableESeats": flights[0].availableESeats,
-        "destination": flights[0].destination,
-        "bCost": flights[0].bCost,
-        "nextBusSeat": flights[0].nextBusSeat,
-        "flightNumber": flights[0].flightNumber,
-        "capacity": flights[0].capacity,
-        "aircraftType": flights[0].aircraftType,
-        "arrivalTime": flights[0].arrivalTime,
-        "nextEcoSeat": flights[0].nextEcoSeat,
-        "aircraftModel": flights[0].aircraftModel,
-        "SeatMap": flights[0].SeatMap,
-        "eCost": flights[0].eCost
-      };
+    }, {
+      $set: {
+        "availableESeats" : flights[0].availableESeats,
+        "availableBSeats" : flights[0].availableBSeats,
+        "nextBusSeat"     : bSeat,
+        "nextEcoSeat"     : eSeat,
+        "SeatMap"         : flights[0].SeatMap
+      }
+    }, {
+      upsert: false
+    }, function(err, results) {
 
+      var collection = mongo.db().collection('bookings');
+      var document = {
+        "firstName": firstName,
+        "lastName": lastName,
+        "passport": passport,
+        "passportNumber": passportNumber,
+        "expiryDate": expiryDate,
+        "email": email,
+        "bookingRefNumber": bookingReference, //call new method
+        "flightNumber": flights[0].flightNumber,
+        "seatNum": flights[0].SeatMap[selectedSeat].seatNum,
+        "origin": flights[0].origin,
+        "destination": flights[0].destination,
+        "arrivalTime": flights[0].arrivalTime,
+        "departureTime": flights[0].departureTime,
+        "way" : fWay
+      };
       collection.insertOne(document, {
         w: 1
       }, function(err, records) {
-        var collection = mongo.db().collection('bookings');
-        var document = {
-          "firstName": firstName,
-          "lastName": lastName,
-          "passport": passport,
-          "passportNumber": passportNumber,
-          "expiryDate": expiryDate,
-          "email": email,
-          "bookingRefNumber": bookingReference, //call new method
-          "flightNumber": flights[0].flightNumber,
-          "seatNum": flights[0].SeatMap[selectedSeat].seatNum,
-          "origin": flights[0].origin,
-          "destination": flights[0].destination,
-          "arrivalTime": flights[0].arrivalTime,
-          "departureTime": flights[0].departureTime
-        };
-        collection.insertOne(document, {
-          w: 1
-        }, function(err, records) {
-          // mongo.close();
-          cb(err, document.bookingRefNumber);
-          // });
-        });
+        cb(err, document.bookingRefNumber);
       });
     });
   });

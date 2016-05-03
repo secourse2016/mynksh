@@ -2,79 +2,81 @@
   <ion-content class="padding">
     <form name='details'>
       <div class='center'>
-          <font size="5" color="red"><b>Flight information</b></br></br></font>
+        <font size="5" color="red"><b>Flight information</b></br></br></font>
+      </div>
+      <div class='serif round-edge1'>
+        <p><b>From:</b> {{selectedOutgoingFlight.origin}}</p>
+        <p><b>To:</b> {{selectedOutgoingFlight.destination}}</p>
+        <p><b>Outgoing Date:</b> {{selectedOutgoingFlight.departureDateTime | date: 'd/M/yyyy HH:mm'}}</p>
+        <p><b>Outgoing Flight #:</b> {{selectedOutgoingFlight.flightNumber}}</p>
+        <p><b>Outgoing airline:</b> {{selectedOutgoingFlight.Airline}}</p>
+        <p ng-show="roundTrip == 'true'"><b>Return Date:</b> {{selectedReturnFlight.departureDateTime | date: 'd/M/yyyy HH:mm'}}</p>
+        <p ng-show="roundTrip == 'true'"><b>Return Flight #:</b> {{selectedReturnFlight.flightNumber}}</p>
+        <p ng-show="roundTrip == 'true'"><b>Return airline:</b> {{selectedReturnFlight.Airline}}</p>
+        <p><b>Price:</b> {{price | currency: '$'}}</p>
+      </div>
+      <div ng-repeat='reservation in reservations'>
+        <div class='center'>
+          </br>
+          <md-divider/>
+          </br>
+          <font size="5" color="red"><b>Passenger <span ng-if='tickets != 0'>{{$index +1}} </span>information</b></font>
+          </br>
+          </br>
         </div>
-          <div class='serif round-edge1'>
-            <p><b>From:</b> {{selectedOutgoingFlight.origin}}</p>
-            <p><b>To:</b> {{selectedOutgoingFlight.destination}}</p>
-            <p><b>Outgoing Date:</b> {{selectedOutgoingFlight.departureDateTime | date: 'd/M/yyyy HH:mm'}}</p>
-            <p><b>Outgoing Flight #:</b> {{selectedOutgoingFlight.flightNumber}}</p>
-            <p><b>Outgoing airline:</b> {{selectedOutgoingFlight.Airline}}</p>
-            <p ng-show="roundTrip == 'true'"><b>Return Date:</b> {{selectedReturnFlight.departureDateTime | date: 'd/M/yyyy HH:mm'}}</p>
-            <p ng-show="roundTrip == 'true'"><b>Return Flight #:</b> {{selectedReturnFlight.flightNumber}}</p>
-            <p ng-show="roundTrip == 'true'"><b>Return airline:</b> {{selectedReturnFlight.Airline}}</p>
-            <p><b>Price:</b> {{price | currency: '$'}}</p>
+        <div class='round-edge2'>
+          <md-input-container class="md-block" flex-gt-sm>
+            <label class='stroke'>First Name</label>
+            <input name='FName{{$index}}' type="text" ng-model="reservation.firstName" ng-required='true' ng-pattern="/^[a-zA-Z]*$/">
+            <span style='color:red' ng-show="(details.FName{{$index}}.$error.pattern || details.FName{{$index}}.$error.required) && details.FName{{$index}}.$dirty">Valid first name is required (no numbers, spaces, or special symbols)</span>
+            <md-tooltip md-visible='true' md-direction='top'>e.g. John</md-tooltip>
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-sm>
+            <label class='stroke'>Last Name</label>
+            <input name='LName{{$index}}' type="text" ng-model="reservation.lastName" ng-required='true' ng-pattern="/^[a-zA-Z]*$/">
+            <span style='color:red' ng-show="(details.LName{{$index}}.$error.pattern || details.LName{{$index}}.$error.required) && details.LName{{$index}}.$dirty">Valid last name is required (no numbers, spaces, or special symbols)</span>
+            <md-tooltip md-visible='true' md-direction='top'>e.g. Doe</md-tooltip>
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-sm>
+            <label class='stroke'>Email</label>
+            <input type="email" ng-model="reservation.email" name='email{{$index}}'>
+            <span style='color:red' ng-show="details.email{{$index}}.$error.email && details.email{{$index}}.$dirty">Valid email is required</span>
+            <md-tooltip md-visible='true' md-direction='top'>e.g. John@gmail.com</md-tooltip>
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-sm>
+            <label class='stroke'>Passport Number</label>
+            <input name='pNo{{$index}}' type="number" ng-model="reservation.passportNum" ng-required='true' ng-maxlength='9' ng-minlength='9'>
+            <span style='color:red' ng-show="details.pNo{{$index}}.$error.number && details.pNo{{$index}}.$dirty">Valid passport number is required</span>
+            <span style='color:red' ng-show="((details.pNo{{$index}}.$error.minlength || details.pNo{{$index}}.$error.maxlength) && details.pNo{{$index}}.$dirty) ">Passport number should be 9 digits long</span>
+            <md-tooltip md-visible='true' md-direction='top'>e.g. 123456789</md-tooltip>
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-sm>
+            <label class='stroke'>Country of issue</label>
+            <div ng-include src="'./assets/countries.html'"></div>
+            <md-tooltip md-visible='true' md-direction='top'>Choose a country</md-tooltip>
+          </md-input-container>
+          <div>
+            <label class='stroke'>Date of Birth*</label>
+            <md-datepicker name='dateOfBirth{{$index}}' ng-model="reservation.dateOfBirth" ng-required='true' md-max-date='currentDate' md-min-date='minDate'></md-datepicker>
+            <span style='color:red' ng-show="details.dateOfBirth{{$index}}.$error.required || details.dateOfBirth{{$index}}.$error.valid"></br>Valid date is required (d/M/yyyy)</span>
+            <span style='color:red' ng-show="details.dateOfBirth{{$index}}.$error.mindate"></br>Date is too early</span>
+            <span style='color:red' ng-show="details.dateOfBirth{{$index}}.$error.maxdate"></br>Passport is not issued yet</span>
+            <md-tooltip md-visible='true' md-direction='top'>e.g. 22/12/2015</md-tooltip>
           </div>
-            <div ng-repeat='reservation in reservations'>
-                    <div class='center'>
-                    </br>
-                      <md-divider/></br>
-                      <font size="5" color="red"><b>Passenger <span ng-if='tickets != 0'>{{$index +1}} </span>information</b></font>
-                    </br></br>
-                    </div>
-                    <div class='round-edge2'>
-                      <md-input-container class="md-block" flex-gt-sm>
-                        <label class='stroke'>First Name</label>
-                          <input name='FName{{$index}}' type="text" ng-model="reservation.firstName" ng-required='true' ng-pattern="/^[a-zA-Z]*$/">
-                          <span style='color:red' ng-show="(details.FName{{$index}}.$error.pattern || details.FName{{$index}}.$error.required) && details.FName{{$index}}.$dirty">Valid first name is required (no numbers, spaces, or special symbols)</span>
-                          <md-tooltip md-visible='true' md-direction='top'>e.g. John</md-tooltip>
-                      </md-input-container>
-                      <md-input-container class="md-block" flex-gt-sm>
-                        <label class='stroke'>Last Name</label>
-                          <input name='LName{{$index}}' type="text" ng-model="reservation.lastName" ng-required='true' ng-pattern="/^[a-zA-Z]*$/">
-                          <span style='color:red' ng-show="(details.LName{{$index}}.$error.pattern || details.LName{{$index}}.$error.required) && details.LName{{$index}}.$dirty">Valid last name is required (no numbers, spaces, or special symbols)</span>
-                          <md-tooltip md-visible='true' md-direction='top'>e.g. Doe</md-tooltip>
-                      </md-input-container>
-                      <md-input-container class="md-block" flex-gt-sm>
-                        <label class='stroke'>Email</label>
-                          <input type="email" ng-model="reservation.email" name='email{{$index}}'>
-                          <span style='color:red' ng-show="details.email{{$index}}.$error.email && details.email{{$index}}.$dirty">Valid email is required</span>
-                          <md-tooltip md-visible='true' md-direction='top'>e.g. John@gmail.com</md-tooltip>
-                      </md-input-container>
-                      <md-input-container class="md-block" flex-gt-sm>
-                        <label class='stroke'>Passport Number</label>
-                          <input name='pNo{{$index}}' type="number" ng-model="reservation.passportNum" ng-required='true' ng-maxlength='9' ng-minlength='9'>
-                          <span style='color:red' ng-show="details.pNo{{$index}}.$error.number && details.pNo{{$index}}.$dirty">Valid passport number is required</span>
-                          <span style='color:red' ng-show="((details.pNo{{$index}}.$error.minlength || details.pNo{{$index}}.$error.maxlength) && details.pNo{{$index}}.$dirty) ">Passport number should be 9 digits long</span>
-                          <md-tooltip md-visible='true' md-direction='top'>e.g. 123456789</md-tooltip>
-                      </md-input-container>
-                      <md-input-container class="md-block" flex-gt-sm>
-                        <label class='stroke'>Country of issue</label>
-                        <div ng-include src="'./assets/countries.html'"></div>
-                        <md-tooltip md-visible='true' md-direction='top'>Choose a country</md-tooltip>
-                      </md-input-container>
-                      <div>
-                        <label class='stroke'>Date of Birth*</label>
-                          <md-datepicker name='dateOfBirth{{$index}}' ng-model="reservation.dateOfBirth" ng-required='true' md-max-date='currentDate' md-min-date='minDate'></md-datepicker>
-                          <span style='color:red' ng-show="details.dateOfBirth{{$index}}.$error.required || details.dateOfBirth{{$index}}.$error.valid"></br>Valid date is required (d/M/yyyy)</span>
-                          <span style='color:red' ng-show="details.dateOfBirth{{$index}}.$error.mindate"></br>Date is too early</span>
-                          <span style='color:red' ng-show="details.dateOfBirth{{$index}}.$error.maxdate"></br>Passport is not issued yet</span>
-                          <md-tooltip md-visible='true' md-direction='top'>e.g. 22/12/2015</md-tooltip>
-                      </div>
-                      <div>
-                        <label class='stroke'>Expiry Date</label>
-                          <md-datepicker name='expiryDate{{$index}}' ng-model="reservation.passportExpiryDate" md-min-date='currentDate' md-max-date='maxDate'></md-datepicker>
-                          <span style='color:red' ng-show="details.expiryDate{{$index}}.$error.valid"></br>Date format is (d/M/yyyy)</span>
-                          <span style='color:red' ng-show="details.expiryDate{{$index}}.$error.mindate"></br>Passport is expired</span>
-                          <span style='color:red' ng-show="details.expiryDate{{$index}}.$error.maxdate"></br>Date is too far</span>
-                        <md-tooltip md-visible='true' md-direction='top'>e.g. 22/12/2017</md-tooltip>
-                      </div>
-                </div>
-              </br>
-            </div>
-            <div class='center'>
-    <md-button ng-disabled='details.$invalid' class="md-raised md-primary" ng-click="goToPayment()">Proceed to payment</md-button>
-  </div>
+          <div>
+            <label class='stroke'>Expiry Date</label>
+            <md-datepicker name='expiryDate{{$index}}' ng-model="reservation.passportExpiryDate" md-min-date='currentDate' md-max-date='maxDate'></md-datepicker>
+            <span style='color:red' ng-show="details.expiryDate{{$index}}.$error.valid"></br>Date format is (d/M/yyyy)</span>
+            <span style='color:red' ng-show="details.expiryDate{{$index}}.$error.mindate"></br>Passport is expired</span>
+            <span style='color:red' ng-show="details.expiryDate{{$index}}.$error.maxdate"></br>Date is too far</span>
+            <md-tooltip md-visible='true' md-direction='top'>e.g. 22/12/2017</md-tooltip>
+          </div>
+        </div>
+        </br>
+      </div>
+      <div class='center'>
+        <button class="button button-outline button-assertive" ng-disabled='details.$invalid' ng-click="goToPayment()"><font style="color:maroon">Proceed to payment</font></button>
+      </div>
 
     </form>
   </ion-content>

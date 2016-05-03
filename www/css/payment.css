@@ -9,9 +9,4 @@ input::-webkit-inner-spin-button {
 #payButton {
    background-color:black;
    margin: 50%; 
- /*  margin-left:auto;
-   margin-right:auto;
-   display:block;
-   margin-top:22%;
-   margin-bottom:0%*/
 }
