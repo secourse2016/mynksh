@@ -9,24 +9,22 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
     returnFlight = OutReturnSrv.getSelectedReturnFlight();
   $scope.outCurrency = outgoingFlight.currency;
 
-  var newres = $scope.reservation;
-  var dateFormat = function() {
-    // "dateOfBirth": moment("April 12, 2016", 'MMMM D, YYYY hh:mm:ss',
-    for (var i = 0; i < newres.length; i++) {
-      newres[i].dateOfBirth = moment(newres[i].dateOfBirth).toDate().getTime()
-      if (newres[i].passportExpiryDate === undefined)
-        newres[i].passportExpiryDate = moment(newres[i].passportExpiryDate).toDate().getTime()
-    }
-  }
-  dateFormat();
+  function changeISOFormat(date) {
+    var monthNames = ["January", "February", "March", "April", "May", "June",
+      "July", "August", "September", "October", "November", "December"
+    ];
+    var d = new Date(date);
+    return monthNames[d.getMonth()] + " " + d.getDate() + ", " + d.getFullYear();
+  };
+
   var Congrats = function() {
     SetAirLine1(AirlineName1);
     SetAirLine2(AirlineName2);
     $location.url('/congrats');
   };
 
-
   $scope.clicked = "clicked";
+
   $scope.isShown = function(clicked) {
     return clicked === $scope.clicked;
   };
@@ -41,6 +39,10 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
 
   var SetYear = function(value) {
     paymentSrv.setSelectedYear(value);
+  };
+
+  var SetCVV = function(value) {
+    paymentSrv.setSelectedCVV(value);
   };
 
   var SetAirLine2 = function(value) {
@@ -82,7 +84,14 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
       "outgoingFlightId": OutReturnSrv.getSelectedOutFlight().flightId,
       "returnFlightId": returnFlightId,
       "paymentToken": 2112
+    };
+
+    for (var i = 0; i < paymentInfo.length; i++) {
+      paymentInfo[i].passengerDetails.dateOfBirth = moment(changeISOFormat(paymentInfo[i].passengerDetails.dateOfBirth)).toDate().getTime();
+      if (paymentInfo[i].passengerDetails.passportExpiryDate === undefined)
+        paymentInfo[i].passengerDetails.passportExpiryDate = moment(changeISOFormat(paymentInfo[i].passengerDetails.passportExpiryDate)).toDate().getTime()
     }
+
     if (FlightsSrv.getSelectedRoundTrip() != 'true')
       paymentInfo.returnFlightId = undefined;
 
@@ -143,4 +152,5 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
         });
     }
   };
+
 });
