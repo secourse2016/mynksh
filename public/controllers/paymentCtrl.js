@@ -47,9 +47,9 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
 
   var getOtherPubKey = function(AirlineIP, cb) {
     paymentSrv.getOtherAirlineIP(AirlineIP).success(function(airlineIP) {
-      console.log(airlineIP);
+      // console.log(airlineIP);
       paymentSrv.getOtherStripePubKey(airlineIP).success(function(key) {
-        console.log(key);
+        // console.log(key);
         cb(key, airlineIP);
       })
     });

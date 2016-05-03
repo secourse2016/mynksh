@@ -9,7 +9,6 @@ App.factory('paymentSrv', function($http) {
       if (airlineIP === "IBERIA")
         return $http.get('http://localhost:8080/stripe/pubkey/?wt=' + jwt);
       else {
-        console.log("hena");
         return $http.get('http://' + airlineIP + '/stripe/pubkey/?wt=' + jwt);
       }
     },

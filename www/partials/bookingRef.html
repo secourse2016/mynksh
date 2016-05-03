@@ -1,14 +1,8 @@
 <ion-view view-title="Previous Booking">
 
   <ion-content class="has-header has-subheader">
-
-
-
     <h4 style="text-align:center;color:rgba(128,0,0, 1)">Track Booking</h4>
-
-
     <div class="list list-inset">
-      <!-- <font class="col-sm-4 text-right" size="4" color="black"> Booking Reference No.: </font> -->
       <form name='booking'>
         <label class="item item-input item-floating-label" ng-class="{ 'has-error' : loginForm.originAirports.$invalid && loginForm.$submitted }">
           <span class="input-label ion-plane">Booking Reference Number</span>
@@ -18,15 +12,61 @@
         <span style='color:red' ng-show="(booking.bookingref.$error.required)  && booking.bookingref.$dirty ">Booking Number is required</span>
 
       </form>
-      <h6 style="text-align:center">  <button  type="button" ng-disabled='booking.$invalid' class="btn btn-primary btn-lg" style="left:200px; background:rgba(178,34,34, 1);margin-top: 15px" ng-click="SetBookingRef(selectedBookingRef);retreiveBookingRef();showme=true">Search My Flight</button></h6>
+      <h6 style="text-align:center">  <button  type="button" ng-disabled='booking.$invalid' class="btn btn-primary btn-lg" style="left:200px; background:rgba(178,34,34, 1);margin-top: 15px" ng-click="SetBookingRef(selectedBookingRef);retreiveBookingRef();showTabDialog($event)">Search My Flight</button></h6>
     </div>
-
+<!--
+<ion-list>
     <div class="form-group" ng-show="showme">
-      <div class="input-group">
-        <p id="divID"></p>
-      </div>
+        <h4 id="divID" style="text-align:center;color:rgba(128,0,0, 1)"></h4>
+        <h6 id="divID2" style="color:rgba(128,0,0, 1)"></h6>
+        <h6 id="divID3" style="color:rgba(128,0,0, 1)"></h6>
+        <h6 id="divID4" style="color:rgba(128,0,0, 1)"></h6>
+        <h6 id="divID5" style="color:rgba(128,0,0, 1)"></h6><br><br>
+        <h5 style="text-align:center;color:rgba(128,0,0, 1)">See you again <b> SOON!</b></h5>
     </div>
+  </ion-list> -->
+<script type="text/ng-template" id="tabDialog.tmpl.html" >
+<md-dialog aria-label="Mango (Fruit)" >
+<form>
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h2 id="divID" style="text-align:center;color:white"></h2>
+      <span flex></span>
+      <md-button class="ion-close" ng-click="cancel()">
+      </md-button>
+    </div>
+  </md-toolbar>
+  <md-dialog-content style="max-width:800px;max-height:810px; ">
+    <md-tabs md-dynamic-height md-border-bottom>
+      <md-tab label="Personal">
+        <md-content class="md-padding">
+          <h4 style="text-align:center">Personal Information</h4>
+          <h6 id="divID2"></h6>
+          <h6 id="divID3"></h6>
+            </md-content>
+      </md-tab>
+      <md-tab label="Outgoing">
+        <md-content class="md-padding">
+          <h4 style="text-align:center">Outgoing Information</h4>
+            <h6 id="divID4"></h6>
+          </md-content>
+      </md-tab>
+      <md-tab label="Return">
+        <md-content class="md-padding">
+          <h4 style="text-align:center">Return Information</h4>
+          <h6 id="divID5"></h6>
+            </md-content>
+      </md-tab>
+    </md-tabs>
+  </md-dialog-content>
 
+  <md-dialog-actions layout="row">
+    <md-button href="#" target="_blank" md-autofocus>
+      See you again soon!
+    </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>
+</script></div>
   </ion-content>
-
 </ion-view>
