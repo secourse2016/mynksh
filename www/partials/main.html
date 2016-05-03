@@ -58,7 +58,7 @@
         <div ng-show="data.showDelete">
           <ion-list>
             <h4 style="text-align:center;color:rgba(128,0,0, 1)">Outgoing date</h4>
-            <md-datepicker ng-required='true' name='outgoing0' md-min-date="minDate" ng-model="$parent.dtr" md-placeholder="Enter date"></md-datepicker>
+            <md-datepicker ng-required='true' name='outgoing0' md-min-date="minDate" ng-model="$parent.dto" md-placeholder="Enter date"></md-datepicker>
             <span style='color:red' ng-show="(flights.outgoing0.$error.required) ">Outgoing Date required</span>
           </ion-list>
         </div>
