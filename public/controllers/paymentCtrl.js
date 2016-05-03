@@ -20,6 +20,8 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
   }
   dateFormat();
   var Congrats = function() {
+    SetAirLine1(var AirlineName1);
+    SetAirLine2(var AirlineName2);
     $location.url('/congrats');
   };
 
@@ -41,8 +43,12 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
     paymentSrv.setSelectedYear(value);
   };
 
-  var SetCVV = function(value) {
-    paymentSrv.setSelectedCVV(value);
+  var SetAirLine2 = function(value) {
+    paymentSrv.setAirLine2(value);
+  };
+
+  var SetAirLine1 = function(value) {
+    paymentSrv.setAirLine1(value);
   };
 
   var getOtherPubKey = function(AirlineIP, cb) {
@@ -57,7 +63,11 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
 
   var paymentInfo = {};
 
+  var AirlineName1 = OutReturnSrv.getSelectedOutFlight().Airline; //  out flight
+  var AirlineName2;
+
   $scope.payAction = function() {
+
     SetCardNo($scope.selectedCardNumber);
     SetMonth($scope.selectedMonth);
     SetYear($scope.selectedYear);
@@ -75,20 +85,15 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
     }
     if (FlightsSrv.getSelectedRoundTrip() != 'true')
       paymentInfo.returnFlightId = undefined;
-    //need here to check if one way or two and put this name attrubute inside createStripeToken method
-    var AirlineName1 = OutReturnSrv.getSelectedOutFlight().Airline; //  out flight
-    var AirlineName2;
+
     if (FlightsSrv.getSelectedRoundTrip() === 'true')
-      var AirlineName2 = OutReturnSrv.getSelectedReturnFlight().Airline;; // return flight
-    if (FlightsSrv.getSelectedRoundTrip() === 'false' || AirlineName1 === AirlineName2)
-      createStripeToken(AirlineName1);
-    else {
-      createStripeToken(AirlineName1);
-      createStripeToken(AirlineName2);
-    }
+      AirlineName2 = OutReturnSrv.getSelectedReturnFlight().Airline; // return flight
+
+    createStripeToken(AirlineName1);
 
   }
   var pingIp;
+  var flag = true;
 
   var createStripeToken = function(airline) {
 
@@ -120,11 +125,21 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
           //reset stripe key
           getOtherPubKey("IBERIA", function(key) {
             Stripe.setPublishableKey(key);
-            Congrats();
+
+            if (FlightsSrv.getSelectedRoundTrip() === 'true' && flag) {
+              flag = false;
+              paymentInfo.outgoingFlightId = OutReturnSrv.getSelectedReturnFlight().flightId;
+              createStripeToken(AirlineName1);
+            }
+
+            if (data.errorMessage === null || data.errorMessage === undefined)
+              alert(data.errorMessage);
+            else
+              Congrats();
           });
         })
-        .error(function(data, status, headers, config){
-            alert(data.errorMessage);
+        .error(function(data, status, headers, config) {
+          alert(data.errorMessage);
         });
     }
   };

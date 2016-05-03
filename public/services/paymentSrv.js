@@ -9,7 +9,6 @@ App.factory('paymentSrv', function($http) {
       if (airlineIP === "IBERIA")
         return $http.get('/stripe/pubkey/?wt=' + jwt);
       else {
-        console.log("hena");
         return $http.get('http://' + airlineIP + '/stripe/pubkey/?wt=' + jwt, {timeout:3000});
       }
     },
@@ -46,6 +45,18 @@ App.factory('paymentSrv', function($http) {
     },
     setBookingRefNo: function(value) {
       this.bookingRefNo = value;
+    },
+    getAirLine1: function() {
+      return this.getAirLine1;
+    },
+    setAirLine1: function(value) {
+      this.getAirLine1 = value;
+    },
+    getAirLine2: function() {
+      return this.getAirLine2;
+    },
+    setAirLine2: function(value) {
+      this.getAirLine2 = value;
     }
   };
 });
