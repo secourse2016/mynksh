@@ -8,13 +8,11 @@ App.controller('confirmCtrl', function($scope, FlightsSrv, OutReturnSrv, Confirm
     $scope.tickets = FlightsSrv.getTickets();
     $scope.price = OutReturnSrv.getSelectedPrice();
     $scope.currentDate = new Date();
-    //to be copied in ionic
     $scope.reservations = [];
 
     for(var i=0 ; i<$scope.tickets ; i++){
       $scope.reservations[i]= {};
     };
-    //end of copy
     var setTicketReservations = function(value) {
         ConfirmSrv.setReservations(value);
     };
