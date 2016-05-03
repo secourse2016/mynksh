@@ -11,7 +11,7 @@ describe('API', function() {
     request = request(app);
     it("should return a 404 for urls that don't exist", function(done) {
         // TODO: test with supertest
-        request.get("/Iberia").expect(404).end(function(err,res){
+        request.get("/iberia").expect(404).end(function(err,res){
        done();
 
       });
