@@ -203,18 +203,18 @@ module.exports = function(app, mongo) {
     if (returnFlightId === undefined || returnFlightId === null) {
       mongo.submitPay(passengerDetails[i].firstName, passengerDetails[i].lastName, passengerDetails[i].passportNum,
         passengerDetails[i].passportExpiryDate, passengerDetails[i].dateOfBirth, passengerDetails[i].nationality,
-        passengerDetails[i].email, cabin, cost, outgoingFlightId, data,
+        passengerDetails[i].email, cabin, cost, outgoingFlightId, data, "outgoing",
         function(err, data2) {
           insertPassengers(i + 1, passengerDetails, cabin, cost, outgoingFlightId, returnFlightId, data2, cb);
         });
     } else {
       mongo.submitPay(passengerDetails[i].firstName, passengerDetails[i].lastName, passengerDetails[i].passportNum,
         passengerDetails[i].passportExpiryDate, passengerDetails[i].dateOfBirth, passengerDetails[i].nationality,
-        passengerDetails[i].email, cabin, cost, outgoingFlightId, data,
+        passengerDetails[i].email, cabin, cost, outgoingFlightId, data, "outgoing",
         function(err, data2) {
           mongo.submitPay(passengerDetails[i].firstName, passengerDetails[i].lastName, passengerDetails[i].passportNum,
             passengerDetails[i].passportExpiryDate, passengerDetails[i].dateOfBirth, passengerDetails[i].nationality,
-            passengerDetails[i].email, cabin, cost, returnFlightId, data2,
+            passengerDetails[i].email, cabin, cost, returnFlightId, data2, , "return"
             function(err, data3) {
               insertPassengers(i + 1, passengerDetails, cabin, cost, outgoingFlightId, returnFlightId, data2, cb);
             });

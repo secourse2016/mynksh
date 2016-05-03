@@ -135,48 +135,35 @@ exports.searchFlights = function(origin, destination, departingDate, cabin, seat
   });
 }
 
-exports.submitPay = function(firstName, lastName, passportNumber, expiryDate, dateOfBirth, passport, email, businessOrEconomic, cost, flightId, generateOrUseOld, cb) {
+exports.submitPay = function(firstName, lastName, passportNumber, expiryDate, dateOfBirth, passport, email, businessOrEconomic, cost, flightId, generateOrUseOld, fWay, cb) {
   var selectedSeat = 0;
-  // update after find free seat
-
   if (flightId === undefined) {
     cb("flightId was not passed", null);
     return;
   }
-  //console.log(flightId);
   var collection = mongo.db().collection('flights');
   collection.find({
     "_id": new ObjectId(flightId)
   }).toArray(function(err, flights) {
     if (flights.length === 0) {
-      //console.log("flight not found");
       cb("This flight " + flightId + "is not supported be IBERIA", null);
-      // mongo.close();
       return;
     }
-    //console.log("flight found");
-    //  remove then insert
     if (businessOrEconomic === "economy") { // economy
-      //check on availableESeats of economy
       if (!(flights[0].availableESeats === 0)) {
         selectedSeat = flights[0].nextEcoSeat;
         flights[0].availableESeats = flights[0].availableESeats - 1;
         flights[0].nextEcoSeat = flights[0].nextEcoSeat + 1;
       }
-      // if avaliable dec availableESeats and dec next Eseat
-
     } else {
       //check on availableESeats of business
       if (!(flights[0].availableBSeats === 0)) {
         selectedSeat = flights[0].nextBusSeat;
         flights[0].availableBSeats = flights[0].availableBSeats - 1;
         flights[0].nextBusSeat = flights[0].nextBusSeat - 1;
-
       }
-      // if avaliable dec availableBSeats and inc next Bseat
     }
-    //
-    // console.log("selectedSeat :"+selectedSeat);
+
     var bookingReference;
     var bSeat = flights[0].nextBusSeat;
     var eSeat = flights[0].nextEcoSeat;
@@ -185,7 +172,6 @@ exports.submitPay = function(firstName, lastName, passportNumber, expiryDate, da
     else
       bookingReference = generateOrUseOld;
     flights[0].SeatMap[selectedSeat].bookingRefNumber = bookingReference;
-
 
     mongo.db().collection("flights").update({
       "_id": new ObjectId(flightId)
@@ -201,9 +187,6 @@ exports.submitPay = function(firstName, lastName, passportNumber, expiryDate, da
       upsert: false
     }, function(err, results) {
 
-      // collection.insertOne(document, {
-      //   w: 1
-      // }, function(err, records) {
       var collection = mongo.db().collection('bookings');
       var document = {
         "firstName": firstName,
@@ -218,7 +201,8 @@ exports.submitPay = function(firstName, lastName, passportNumber, expiryDate, da
         "origin": flights[0].origin,
         "destination": flights[0].destination,
         "arrivalTime": flights[0].arrivalTime,
-        "departureTime": flights[0].departureTime
+        "departureTime": flights[0].departureTime,
+        "way" : fWay
       };
       collection.insertOne(document, {
         w: 1
