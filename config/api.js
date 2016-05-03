@@ -156,7 +156,7 @@ exports.submitPay = function(firstName, lastName, passportNumber, expiryDate, da
     }
     //console.log("flight found");
     //  remove then insert
-    if (businessOrEconomic === "true") { // economy
+    if (businessOrEconomic === "economy") { // economy
       //check on availableESeats of economy
       if (!(flights[0].availableESeats === 0)) {
         selectedSeat = flights[0].nextEcoSeat;
@@ -178,45 +178,51 @@ exports.submitPay = function(firstName, lastName, passportNumber, expiryDate, da
     //
     // console.log("selectedSeat :"+selectedSeat);
     var bookingReference;
+    var bSeat = flights[0].nextBusSeat;
+    var eSeat = flights[0].nextEcoSeat;
     if (generateOrUseOld === true)
       bookingReference = generateBookingRef(flights[0].SeatMap[selectedSeat].seatNum, flights[0].flightNumber, businessOrEconomic);
     else
       bookingReference = generateOrUseOld;
-    flights[0].SeatMap[selectedSeat].bookingRefNumber = bookingReference;
+    // flights[0].SeatMap[selectedSeat].bookingRefNumber = bookingReference;
 
 
     mongo.db().collection("flights").update({
       "_id": new ObjectId(flightId)
     }, {
       $set: {
-        SeatMap: flights[0].SeatMap
+        nextBusSeat : bSeat,
+        nextEcoSeat : eSeat,
+        SeatMap     : flights[0].SeatMap
       }
     }, {
       upsert: false
-    });
-    // collection.insertOne(document, {
-    //   w: 1
-    // }, function(err, records) {
-    var collection = mongo.db().collection('bookings');
-    var document = {
-      "firstName": firstName,
-      "lastName": lastName,
-      "passport": passport,
-      "passportNumber": passportNumber,
-      "expiryDate": expiryDate,
-      "email": email,
-      "bookingRefNumber": bookingReference, //call new method
-      "flightNumber": flights[0].flightNumber,
-      "seatNum": flights[0].SeatMap[selectedSeat].seatNum,
-      "origin": flights[0].origin,
-      "destination": flights[0].destination,
-      "arrivalTime": flights[0].arrivalTime,
-      "departureTime": flights[0].departureTime
-    };
-    collection.insertOne(document, {
-      w: 1
-    }, function(err, records) {
-      cb(err, document.bookingRefNumber);
+    }, function() {
+
+      // collection.insertOne(document, {
+      //   w: 1
+      // }, function(err, records) {
+      var collection = mongo.db().collection('bookings');
+      var document = {
+        "firstName": firstName,
+        "lastName": lastName,
+        "passport": passport,
+        "passportNumber": passportNumber,
+        "expiryDate": expiryDate,
+        "email": email,
+        "bookingRefNumber": bookingReference, //call new method
+        "flightNumber": flights[0].flightNumber,
+        "seatNum": flights[0].SeatMap[selectedSeat].seatNum,
+        "origin": flights[0].origin,
+        "destination": flights[0].destination,
+        "arrivalTime": flights[0].arrivalTime,
+        "departureTime": flights[0].departureTime
+      };
+      collection.insertOne(document, {
+        w: 1
+      }, function(err, records) {
+        cb(err, document.bookingRefNumber);
+      });
     });
   });
 }

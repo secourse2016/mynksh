@@ -77,8 +77,8 @@ paymentInfo = {
   "passengerDetails": newres,
   "class": 'economy',
   "cost": 12321312,
-  "outgoingFlightId": "5728c2227efe7df614c8c142",
-  "returnFlightId": "5728c2227efe7df614c8c141",
+  "outgoingFlightId": "5728c45ae839e1a7159509c9",
+  "returnFlightId": "5728c45ae839e1a7159509c8",
   "paymentToken": 2112
 }
 
