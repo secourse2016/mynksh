@@ -29,19 +29,19 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
     return clicked === $scope.clicked;
   };
 
-  var SetCardNo = function(value) {
+  $scope.SetCardNo = function(value) {
     paymentSrv.getSelectedCardNo(value);
   };
 
-  var SetMonth = function(value) {
+  scope.SetMonth = function(value) {
     paymentSrv.setSelectedMonth(value);
   };
 
-  var SetYear = function(value) {
+  scope.SetYear = function(value) {
     paymentSrv.setSelectedYear(value);
   };
 
-  var SetCVV = function(value) {
+  scope.SetCVV = function(value) {
     paymentSrv.setSelectedCVV(value);
   };
 
@@ -58,10 +58,10 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
   var paymentInfo = {};
 
   $scope.payAction = function() {
-    SetCardNo($scope.selectedCardNumber);
-    SetMonth($scope.selectedMonth);
-    SetYear($scope.selectedYear);
-    SetCVV($scope.selectedCVV);
+    // SetCardNo($scope.selectedCardNumber);
+    // SetMonth($scope.selectedMonth);
+    // SetYear($scope.selectedYear);
+    // SetCVV($scope.selectedCVV);
     var returnFlightId;
     if (FlightsSrv.getSelectedRoundTrip() === 'true')
       var returnFlightId = OutReturnSrv.getSelectedReturnFlight().flightId;

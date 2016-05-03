@@ -80,7 +80,7 @@
           <h4><font color="maroon">Price : {{totalPrice}}$</font></h4></center>
         <!-- ng-disabled="reviewForm.$invalid" -->
         <center>
-          <button class="button button-assertive" style="border: 1px solid #000; background:white;" ng-disabled="reviewForm.$invalid" ng-click=" payAction();"><font style="color:maroon">Book the flight</font></button>
+          <button class="button button-assertive" style="border: 1px solid #000; background:white;" ng-disabled="reviewForm.$invalid" ng-click="SetCardNo(selectedCardNumber); SetMonth(selectedMonth); SetYear(selectedYear); SetCVV(selectedCVV);payAction();"><font style="color:maroon">Book the flight</font></button>
         </center>
 
         <!-- <button class="button button-full button-assertive" ng-disabled="reviewForm.$invalid" style="background:maroon" ng-click=" payAction();">

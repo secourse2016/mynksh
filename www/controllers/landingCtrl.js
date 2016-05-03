@@ -134,11 +134,12 @@ App.controller('landingCtrl', function($scope, FlightsSrv, $location, $timeout, 
   $scope.SetPinging = function(value) {
     FlightsSrv.setPinging(value);
   };
+  $scope.SetTickets = function(value) {
+    FlightsSrv.setTickets(value);
+  };
 
   /* Find All Available Flights  */
   $scope.SearchFlights = function() {
-    FlightsSrv.setTickets($scope.ticket);
-    console.log($scope.ticket);
     $location.url('/flights');
   };
 

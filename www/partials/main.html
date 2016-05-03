@@ -130,7 +130,7 @@
     <b><label style='font-size:1em;color:rgba(128,0,0, 1)'>Tickets Count</label></b>
     <md-input-container style="margin-right: 10px;">
     <md-select name="ticketsCount" ng-model="ticket">
-      <md-optgroup label="ticket">
+      <!-- <md-optgroup label="ticket"> -->
         <md-option value="1" style="background:rgba(255,255,255, 1)" selected="selected">1</md-option>
         <md-option value="2" style="background:rgba(255,255,255, 1)">2</md-option>
         <md-option value="3" style="background:rgba(255,255,255, 1)">3</md-option>
@@ -141,7 +141,7 @@
         <md-option value="8" style="background:rgba(255,255,255, 1)">8</md-option>
         <md-option value="9" style="background:rgba(255,255,255, 1)">9</md-option>
         <md-option value="10" style="background:rgba(255,255,255, 1)">10</md-option>
-      </md-optgroup>
+      <!-- </md-optgroup> -->
       </md-select>
     </md-input-container>
     <div class="list list-inset">
@@ -150,8 +150,7 @@
           <!-- <input ng-model="pinging" type="checkbox" value="true" /> -->
         </ion-list>
     </div>
-
-  <center>  <button  class="button button-outline button-assertive"  ng-click="SetOriginAirport(selectedItem.value); SetDestinationAirport(selectedItem2.value);SetOutDate(dto);SetReturnDate(dtr); SetRoundTrip(roundTrip); SetCabin(cabin); SetPinging(pinging); SearchFlights()">Search Flights</button></center>
+  <center>  <button  class="button button-outline button-assertive"  ng-click="SetOriginAirport(selectedItem.value); SetDestinationAirport(selectedItem2.value);SetOutDate(dto);SetReturnDate(dtr); SetRoundTrip(roundTrip); SetCabin(cabin); SetPinging(pinging); SetTickets(ticket); SearchFlights()">Search Flights</button></center>
     <br><br>
   </form>
   </ion-content>
