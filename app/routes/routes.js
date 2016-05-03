@@ -181,7 +181,7 @@ module.exports = function(app, mongo) {
 
     stripe.charges.create({
       amount: req.body.cost,
-      currency: "eur",
+      currency: "USD",
       source: req.body.paymentToken,
       description: "Example charge"
     }, function(err, charge) {

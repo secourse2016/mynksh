@@ -1,6 +1,6 @@
 App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturnSrv, paymentSrv, $location) {
 
-  $scope.reservation = ConfirmSrv.getReservation();
+  $scope.reservation = ConfirmSrv.getReservations();
   $scope.totalPrice = OutReturnSrv.getSelectedPrice();
   $scope.cabin = FlightsSrv.getSelectedCabin();
   var roundTrip = FlightsSrv.getSelectedRoundTrip();
@@ -9,6 +9,16 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
     returnFlight = OutReturnSrv.getSelectedReturnFlight();
   $scope.outCurrency = outgoingFlight.currency;
 
+  var newres = $scope.reservation;
+  var dateFormat = function() {
+    // "dateOfBirth": moment("April 12, 2016", 'MMMM D, YYYY hh:mm:ss',
+    for (var i = 0; i < newres.length; i++) {
+      newres[i].dateOfBirth = moment(newres[i].dateOfBirth).toDate().getTime()
+      if (newres[i].passportExpiryDate === undefined)
+        newres[i].passportExpiryDate = moment(newres[i].passportExpiryDate).toDate().getTime()
+    }
+  }
+  dateFormat();
   var Congrats = function() {
     $location.url('/congrats');
   };
@@ -48,31 +58,15 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
   var paymentInfo = {};
 
   $scope.payAction = function() {
-    SetCardType($scope.selectedType);
     SetCardNo($scope.selectedCardNumber);
     SetMonth($scope.selectedMonth);
     SetYear($scope.selectedYear);
     SetCVV($scope.selectedCVV);
-    SetStreet($scope.selectedStreet);
-    SetInformation($scope.selectedExtra);
-    SetPostalcode($scope.selectedPostalcode);
-    SetCity($scope.SelectedCity);
     var returnFlightId;
     if (FlightsSrv.getSelectedRoundTrip() === 'true')
       var returnFlightId = OutReturnSrv.getSelectedReturnFlight().flightId;
     paymentInfo = {
-      "passengerDetails": [{
-        "firstName": ConfirmSrv.getReservation().FName,
-        "lastName": ConfirmSrv.getReservation().LName,
-        "passportNum": ConfirmSrv.getReservation().passportNo,
-        "passportExpiryDate": ConfirmSrv.getReservation().expiryDate, //convert this to moment
-        // "dateOfBirth": moment(ConfirmSrv.getReservation()., 'MMMM D, YYYY hh:mm:ss').toDate().getTime(),
-        // "nationality":  ConfirmSrv.getReservation().,
-        "dateOfBirth": moment("April 12, 2016", 'MMMM D, YYYY hh:mm:ss').toDate().getTime(),
-        "nationality": "Egypt",
-        "email": ConfirmSrv.getReservation().email
-
-      }],
+      "passengerDetails": newres,
       "class": FlightsSrv.getSelectedCabin(),
       "cost": OutReturnSrv.getSelectedPrice(),
       "outgoingFlightId": OutReturnSrv.getSelectedOutFlight().flightId,
