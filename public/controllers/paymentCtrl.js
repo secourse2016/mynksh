@@ -20,8 +20,8 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
   }
   dateFormat();
   var Congrats = function() {
-    SetAirLine1(var AirlineName1);
-    SetAirLine2(var AirlineName2);
+    SetAirLine1(AirlineName1);
+    SetAirLine2(AirlineName2);
     $location.url('/congrats');
   };
 
