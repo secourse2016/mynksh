@@ -7,7 +7,7 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
   var outgoingFlight = OutReturnSrv.getSelectedOutFlight();
   if (roundTrip == 'true')
     returnFlight = OutReturnSrv.getSelectedReturnFlight();
-  $scope.outCurrency = outgoingFlight.currency;
+  // $scope.outCurrency = outgoingFlight.currency;
 
   function changeISOFormat(date) {
     var monthNames = ["January", "February", "March", "April", "May", "June",
@@ -29,7 +29,7 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
   };
 
   $scope.SetCardNo = function(value) {
-    paymentSrv.getSelectedCardNo(value);
+    paymentSrv.setSelectedCardNo(value);
   };
 
   $scope.SetMonth = function(value) {
@@ -99,7 +99,7 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
 
     getOtherPubKey(airline, function(key, airlineIP) {
       if (airlineIP === "IBERIA")
-        pingIp = "";
+        pingIp = "http://localhost:8080";
       else
         pingIp = "http://" + airlineIP;
       Stripe.setPublishableKey(key);
