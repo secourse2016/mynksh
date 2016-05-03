@@ -1,4 +1,4 @@
-App.controller('congratsCtrl', function($scope, paymentSrv, OutReturnSrv, $http, $location) {
+App.controller('congratsCtrl', function($scope, paymentSrv, OutReturnSrv, $http, $window) {
 
 
   $scope.bookingRefNo1 = paymentSrv.getBookingRefNo1();
@@ -22,10 +22,10 @@ App.controller('congratsCtrl', function($scope, paymentSrv, OutReturnSrv, $http,
   });
 
 	$scope.goToUrl1=function(){
-		$location.url('http://'+$scope.urlAirline1);
+		$window.location.href = 'http://'+$scope.urlAirline1;
 	};
 	$scope.goToUrl2=function(){
-		$location.url('http://'+$scope.urlAirline2);
+		$window.location.href = 'http://'+$scope.urlAirline2;
 	};
 
   //
