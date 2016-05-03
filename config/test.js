@@ -127,15 +127,47 @@ describe('seedDB test', function() {
             });    
         });
     });
+    it('should not seed db again if db is not empty', function(done) {
+        mongo.seedDB(function(error, seeded){
+                mongo.seedDB(function(error, seeded){
+                    db.db().collection('flights').toArray((function(err,items){
+                    assert.lengthOf(items,980,'DB has 980 items');
+                    done();
+                });     
+            });    
+        });
+    });
+    it('should not seed db again if db is not empty', function(done) {
+        mongo.seedDB(function(error, seeded){
+                mongo.seedDB(function(error, seeded){
+                    db.db().collection('airports').toArray((function(err,items){
+                    assert.lengthOf(items,18,'DB has 18 items');
+                    done();
+                });     
+            });    
+        });
+    });
+    
 });
 
 
 describe('clearDB test', function() {
   it('Should return the no. of elements in the db', function(done){
-    mongo.clearDB();
-    assert.equal(0,db().collection('airLines').totalSize());
+    mongo.clearDB(function(error, cleared){
+        assert.equal(0,cleared);
 
+    });
   });
+});
+
+
+describe('getAirportsFromDB', function() {
+    it('should return all Airports documents in the database', function(done) {
+        mongo.getAirports(function(err,airports){
+            assert.equal(airports.length,18);
+            done();
+        });
+    });
 });
 
 

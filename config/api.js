@@ -15,6 +15,7 @@ exports.seedDB = function(cb) {
       mongo.seed('airLines', airlines, function() {
         // mongo.seed('bookings', bookings, function() {
         mongo.seed('airports', airports, function() {
+          cb(err,true);
           // mongo.close();
         });
         // });
@@ -31,7 +32,7 @@ exports.clearDB = function(cb) {
     // mongo.seed('airports', airports, function() {
     // mongo.clearDB(function() {
     // mongo.close();
-    cb();
+    cb(true);
     // });
     // });
     // });
