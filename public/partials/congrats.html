@@ -35,18 +35,18 @@
     </div>
 
       <div ng-if="airline1 ==airline2 && airline1 != 'Iberia'">
-        <h4>Your booking is from {{airline1}}, please go to their website on <a onclick="getOtherAirlineIP(airline1)">{{airline1}}</a> to track your booking.</h4>
+        <h4>Your booking is from {{airline1}}, please go to their website on <button ng-click="getOtherAirlineIP1();">{{airline1}}</button> to track your booking.</h4>
       <textarea class="js-copytextarea" readonly>{{bookingRefNo1}}</textarea>
       <br>
       <button class="js-textareacopybtn" ng-click='copy();'>Copy Textarea</button>
     </div>
 
     <div ng-if="airline1 !=airline2 && airline1 != 'Iberia' && airline2 != 'Iberia'">
-      <h4>Your booking from {{airline1}}, please go to their website on <a onclick="getOtherAirlineIP(airline1)">{{airline1}}</a> to track your booking.</h4>
+      <h4>Your booking from {{airline1}}, please go to their website on <button ng-click="getOtherAirlineIP1();">{{airline1}}</button> to track your booking.</h4>
     <textarea class="js-copytextarea" readonly>{{bookingRefNo1}}</textarea>
     <br>
     <button class="js-textareacopybtn" ng-click='copy();'>Copy Textarea</button>
-    <h4>Your booking from {{airline2}}, please go to their website on <a onclick="getOtherAirlineIP(airline2)">{{airline2}}</a> to track your booking.</h4>
+    <h4>Your booking from {{airline2}}, please go to their website on <button ng-click="getOtherAirlineIP2();">{{airline2}}</button> to track your booking.</h4>
   <textarea class="js-copytextarea" readonly>{{bookingRefNo2}}</textarea>
   <br>
   <button class="js-textareacopybtn" ng-click='copy();'>Copy Textarea</button>
@@ -58,7 +58,7 @@
   <textarea class="js-copytextarea" readonly>{{bookingRefNo1}}</textarea>
   <br>
   <button class="js-textareacopybtn" ng-click='copy();'>Copy Textarea</button>
-  <h4>Your booking from {{airline2}}, please go to their website on <a onclick="getOtherAirlineIP(airline2)">{{airline2}}</a> to track your booking.</h4>
+  <h4>Your booking from {{airline2}}, please go to their website on <button ng-click="getOtherAirlineIP2();">{{airline2}}</button> to track your booking.</h4>
 <textarea class="js-copytextarea" readonly>{{bookingRefNo2}}</textarea>
 <br>
 <button class="js-textareacopybtn" ng-click='copy();'>Copy Textarea</button>
@@ -70,7 +70,7 @@
 <textarea class="js-copytextarea" readonly>{{bookingRefNo2}}</textarea>
 <br>
 <button class="js-textareacopybtn" ng-click='copy();'>Copy Textarea</button>
-<h4>Your booking from {{airline1}}, please go to their website on <a onclick="getOtherAirlineIP(airline1)">{{airline1}}</a> to track your booking.</h4>
+<h4>Your booking from {{airline1}}, please go to their website on <button ng-click="getOtherAirlineIP1();">{{airline1}}</button> to track your booking.</h4>
 <textarea class="js-copytextarea" readonly>{{bookingRefNo1}}</textarea>
 <br>
 <button class="js-textareacopybtn" ng-click='copy();'>Copy Textarea</button>
