@@ -73,13 +73,12 @@ var newres = [{
   "email": "22222222",
 }]
 
-
 paymentInfo = {
   "passengerDetails": newres,
   "class": 'economy',
   "cost": 12321312,
-  "outgoingFlightId": "5728a9f59ff9a3690fb0874d",
-  "returnFlightId": "5728a9f59ff9a3690fb0874d",
+  "outgoingFlightId": "5728c2227efe7df614c8c142",
+  "returnFlightId": "5728c2227efe7df614c8c141",
   "paymentToken": 2112
 }
 

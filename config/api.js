@@ -60,13 +60,13 @@ exports.getAirLines = function(cb) {
 
 //get from data base ip
 exports.getAirLineIP = function(airLineName, cb) {
-  var airLineIP= "";
+  var airLineIP = "";
   var collection = mongo.db().collection('airLines');
   collection.find({
     "name": airLineName + " Airlines"
   }).toArray(function(err, airLine) {
-    if(airLine.length ===0)
-      airLineIP= "52.58.24.76";
+    if (airLine.length === 0)
+      airLineIP = "52.58.24.76";
     if (airLine[0] === null) {
       cb(err, "No ip with this Name");
     }
@@ -185,56 +185,38 @@ exports.submitPay = function(firstName, lastName, passportNumber, expiryDate, da
     flights[0].SeatMap[selectedSeat].bookingRefNumber = bookingReference;
 
 
-    mongo.db().collection("flights").remove({
+    mongo.db().collection("flights").update({
       "_id": new ObjectId(flightId)
+    }, {
+      $set: {
+        SeatMap: flights[0].SeatMap
+      }
+    }, {
+      upsert: false
+    });
+    // collection.insertOne(document, {
+    //   w: 1
+    // }, function(err, records) {
+    var collection = mongo.db().collection('bookings');
+    var document = {
+      "firstName": firstName,
+      "lastName": lastName,
+      "passport": passport,
+      "passportNumber": passportNumber,
+      "expiryDate": expiryDate,
+      "email": email,
+      "bookingRefNumber": bookingReference, //call new method
+      "flightNumber": flights[0].flightNumber,
+      "seatNum": flights[0].SeatMap[selectedSeat].seatNum,
+      "origin": flights[0].origin,
+      "destination": flights[0].destination,
+      "arrivalTime": flights[0].arrivalTime,
+      "departureTime": flights[0].departureTime
+    };
+    collection.insertOne(document, {
+      w: 1
     }, function(err, records) {
-      //
-      var collection = mongo.db().collection('flights');
-      var document = {
-        "departureTime": flights[0].departureTime,
-        "availableBSeats": flights[0].availableBSeats,
-        "origin": flights[0].origin,
-        "availableESeats": flights[0].availableESeats,
-        "destination": flights[0].destination,
-        "bCost": flights[0].bCost,
-        "nextBusSeat": flights[0].nextBusSeat,
-        "flightNumber": flights[0].flightNumber,
-        "capacity": flights[0].capacity,
-        "aircraftType": flights[0].aircraftType,
-        "arrivalTime": flights[0].arrivalTime,
-        "nextEcoSeat": flights[0].nextEcoSeat,
-        "aircraftModel": flights[0].aircraftModel,
-        "SeatMap": flights[0].SeatMap,
-        "eCost": flights[0].eCost
-      };
-
-      collection.insertOne(document, {
-        w: 1
-      }, function(err, records) {
-        var collection = mongo.db().collection('bookings');
-        var document = {
-          "firstName": firstName,
-          "lastName": lastName,
-          "passport": passport,
-          "passportNumber": passportNumber,
-          "expiryDate": expiryDate,
-          "email": email,
-          "bookingRefNumber": bookingReference, //call new method
-          "flightNumber": flights[0].flightNumber,
-          "seatNum": flights[0].SeatMap[selectedSeat].seatNum,
-          "origin": flights[0].origin,
-          "destination": flights[0].destination,
-          "arrivalTime": flights[0].arrivalTime,
-          "departureTime": flights[0].departureTime
-        };
-        collection.insertOne(document, {
-          w: 1
-        }, function(err, records) {
-          // mongo.close();
-          cb(err, document.bookingRefNumber);
-          // });
-        });
-      });
+      cb(err, document.bookingRefNumber);
     });
   });
 }
