@@ -9,13 +9,14 @@
           </span>
         </label>
         <span style='color:red' ng-show="(booking.bookingref.$error.required)  && booking.bookingref.$dirty ">Booking Number is required</span>
-
-      </form>
       <h6 style="text-align:center">  <button  type="button" ng-disabled='booking.$invalid' class="btn btn-primary btn-lg" style="left:200px; background:rgba(178,34,34, 1);margin-top: 15px" ng-click="SetBookingRef(selectedBookingRef);retreiveBookingRef();showTabDialog($event)">Search My Flight</button></h6>
+      </form>
     </div>
+
     <script type="text/ng-template" id="tabDialog.tmpl.html">
       <md-dialog aria-label="Mango (Fruit)">
         <form>
+
           <md-toolbar>
             <div class="md-toolbar-tools">
               <h2 style="color:white">Booking Information</h2>
@@ -24,6 +25,7 @@
               </md-button>
             </div>
           </md-toolbar>
+
           <md-dialog-content style="max-width:800px;max-height:810px; ">
             <md-tabs md-dynamic-height md-border-bottom>
               <md-tab label="Personal">
@@ -32,11 +34,12 @@
                   <h6>Hello, {{n.firstName}} {{n.lastName}}!</h6>
                   <h6>Your Passport is {{n.passportNumber}}.</h6>
                   <h6>We will contact you on {{n.email}} to confirm your booking.</h6>
-                  </md-content>
                   <md-content class="md-padding" ng-repeat="n in flights | unique:'flightNumber' && 'seatNum'">
                   <h6>Your seat number on flight {{n.flightNumber}} is {{n.seatNum}}.</h6>
                   </md-content>
+                  </md-content>
               </md-tab>
+
               <md-tab label="Flight">
                   <h4 style="text-align:center">Flights Information</h4>
                     <md-content class="md-padding" ng-repeat="n in flights | unique:'flightNumber'">
@@ -52,6 +55,7 @@
               See you again soon!
             </md-button>
           </md-dialog-actions>
+
         </form>
       </md-dialog>
     </script>
