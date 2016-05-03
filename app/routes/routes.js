@@ -189,7 +189,7 @@ module.exports = function(app, mongo) {
     }); //end of charges call back
   });
 
-  var insertPassengers = function(i, passengerDetails, cabin, cost, outgoingFlightId, returnFlightId, true) {
+  var insertPassengers = function(i, passengerDetails, cabin, cost, outgoingFlightId, returnFlightId, data) {
     if (i === passengerDetails.length)
       return {
       refNum: data,
@@ -199,13 +199,13 @@ module.exports = function(app, mongo) {
     if (returnFlightId === undefined || returnFlightId === null) {
       mongo.submitPay(passengerDetails[i].firstName, passengerDetails[i].lastName, passengerDetails[i].passportNum,
          passengerDetails[i].passportExpiryDate, passengerDetails[i].dateOfBirth, passengerDetails[i].nationality,
-         passengerDetails[i].email, cabin, cost, outgoingFlightId, true, function(err, data) {
+         passengerDetails[i].email, cabin, cost, outgoingFlightId, data, function(err, data) {
         insertPassengers(i+1, passengerDetails, cabin, cost, outgoingFlightId, returnFlightId, data);
       });
     } else {
       mongo.submitPay(passengerDetails[i].firstName, passengerDetails[i].lastName, passengerDetails[i].passportNum,
          passengerDetails[i].passportExpiryDate, passengerDetails[i].dateOfBirth, passengerDetails[i].nationality,
-          passengerDetails[i].email, cabin, cost, outgoingFlightId, true, function(err, data) {
+          passengerDetails[i].email, cabin, cost, outgoingFlightId, data, function(err, data) {
         mongo.submitPay(req.body.passengerDetails[i - 1].firstName, req.body.passengerDetails[i - 1].lastName, req.body.passengerDetails[i - 1].passportNum, req.body.passengerDetails[i - 1].passportExpiryDate, req.body.passengerDetails[i - 1].dateOfBirth, req.body.passengerDetails[i - 1].nationality, req.body.passengerDetails[i - 1].email, req.body.class, req.body.cost, req.body.returnFlightId, data, function(err, data) {
           insertPassengers(i+1, passengerDetails, cabin, cost, outgoingFlightId, returnFlightId, data);
         });
