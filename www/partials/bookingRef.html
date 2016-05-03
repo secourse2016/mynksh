@@ -1,12 +1,7 @@
 <ion-view view-title="Previous Booking">
 
   <ion-content class="has-header has-subheader">
-
-
-
     <h4 style="text-align:center;color:rgba(128,0,0, 1)">Track Booking</h4>
-
-
     <div class="list list-inset">
       <form name='booking'>
         <label class="item item-input item-floating-label" ng-class="{ 'has-error' : loginForm.originAirports.$invalid && loginForm.$submitted }">
@@ -17,7 +12,7 @@
         <span style='color:red' ng-show="(booking.bookingref.$error.required)  && booking.bookingref.$dirty ">Booking Number is required</span>
 
       </form>
-      <h6 style="text-align:center">  <button  type="button" ng-disabled='booking.$invalid' class="btn btn-primary btn-lg" style="left:200px; background:rgba(178,34,34, 1);margin-top: 15px" ng-click="SetBookingRef(selectedBookingRef);retreiveBookingRef();showme=true">Search My Flight</button></h6>
+      <h6 style="text-align:center">  <button  type="button" ng-disabled='booking.$invalid' class="btn btn-primary btn-lg" style="left:200px; background:rgba(178,34,34, 1);margin-top: 15px" ng-click="SetBookingRef(selectedBookingRef);retreiveBookingRef();showAlert($event)">Search My Flight</button></h6>
     </div>
 
 <ion-list>
@@ -26,10 +21,9 @@
         <h6 id="divID2" style="color:rgba(128,0,0, 1)"></h6>
         <h6 id="divID3" style="color:rgba(128,0,0, 1)"></h6>
         <h6 id="divID4" style="color:rgba(128,0,0, 1)"></h6>
-        <h6 id="divID5" style="color:rgba(128,0,0, 1)"></h6>
+        <h6 id="divID5" style="color:rgba(128,0,0, 1)"></h6><br><br>
+        <h5 style="text-align:center;color:rgba(128,0,0, 1)">See you again <b> SOON!</b></h5>
     </div>
   </ion-list>
-
   </ion-content>
-
 </ion-view>
