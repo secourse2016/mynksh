@@ -17,6 +17,7 @@
             $("#typed").typed('reset');
         });
     });
+
 </script>
 
 <!--==== Essential files ====-->
@@ -53,6 +54,7 @@
 
 <!--=== Header section Starts ===-->
 <div id="header" class="header-section">
+
     <!-- sticky-bar Starts-->
     <div class="sticky-bar-wrap">
         <div class="sticky-section">
@@ -65,7 +67,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a href='http://mynksh.com'>
+                        <a href="javascript:history.go(0)">
                             <span><img src="./assets/iberia-logo.png"></span>
                         </a>
                     </div>
@@ -89,6 +91,7 @@
     </div>
 
     <div id="section-home" class="home-section-wrap center">
+
         <div class="section-overlay"></div>
         <div class="container home">
             <div class="row">
@@ -135,6 +138,7 @@
                                 <font class="col-sm-2 text-right" size="4" color="white"> From: </font>
                                 <div class="col-md-8 col-sm-8">
                                     <input name="originAirports" id="originAirports"  type="text"  placeholder="Flying From" ng-model="selectedOrigin" ng-required='true' uib-typeahead="airport.name for airport in Airports | filter:$viewValue | limitTo:10" class="form-control" , typeahead-on-select="SetOriginAirport($item.iata)"  required >
+
                                     <span style='color:white' ng-show="(flights.originAirports.$error.required) ">Origin Airport required</span>
                                 </div>
                               </form>
@@ -144,6 +148,7 @@
                                 <font class="col-sm-2 text-right" size="4" color="white"> To: </font>
                                 <div class="col-md-8 col-sm-8">
                                     <input name="destinationAirports" id="destinationAirports" type="text"  placeholder="Flying To" ng-model="selectedDestination" uib-typeahead="airport.name for airport in Airports | filter:$viewValue | limitTo:10" class="form-control" , typeahead-on-select="SetDestinationAirport($item.iata)" ng-required='true' required>
+
                                     <span style='color:white' ng-show="(flights.destinationAirports.$error.required)  && flights.destinationAirports.$dirty ">Destination Airport required</span>
                                 </div>
                             </div>
@@ -165,6 +170,7 @@
                                 <div class="col-md-8 col-sm-8 col-xs-4">
                                     <div class="input-group ">
                                         <input type="text" class="form-control" min-date="minDate" uib-datepicker-popup="{{format}}" ng-model="$parent.dto" is-open="popup1.opened" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" required />
+
                                         <span class="input-group-btn ">
                                           <button type="button"
                                             class="btn btn-default"
@@ -184,6 +190,7 @@
 
                                         <div class="input-group ">
                                             <input type="text" class="form-control" min-date="minDate" uib-datepicker-popup="{{format}}" ng-model="$parent.dto" is-open="popup1.opened" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" required />
+
                                             <span class="input-group-btn ">
                                           <button type="button"
                                             class="btn btn-default"
@@ -238,12 +245,12 @@
                             </div>
 
 
-                            <!-- <div class="form-group">
+                            <div class="form-group">
                                 <font class=" col-sm-2 text-right" size="4" color="white"> Tickets Count:</font>
                                 <div class="col-sm-8 text-left">
                                     <div class="styled">
-                                        <select name="ticketsCount" ng-model="ticket" style="background:rgba(255,255,255, 1)">
-                                            <option value="1" style="background:rgba(255,255,255, 1)" selected="selected">1</option>
+                                        <select name="ticketsCount" ng-model="ticket" style="background:rgba(255,255,255, 1)" ng-required='true'>
+                                            <option value="1" style="background:rgba(255,255,255, 1)" selected='selected'>1</option>
                                             <option value="2" style="background:rgba(255,255,255, 1)">2</option>
                                             <option value="3" style="background:rgba(255,255,255, 1)">3</option>
                                             <option value="4" style="background:rgba(255,255,255, 1)">4</option>
@@ -256,7 +263,7 @@
                                         </select>
                                     </div>
                                 </div>
-                            </div> -->
+                            </div>
                             <form>
                                 </br>
 
@@ -266,7 +273,7 @@
                     <button type="submit"  ng-disabled="reviewForm.$invalid " class="fancy-button button-line button-white large zoom subform" id='btnSearch'
                     ng-click="SetOutDate(dto);SetReturnDate(dtr); SetRoundTrip(roundTrip); SetCabin(cabin); SetPinging(pinging); SearchFlights()">
                         Search Flights
-                        <!-- <a type="button" class="btn btn-clear btn-sm btn-min-block " id='btnSearch' ng-click='SearchFlights()'>Search Flights</a> -->
+
                         <span class="icon">
         								<i class="fa fa-paper-plane-o"></i>
         							</span>
@@ -295,28 +302,26 @@
                     <div class="pricing-head">
                         <h4 class="pricing-heading color-scheme">Offer 1</h4>
                         <div class="price">
-                            <h3>
-									<span class="euro">€</span>
-									60
-								</h3>
+                            <h3>50%	Discount</h3>
                         </div>
                     </div>
 
                     <ul class="package-features">
-                        <li  id="selectedOrigin"><span class="color-scheme fa fa-check">From:</span>Cairo</li>
-                        <li  id="destinationAirports"><span class="color-scheme fa fa-check">To:</span>Jeddah</li>
-                        <li ><span class="color-scheme fa fa-check">Round Trip</span></li>
-                        <li ><span class="color-scheme fa fa-check">Economy</span>class</li>
-                        <li ><span class="color-scheme fa fa-check">Outgoing:</span> 20/4/2016</li>
-                        <li ><span class="color-scheme fa fa-check">Returning:</span> 25/4/2016</li>
+                        <li><span class="color-scheme fa fa-check" ng-init="originOffer1='CAI'">From:</span>Cairo</li>
+                        <li ><span class="color-scheme fa fa-check" ng-init="destOffer1='JED'" >To:</span>Jeddah</li>
+                        <li ><span class="color-scheme fa fa-check" ng-init="roundTripOff1='true'">Round Trip</span></li>
+                        <li ><span class="color-scheme fa fa-check" ng-init="cabinOff1='true'">Economy</span>class</li>
+                        <li ><span class="color-scheme fa fa-check" ng-init="$parent.dtoOff1='May 24, 2016'" >Outgoing:</span> May 24, 2016</li>
+                        <li ><span class="color-scheme fa fa-check" ng-init="$parent.dtrOff1='May 25, 2016'">Returning:</span> May 25, 2016</li>
+                        <span  ng-init="pingOff1=false"></span>
                     </ul>
                     <div class="sign-up">
-                        <a ng-click='SearchFlights()' class="fancy-button button-line btn-col vertical">
+                        <button type="submit" ng-click="SetOriginAirport(originOffer1);SetDestinationAirport(destOffer1);SetOutDate($parent.dtoOff1);SetReturnDate($parent.dtrOff1); SetRoundTrip(roundTripOff1); SetCabin(cabinOff1);SetPinging(pingOff1);SearchFlights()" class="fancy-button button-line btn-col vertical">
 								Book it UP!
 								<span class="icon">
 									<i class="fa fa-hand-o-up"></i>
 								</span>
-							</a>
+							</button>
                     </div>
                 </div>
             </div>
@@ -330,26 +335,26 @@
                         <h4 class="pricing-heading color-scheme">Offer 2</h4>
                         <div class="price">
                             <h3>
-                  <span class="euro">€</span>
-                  100
+                  <span class="euro">30% Discount</span>
                 </h3>
                         </div>
                     </div>
 
                     <ul class="package-features">
-                        <li><span class="color-scheme fa fa-check">From:</span>United States</li>
-                        <li><span class="color-scheme fa fa-check">To:</span>Paris</li>
-                        <li><span class="color-scheme fa fa-check">One way</span></li>
-                        <li><span class="color-scheme fa fa-check">Business</span>class</li>
-                        <li><span class="color-scheme fa fa-check">Outgoing:</span> 15/4/2016</li>
+                        <li><span class="color-scheme fa fa-check" ng-init="originOffer2='LAX'">From:</span>Los Angeles</li>
+                        <li><span class="color-scheme fa fa-check" ng-init="destOffer2='LCF'">To:</span>Las Vegas</li>
+                        <li><span class="color-scheme fa fa-check" ng-init="roundTripOff2='false'">One way</span></li>
+                        <li><span class="color-scheme fa fa-check" ng-init="cabinOff2='false'">Business</span>class</li>
+                        <li><span class="color-scheme fa fa-check" ng-init="$parent.dtoOff2='May 15, 2016'">Outgoing:</span> May 15, 2016</li>
+                        <span  ng-init="pingOff2=false"></span>
                     </ul>
                     <div class="sign-up">
-                        <a ng-click='SearchFlights()' class="fancy-button button-line btn-col rotate">
-								Book it UP!
+                      <button type="submit" ng-click="SetOriginAirport(originOffer2);SetDestinationAirport(destOffer2);SetOutDate($parent.dtoOff2);SetRoundTrip(roundTripOff2); SetCabin(cabinOff2);SetPinging(pingOff2);SearchFlights()" class="fancy-button button-line btn-col vertical">
+              Book it UP!
 								<span class="icon">
 									<i class="fa fa-thumbs-o-up"></i>
 								</span>
-							</a>
+							</button>
                     </div>
                 </div>
             </div>
@@ -362,27 +367,27 @@
                         <h4 class="pricing-heading color-scheme">Offer 3</h4>
                         <div class="price">
                             <h3>
-                  <span class="euro">€</span>
-                  110
+                  <span class="euro">20% Discount</span>
                 </h3>
                         </div>
                     </div>
 
                     <ul class="package-features">
-                        <li><span class="color-scheme fa fa-check">From:</span>China</li>
-                        <li><span class="color-scheme fa fa-check">To:</span>Madrid</li>
-                        <li><span class="color-scheme fa fa-check">Round Trip</span>Flight</li>
-                        <li><span class="color-scheme fa fa-check">Economy</span>class</li>
-                        <li><span class="color-scheme fa fa-check">Outgoing:</span> 20/4/2016</li>
-                        <li><span class="color-scheme fa fa-check">Returning:</span> 30/4/2016</li>
+                        <li><span class="color-scheme fa fa-check" ng-init="originOffer3='BOM'">From:</span>Mumbai</li>
+                        <li><span class="color-scheme fa fa-check" ng-init="destOffer3='DEL'">To:</span>Dehli</li>
+                        <li><span class="color-scheme fa fa-check" ng-init="roundTripOff3='true'">Round Trip</span>Flight</li>
+                        <li><span class="color-scheme fa fa-check" ng-init="cabinOff3='false'">Business</span>class</li>
+                        <li><span class="color-scheme fa fa-check" ng-init="$parent.dtoOff3='May 22, 2016'">Outgoing:</span> May 22, 2016</li>
+                        <li><span class="color-scheme fa fa-check" ng-init="$parent.dtrOff3='May 30, 2016'">Returning:</span> May 30, 2016</li>
+                        <span  ng-init="pingOff3=false"></span>
                     </ul>
                     <div class="sign-up">
-                        <a ng-click='SearchFlights()' class="fancy-button button-line btn-col zoom">
-								Book it UP!
+                      <button type="submit" ng-click="SetOriginAirport(originOffer3);SetDestinationAirport(destOffer3);SetOutDate($parent.dtoOff3);SetReturnDate($parent.dtrOff3);SetRoundTrip(roundTripOff3); SetCabin(cabinOff3);SetPinging(pingOff3);SearchFlights()" class="fancy-button button-line btn-col vertical">
+              Book it UP!
 								<span class="icon">
 									<i class="fa fa-thumbs-o-up"></i>
 								</span>
-							</a>
+							</button>
                     </div>
                 </div>
             </div>
@@ -434,7 +439,7 @@
 <!-- ABOUT US ENDS  -->
 
 <!--=== Features section Starts ===-->
-<<<<<<< HEAD
+
 <section id="section-feature" class="feature-wrap">
     <div class="container features center">
         <div class="row">
@@ -532,7 +537,7 @@
                         <!-- Feature Icon -->
                         <h4 class="feature-title color-scheme">Hazem Ayman</h4>
                         <p class="feature-text">
-                            Msh fr2a    
+                            Msh fr2a
                         </p>
                         <a href="https://www.facebook.com/hazem.ayman.14?pnref=friends.search" class="fancy-button button-line btn-col small zoom">
 									Details

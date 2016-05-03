@@ -12,7 +12,7 @@ App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $locati
     $scope.returnFlightFound = true;
     $scope.outgoingInfo = [];
     $scope.returnInfo = [];
-    $scope.seats= 1;
+    $scope.seats = FlightsSrv.getTickets();
 
     if (FlightsSrv.getPinging().toString() === 'true')
         if ($scope.roundTrip === 'true')
@@ -24,10 +24,6 @@ App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $locati
         roundTripInfo($scope.origin, $scope.dest, changeISOFormat($scope.oDate), changeISOFormat($scope.rDate),$scope.seats);
     else
         oneWayTripInfo($scope.origin, $scope.dest, changeISOFormat($scope.oDate), $scope.seats);
- 
-    var flights = [];
-    flights.outgoingFlights = [];
-    flights.returnFlights = [];
 
     function pingAirlineR(origin, dest, oDate, rDate, seats) {
         OutReturnSrv.getairLinesInfo().success(function(airlines) {
@@ -37,12 +33,12 @@ App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $locati
                 var outDate = moment(oDate).toDate().getTime();
                 var jwt = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJNWU5LU0giLCJpYXQiOjE0NjA3NzIyOTQsImV4cCI6MTQ5MjMwODI5NSwiYXVkIjoid3d3LnNlY291cnNlLmNvbSIsInN1YiI6Ik1ZTktTSCBJYmVyaWEiLCJUZWFtIjoiTVlOS1NIIn0.hZxhv8XAcu1cARgcrtfb0l_crF1-Ic1tJt9eUhIL0qQ';
                 $http.get('/api/others/search/'+ c.ip + '/' + origin + '/' + dest + '/' + departDate + '/' + outDate + '/' + tclass +'/' + seats + '/' + jwt).success(function(flight) {
-                  console.log(flight);
-                    if (flight.outgoingFlights != undefined && flight.outgoingFlights[0] != undefined && flight.outgoingFlights[0] != undefined && flight.outgoingFlights[0].length != 0) {
+                  // console.log(flight);
+                    if (flight.outgoingFlights != undefined && flight.outgoingFlights[0] != undefined) {
                         flight.outgoingFlights[0].cost = Number(flight.outgoingFlights[0].cost);
                         $scope.outgoingInfo.push(flight.outgoingFlights[0]);
                     }
-                    if (flight != undefined && flight.returnFlights != undefined && flight.returnFlights[0] != undefined) {
+                    if (flight.returnFlights != undefined && flight.returnFlights[0] != undefined) {
                         flight.returnFlights[0].cost = Number(flight.returnFlights[0].cost);
                         $scope.returnInfo.push(flight.returnFlights[0]);
                     }
@@ -59,7 +55,7 @@ App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $locati
                 var departDate = moment(oDate).toDate().getTime();
                 jwt = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJNWU5LU0giLCJpYXQiOjE0NjA3NzIyOTQsImV4cCI6MTQ5MjMwODI5NSwiYXVkIjoid3d3LnNlY291cnNlLmNvbSIsInN1YiI6Ik1ZTktTSCBJYmVyaWEiLCJUZWFtIjoiTVlOS1NIIn0.hZxhv8XAcu1cARgcrtfb0l_crF1-Ic1tJt9eUhIL0qQ';
                 $http.get('/api/others/search/' + c.ip + '/' + origin + '/' + dest + '/' + departDate + '/' + tclass +'/' + seats + '/' + jwt).success(function(flight) {
-                    if (flight.outgoingFlights != undefined && flight.outgoingFlights[0] != undefined && flight.outgoingFlights[0] != undefined && flight.outgoingFlights[0].length != 0) {
+                    if (flight.outgoingFlights != undefined && flight.outgoingFlights[0] != undefined) {
                         flight.outgoingFlights[0].cost = Number(flight.outgoingFlights[0].cost);
                         $scope.outgoingInfo.push(flight.outgoingFlights[0]);
                     }
@@ -73,34 +69,30 @@ App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $locati
     function roundTripInfo(origin, dest, oDate, rDate, seats) {
         if ($scope.cabin === "true") {
             OutReturnSrv.getRoundTripInfo(origin, dest, oDate, rDate, "economy", seats).success(function(flights) {
-                if (flights.outgoingFlights[0] != undefined && flights.outgoingFlights[0].length != 0)
+                if (flights.outgoingFlights[0] != undefined)
                     $scope.outgoingInfo.push(flights.outgoingFlights[0]);
-                if (flights.returnFlights[0] != undefined && flights.returnFlights[0].length != 0)
+                if (flights.returnFlights[0] != undefined)
                     $scope.returnInfo.push(flights.returnFlights[0]);
                 // if(Object.keys(outgoingFlight).length === 0 || Object.keys(returnFlight).length === 0 )
                 //     res.send("no flights found");
                 if ($scope.outgoingInfo.length === 0) {
-                    console.log("outgoing empty");
                     $scope.outFlightFound = false;
                 }
                 if ($scope.returnInfo.length === 0) {
-                    console.log("outgoing empty");
                     $scope.returnFlightFound = false;
                 }
 
             });
         } else {
             OutReturnSrv.getRoundTripInfo(origin, dest, oDate, rDate, "business", seats).success(function(flights) {
-                if (flights.outgoingFlights[0] != undefined && flights.outgoingFlights[0].length != 0)
+                if (flights.outgoingFlights[0] != undefined)
                     $scope.outgoingInfo.push(flights.outgoingFlights[0]);
-                if (flights.returnFlights[0] != undefined && flights.returnFlights[0].length != 0)
+                if (flights.returnFlights[0] != undefined)
                     $scope.returnInfo.push(flights.returnFlights[0]);
                 if ($scope.outgoingInfo.length === 0) {
-                    console.log("outgoing empty");
                     $scope.outFlightFound = false;
                 }
                 if ($scope.returnInfo.length === 0) {
-                    console.log("outgoing empty");
                     $scope.returnFlightFound = false;
                 }
 
@@ -112,14 +104,14 @@ App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $locati
     function oneWayTripInfo(origin, dest, oDate,seats) {
         if ($scope.cabin === "true") {
             OutReturnSrv.getOneWayTripInfo(origin, dest, oDate, "economy", seats).success(function(flights) {
-                if (flights.outgoingFlights[0] != undefined && flights.outgoingFlights[0].length != 0)
+                if (flights.outgoingFlights[0] != undefined)
                     $scope.outgoingInfo.push(flights.outgoingFlights[0]);
                 if ($scope.outgoingInfo.length === 0)
                     $scope.outFlightFound = false;
             });
         } else {
             OutReturnSrv.getOneWayTripInfo(origin, dest, oDate, "business", seats).success(function(flights) {
-                if (flights.outgoingFlights[0] != undefined && flights.outgoingFlights[0].length != 0)
+                if (flights.outgoingFlights[0] != undefined)
                     $scope.outgoingInfo.push(flights.outgoingFlights[0]);
                 if ($scope.outgoingInfo.length === 0)
                     $scope.outFlightFound = false;
@@ -162,9 +154,9 @@ App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $locati
         OutReturnSrv.setSelectedOutFlight($scope.selectedOutgoingFlight);
         if ($scope.roundTrip == 'true') {
             OutReturnSrv.setSelectedReturnFlight($scope.selectedReturnFlight);
-            OutReturnSrv.setSelectedPrice($scope.selectedOutgoingFlight.cost + $scope.selectedReturnFlight.cost);
+            OutReturnSrv.setSelectedPrice(($scope.selectedOutgoingFlight.cost + $scope.selectedReturnFlight.cost) * $scope.seats);
         } else
-            OutReturnSrv.setSelectedPrice($scope.selectedOutgoingFlight.cost);
+            OutReturnSrv.setSelectedPrice($scope.selectedOutgoingFlight.cost * $scope.seats);
 
         $location.url('/confirm');
     };

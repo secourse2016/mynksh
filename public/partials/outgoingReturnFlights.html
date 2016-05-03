@@ -10,7 +10,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a href='http://mynksh.com'>
+                      <a href="#" onclick="location.href = document.referrer; return false;">
                         <span><img src="./assets/iberia-logo.png"></span>
                     </a>
                 </div>
@@ -33,7 +33,7 @@
             <div class="form-group">
             <div ng-hide="outFlightFound">
                <h3>There are no flights available on selected date. Go back to
-               <a href= "http://mynksh.com">Iberia</a>.</h3>
+               <a href="#" onclick="location.href = document.referrer; return false;">Iberia</a>.</h3>
             </div>
           </div>
             <div ng-show="outFlightFound" >
@@ -111,7 +111,7 @@
             <div id='price'>
                 <blockquote>
                     <p>Price:</p>
-                    <h3>{{(selectedReturnFlight.cost + selectedOutgoingFlight.cost) | currency:"€"}}</h3>
+                    <h3>{{(selectedReturnFlight.cost + selectedOutgoingFlight.cost) | currency:"$"}} x {{seats}} = {{(selectedReturnFlight.cost + selectedOutgoingFlight.cost)*seats | currency:"$"}}</h3>
                     <span ng-show="RadioSelected" style="color: red">Flight(s) must be selected</span>
                 </blockquote>
                 <a href class="btn btn-primary btn-lg hvr-underline-from-center" ng-click='BookFlight()'>Book Flight</a>

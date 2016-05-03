@@ -1,0 +1,32 @@
+<ion-view title="Congratulations!">
+  <ion-content style="background-color:maroon">
+    <div id="logo">
+      <br>
+      <br>
+      <center>
+        <center>
+          <h4 Style='color:white;family-font:"Lucida Sans Unicode"'>You booked with</h4>
+          <br>
+          <img src="/img/iberia-logo.png">
+        </center>
+      </center>
+    </div>
+    </ion-item>
+    <br>
+    <br>
+    <font size='4' Style='color:white;family-font:"Lucida Sans Unicode" ; float:left'>Your booking reference:</font>
+    <textarea class="js-copytextarea" readonly style="width: 150px; height: 50px; color:white; margin-left:180px; background-color: maroon">
+      {{bookingRefNo}} </textarea>
+    <center>
+      <button class="button button-outline button-positive" style="border: 1px solid #000;
+  background:maroon" ng-click='copy();'>
+        <font style="color:white">Copy my booking reference</font>
+      </button>
+    </center>
+    <br>
+    <br>
+    <center>
+      <button class="button icon-left ion-home" style="border: 1px solid #000; background:maroon" ng-click='landing();'><font style="color:white">Go back to home page</font></button>
+    </center>
+  </ion-content>
+</ion-view>

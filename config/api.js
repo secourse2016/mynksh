@@ -120,7 +120,7 @@ exports.searchFlights = function(origin, destination, departingDate, cabin, seat
           "departureDateTime": moment(departureDate, 'MMMM D, YYYY hh:mm:ss').toDate().getTime(),
           "arrivalDateTime": moment(arrivalDate, 'MMMM D, YYYY hh:mm:ss').toDate().getTime(),
           "cost": cost,
-          "currency": "EUR",
+          "currency": "USD",
           "origin": origin,
           "destination": flights[0].destination,
           "class": economyOrBusiness,

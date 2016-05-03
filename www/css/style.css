@@ -6,7 +6,7 @@
 }
 
 .wooden {
-    background-image: url(/assets/wood-background.jpg);
+    /*background-image: url(/assets/wood-background.jpg);*/
     background-position:center;
     background-size: cover;
 }
@@ -23,4 +23,12 @@
   border: 2px solid silver;
   border-radius: 50px 15px;
   padding: 6% 0 3% 3%;
+}
+
+.stroke{
+  color: black;
+  font-size: 1.5em;
+  -webkit-text-fill-color: white; /* Will override color (regardless of order) */
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: black;
 }

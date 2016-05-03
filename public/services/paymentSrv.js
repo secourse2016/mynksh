@@ -2,7 +2,6 @@ App.factory('paymentSrv', function($http) {
   return {
 
     getOtherAirlineIP: function(airlineName) {
-      jwt = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJNWU5LU0giLCJpYXQiOjE0NjA3NzIyOTQsImV4cCI6MTQ5MjMwODI5NSwiYXVkIjoid3d3LnNlY291cnNlLmNvbSIsInN1YiI6Ik1ZTktTSCBJYmVyaWEiLCJUZWFtIjoiTVlOS1NIIn0.hZxhv8XAcu1cARgcrtfb0l_crF1-Ic1tJt9eUhIL0qQ';
       return $http.get('/data/singleAirline/' + airlineName)
     },
     getOtherStripePubKey: function(airlineIP) {
@@ -14,24 +13,9 @@ App.factory('paymentSrv', function($http) {
         return $http.get('http://' + airlineIP + '/stripe/pubkey/?wt=' + jwt, {timeout:3000});
       }
     },
-
-
-    // postPay: function(reservation, bookingRefNumber, flight , cabin) {
-    //   console.log("in service");
-    //   return $http.get('/data/pay/'+ reservation.FName + '/' + reservation.LName + '/' + reservation.country + '/' + reservation.passportNo+'/'+
-    //     reservation.issueDate+'/'+ reservation.expiryDate + '/' + reservation.email + '/' + reservation.phoneno + '/' + bookingRefNumber+'/'+
-    //     flight.flightNumber+'/'+cabin);
-    // },
-
     chargeCard: function(paymentInfo, pingIp) {
       var jwt = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJNWU5LU0giLCJpYXQiOjE0NjA3NzIyOTQsImV4cCI6MTQ5MjMwODI5NSwiYXVkIjoid3d3LnNlY291cnNlLmNvbSIsInN1YiI6Ik1ZTktTSCBJYmVyaWEiLCJUZWFtIjoiTVlOS1NIIn0.hZxhv8XAcu1cARgcrtfb0l_crF1-Ic1tJt9eUhIL0qQ';
       return $http.post(pingIp + '/booking?wt=' + jwt, paymentInfo, {timeout:3000});
-    },
-    getSelectedCardType: function() {
-      return this.SelectedCardType;
-    },
-    setSelectedCardType: function(value) {
-      this.SelectedCardType = value;
     },
     getSelectedCardNo: function() {
       return this.SelectedCardNo;
@@ -57,36 +41,11 @@ App.factory('paymentSrv', function($http) {
     setSelectedCVV: function(value) {
       this.SelectedCVV = value;
     },
-    getSelectedStreet: function() {
-      return this.selectedStret;
-    },
-    setSelectedStreet: function(value) {
-      this.selectedStret = value;
-    },
-    getSelectedInformation: function() {
-      return this.Selectedinformation;
-    },
-    setSelectedInformation: function(value) {
-      this.Selectedinformation = value;
-    },
-    getSelectedPostalcode: function() {
-      return this.selectedPostalcode;
-    },
-    setSelectedPostalcode: function(value) {
-      this.selectedPostalcode = value;
-    },
     getBookingRefNo: function() {
       return this.bookingRefNo;
     },
     setBookingRefNo: function(value) {
       this.bookingRefNo = value;
-    },
-    getSelectedCity: function() {
-      return this.SelectedCity;
-    },
-    setSelectedCity: function(value) {
-      this.SelectedCity = value;
     }
-
   };
 });

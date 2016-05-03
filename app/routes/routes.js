@@ -58,12 +58,6 @@ module.exports = function(app, mongo) {
       res.json(bookingRef);
     });
   });
-  // app.get('/data/pay/:firstName/:lastName/:passport/:passportNumber/:issueDate/:expiryDate/:email/:phoneNumber/:bookingRefNumber/:flightNumber/:flightCabin', function(req, res) {
-  //     console.log('in routes');
-  //     mongo.submitPay(req.params.firstName, req.params.lastName, req.params.passport, req.params.passportNumber, req.params.issueDate, req.params.expiryDate, req.params.email, req.params.phoneNumber, req.params.bookingRefNumber, req.params.flightNumber, req.params.flightCabin, function(err, data) {
-  //         res.end();
-  //     });
-  // });
 
   app.get('/api/others/search/:ip/:origin/:destination/:departingDate/:returningDate/:cabin/:seats/:wt', function(req, res1) {
     var options = {
@@ -177,11 +171,9 @@ module.exports = function(app, mongo) {
     // console.log("i`m in api /booking" + req.body.IP);
     // if((req.body.IP) === "52.58.24.76" ){
     //     console.log("i`m in api /booking inside if ");
-
-
     stripe.charges.create({
       amount: req.body.cost,
-      currency: "eur",
+      currency: "USD",
       source: req.body.paymentToken,
       description: "Example charge"
     }, function(err, charge) {
@@ -190,140 +182,32 @@ module.exports = function(app, mongo) {
           refNum: null,
           errorMessage: err
         });
-      } else
-
-      {
-        //move booking here
-        if (req.body.returnFlightId === undefined || req.body.returnFlightId === null) {
-          mongo.submitPay(req.body.passengerDetails[0].firstName, req.body.passengerDetails[0].lastName, req.body.passengerDetails[0].passportNum, req.body.passengerDetails[0].passportExpiryDate, req.body.passengerDetails[0].dateOfBirth, req.body.passengerDetails[0].nationality, req.body.passengerDetails[0].email, req.body.class, req.body.cost, req.body.outgoingFlightId, true, function(err, data) {
-            //console.log("RefNum  " + data + "err" + err);
-            res1.send({
-              refNum: data,
-              errorMessage: null
-            });
-          });
-
-        } else {
-          mongo.submitPay(req.body.passengerDetails[0].firstName, req.body.passengerDetails[0].lastName, req.body.passengerDetails[0].passportNum, req.body.passengerDetails[0].passportExpiryDate, req.body.passengerDetails[0].dateOfBirth, req.body.passengerDetails[0].nationality, req.body.passengerDetails[0].email, req.body.class, req.body.cost, req.body.outgoingFlightId, true, function(err, data) {
-            //console.log(data);
-            mongo.submitPay(req.body.passengerDetails[0].firstName, req.body.passengerDetails[0].lastName, req.body.passengerDetails[0].passportNum, req.body.passengerDetails[0].passportExpiryDate, req.body.passengerDetails[0].dateOfBirth, req.body.passengerDetails[0].nationality, req.body.passengerDetails[0].email, req.body.class, req.body.cost, req.body.returnFlightId, data, function(err, data) {
+      } else {
+        for (var i = 0; i < passengerDetails.length; i++)
+          if (req.body.returnFlightId === undefined || req.body.returnFlightId === null) {
+            mongo.submitPay(req.body.passengerDetails[i].firstName, req.body.passengerDetails[i].lastName, req.body.passengerDetails[i].passportNum, req.body.passengerDetails[i].passportExpiryDate, req.body.passengerDetails[i].dateOfBirth, req.body.passengerDetails[i].nationality, req.body.passengerDetails[i].email, req.body.class, req.body.cost, req.body.outgoingFlightId, true, function(err, data) {
               //console.log("RefNum  " + data + "err" + err);
               res1.send({
                 refNum: data,
                 errorMessage: null
               });
             });
-          });
-        }
 
+          } else {
+            mongo.submitPay(req.body.passengerDetails[i].firstName, req.body.passengerDetails[i].lastName, req.body.passengerDetails[i].passportNum, req.body.passengerDetails[i].passportExpiryDate, req.body.passengerDetails[i].dateOfBirth, req.body.passengerDetails[i].nationality, req.body.passengerDetails[i].email, req.body.class, req.body.cost, req.body.outgoingFlightId, true, function(err, data) {
+              //console.log(data);
+              mongo.submitPay(req.body.passengerDetails[i].firstName, req.body.passengerDetails[i].lastName, req.body.passengerDetails[i].passportNum, req.body.passengerDetails[i].passportExpiryDate, req.body.passengerDetails[i].dateOfBirth, req.body.passengerDetails[i].nationality, req.body.passengerDetails[i].email, req.body.class, req.body.cost, req.body.returnFlightId, data, function(err, data) {
+                //console.log("RefNum  " + data + "err" + err);
+                res1.send({
+                  refNum: data,
+                  errorMessage: null
+                });
+              });
+            });
+          }
       }
     });
   });
-  // else {    // i will make post request sending all data which will posting in database to others Airlines
-  //     console.log("i`m in api /booking inside else " + req.body.IP);
-  //   var options = {
-  //       host: req.body.IP,
-  //       path: '/booking',
-  //       json: true ,
-  //       port : 80
-  //   };
-  //   var timeout_wrapper = function(req) {
-  //       return function() {
-  //           // do some logging, cleaning, etc. depending on req
-  //           req.abort();
-  //       };
-  //   };
-  //   var request = http.post(options,req.body,function(res) {
-  //       var body = '';
-  //       res.on('data', function(chunk) {
-  //           body += chunk;
-  //           console.log("chunk " + body );
-  //           clearTimeout(timeout);
-  //           timeout = setTimeout(fn, 200000);
-  //       });
-  //       res.on('end', function() {
-  //           try {
-  //               clearTimeout(timeout);
-  //               var fbResponse = JSON.stringify(body);
-  //                   console.log("fbResponse  " + fbResponse );
-  //               res1.send(fbResponse);
-  //           } catch (err) {
-  //                 console.log("err  " + err );
-  //               try {
-  //                   res1.status(500).send("Error");
-  //               } catch (err) {   console.log("err 2 " + err );}
-  //           }
-  //       });
-  //   }).on('error', function(e) {
-  //       console.log("err 3  " + e );
-  //       clearTimeout(timeout);
-  //       try {
-  //           res1.status(500).send("Error");
-  //       } catch (err) {  console.log("err 4  " + err );}
-  //       this.abort();
-  //   });
-  //   // generate timeout handler
-  //   var fn = timeout_wrapper(request);
-
-  //   // set initial timeout
-  //   var timeout = setTimeout(fn, 10000);
-
-  // }
-  // });
-
-
-
-  // // get Stripe pup key of others airlines
-  //     app.get('/data/otherStripeKey/:airlineIP', function(req, res1) {
-  //       jwt = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJNWU5LU0giLCJpYXQiOjE0NjA3NzIyOTQsImV4cCI6MTQ5MjMwODI5NSwiYXVkIjoid3d3LnNlY291cnNlLmNvbSIsInN1YiI6Ik1ZTktTSCBJYmVyaWEiLCJUZWFtIjoiTVlOS1NIIn0.hZxhv8XAcu1cARgcrtfb0l_crF1-Ic1tJt9eUhIL0qQ';
-  // //need edit
-  // console.log(req.params.airlineIP);
-  // var options = {
-  //     host: req.params.airlineIP,
-  //     path: '/stripe/pubkey?wt=' +jwt,
-  //     port: 80 ,
-  //     json: true
-  // };
-  // var timeout_wrapper = function(req) {
-  //     return function() {
-  //         // do some logging, cleaning, etc. depending on req
-  //         req.abort();
-  //     };
-  // };
-  // var request = http.get(options, function(res) {
-  //     var body = '';
-  //     res.on('data', function(chunk) {
-  //         body += chunk;
-  //         clearTimeout(timeout);
-  //         timeout = setTimeout(fn, 10000);
-  //     });
-  //     res.on('end', function() {
-  //         try {
-  //             clearTimeout(timeout);
-  //             var fbResponse = JSON.stringify(body);
-  //             res1.send(fbResponse);
-
-  //         } catch (err) {
-  //             try {
-  //                 res1.status(500).send("Error");
-  //             } catch (err) {}
-  //         }
-  //     });
-  // }).on('error', function(e) {
-  //     clearTimeout(timeout);
-  //     try {
-  //         res1.status(500).send("Error");
-  //     } catch (err) {}
-  //     this.abort();
-  // });
-  // // generate timeout handler
-  // var fn = timeout_wrapper(request);
-
-  // // set initial timeout
-  // var timeout = setTimeout(fn, 8000);
-  // // end of edit
-  //     });
-  // // end of get ip method
 
   app.get('/api/flights/search/:origin/:destination/:departingDate/:returningDate/:cabin/:seats', function(req, res) {
     if (moment(req.params.departingDate, 'MMMM D, YYYY').format('MMMM D, YYYY') === req.params.departingDate) {
