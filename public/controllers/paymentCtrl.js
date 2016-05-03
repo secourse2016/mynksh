@@ -64,11 +64,16 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
     SetYear($scope.selectedYear);
     SetCVV($scope.selectedCVV);
     var returnFlightId;
+    var ecoOrBus;
+    if(FlightsSrv.getSelectedCabin() === "true")
+      ecoOrBus="economy";
+    else
+      ecoOrBus= "business";
     if (FlightsSrv.getSelectedRoundTrip() === 'true')
       var returnFlightId = OutReturnSrv.getSelectedReturnFlight().flightId;
     paymentInfo = {
       "passengerDetails": ConfirmSrv.getReservations(),
-      "class": FlightsSrv.getSelectedCabin(),
+      "class": ecoOrBus,
       "cost": OutReturnSrv.getSelectedPrice(),
       "outgoingFlightId": OutReturnSrv.getSelectedOutFlight().flightId,
       "returnFlightId": returnFlightId,

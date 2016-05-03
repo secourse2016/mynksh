@@ -178,11 +178,20 @@ module.exports = function(app, mongo) {
           errorMessage: err
         });
       } else {
-        insertPassengers(0, req.body.passengerDetails, req.body.class, req.body.cost,
-          req.body.outgoingFlightId, req.body.returnFlightId, null, true,
-          function(fb) {
-            res1.send(fb);
-          });
+        mongo.check(req.body.passengerDetails, req.body.class, req.body.cost, req.body.outgoingFlightId, req.body.returnFlightId, function(err)
+        {
+          if(err !== undefined)
+            res1.send({refNum: null, errorMessage: err});
+          else
+          {
+            insertPassengers(0, req.body.passengerDetails, req.body.class, req.body.cost,
+            req.body.outgoingFlightId, req.body.returnFlightId, null, true,
+            function(fb) {
+              res1.send(fb);
+            });
+          }
+
+        });
       } 
     }); 
   });

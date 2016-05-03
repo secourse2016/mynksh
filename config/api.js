@@ -185,6 +185,73 @@ exports.submitPay = function(firstName, lastName, passportNumber, expiryDate, da
   });
 }
 
+exports.check= function(passengerDetails, cabin, cost, outgoingFlightId, returnFlightId, cb)
+{
+  var err;
+  if(cabin === undefined || cabin === null)
+    err= "Please specify the cabin economy/business.";
+  var validCabin= cabin.toLowerCase();
+  if(validCabin !== "economy" && validCabin !== "business")
+    err = "The chosen calss is not supported by IBERIA.";
+  for(var i=0; i<passengerDetails.length; i++)
+  {
+    if(passengerDetails[i].firstName === undefined)
+      err= "Passenger " + i + "'s first name was not defined.";
+    if(passengerDetails[i].lastName === undefined)
+      err= "Passenger " + i + "'s last name was not defined.";
+    if(passengerDetails[i].passportNum === undefined)
+      err= "Passenger " + i + "'s passport number was not defined.";
+    if(passengerDetails[i].passportNum === undefined)
+      err= "Passenger " + i + "'s passport number was not defined.";
+    if(passengerDetails[i].dateOfBirth === undefined)
+      err= "Passenger " + i + "'s date of birth was not defined.";    
+  }
+  var tickets = passengerDetails.length;
+  var outgoingCost=0;
+  var returnCost=0;
+  var expectedCost=0;
+  if(outgoingFlightId !== undefined && outgoingFlightId !== null)
+    getFlightCost(outgoingFlightId, validCabin, function(cbOutCost)
+      {
+        outgoingCost=cbOutCost;
+        if(returnFlightId !== undefined && returnFlightId !== null)
+        returnCost= getFlightCost(returnFlightId, validCabin, function(cbReturnCost)
+        {
+          returnCost=cbReturnCost;
+          if(outgoingCost === -1)
+            err = "The outgoing flight is not supported by Iberia.";
+          else if(returnCost === -1)
+            err = "The return flight is not supported by Iberia.";
+          else
+          {
+            expectedCost= (outgoingCost + returnCost)*tickets;
+    
+          }
+          if(expectedCost !== cost)
+            err= "The cost of the trip is not as expected";
+        });
+      });
+    cb(err);
+}
+var getFlightCost = function(flightId, cabin, price)
+{
+  var collection = mongo.db().collection('flights');
+  var ticketPrice=0;
+  collection.find({
+    "_id": new ObjectId(flightId)
+  }).toArray(function(err, flights) { 
+
+    if (flights.length === 0)
+      ticketPrice= -1;
+    if(cabin === "economy")
+      ticketPrice= flights[0].eCost;
+    else
+      ticketPrice= flights[0].bCost;
+    price(ticketPrice);
+    });
+  
+}
+
 exports.searchBookings = function(bookingRef, cb) {
   var collection = mongo.db().collection('bookings');
   collection.find({
