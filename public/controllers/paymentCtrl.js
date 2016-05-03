@@ -18,8 +18,6 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
   };
 
   var Congrats = function() {
-    SetAirLine1(AirlineName1);
-    SetAirLine2(AirlineName2);
     $location.url('/congrats');
   };
 
@@ -45,13 +43,6 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
     paymentSrv.setSelectedCVV(value);
   };
 
-  var SetAirLine2 = function(value) {
-    paymentSrv.setAirLine2(value);
-  };
-
-  var SetAirLine1 = function(value) {
-    paymentSrv.setAirLine1(value);
-  };
 
   var getOtherPubKey = function(AirlineIP, cb) {
     paymentSrv.getOtherAirlineIP(AirlineIP).success(function(airlineIP) {
@@ -92,8 +83,10 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
         paymentInfo[i].passengerDetails.passportExpiryDate = moment(changeISOFormat(paymentInfo[i].passengerDetails.passportExpiryDate)).toDate().getTime()
     }
 
-    if (FlightsSrv.getSelectedRoundTrip() != 'true')
+    if (FlightsSrv.getSelectedRoundTrip() != 'true'){
+      paymentInfo.cost = OutReturnSrv.getSelectedOutFlight().cost;
       paymentInfo.returnFlightId = undefined;
+    }
 
     if (FlightsSrv.getSelectedRoundTrip() === 'true')
       AirlineName2 = OutReturnSrv.getSelectedReturnFlight().Airline; // return flight
@@ -143,6 +136,7 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
             if (FlightsSrv.getSelectedRoundTrip() === 'true' && flag &&  AirlineName2 != AirlineName1) {
               flag = false;
               paymentInfo.outgoingFlightId = OutReturnSrv.getSelectedReturnFlight().flightId;
+              paymentInfo.cost = OutReturnSrv.getSelectedReturnFlight().cost;
               createStripeToken(AirlineName2);
             }
             else if (data.errorMessage != null || data.errorMessage != undefined)
