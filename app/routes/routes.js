@@ -183,37 +183,35 @@ module.exports = function(app, mongo) {
           errorMessage: err
         });
       } else {
-        for (var i = 0; i < req.body.passengerDetails.length; i++)
-          //if multiple tickets then all of them should have the same refNum 
-          // if(i> 0)
-
-          // else
-
-          if (req.body.returnFlightId === undefined || req.body.returnFlightId === null) {
-            mongo.submitPay(req.body.passengerDetails[i].firstName, req.body.passengerDetails[i].lastName, req.body.passengerDetails[i].passportNum, req.body.passengerDetails[i].passportExpiryDate, req.body.passengerDetails[i].dateOfBirth, req.body.passengerDetails[i].nationality, req.body.passengerDetails[i].email, req.body.class, req.body.cost, req.body.outgoingFlightId, true, function(err, data) {
-              //console.log("RefNum  " + data + "err" + err);
-              res1.send({
-                refNum: data,
-                errorMessage: null
-              });
-            });
-
-          } else {
-            
-            mongo.submitPay(req.body.passengerDetails[i].firstName, req.body.passengerDetails[i].lastName, req.body.passengerDetails[i].passportNum, req.body.passengerDetails[i].passportExpiryDate, req.body.passengerDetails[i].dateOfBirth, req.body.passengerDetails[i].nationality, req.body.passengerDetails[i].email, req.body.class, req.body.cost, req.body.outgoingFlightId, true, function(err, data) {
-              //console.log(data);
-              mongo.submitPay(req.body.passengerDetails[i-1].firstName, req.body.passengerDetails[i-1].lastName, req.body.passengerDetails[i-1].passportNum, req.body.passengerDetails[i-1].passportExpiryDate, req.body.passengerDetails[i-1].dateOfBirth, req.body.passengerDetails[i-1].nationality, req.body.passengerDetails[i-1].email, req.body.class, req.body.cost, req.body.returnFlightId, data, function(err, data) {
-                //console.log("RefNum  " + data + "err" + err);
-                res1.send({
-                  refNum: data,
-                  errorMessage: null
-                });
-              });
-            });
-          }//end of else
-      }//end of outer else
-    });//end of charges call back
+        res1.send(insertPassengers(0, req.body.passengerDetails, req.body.class, req.body.cost,
+           req.body.outgoingFlightId, req.body.returnFlightId, true));
+      } //end of outer else
+    }); //end of charges call back
   });
+
+  var insertPassengers = function(i, passengerDetails, cabin, cost, outgoingFlightId, returnFlightId, true) {
+    if (i === passengerDetails.length)
+      return {
+      refNum: data,
+      errorMessage: null
+    }
+    else
+    if (returnFlightId === undefined || returnFlightId === null) {
+      mongo.submitPay(passengerDetails[i].firstName, passengerDetails[i].lastName, passengerDetails[i].passportNum,
+         passengerDetails[i].passportExpiryDate, passengerDetails[i].dateOfBirth, passengerDetails[i].nationality,
+         passengerDetails[i].email, cabin, cost, outgoingFlightId, true, function(err, data) {
+        insertPassengers(i+1, passengerDetails, cabin, cost, outgoingFlightId, returnFlightId, data);
+      });
+    } else {
+      mongo.submitPay(passengerDetails[i].firstName, passengerDetails[i].lastName, passengerDetails[i].passportNum,
+         passengerDetails[i].passportExpiryDate, passengerDetails[i].dateOfBirth, passengerDetails[i].nationality,
+          passengerDetails[i].email, cabin, cost, outgoingFlightId, true, function(err, data) {
+        mongo.submitPay(req.body.passengerDetails[i - 1].firstName, req.body.passengerDetails[i - 1].lastName, req.body.passengerDetails[i - 1].passportNum, req.body.passengerDetails[i - 1].passportExpiryDate, req.body.passengerDetails[i - 1].dateOfBirth, req.body.passengerDetails[i - 1].nationality, req.body.passengerDetails[i - 1].email, req.body.class, req.body.cost, req.body.returnFlightId, data, function(err, data) {
+          insertPassengers(i+1, passengerDetails, cabin, cost, outgoingFlightId, returnFlightId, data);
+        });
+      });
+    } //end of else
+  }
 
   app.get('/api/flights/search/:origin/:destination/:departingDate/:returningDate/:cabin/:seats', function(req, res) {
     if (moment(req.params.departingDate, 'MMMM D, YYYY').format('MMMM D, YYYY') === req.params.departingDate) {
