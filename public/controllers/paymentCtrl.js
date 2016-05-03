@@ -123,6 +123,5 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
           });
         });
     }
-
   };
 });
