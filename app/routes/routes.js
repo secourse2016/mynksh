@@ -184,7 +184,7 @@ module.exports = function(app, mongo) {
         });
       } else {
         insertPassengers(0, req.body.passengerDetails, req.body.class, req.body.cost,
-          req.body.outgoingFlightId, req.body.returnFlightId, true,
+          req.body.outgoingFlightId, req.body.returnFlightId, undefined, true,
           function(fb) {
             res1.send(fb);
           });
@@ -192,8 +192,8 @@ module.exports = function(app, mongo) {
     }); //end of charges call back
   });
 
-  var insertPassengers = function(i, passengerDetails, cabin, cost, outgoingFlightId, returnFlightId, data, cb) {
-    if (i === passengerDetails.length) {
+  var insertPassengers = function(i, passengerDetails, cabin, cost, outgoingFlightId, returnFlightId, error, data, cb) {
+    if (i === passengerDetails.length || (error !== null && error !== undefined)){
       var fb = {
         refNum: data,
         errorMessage: null
@@ -205,7 +205,7 @@ module.exports = function(app, mongo) {
         passengerDetails[i].passportExpiryDate, passengerDetails[i].dateOfBirth, passengerDetails[i].nationality,
         passengerDetails[i].email, cabin, cost, outgoingFlightId, data, "outgoing",
         function(err, data2) {
-          insertPassengers(i + 1, passengerDetails, cabin, cost, outgoingFlightId, returnFlightId, data2, cb);
+          insertPassengers(i + 1, passengerDetails, cabin, cost, outgoingFlightId, returnFlightId, err, data2, cb);
         });
     } else {
       mongo.submitPay(passengerDetails[i].firstName, passengerDetails[i].lastName, passengerDetails[i].passportNum,
@@ -215,8 +215,11 @@ module.exports = function(app, mongo) {
           mongo.submitPay(passengerDetails[i].firstName, passengerDetails[i].lastName, passengerDetails[i].passportNum,
             passengerDetails[i].passportExpiryDate, passengerDetails[i].dateOfBirth, passengerDetails[i].nationality,
             passengerDetails[i].email, cabin, cost, returnFlightId, data2, "return",
-            function(err, data3) {
-              insertPassengers(i + 1, passengerDetails, cabin, cost, outgoingFlightId, returnFlightId, data2, cb);
+            function(err2, data3) {
+              var err3=err;
+              if(err2 !== null && err2 !== undefined)
+                err3= err2;
+              insertPassengers(i + 1, passengerDetails, cabin, cost, outgoingFlightId, returnFlightId, err3, data2, cb);
             });
         });
     } //end of else
