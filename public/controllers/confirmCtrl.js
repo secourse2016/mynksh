@@ -5,30 +5,25 @@ App.controller('confirmCtrl', function($scope, FlightsSrv, OutReturnSrv, Confirm
     if ($scope.roundTrip === 'true')
         $scope.selectedReturnFlight = OutReturnSrv.getSelectedReturnFlight();
 
-    $scope.tickets = 1;
-    // $scope.tickets= 2;
+    $scope.tickets = FlightsSrv.getTickets();
     $scope.price = OutReturnSrv.getSelectedPrice();
     $scope.currentDate = new Date();
+    //to be copied in ionic
+    $scope.reservations = [];
 
-    var setTicketEmail = function(value) {
-        ConfirmSrv.setEmail(value);
+    for(var i=0 ; i<$scope.tickets ; i++){
+      $scope.reservations[i]= {};
     };
-
-    var setTicketPhoneNo = function(value) {
-        ConfirmSrv.setPhoneNo(value);
-    };
-
-    var setTicketReservation = function(value) {
-        ConfirmSrv.setReservation(value);
+    //end of copy
+    var setTicketReservations = function(value) {
+        ConfirmSrv.setReservations(value);
     };
     $scope.isGreaterThanTickets = function(num) {
         return num < $scope.number;
     };
 
     $scope.goToPayment = function() {
-        setTicketPhoneNo($scope.typedPhoneno);
-        setTicketEmail($scope.typedEmail);
-        setTicketReservation($scope.reservation);
+        setTicketReservations($scope.reservations);
         $location.url('/payment');
     };
 });

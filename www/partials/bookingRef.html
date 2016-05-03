@@ -1,14 +1,7 @@
 <ion-view view-title="Previous Booking">
-
   <ion-content class="has-header has-subheader">
-
-
-
     <h4 style="text-align:center;color:rgba(128,0,0, 1)">Track Booking</h4>
-
-
     <div class="list list-inset">
-      <!-- <font class="col-sm-4 text-right" size="4" color="black"> Booking Reference No.: </font> -->
       <form name='booking'>
         <label class="item item-input item-floating-label" ng-class="{ 'has-error' : loginForm.originAirports.$invalid && loginForm.$submitted }">
           <span class="input-label ion-plane">Booking Reference Number</span>
@@ -18,14 +11,46 @@
         <span style='color:red' ng-show="(booking.bookingref.$error.required)  && booking.bookingref.$dirty ">Booking Number is required</span>
 
       </form>
-      <h6 style="text-align:center">  <button  type="button" ng-disabled='booking.$invalid' class="btn btn-primary btn-lg" style="left:200px; background:rgba(178,34,34, 1);margin-top: 15px" ng-click="SetBookingRef(selectedBookingRef);retreiveBookingRef();showme=true">Search My Flight</button></h6>
+      <h6 style="text-align:center">  <button  type="button" ng-disabled='booking.$invalid' class="btn btn-primary btn-lg" style="left:200px; background:rgba(178,34,34, 1);margin-top: 15px" ng-click="SetBookingRef(selectedBookingRef);retreiveBookingRef();showTabDialog($event)">Search My Flight</button></h6>
     </div>
+    <script type="text/ng-template" id="tabDialog.tmpl.html">
+      <md-dialog aria-label="Mango (Fruit)">
+        <form>
+          <md-toolbar>
+            <div class="md-toolbar-tools">
+              <h2>Booking Information</h2>
+              <span flex></span>
+              <md-button class="ion-close" ng-click="cancel()">
+              </md-button>
+            </div>
+          </md-toolbar>
+          <md-dialog-content style="max-width:800px;max-height:810px; ">
+            <md-tabs md-dynamic-height md-border-bottom>
+              <md-tab label="Personal">
+                <md-content class="md-padding" ng-repeat="n in flights">
+                  <h4 style="text-align:center">Personal Information</h4>
+                  <h6>Hello, {{n.firstName}} {{n.lastName}}!</h6>
+                  <h6>Your Passport is {{n.passportNumber}}.</h6>
+                  <h6>We will call you on {{n.phoneNumber}} to confirm your booking.</h6>
+                </md-content>
+              </md-tab>
+              <md-tab label="Flight">
+                <md-content class="md-padding" ng-repeat="n in flights">
+                  <h4 style="text-align:center">Flights Information</h4>
+                  <h6>Your Seat Number in the flight from {{n.origin}} on {{n.arrivalTime}} to {{n.destination}} on {{n.departureTime}} is {{n.seatNum}}.</h6>
+                </md-content>
+              </md-tab>
+            </md-tabs>
+          </md-dialog-content>
 
-    <div class="form-group" ng-show="showme">
-      <div class="input-group">
-        <p id="divID"></p>
-      </div>
+          <md-dialog-actions layout="row">
+            <md-button href="#" target="_blank" md-autofocus>
+              See you again soon!
+            </md-button>
+          </md-dialog-actions>
+        </form>
+      </md-dialog>
+    </script>
     </div>
-
   </ion-content>
 </ion-view>
