@@ -18,8 +18,6 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
   };
 
   var Congrats = function() {
-    SetAirLine1(AirlineName1);
-    SetAirLine2(AirlineName2);
     $location.url('/congrats');
   };
 
@@ -45,13 +43,6 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
     paymentSrv.setSelectedCVV(value);
   };
 
-  var SetAirLine2 = function(value) {
-    paymentSrv.setAirLine2(value);
-  };
-
-  var SetAirLine1 = function(value) {
-    paymentSrv.setAirLine1(value);
-  };
 
   var getOtherPubKey = function(AirlineIP, cb) {
     paymentSrv.getOtherAirlineIP(AirlineIP).success(function(airlineIP) {
@@ -78,7 +69,7 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
     if (FlightsSrv.getSelectedRoundTrip() === 'true')
       var returnFlightId = OutReturnSrv.getSelectedReturnFlight().flightId;
     paymentInfo = {
-      "passengerDetails": newres,
+      "passengerDetails": ConfirmSrv.getReservations(),
       "class": FlightsSrv.getSelectedCabin(),
       "cost": OutReturnSrv.getSelectedPrice(),
       "outgoingFlightId": OutReturnSrv.getSelectedOutFlight().flightId,
@@ -92,8 +83,10 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
         paymentInfo[i].passengerDetails.passportExpiryDate = moment(changeISOFormat(paymentInfo[i].passengerDetails.passportExpiryDate)).toDate().getTime()
     }
 
-    if (FlightsSrv.getSelectedRoundTrip() != 'true')
+    if (FlightsSrv.getSelectedRoundTrip() != 'true'){
+      paymentInfo.cost = OutReturnSrv.getSelectedOutFlight().cost;
       paymentInfo.returnFlightId = undefined;
+    }
 
     if (FlightsSrv.getSelectedRoundTrip() === 'true')
       AirlineName2 = OutReturnSrv.getSelectedReturnFlight().Airline; // return flight
@@ -107,7 +100,7 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
   var createStripeToken = function(airline) {
 
     getOtherPubKey(airline, function(key, airlineIP) {
-      if (airlineIP === "IBERIA")
+      if (airlineIP === "Iberia")
         pingIp = "";
       else
         pingIp = "http://" + airlineIP;
@@ -126,22 +119,27 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
     if (response.error)
       alert(response.error.message);
     else {
+      if (FlightsSrv.getSelectedRoundTrip() === 'true' && AirlineName2 != AirlineName1)
+        paymentInfo.returnFlightId = undefined;
       paymentInfo.paymentToken = response.id;
       paymentSrv.chargeCard(paymentInfo, pingIp)
-        .success(function(data, status, headers, config) {
-          console.log(data.refNum);
-          paymentSrv.setBookingRefNo(data.refNum);
+        .success(function(data) {
+          console.log(data);
+          if (paymentSrv.getBookingRefNo1() === undefined || paymentSrv.getBookingRefNo1() === null)
+            paymentSrv.setBookingRefNo1(data.refNum);
+          else
+            paymentSrv.setBookingRefNo2(data.refNum);
           //reset stripe key
-          getOtherPubKey("IBERIA", function(key) {
+          getOtherPubKey("Iberia", function(key) {
             Stripe.setPublishableKey(key);
 
-            if (FlightsSrv.getSelectedRoundTrip() === 'true' && flag) {
+            if (FlightsSrv.getSelectedRoundTrip() === 'true' && flag &&  AirlineName2 != AirlineName1) {
               flag = false;
               paymentInfo.outgoingFlightId = OutReturnSrv.getSelectedReturnFlight().flightId;
-              createStripeToken(AirlineName1);
+              paymentInfo.cost = OutReturnSrv.getSelectedReturnFlight().cost;
+              createStripeToken(AirlineName2);
             }
-
-            if (data.errorMessage === null || data.errorMessage === undefined)
+            else if (data.errorMessage != null || data.errorMessage != undefined)
               alert(data.errorMessage);
             else
               Congrats();
