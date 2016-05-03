@@ -1,4 +1,4 @@
-App.controller('congratsCtrl', function($scope,paymentSrv) {
+App.controller('congratsCtrl', function($scope,paymentSrv, OutReturnSrv) {
 
 	$scope.bookingRefNo1 = paymentSrv.getBookingRefNo1();
 	$scope.bookingRefNo2 = paymentSrv.getBookingRefNo2();

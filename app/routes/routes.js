@@ -153,9 +153,7 @@ module.exports = function(app, mongo) {
   app.use('/api/flights/search' | '/booking' | '/stripe/pubkey', function(req, res, next) {
     // check header or url parameters or post parameters for token
     var token = req.body.wt || req.query.wt || req.headers['x-access-token'];
-    // console.log("{{{{ TOKEN }}}} => ", token);
     var jwtSecret = process.env.JWTSECRET;
-    // console.log(jwtSecret);
     // Get JWT contents:
     try {
       var payload = jwt.verify(token, jwtSecret);
@@ -168,9 +166,6 @@ module.exports = function(app, mongo) {
   });
 
   app.post('/booking', function(req, res1) {
-    // console.log("i`m in api /booking" + req.body.IP);
-    // if((req.body.IP) === "52.58.24.76" ){
-    //     console.log("i`m in api /booking inside if ");
     stripe.charges.create({
       amount: req.body.cost,
       currency: "USD",
@@ -188,8 +183,8 @@ module.exports = function(app, mongo) {
           function(fb) {
             res1.send(fb);
           });
-      } //end of outer else
-    }); //end of charges call back
+      } 
+    }); 
   });
 
   var insertPassengers = function(i, passengerDetails, cabin, cost, outgoingFlightId, returnFlightId, error, data, cb) {
@@ -222,7 +217,7 @@ module.exports = function(app, mongo) {
               insertPassengers(i + 1, passengerDetails, cabin, cost, outgoingFlightId, returnFlightId, err3, data2, cb);
             });
         });
-    } //end of else
+    } 
   }
 
   app.get('/api/flights/search/:origin/:destination/:departingDate/:returningDate/:cabin/:seats', function(req, res) {
@@ -243,12 +238,12 @@ module.exports = function(app, mongo) {
     });
   });
 
-  // return /stripe/pubkey
+  
   app.get('/stripe/pubkey', function(req, res) {
     res.json('pk_test_fWP8viqFbT95teED8zWD3ieK');
 
   });
-  //end of return /stripe/pubkey
+ 
 
   app.get('/api/flights/search/:origin/:destination/:departingDate/:cabin/:seats', function(req, res) {
     if (moment(req.params.departingDate, 'MMMM D, YYYY').format('MMMM D, YYYY') === req.params.departingDate)
