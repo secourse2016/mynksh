@@ -214,7 +214,7 @@ module.exports = function(app, mongo) {
         function(err, data2) {
           mongo.submitPay(passengerDetails[i].firstName, passengerDetails[i].lastName, passengerDetails[i].passportNum,
             passengerDetails[i].passportExpiryDate, passengerDetails[i].dateOfBirth, passengerDetails[i].nationality,
-            passengerDetails[i].email, cabin, cost, returnFlightId, data2, , "return"
+            passengerDetails[i].email, cabin, cost, returnFlightId, data2, "return",
             function(err, data3) {
               insertPassengers(i + 1, passengerDetails, cabin, cost, outgoingFlightId, returnFlightId, data2, cb);
             });
