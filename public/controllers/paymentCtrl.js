@@ -124,7 +124,7 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
       paymentInfo.paymentToken = response.id;
       paymentSrv.chargeCard(paymentInfo, pingIp)
         .success(function(data) {
-          console.log(data);
+          // console.log(data);
           if (paymentSrv.getBookingRefNo1() === undefined || paymentSrv.getBookingRefNo1() === null)
             paymentSrv.setBookingRefNo1(data.refNum);
           else
