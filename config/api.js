@@ -150,7 +150,7 @@ exports.submitPay = function(firstName, lastName, passportNumber, expiryDate, da
       cb("This flight " + flightId + "is not supported be Iberia", null);
       return;
     }
-    if (businessOrEconomic === "economy") { // economy
+    if (businessOrEconomic.toLowerCase() === "economy") { // economy
       if (!(flights[0].availableESeats === 0)) {
         selectedSeat = flights[0].nextEcoSeat;
         flights[0].availableESeats = flights[0].availableESeats - 1;
