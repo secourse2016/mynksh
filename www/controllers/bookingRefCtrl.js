@@ -7,7 +7,7 @@ App.controller('bookingRefCtrl', function($scope, FlightsSrv, $location, Booking
     $scope.bookingref = BookingSrv.getSelectedBookingRef();
 
     $scope.status = '  ';
-  $scope.customFullscreen = $mdMedia('xs') || $mdMedia('sm');
+    $scope.customFullscreen = $mdMedia('xs') || $mdMedia('sm');
     // $scope.showAlert = function(ev) {
     //     // Appending dialog to document.body to cover sidenav in docs app
     //     // Modal dialogs should fully cover application
@@ -25,6 +25,7 @@ App.controller('bookingRefCtrl', function($scope, FlightsSrv, $location, Booking
     //   };
     $scope.showTabDialog = function(ev) {
     $mdDialog.show({
+      controller: DialogController,
       templateUrl: 'tabDialog.tmpl.html',
       parent: angular.element(document.body),
       targetEvent: ev,
@@ -35,13 +36,6 @@ App.controller('bookingRefCtrl', function($scope, FlightsSrv, $location, Booking
         });
   };
 
-$scope.hide = function() {
-    $mdDialog.hide();
-  };
-
-  $scope.cancel = function() {
-    $mdDialog.cancel();
-  };
 
 
 
@@ -92,20 +86,20 @@ $scope.hide = function() {
       //  departureTimeR+" is "+seatR+ "."+ " Your Flight number is " + flightNumR+".";
       //   }
         var res = "Hello, " +firstName + " " + lastName + "!";
-        var res2= "Your Passport is " + passport + "<br>";
-        var res3= "And we will call you on " + phoneNum +"<br>";
-         var res4= "Your Seat Number in the flight from "+originO+" on "+arrivalTimeO+" to "+destinationO+" on "+departureTimeO+" is "+seatO +"</br>"+"Your Flight number is " + flightNumO;
-         var res5="";
+        var res2= "Your Passport is " + passport +"." +"<br>";
+        var res3= "We will call you on " + phoneNum +" to confirm the reservation.";
+         var res4= "Your Seat Number in the flight from "+originO+" on "+arrivalTimeO+" to "+destinationO+" on "+departureTimeO+" is "+seatO +"."+"</br>"+"Your Flight number is " + flightNumO+".";
+         var res5="No return flight, you booked one way ticket.";
 
         if(flight.length==2){
         var res = "Hello, " + firstName + " " + lastName + "!";
-        var res2="Your Passport is " +passport+ "<br>";
-        var res3="And we will call you on " + phoneNum+"<br>";
+        var res2="Your Passport is " +passport+ "."+"<br>";
+        var res3="We will call you on " + phoneNum+" to confirm your reservation.";
          var res4= "Your Seat Number on the flight from "+originO+" on "+arrivalTimeO+" to "+destinationO+" on "+
-         departureTimeO+" is "+seatO+ "<br>"+ "Your Flight number is " + flightNumO+"<br>";
+         departureTimeO+" is "+seatO+ "."+"<br>"+ "Your Flight number is " + flightNumO+"."+"<br>";
          var res5="Your Seat Number on the flight from "
          +originR+" on "+arrivalTimeR+" to "+destinationR+" on "+
-         departureTimeR+" is "+seatR+ "<br>"+ "Your Flight number is " + flightNumR;
+         departureTimeR+" is "+seatR+"."+ "<br>"+ "Your Flight number is " + flightNumR+".";
           }
         document.getElementById("divID").innerHTML = res;
         document.getElementById("divID2").innerHTML = res2;
@@ -116,3 +110,17 @@ $scope.hide = function() {
     }
 
 });
+
+function DialogController($scope, $mdDialog) {
+  $scope.hide = function() {
+    $mdDialog.hide();
+  };
+
+  $scope.cancel = function() {
+    $mdDialog.cancel();
+  };
+
+  $scope.answer = function(answer) {
+    $mdDialog.hide(answer);
+  };
+}
