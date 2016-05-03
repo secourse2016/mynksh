@@ -30,7 +30,7 @@
 <form>
   <md-toolbar>
     <div class="md-toolbar-tools">
-      <h2 id="divID" style="text-align:center;color:white"></h2>
+      <h2>Booking Information</h2>
       <span flex></span>
       <md-button class="ion-close" ng-click="cancel()">
       </md-button>
@@ -38,24 +38,25 @@
   </md-toolbar>
   <md-dialog-content style="max-width:800px;max-height:810px; ">
     <md-tabs md-dynamic-height md-border-bottom>
-      <md-tab label="Personal">
-        <md-content class="md-padding">
+      <md-tab label="Personal" >
+        <md-content class="md-padding" ng-repeat="n in flights">
           <h4 style="text-align:center">Personal Information</h4>
-          <h6 id="divID2"></h6>
-          <h6 id="divID3"></h6>
+          <h6 >Hello, {{n.firstName}} {{n.lastName}}!</h6>
+          <h6 >Your Passport is {{n.passportNumber}}.</h6>
+          <h6>We will call you on {{n.phoneNumber}} to confirm your booking.</h6>
             </md-content>
       </md-tab>
       <md-tab label="Outgoing">
-        <md-content class="md-padding">
+        <md-content class="md-padding" ng-repeat="n in flights">
           <h4 style="text-align:center">Outgoing Information</h4>
-            <h6 id="divID4"></h6>
+            <h6>Your Seat Number in the flight from {{n.origin}} on {{n.arrivalTime}} to {{n.destination}} on {{n.departureTime}} is {{n.seatNum}}.</h6>
           </md-content>
       </md-tab>
       <md-tab label="Return">
-        <md-content class="md-padding">
+        <md-content class="md-padding" ng-repeat="n in flights">
           <h4 style="text-align:center">Return Information</h4>
-          <h6 id="divID5"></h6>
-            </md-content>
+          <h6 >Your Seat Number in the flight from {{n.origin}} on {{n.arrivalTime}} to {{n.destination}} on {{n.departureTime}} is {{n.seatNum}}.</h6>
+        </md-content>
       </md-tab>
     </md-tabs>
   </md-dialog-content>
