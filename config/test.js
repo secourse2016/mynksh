@@ -56,7 +56,7 @@ var newres = [{
   "passportExpiryDate": "zzzzz",
   "dateOfBirth": "zzzzz",
   "nationality": "zzzzz",
-  "email": "zzzzz", 
+  "email": "zzzzz",
 }, {
   "firstName": "vvvvvvvv",
   "lastName": "vvvvvvvv",
@@ -84,128 +84,129 @@ paymentInfo = {
   "paymentToken": 2112
 }
 
-db.init('mongodb://localhost:27017/mynksh',function(){
-insertPassengers(0, paymentInfo.passengerDetails, paymentInfo.class, paymentInfo.cost,
-  paymentInfo.outgoingFlightId, paymentInfo.returnFlightId, true,
-  function(fb) {
-    console.log(fb);
-  });
+db.init('mongodb://localhost:27017/mynksh', function() {
+  insertPassengers(0, paymentInfo.passengerDetails, paymentInfo.class, paymentInfo.cost,
+    paymentInfo.outgoingFlightId, paymentInfo.returnFlightId, true,
+    function(fb) {
+      console.log(fb);
+    });
 });
 
 
 describe('seedDB test', function() {
-   before(db.clearDB);
-    it('should populate the db if db is empty returning true', function(done) {
-        mongo.seedDB(function(error, seeded){
-            assert.equal(seeded,true,'DB has seeded the items');
-            done();    
-        });
+  // before(db.clearDB);
+  it('should populate the db if db is empty returning true', function(done) {
+    db.init('mongodb://localhost:27017/mynksh', function() {
+      mongo.seedDB(function(error, seeded) {
+        assert.equal(seeded, true, 'DB has seeded the items');
+        done();
+      });
     });
-    it('should have populated the airlines collection with 27 document', function(done) {
-        mongo.seedDB(function(error, seeded){
-            db.db().collection('airLines').toArray((function(err,items){
-                assert.lengthOf(items.length,27,'DB has 27 items');
-                done();
-            });    
+  });
+  it('should have populated the airlines collection with 27 document', function(done) {
+    db.init('mongodb://localhost:27017/mynksh', function() {
+      mongo.seedDB(function(error, seeded) {
+        db.db().collection('airLines').find().toArray(function(err, items) {
+          assert.lengthOf(items, 27, 'DB has 27 items');
+          done();
         });
+      });
     });
-    it('should not seed db again if db is not empty returning false in the callback', function(done) {
-        mongo.seedDB(function(error, seeded){
-                mongo.seedDB(function(error, seeded){
-                assert.equal(seeded,false,'DB has already seeded the quotes once');
-                done();    
-            });    
+  });
+  it('should not seed db again if db is not empty', function(done) {
+    db.init('mongodb://localhost:27017/mynksh', function() {
+      mongo.seedDB(function(error, seeded) {
+        mongo.seedDB(function(error, seeded) {
+          db.db().collection('airLines').find().toArray(function(err, items) {
+            assert.lengthOf(items, 27, 'airLines has 27 items');
+            done();
+          });
         });
+      });
     });
-    it('should not seed db again if db is not empty', function(done) {
-        mongo.seedDB(function(error, seeded){
-                mongo.seedDB(function(error, seeded){
-                    db.db().collection('airLines').toArray((function(err,items){
-                    assert.lengthOf(items,27,'airLines has 27 items');
-                    done();
-                });     
-            });    
+  });
+  it('should not seed db again if db is not empty', function(done) {
+    db.init('mongodb://localhost:27017/mynksh', function() {
+      mongo.seedDB(function(error, seeded) {
+        mongo.seedDB(function(error, seeded) {
+          db.db().collection('flights').find().toArray(function(err, items) {
+            assert.lengthOf(items, 980, 'flights has 980 items');
+            done();
+          });
         });
+      });
     });
-    it('should not seed db again if db is not empty', function(done) {
-        mongo.seedDB(function(error, seeded){
-                mongo.seedDB(function(error, seeded){
-                    db.db().collection('flights').toArray((function(err,items){
-                    assert.lengthOf(items,980,'flights has 980 items');
-                    done();
-                });     
-            });    
+  });
+  it('should not seed db again if db is not empty', function(done) {
+    db.init('mongodb://localhost:27017/mynksh', function() {
+      mongo.seedDB(function(error, seeded) {
+        mongo.seedDB(function(error, seeded) {
+          db.db().collection('airports').find().toArray(function(err, items) {
+            assert.lengthOf(items, 18, 'airports has 18 items');
+            done();
+          });
         });
+      });
     });
-    it('should not seed db again if db is not empty', function(done) {
-        mongo.seedDB(function(error, seeded){
-                mongo.seedDB(function(error, seeded){
-                    db.db().collection('airports').toArray((function(err,items){
-                    assert.lengthOf(items,18,'airports has 18 items');
-                    done();
-                });     
-            });    
-        });
-    });
-    
+  });
+
 });
 
+// describe('clearDB test', function() {
+//   it('Should return the no. of elements in the db to be 0', function(done) {
+//     mongo.clearDB(function(error, cleared) {
+//       assert.equal(cleared, true, 'should be true');
+//       done();
+//     });
+//   });
+// });
 
-describe('clearDB test', function() {
-  it('Should return the no. of elements in the db', function(done){
-    mongo.clearDB(function(error, cleared){
-        assert.equal(0,cleared);
 
+describe('getAirportsFromDB', function() {
+  it('should return all Airports documents in the database', function(done) {
+    mongo.getAirports(function(err, airports) {
+      assert.equal(airports.length, 18);
+      done();
     });
   });
 });
 
-
-describe('getAirportsFromDB', function() {
-    it('should return all Airports documents in the database', function(done) {
-        mongo.getAirports(function(err,airports){
-            assert.equal(airports.length,18);
-            done();
-        });
-    });
-});
-
 describe('getAirlinesFromDB', function() {
-    it('should return all Airlines documents in the database', function(done) {
-        mongo.getairLines(function(err,airLines){
-            assert.equal(airLines.length,27);
-            done();
-        });
+  it('should return all Airlines documents in the database', function(done) {
+    mongo.getAirLines(function(err, airLines) {
+      assert.equal(airLines.length, 27);
+      done();
     });
+  });
 });
 
 describe('getAirlineIPFromDB', function() {
-    it('should return the Airline IP from the database', function(done) {
-        mongo.getAirLineIP("Trukish",function(err,airLineIP){
-            assert.equal(airLines,"52.27.150.19");
-            done();
-        });
+  it('should return the Airline IP from the database', function(done) {
+    mongo.getAirLineIP("Trukish", function(err, airLineIP) {
+      assert.equal(airLineIP, "52.27.150.19");
+      done();
     });
+  });
 });
 
 describe('getAirlineIPFromDB', function() {
-    it('should return the Airline IP from the database', function(done) {
-        mongo.getAirLineIP("Lufthansa",function(err,airLineIP){
-            assert.equal(airLines,"ec2-54-152-123-100.compute-1.amazonaws.com");
-            done();
-        });
+  it('should return the Airline IP from the database', function(done) {
+    mongo.getAirLineIP("Lufthansa", function(err, airLineIP) {
+      assert.equal(airLineIP, "ec2-54-152-123-100.compute-1.amazonaws.com");
+      done();
     });
+  });
 });
-    // it('/api/quote should return a quote JSON object with keys [_id, text, author]', function(done) {
-    //     request.get('/api/quote').set('Accept','application/json').expect('Content-Type',/json/).expect(function(res){
-    //         assert.property(res.body,'_id','object has an id');
-    //         assert.property(res.body,'text','object has a text');
-    //         assert.property(res.body,'author','object has an author');
-    //         // assert.isString(res.body.author);
-    //     }).expect(200,done);
-    // });
+// it('/api/quote should return a quote JSON object with keys [_id, text, author]', function(done) {
+//     request.get('/api/quote').set('Accept','application/json').expect('Content-Type',/json/).expect(function(res){
+//         assert.property(res.body,'_id','object has an id');
+//         assert.property(res.body,'text','object has a text');
+//         assert.property(res.body,'author','object has an author');
+//         // assert.isString(res.body.author);
+//     }).expect(200,done);
+// });
 
-    // it('/api/quotes should return an array of JSON object when I visit', function(done) {
-    //     request.get('/api/quotes').set('Accept','application/json').expect('Content-Type',/json/).expect(200,done);
-    // });
+// it('/api/quotes should return an array of JSON object when I visit', function(done) {
+//     request.get('/api/quotes').set('Accept','application/json').expect('Content-Type',/json/).expect(200,done);
+// });
 // });
