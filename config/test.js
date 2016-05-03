@@ -178,6 +178,24 @@ describe('getAirlinesFromDB', function() {
         });
     });
 });
+
+describe('getAirlineIPFromDB', function() {
+    it('should return the Airline IP from the database', function(done) {
+        mongo.getAirLineIP("Trukish",function(err,airLineIP){
+            assert.equal(airLines,"52.27.150.19");
+            done();
+        });
+    });
+});
+
+describe('getAirlineIPFromDB', function() {
+    it('should return the Airline IP from the database', function(done) {
+        mongo.getAirLineIP("Lufthansa",function(err,airLineIP){
+            assert.equal(airLines,"ec2-54-152-123-100.compute-1.amazonaws.com");
+            done();
+        });
+    });
+});
     // it('/api/quote should return a quote JSON object with keys [_id, text, author]', function(done) {
     //     request.get('/api/quote').set('Accept','application/json').expect('Content-Type',/json/).expect(function(res){
     //         assert.property(res.body,'_id','object has an id');
