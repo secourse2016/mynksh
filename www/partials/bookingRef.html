@@ -9,8 +9,8 @@
           </span>
         </label>
         <span style='color:red' ng-show="(booking.bookingref.$error.required)  && booking.bookingref.$dirty ">Booking Number is required</span>
-      <h6 style="text-align:center">  <button  type="button" ng-disabled='booking.$invalid' class="btn btn-primary btn-lg" style="left:200px; background:rgba(178,34,34, 1);margin-top: 15px" ng-click="SetBookingRef(selectedBookingRef);retreiveBookingRef();showTabDialog($event)">Search My Flight</button></h6>
-      </form>
+        </form>
+      <h6 style="text-align:center">  <button type="button" ng-disabled='booking.bookingref.$error.required' class="btn btn-primary btn-lg" style="left:200px; background:rgba(178,34,34, 1);margin-top: 15px" ng-click="SetBookingRef(selectedBookingRef);retreiveBookingRef();showTabDialog($event)">Search My Flight</button></h6>
     </div>
 
     <script type="text/ng-template" id="tabDialog.tmpl.html">
