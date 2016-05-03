@@ -1,80 +1,39 @@
 <ion-view view-title="Landing">
   <ion-content class="has-header has-subheader">
     <h4 style="text-align:center;color:rgba(128,0,0, 1)">Book Flight</h4>
-
-    <!-- <input name="originAirports" id="originAirports"  type="text"  placeholder="Flying From" ng-model="selectedOrigin" ng-required='true' uib-typeahead="airport.name for airport in Airports | filter:$viewValue | limitTo:10" class="form-control" , typeahead-on-select="SetOriginAirport($item.iata)"  required > -->
-
     <div class="list list-inset">
-      <!-- <label class="item item-input item-stacked-label">
-                <span class="input-label">Flying From:</span>
-                <input type="text" placeholder="CAI" ng-model="originAirport">
-           </label> -->
-
-      <!-- <form id="loginForm"> -->
-
       <form name="flights">
-
-          <!-- <input ng-required='true' name="originAirports" id="originAirports" type="text" placeholder="Flying From" ng-model="selectedOrigin"> -->
-
-          <ion-list>
-
+        <ion-list>
           <div layout="column" ng-cloak="" class="autocompletedemoBasicUsage">
             <md-content class="md-padding">
-              <!-- <form ng-submit="$event.preventDefault()" > -->
-
+              <span class="ion-plane"></span>
+              <md-autocomplete ng-required='true' ng-model="$parent.selectedOrigin" md-input-name="originAirports" id="originAirports" md-selected-item="selectedItem" md-floating-label="Flying From" md-search-text="searchText" md-items="item in querySearch(searchText)"
+                  md-item-text="item.display" md-min-length="0">
+                <md-item-template>
+                  <span md-highlight-text="searchText" md-highlight-flags="^i" ng-value="{{selectedItem}}">{{item.display}}</span>
+                </md-item-template>
+                <md-not-found>
+                  No states matching "{{searchText}}" were found.
+                </md-not-found>
+                <span style='color:red' ng-show="(flights.originAirports.$error.required)&& flights.originAirports.$dirty ">Origin Airport required</span>
+              </md-autocomplete>
+            </md-content>
+            <div layout="column" ng-cloak="" class="autocompletedemoBasicUsage2">
+              <md-content class="md-padding">
                 <span class="ion-plane"></span>
-                <md-autocomplete ng-required='true' ng-model="$parent.selectedOrigin" md-input-name="originAirports" id="originAirports" md-selected-item="selectedItem" md-floating-label="Flying From"  md-search-text="searchText" md-items="item in querySearch(searchText)" md-item-text="item.display" md-min-length="0" >
-                  <!-- <label class="item item-input item-floating-label"> -->
+                <md-autocomplete ng-required='true' ng-model="selectedDestination" md-input-name="destinationAirports" id="destinationAirports" md-selected-item="selectedItem2" md-floating-label="Flying To" md-search-text="searchText2" md-items="item in querySearch(searchText2)"
+                    md-item-text="item.display" md-min-length="0">
                   <md-item-template>
-                    <span  md-highlight-text="searchText"   md-highlight-flags="^i" ng-value="{{selectedItem}}">{{item.display}}</span>
+                    <span md-highlight-text="searchText2" md-highlight-flags="^i" ng-value="{{selectedItem2}}">{{item.display}}</span>
                   </md-item-template>
                   <md-not-found>
-                    No states matching "{{searchText}}" were found.
+                    No states matching "{{searchText2}}" were found.
                   </md-not-found>
-                  <!-- <div ng-messages="flights.originAirports.$error.required">
-                  <div ng-message="required">You <b>must</b> have a an Outgoing Airport.</div></div> -->
-                  <span style='color:red' ng-show="(flights.originAirports.$error.required)&& flights.originAirports.$dirty ">Origin Airport required</span>
+                  <span style='color:red' ng-show="(flights.destinationAirports.$error.required) && flights.destinationAirports.$dirty ">Destination Airport required</span>
                 </md-autocomplete>
-
-              <!-- </form> -->
-            </md-content>
-
-
-
-
-
-     <!-- <div class="form-errors" ng-messages="loginForm.originAirports.$error" ng-if="loginForm.$submitted">
-                   <div class="form-error" ng-message="required">This field is required.</div>
-                 </div> -->
-                 <div layout="column" ng-cloak="" class="autocompletedemoBasicUsage2">
-                   <md-content class="md-padding">
-                     <!-- <form ng-submit="$event.preventDefault()" > -->
-                       <span class="ion-plane"></span>
-                       <md-autocomplete  ng-required='true' ng-model="selectedDestination" md-input-name="destinationAirports" id="destinationAirports" md-selected-item="selectedItem2" md-floating-label="Flying To"  md-search-text="searchText2" md-items="item in querySearch(searchText2)" md-item-text="item.display" md-min-length="0" >
-                         <!-- <label class="item item-input item-floating-label"> -->
-                         <md-item-template>
-                           <span   md-highlight-text="searchText2" md-highlight-flags="^i" ng-value="{{selectedItem2}}">{{item.display}}</span>
-                         </md-item-template>
-                         <md-not-found>
-                           No states matching "{{searchText2}}" were found.
-                         </md-not-found>
-                         <span style='color:red' ng-show="(flights.destinationAirports.$error.required) && flights.destinationAirports.$dirty ">Destination Airport required</span>
-                       </md-autocomplete>
-                     <!-- </form> -->
-                   </md-content>
-                 </div>
-               </ion-list>
-
-        <!-- <label class="item item-input item-floating-label">
-          <span class="input-label ion-plane">Flying To</span>
-          <input ng-required='true' name="destinationAirports" id="destinationAirports" type="text" placeholder="Flying To" ng-model="selectedDestination">
-        </label>
-        <span style='color:red' ng-show="(flights.destinationAirports.$error.required) ">Destination Airport required</span> -->
-
-        <!-- <div class="form-errors" ng-messages="loginForm.destinationAirports.$error" ng-if="loginForm.$submitted">
-                         <div class="form-error" ng-message="required">This field is required.</div>
-                       </div> -->
-
+              </md-content>
+            </div>
+        </ion-list>
         <ion-list>
           <h5 style="text-align:center;color:rgba(128,0,0, 1)">Select a type of flight</h5>
           <ion-radio ng-click="data.showDelete = true" ng-model="roundTrip" value="false">One Way</ion-radio>
@@ -84,79 +43,58 @@
         <div ng-show="!data.showDelete">
           <ion-list>
             <h5 style="text-align:center;color:rgba(128,0,0, 1)">Outgoing date</h5>
-            <!-- <onezone-datepicker ng-model="dto" datepicker-object="onezoneDatepicker" >
-                         <button class="button button-block button-outline button-assertive show-onezone-datepicker" >
-                           {{onezoneDatepicker.date | date:'dd MMMM yyyy'}}
-                         </button>
-                       </onezone-datepicker> -->
-            <md-datepicker ng-required='true'  md-min-date="minDate" name="outgoing" md-placeholder="Enter date" ng-model="$parent.dto"></md-datepicker>
+            <md-datepicker ng-required='true' md-min-date="minDate" name="outgoing" md-placeholder="Enter date" ng-model="$parent.dto"></md-datepicker>
             <span style='color:red' ng-show="(flights.outgoing.$error.required) ">Outgoing Date required</span>
           </ion-list>
           <ion-list>
             <h5 style="text-align:center;color:rgba(128,0,0, 1)">Return date</h5>
-            <!-- <onezone-datepicker datepicker-object="onezoneDatepicker2" >
-                      <button ng-model="dtr" class="button button-block button-outline button-assertive show-onezone-datepicker" >
-                        {{onezoneDatepicker2.date | date:'dd MMMM yyyy'}}
-                      </button>
-                    </onezone-datepicker> -->
-            <md-datepicker ng-required='true' md-max-date='currentDate' name='return' ng-model="$parent.dtr" md-min-date="$parent.dto" md-placeholder="Enter date" ></md-datepicker>
+            <md-datepicker ng-required='true' md-max-date='currentDate' name='return' ng-model="$parent.dtr" md-min-date="$parent.dto" md-placeholder="Enter date"></md-datepicker>
             <span style='color:red' ng-show="(flights.return.$error.required)">Return Date required</span>
           </ion-list>
         </div>
         <div ng-show="data.showDelete">
           <ion-list>
             <h4 style="text-align:center;color:rgba(128,0,0, 1)">Outgoing date</h4>
-            <!-- <onezone-datepicker datepicker-object="onezoneDatepicker"  > -->
             <md-datepicker ng-required='true' name='outgoing0' md-min-date="minDate" ng-model="$parent.dtr" md-placeholder="Enter date"></md-datepicker>
-            <!-- <button class="button button-block button-outline button-assertive show-onezone-datepicker" ng-model="dto" ng-value="{{onezoneDatepicker.date}}">
-                          {{onezoneDatepicker.date | date:'dd MMMM yyyy'}}
-                        </button>
-
-                      </onezone-datepicker> -->
             <span style='color:red' ng-show="(flights.outgoing0.$error.required) ">Outgoing Date required</span>
           </ion-list>
         </div>
-    </div>
+        </div>
 
-    <div class="list list-inset">
+        <div class="list list-inset">
+          <ion-list>
+            <h4 style="text-align:center;color:rgba(128,0,0, 1)">Select a cabin</h4>
+            <ion-radio ng-click="data.showCabin = false" ng-model="cabin" value="true">Economy</ion-radio>
+            <ion-radio ng-click="data.showCabin = true" ng-model="cabin" value="false">Business</ion-radio>
+          </ion-list>
+        </div>
         <ion-list>
-          <h4 style="text-align:center;color:rgba(128,0,0, 1)">Select a cabin</h4>
-          <ion-radio ng-click="data.showCabin = false" ng-model="cabin" value="true">Economy</ion-radio>
-          <ion-radio ng-click="data.showCabin = true" ng-model="cabin" value="false">Business</ion-radio>
+          <b><label style='font-size:1em;color:rgba(128,0,0, 1)'>Tickets Count</label></b>
+          <md-input-container style="margin-right: 10px;">
+            <md-select name="ticketsCount" ng-model="ticket">
+              <md-option value="1" style="background:rgba(255,255,255, 1)" selected="selected">1</md-option>
+              <md-option value="2" style="background:rgba(255,255,255, 1)">2</md-option>
+              <md-option value="3" style="background:rgba(255,255,255, 1)">3</md-option>
+              <md-option value="4" style="background:rgba(255,255,255, 1)">4</md-option>
+              <md-option value="5" style="background:rgba(255,255,255, 1)">5</md-option>
+              <md-option value="6" style="background:rgba(255,255,255, 1)">6</md-option>
+              <md-option value="7" style="background:rgba(255,255,255, 1)">7</md-option>
+              <md-option value="8" style="background:rgba(255,255,255, 1)">8</md-option>
+              <md-option value="9" style="background:rgba(255,255,255, 1)">9</md-option>
+              <md-option value="10" style="background:rgba(255,255,255, 1)">10</md-option>
+            </md-select>
+          </md-input-container>
         </ion-list>
-    </div>
-    <!-- <div class="list list-inset"> -->
-        <ion-list>
-
-    <b><label style='font-size:1em;color:rgba(128,0,0, 1)'>Tickets Count</label></b>
-    <md-input-container style="margin-right: 10px;">
-    <md-select name="ticketsCount" ng-model="ticket">
-        <md-option value="1" style="background:rgba(255,255,255, 1)" selected="selected">1</md-option>
-        <md-option value="2" style="background:rgba(255,255,255, 1)">2</md-option>
-        <md-option value="3" style="background:rgba(255,255,255, 1)">3</md-option>
-        <md-option value="4" style="background:rgba(255,255,255, 1)">4</md-option>
-        <md-option value="5" style="background:rgba(255,255,255, 1)">5</md-option>
-        <md-option value="6" style="background:rgba(255,255,255, 1)">6</md-option>
-        <md-option value="7" style="background:rgba(255,255,255, 1)">7</md-option>
-        <md-option value="8" style="background:rgba(255,255,255, 1)">8</md-option>
-        <md-option value="9" style="background:rgba(255,255,255, 1)">9</md-option>
-        <md-option value="10" style="background:rgba(255,255,255, 1)">10</md-option>
-      </md-select>
-    </md-input-container></ion-list>
-<!-- </div> -->
-
-    <div class="list list-inset">
-        <ion-list>
-          <md-checkbox style="color:black"  ng-model="pinging" value="true" aria-label="Ping Other Airlines" >Ping Other Arlines</md-checkbox>
-          <!-- <input ng-model="pinging" type="checkbox" value="true" /> -->
-        </ion-list>
-    </div>
-
-  <center>  <button  class="button button-outline button-assertive"  ng-click="SetOriginAirport(selectedItem.value); SetDestinationAirport(selectedItem2.value);SetOutDate(dto);SetReturnDate(dtr); SetRoundTrip(roundTrip); SetCabin(cabin); SetPinging(pinging); SearchFlights()">Search Flights</button></center>
-    <br><br>
-  </form>
+        <div class="list list-inset">
+          <ion-list>
+            <md-checkbox style="color:black" ng-model="pinging" value="true" aria-label="Ping Other Airlines">Ping Other Arlines</md-checkbox>
+          </ion-list>
+        </div>
+        <center>
+          <button class="button button-outline button-assertive" ng-click="SetOriginAirport(selectedItem.value); SetDestinationAirport(selectedItem2.value);SetOutDate(dto);SetReturnDate(dtr); SetRoundTrip(roundTrip); SetCabin(cabin); SetPinging(pinging); SearchFlights()">Search Flights</button>
+        </center>
+        <br>
+        <br>
+      </form>
   </ion-content>
-
-
-
 </ion-view>
