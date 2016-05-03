@@ -12,6 +12,7 @@ App.controller('bookingRefCtrl', function($scope, FlightsSrv, $location, Booking
               var firstName = flight[0].firstName;
               var lastName = flight[0].lastName;
               var passport = flight[0].passportNumber;
+              var phoneNum=flight[0].phoneNumber;
               var seatO = flight[0].seatNum;
               var arrivalTimeO=flight[0].arrivalTime;
               var departureTimeO=flight[0].departureTime;
@@ -26,31 +27,28 @@ App.controller('bookingRefCtrl', function($scope, FlightsSrv, $location, Booking
                var originR=flight[1].origin;
                var destinationR=flight[1].destination;
             }
-        var input = BookingSrv.getSelectedBookingRef();
-        //var div = document.getElementById('divID');
 
-        var atobConv = window.atob(input);
-        //var res = "Booking Reference:(please copy it for further tracking): " + "<br>" + enc + "<br>" + "Decoded String: " + dec;
-
-        // "<br>" + "Decoded String: " + dec;
-
-        var arr = atobConv.split(",");
-        var visaNum = arr[0];
-        var outDate = arr[1];
         // var flightNumO = arr[2];
-        var res = "Hello, " +firstName + " " + lastName + "!" +
-        "<br>" + "Your Passport is " + passport + "<br>" +"Your Visa Number is " + visaNum +"<br>"
-         + "Your Seat Number in the flight from "+originO+" on "+arrivalTimeO+" to "+destinationO+" on "+departureTimeO+" is "+seatO+
-          "<br>"+ "Your Flight number is " + flightNumO;
-          if(flight.length==2){
-            var res = "Hello, " + firstName + " " + lastName + "!" +
-        "<br>" + "Your Passport is " + passport + "<br>" +"Your Visa Number is " + visaNum +"<br>"
-         + "Your Seat Number on the flight from "+originO+" on "+arrivalTimeO+" to "+destinationO+" on "+
-         departureTimeO+" is "+seatO+ "<br>"+ "Your Flight number is " + flightNumO+"<br>"+"Your Seat Number on the flight from "
+        var res = "Hello, " +firstName + " " + lastName + "!";
+        var res2= "Your Passport is " + passport + "<br>";
+        var res3= "And we will call you on " + phoneNum +"<br>";
+         var res4= "Your Seat Number in the flight from "+originO+" on "+arrivalTimeO+" to "+destinationO+" on "+departureTimeO+" is "+seatO +"</br>"+"Your Flight number is " + flightNumO;
+         var res5="";
+        if(flight.length==2){
+        var res = "Hello, " + firstName + " " + lastName + "!";
+        var res2="Your Passport is " +passport+ "<br>";
+        var res3="And we will call you on " + phoneNum+"<br>";
+         var res4= "Your Seat Number on the flight from "+originO+" on "+arrivalTimeO+" to "+destinationO+" on "+
+         departureTimeO+" is "+seatO+ "<br>"+ "Your Flight number is " + flightNumO+"<br>";
+         var res5="Your Seat Number on the flight from "
          +originR+" on "+arrivalTimeR+" to "+destinationR+" on "+
          departureTimeR+" is "+seatR+ "<br>"+ "Your Flight number is " + flightNumR;
           }
         document.getElementById("divID").innerHTML = res;
+        document.getElementById("divID2").innerHTML = res2;
+        document.getElementById("divID3").innerHTML = res3;
+        document.getElementById("divID4").innerHTML = res4;
+        document.getElementById("divID5").innerHTML = res5;
       });
     }
 
