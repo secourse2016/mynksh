@@ -1,6 +1,7 @@
-App.controller('congratsCtrl', function($scope,paymentSrv) {
+App.controller('congratsCtrl', function($scope,paymentSrv,OutReturnSrv) {
 
 	$scope.bookingRefNo = paymentSrv.getBookingRefNo();
+	$scope.airLine=OutReturnSrv.getSelectedOutFlight().Airline;
 
 	$scope.copy = function(){
         var copyTextarea = document.querySelector('.js-copytextarea');
@@ -15,4 +16,3 @@ App.controller('congratsCtrl', function($scope,paymentSrv) {
         }
     };
 });
-

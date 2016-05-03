@@ -95,7 +95,7 @@
         </div>
         </form>
         <center>
-          <button ng-disabled='flights1.originAirports.$error.required && flights1.destinationAirports.$error.required' class="button button-outline button-assertive"  ng-click="SetOriginAirport(selectedItem.value); SetDestinationAirport(selectedItem2.value);SetOutDate(dto);SetReturnDate(dtr); SetRoundTrip(roundTrip); SetCabin(cabin); SetTickets(ticket); SetPinging(pinging); SearchFlights()"><font style="color:maroon">Search Flights</font></button>
+          <button ng-disabled='(flights1.originAirports.$error.required) || (flights1.destinationAirports.$error.required)' class="button button-outline button-assertive"  ng-click="SetOriginAirport(selectedItem.value); SetDestinationAirport(selectedItem2.value);SetOutDate(dto);SetReturnDate(dtr); SetRoundTrip(roundTrip); SetCabin(cabin); SetTickets(ticket); SetPinging(pinging); SearchFlights()"><font style="color:maroon">Search Flights</font></button>
         </center>
         <br>
         <br>

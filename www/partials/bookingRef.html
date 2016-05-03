@@ -29,17 +29,20 @@
           <md-dialog-content style="max-width:800px;max-height:810px; ">
             <md-tabs md-dynamic-height md-border-bottom>
               <md-tab label="Personal">
-                <md-content class="md-padding" ng-repeat="n in flights | unique:'passportNumber'">
-                  <h4 style="text-align:center">Passenger Information</h4>
+                <md-content class="md-padding" ng-repeat="n in flights | unique:'passportNumber' ">
+                  <h4 style="text-align:center">Passenger {{n.firstName}} Information</h4>
                   <h6>Hello, {{n.firstName}} {{n.lastName}}!</h6>
                   <h6>Your Passport is {{n.passportNumber}}.</h6>
                   <h6>We will contact you on {{n.email}} to confirm your booking.</h6>
-                  <md-content class="md-padding" ng-repeat="n in flights | unique:'flightNumber' && 'seatNum'">
-                  <h6>Your seat number on flight {{n.flightNumber}} is {{n.seatNum}}.</h6>
-                  </md-content>
-                  </md-content>
+                </md-content>
               </md-tab>
-
+              <md-tab label="Seats">
+              <h4 style="text-align:center"> All Seats</h4>
+              <md-content class="md-padding" ng-repeat="n in flights">
+              <h6>{{n.firstName}} {{n.lastName}}, your seat number on flight {{n.flightNumber}} is {{n.seatNum}}.</h6>
+              <hr>
+              </md-content>
+              </md-tab>
               <md-tab label="Flight">
                 <md-content class="md-padding" ng-repeat="n in flights | unique:'flightNumber'">
                   <h4 style="text-align:center">Flights {{n.way}} Information</h4>

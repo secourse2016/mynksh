@@ -3,7 +3,9 @@ App.controller('bookingRefCtrl', function($scope, FlightsSrv, $location, Booking
     $scope.SetBookingRef = function(value) {
         BookingSrv.setSelectedBookingRef(value);
     };
-
+    $scope.main = function() {
+				$location.url('/home');
+		};
     $scope.bookingref = BookingSrv.getSelectedBookingRef();
 
     $scope.status = '  ';
