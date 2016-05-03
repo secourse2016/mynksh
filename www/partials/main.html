@@ -33,7 +33,10 @@
                 </md-autocomplete>
               </md-content>
             </div>
+          </div>
         </ion-list>
+      </form>
+      <form name="flights">
         <ion-list>
           <h5 style="text-align:center;color:rgba(128,0,0, 1)">Select a type of flight</h5>
           <ion-radio ng-click="data.showDelete = true" ng-model="roundTrip" value="false">One Way</ion-radio>
@@ -59,8 +62,8 @@
             <span style='color:red' ng-show="(flights.outgoing0.$error.required) ">Outgoing Date required</span>
           </ion-list>
         </div>
-        </div>
-
+      </form>
+      <form name="flights">
         <div class="list list-inset">
           <ion-list>
             <h4 style="text-align:center;color:rgba(128,0,0, 1)">Select a cabin</h4>
