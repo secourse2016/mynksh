@@ -25,7 +25,7 @@ var insertPassengers = function(i, passengerDetails, cabin, cost, outgoingFlight
           passengerDetails[i].passportExpiryDate, passengerDetails[i].dateOfBirth, passengerDetails[i].nationality,
           passengerDetails[i].email, cabin, cost, returnFlightId, data2,
           function(err, data3) {
-            insertPassengers(i + 1, passengerDetails, cabin, cost, outgoingFlightId, returnFlightId, data2, cb);
+            insertPassengers(i + 1, passengerDetails, cabin, cost, outgoingFlightId, returnFlightId, data3, cb);
           });
       });
   } //end of else
@@ -77,8 +77,8 @@ paymentInfo = {
   "passengerDetails": newres,
   "class": 'economy',
   "cost": 12321312,
-  "outgoingFlightId": "5728c45ae839e1a7159509c9",
-  "returnFlightId": "5728c45ae839e1a7159509c8",
+  "outgoingFlightId": "5728c8a0a5771909178f4585",
+  "returnFlightId": "5728c8a0a5771909178f4584",
   "paymentToken": 2112
 }
 

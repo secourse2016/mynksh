@@ -184,20 +184,22 @@ exports.submitPay = function(firstName, lastName, passportNumber, expiryDate, da
       bookingReference = generateBookingRef(flights[0].SeatMap[selectedSeat].seatNum, flights[0].flightNumber, businessOrEconomic);
     else
       bookingReference = generateOrUseOld;
-    // flights[0].SeatMap[selectedSeat].bookingRefNumber = bookingReference;
+    flights[0].SeatMap[selectedSeat].bookingRefNumber = bookingReference;
 
 
     mongo.db().collection("flights").update({
       "_id": new ObjectId(flightId)
     }, {
       $set: {
-        nextBusSeat : bSeat,
-        nextEcoSeat : eSeat,
-        SeatMap     : flights[0].SeatMap
+        "availableESeats" : flights[0].availableESeats,
+        "availableBSeats" : flights[0].availableBSeats,
+        "nextBusSeat"     : bSeat,
+        "nextEcoSeat"     : eSeat,
+        "SeatMap"         : flights[0].SeatMap
       }
     }, {
       upsert: false
-    }, function() {
+    }, function(err, results) {
 
       // collection.insertOne(document, {
       //   w: 1
