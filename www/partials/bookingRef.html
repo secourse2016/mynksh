@@ -41,8 +41,8 @@
               </md-tab>
 
               <md-tab label="Flight">
-                  <h4 style="text-align:center">Flights Information</h4>
-                    <md-content class="md-padding" ng-repeat="n in flights | unique:'flightNumber'">
+                <md-content class="md-padding" ng-repeat="n in flights | unique:'flightNumber'">
+                  <h4 style="text-align:center">Flights {{n.way}} Information</h4>
                   <h6>Seat Number on the flight from {{n.origin}} on {{n.arrivalTime}} to {{n.destination}} on {{n.departureTime}}.</h6>
                   <h6>Flight Number is {{n.flightNumber}}.</h6>
                 </md-content>
