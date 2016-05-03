@@ -12,7 +12,6 @@ App.controller('confirmCtrl', function($scope, FlightsSrv, OutReturnSrv, Confirm
     $scope.currentDate = new Date();
     $scope.minDate = new Date($scope.currentDate.getFullYear() -100,$scope.currentDate.getMonth(),$scope.currentDate.getDate());
     $scope.maxDate = new Date($scope.currentDate.getFullYear() +5,$scope.currentDate.getMonth(),$scope.currentDate.getDate());
-
     $scope.reservations = [];
 
     for(var i=0 ; i<$scope.tickets ; i++){

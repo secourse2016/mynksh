@@ -9,17 +9,6 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
     returnFlight = OutReturnSrv.getSelectedReturnFlight();
   $scope.outCurrency = outgoingFlight.currency;
 
-  var dateFormat = function() {
-    var newres = $scope.reservation;
-    for (var i = 0; i < newres.length; i++) {
-      newres[i].dateOfBirth = newres[i].dateOfBirth.getTime();
-      if (newres[i].passportExpiryDate === undefined)
-        newres[i].passportExpiryDate = newres[i].passportExpiryDate.getTime();
-    }
-    return newres;
-  };
-  
-  // dateFormat();
   var Congrats = function() {
     $location.url('/congrats');
   };
