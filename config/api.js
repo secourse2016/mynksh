@@ -9,7 +9,7 @@ var moment = require('moment');
 exports.seedDB = function(cb) {
     // mongo.connect(function(err, mdb) {
     mongo.clearDB(function(err) {
-        assert.equal(null, err);
+        assert.equal(null, err);••••••••••••••
         mongo.seed('flights', flights, function() {
             mongo.seed('airLines', airlines, function() {
                 // mongo.seed('bookings', bookings, function() {
@@ -251,7 +251,7 @@ exports.postBookings = function(booking, cb){
     var collection = mongo.db().collection('flights');
     var foundreturn =collection.find({"flightId":booking.returnFlightId}).toArray();
     var foundreturncb =exports.generateBookingRef(found[0].flightNumber, economyOrBusiness);
-    
+    cb(err, foundreturncb);
 }
     else
         if(returnFlightId==null){
@@ -275,6 +275,7 @@ exports.postBookings = function(booking, cb){
     var collection = mongo.db().collection('flights');
     var foundoutgoing =collection.find({"flightId":booking.outgoingFlightId}).toArray();
     var foundoutgoingcb = exports.generateBookingRef(found[0].flightNumber, economyOrBusiness);
+    cb(err, foundoutgoingcb);
     
         }
         else{
@@ -300,9 +301,10 @@ exports.postBookings = function(booking, cb){
     var foundoutgoingcb = exports.generateBookingRef(foundoutgoing[0].flightNumber, economyOrBusiness);
     var foundreturn = collection.find({"flightId":booking.returnFlightId}).toArray();
     var foundreturncb = exports.generateBookingRef(foundreturn[0].flightNumber, economyOrBusiness);
+    cb(err, foundoutgoingcb);
+    cb(err, foundreturncb);
         }
-        cb(err, foundoutgoingcb);
-        cb(err, foundreturncb);
+
 }
   
     
