@@ -189,22 +189,22 @@ exports.check= function(passengerDetails, cabin, cost, outgoingFlightId, returnF
 {
   var err;
   if(cabin === undefined || cabin === null)
-    err= "Please specify the cabin economy/business.";
+    cb("Please specify the cabin economy/business.");
   var validCabin= cabin.toLowerCase();
   if(validCabin !== "economy" && validCabin !== "business")
-    err = "The chosen calss is not supported by IBERIA.";
+    cb("The chosen calss is not supported by IBERIA.");
   for(var i=0; i<passengerDetails.length; i++)
   {
     if(passengerDetails[i].firstName === undefined)
-      err= "Passenger " + i + "'s first name was not defined.";
+      cb("Passenger " + i + "'s first name was not defined.");
     if(passengerDetails[i].lastName === undefined)
-      err= "Passenger " + i + "'s last name was not defined.";
+      cb("Passenger " + i + "'s last name was not defined.");
     if(passengerDetails[i].passportNum === undefined)
-      err= "Passenger " + i + "'s passport number was not defined.";
+      cb("Passenger " + i + "'s passport number was not defined.");
     if(passengerDetails[i].passportNum === undefined)
-      err= "Passenger " + i + "'s passport number was not defined.";
+      cb("Passenger " + i + "'s passport number was not defined.");
     if(passengerDetails[i].dateOfBirth === undefined)
-      err= "Passenger " + i + "'s date of birth was not defined.";    
+      cb("Passenger " + i + "'s date of birth was not defined.");    
   }
   var tickets = passengerDetails.length;
   var outgoingCost=0;
@@ -219,19 +219,18 @@ exports.check= function(passengerDetails, cabin, cost, outgoingFlightId, returnF
         {
           returnCost=cbReturnCost;
           if(outgoingCost === -1)
-            err = "The outgoing flight is not supported by Iberia.";
+            cb("The outgoing flight is not supported by Iberia.");
           else if(returnCost === -1)
-            err = "The return flight is not supported by Iberia.";
+            cb("The return flight is not supported by Iberia.");
           else
           {
             expectedCost= (outgoingCost + returnCost)*tickets;
     
           }
           if(expectedCost !== cost)
-            err= "The cost of the trip is not as expected";
+            cb("The cost of the trip is not as expected");
         });
       });
-    cb(err);
 }
 var getFlightCost = function(flightId, cabin, price)
 {
