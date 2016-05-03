@@ -1,24 +1,32 @@
-App.controller('congratsCtrl', function($scope, paymentSrv, OutReturnSrv, $http) {
+App.controller('congratsCtrl', function($scope, paymentSrv, OutReturnSrv, $http, $location) {
 
 
   $scope.bookingRefNo1 = paymentSrv.getBookingRefNo1();
   $scope.bookingRefNo2 = paymentSrv.getBookingRefNo2();
   $scope.airline1 = OutReturnSrv.getSelectedOutFlight().Airline;
+	$scope.airline2 = OutReturnSrv.getSelectedReturnFlight().Airline;
 
   console.log($scope.bookingRefNo1);
   console.log($scope.bookingRefNo2);
   console.log($scope.airline1);
   console.log($scope.airline2);
 
-  paymentSrv.getOtherAirlineIP1($scope.airline1).success(function(airlineIP) {
+  paymentSrv.getOtherAirlineIP($scope.airline1).success(function(airlineIP) {
     $scope.urlAirline1 = airlineIP;
 		console.log($scope.urlAirline1);
   });
 
-  paymentSrv.getOtherAirlineIP1($scope.airline1).success(function(airlineIP) {
+  paymentSrv.getOtherAirlineIP($scope.airline2).success(function(airlineIP) {
     $scope.urlAirline2 = airlineIP;
 		console.log($scope.urlAirline2);
   });
+
+	$scope.goToUrl1=function(){
+		$location.url('http://'+$scope.urlAirline1);
+	};
+	$scope.goToUrl2=function(){
+		$location.url('http://'+$scope.urlAirline2);
+	};
 
   //
   $scope.copy = function() {
