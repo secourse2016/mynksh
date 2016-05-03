@@ -8,21 +8,7 @@ App.controller('bookingRefCtrl', function($scope, FlightsSrv, $location, Booking
 
     $scope.status = '  ';
     $scope.customFullscreen = $mdMedia('xs') || $mdMedia('sm');
-    // $scope.showAlert = function(ev) {
-    //     // Appending dialog to document.body to cover sidenav in docs app
-    //     // Modal dialogs should fully cover application
-    //     // to prevent interaction outside of dialog
-    //     $mdDialog.show(
-    //       $mdDialog.alert()
-    //         .parent(angular.element(document.querySelector('#popupContainer')))
-    //         .clickOutsideToClose(true)
-    //         .title('Your Booking')
-    //         .textContent(res)
-    //         .ariaLabel('Alert Dialog Demo')
-    //         .ok('Got it!')
-    //         .targetEvent(ev)
-    //     );
-    //   };
+
     $scope.showTabDialog = function(ev) {
     $mdDialog.show({
       controller: DialogController,
@@ -36,32 +22,29 @@ App.controller('bookingRefCtrl', function($scope, FlightsSrv, $location, Booking
         });
   };
 
-
-
-
     $scope.retreiveBookingRef = function() {
       $http.get('http://localhost:8080/data/bookings/search/' + BookingSrv.getSelectedBookingRef()).success(function(flight) {
              // if(flight.length ==1){
-              var firstName = flight[0].firstName;
-              var lastName = flight[0].lastName;
-              var passport = flight[0].passportNumber;
-              var phoneNum=flight[0].phoneNumber;
-              var seatO = flight[0].seatNum;
-              var arrivalTimeO=flight[0].arrivalTime;
-              var departureTimeO=flight[0].departureTime;
-              var originO=flight[0].origin;
-              var destinationO=flight[0].destination;
-              var flightNumO=flight[0].flightNumber;
-
-            if(flight.length ==2){
-              var seatR = flight[1].seatNum;
-              var flightNumR=flight[1].flightNumber;
-              var arrivalTimeR=flight[1].arrivalTime;
-               var departureTimeR=flight[1].departureTime;
-               var originR=flight[1].origin;
-               var destinationR=flight[1].destination;
-            }
-        var input = BookingSrv.getSelectedBookingRef();
+        //       var firstName = flight[0].firstName;
+        //       var lastName = flight[0].lastName;
+        //       var passport = flight[0].passportNumber;
+        //       var phoneNum=flight[0].phoneNumber;
+        //       var seatO = flight[0].seatNum;
+        //       var arrivalTimeO=flight[0].arrivalTime;
+        //       var departureTimeO=flight[0].departureTime;
+        //       var originO=flight[0].origin;
+        //       var destinationO=flight[0].destination;
+        //       var flightNumO=flight[0].flightNumber;
+        //
+        //     if(flight.length ==2){
+        //       var seatR = flight[1].seatNum;
+        //       var flightNumR=flight[1].flightNumber;
+        //       var arrivalTimeR=flight[1].arrivalTime;
+        //        var departureTimeR=flight[1].departureTime;
+        //        var originR=flight[1].origin;
+        //        var destinationR=flight[1].destination;
+        //     }
+        // var input = BookingSrv.getSelectedBookingRef();
         //var div = document.getElementById('divID');
 
         // var atobConv = window.atob(input);
