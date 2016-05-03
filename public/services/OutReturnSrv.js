@@ -24,6 +24,7 @@ App.factory('OutReturnSrv', function($http) {
         setSelectedOutCabin: function(value) {
             this.selectedOutCabin = value;
         },
+
         setSelectedReturnCabin: function(value) {
             this.selectedReturnCabin = value;
         },
@@ -43,6 +44,7 @@ App.factory('OutReturnSrv', function($http) {
         getSelectedOutCabin: function() {
             return this.selectedOutCabin;
         },
+        
         getSelectedReturnCabin: function() {
             return this.selectedReturnCabin;
         },

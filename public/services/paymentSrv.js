@@ -6,10 +6,9 @@ App.factory('paymentSrv', function($http) {
     },
     getOtherStripePubKey: function(airlineIP) {
       jwt = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJNWU5LU0giLCJpYXQiOjE0NjA3NzIyOTQsImV4cCI6MTQ5MjMwODI5NSwiYXVkIjoid3d3LnNlY291cnNlLmNvbSIsInN1YiI6Ik1ZTktTSCBJYmVyaWEiLCJUZWFtIjoiTVlOS1NIIn0.hZxhv8XAcu1cARgcrtfb0l_crF1-Ic1tJt9eUhIL0qQ';
-      if (airlineIP === "IBERIA")
+      if (airlineIP === "Iberia")
         return $http.get('/stripe/pubkey/?wt=' + jwt);
       else {
-        console.log("hena");
         return $http.get('http://' + airlineIP + '/stripe/pubkey/?wt=' + jwt, {timeout:3000});
       }
     },
@@ -41,11 +40,29 @@ App.factory('paymentSrv', function($http) {
     setSelectedCVV: function(value) {
       this.SelectedCVV = value;
     },
-    getBookingRefNo: function() {
+    getBookingRefNo1: function() {
       return this.bookingRefNo;
     },
-    setBookingRefNo: function(value) {
+    setBookingRefNo1: function(value) {
       this.bookingRefNo = value;
+    },
+    getBookingRefNo2: function() {
+      return this.bookingRefNo2;
+    },
+    setBookingRefNo2: function(value) {
+      this.bookingRefNo2 = value;
+    },
+    getAirLine1: function() {
+      return this.getAirLine1;
+    },
+    setAirLine1: function(value) {
+      this.getAirLine1 = value;
+    },
+    getAirLine2: function() {
+      return this.getAirLine2;
+    },
+    setAirLine2: function(value) {
+      this.getAirLine2 = value;
     }
   };
 });

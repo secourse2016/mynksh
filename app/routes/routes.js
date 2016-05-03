@@ -43,8 +43,8 @@ module.exports = function(app, mongo) {
   // get ip of given airline name
   app.get('/data/singleAirline/:airlineName', function(req, res) {
     // mongo.getAirports(function(err, airports) {
-    if (req.params.airlineName === "IBERIA")
-      res.json("IBERIA");
+    if (req.params.airlineName === "Iberia")
+      res.json("Iberia");
     else
       mongo.getAirLineIP(req.params.airlineName, function(err, airLineIPAdress) {
         res.json(airLineIPAdress);
@@ -183,33 +183,42 @@ module.exports = function(app, mongo) {
           errorMessage: err
         });
       } else {
-        res1.send(insertPassengers(0, req.body.passengerDetails, req.body.class, req.body.cost,
-           req.body.outgoingFlightId, req.body.returnFlightId, true));
+        insertPassengers(0, req.body.passengerDetails, req.body.class, req.body.cost,
+          req.body.outgoingFlightId, req.body.returnFlightId, true,
+          function(fb) {
+            res1.send(fb);
+          });
       } //end of outer else
     }); //end of charges call back
   });
 
-  var insertPassengers = function(i, passengerDetails, cabin, cost, outgoingFlightId, returnFlightId, true) {
-    if (i === passengerDetails.length)
-      return {
-      refNum: data,
-      errorMessage: null
-    }
-    else
+  var insertPassengers = function(i, passengerDetails, cabin, cost, outgoingFlightId, returnFlightId, data, cb) {
+    if (i === passengerDetails.length) {
+      var fb = {
+        refNum: data,
+        errorMessage: null
+      };
+      cb(fb);
+    } else
     if (returnFlightId === undefined || returnFlightId === null) {
       mongo.submitPay(passengerDetails[i].firstName, passengerDetails[i].lastName, passengerDetails[i].passportNum,
-         passengerDetails[i].passportExpiryDate, passengerDetails[i].dateOfBirth, passengerDetails[i].nationality,
-         passengerDetails[i].email, cabin, cost, outgoingFlightId, true, function(err, data) {
-        insertPassengers(i+1, passengerDetails, cabin, cost, outgoingFlightId, returnFlightId, data);
-      });
+        passengerDetails[i].passportExpiryDate, passengerDetails[i].dateOfBirth, passengerDetails[i].nationality,
+        passengerDetails[i].email, cabin, cost, outgoingFlightId, data, "outgoing",
+        function(err, data2) {
+          insertPassengers(i + 1, passengerDetails, cabin, cost, outgoingFlightId, returnFlightId, data2, cb);
+        });
     } else {
       mongo.submitPay(passengerDetails[i].firstName, passengerDetails[i].lastName, passengerDetails[i].passportNum,
-         passengerDetails[i].passportExpiryDate, passengerDetails[i].dateOfBirth, passengerDetails[i].nationality,
-          passengerDetails[i].email, cabin, cost, outgoingFlightId, true, function(err, data) {
-        mongo.submitPay(req.body.passengerDetails[i - 1].firstName, req.body.passengerDetails[i - 1].lastName, req.body.passengerDetails[i - 1].passportNum, req.body.passengerDetails[i - 1].passportExpiryDate, req.body.passengerDetails[i - 1].dateOfBirth, req.body.passengerDetails[i - 1].nationality, req.body.passengerDetails[i - 1].email, req.body.class, req.body.cost, req.body.returnFlightId, data, function(err, data) {
-          insertPassengers(i+1, passengerDetails, cabin, cost, outgoingFlightId, returnFlightId, data);
+        passengerDetails[i].passportExpiryDate, passengerDetails[i].dateOfBirth, passengerDetails[i].nationality,
+        passengerDetails[i].email, cabin, cost, outgoingFlightId, data, "outgoing",
+        function(err, data2) {
+          mongo.submitPay(passengerDetails[i].firstName, passengerDetails[i].lastName, passengerDetails[i].passportNum,
+            passengerDetails[i].passportExpiryDate, passengerDetails[i].dateOfBirth, passengerDetails[i].nationality,
+            passengerDetails[i].email, cabin, cost, returnFlightId, data2, "return",
+            function(err, data3) {
+              insertPassengers(i + 1, passengerDetails, cabin, cost, outgoingFlightId, returnFlightId, data2, cb);
+            });
         });
-      });
     } //end of else
   }
 
