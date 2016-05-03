@@ -40,11 +40,17 @@ App.factory('paymentSrv', function($http) {
     setSelectedCVV: function(value) {
       this.SelectedCVV = value;
     },
-    getBookingRefNo: function() {
+    getBookingRefNo1: function() {
       return this.bookingRefNo;
     },
-    setBookingRefNo: function(value) {
+    setBookingRefNo1: function(value) {
       this.bookingRefNo = value;
+    },
+    getBookingRefNo2: function() {
+      return this.bookingRefNo2;
+    },
+    setBookingRefNo2: function(value) {
+      this.bookingRefNo2 = value;
     },
     getAirLine1: function() {
       return this.getAirLine1;

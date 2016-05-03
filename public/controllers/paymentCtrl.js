@@ -130,7 +130,10 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
       paymentSrv.chargeCard(paymentInfo, pingIp)
         .success(function(data) {
           console.log(data);
-          paymentSrv.setBookingRefNo(data.refNum);
+          if (paymentSrv.getBookingRefNo1() === undefined || paymentSrv.getBookingRefNo1() === null)
+            paymentSrv.setBookingRefNo1(data.refNum);
+          else
+            paymentSrv.setBookingRefNo2(data.refNum);
           //reset stripe key
           getOtherPubKey("IBERIA", function(key) {
             Stripe.setPublishableKey(key);

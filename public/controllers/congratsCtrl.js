@@ -1,7 +1,7 @@
 App.controller('congratsCtrl', function($scope,paymentSrv) {
 
-	$scope.bookingRefNo = paymentSrv.getBookingRefNo();
-
+	$scope.bookingRefNo1 = paymentSrv.getBookingRefNo1();
+	$scope.bookingRefNo2 = paymentSrv.getBookingRefNo2();
 	$scope.copy = function(){
         var copyTextarea = document.querySelector('.js-copytextarea');
         copyTextarea.select();
@@ -15,4 +15,3 @@ App.controller('congratsCtrl', function($scope,paymentSrv) {
         }
     };
 });
-
