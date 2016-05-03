@@ -1,6 +1,6 @@
 /* Create Angular App Instance */
 
-App = angular.module('IBERIA', ['ionic', 'onezone-datepicker', 'ui.router', 'ngMaterial']);
+App = angular.module('Iberia', ['ionic', 'onezone-datepicker', 'ui.router', 'ngMaterial']);
 
 App.run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -28,10 +28,14 @@ function ContentController($scope, $ionicSideMenuDelegate) {
 /**
  * Angular Routes
  */
-App.config(function($stateProvider, $urlRouterProvider, $mdIconProvider) {
+App.config(function($stateProvider, $urlRouterProvider, $mdIconProvider, $mdDateLocaleProvider) {
 
+  $mdDateLocaleProvider.formatDate = function(date) {
+    return moment(date).format('D/M/YYYY');
+  };
 
   $stateProvider
+
 
   // setup an abstract state for the tabs directive
     .state('welcome', {
@@ -41,10 +45,17 @@ App.config(function($stateProvider, $urlRouterProvider, $mdIconProvider) {
   })
 
   .state('tabs', {
-    url: '/home',
-    templateUrl: 'partials/tabs.html',
-    controller: 'tabsCtrl'
-  })
+      url: '/home',
+      templateUrl: 'partials/tabs.html',
+      controller: 'tabsCtrl'
+    })
+    .state('chat-detail', {
+      url: '/chat-detail/:chatId',
+
+      templateUrl: 'partials/teamMemberDetails.html',
+      controller: 'ChatDetailCtrl'
+
+    })
 
   // Each tab has its own nav history stack:
 
@@ -73,29 +84,29 @@ App.config(function($stateProvider, $urlRouterProvider, $mdIconProvider) {
   })
 
   .state('confirm', {
-    url: '/confirm',
-    templateUrl: 'partials/confirmation.html',
-    controller: 'confirmCtrl'
-  })
-  .state('payment', {
-    url: '/payment',
-    templateUrl: '/partials/payment.html',
-    controller: 'paymentCtrl'
-  })
+      url: '/confirm',
+      templateUrl: 'partials/confirmation.html',
+      controller: 'confirmCtrl'
+    })
+    .state('payment', {
+      url: '/payment',
+      templateUrl: '/partials/payment.html',
+      controller: 'paymentCtrl'
+    })
 
   // // route for the congrats page
-  // .state('congrats', {
-  //   url: '/congrats',
-  //   templateUrl: '/partials/congrats.html',
-  //   controller: ''
-  // })
-  //
-  // // route for the booking Reference page
-  .state('bookingRef', {
-    url: '/bookingRef',
-    templateUrl: '/partials/bookingRef.html',
-    controller: ''
-  });
+  .state('congrats', {
+      url: '/congrats',
+      templateUrl: '/partials/congrats.html',
+      controller: 'congratsCtrl'
+    })
+    //
+    // // route for the booking Reference page
+    .state('bookingRef', {
+      url: '/bookingRef',
+      templateUrl: '/partials/bookingRef.html',
+      controller: 'bookingRefCtrl'
+    });
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/');

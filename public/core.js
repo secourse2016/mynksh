@@ -1,5 +1,5 @@
 /* Create Angular App Instance */
-App = angular.module('IBERIA', ['ui.bootstrap', 'ngRoute']);
+App = angular.module('Iberia', ['ui.bootstrap', 'ngRoute']);
 
 /**
  * Angular Routes

@@ -3,23 +3,11 @@
  */
 App.factory('ConfirmSrv', function($http) {
     return {
-        setReservation: function(value) {
+        setReservations: function(value) {
             this.reservation = value;
         },
-        getReservation: function() {
+        getReservations: function() {
             return this.reservation;
-        },
-        setEmail: function(value) {
-            this.Email = value;
-        },
-        getEmail: function() {
-            return this.Email;
-        },
-        setPhoneNo: function(value) {
-            this.phoneNo = value;
-        },
-        getPhoneNo: function() {
-            return this.phoneNo;
         }
     };
 });

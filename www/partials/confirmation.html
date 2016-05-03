@@ -1,122 +1,83 @@
-<ion-view view-title="Confirmation">
+<ion-view view-title="Confirmation" class='wooden'>
   <ion-content class="padding">
-    <div class="row">
-      <div class="col-md-8 col-md-offset-2">
-        <!-- <div class='content'> -->
-        <form class="form-horizontal">
-
-          <font class="col-sm-8 text-left" size="5" color="grey"><b>Flight information</b></br></br></font>
+    <form name='details'>
+      <div class='center'>
+        <font size="5" color="red"><b>Flight information</b></br></br></font>
+      </div>
+      <div class='serif round-edge1'>
+        <p><b>From:</b> {{selectedOutgoingFlight.origin}}</p>
+        <p><b>To:</b> {{selectedOutgoingFlight.destination}}</p>
+        <p><b>Outgoing Date:</b> {{selectedOutgoingFlight.departureDateTime | date: 'd/M/yyyy HH:mm'}}</p>
+        <p><b>Outgoing Flight #:</b> {{selectedOutgoingFlight.flightNumber}}</p>
+        <p><b>Outgoing airline:</b> {{selectedOutgoingFlight.Airline}}</p>
+        <p ng-show="roundTrip == 'true'"><b>Return Date:</b> {{selectedReturnFlight.departureDateTime | date: 'd/M/yyyy HH:mm'}}</p>
+        <p ng-show="roundTrip == 'true'"><b>Return Flight #:</b> {{selectedReturnFlight.flightNumber}}</p>
+        <p ng-show="roundTrip == 'true'"><b>Return airline:</b> {{selectedReturnFlight.Airline}}</p>
+        <p><b>Price:</b> {{price | currency: '$'}}</p>
+      </div>
+      <div ng-repeat='reservation in reservations'>
+        <div class='center'>
+          </br>
+          <md-divider/>
+          </br>
+          <font size="5" color="red"><b>Passenger <span ng-if='tickets != 0'>{{$index +1}} </span>information</b></font>
+          </br>
+          </br>
+        </div>
+        <div class='round-edge2'>
+          <md-input-container class="md-block" flex-gt-sm>
+            <label class='stroke'>First Name</label>
+            <input name='FName{{$index}}' type="text" ng-model="reservation.firstName" ng-required='true' ng-pattern="/^[a-zA-Z]*$/">
+            <span style='color:red' ng-show="(details.FName{{$index}}.$error.pattern || details.FName{{$index}}.$error.required) && details.FName{{$index}}.$dirty">Valid first name is required (no numbers, spaces, or special symbols)</span>
+            <md-tooltip md-visible='true' md-direction='top'>e.g. John</md-tooltip>
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-sm>
+            <label class='stroke'>Last Name</label>
+            <input name='LName{{$index}}' type="text" ng-model="reservation.lastName" ng-required='true' ng-pattern="/^[a-zA-Z]*$/">
+            <span style='color:red' ng-show="(details.LName{{$index}}.$error.pattern || details.LName{{$index}}.$error.required) && details.LName{{$index}}.$dirty">Valid last name is required (no numbers, spaces, or special symbols)</span>
+            <md-tooltip md-visible='true' md-direction='top'>e.g. Doe</md-tooltip>
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-sm>
+            <label class='stroke'>Email</label>
+            <input type="email" ng-model="reservation.email" name='email{{$index}}'>
+            <span style='color:red' ng-show="details.email{{$index}}.$error.email && details.email{{$index}}.$dirty">Valid email is required</span>
+            <md-tooltip md-visible='true' md-direction='top'>e.g. John@gmail.com</md-tooltip>
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-sm>
+            <label class='stroke'>Passport Number</label>
+            <input name='pNo{{$index}}' type="number" ng-model="reservation.passportNum" ng-required='true' ng-maxlength='9' ng-minlength='9'>
+            <span style='color:red' ng-show="details.pNo{{$index}}.$error.number && details.pNo{{$index}}.$dirty">Valid passport number is required</span>
+            <span style='color:red' ng-show="((details.pNo{{$index}}.$error.minlength || details.pNo{{$index}}.$error.maxlength) && details.pNo{{$index}}.$dirty) ">Passport number should be 9 digits long</span>
+            <md-tooltip md-visible='true' md-direction='top'>e.g. 123456789</md-tooltip>
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-sm>
+            <label class='stroke'>Country of issue</label>
+            <div ng-include src="'./assets/countries.html'"></div>
+            <md-tooltip md-visible='true' md-direction='top'>Choose a country</md-tooltip>
+          </md-input-container>
           <div>
-            <p>From: {{selectedOutgoingFlight.origin}}</p>
-            <p>To: {{selectedOutgoingFlight.destination}}</p>
-            <p>Outgoing Date: {{selectedOutgoingFlight.departureDateTime | date: 'd/M/yyyy HH:mm'}}</p>
-            <p>Outgoing Flight Number: {{selectedOutgoingFlight.flightNumber}}</p>
-            <p>Outgoing airline: {{selectedOutgoingFlight.Airline}}</p>
-            <p ng-show="roundTrip === 'true'">Return Date: {{selectedReturnFlight.departureDateTime | date: 'd/M/yyyy HH:mm'}}</p>
-            <p ng-show="roundTrip === 'true'">Return Flight Number: {{selectedReturnFlight.flightNumber}}</p>
-            <p ng-show="roundTrip === 'true'">Return airline: {{selectedReturnFlight.Airline}}</p>
-            <p>Price: {{price | currency: selectedOutgoingFlight.currency+" "}}</p>
+            <label class='stroke'>Date of Birth*</label>
+            <md-datepicker name='dateOfBirth{{$index}}' ng-model="reservation.dateOfBirth" ng-required='true' md-max-date='currentDate' md-min-date='minDate'></md-datepicker>
+            <span style='color:red' ng-show="details.dateOfBirth{{$index}}.$error.required || details.dateOfBirth{{$index}}.$error.valid"></br>Valid date is required (d/M/yyyy)</span>
+            <span style='color:red' ng-show="details.dateOfBirth{{$index}}.$error.mindate"></br>Date is too early</span>
+            <span style='color:red' ng-show="details.dateOfBirth{{$index}}.$error.maxdate"></br>Passport is not issued yet</span>
+            <md-tooltip md-visible='true' md-direction='top'>e.g. 22/12/2015</md-tooltip>
           </div>
-        </form>
-        <!-- </div> -->
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="col-md-10 col-md-offset-1 center section-title">
-              <h4 style=" color:rgba(178,34,34, 1)">Passenger Details</h4>
-            </div>
-            <!-- <form class="form-horizontal"> -->
-            <div class="mainContainer col-lg-12" style='padding-bottom: 3%'>
-              <form name='details' class="contact-form form-horizontal support-form">
-                </br>
-                <div class="form-group">
-                  <font class="col-sm-8 text-left" size="5" color="grey"><b>Contact Details</b></font>
-                </div>
-                </br>
-                <div class="form-group">
-                  <font class="col-sm-4 text-left" size="4" color="black">Phone number: </font>
-                  <div class="col-md-8 col-sm-8 text-left">
-                    <input class="form-control" style="width:73%" type="number" placeholder="e.g.0224190971" ng-model="reservation.phoneno" name='phone' ng-required='true' ng-maxlength='12' ng-minlength='10'>
-                    <span style='color:red' ng-show="(details.phone.$error.required || details.phone.$error.number) && details.phone.$dirty">Valid phone number is required</span>
-                    <span style='color:red' ng-show="((details.phone.$error.minlength || details.phone.$error.maxlength) && details.phone.$dirty) ">Phone number should be from 10 to 12 digits</span>
-                  </div>
-                </div>
-                <div class="form-group" style="border-radius: 25px;">
-                  <font class="col-sm-4 text-left" size="4" color="black">Email:</font>
-                  <div class="col-md-8 col-sm-8 text-left">
-                    <input class="form-control" style="width:73%" type="email" placeholder="e.g. Hazem.279@gmail.com" ng-model="reservation.email" ng-required='true' name='email'>
-                    <span style='color:red' ng-show="(details.email.$error.required || details.email.$error.email) && details.email.$dirty">Valid email is required</span>
-
-                  </div>
-                </div>
-                </br>
-                </br>
-                <div>
-                  <div class="contact-form support-form">
-                    <div class="col-lg-12">
-                      </br>
-                      </br>
-                      <div class="form-group">
-                        <font class="col-sm-8 text-left" size="5" color="grey"><b>Passenger information
-                                            </br>
-                                          </br></b></font>
-                      </div>
-                      </br>
-                      </br>
-                      <div class="form-group">
-                        <font class="col-sm-4 text-left" size="4" color="black">First Name:</font>
-                        <div class="col-md-8 col-sm-8 text-left">
-                          <input class="form-control" name='FName' style="width:73%" type="text" placeholder="e.g. Hazem" ng-model="reservation.FName" ng-required='true' ng-pattern="/^[a-zA-Z]*$/">
-                          <span style='color:red' ng-show="(details.FName.$error.pattern || details.FName.$error.required) && details.FName.$dirty">Valid first name is required (no numbers, spaces, or special symbols)</span>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <font class="col-sm-4 text-left" size="4" color="black">Last Name:</font>
-                        <div class="col-md-8 col-sm-8 text-left">
-                          <input class="form-control" name='LName' style="width:73%" type="text" placeholder="e.g. Elessawy" ng-model="reservation.LName" ng-required='true' ng-pattern="/^[a-zA-Z]*$/">
-                          <span style='color:red' ng-show="(details.LName.$error.pattern || details.LName.$error.required) && details.LName.$dirty">Valid last name is required (no numbers, spaces, or special symbols)</span>
-                        </div>
-
-                      </div>
-                      <div class="form-group">
-                        <font class="col-sm-4 text-left" size="4" color="black">Passport Number:</font>
-                        <div class="col-md-8 col-sm-8 text-left">
-                          <input class="form-control" name='pNo' style="width:73%" type="number" placeholder="" ng-model="reservation.passportNo" ng-required='true' ng-maxlength='9' ng-minlength='9' placeholder="e.g. 123456789">
-                          <span style='color:red' ng-show="(details.pNo.$error.required || details.pNo.$error.number) && details.pNo.$dirty">Valid passport number is required</span>
-                          <span style='color:red' ng-show="((details.pNo.$error.minlength || details.pNo.$error.maxlength) && details.pNo.$dirty) ">Passport number should be 9 digits long</span>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <font class="col-sm-4 text-left" size="4" color="black">Country of issue:</font>
-                        <div class="col-md-8 col-sm-8 text-left">
-                          <div ng-include="'./assets/countries.html'"></div>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <font class="col-sm-4 text-left" size="4" color="black">Issue Date:</font>
-                        <div class="col-md-8 col-sm-8 text-left">
-                          <input class="form-control" style="width:73%" name='issueDate' type="date" placeholder="e.g. 2016-04-12" ng-model="reservation.issueDate" ng-required='true' max='{{currentDate | date:"yyyy-MM-dd"}}'>
-                          <span style='color:red' ng-show="(details.issueDate.$error.required || details.issueDate.$error.date) && details.issueDate.$dirty">Valid date is required (yyyy-MM-dd)</span>
-                          <span style='color:red' ng-show="details.issueDate.$error.max && details.issueDate.$dirty">Issue date must be before the current date</span>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <font class="col-sm-4 text-left" size="4" color="black">Expiry Date:</font>
-                        <div class="col-md-8 col-sm-8 text-left">
-                          <input class="form-control" style="width:73%" name='expiryDate' type="date" placeholder="e.g. 2017-04-12" ng-model="reservation.expiryDate" ng-required='true' min='{{currentDate | date:"yyyy-MM-dd"}}'>
-                          <span style='color:red' ng-show="(details.expiryDate.$error.required || details.expiryDate.$error.date) && details.expiryDate.$dirty">Valid date is required (yyyy-MM-dd)</span>
-                          <span style='color:red' ng-show="details.expiryDate.$error.min && details.expiryDate.$dirty">Passport is expired</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-            </div>
-            <!-- </form> -->
+          <div>
+            <label class='stroke'>Expiry Date</label>
+            <md-datepicker name='expiryDate{{$index}}' ng-model="reservation.passportExpiryDate" md-min-date='currentDate' md-max-date='maxDate'></md-datepicker>
+            <span style='color:red' ng-show="details.expiryDate{{$index}}.$error.valid"></br>Date format is (d/M/yyyy)</span>
+            <span style='color:red' ng-show="details.expiryDate{{$index}}.$error.mindate"></br>Passport is expired</span>
+            <span style='color:red' ng-show="details.expiryDate{{$index}}.$error.maxdate"></br>Date is too far</span>
+            <md-tooltip md-visible='true' md-direction='top'>e.g. 22/12/2017</md-tooltip>
           </div>
         </div>
+        </br>
       </div>
-    </div>
-    <button type="button" ng-disabled='details.$invalid' class="btn btn-primary btn-lg" style="position:right; background:rgba(178,34,34, 1);margin-top: 15px" ng-click="goToPayment()">Proceed to payment</button>
+      <div class='center'>
+        <button class="button button-outline button-assertive" ng-disabled='details.$invalid' ng-click="goToPayment()"><font style="color:maroon">Proceed to payment</font></button>
+      </div>
+
     </form>
   </ion-content>
 </ion-view>

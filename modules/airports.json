@@ -30,7 +30,7 @@
         "name": "Hong Kong International Airport Kai Tak",
         "continent": "AS",
         "type": "closed",
-        "size": null,
+        "size": "large",
         "city": "Hong Kong"
     },
     {
