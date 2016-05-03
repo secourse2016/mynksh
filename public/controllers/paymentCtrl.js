@@ -126,6 +126,8 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
     if (response.error)
       alert(response.error.message);
     else {
+      if (FlightsSrv.getSelectedRoundTrip() === 'true' && AirlineName2 != AirlineName1)
+        paymentInfo.returnFlightId = undefined;
       paymentInfo.paymentToken = response.id;
       paymentSrv.chargeCard(paymentInfo, pingIp)
         .success(function(data) {
@@ -138,13 +140,12 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
           getOtherPubKey("IBERIA", function(key) {
             Stripe.setPublishableKey(key);
 
-            if (FlightsSrv.getSelectedRoundTrip() === 'true' && flag) {
+            if (FlightsSrv.getSelectedRoundTrip() === 'true' && flag &&  AirlineName2 != AirlineName1) {
               flag = false;
               paymentInfo.outgoingFlightId = OutReturnSrv.getSelectedReturnFlight().flightId;
-              createStripeToken(AirlineName1);
+              createStripeToken(AirlineName2);
             }
-
-            if (data.errorMessage != null || data.errorMessage != undefined)
+            else if (data.errorMessage != null || data.errorMessage != undefined)
               alert(data.errorMessage);
             else
               Congrats();
