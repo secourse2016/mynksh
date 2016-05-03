@@ -12,15 +12,15 @@ App.controller('congratsCtrl', function($scope, paymentSrv, OutReturnSrv, $http)
 
   paymentSrv.getOtherAirlineIP1($scope.airline1).success(function(airlineIP) {
     $scope.urlAirline1 = airlineIP;
+		console.log($scope.urlAirline1);
   });
-	
+
   paymentSrv.getOtherAirlineIP1($scope.airline1).success(function(airlineIP) {
     $scope.urlAirline2 = airlineIP;
+		console.log($scope.urlAirline2);
   });
 
   //
-  console.log($scope.urlAirline1);
-  console.log($scope.urlAirline2);
   $scope.copy = function() {
     var copyTextarea = document.querySelector('.js-copytextarea');
     copyTextarea.select();
