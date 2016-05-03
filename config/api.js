@@ -124,7 +124,7 @@ exports.searchFlights = function(origin, destination, departingDate, cabin, seat
           "origin": origin,
           "destination": flights[0].destination,
           "class": economyOrBusiness,
-          "Airline": "IBERIA"
+          "Airline": "Iberia"
         }];
       } else
         rflights = {};
@@ -146,7 +146,7 @@ exports.submitPay = function(firstName, lastName, passportNumber, expiryDate, da
     "_id": new ObjectId(flightId)
   }).toArray(function(err, flights) {
     if (flights.length === 0) {
-      cb("This flight " + flightId + "is not supported be IBERIA", null);
+      cb("This flight " + flightId + "is not supported be Iberia", null);
       return;
     }
     if (businessOrEconomic === "economy") { // economy

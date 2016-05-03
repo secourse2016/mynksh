@@ -100,7 +100,7 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
   var createStripeToken = function(airline) {
 
     getOtherPubKey(airline, function(key, airlineIP) {
-      if (airlineIP === "IBERIA")
+      if (airlineIP === "Iberia")
         pingIp = "";
       else
         pingIp = "http://" + airlineIP;
@@ -130,7 +130,7 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
           else
             paymentSrv.setBookingRefNo2(data.refNum);
           //reset stripe key
-          getOtherPubKey("IBERIA", function(key) {
+          getOtherPubKey("Iberia", function(key) {
             Stripe.setPublishableKey(key);
 
             if (FlightsSrv.getSelectedRoundTrip() === 'true' && flag &&  AirlineName2 != AirlineName1) {
