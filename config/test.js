@@ -121,7 +121,7 @@ describe('seedDB test', function() {
         mongo.seedDB(function(error, seeded){
                 mongo.seedDB(function(error, seeded){
                     db.db().collection('airLines').toArray((function(err,items){
-                    assert.lengthOf(items,27,'DB has 27 items');
+                    assert.lengthOf(items,27,'airLines has 27 items');
                     done();
                 });     
             });    
@@ -131,7 +131,7 @@ describe('seedDB test', function() {
         mongo.seedDB(function(error, seeded){
                 mongo.seedDB(function(error, seeded){
                     db.db().collection('flights').toArray((function(err,items){
-                    assert.lengthOf(items,980,'DB has 980 items');
+                    assert.lengthOf(items,980,'flights has 980 items');
                     done();
                 });     
             });    
@@ -141,7 +141,7 @@ describe('seedDB test', function() {
         mongo.seedDB(function(error, seeded){
                 mongo.seedDB(function(error, seeded){
                     db.db().collection('airports').toArray((function(err,items){
-                    assert.lengthOf(items,18,'DB has 18 items');
+                    assert.lengthOf(items,18,'airports has 18 items');
                     done();
                 });     
             });    
@@ -170,7 +170,14 @@ describe('getAirportsFromDB', function() {
     });
 });
 
-
+describe('getAirlinesFromDB', function() {
+    it('should return all Airlines documents in the database', function(done) {
+        mongo.getairLines(function(err,airLines){
+            assert.equal(airLines.length,27);
+            done();
+        });
+    });
+});
     // it('/api/quote should return a quote JSON object with keys [_id, text, author]', function(done) {
     //     request.get('/api/quote').set('Accept','application/json').expect('Content-Type',/json/).expect(function(res){
     //         assert.property(res.body,'_id','object has an id');
