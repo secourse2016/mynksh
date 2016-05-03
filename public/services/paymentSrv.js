@@ -9,12 +9,13 @@ App.factory('paymentSrv', function($http) {
       if (airlineIP === "IBERIA")
         return $http.get('/stripe/pubkey/?wt=' + jwt);
       else {
-        return $http.get('http://' + airlineIP + '/stripe/pubkey/?wt=' + jwt);
+        console.log("hena");
+        return $http.get('http://' + airlineIP + '/stripe/pubkey/?wt=' + jwt, {timeout:3000});
       }
     },
     chargeCard: function(paymentInfo, pingIp) {
       var jwt = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJNWU5LU0giLCJpYXQiOjE0NjA3NzIyOTQsImV4cCI6MTQ5MjMwODI5NSwiYXVkIjoid3d3LnNlY291cnNlLmNvbSIsInN1YiI6Ik1ZTktTSCBJYmVyaWEiLCJUZWFtIjoiTVlOS1NIIn0.hZxhv8XAcu1cARgcrtfb0l_crF1-Ic1tJt9eUhIL0qQ';
-      return $http.post(pingIp + '/booking?wt=' + jwt, paymentInfo);
+      return $http.post(pingIp + '/booking?wt=' + jwt, paymentInfo, {timeout:3000});
     },
     getSelectedCardNo: function() {
       return this.SelectedCardNo;
