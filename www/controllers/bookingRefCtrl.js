@@ -8,21 +8,41 @@ App.controller('bookingRefCtrl', function($scope, FlightsSrv, $location, Booking
 
     $scope.status = '  ';
   $scope.customFullscreen = $mdMedia('xs') || $mdMedia('sm');
-    $scope.showAlert = function(ev) {
-        // Appending dialog to document.body to cover sidenav in docs app
-        // Modal dialogs should fully cover application
-        // to prevent interaction outside of dialog
-        $mdDialog.show(
-          $mdDialog.alert()
-            .parent(angular.element(document.querySelector('#popupContainer')))
-            .clickOutsideToClose(true)
-            .title('Your Booking')
-            .textContent(res)
-            .ariaLabel('Alert Dialog Demo')
-            .ok('Got it!')
-            .targetEvent(ev)
-        );
-      };
+    // $scope.showAlert = function(ev) {
+    //     // Appending dialog to document.body to cover sidenav in docs app
+    //     // Modal dialogs should fully cover application
+    //     // to prevent interaction outside of dialog
+    //     $mdDialog.show(
+    //       $mdDialog.alert()
+    //         .parent(angular.element(document.querySelector('#popupContainer')))
+    //         .clickOutsideToClose(true)
+    //         .title('Your Booking')
+    //         .textContent(res)
+    //         .ariaLabel('Alert Dialog Demo')
+    //         .ok('Got it!')
+    //         .targetEvent(ev)
+    //     );
+    //   };
+    $scope.showTabDialog = function(ev) {
+    $mdDialog.show({
+      templateUrl: 'tabDialog.tmpl.html',
+      parent: angular.element(document.body),
+      targetEvent: ev,
+      clickOutsideToClose:true
+    })
+        .then(function() {
+          $scope.status = 'You cancelled the dialog.';
+        });
+  };
+
+$scope.hide = function() {
+    $mdDialog.hide();
+  };
+
+  $scope.cancel = function() {
+    $mdDialog.cancel();
+  };
+
 
 
     $scope.retreiveBookingRef = function() {
@@ -55,43 +75,43 @@ App.controller('bookingRefCtrl', function($scope, FlightsSrv, $location, Booking
         // var visaNum = arr[0];
 
         // var flightNumO = arr[2];
-      res = "Hello, " +firstName + " " + lastName + "!"+
-      " Your Passport is " + passport +"."+
-      " We will call you on " + phoneNum+ " to confirm your reservation."+
-      " Your Seat Number in the flight from "+originO+" on "+arrivalTimeO+" to "+destinationO+" on "+departureTimeO+" is "+seatO +"."+
-      " Your Flight number is " + flightNumO+".";
+      // res = "Hello, " +firstName + " " + lastName + "!"+
+      // " Your Passport is " + passport +"."+
+      // " We will call you on " + phoneNum+ " to confirm your reservation."+
+      // " Your Seat Number in the flight from "+originO+" on "+arrivalTimeO+" to "+destinationO+" on "+departureTimeO+" is "+seatO +"."+
+      // " Your Flight number is " + flightNumO+".";
+      //
+      // if(flight.length==2){
+      // res = "Hello, " + firstName + " " + lastName + "!"+
+      // " Your Passport is " +passport+ "."+
+      // " We will call you on " + phoneNum+"to confirm your reservation."+
+      //  " Your Seat Number on the flight from "+originO+" on "+arrivalTimeO+" to "+destinationO+" on "+
+      //  departureTimeO+" is "+seatO+ "."+ " Your Flight number is " + flightNumO+"."+
+      //  " Your Seat Number on the flight from "
+      //  +originR+" on "+arrivalTimeR+" to "+destinationR+" on "+
+      //  departureTimeR+" is "+seatR+ "."+ " Your Flight number is " + flightNumR+".";
+      //   }
+        var res = "Hello, " +firstName + " " + lastName + "!";
+        var res2= "Your Passport is " + passport + "<br>";
+        var res3= "And we will call you on " + phoneNum +"<br>";
+         var res4= "Your Seat Number in the flight from "+originO+" on "+arrivalTimeO+" to "+destinationO+" on "+departureTimeO+" is "+seatO +"</br>"+"Your Flight number is " + flightNumO;
+         var res5="";
 
-      if(flight.length==2){
-      res = "Hello, " + firstName + " " + lastName + "!"+
-      " Your Passport is " +passport+ "."+
-      " We will call you on " + phoneNum+"to confirm your reservation."+
-       " Your Seat Number on the flight from "+originO+" on "+arrivalTimeO+" to "+destinationO+" on "+
-       departureTimeO+" is "+seatO+ "."+ " Your Flight number is " + flightNumO+"."+
-       " Your Seat Number on the flight from "
-       +originR+" on "+arrivalTimeR+" to "+destinationR+" on "+
-       departureTimeR+" is "+seatR+ "."+ " Your Flight number is " + flightNumR+".";
-        }
-        // var res = "Hello, " +firstName + " " + lastName + "!";
-        // var res2= "Your Passport is " + passport + "<br>";
-        // var res3= "And we will call you on " + phoneNum +"<br>";
-        //  var res4= "Your Seat Number in the flight from "+originO+" on "+arrivalTimeO+" to "+destinationO+" on "+departureTimeO+" is "+seatO +"</br>"+"Your Flight number is " + flightNumO;
-        //  var res5="";
-
-        // if(flight.length==2){
-        // var res = "Hello, " + firstName + " " + lastName + "!";
-        // var res2="Your Passport is " +passport+ "<br>";
-        // var res3="And we will call you on " + phoneNum+"<br>";
-        //  var res4= "Your Seat Number on the flight from "+originO+" on "+arrivalTimeO+" to "+destinationO+" on "+
-        //  departureTimeO+" is "+seatO+ "<br>"+ "Your Flight number is " + flightNumO+"<br>";
-        //  var res5="Your Seat Number on the flight from "
-        //  +originR+" on "+arrivalTimeR+" to "+destinationR+" on "+
-        //  departureTimeR+" is "+seatR+ "<br>"+ "Your Flight number is " + flightNumR;
-        //   }
-        // document.getElementById("divID").innerHTML = res;
-        // document.getElementById("divID2").innerHTML = res2;
-        // document.getElementById("divID3").innerHTML = res3;
-        // document.getElementById("divID4").innerHTML = res4;
-        // document.getElementById("divID5").innerHTML = res5;
+        if(flight.length==2){
+        var res = "Hello, " + firstName + " " + lastName + "!";
+        var res2="Your Passport is " +passport+ "<br>";
+        var res3="And we will call you on " + phoneNum+"<br>";
+         var res4= "Your Seat Number on the flight from "+originO+" on "+arrivalTimeO+" to "+destinationO+" on "+
+         departureTimeO+" is "+seatO+ "<br>"+ "Your Flight number is " + flightNumO+"<br>";
+         var res5="Your Seat Number on the flight from "
+         +originR+" on "+arrivalTimeR+" to "+destinationR+" on "+
+         departureTimeR+" is "+seatR+ "<br>"+ "Your Flight number is " + flightNumR;
+          }
+        document.getElementById("divID").innerHTML = res;
+        document.getElementById("divID2").innerHTML = res2;
+        document.getElementById("divID3").innerHTML = res3;
+        document.getElementById("divID4").innerHTML = res4;
+        document.getElementById("divID5").innerHTML = res5;
       });
     }
 
