@@ -121,7 +121,7 @@
     <section id="section-download" class="download-wrap">
 
         <div class="container download center">
-            <div class="row">
+            <div class="row" style='border: 1px dashed white;border-radius: 20px; padding: 3% 1% 1% 1%'>
                 <div class="col-md-8 col-md-offset-2">
                     <div class="col-md-10 col-md-offset-1 center section-title">
                         <h3>Flights</h3>
@@ -131,36 +131,36 @@
                         <p><span class="fa fa-check"></span></p>
                     </div>
                         <div class="col-lg-12">
-                            <div class="form-group">
+                            <div class="form-group row">
                                 <font class="col-sm-2 text-right" size="4" color="white"> From: </font>
                                 <div class="col-md-8 col-sm-8">
-                                    <input name="originAirports" id="originAirports"  type="text"  placeholder="Flying From" ng-model="selectedOrigin" ng-required='true' uib-typeahead="airport.name for airport in Airports | filter:$viewValue | limitTo:10" class="form-control" , typeahead-on-select="SetOriginAirport($item.iata)"  required >
+                                    <input name="originAirports" id="originAirports"  type="text"  autocomplete="off" placeholder="Flying From" ng-model="selectedOrigin" ng-required='true' uib-typeahead="airport.name for airport in Airports | filter:$viewValue | limitTo:10" class="form-control" , typeahead-on-select="SetOriginAirport($item.iata)">
 
                                     <span style='color:white' ng-show="(reviewForm.originAirports.$error.required && reviewForm.originAirports.$dirty) ">Origin Airport required</span>
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group row">
                                 <font class="col-sm-2 text-right" size="4" color="white"> To: </font>
                                 <div class="col-md-8 col-sm-8">
-                                    <input name="destinationAirports" id="destinationAirports" type="text"  placeholder="Flying To" ng-model="selectedDestination" uib-typeahead="airport.name for airport in Airports | filter:$viewValue | limitTo:10" class="form-control" , typeahead-on-select="SetDestinationAirport($item.iata)" ng-required='true' required>
+                                    <input name="destinationAirports" id="destinationAirports" autocomplete="off" type="text"  placeholder="Flying To" ng-model="selectedDestination" uib-typeahead="airport.name for airport in Airports | filter:$viewValue | limitTo:10" class="form-control" , typeahead-on-select="SetDestinationAirport($item.iata)" ng-required='true'>
 
                                     <span style='color:white' ng-show="(reviewForm.destinationAirports.$error.required)  && reviewForm.destinationAirports.$dirty ">Destination Airport required</span>
                                 </div>
                             </div>
                             </br>
-                            <div class="form-group">
-                                <font class=" col-sm-4 text-right" size="4" color="white">One-Way
-                                    <input ng-model="roundTrip" type="radio" value="false"  />
+                            <div class="form-group row">
+                                <font class=" col-sm-4 text-right" size="4" color="white">
+                                    <input ng-model="roundTrip" type="radio" value="false"/>One-Way
                                     </font>
                                 <!-- </div>
                             <div class="form-group"> -->
-                                <font class=" col-sm-4 text-right" size="4" color="white"> Round Trip Flight
-                                    <input ng-model="roundTrip" type="radio" value="true"  />
+                                <font class=" col-sm-5 text-right" size="4" color="white">
+                                    <input ng-model="roundTrip" type="radio" value="true"/>Round Trip Flight
                                 </font>
 
                             </div>
                           </br>
-                            <div class="form-group" ng-show="isShown('false')">
+                            <div class="form-group row" ng-show="isShown('false')">
                                 <font class="col-sm-2 col-xs-4 text-right" size="4" color="white"> Outgoing: </font>
                                 <div class="col-md-8 col-sm-8 col-xs-4">
                                     <div class="input-group ">
@@ -214,18 +214,14 @@
                                     </div>
                                 </div>
                             </div>
-
-
-                            </br>
-
-                            <div class="form-group">
-                                <font class=" col-sm-4 text-left" size="4" color="white">Business
-                                    <input ng-model="cabin" type="radio" value="false" />
+                            <div class="form-group row">
+                                <font class=" col-sm-4 text-right" size="4" color="white">
+                                    <input ng-model="cabin" type="radio" value="false" />Business
                                     </font>
                                 <!-- </div>
                             <div class="form-group"> -->
-                                <font class=" col-sm-4 text-left" size="4" color="white"> Economy
-                                    <input ng-model="cabin" type="radio" value="true" />
+                                <font class=" col-sm-4 text-right" size="4" color="white">
+                                    <input ng-model="cabin" type="radio" value="true" />Economy
                                 </font>
 
                             </div>
@@ -250,8 +246,8 @@
                                         </select>
                                     </div>
                                 </div>
-                                <font class=" col-sm-4 text-left" size="4" color="white"> Search Other Airlines
-                                    <input ng-model="pinging" type="checkbox" value="true" />
+                                <font class=" col-sm-4 text-left" size="4" color="white">
+                                    <input ng-model="pinging" type="checkbox" value="true" />Search Other Airlines
                                   </font>
                             </div>
                                 </br>
@@ -265,7 +261,7 @@
         								<i class="fa fa-paper-plane-o"></i>
         							</span>
                     </button>
-                  <div ng-show="reviewForm.$invalid">  <h4 style="color=white" >  please complete all form entry first   </h4> </div>
+                  <div ng-show="reviewForm.$invalid">  <h4 style='color: white' >  please complete all form entry first   </h4> </div>
                 </div>
             </div>
         </div>
@@ -282,7 +278,7 @@
 
 
             <!-- Single Price Starts -->
-            <div class="col-md-3 col-sm-6 single-pricing-wrap center animated" data-animation="bounceInLeft" data-animation-delay="700">
+            <div class="col-md-3 col-sm-6 single-pricing-wrap center animated" data-animation="bounceInLeft" data-animation-delay="500">
                 <div class="single-pricing best-pricing">
                     <!-- this is best-pricing -->
 
@@ -316,8 +312,8 @@
 
             <!-- Single Price Starts -->
 
-            <div class="col-md-3 col-sm-6 single-pricing-wrap center animated" data-animation="bounceInLeft" data-animation-delay="1100">
-                <div class="single-pricing">
+            <div class="col-md-3 col-sm-6 single-pricing-wrap center animated" data-animation="bounceInLeft" data-animation-delay="900">
+                <div class="single-pricing best-pricing">
                     <div class="pricing-head">
                         <h4 class="pricing-heading color-scheme">Offer 2</h4>
                         <div class="price">
@@ -347,8 +343,8 @@
             </div>
 
             <!-- Single Price Starts -->
-            <div class="col-md-3 col-sm-6 single-pricing-wrap center animated" data-animation="bounceInLeft" data-animation-delay="1100">
-                <div class="single-pricing">
+            <div class="col-md-3 col-sm-6 single-pricing-wrap center animated" data-animation="bounceInLeft" data-animation-delay="1300">
+                <div class="single-pricing best-pricing">
 
                     <div class="pricing-head">
                         <h4 class="pricing-heading color-scheme">Offer 3</h4>
