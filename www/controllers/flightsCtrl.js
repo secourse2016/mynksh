@@ -22,6 +22,7 @@ App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $locati
   $scope.oDate = FlightsSrv.getSelectedOutDate();
   $scope.rDate = FlightsSrv.getSelectedReturnDate();
   $scope.cabin = FlightsSrv.getSelectedCabin();
+  $scope.tickets = FlightsSrv.getTickets();
 
   $scope.outgoingPrice = 0;
   $scope.returnPrice = 0;
@@ -183,12 +184,12 @@ App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $locati
         $scope.RadioSelected = false;
     }
 
-    OutReturnSrv.setSelectedOutFlight($scope.selectedOutgoingFlight);
+    OutReturnSrv.setSelectedOutFlight($scope.selectedOutgoingFlight * $scope.tickets);
     if ($scope.roundTrip == 'true') {
-      OutReturnSrv.setSelectedReturnFlight($scope.selectedReturnFlight);
-      OutReturnSrv.setSelectedPrice($scope.selectedOutgoingFlight.cost + $scope.selectedReturnFlight.cost);
+      OutReturnSrv.setSelectedReturnFlight($scope.selectedReturnFlight * $scope.tickets);
+      OutReturnSrv.setSelectedPrice(($scope.selectedOutgoingFlight.cost + $scope.selectedReturnFlight.cost) * $scope.tickets);
     } else
-      OutReturnSrv.setSelectedPrice($scope.selectedOutgoingFlight.cost);
+      OutReturnSrv.setSelectedPrice($scope.selectedOutgoingFlight.cost * $scope.tickets);
     $location.url('/confirm');
   };
 

@@ -155,12 +155,12 @@ App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $locati
                 $scope.RadioSelected = false;
         }
 
-        OutReturnSrv.setSelectedOutFlight($scope.selectedOutgoingFlight);
+        OutReturnSrv.setSelectedOutFlight($scope.selectedOutgoingFlight * $scope.seats);
         if ($scope.roundTrip == 'true') {
-            OutReturnSrv.setSelectedReturnFlight($scope.selectedReturnFlight);
+            OutReturnSrv.setSelectedReturnFlight($scope.selectedReturnFlight * $scope.seats);
             OutReturnSrv.setSelectedPrice(($scope.selectedOutgoingFlight.cost + $scope.selectedReturnFlight.cost) * $scope.seats);
         } else
-            OutReturnSrv.setSelectedPrice($scope.selectedOutgoingFlight.cost);
+            OutReturnSrv.setSelectedPrice($scope.selectedOutgoingFlight.cost * $scope.seats);
 
         $location.url('/confirm');
     };
