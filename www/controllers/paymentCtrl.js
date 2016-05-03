@@ -9,16 +9,14 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
     returnFlight = OutReturnSrv.getSelectedReturnFlight();
   $scope.outCurrency = outgoingFlight.currency;
 
-  var dateFormat = function() {
-    var newres = $scope.reservation;
-    for (var i = 0; i < newres.length; i++) {
-      newres[i].dateOfBirth = newres[i].dateOfBirth.getTime();
-      if (newres[i].passportExpiryDate === undefined)
-        newres[i].passportExpiryDate = newres[i].passportExpiryDate.getTime();
-    }
-    return newres;
+  function changeISOFormat(date) {
+    var monthNames = ["January", "February", "March", "April", "May", "June",
+      "July", "August", "September", "October", "November", "December"
+    ];
+    var d = new Date(date);
+    return monthNames[d.getMonth()] + " " + d.getDate() + ", " + d.getFullYear();
   };
-  
+
   // dateFormat();
   var Congrats = function() {
     $location.url('/congrats');
@@ -67,13 +65,19 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
     if (FlightsSrv.getSelectedRoundTrip() === 'true')
       var returnFlightId = OutReturnSrv.getSelectedReturnFlight().flightId;
     paymentInfo = {
-      "passengerDetails": reservation,
+      "passengerDetails": $scope.reservation,
       "class": FlightsSrv.getSelectedCabin(),
       "cost": OutReturnSrv.getSelectedPrice(),
       "outgoingFlightId": OutReturnSrv.getSelectedOutFlight().flightId,
       "returnFlightId": returnFlightId,
       "paymentToken": 2112
     }
+    for (var i = 0; i < paymentInfo.length; i++) {
+      paymentInfo[i].passengerDetails.dateOfBirth = moment(changeISOFormat(paymentInfo[i].passengerDetails.dateOfBirth)).toDate().getTime();
+      if (paymentInfo[i].passengerDetails.passportExpiryDate === undefined)
+        paymentInfo[i].passengerDetails.passportExpiryDate = moment(changeISOFormat(paymentInfo[i].passengerDetails.passportExpiryDate)).toDate().getTime()
+    }
+
     if (FlightsSrv.getSelectedRoundTrip() != 'true')
       paymentInfo.returnFlightId = undefined;
     //need here to check if one way or two and put this name attrubute inside createStripeToken method
