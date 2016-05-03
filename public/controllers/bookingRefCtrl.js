@@ -8,6 +8,8 @@ App.controller('bookingRefCtrl', function($scope, FlightsSrv, $location, Booking
 
     $scope.retreiveBookingRef = function() {
       $http.get('/data/bookings/search/' + BookingSrv.getSelectedBookingRef()).success(function(flight) {
+        $scope.flights=flight;
+
              // if(flight.length ==1){
         //       var firstName = flight[0].firstName;
         //       var lastName = flight[0].lastName;

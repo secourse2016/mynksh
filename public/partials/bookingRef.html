@@ -54,10 +54,10 @@
                 <div class="form-group" ng-show="showme" ng-repeat="n in flights">
                     <div class="input-group">
                           <h4 style="text-align:center;color:rgba(128,0,0, 1)">Hello, {{n.firstName}} {{n.lastName}}!</h4>
-                          <h6 style="color:rgba(128,0,0, 1)"></h6>
-                          <h6 id="divID3" style="color:rgba(128,0,0, 1)"></h6>
-                          <h6 id="divID4" style="color:rgba(128,0,0, 1)"></h6>
-                          <h6 id="divID5" style="color:rgba(128,0,0, 1)"></h6>
+                          <h6 style="color:rgba(128,0,0, 1)">Your Passport is {{n.passportNumber}}.</h6>
+                          <h6 style="color:rgba(128,0,0, 1)">We will call you on  {{n.phoneNumber}} to confirm your booking.</h6>
+                          <h6 style="color:rgba(128,0,0, 1)">Your Seat Number in the flight from {{n.origin}} on {{n.arrivalTime}} to {{n.destination}} on {{n.departureTime}} is {{n.seatNum}}.</h6>
+                          <h6 style="color:rgba(128,0,0, 1)">Your Flight number is  {{n.flightNumber}}.</h6>
                     </div>
 
 
