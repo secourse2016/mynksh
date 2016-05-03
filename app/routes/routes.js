@@ -184,7 +184,7 @@ module.exports = function(app, mongo) {
         });
       } else {
         insertPassengers(0, req.body.passengerDetails, req.body.class, req.body.cost,
-          req.body.outgoingFlightId, req.body.returnFlightId, undefined, true,
+          req.body.outgoingFlightId, req.body.returnFlightId, null, true,
           function(fb) {
             res1.send(fb);
           });
@@ -196,7 +196,7 @@ module.exports = function(app, mongo) {
     if (i === passengerDetails.length || (error !== null && error !== undefined)){
       var fb = {
         refNum: data,
-        errorMessage: null
+        errorMessage: error
       };
       cb(fb);
     } else
