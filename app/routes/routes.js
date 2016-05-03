@@ -183,35 +183,42 @@ module.exports = function(app, mongo) {
           errorMessage: err
         });
       } else {
-        res1.send(insertPassengers(0, req.body.passengerDetails, req.body.class, req.body.cost,
-           req.body.outgoingFlightId, req.body.returnFlightId, true));
+        insertPassengers(0, req.body.passengerDetails, req.body.class, req.body.cost,
+          req.body.outgoingFlightId, req.body.returnFlightId, true,
+          function(fb) {
+            res1.send(fb);
+          });
       } //end of outer else
     }); //end of charges call back
   });
 
-  var insertPassengers = function(i, passengerDetails, cabin, cost, outgoingFlightId, returnFlightId, data) {
-    if (i === passengerDetails.length)
-      return {
-      refNum: data,
-      errorMessage: null
-    }
-    else
+  var insertPassengers = function(i, passengerDetails, cabin, cost, outgoingFlightId, returnFlightId, data, cb) {
+    if (i === passengerDetails.length) {
+      var fb = {
+        refNum: data,
+        errorMessage: null
+      };
+      cb(fb);
+    } else
     if (returnFlightId === undefined || returnFlightId === null) {
       mongo.submitPay(passengerDetails[i].firstName, passengerDetails[i].lastName, passengerDetails[i].passportNum,
-         passengerDetails[i].passportExpiryDate, passengerDetails[i].dateOfBirth, passengerDetails[i].nationality,
-         passengerDetails[i].email, cabin, cost, outgoingFlightId, data, function(err, data2) {
-        insertPassengers(i+1, passengerDetails, cabin, cost, outgoingFlightId, returnFlightId, data2);
-      });
+        passengerDetails[i].passportExpiryDate, passengerDetails[i].dateOfBirth, passengerDetails[i].nationality,
+        passengerDetails[i].email, cabin, cost, outgoingFlightId, data,
+        function(err, data2) {
+          insertPassengers(i + 1, passengerDetails, cabin, cost, outgoingFlightId, returnFlightId, data2, cb);
+        });
     } else {
       mongo.submitPay(passengerDetails[i].firstName, passengerDetails[i].lastName, passengerDetails[i].passportNum,
-         passengerDetails[i].passportExpiryDate, passengerDetails[i].dateOfBirth, passengerDetails[i].nationality,
-          passengerDetails[i].email, cabin, cost, outgoingFlightId, data, function(err, data2) {
-        mongo.submitPay(passengerDetails[i].firstName, passengerDetails[i].lastName, passengerDetails[i].passportNum,
-          passengerDetails[i].passportExpiryDate, passengerDetails[i].dateOfBirth, passengerDetails[i].nationality,
-          passengerDetails[i].email, class, cost, returnFlightId, data2, function(err, data3) {
-          insertPassengers(i+1, passengerDetails, cabin, cost, outgoingFlightId, returnFlightId, data2);
+        passengerDetails[i].passportExpiryDate, passengerDetails[i].dateOfBirth, passengerDetails[i].nationality,
+        passengerDetails[i].email, cabin, cost, outgoingFlightId, data,
+        function(err, data2) {
+          mongo.submitPay(passengerDetails[i].firstName, passengerDetails[i].lastName, passengerDetails[i].passportNum,
+            passengerDetails[i].passportExpiryDate, passengerDetails[i].dateOfBirth, passengerDetails[i].nationality,
+            passengerDetails[i].email, cabin, cost, returnFlightId, data2,
+            function(err, data3) {
+              insertPassengers(i + 1, passengerDetails, cabin, cost, outgoingFlightId, returnFlightId, data2, cb);
+            });
         });
-      });
     } //end of else
   }
 
