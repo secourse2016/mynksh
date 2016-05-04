@@ -17,8 +17,6 @@ App.controller('bookingRefCtrl', function($scope, FlightsSrv, $location, Booking
         else
           returnTickets.push(flight[i]);
       }
-      console.log(outTickets);
-      console.log(returnTickets);
       BookingSrv.setOut(outTickets);
       BookingSrv.setReturn(returnTickets);
       BookingSrv.setFlight(flight[0].flightNumber);

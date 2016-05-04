@@ -203,9 +203,8 @@ exports.check = function(passengerDetails, cabin, cost, outgoingFlightId, return
     cb("Please specify the cabin economy/business.");
     return;
   }
-  var validCabin= cabin.toLowerCase();
-  if(validCabin !== "economy" && validCabin !== "business")
-  {
+  var validCabin = cabin.toLowerCase();
+  if (validCabin !== "economy" && validCabin !== "business") {
     cb("The chosen class is not supported by IBERIA.");
     return;
   }
@@ -293,59 +292,77 @@ var generateBookingRef = function(seatnum, flightNumber, businessOrEconomic) {
   return encoded = new Buffer(seatnum + ',' + flightNumber).toString('base64');
 }
 
-exports.changeSeats= function(flightNumber, oldSeats, newSeats, bookingRefNumber, cb){
-  getSeatMap(flightNumber, function(oldSeatMap)
-  {
-    changeSeatMap(oldSeatMap, newSeats, oldSeats, bookingRefNumber, function(newSeatMap)
-    {
-      updateSeatMap(flightNumber,newSeatMap, function(done)
-        {
-          if(done)
+exports.changeSeats = function(flightNumber, oldSeats, newSeats, bookingRefNumber, cb) {
+  getSeatMap(flightNumber, function(oldSeatMap) {
+    changeSeatMap(oldSeatMap, newSeats, oldSeats, bookingRefNumber, function(newSeatMap) {
+      console.log(newSeatMap);
+      recurs(0, seat, seatOld, bookingRefNumber, function() {
+        updateSeatMap(flightNumber, newSeatMap, function(done) {
+          if (done)
             cb(true);
         });
+      })
     });
   });
 
 }
-var changeSeatMap = function (oldSeatMap, newSeats, oldSeats, bookingRefNumber,cb)
-{
-  for(var i= 0; i<oldSeatMap.length; i++)
-  {
-    for(var j=0;j<oldSeats.length;j++)
-    {
-      if(oldSeatMap[i].seatNum === oldSeats[j])
-        oldSeatMap[i].bookingRefNumber = undefined;
-      if(oldSeatMap[i].seatNum === newSeats[j])
-        oldSeatMap[i].bookingRefNumber= bookingRefNumber;
+var changeSeatMap = function(oldSeatMap, newSeats, oldSeats, bookingRefNumber, cb) {
+  for (var i = 0; i < oldSeatMap.length; i++) {
+    for (var j = 0; j < oldSeats.length; j++) {
+      if (oldSeatMap[i].seatNum === oldSeats[j])
+        oldSeatMap[i].bookingRefNumber = null;
+      if (oldSeatMap[i].seatNum === newSeats[j])
+        oldSeatMap[i].bookingRefNumber = bookingRefNumber;
     }
   }
   cb(oldSeatMap);
 
 }
-var getSeatMap = function(flightNumber,cb)
-{
+var getSeatMap = function(flightNumber, cb) {
   var collection = mongo.db().collection('flights');
   collection.find({
     "flightNumber": flightNumber
-  }).toArray(function (err, flight){
+  }).toArray(function(err, flight) {
     cb(flight[0].SeatMap);
 
   });
 }
-var updateSeatMap =function(flightNumber, newSeatMap,cb)
-{
+var updateSeatMap = function(flightNumber, newSeatMap, cb) {
   mongo.db().collection("flights").update({
-      "flightNumber":  flightNumber
-    }, {
-      $set: {
-        "SeatMap" : newSeatMap
-      }
-    }, {
-      upsert: false
-    }, function(err, results) {
-        if(err === undefined || err === null)
-          cb(true);
-        else
-          cb(false);
-    });
+    "flightNumber": flightNumber
+  }, {
+    $set: {
+      "SeatMap": newSeatMap
+    }
+  }, {
+    upsert: false
+  }, function(err, results) {
+    if (err === undefined || err === null)
+      cb(true);
+    else
+      cb(false);
+  });
+};
+var recurs = function(i, seat, seatOld, bookingRefNumber, cb) {
+  if (i === seat.length)
+    cb();
+  else
+    updateBooking(i, seat[i], seatOld[i], bookingRefNumber, function() {
+      i++;
+      recurs(i, seat, seatOld, bookingRefNumber, cb);
+    })
+}
+var updateBooking = function(seat, seatOld, bookingRefNumber, cb) {
+  mongo.db().collection("bookings").update({
+    "bookingRefNumber": seat,
+    "seatNum": seatOld
+  }, {
+    $set: {
+      "seatNum": seat
+    }
+  }, {
+    upsert: false
+  }, function(err, results) {
+    cb()
+  });
 };

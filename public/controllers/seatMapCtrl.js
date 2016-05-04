@@ -14,7 +14,6 @@ App.controller('seatMapCtrl', ['$scope', '$http', 'BookingSrv', '$routeParams', 
 
   $http.get('/data/seatMap/' + $scope.flightNumber).success(function(seatMap) {
     $scope.seatsData = $scope.Map(seatMap);
-    console.log($scope.seatsData);
   });
 
 
@@ -66,7 +65,6 @@ App.controller('seatMapCtrl', ['$scope', '$http', 'BookingSrv', '$routeParams', 
 
   $scope.$watch('selectedNodes', function(val) {
     // if ($scope.selectedNodes.length > 3)
-    console.log(val);
   });
 
 
@@ -97,23 +95,35 @@ App.controller('seatMapCtrl', ['$scope', '$http', 'BookingSrv', '$routeParams', 
   };
 
   $scope.Reserve = function() {
-    // var body = {
-    //   "flightNumber": $scope.flightNumber,
-    //   "oldSeats": $scope.old,
-    //   "newSeats": $scope.selectedNodes,
-    //   "bookingRefNumber"
-    //   $scope.ref:
-    // }
-    // $http.post('/choosingSeat', {
-    //   body
-    // }).success(function(res) {
-    //   if (BookingSrv.getReturn().length != 0)
-    //     $location.url('/seatmap/Return');
-    //   else {
-    //     alert('Succesfully!');
-    //     $location.url('/');
-    //   }
-    // })
+    if($scope.selectedNodes.length === maxSeatstoBeSelected){
+
+    var oldN = [];
+    for (var i = 0; i < $scope.old.length; i++)
+      oldN.push($scope.old[i].seatNum);
+
+    var newN = [];
+    for (var i = 0; i < $scope.selectedNodes.length; i++)
+      newN.push($scope.selectedNodes[i].uniqueName);
+
+    var body = {
+      "flightNumber": $scope.flightNumber,
+      "oldSeats": oldN,
+      "newSeats": newN,
+      "bookingRefNumber": $scope.ref
+    };
+    console.log(body);
+    $http.post('/choosingSeat', body).success(function(res) {
+      if (BookingSrv.getReturn().length != 0)
+        $location.url('/seatmap/Return');
+      else {
+        alert('Succesfully!');
+        $location.url('/');
+      }
+    });
+  }
+  else {
+    alert("You must select same number of tickets");
+  }
   };
 
 
