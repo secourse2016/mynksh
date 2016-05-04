@@ -17,74 +17,110 @@
     </nav>
   </div>
 </div>
-</div>
 <link rel="stylesheet" type="text/css" href="../css/congrats.css">
 <div id="viewport" style="width: 1000px;">
-<div class="section-overlay"></div>
-<center>
-  <div class="mainContainer col-lg-12" style="background-color:rgba(128,0,0,0.8);width:500px;top:300px;left:350px;border-radius: 25px;">
-    <br>
-    <font size=4 color=white>Booking Reference</font>
-    <br>
-    <font size=2 color=grey>(please click on copy textarea to copy your booking reference):</font><br>
-      <div ng-if="airline1 ==airline2 && airline1 == 'Iberia'">
-        <font size=3 style="color:white">Your booking is from {{airline1}}, please go back to  <a href="#" onclick="location.href = document.referrer; return false;">home page</a>.</font><br>
-      <textarea class="js-copytextarea" readonly>{{bookingRefNo1}}</textarea>
+  <div class="section-overlay"></div>
+  <center>
+    <div class="mainContainer col-lg-12" style="background-color:rgba(128,0,0,0.8);width:500px;top:300px;left:350px;border-radius: 25px;">
       <br>
-      <button class="js-textareacopybtn" style="background-color:white" ng-click='copy();'><font size=3 style="color:maroon">Copy Textarea</font></button><br><br>
-    </div>
+      <font size=4 color=white>Booking Reference</font>
+      <br>
+      <font size=2 color=grey>(please click on copy textarea to copy your booking reference):</font><br>
+      <div ng-if="airline1 ==airline2 && airline1 == 'Iberia'">
+        <font size=3 style="color:white">Your booking is from
+          {{airline1}}, please go back to
+          <a href="#" onclick="location.href = document.referrer; return false;">home page</a>.</font><br>
+        <textarea class="js-copytextarea" readonly>{{bookingRefNo1}}</textarea>
+        <br>
+        <button class="js-textareacopybtn" style="background-color:white" ng-click='copy();'>
+          <font size=3 style="color:maroon">Copy Textarea</font>
+        </button><br><br>
+      </div>
 
       <div ng-if="airline1 ==airline2 && airline1 != 'Iberia'">
-        <font size=3 style="color:white">Your booking is from {{airline1}}, please go to their website on <a href ng-click="goToUrl1();">{{urlAirline1}}</a> to track your booking.</font><br>
-      <textarea class="js-copytextarea" readonly>{{bookingRefNo1}}</textarea>
-      <br>
-      <button class="js-textareacopybtn" style="background-color:white" ng-click='copy();'><font size=3 style="color:maroon">Copy Textarea</font></button><br><br>
+        <font size=3 style="color:white">Your booking is from
+          {{airline1}}, please go to their website on
+          <a href ng-click="goToUrl1();">{{urlAirline1}}</a>
+          to track your booking.</font><br>
+        <textarea class="js-copytextarea" readonly>{{bookingRefNo1}}</textarea>
+        <br>
+        <button class="js-textareacopybtn" style="background-color:white" ng-click='copy();'>
+          <font size=3 style="color:maroon">Copy Textarea</font>
+        </button><br><br>
+      </div>
+
+      <div ng-if="airline1 !=airline2 && airline1 != 'Iberia' && airline2 != 'Iberia'">
+        <font size=3 style="color:white">Your booking from
+          {{airline1}}, please go to their website on
+          <a href ng-click="goToUrl1();">{{urlAirline1}}</a>
+          to track your booking.</font><br>
+        <textarea class="js-copytextarea" readonly>{{bookingRefNo1}}</textarea>
+        <br>
+        <button class="js-textareacopybtn" style="background-color:white" ng-click='copy();'>
+          <font size=3 style="color:maroon">Copy Textarea</font>
+        </button><br><br>
+
+        <font size=3 style="color:white">Your booking from
+          {{airline2}}, please go to their website on
+          <a href ng-click="goToUrl2();">{{urlAirline2}}</a>
+          to track your booking.</font><br>
+        <textarea class="js-copytextarea2" readonly>{{bookingRefNo2}}</textarea>
+        <br>
+        <button class="js-textareacopybtn2" style="background-color:white" ng-click='copy2();'>
+          <font size=3 style="color:maroon">Copy Textarea</font>
+        </button><br><br>
+      </div>
+
+      <div ng-if="airline1 !=airline2 && airline1 == 'Iberia' && airline2 != 'Iberia'">
+        <font size=3 style="color:white">Your booking from
+          {{airline1}}, please go back to
+          <a href="#" onclick="location.href = document.referrer; return false;">home page</a>.
+        </font><br>
+        <textarea class="js-copytextarea" readonly>{{bookingRefNo1}}</textarea>
+        <br>
+        <button class="js-textareacopybtn" style="background-color:white" ng-click='copy();'>
+          <font size=3 style="color:maroon">Copy Textarea</font>
+        </button><br><br>
+        <font size=3 style="color:white">Your booking from
+          {{airline2}}, please go to their website on
+          <a href ng-click="goToUrl2();">{{urlAirline2}}</a>
+          to track your booking.</font><br>
+        <textarea class="js-copytextarea2" readonly>{{bookingRefNo2}}</textarea>
+        <br>
+        <button class="js-textareacopybtn2" style="background-color:white" ng-click='copy2();'>
+          <font size=3 style="color:maroon">Copy Textarea</font>
+        </button><br><br>
+      </div>
+
+      <div ng-if="airline1 !=airline2 && airline1 != 'Iberia' && airline2 == 'Iberia'">
+        <font size=3 style="color:white">Your booking from
+          {{airline2}}, please go back to
+          <a href="#" onclick="location.href = document.referrer; return false;">home page</a>.
+        </font><br>
+        <textarea class="js-copytextarea" readonly>{{bookingRefNo2}}</textarea>
+        <br>
+        <button class="js-textareacopybtn" style="background-color:white" ng-click='copy();'>
+          <font size=3 style="color:maroon">Copy Textarea</font>
+        </button><br><br>
+
+        <font size=3 style="color:white">Your booking from
+          {{airline1}}, please go to their website on
+          <a href ng-click="goToUrl1();">{{urlAirline1}}</a>
+          to track your booking.</font><br>
+        <textarea class="js-copytextarea2" readonly>{{bookingRefNo1}}</textarea>
+        <br>
+        <button class="js-textareacopybtn2" style="background-color:white" ng-click='copy2();'>
+          <font size=3 style="color:maroon">Copy Textarea</font>
+        </button><br><br>
+      </div>
+
     </div>
-
-    <div ng-if="airline1 !=airline2 && airline1 != 'Iberia' && airline2 != 'Iberia'">
-      <font size=3 style="color:white">Your booking from {{airline1}}, please go to their website on <a href ng-click="goToUrl1();">{{urlAirline1}}</a> to track your booking.</font><br>
-    <textarea class="js-copytextarea" readonly>{{bookingRefNo1}}</textarea>
-    <br>
-    <button class="js-textareacopybtn" style="background-color:white" ng-click='copy();'><font size=3 style="color:maroon">Copy Textarea</font></button><br><br>
-
-    <font size=3 style="color:white">Your booking from {{airline2}}, please go to their website on <a href ng-click="goToUrl2();">{{urlAirline2}}</a> to track your booking.</font><br>
-  <textarea class="js-copytextarea2" readonly>{{bookingRefNo2}}</textarea>
-  <br>
-  <button class="js-textareacopybtn2" style="background-color:white" ng-click='copy2();'><font size=3 style="color:maroon">Copy Textarea</font></button><br><br>
+  </center>
+  <canvas id="sky" width="1217" height="1000"></canvas>
+  <div class="marquee">
+    <a onclick="location.href = document.referrer; return false;">
+      <img src="http://i.stack.imgur.com/bGZ1m.png" width="80" height="43" title="Click me to go back to Iberia.">
+    </a>
+    <div id="banner">Congrats You booked with Iberia Airlines!</div>
   </div>
-
-  <div ng-if="airline1 !=airline2 && airline1 == 'Iberia' && airline2 != 'Iberia'">
-    <font size=3 style="color:white">Your booking from {{airline1}}, please go back to  <a href="#" onclick="location.href = document.referrer; return false;">home page</a>.
-    </font><br>
-  <textarea class="js-copytextarea" readonly>{{bookingRefNo1}}</textarea>
-  <br>
-  <button class="js-textareacopybtn" style="background-color:white" ng-click='copy();'><font size=3 style="color:maroon">Copy Textarea</font></button><br><br>
-  <font size=3 style="color:white">Your booking from {{airline2}}, please go to their website on <a href ng-click="goToUrl2();">{{urlAirline2}}</a> to track your booking.</font><br>
-<textarea class="js-copytextarea2" readonly>{{bookingRefNo2}}</textarea>
-<br>
-<button class="js-textareacopybtn2" style="background-color:white" ng-click='copy2();'><font size=3 style="color:maroon">Copy Textarea</font></button><br><br>
-</div>
-
-<div ng-if="airline1 !=airline2 && airline1 != 'Iberia' && airline2 == 'Iberia'">
-  <font size=3 style="color:white">Your booking from {{airline2}}, please go back to  <a href="#" onclick="location.href = document.referrer; return false;">home page</a>.
-  </font><br>
-<textarea class="js-copytextarea" readonly>{{bookingRefNo2}}</textarea>
-<br>
-<button class="js-textareacopybtn" style="background-color:white" ng-click='copy();'><font size=3 style="color:maroon">Copy Textarea</font></button><br><br>
-
-<font size=3 style="color:white">Your booking from {{airline1}}, please go to their website on <a href ng-click="goToUrl1();">{{urlAirline1}}</a> to track your booking.</font><br>
-<textarea class="js-copytextarea2" readonly>{{bookingRefNo1}}</textarea>
-<br>
-<button class="js-textareacopybtn2" style="background-color:white" ng-click='copy2();'><font size=3 style="color:maroon">Copy Textarea</font></button><br><br>
-</div>
-
-  </div>
-</center>
-<canvas id="sky" width="1217" height="1000"></canvas>
-<div class="marquee">
-  <a onclick="location.href = document.referrer; return false;">
-    <img src="http://i.stack.imgur.com/bGZ1m.png" width="80" height="43" title="Click me to go back to Iberia.">
-  </a>
-  <div id="banner">Congrats You booked with Iberia Airlines!</div>
-</div>
 </div>
