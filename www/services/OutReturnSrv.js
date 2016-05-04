@@ -1,16 +1,16 @@
 App.factory('OutReturnSrv', function($http) {
   return {
     getairLinesInfo: function() {
-      return $http.get('http://localhost:8080/data/airlines');
+      return $http.get('http://52.58.24.76/data/airlines');
     },
     getRoundTripInfo: function(origin, dest, oDate, rDate, cabin, seats) {
       var jwt = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJNWU5LU0giLCJpYXQiOjE0NjA3NzIyOTQsImV4cCI6MTQ5MjMwODI5NSwiYXVkIjoid3d3LnNlY291cnNlLmNvbSIsInN1YiI6Ik1ZTktTSCBJYmVyaWEiLCJUZWFtIjoiTVlOS1NIIn0.hZxhv8XAcu1cARgcrtfb0l_crF1-Ic1tJt9eUhIL0qQ';
-      var path = 'http://localhost:8080/api/flights/search/' + origin + '/' + dest + '/' + oDate + '/' + rDate + '/' + cabin + '/' + seats + '?wt=' + jwt;
+      var path = 'http://52.58.24.76/api/flights/search/' + origin + '/' + dest + '/' + oDate + '/' + rDate + '/' + cabin + '/' + seats + '?wt=' + jwt;
       return $http.get(path);
     },
     getOneWayTripInfo: function(origin, dest, oDate, cabin, seats) {
       var jwt = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJNWU5LU0giLCJpYXQiOjE0NjA3NzIyOTQsImV4cCI6MTQ5MjMwODI5NSwiYXVkIjoid3d3LnNlY291cnNlLmNvbSIsInN1YiI6Ik1ZTktTSCBJYmVyaWEiLCJUZWFtIjoiTVlOS1NIIn0.hZxhv8XAcu1cARgcrtfb0l_crF1-Ic1tJt9eUhIL0qQ';
-      var path = 'http://localhost:8080/api/flights/search/' + origin + '/' + dest + '/' + oDate + '/' + cabin + '/' + seats + '?wt=' + jwt;
+      var path = 'http://52.58.24.76/api/flights/search/' + origin + '/' + dest + '/' + oDate + '/' + cabin + '/' + seats + '?wt=' + jwt;
       return $http.get(path);
     },
     setSelectedOutFlight: function(value) {

@@ -44,8 +44,6 @@ App.config(function($stateProvider, $urlRouterProvider, $mdIconProvider, $mdDate
       templateUrl: 'partials/tabs.html',
       controller: 'tabsCtrl'
     })
-
-
   // Each tab has its own nav history stack:
   .state('landing', {
     url: '/book',

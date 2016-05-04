@@ -26,7 +26,7 @@ App.controller('bookingRefCtrl', function($scope, FlightsSrv, $location, Booking
 
 function DialogController($scope,$http,BookingSrv, $mdDialog) {
 
-    $http.get('http://localhost:8080/data/bookings/search/' + BookingSrv.getSelectedBookingRef()).success(function(flight) {
+    $http.get('http://52.58.24.76/data/bookings/search/' + BookingSrv.getSelectedBookingRef()).success(function(flight) {
       $scope.flights=flight;
     })
 

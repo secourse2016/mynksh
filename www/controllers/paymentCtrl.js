@@ -94,7 +94,7 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
 
     getOtherPubKey(airline, function(key, airlineIP) {
       if (airlineIP === "IBERIA")
-        pingIp = "http://localhost:8080";
+        pingIp = "http://52.58.24.76";
       else
         pingIp = "http://" + airlineIP;
       Stripe.setPublishableKey(key);
