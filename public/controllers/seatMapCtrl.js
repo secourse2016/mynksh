@@ -60,7 +60,8 @@ App.controller('seatMapCtrl', ['$scope', '$http', 'OutReturnSrv', '$routeParams'
     return seatsData;
   }
 
-  maxSeatstoBeSelected = 4;
+  maxSeatstoBeSelected = FlightsSrv.getTickets();
+  
   $scope.$watch('selectedNodes', function(val) {
     // if ($scope.selectedNodes.length > 3)
       console.log(val);
