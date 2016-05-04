@@ -29,10 +29,10 @@ App.factory('BookingSrv', function($http) {
       this.Flight = value;
     },
     getFlightOut: function() {
-      return this.getFlightOut;
+      return this.FlightOut;
     },
     setFlightOut: function(value) {
-      this.getFlightOut = value;
+      this.FlightOut = value;
     }
   }
 });

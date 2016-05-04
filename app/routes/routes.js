@@ -55,9 +55,9 @@ module.exports = function(app, mongo) {
   // end of get ip method
 
   app.get('/data/seatMap/:flight', function(req, res) {
-    mongo.getSeatMap(req.params.flight,function(err, airLines) {
-            res.json(airLines);
-      })
+    mongo.getSeatMap(req.params.flight, function(err, airLines) {
+      res.json(airLines);
+    })
   });
 
   app.get('/data/bookings/search/:bookingRefNumber', function(req, res) {
@@ -155,14 +155,16 @@ module.exports = function(app, mongo) {
     // set initial timeout
     var timeout = setTimeout(fn, 1000);
   });
-  app.post('/choosingSeat', function(req,res){
-    mongo.changeSeats(req.body.flightNumber, req.body.oldSeats, req.body.newSeats, req.body.bookingRefNumber, function(done)
-    {
-      if(done === true)
-        res.send("It was successfull");
-      else
-        res.send("It was unsuccessful"); 
-    });
+  app.post('/choosingSeat', function(req, res) {
+    if (req.body.flightNumber !== undefined && req.body.oldSeats !== undefined && req.body.newSeats !== undefined && req.body.bookingRefNumber !== undefined)
+      mongo.changeSeats(req.body.flightNumber, req.body.oldSeats, req.body.newSeats, req.body.bookingRefNumber, function(done) {
+        if (done === true)
+          res.send("It was successfull");
+        else
+          res.send("It was unsuccessful");
+      });
+    else
+      res.send("Error")
   });
 
   /* Middlewear For Secure API Endpoints */
@@ -183,7 +185,7 @@ module.exports = function(app, mongo) {
 
   app.post('/booking', function(req, res1) {
     stripe.charges.create({
-      amount: req.body.cost.toFixed(2) *100,
+      amount: req.body.cost.toFixed(2) * 100,
       currency: "USD",
       source: req.body.paymentToken,
       description: "Example charge"
@@ -194,17 +196,18 @@ module.exports = function(app, mongo) {
           errorMessage: err.message
         });
       } else {
-        mongo.check(req.body.passengerDetails, req.body.class, req.body.cost, req.body.outgoingFlightId, req.body.returnFlightId, function(err)
-        {
-          if(err !== null)
-            res1.send({refNum: null, errorMessage: err});
-          else
-          {
-            insertPassengers(0, req.body.passengerDetails, req.body.class, req.body.cost,
-            req.body.outgoingFlightId, req.body.returnFlightId, null, true,
-            function(fb) {
-              res1.send(fb);
+        mongo.check(req.body.passengerDetails, req.body.class, req.body.cost, req.body.outgoingFlightId, req.body.returnFlightId, function(err) {
+          if (err !== null)
+            res1.send({
+              refNum: null,
+              errorMessage: err
             });
+          else {
+            insertPassengers(0, req.body.passengerDetails, req.body.class, req.body.cost,
+              req.body.outgoingFlightId, req.body.returnFlightId, null, true,
+              function(fb) {
+                res1.send(fb);
+              });
           }
 
         });
