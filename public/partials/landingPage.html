@@ -135,7 +135,7 @@
                             <div class="form-group row">
                                 <font class="col-sm-2 text-right" size="4" color="white"> From: </font>
                                 <div class="col-md-8 col-sm-8">
-                                    <input name="originAirports" id="originAirports"  type="text"  autocomplete="off" placeholder="Flying From" ng-model="selectedOrigin" ng-required='true' uib-typeaError: source does not appear to be markup.="airport.name for airport in Airports | filter:$viewValue | limitTo:10" class="form-control" , typeahead-on-select="SetOriginAirport($item.iata)">
+                                    <input name="originAirports" id="originAirports"  type="text"  autocomplete="off" placeholder="Flying From" ng-model="selectedOrigin" ng-required='true' uib-typeahead="airport.name for airport in Airports | filter:$viewValue | limitTo:10" class="form-control" , typeahead-on-select="SetOriginAirport($item.iata)" >
 
                                     <span style='color:white' ng-show="(reviewForm.originAirports.$error.required && reviewForm.originAirports.$dirty) ">Origin Airport required</span>
                                 </div>
