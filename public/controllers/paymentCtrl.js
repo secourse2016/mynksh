@@ -87,7 +87,7 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
     }
 
     if (FlightsSrv.getSelectedRoundTrip() != 'true') {
-      paymentInfo.cost = OutReturnSrv.getSelectedOutFlight().cost;
+      paymentInfo.cost = OutReturnSrv.getSelectedOutFlight().cost * ConfirmSrv.getReservations().length;
       paymentInfo.returnFlightId = undefined;
     }
 
@@ -138,7 +138,7 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
             if (FlightsSrv.getSelectedRoundTrip() === 'true' && flag && AirlineName2 != AirlineName1) {
               flag = false;
               paymentInfo.outgoingFlightId = OutReturnSrv.getSelectedReturnFlight().flightId;
-              paymentInfo.cost = OutReturnSrv.getSelectedReturnFlight().cost;
+              paymentInfo.cost = OutReturnSrv.getSelectedReturnFlight().cost * ConfirmSrv.getReservations().length;
               createStripeToken(AirlineName2);
             } else if (data.errorMessage != null || data.errorMessage != undefined)
               alert(data.errorMessage);
