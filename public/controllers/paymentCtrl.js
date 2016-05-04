@@ -9,22 +9,20 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
     returnFlight = OutReturnSrv.getSelectedReturnFlight();
   $scope.outCurrency = outgoingFlight.currency;
 
-  var newres = $scope.reservation;
-  var dateFormat = function() {
-    // "dateOfBirth": moment("April 12, 2016", 'MMMM D, YYYY hh:mm:ss',
-    for (var i = 0; i < newres.length; i++) {
-      newres[i].dateOfBirth = moment(newres[i].dateOfBirth).toDate().getTime()
-      if (newres[i].passportExpiryDate === undefined)
-        newres[i].passportExpiryDate = moment(newres[i].passportExpiryDate).toDate().getTime()
-    }
-  }
-  dateFormat();
+  function changeISOFormat(date) {
+    var monthNames = ["January", "February", "March", "April", "May", "June",
+      "July", "August", "September", "October", "November", "December"
+    ];
+    var d = new Date(date);
+    return monthNames[d.getMonth()] + " " + d.getDate() + ", " + d.getFullYear();
+  };
+
   var Congrats = function() {
     $location.url('/congrats');
   };
 
-
   $scope.clicked = "clicked";
+
   $scope.isShown = function(clicked) {
     return clicked === $scope.clicked;
   };
@@ -45,11 +43,10 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
     paymentSrv.setSelectedCVV(value);
   };
 
+
   var getOtherPubKey = function(AirlineIP, cb) {
     paymentSrv.getOtherAirlineIP(AirlineIP).success(function(airlineIP) {
-      // console.log(airlineIP);
       paymentSrv.getOtherStripePubKey(airlineIP).success(function(key) {
-        // console.log(key);
         cb(key, airlineIP);
       })
     });
@@ -57,43 +54,56 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
 
   var paymentInfo = {};
 
+  var AirlineName1 = OutReturnSrv.getSelectedOutFlight().Airline; 
+  var AirlineName2;
+
   $scope.payAction = function() {
+
     SetCardNo($scope.selectedCardNumber);
     SetMonth($scope.selectedMonth);
     SetYear($scope.selectedYear);
     SetCVV($scope.selectedCVV);
     var returnFlightId;
+    var ecoOrBus;
+    if(FlightsSrv.getSelectedCabin() === "true")
+      ecoOrBus="economy";
+    else
+      ecoOrBus= "business";
     if (FlightsSrv.getSelectedRoundTrip() === 'true')
       var returnFlightId = OutReturnSrv.getSelectedReturnFlight().flightId;
     paymentInfo = {
-      "passengerDetails": newres,
-      "class": FlightsSrv.getSelectedCabin(),
+      "passengerDetails": ConfirmSrv.getReservations(),
+      "class": ecoOrBus,
       "cost": OutReturnSrv.getSelectedPrice(),
       "outgoingFlightId": OutReturnSrv.getSelectedOutFlight().flightId,
       "returnFlightId": returnFlightId,
       "paymentToken": 2112
+    };
+
+    for (var i = 0; i < paymentInfo.length; i++) {
+      paymentInfo[i].passengerDetails.dateOfBirth = moment(changeISOFormat(paymentInfo[i].passengerDetails.dateOfBirth)).toDate().getTime();
+      if (paymentInfo[i].passengerDetails.passportExpiryDate === undefined)
+        paymentInfo[i].passengerDetails.passportExpiryDate = moment(changeISOFormat(paymentInfo[i].passengerDetails.passportExpiryDate)).toDate().getTime()
     }
-    if (FlightsSrv.getSelectedRoundTrip() != 'true')
+
+    if (FlightsSrv.getSelectedRoundTrip() != 'true'){
+      paymentInfo.cost = OutReturnSrv.getSelectedOutFlight().cost;
       paymentInfo.returnFlightId = undefined;
-    //need here to check if one way or two and put this name attrubute inside createStripeToken method
-    var AirlineName1 = OutReturnSrv.getSelectedOutFlight().Airline; //  out flight
-    var AirlineName2;
-    if (FlightsSrv.getSelectedRoundTrip() === 'true')
-      var AirlineName2 = OutReturnSrv.getSelectedReturnFlight().Airline;; // return flight
-    if (FlightsSrv.getSelectedRoundTrip() === 'false' || AirlineName1 === AirlineName2)
-      createStripeToken(AirlineName1);
-    else {
-      createStripeToken(AirlineName1);
-      createStripeToken(AirlineName2);
     }
+
+    if (FlightsSrv.getSelectedRoundTrip() === 'true')
+      AirlineName2 = OutReturnSrv.getSelectedReturnFlight().Airline; 
+
+    createStripeToken(AirlineName1);
 
   }
   var pingIp;
+  var flag = true;
 
   var createStripeToken = function(airline) {
 
     getOtherPubKey(airline, function(key, airlineIP) {
-      if (airlineIP === "IBERIA")
+      if (airlineIP === "Iberia")
         pingIp = "";
       else
         pingIp = "http://" + airlineIP;
@@ -112,16 +122,35 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
     if (response.error)
       alert(response.error.message);
     else {
+      if (FlightsSrv.getSelectedRoundTrip() === 'true' && AirlineName2 != AirlineName1)
+        paymentInfo.returnFlightId = undefined;
       paymentInfo.paymentToken = response.id;
       paymentSrv.chargeCard(paymentInfo, pingIp)
-        .success(function(data, status, headers, config) {
-          paymentSrv.setBookingRefNo(data.refNum);
-          //reset stripe key
-          getOtherPubKey("IBERIA", function(key) {
+        .success(function(data) {
+          console.log(data);
+          if (paymentSrv.getBookingRefNo1() === undefined || paymentSrv.getBookingRefNo1() === null)
+            paymentSrv.setBookingRefNo1(data.refNum);
+          else
+            paymentSrv.setBookingRefNo2(data.refNum);
+          getOtherPubKey("Iberia", function(key) {
             Stripe.setPublishableKey(key);
-            Congrats();
+
+            if (FlightsSrv.getSelectedRoundTrip() === 'true' && flag &&  AirlineName2 != AirlineName1) {
+              flag = false;
+              paymentInfo.outgoingFlightId = OutReturnSrv.getSelectedReturnFlight().flightId;
+              paymentInfo.cost = OutReturnSrv.getSelectedReturnFlight().cost;
+              createStripeToken(AirlineName2);
+            }
+            else if (data.errorMessage != null || data.errorMessage != undefined)
+              alert(data.errorMessage);
+            else
+              Congrats();
           });
+        })
+        .error(function(data, status, headers, config) {
+          alert(data.errorMessage);
         });
     }
   };
+
 });

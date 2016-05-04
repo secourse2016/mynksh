@@ -13,14 +13,16 @@ module.exports = function(app, mongo) {
 
   /* SEED DB */
   app.get('/db/seed', function(req, res) {
-    mongo.seedDB();
-    res.send("Seeding done");
+    mongo.seedDB(function(err, param) {
+      res.send("Seeding done");
+    });
   });
 
   /* DELETE DB */
   app.get('/db/delete', function(req, res) {
-    mongo.clearDB();
-    res.send("DB clear");
+    mongo.clearDB(function(err) {
+      res.send("DB clear");
+    });
   });
 
   /* GET ALL STATES ENDPOINT */
@@ -43,8 +45,8 @@ module.exports = function(app, mongo) {
   // get ip of given airline name
   app.get('/data/singleAirline/:airlineName', function(req, res) {
     // mongo.getAirports(function(err, airports) {
-    if (req.params.airlineName === "IBERIA")
-      res.json("IBERIA");
+    if (req.params.airlineName === "Iberia")
+      res.json("Iberia");
     else
       mongo.getAirLineIP(req.params.airlineName, function(err, airLineIPAdress) {
         res.json(airLineIPAdress);
@@ -153,9 +155,7 @@ module.exports = function(app, mongo) {
   app.use('/api/flights/search' | '/booking' | '/stripe/pubkey', function(req, res, next) {
     // check header or url parameters or post parameters for token
     var token = req.body.wt || req.query.wt || req.headers['x-access-token'];
-    // console.log("{{{{ TOKEN }}}} => ", token);
     var jwtSecret = process.env.JWTSECRET;
-    // console.log(jwtSecret);
     // Get JWT contents:
     try {
       var payload = jwt.verify(token, jwtSecret);
@@ -168,9 +168,6 @@ module.exports = function(app, mongo) {
   });
 
   app.post('/booking', function(req, res1) {
-    // console.log("i`m in api /booking" + req.body.IP);
-    // if((req.body.IP) === "52.58.24.76" ){
-    //     console.log("i`m in api /booking inside if ");
     stripe.charges.create({
       amount: req.body.cost,
       currency: "USD",
@@ -183,31 +180,56 @@ module.exports = function(app, mongo) {
           errorMessage: err
         });
       } else {
-        for (var i = 0; i < passengerDetails.length; i++)
-          if (req.body.returnFlightId === undefined || req.body.returnFlightId === null) {
-            mongo.submitPay(req.body.passengerDetails[i].firstName, req.body.passengerDetails[i].lastName, req.body.passengerDetails[i].passportNum, req.body.passengerDetails[i].passportExpiryDate, req.body.passengerDetails[i].dateOfBirth, req.body.passengerDetails[i].nationality, req.body.passengerDetails[i].email, req.body.class, req.body.cost, req.body.outgoingFlightId, true, function(err, data) {
-              //console.log("RefNum  " + data + "err" + err);
-              res1.send({
-                refNum: data,
-                errorMessage: null
-              });
-            });
-
-          } else {
-            mongo.submitPay(req.body.passengerDetails[i].firstName, req.body.passengerDetails[i].lastName, req.body.passengerDetails[i].passportNum, req.body.passengerDetails[i].passportExpiryDate, req.body.passengerDetails[i].dateOfBirth, req.body.passengerDetails[i].nationality, req.body.passengerDetails[i].email, req.body.class, req.body.cost, req.body.outgoingFlightId, true, function(err, data) {
-              //console.log(data);
-              mongo.submitPay(req.body.passengerDetails[i].firstName, req.body.passengerDetails[i].lastName, req.body.passengerDetails[i].passportNum, req.body.passengerDetails[i].passportExpiryDate, req.body.passengerDetails[i].dateOfBirth, req.body.passengerDetails[i].nationality, req.body.passengerDetails[i].email, req.body.class, req.body.cost, req.body.returnFlightId, data, function(err, data) {
-                //console.log("RefNum  " + data + "err" + err);
-                res1.send({
-                  refNum: data,
-                  errorMessage: null
-                });
-              });
+        mongo.check(req.body.passengerDetails, req.body.class, req.body.cost, req.body.outgoingFlightId, req.body.returnFlightId, function(err)
+        {
+          if(err !== null)
+            res1.send({refNum: null, errorMessage: err});
+          else
+          {
+            insertPassengers(0, req.body.passengerDetails, req.body.class, req.body.cost,
+            req.body.outgoingFlightId, req.body.returnFlightId, null, true,
+            function(fb) {
+              res1.send(fb);
             });
           }
-      }
-    });
+
+        });
+      } 
+    }); 
   });
+
+  var insertPassengers = function(i, passengerDetails, cabin, cost, outgoingFlightId, returnFlightId, error, data, cb) {
+    if (i === passengerDetails.length || (error !== null && error !== undefined)) {
+      var fb = {
+        refNum: data,
+        errorMessage: error
+      };
+      cb(fb);
+    } else
+    if (returnFlightId === undefined || returnFlightId === null) {
+      mongo.submitPay(passengerDetails[i].firstName, passengerDetails[i].lastName, passengerDetails[i].passportNum,
+        passengerDetails[i].passportExpiryDate, passengerDetails[i].dateOfBirth, passengerDetails[i].nationality,
+        passengerDetails[i].email, cabin, cost, outgoingFlightId, data, "outgoing",
+        function(err, data2) {
+          insertPassengers(i + 1, passengerDetails, cabin, cost, outgoingFlightId, returnFlightId, err, data2, cb);
+        });
+    } else {
+      mongo.submitPay(passengerDetails[i].firstName, passengerDetails[i].lastName, passengerDetails[i].passportNum,
+        passengerDetails[i].passportExpiryDate, passengerDetails[i].dateOfBirth, passengerDetails[i].nationality,
+        passengerDetails[i].email, cabin, cost, outgoingFlightId, data, "outgoing",
+        function(err, data2) {
+          mongo.submitPay(passengerDetails[i].firstName, passengerDetails[i].lastName, passengerDetails[i].passportNum,
+            passengerDetails[i].passportExpiryDate, passengerDetails[i].dateOfBirth, passengerDetails[i].nationality,
+            passengerDetails[i].email, cabin, cost, returnFlightId, data2, "return",
+            function(err2, data3) {
+              var err3 = err;
+              if (err2 !== null && err2 !== undefined)
+                err3 = err2;
+              insertPassengers(i + 1, passengerDetails, cabin, cost, outgoingFlightId, returnFlightId, err3, data2, cb);
+            });
+        });
+    } 
+  }
 
   app.get('/api/flights/search/:origin/:destination/:departingDate/:returningDate/:cabin/:seats', function(req, res) {
     if (moment(req.params.departingDate, 'MMMM D, YYYY').format('MMMM D, YYYY') === req.params.departingDate) {
@@ -227,12 +249,12 @@ module.exports = function(app, mongo) {
     });
   });
 
-  // return /stripe/pubkey
+  
   app.get('/stripe/pubkey', function(req, res) {
     res.json('pk_test_fWP8viqFbT95teED8zWD3ieK');
 
   });
-  //end of return /stripe/pubkey
+ 
 
   app.get('/api/flights/search/:origin/:destination/:departingDate/:cabin/:seats', function(req, res) {
     if (moment(req.params.departingDate, 'MMMM D, YYYY').format('MMMM D, YYYY') === req.params.departingDate)

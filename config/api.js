@@ -8,65 +8,46 @@ var moment = require('moment');
 var ObjectId = require('mongodb').ObjectId;
 
 exports.seedDB = function(cb) {
-  // mongo.connect(function(err, mdb) {
   mongo.clearDB(function(err) {
     assert.equal(null, err);
     mongo.seed('flights', flights, function() {
       mongo.seed('airLines', airlines, function() {
-        // mongo.seed('bookings', bookings, function() {
         mongo.seed('airports', airports, function() {
-          // mongo.close();
+          cb(err,true);
         });
-        // });
       });
     });
   });
-
-  // });
 };
 
 exports.clearDB = function(cb) {
-  // mongo.connect(function(err, mdb) {
   mongo.clearDB(function() {
-    // mongo.seed('airports', airports, function() {
-    // mongo.clearDB(function() {
-    // mongo.close();
     cb();
-    // });
-    // });
-    // });
   });;
 }
 
 exports.getAirports = function(cb) {
-  // mongo.connect(function(err, db) {
   var collection = mongo.db().collection('airports');
   collection.find().toArray(function(err, airports) {
     cb(err, airports);
-    // mongo.close();
-    // });
   });
 }
 
 exports.getAirLines = function(cb) {
-  // mongo.connect(function(err, db) {
   var collection = mongo.db().collection('airLines');
   collection.find().toArray(function(err, airLines) {
     cb(err, airLines);
-    // mongo.close();
-    // });
   });
 }
 
-//get from data base ip
 exports.getAirLineIP = function(airLineName, cb) {
-  var airLineIP= "";
+  var airLineIP = "";
   var collection = mongo.db().collection('airLines');
   collection.find({
     "name": airLineName + " Airlines"
   }).toArray(function(err, airLine) {
-    if(airLine.length ===0)
-      airLineIP= "52.58.24.76";
+    if (airLine.length === 0)
+      airLineIP = "52.58.24.76";
     if (airLine[0] === null) {
       cb(err, "No ip with this Name");
     }
@@ -75,15 +56,11 @@ exports.getAirLineIP = function(airLineName, cb) {
   });
 }
 
-//
 
 exports.getBooking = function(cb) {
-  // mongo.connect(function(err, db) {
   var collection = mongo.db().collection('bookings');
   collection.find().toArray(function(err, bookings) {
     cb(err, bookings);
-    // mongo.close();
-    // });
   });
 }
 
@@ -93,7 +70,6 @@ exports.searchFlights = function(origin, destination, departingDate, cabin, seat
   var reqSeats = seats;
   if (reqSeats === undefined)
     reqSeats = 1;
-  // mongo.connect(function(err, db) {
   var collection = mongo.db().collection('flights');
   collection.find({
     "origin": origin,
@@ -124,123 +100,189 @@ exports.searchFlights = function(origin, destination, departingDate, cabin, seat
           "origin": origin,
           "destination": flights[0].destination,
           "class": economyOrBusiness,
-          "Airline": "IBERIA"
+          "Airline": "Iberia"
         }];
       } else
         rflights = {};
       cb(err, rflights);
     }
-    // mongo.close();
-    // });
   });
 }
 
-exports.submitPay = function(firstName, lastName, passportNumber, expiryDate, dateOfBirth, passport, email, businessOrEconomic, cost, flightId, generateOrUseOld, cb) {
+exports.submitPay = function(firstName, lastName, passportNumber, expiryDate, dateOfBirth, passport, email, businessOrEconomic, cost, flightId, generateOrUseOld, fWay, cb) {
   var selectedSeat = 0;
-  // update after find free seat
-
   if (flightId === undefined) {
     cb("flightId was not passed", null);
     return;
   }
-  //console.log(flightId);
   var collection = mongo.db().collection('flights');
   collection.find({
     "_id": new ObjectId(flightId)
   }).toArray(function(err, flights) {
     if (flights.length === 0) {
-      //console.log("flight not found");
-      cb("This flight " + flightId + "is not supported be IBERIA", null);
-      // mongo.close();
+      cb("This flight " + flightId + "is not supported be Iberia", null);
       return;
     }
-    //console.log("flight found");
-    //  remove then insert
-    if (businessOrEconomic === "true") { // economy
-      //check on availableESeats of economy
+    if (businessOrEconomic === "economy") {
       if (!(flights[0].availableESeats === 0)) {
         selectedSeat = flights[0].nextEcoSeat;
         flights[0].availableESeats = flights[0].availableESeats - 1;
         flights[0].nextEcoSeat = flights[0].nextEcoSeat + 1;
       }
-      // if avaliable dec availableESeats and dec next Eseat
-
     } else {
-      //check on availableESeats of business
       if (!(flights[0].availableBSeats === 0)) {
         selectedSeat = flights[0].nextBusSeat;
         flights[0].availableBSeats = flights[0].availableBSeats - 1;
         flights[0].nextBusSeat = flights[0].nextBusSeat - 1;
-
       }
-      // if avaliable dec availableBSeats and inc next Bseat
     }
-    //
-    // console.log("selectedSeat :"+selectedSeat);
+
     var bookingReference;
+    var bSeat = flights[0].nextBusSeat;
+    var eSeat = flights[0].nextEcoSeat;
     if (generateOrUseOld === true)
       bookingReference = generateBookingRef(flights[0].SeatMap[selectedSeat].seatNum, flights[0].flightNumber, businessOrEconomic);
     else
       bookingReference = generateOrUseOld;
     flights[0].SeatMap[selectedSeat].bookingRefNumber = bookingReference;
 
-
-    mongo.db().collection("flights").remove({
+    mongo.db().collection("flights").update({
       "_id": new ObjectId(flightId)
-    }, function(err, records) {
-      //
-      var collection = mongo.db().collection('flights');
-      var document = {
-        "departureTime": flights[0].departureTime,
-        "availableBSeats": flights[0].availableBSeats,
-        "origin": flights[0].origin,
-        "availableESeats": flights[0].availableESeats,
-        "destination": flights[0].destination,
-        "bCost": flights[0].bCost,
-        "nextBusSeat": flights[0].nextBusSeat,
-        "flightNumber": flights[0].flightNumber,
-        "capacity": flights[0].capacity,
-        "aircraftType": flights[0].aircraftType,
-        "arrivalTime": flights[0].arrivalTime,
-        "nextEcoSeat": flights[0].nextEcoSeat,
-        "aircraftModel": flights[0].aircraftModel,
-        "SeatMap": flights[0].SeatMap,
-        "eCost": flights[0].eCost
-      };
+    }, {
+      $set: {
+        "availableESeats" : flights[0].availableESeats,
+        "availableBSeats" : flights[0].availableBSeats,
+        "nextBusSeat"     : bSeat,
+        "nextEcoSeat"     : eSeat,
+        "SeatMap"         : flights[0].SeatMap
+      }
+    }, {
+      upsert: false
+    }, function(err, results) {
 
+      var collection = mongo.db().collection('bookings');
+      var document = {
+        "firstName": firstName,
+        "lastName": lastName,
+        "passport": passport,
+        "passportNumber": passportNumber,
+        "expiryDate": expiryDate,
+        "email": email,
+        "bookingRefNumber": bookingReference,
+        "flightNumber": flights[0].flightNumber,
+        "seatNum": flights[0].SeatMap[selectedSeat].seatNum,
+        "origin": flights[0].origin,
+        "destination": flights[0].destination,
+        "arrivalTime": flights[0].arrivalTime,
+        "departureTime": flights[0].departureTime,
+        "way" : fWay
+      };
       collection.insertOne(document, {
         w: 1
       }, function(err, records) {
-        var collection = mongo.db().collection('bookings');
-        var document = {
-          "firstName": firstName,
-          "lastName": lastName,
-          "passport": passport,
-          "passportNumber": passportNumber,
-          "expiryDate": expiryDate,
-          "email": email,
-          "bookingRefNumber": bookingReference, //call new method
-          "flightNumber": flights[0].flightNumber,
-          "seatNum": flights[0].SeatMap[selectedSeat].seatNum,
-          "origin": flights[0].origin,
-          "destination": flights[0].destination,
-          "arrivalTime": flights[0].arrivalTime,
-          "departureTime": flights[0].departureTime
-        };
-        collection.insertOne(document, {
-          w: 1
-        }, function(err, records) {
-          // mongo.close();
-          cb(err, document.bookingRefNumber);
-          // });
-        });
+        cb(err, document.bookingRefNumber);
       });
     });
   });
 }
 
+exports.check= function(passengerDetails, cabin, cost, outgoingFlightId, returnFlightId, cb)
+{
+  if(cabin === undefined || cabin === null)
+  {
+    cb("Please specify the cabin economy/business.");
+    return;
+  }
+  var validCabin= cabin.toLowerCase();
+  if(validCabin !== "economy" && validCabin !== "business")
+  {
+    cb("The chosen calss is not supported by IBERIA.");
+    return;
+  }
+  for(var i=0; i<passengerDetails.length; i++)
+  {
+    if(passengerDetails[i].firstName === undefined)
+    {
+      cb("Passenger " + i + "'s first name was not defined.");
+      return;
+    }
+    if(passengerDetails[i].lastName === undefined)
+    {
+      cb("Passenger " + i + "'s last name was not defined.");
+      return;
+    }
+    if(passengerDetails[i].passportNum === undefined)
+    {
+      cb("Passenger " + i + "'s passport number was not defined.");
+      return;
+    }
+    if(passengerDetails[i].passportNum === undefined)
+    {
+      cb("Passenger " + i + "'s passport number was not defined.");
+      return;
+    }
+    if(passengerDetails[i].dateOfBirth === undefined)
+    {
+      cb("Passenger " + i + "'s date of birth was not defined.");
+      return;
+    }
+  }
+  var tickets = passengerDetails.length;
+  var outgoingCost=0;
+  var returnCost=0;
+  var expectedCost=0;
+  if(outgoingFlightId !== undefined && outgoingFlightId !== null)
+    getFlightCost(outgoingFlightId, validCabin, function(cbOutCost)
+      {
+        outgoingCost=cbOutCost;
+        if(returnFlightId !== undefined && returnFlightId !== null)
+        returnCost= getFlightCost(returnFlightId, validCabin, function(cbReturnCost)
+        {
+          returnCost=cbReturnCost;
+          if(outgoingCost === -1)
+          {
+            cb("The outgoing flight is not supported by Iberia.");
+            return;
+          }
+          else if(returnCost === -1)
+          {
+            cb("The return flight is not supported by Iberia.");
+            return;
+          }
+          else
+          {
+            expectedCost= (outgoingCost + returnCost)*tickets;
+
+          }
+          if(expectedCost !== cost)
+          {
+            cb("The cost of the trip is not as expected");
+            return;
+          }
+        });
+      });
+  cb(null);
+}
+var getFlightCost = function(flightId, cabin, price)
+{
+  var collection = mongo.db().collection('flights');
+  var ticketPrice=0;
+  collection.find({
+    "_id": new ObjectId(flightId)
+  }).toArray(function(err, flights) {
+
+    if (flights.length === 0)
+      ticketPrice= -1;
+    if(cabin === "economy")
+      ticketPrice= flights[0].eCost;
+    else
+      ticketPrice= flights[0].bCost;
+    price(ticketPrice);
+    });
+
+}
+
 exports.searchBookings = function(bookingRef, cb) {
-  // mongo.connect(function(err, db) {
   var collection = mongo.db().collection('bookings');
   collection.find({
     "bookingRefNumber": bookingRef
@@ -249,58 +291,10 @@ exports.searchBookings = function(bookingRef, cb) {
       cb(err, []);
     else
       cb(err, ref);
-    // mongo.close();
-    // });
   });
 }
 
 
-// exports.postBookings = function(firstName, lastName, passportNum, passportExpiryDate, dateOfBirth, nationality, email, cabin, cost, outgoingFlightId, returnFlightId, cb){
-//     //TODO update flights table the approach of submitpay is not right problem occurs with seats
-//     var economyOrBusiness = cabin.toLowerCase();
-//     var collection = mongo.db().collection('bookings');
-//     var document = {
-//         "firstName": firstName,
-//         "lastName": lastName,
-//         "passport": nationality,
-//         "passportNumber": passportNum,
-//         "expiryDate": passportExpiryDate,
-//         "email": email,
-//         "DateOfBirth": dateOfBirth,
-//         "cabin": economyOrBusiness,
-//         "cost": cost,
-//         "outgoingFlightId":outgoingFlightId,
-//         "returnFlightId": returnFlightId,
-//     };
-//     collection.insertOne(document,{
-//                     w: 1
-//                 },function(err, records) {
-//                     cb(err, true);
-//                     //cb(err,bookingRefNumber);
-//      console.log("ïnsert into db done");
-//     });
-//     console.log("ïnsert into db done");
-// }
-
-
 var generateBookingRef = function(seatnum, flightNumber, businessOrEconomic) {
-  // var selectedSeat = 0;
-  // var collection = mongo.db().collection('flights');
-  // collection.find({
-  //     "flightNumber": flightNumber
-  // }).toArray(function(err, flights) {
-  //     if (flights.length === 0) {
-  //         cb(err, false);
-  //         return;
-  //     }
-  //     if (businessOrEconomic === "true") {
-  //         if (!(flights[0].availableESeats === 0))
-  //             selectedSeat = flights[0].nextEcoSeat;
-  //     } else {
-  //         if (!(flights[0].availableBSeats === 0))
-  //             selectedSeat = flights[0].nextBusSeat;
-  //         }
-  //     seatnum = flights[0].SeatMap[selectedSeat].seatNum;
   return encoded = new Buffer(seatnum + ',' + flightNumber).toString('base64');
-  //});
 };

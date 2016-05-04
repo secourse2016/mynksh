@@ -3,7 +3,9 @@ App.controller('bookingRefCtrl', function($scope, FlightsSrv, $location, Booking
     $scope.SetBookingRef = function(value) {
         BookingSrv.setSelectedBookingRef(value);
     };
-
+    $scope.main = function() {
+				$location.url('/home');
+		};
     $scope.bookingref = BookingSrv.getSelectedBookingRef();
 
     $scope.status = '  ';
@@ -41,4 +43,21 @@ function DialogController($scope,$http,BookingSrv, $mdDialog) {
   $scope.answer = function(answer) {
     $mdDialog.hide(answer);
   };
-}
+};
+
+App.filter('unique', function() {
+   return function(collection, keyname) {
+      var output = [],
+          keys = [];
+
+      angular.forEach(collection, function(item) {
+          var key = item[keyname];
+          if(keys.indexOf(key) === -1) {
+              keys.push(key);
+              output.push(item);
+          }
+      });
+
+      return output;
+   };
+});

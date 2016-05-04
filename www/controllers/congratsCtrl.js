@@ -7,7 +7,7 @@ App.controller('congratsCtrl', function($scope,$location,paymentSrv) {
         try {
             var successful = document.execCommand('copy');
             var msg = successful ? 'successful' : 'unsuccessful';
-            console.log('Copying text command was ' + msg);
+            $scope.feedback ='Copying was ' + msg;
         } catch (err) {
             console.log('Oops, unable to copy');
         }
