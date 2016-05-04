@@ -14,18 +14,20 @@ App.controller('bookingRefCtrl', function($scope, FlightsSrv, $location, Booking
       for (var i = 0; i < flight.length; i++) {
         if (flight[i].way === "outgoing")
           outTickets.push(flight[i]);
-        else
+        else {
           returnTickets.push(flight[i]);
+        }
       }
       BookingSrv.setOut(outTickets);
       BookingSrv.setReturn(returnTickets);
       BookingSrv.setFlight(flight[0].flightNumber);
-
+      BookingSrv.setFlightOut(flight[flight.length-1].flightNumber);
+      console.log(BookingSrv.getFlightOut());
     });
   }
 
   $scope.goToSeats = function() {
-       $location.url('/seatmap/Outgoing');
+    $location.url('/seatmap/Outgoing');
   }
 
 });

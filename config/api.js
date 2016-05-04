@@ -295,8 +295,7 @@ var generateBookingRef = function(seatnum, flightNumber, businessOrEconomic) {
 exports.changeSeats = function(flightNumber, oldSeats, newSeats, bookingRefNumber, cb) {
   getSeatMap(flightNumber, function(oldSeatMap) {
     changeSeatMap(oldSeatMap, newSeats, oldSeats, bookingRefNumber, function(newSeatMap) {
-      console.log(newSeatMap);
-      recurs(0, seat, seatOld, bookingRefNumber, function() {
+      recurs(0, newSeats, oldSeats, bookingRefNumber, function() {
         updateSeatMap(flightNumber, newSeatMap, function(done) {
           if (done)
             cb(true);
@@ -347,14 +346,14 @@ var recurs = function(i, seat, seatOld, bookingRefNumber, cb) {
   if (i === seat.length)
     cb();
   else
-    updateBooking(i, seat[i], seatOld[i], bookingRefNumber, function() {
+    updateBooking(seat[i], seatOld[i], bookingRefNumber, function() {
       i++;
       recurs(i, seat, seatOld, bookingRefNumber, cb);
     })
 }
 var updateBooking = function(seat, seatOld, bookingRefNumber, cb) {
   mongo.db().collection("bookings").update({
-    "bookingRefNumber": seat,
+    "bookingRefNumber": bookingRefNumber,
     "seatNum": seatOld
   }, {
     $set: {
@@ -363,6 +362,6 @@ var updateBooking = function(seat, seatOld, bookingRefNumber, cb) {
   }, {
     upsert: false
   }, function(err, results) {
-    cb()
+    cb();
   });
 };
