@@ -1,21 +1,22 @@
-App.controller('seatMapCtrl', ['$scope', '$http', 'OutReturnSrv', '$routeParams', 'FlightsSrv', '$location', function($scope, $http, OutReturnSrv, $routeParams, FlightsSrv, $location) {
+App.controller('seatMapCtrl', ['$scope', '$http', 'BookingSrv', '$routeParams', '$location', function($scope, $http, BookingSrv, $routeParams, $location) {
 
-  // $scope.roundTrip = FlightsSrv.getSelectedRoundTrip();
   $scope.way = $routeParams.way;
-  // if ($scope.way === 'Outgoing')
-  // $scope.flightNumber = OutReturnSrv.getSelectedReturnFlight().flightNumber;
-  // else
-  // $scope.flightNumber = OutReturnSrv.getSelectedReturnFlight().flightNumber;
+  if ($scope.way === 'Outgoing')
+    $scope.old = BookingSrv.getOut();
+  else
+    $scope.old = BookingSrv.getReturn();
+
+  $scope.flightNumber = BookingSrv.getFlight();
 
   $scope.flightNumber = 'MYNKSH20';
-  $scope.roundTrip = 'true';
 
-  $scope.cabin = 'business';
-
+  $scope.ref = BookingSrv.getSelectedBookingRef();
 
   $http.get('/data/seatMap/' + $scope.flightNumber).success(function(seatMap) {
     $scope.seatsData = $scope.Map(seatMap);
   });
+
+
 
   $scope.Map = function(seatMap) {
     var seatsData = {};
@@ -29,7 +30,7 @@ App.controller('seatMapCtrl', ['$scope', '$http', 'OutReturnSrv', '$routeParams'
       "selected": 0
     };
     for (var i = 1; i < seatMap.length + 1; i++) {
-      var state = (seatMap[i - 1].bookingRefNumber === undefined) ? ((seatMap[i - 1].Cabin === $scope.cabin) ? 0 : 3) : 1;
+      var state = (seatMap[i - 1].bookingRefNumber === undefined) ? 0 : ((seatMap[i - 1].bookingRefNumber === $scope.ref) ? 0 : 1);
       var node = {
         "type": 1,
         "uniqueName": seatMap[i - 1].seatNum,
@@ -60,11 +61,11 @@ App.controller('seatMapCtrl', ['$scope', '$http', 'OutReturnSrv', '$routeParams'
     return seatsData;
   }
 
-  maxSeatstoBeSelected = 3;//FlightsSrv.getTickets();
+  maxSeatstoBeSelected = 3; //FlightsSrv.getTickets();
 
   $scope.$watch('selectedNodes', function(val) {
     // if ($scope.selectedNodes.length > 3)
-      console.log(val);
+    console.log(val);
   });
 
 
@@ -95,10 +96,10 @@ App.controller('seatMapCtrl', ['$scope', '$http', 'OutReturnSrv', '$routeParams'
   };
 
   $scope.Reserve = function() {
-    if ($scope.way === 'Outgoing')
-      OutReturnSrv.setSelectedOutgoingSeat($scope.selectedNodes);
-    else
-      OutReturnSrv.setSelectedReturnSeat($scope.selectedNodes);
+    // if ($scope.way === 'Outgoing' && BookingSrv.getReturn() != 0)
+
+    // else
+
     if ($scope.roundTrip && OutReturnSrv.getSelectedReturnFlight().Airline === 'IBERIA')
       $location.url('/seatmap/Return');
     else
