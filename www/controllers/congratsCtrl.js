@@ -1,7 +1,7 @@
 App.controller('congratsCtrl', function($scope, $location, paymentSrv, OutReturnSrv,FlightsSrv) {
   $scope.bookingRefNo1 = paymentSrv.getBookingRefNo1();
-
   $scope.airline1 = OutReturnSrv.getSelectedOutFlight().Airline;
+
   $scope.roundTrip = FlightsSrv.getSelectedRoundTrip();
   if ($scope.roundTrip === 'true'){
     $scope.airline2 = OutReturnSrv.getSelectedReturnFlight().Airline;
