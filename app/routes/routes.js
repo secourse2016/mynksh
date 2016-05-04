@@ -44,7 +44,6 @@ module.exports = function(app, mongo) {
 
   // get ip of given airline name
   app.get('/data/singleAirline/:airlineName', function(req, res) {
-    // mongo.getAirports(function(err, airports) {
     if (req.params.airlineName === "Iberia")
       res.json("Iberia");
     else
@@ -54,6 +53,12 @@ module.exports = function(app, mongo) {
 
   });
   // end of get ip method
+
+  app.get('/data/seatMap/:flight', function(req, res) {
+    mongo.getSeatMap(req.params.flight,function(err, airLines) {
+            res.json(airLines);
+      })
+  });
 
   app.get('/data/bookings/search/:bookingRefNumber', function(req, res) {
     mongo.searchBookings(req.params.bookingRefNumber, function(err, bookingRef) {
@@ -183,7 +188,7 @@ module.exports = function(app, mongo) {
       source: req.body.paymentToken,
       description: "Example charge"
     }, function(err, charge) {
-      if (err) { 
+      if (err) {
         res1.send({
           refNum: null,
           errorMessage: err.message
@@ -203,8 +208,8 @@ module.exports = function(app, mongo) {
           }
 
         });
-      } 
-    }); 
+      }
+    });
   });
 
   var insertPassengers = function(i, passengerDetails, cabin, cost, outgoingFlightId, returnFlightId, error, data, cb) {
@@ -237,7 +242,7 @@ module.exports = function(app, mongo) {
               insertPassengers(i + 1, passengerDetails, cabin, cost, outgoingFlightId, returnFlightId, err3, data2, cb);
             });
         });
-    } 
+    }
   }
 
   app.get('/api/flights/search/:origin/:destination/:departingDate/:returningDate/:cabin/:seats', function(req, res) {
@@ -258,12 +263,12 @@ module.exports = function(app, mongo) {
     });
   });
 
-  
+
   app.get('/stripe/pubkey', function(req, res) {
     res.json('pk_test_fWP8viqFbT95teED8zWD3ieK');
 
   });
- 
+
 
   app.get('/api/flights/search/:origin/:destination/:departingDate/:cabin/:seats', function(req, res) {
     if (moment(req.params.departingDate, 'MMMM D, YYYY').format('MMMM D, YYYY') === req.params.departingDate)
