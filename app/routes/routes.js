@@ -169,15 +169,15 @@ module.exports = function(app, mongo) {
 
   app.post('/booking', function(req, res1) {
     stripe.charges.create({
-      amount: req.body.cost,
+      amount: req.body.cost.toFixed(2) *100,
       currency: "USD",
       source: req.body.paymentToken,
       description: "Example charge"
     }, function(err, charge) {
-      if (err && err.type === 'StripeCardError') {
+      if (err) { 
         res1.send({
           refNum: null,
-          errorMessage: err
+          errorMessage: err.message
         });
       } else {
         mongo.check(req.body.passengerDetails, req.body.class, req.body.cost, req.body.outgoingFlightId, req.body.returnFlightId, function(err)
