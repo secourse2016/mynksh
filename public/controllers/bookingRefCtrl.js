@@ -11,18 +11,23 @@ App.controller('bookingRefCtrl', function($scope, FlightsSrv, $location, Booking
       $scope.flights = flight;
       var outTickets = [];
       var returnTickets = [];
-      for (var i = 0; i < flight.length; i++) {
-        if (flight[i].way === "outgoing")
-          outTickets.push(flight[i]);
-        else {
-          returnTickets.push(flight[i]);
+      if (flight.length != 0) {
+        for (var i = 0; i < flight.length; i++) {
+          if (flight[i].way === "outgoing")
+            outTickets.push(flight[i]);
+          else {
+            returnTickets.push(flight[i]);
+          }
         }
+        BookingSrv.setOut(outTickets);
+        BookingSrv.setReturn(returnTickets);
+        BookingSrv.setFlight(flight[0].flightNumber);
+        BookingSrv.setFlightOut(flight[flight.length - 1].flightNumber);
       }
-      BookingSrv.setOut(outTickets);
-      BookingSrv.setReturn(returnTickets);
-      BookingSrv.setFlight(flight[0].flightNumber);
-      BookingSrv.setFlightOut(flight[flight.length-1].flightNumber);
-      console.log(BookingSrv.getFlightOut());
+      else{
+        $scope.showme = false;
+        alert("Booking Ref not found");
+      }
     });
   }
 

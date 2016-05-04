@@ -16,8 +16,8 @@ var f = function($compile) {
       var rows = null;
 
       scope.settings = {
-        canvasWidth: attrs.canvasWidth || 0.25*window.innerWidth,
-        canvasHeight: attrs.canvasHeight || 0.7 *window.innerHeight,
+        canvasWidth: attrs.canvasWidth || 0.25 * window.innerWidth,
+        canvasHeight: attrs.canvasHeight || 0.7 * window.innerHeight,
         vacantColourBg: attrs.vacantColourBg || '#76D75D',
         vacantColourFg: attrs.vacantColourFg || '#C1F2B4',
         occupiedColourBg: attrs.occupiedColourBg || '#800517',
@@ -89,13 +89,13 @@ var f = function($compile) {
             seatColour = scope.settings.vacantColourBg;
             textColour = scope.settings.vacantColourFg;
             break;
-          case 1:
-            seatColour = scope.settings.occupiedColourBg;
-            textColour = scope.settings.occupiedColourFg;
-            break;
           case 3:
             seatColour = scope.settings.blockedColourBg;
             textColour = scope.settings.blockedColourFg;
+            break;
+          case 1:
+            seatColour = scope.settings.occupiedColourBg;
+            textColour = scope.settings.occupiedColourFg;
             break;
           case 2:
             seatColour = scope.settings.selectedColourBg;

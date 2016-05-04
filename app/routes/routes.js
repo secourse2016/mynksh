@@ -185,7 +185,7 @@ module.exports = function(app, mongo) {
 
   app.post('/booking', function(req, res1) {
     stripe.charges.create({
-      amount: req.body.cost.toFixed(2) * 100,
+      amount: req.body.cost.toFixed(2) *100,
       currency: "USD",
       source: req.body.paymentToken,
       description: "Example charge"
