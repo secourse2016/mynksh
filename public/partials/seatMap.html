@@ -10,7 +10,7 @@
                         <span class="icon-bar"></span>
                     </button>
                 </div>
-                <a href='http://mynksh.com'>
+                <a href='#' onclick="location.href = document.referrer;return false">
                     <!-- <div id='logo'> -->
                     <span><img src='./assets/iberia-logo.png'></span>
                     <!-- </div> -->
@@ -37,7 +37,6 @@
       <div style="border-radius: 25px;padding: 1%;background-color:rgba(207, 207, 207, 1)">
         <div>
           <h6 class="list-heading" style="color:black">Selected seats
-            <small style="color:maroon">accessible in parent controller scope</small>
           </h6>
           <div>
             <!-- ngRepeat: node in selectedNodes track by node.uniqueName -->
@@ -45,7 +44,7 @@
           </div>
           Selected Seats: <font size=3 color="black"  ng-repeat = 'n in selectedNodes'>
           {{n.displayName}}</font><br>
-          <center><a href class="btn btn-lg hvr-underline-from-center"  style="background-color:rgba(0,0,0,0);color:maroon;"ng-click='Reserve()'>Reserve
+          <center><a href class="btn btn-lg hvr-underline-from-center"  style="background-color:rgba(0,0,0,0);color:maroon;"ng-click='Reserve()'>Change your 
             {{way}}
             seat</a></center>
           </div>
