@@ -44,7 +44,6 @@ module.exports = function(app, mongo) {
 
   // get ip of given airline name
   app.get('/data/singleAirline/:airlineName', function(req, res) {
-    // mongo.getAirports(function(err, airports) {
     if (req.params.airlineName === "Iberia")
       res.json("Iberia");
     else
@@ -56,7 +55,6 @@ module.exports = function(app, mongo) {
   // end of get ip method
 
   app.get('/data/seatMap/:flight', function(req, res) {
-    // mongo.getAirports(function(err, airports) {
     mongo.getSeatMap(req.params.flight,function(err, airLines) {
             res.json(airLines);
       })

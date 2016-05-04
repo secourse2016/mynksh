@@ -40,20 +40,15 @@ exports.getAirLines = function(cb) {
   });
 }
 
-<< << << < HEAD
 exports.getSeatMap = function(flight, cb) {
-  // mongo.connect(function(err, db) {
   var collection = mongo.db().collection('flights');
   collection.find({
     "flightNumber": flight
   }).toArray(function(err, airLines) {
     cb(err, airLines[0].SeatMap);
-    // mongo.close();
-    // });
   });
 }
 
-=== === =
 exports.getAirLineIP = function(airLineName, cb) {
   var airLineIP = "";
   if (airLineName === "Iberia") {
@@ -73,8 +68,6 @@ exports.getAirLineIP = function(airLineName, cb) {
   });
 }
 
-
->>> >>> > 4935 b088eb69a4077e96ad5311828a8f545750df
 exports.getBooking = function(cb) {
   var collection = mongo.db().collection('bookings');
   collection.find().toArray(function(err, bookings) {
