@@ -12,7 +12,7 @@
     "ip" : "52.90.46.68"
   },
   {
-    "name" : "Air France Airlines",
+    "name" : "AirFrance Airlines",
     "ip" : "52.34.160.140"
   },
   {
@@ -20,16 +20,16 @@
     "ip" : "52.36.195.124"
   },
   {
-    "name" : "SwissAir Airlines",
+    "name" : "Swiss Air Airlines",
     "ip" : "www.swiss-air.me"
   },
   {
-    "name" : "Airberlin Airlines",
-    "ip" : "ec2-52-38-101-89.us-west-2.compute.amazonaws.com:8080"
+    "name" : "Air Berlin Airlines",
+    "ip" : "ec2-52-38-101-89.us-west-2.compute.amazonaws.com"
   },
   {
     "name" : "Swiss Airlines",
-    "ip" : "ec2-54-213-214-212.us-west-2.compute.amazonaws.com:3000"
+    "ip" : "ec2-54-213-214-212.us-west-2.compute.amazonaws.com"
   },
   {
     "name" : "Delta Airlines",

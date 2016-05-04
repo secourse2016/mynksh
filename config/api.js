@@ -301,4 +301,61 @@ exports.searchBookings = function(bookingRef, cb) {
 
 var generateBookingRef = function(seatnum, flightNumber, businessOrEconomic) {
   return encoded = new Buffer(seatnum + ',' + flightNumber).toString('base64');
+}
+
+exports.changeSeats= function(flightNumber, oldSeats, newSeats, bookingRefNumber, cb){
+  getSeatMap(flightNumber, function(oldSeatMap)
+  {
+    changeSeatMap(oldSeatMap, newSeats, oldSeats, bookingRefNumber, function(newSeatMap)
+    {
+      updateSeatMap(flightNumber,newSeatMap, function(done)
+        {
+          if(done)
+            cb(true);
+        });
+    });
+  });
+  
+}
+var changeSeatMap = function (oldSeatMap, newSeats, oldSeats, bookingRefNumber,cb)
+{
+  for(var i= 0; i<oldSeatMap.length; i++)
+  {
+    for(var j=0;j<oldSeats.length;j++)
+    {
+      if(oldSeatMap[i].seatNum === oldSeats[j])
+        oldSeatMap[i].bookingRefNumber = undefined;
+      if(oldSeatMap[i].seatNum === newSeats[j])
+        oldSeatMap[i].bookingRefNumber= bookingRefNumber;
+    }
+  }
+  cb(oldSeatMap);
+  
+}
+var getSeatMap = function(flightNumber,cb)
+{
+  var collection = mongo.db().collection('flights');
+  collection.find({
+    "flightNumber": flightNumber
+  }).toArray(function (err, flight){
+    cb(flight[0].SeatMap);
+
+  });
+}
+var updateSeatMap =function(flightNumber, newSeatMap,cb)
+{
+  mongo.db().collection("flights").update({
+      "flightNumber":  flightNumber
+    }, {
+      $set: {
+        "SeatMap" : newSeatMap
+      }
+    }, {
+      upsert: false
+    }, function(err, results) {
+        if(err === undefined || err === null)
+          cb(true);
+        else
+          cb(false);
+    });
 };
