@@ -250,7 +250,7 @@ exports.check = function(passengerDetails, cabin, cost, outgoingFlightId, return
             expectedCost = (outgoingCost + returnCost) * tickets;
 
           }
-          if (expectedCost !== cost) {
+          if (expectedCost.toFixed(2) !== cost.toFixed(2)) {
             cb("The cost of the trip is not as expected");
             return;
           }
