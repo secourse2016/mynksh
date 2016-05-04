@@ -1,6 +1,6 @@
 /* Create Angular App Instance */
 
-App = angular.module('Iberia', ['ionic', 'onezone-datepicker', 'ui.router', 'ngMaterial']);
+App = angular.module('Iberia', ['ionic', 'ui.router', 'ngMaterial']);
 
 App.run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -68,12 +68,6 @@ App.config(function($stateProvider, $urlRouterProvider, $mdIconProvider, $mdDate
   .state('offer', {
     url: '/offers',
     templateUrl: 'partials/offers.html',
-    controller: 'landingCtrl'
-  })
-
-  .state('AboutUs', {
-    url: '/AboutUs',
-    templateUrl: 'partials/AboutUs.html',
     controller: 'landingCtrl'
   })
 
