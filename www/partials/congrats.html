@@ -14,7 +14,7 @@
   </ion-item>
   <br>
   <br>
-  <center><font size='5' style='color:white;family-font:"Lucida Sans Unicode"; float:center'>Your Booking Reference(s):</font></center><br>
+  <!-- <center><font size='5' style='color:white;family-font:"Lucida Sans Unicode"; float:center'>Your Booking Reference(s):</font></center><br>
   <div ng-if="airline1 ==airline2 && airline1 == 'Iberia'">
   <font  size=3 style="family-font:'Lucida Sans Unicode';color:white"><span class="ion-clipboard">Your booking is from
       {{airline1}}, please go back to
@@ -26,128 +26,149 @@ background:maroon" ng-click='copy();'>
       <font style="color:white">Copy</font>
     </button></center>
     <br><br>
-  </div>
+  </div> -->
 
-  <div ng-if="airline1 ==airline2 && airline1 != 'Iberia'">
-    <font size=3 style="family-font:'Lucida Sans Unicode';color:white"><span class="ion-clipboard">Your booking is from
-      {{airline1}}, please go to their website on
-      <a href>{{urlAirline1}}</a>
-      to track your booking.</span></font><br>
-    <center><textarea class="js-copytextarea" readonly style="width: 150px; height: 50px; color:white; background-color: maroon">{{bookingRefNo1}}</textarea></center>
+  <div ng-if="airline1 ==airline2 && airline1 == 'Iberia'">
+    <font  size=3 style="family-font:'Lucida Sans Unicode';color:white"><span class="ion-clipboard">Your booking is from
+      {{airline1}}, please go back to
+      <a href ng-click='landing();'>home page</a>.</span></font><br>
+    <center><textarea class="js-copytextarea" readonly>{{bookingRefNo1}}</textarea></center>
     <br>
     <center><button class="button button-outline button-positive" style="border: 1px solid #000;
 background:maroon" ng-click='copy();'>
-      <font style="color:white">Copy </font>
-    </button></center>
-    <br><br>
+      <font style="color:white">Copy</font>
+    </button></center><br><br>
   </div>
 
-  <div ng-if="airline1 !=airline2 && roundTrip == 'false'">
-    <font size=3 style="color:white">Your booking from
-      {{airline1}}, please go to their website on
-      <a href ng-click="goToUrl1();">{{urlAirline1}}</a>
-      to track your booking.</font><br>
-    <textarea class="js-copytextarea" readonly>{{bookingRefNo1}}</textarea>
+  <div ng-if="airline1 ==airline2 && airline1 == 'Iberia' && airline2 =='Iberia' && roundTrip == 'true'">
+    <font  size=3 style="family-font:'Lucida Sans Unicode';color:white"><span class="ion-clipboard">Your booking is from
+      {{airline1}}, please go back to
+      <a href ng-click='landing();'>home page</a>.</span></font><br>
+    <center><textarea class="js-copytextarea" readonly>{{bookingRefNo1}}</textarea></center>
     <br>
-    <button class="js-textareacopybtn" style="background-color:white" ng-click='copy();'>
-      <font size=3 style="color:maroon">Copy Textarea</font>
-    </button><br><br>
+    <center><button class="button button-outline button-positive" style="border: 1px solid #000;
+background:maroon" ng-click='copy();'>
+      <font style="color:white">Copy</font>
+    </button></center><br><br>
   </div>
+
   <div ng-if="airline1 ==airline2  && roundTrip == 'true'">
-    <font size=3 style="color:white">Your booking is from
+      <font  size=3 style="family-font:'Lucida Sans Unicode';color:white"><span class="ion-clipboard">Your booking is from
       {{airline1}}, please go to their website on
       <a href ng-click="goToUrl1();">{{urlAirline1}}</a>
-      to track your booking.</font><br>
-    <textarea class="js-copytextarea" readonly>{{bookingRefNo1}}</textarea>
+      to track your booking.</span></font><br>
+    <center><textarea class="js-copytextarea" readonly>{{bookingRefNo1}}</textarea></center>
     <br>
-    <button class="js-textareacopybtn" style="background-color:white" ng-click='copy();'>
-      <font size=3 style="color:maroon">Copy Textarea</font>
-    </button><br><br>
-    <font size=3 style="color:white">Your booking from
+    <center><button class="button button-outline button-positive" style="border: 1px solid #000;
+background:maroon" ng-click='copy();'>
+      <font style="color:white">Copy</font>
+    </button></center><br><br>
+      <font  size=3 style="family-font:'Lucida Sans Unicode';color:white"><span class="ion-clipboard">Your booking from
       {{airline2}}, please go to their website on
       <a href ng-click="goToUrl2();">{{urlAirline2}}</a>
-      to track your booking.</font><br>
-    <textarea class="js-copytextarea2" readonly>{{bookingRefNo2}}</textarea>
-    <br>
-    <button class="js-textareacopybtn2" style="background-color:white" ng-click='copy2();'>
-      <font size=3 style="color:maroon">Copy Textarea</font>
-    </button><br><br>
-  </div>
-
-  <div ng-if="airline1 !=airline2 && airline1 != 'Iberia' && airline2 != 'Iberia' && roundTrip == 'true'">
-    <font size=3 style="family-font:'Lucida Sans Unicode';color:white"><span class="ion-clipboard">Your booking from
-      {{airline1}}, please go to their website on
-      <a href>{{urlAirline1}}</a>
       to track your booking.</span></font><br>
-    <center><textarea class="js-copytextarea" readonly style="width: 150px; height: 50px; color:white;background-color: maroon">{{bookingRefNo1}}</textarea></center>
-    <br>
-    <center><button class="button button-outline button-positive" style="border: 1px solid #000;
-background:maroon" ng-click='copy();'>
-      <font style="color:white">Copy</font>
-    </button></center>
-    <br><br>
-
-    <font size=3 style="family-font:'Lucida Sans Unicode';color:white"><span class="ion-clipboard">Your booking from
-      {{airline2}}, please go to their website on
-      <a href>{{urlAirline2}}</a>
-      to track your booking.</span></font><br>
-    <center><textarea class="js-copytextarea2" readonly style="width: 150px; height: 50px; color:white; background-color: maroon">{{bookingRefNo2}}</textarea></center>
+    <center><textarea class="js-copytextarea2" readonly>{{bookingRefNo2}}</textarea></center>
     <br>
     <center><button class="button button-outline button-positive" style="border: 1px solid #000;
 background:maroon" ng-click='copy2();'>
       <font style="color:white">Copy</font>
-    </button></center>
-    <br><br>
+    </button></center><br><br>
   </div>
 
-  <div ng-if="airline1 !=airline2 && airline1 == 'Iberia' && airline2 != 'Iberia'">
-    <font  size=3 style="family-font:'Lucida Sans Unicode';color:white"><span class="ion-clipboard">Your booking from
+  <div ng-if="airline1 !=airline2 &&airline1 !='Iberia' && roundTrip == 'false'">
+      <font  size=3 style="family-font:'Lucida Sans Unicode';color:white"><span class="ion-clipboard">Your booking from
+      {{airline1}}, please go to their website on
+      <a href ng-click="goToUrl1();">{{urlAirline1}}</a>
+      to track your booking.</span></font><br>
+    <center><textarea class="js-copytextarea" readonly>{{bookingRefNo1}}</textarea></center>
+    <br>
+    <center><button class="button button-outline button-positive" style="border: 1px solid #000;
+background:maroon" ng-click='copy();'>
+      <font style="color:white">Copy</font>
+    </button></center><br><br>
+  </div>
+
+  <div ng-if="airline1 !=airline2 &&airline1 =='Iberia' && roundTrip == 'false'">
+      <font  size=3 style="family-font:'Lucida Sans Unicode';color:white"><span class="ion-clipboard">Your booking is from
       {{airline1}}, please go back to
-      <a href ng-click='landing();'>home page</a>.
-    </span></font><br>
-    <center><textarea class="js-copytextarea" readonly style="width: 150px; height: 50px; color:white; background-color: maroon">{{bookingRefNo1}}</textarea></center>
+      <a href ng-click='landing();'>home page</a>.</span></font><br>
+    <textarea class="js-copytextarea" readonly>{{bookingRefNo1}}</textarea>
     <br>
     <center><button class="button button-outline button-positive" style="border: 1px solid #000;
 background:maroon" ng-click='copy();'>
       <font style="color:white">Copy</font>
-    </button></center>
-    <br><br>
-    <font size=3 style="family-font:'Lucida Sans Unicode';color:white"><span class="ion-clipboard">Your booking from
-      {{airline2}}, please go to their website on
-      <a href>{{urlAirline2}}</a>
-      to track your booking.</span></font><br>
-    <center><textarea class="js-copytextarea2" readonly style="width: 150px; height: 50px; color:white; background-color: maroon">{{bookingRefNo2}}</textarea></center>
-    <br>
-    <center><button class="button button-outline button-positive" style="border: 1px solid #000;
-background:maroon" ng-click='copy2();'>
-      <font style="color:white">Copy</font>
-    </button></center>
-    <br><br>
+    </button></center><br><br>
   </div>
 
-  <div ng-if="airline1 !=airline2 && airline1 != 'Iberia' && airline2 == 'Iberia'">
-    <font size=3 style="family-font:'Lucida Sans Unicode';color:white"><span class="ion-clipboard">Your booking from
-      {{airline2}}, please go back to
-      <a href ng-click='landing();'>home page</a>.
-    </span></font><br>
-    <center><textarea class="js-copytextarea" readonly style="width: 150px; height: 50px; color:white;  background-color: maroon">{{bookingRefNo2}}</textarea></center>
+  <div ng-if="airline1 !=airline2 && airline1 != 'Iberia' && airline2 != 'Iberia'&& roundTrip == 'true'">
+      <font  size=3 style="family-font:'Lucida Sans Unicode';color:white"><span class="ion-clipboard">Your booking from
+      {{airline1}}, please go to their website on
+      <a href ng-click="goToUrl1();">{{urlAirline1}}</a>
+      to track your booking.</span></font><br>
+    <center><textarea class="js-copytextarea" readonly>{{bookingRefNo1}}</textarea></center>
     <br>
     <center><button class="button button-outline button-positive" style="border: 1px solid #000;
 background:maroon" ng-click='copy();'>
       <font style="color:white">Copy</font>
-    </button></center>
-    <br><br>
+    </button></center><br><br>
 
-    <font size=3 style="family-font:'Lucida Sans Unicode';color:white"><span class="ion-clipboard">Your booking from
-      {{airline1}}, please go to their website on
-      <a href>{{urlAirline1}}</a>
+      <font  size=3 style="family-font:'Lucida Sans Unicode';color:white"><span class="ion-clipboard">Your booking from
+      {{airline2}}, please go to their website on
+      <a href ng-click="goToUrl2();">{{urlAirline2}}</a>
       to track your booking.</span></font><br>
-    <center><textarea class="js-copytextarea2" readonly style="width: 150px; height: 50px; color:white; background-color: maroon">{{bookingRefNo1}}</textarea></center>
+    <center><textarea class="js-copytextarea2" readonly>{{bookingRefNo2}}</textarea></center>
     <br>
     <center><button class="button button-outline button-positive" style="border: 1px solid #000;
 background:maroon" ng-click='copy2();'>
       <font style="color:white">Copy</font>
-    </button></center>
+    </button></center><br><br>
+  </div>
+
+  <div ng-if="airline1 !=airline2 && airline1 == 'Iberia' && airline2 != 'Iberia' && roundTrip == 'true'">
+      <font  size=3 style="family-font:'Lucida Sans Unicode';color:white"><span class="ion-clipboard">Your booking from
+      {{airline1}}, please go back to
+        <a href ng-click='landing();'>home page</a>.</span></font>
+    <br>
+    <center><textarea class="js-copytextarea" readonly>{{bookingRefNo1}}</textarea></center>
+    <br>
+    <<center><button class="button button-outline button-positive" style="border: 1px solid #000;
+background:maroon" ng-click='copy();'>
+      <font style="color:white">Copy</font>
+    </button></center><br><br>
+      <font  size=3 style="family-font:'Lucida Sans Unicode';color:white"><span class="ion-clipboard">Your booking from
+      {{airline2}}, please go to their website on
+      <a href ng-click="goToUrl2();">{{urlAirline2}}</a>
+      to track your booking.</span></font><br>
+    <center><textarea class="js-copytextarea2" readonly>{{bookingRefNo2}}</textarea></center>
+    <br>
+    <center><button class="button button-outline button-positive" style="border: 1px solid #000;
+background:maroon" ng-click='copy2();'>
+      <font style="color:white">Copy</font>
+    </button></center><br><br>
+  </div>
+
+  <div ng-if="airline1 !=airline2 && airline1 != 'Iberia' && airline2 == 'Iberia' && roundTrip == 'true'">
+      <font  size=3 style="family-font:'Lucida Sans Unicode';color:white"><span class="ion-clipboard">Your booking from
+      {{airline2}}, please go back to
+      <a href ng-click='landing();'>home page</a>.</span>
+    </font><br>
+    <center><textarea class="js-copytextarea" readonly>{{bookingRefNo2}}</textarea></center>
+    <br>
+    <center><button class="button button-outline button-positive" style="border: 1px solid #000;
+background:maroon" ng-click='copy();'>
+      <font style="color:white">Copy</font>
+    </button></center><br><br>
+
+      <font  size=3 style="family-font:'Lucida Sans Unicode';color:white"><span class="ion-clipboard">Your booking from
+      {{airline1}}, please go to their website on
+      <a href ng-click="goToUrl1();">{{urlAirline1}}</a>
+      to track your booking.</span></font><br>
+    <center><textarea class="js-copytextarea2" readonly>{{bookingRefNo1}}</textarea></center>
+    <br>
+    <center><button class="button button-outline button-positive" style="border: 1px solid #000;
+background:maroon" ng-click='copy2();'>
+      <font style="color:white">Copy</font>
+    </button></center><br><br>
   </div>
   <!-- <textarea class="js-copytextarea" readonly style="width: 150px; height: 50px; color:white; margin-left:180px; background-color: maroon">
       {{bookingRefNo}} </textarea><br>
