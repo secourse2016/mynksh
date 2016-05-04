@@ -117,12 +117,12 @@ App.controller('seatMapCtrl', ['$scope', '$http', 'BookingSrv', '$routeParams', 
       $http.post('/choosingSeat', body).success(function(res) {
         if ($scope.way === "Return") {
           alert(res);
-          $location.url('/');
+          $location.url('http://52.58.24.76/');
         } else if (BookingSrv.getReturn().length != 0)
           $location.url('/seatmap/Return');
         else {
           alert(res);
-          $location.url('/');
+          $location.url('http://52.58.24.76/');
         }
       });
     } else {
