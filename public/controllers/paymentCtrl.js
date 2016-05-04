@@ -148,7 +148,10 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
           });
         })
         .error(function(data, status, headers, config) {
-          alert(data.errorMessage);
+          if(data.errorMessage===undefined || data.errorMessage === null)
+            alert("THIS AIRLINE DOESN'T SUPPORT EXTERNAL BOOKING");
+          else
+            alert(data.errorMessage);
         });
     }
   };
