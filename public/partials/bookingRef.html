@@ -43,6 +43,7 @@
             </div>
           </form>
           <button type="button" ng-disabled='booking.$invalid' class="btn btn-primary btn-lg" style="position:right; background:rgba(178,34,34, 1);margin-top: 15px" ng-click="SetBookingRef(selectedBookingRef);retreiveBookingRef();showme=true">Search My Flight</button>
+          <button type="button" ng-show="showme" ng-disabled='booking.$invalid' class="btn btn-primary btn-lg" style="position:right; background:rgba(178,34,34, 1);margin-top: 15px" ng-click="SetBookingRef(selectedBookingRef);retreiveBookingRef();goToSeats()">Change my Seats</button>
         </div>
 
         <div class="form-group" ng-show="showme" ng-repeat="n in flights">

@@ -57,13 +57,18 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
   var AirlineName2;
 
   $scope.payAction = function() {
-
+    
     var returnFlightId;
+    var ecoOrBus;
+    if (FlightsSrv.getSelectedCabin() === "true")
+      ecoOrBus = "economy";
+    else
+      ecoOrBus = "business";
     if (FlightsSrv.getSelectedRoundTrip() === 'true')
       var returnFlightId = OutReturnSrv.getSelectedReturnFlight().flightId;
     paymentInfo = {
       "passengerDetails": ConfirmSrv.getReservations(),
-      "class": FlightsSrv.getSelectedCabin(),
+      "class": ecoOrBus,
       "cost": OutReturnSrv.getSelectedPrice(),
       "outgoingFlightId": OutReturnSrv.getSelectedOutFlight().flightId,
       "returnFlightId": returnFlightId,
@@ -82,7 +87,7 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
     }
 
     if (FlightsSrv.getSelectedRoundTrip() === 'true')
-      AirlineName2 = OutReturnSrv.getSelectedReturnFlight().Airline; // return flight
+      AirlineName2 = OutReturnSrv.getSelectedReturnFlight().Airline;
 
     createStripeToken(AirlineName1);
 
@@ -122,7 +127,6 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
             paymentSrv.setBookingRefNo1(data.refNum);
           else
             paymentSrv.setBookingRefNo2(data.refNum);
-          //reset stripe key
           getOtherPubKey("Iberia", function(key) {
             Stripe.setPublishableKey(key);
 

@@ -1,29 +1,29 @@
 <ion-view view-title="Confirmation" class='wooden'>
   <ion-content class="padding">
     <form name='details'>
-      <div class='center'>
-        <font size="5" color="red"><b>Flight information</b></br></br></font>
-      </div>
+      <center>
+        <font size="5" color="maroon"><b>Flight information</b></br></br></font>
+      </center>
       <div class='serif round-edge1'>
-        <p><b>From:</b> {{selectedOutgoingFlight.origin}}</p>
-        <p><b>To:</b> {{selectedOutgoingFlight.destination}}</p>
-        <p><b>Outgoing Date:</b> {{selectedOutgoingFlight.departureDateTime | date: 'd/M/yyyy HH:mm'}}</p>
-        <p><b>Outgoing Flight #:</b> {{selectedOutgoingFlight.flightNumber}}</p>
-        <p><b>Outgoing airline:</b> {{selectedOutgoingFlight.Airline}}</p>
-        <p ng-show="roundTrip == 'true'"><b>Return Date:</b> {{selectedReturnFlight.departureDateTime | date: 'd/M/yyyy HH:mm'}}</p>
-        <p ng-show="roundTrip == 'true'"><b>Return Flight #:</b> {{selectedReturnFlight.flightNumber}}</p>
-        <p ng-show="roundTrip == 'true'"><b>Return airline:</b> {{selectedReturnFlight.Airline}}</p>
-        <p><b>Price:</b> {{price | currency: '$'}}</p>
+        <p><b><font style='color:black;font-size:1.5em'>From:</font></b> {{selectedOutgoingFlight.origin}}</p>
+        <p><b><font style='color:black;font-size:1.5em'>To:</font></b> {{selectedOutgoingFlight.destination}}</p>
+        <p><b><font style='color:black;font-size:1.5em'>Outgoing Date:</font></b> {{selectedOutgoingFlight.departureDateTime | date: 'd/M/yyyy HH:mm'}}</p>
+        <p><b><font style='color:black;font-size:1.5em'>Outgoing Flight #:</font></b> {{selectedOutgoingFlight.flightNumber}}</p>
+        <p><b><font style='color:black;font-size:1.5em'>Outgoing airline:</font></b> {{selectedOutgoingFlight.Airline}}</p>
+        <p ng-show="roundTrip == 'true'"><b><font style='color:black;font-size:1.5em'>Return Date:</font></b> {{selectedReturnFlight.departureDateTime | date: 'd/M/yyyy HH:mm'}}</p>
+        <p ng-show="roundTrip == 'true'"><b><font style='color:black;font-size:1.5em'>Return Flight #:</font></b> {{selectedReturnFlight.flightNumber}}</p>
+        <p ng-show="roundTrip == 'true'"><b><font style='color:black;font-size:1.5em'>Return airline:</font></b> {{selectedReturnFlight.Airline}}</p>
+        <p><b><font style='color:black;font-size:1.5em'>Price:</font></b> {{price | currency: '$'}}</p>
       </div>
       <div ng-repeat='reservation in reservations'>
-        <div class='center'>
+        <center>
           </br>
           <md-divider/>
           </br>
-          <font size="5" color="red"><b>Passenger <span ng-if='tickets != 1'>{{$index +1}} </span>information</b></font>
+          <font size="5" color="maroon"><b>Passenger <span ng-if='tickets != 1'>{{$index +1}} </span>information</b></font>
           </br>
           </br>
-        </div>
+        </center>
         <div class='round-edge2'>
           <md-input-container class="md-block" flex-gt-sm>
             <label class='stroke'>First Name</label>
@@ -74,9 +74,9 @@
         </div>
         </br>
       </div>
-      <div class='center'>
+      <center>
         <button class="button button-outline button-assertive" ng-disabled='details.$invalid' ng-click="goToPayment()"><font style="color:maroon">Proceed to payment</font></button>
-      </div>
+    </center><br>
 
     </form>
   </ion-content>
