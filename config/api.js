@@ -203,16 +203,10 @@ exports.check = function(passengerDetails, cabin, cost, outgoingFlightId, return
     cb("Please specify the cabin economy/business.");
     return;
   }
-<<<<<<< HEAD
-  var validCabin = cabin.toLowerCase();
-  if (validCabin !== "economy" && validCabin !== "business") {
-    cb("The chosen calss is not supported by IBERIA.");
-=======
   var validCabin= cabin.toLowerCase();
   if(validCabin !== "economy" && validCabin !== "business")
   {
     cb("The chosen class is not supported by IBERIA.");
->>>>>>> 06ced1865974ad5812d0d5493c066a5a15c1a558
     return;
   }
   for (var i = 0; i < passengerDetails.length; i++) {
@@ -311,7 +305,7 @@ exports.changeSeats= function(flightNumber, oldSeats, newSeats, bookingRefNumber
         });
     });
   });
-  
+
 }
 var changeSeatMap = function (oldSeatMap, newSeats, oldSeats, bookingRefNumber,cb)
 {
@@ -326,7 +320,7 @@ var changeSeatMap = function (oldSeatMap, newSeats, oldSeats, bookingRefNumber,c
     }
   }
   cb(oldSeatMap);
-  
+
 }
 var getSeatMap = function(flightNumber,cb)
 {
