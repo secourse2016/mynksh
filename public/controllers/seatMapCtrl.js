@@ -20,7 +20,6 @@ App.controller('seatMapCtrl', ['$scope', '$http', 'BookingSrv', '$routeParams', 
   });
 
 
-
   $scope.Map = function(seatMap) {
     var seatsData = {};
     seatsData.rows = [];
@@ -32,8 +31,10 @@ App.controller('seatMapCtrl', ['$scope', '$http', 'BookingSrv', '$routeParams', 
       "displayName": null,
       "selected": 0
     };
+    console.log($scope.ref);
     for (var i = 1; i < seatMap.length + 1; i++) {
       var state = (seatMap[i - 1].bookingRefNumber === undefined || seatMap[i - 1].bookingRefNumber === null) ? 0 : ( (seatMap[i - 1].bookingRefNumber === $scope.ref) ? 0 : 1);
+      state = (seatMap[i - 1].Cabin === $scope.old[0].class) ? state : 3;
       var node = {
         "type": 1,
         "uniqueName": seatMap[i - 1].seatNum,

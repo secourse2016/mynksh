@@ -187,7 +187,8 @@ exports.submitPay = function(firstName, lastName, passportNumber, expiryDate, da
         "destination": flights[0].destination,
         "arrivalTime": flights[0].arrivalTime,
         "departureTime": flights[0].departureTime,
-        "way": fWay
+        "way": fWay,
+        "class" : businessOrEconomic
       };
       collection.insertOne(document, {
         w: 1
