@@ -29,7 +29,7 @@ App.controller('seatMapCtrl', ['$scope', '$http', 'OutReturnSrv', '$routeParams'
       "selected": 0
     };
     for (var i = 1; i < seatMap.length + 1; i++) {
-      var state = (seatMap[i - 1].Cabin === $scope.cabin) ? ((seatMap[i - 1].bookingRefNumber === undefined) ? 0 : 1) : 3;
+      var state = (seatMap[i - 1].Cabin === $scope.cabin) ? ((seatMap[i - 1].bookingRefNumber === undefined) ? 0 : 1) : 1;
       var node = {
         "type": 1,
         "uniqueName": seatMap[i - 1].seatNum,
