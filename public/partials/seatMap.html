@@ -13,7 +13,9 @@
     <div class="flex-container">
         <div class="flex-columns flex-column-right">
             <div>
-                <keruc-seatpicker class="ng-isolate-scope" data-data="seatsData" data-selected-nodes="selectedNodes" data-on-selected="nodeSelected($node)" data-on-deselected="nodeDeselected($node)" data-on-disallowed-selected="nodeDisallowedSelected($node)"><canvas width="500" height="500" id="canvasId"></canvas></keruc-seatpicker>
+                <keruc-seatpicker class="ng-isolate-scope" data-data="seatsData" data-selected-nodes="selectedNodes" data-on-selected="nodeSelected($node)"
+                data-on-deselected="nodeDeselected($node)" data-on-disallowed-selected="nodeDisallowedSelected($node)"><canvas width="500" height="500" id="canvasId">
+                </canvas></keruc-seatpicker>
                 <div>
                     <h6 class="list-heading">Events <small>run your own callbacks</small></h6>
                     <div class="ng-binding" ng-bind="userEvent">user deselected F7</div>

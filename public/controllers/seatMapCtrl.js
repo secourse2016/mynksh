@@ -3,9 +3,9 @@ App.controller('seatMapCtrl', ['$scope', '$http', 'OutReturnSrv', '$routeParams'
   // $scope.roundTrip = FlightsSrv.getSelectedRoundTrip();
   $scope.way = $routeParams.way;
   // if ($scope.way === 'Outgoing')
-    // $scope.flightNumber = OutReturnSrv.getSelectedReturnFlight().flightNumber;
+  // $scope.flightNumber = OutReturnSrv.getSelectedReturnFlight().flightNumber;
   // else
-    // $scope.flightNumber = OutReturnSrv.getSelectedReturnFlight().flightNumber;
+  // $scope.flightNumber = OutReturnSrv.getSelectedReturnFlight().flightNumber;
 
   $scope.flightNumber = 'MYNKSH20';
   $scope.roundTrip = 'true';
@@ -29,7 +29,7 @@ App.controller('seatMapCtrl', ['$scope', '$http', 'OutReturnSrv', '$routeParams'
       "selected": 0
     };
     for (var i = 1; i < seatMap.length + 1; i++) {
-      var state = (seatMap[i - 1].Cabin === $scope.cabin) ? ((seatMap[i - 1].bookingRefNumber === undefined) ? 0 : 1) : 1;
+      var state = (seatMap[i - 1].bookingRefNumber === undefined) ? ((seatMap[i - 1].Cabin === $scope.cabin) ? 0 : 3) : 1;
       var node = {
         "type": 1,
         "uniqueName": seatMap[i - 1].seatNum,
@@ -59,6 +59,12 @@ App.controller('seatMapCtrl', ['$scope', '$http', 'OutReturnSrv', '$routeParams'
     };
     return seatsData;
   }
+
+  maxSeatstoBeSelected = 4;
+  $scope.$watch('selectedNodes', function(val) {
+    // if ($scope.selectedNodes.length > 3)
+      console.log(val);
+  });
 
 
   $scope.selectedNodes = [];
