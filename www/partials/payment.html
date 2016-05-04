@@ -20,7 +20,7 @@
           <span style='color:red' ng-show='(reviewForm.CVV.$error.number || reviewForm.CVV.$error.required) && reviewForm.CVV.$dirty'>Valid security code is required</span>
           <span style='color:red' ng-show='(reviewForm.CVV.$error.minlength || reviewForm.CVV.$error.maxlength) && reviewForm.CVV.$dirty'>Security code must be 3 digits or letters</span>
         </label>
-        
+
         <div class="list">
           <span class="input-label" style="color:maroon; margin-left:3%;">Expiry date</font></span>
           <md-input-container style="margin-left:3%">
@@ -52,7 +52,6 @@
             </label>
             <md-select ng-model="selectedYear" ng-required='true'>
               <md-optgroup label="Year">
-                <md-option value="2015" ng-model="selectedYear" style='color:black'>2015</md-option>
                 <md-option value="2016" ng-model="selectedYear" style='color:black'>2016</md-option>
                 <md-option value="2017" ng-model="selectedYear" style='color:black'>2017</md-option>
                 <md-option value="2018" ng-model="selectedYear" style='color:black'>2018</md-option>
@@ -66,7 +65,7 @@
           </md-input-container>
         </div>
         <center>
-          <h4><font color="maroon">Price : {{totalPrice}}$</font></h4></center>
+          <h4><font color="maroon">Price : {{totalPrice | currency: outCurrency}}</font></h4></center>
         <center>
           <button class="button button-assertive" style="border: 1px solid #000; background:white;" ng-disabled="reviewForm.$invalid" ng-click="SetCardNo(selectedCardNumber); SetMonth(selectedMonth); SetYear(selectedYear); SetCVV(selectedCVV);payAction();"><font style="color:maroon">Book the flight</font></button>
         </center>

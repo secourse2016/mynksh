@@ -89,15 +89,14 @@
                   <!-- <form class="form-horizontal"> -->
                 <div class="mainContainer col-lg-12" style='padding-bottom: 3%'>
                     <form name='details' class="contact-form form-horizontal support-form">
-                        </br>
                         <div>
-                            <div class="contact-form support-form" ng-repeat='reservation in reservations'>
-                                <div>
+                            <div class="contact-form support-form" ng-repeat='reservation in reservations' style='border-bottom: 1px solid red;padding-top: 4%;padding-bottom: 2%'>
                                     <div class="form-group">
-                                        <font class="col-sm-8 text-left" size="5" color="grey"><b>Passenger <span ng-if='tickets != 0'>{{$index +1}} </span>information
+                                        <font class="col-sm-8 text-left" size="5" color="red"><b>Passenger <span ng-if='tickets != 1'>{{$index +1}} </span>Information
                                             </br>
                                           </br></b></font>
                                     </div>
+                                    <div style='padding-left: 5%'>
                                     <div class="form-group">
                                         <font class="col-sm-4 text-left" size="4" color="black">First Name*:</font>
                                         <div class="col-md-8 col-sm-8 text-left">
