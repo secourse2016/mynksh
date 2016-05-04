@@ -16,12 +16,13 @@ App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $locati
     return (($scope.selectedOutgoingFlight != undefined) && ($scope.selectedOutgoingFlight === group)) || (($scope.selectedReturnFlight != undefined) && ($scope.selectedReturnFlight === group));
   };
 
-  // $scope.roundTrip = FlightsSrv.getSelectedRoundTrip();
-  // $scope.origin = FlightsSrv.getSelectedOriginAirport();
-  // $scope.dest = FlightsSrv.getSelectedDestinationAirport();
-  // $scope.oDate = FlightsSrv.getSelectedOutDate();
-  // $scope.rDate = FlightsSrv.getSelectedReturnDate();
-  // $scope.cabin = FlightsSrv.getSelectedCabin();
+  $scope.roundTrip = FlightsSrv.getSelectedRoundTrip();
+  $scope.origin = FlightsSrv.getSelectedOriginAirport();
+  $scope.dest = FlightsSrv.getSelectedDestinationAirport();
+  $scope.oDate = FlightsSrv.getSelectedOutDate();
+  $scope.rDate = FlightsSrv.getSelectedReturnDate();
+  $scope.cabin = FlightsSrv.getSelectedCabin();
+  $scope.tickets = FlightsSrv.getTickets();
   $scope.outgoingPrice = 0;
   $scope.returnPrice = 0;
   $scope.outFlightFound = true;
@@ -29,43 +30,31 @@ App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $locati
   $scope.outgoingInfo = [];
   $scope.returnInfo = [];
 
-  $scope.roundTrip = 'true';
-  $scope.origin = 'CAI';
-  $scope.dest = 'JED';
-  $scope.oDate = 'April 30, 2016';
-  $scope.rDate = 'May 2, 2016';
-  $scope.cabin = 'economy';
-
-
-
-  // if (FlightsSrv.getPinging().toString() === 'true')
-  if ($scope.roundTrip === 'true')
-    pingAirlineR($scope.origin, $scope.dest, changeISOFormat($scope.oDate), changeISOFormat($scope.rDate));
-  else
-    pingAirlineS($scope.origin, $scope.dest, changeISOFormat($scope.oDate));
+  if (FlightsSrv.getPinging().toString() === 'true')
+    if ($scope.roundTrip === 'true')
+      pingAirlineR($scope.origin, $scope.dest, changeISOFormat($scope.oDate), changeISOFormat($scope.rDate), $scope.tickets);
+    else
+      pingAirlineS($scope.origin, $scope.dest, changeISOFormat($scope.oDate), $scope.tickets);
 
   if ($scope.roundTrip === 'true')
-    roundTripInfo($scope.origin, $scope.dest, changeISOFormat($scope.oDate), changeISOFormat($scope.rDate));
+    roundTripInfo($scope.origin, $scope.dest, changeISOFormat($scope.oDate), changeISOFormat($scope.rDate), $scope.tickets);
   else
-    oneWayTripInfo($scope.origin, $scope.dest, changeISOFormat($scope.oDate));
+    oneWayTripInfo($scope.origin, $scope.dest, changeISOFormat($scope.oDate), $scope.tickets);
 
-  var flights = [];
-  flights.outgoingFlights = [];
-  flights.returnFlights = [];
-
-  function pingAirlineR(origin, dest, oDate, rDate) {
+  function pingAirlineR(origin, dest, oDate, rDate, tickets) {
     OutReturnSrv.getairLinesInfo().success(function(airlines) {
       airlines.forEach(function(c) {
         var tclass = ($scope.cabin === "true") ? "economy" : "business";
         var departDate = moment(oDate).toDate().getTime();
         var outDate = moment(oDate).toDate().getTime();
         var jwt = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJNWU5LU0giLCJpYXQiOjE0NjA3NzIyOTQsImV4cCI6MTQ5MjMwODI5NSwiYXVkIjoid3d3LnNlY291cnNlLmNvbSIsInN1YiI6Ik1ZTktTSCBJYmVyaWEiLCJUZWFtIjoiTVlOS1NIIn0.hZxhv8XAcu1cARgcrtfb0l_crF1-Ic1tJt9eUhIL0qQ';
-        $http.get('http://localhost:8080/api/others/search/' + c.ip + '/' + origin + '/' + dest + '/' + departDate + '/' + outDate + '/' + tclass + '/' + jwt).success(function(flight) {
-          if (flight != undefined && flight.outgoingFlights != undefined && flight.outgoingFlights[0] != undefined) {
+        $http.get('http://52.58.24.76/api/others/search/' + c.ip + '/' + origin + '/' + dest + '/' + departDate + '/' + outDate + '/' + tclass + '/' + tickets + '/' + jwt).success(function(flight) {
+          // console.log(flight);
+          if (flight.outgoingFlights != undefined && flight.outgoingFlights[0] != undefined) {
             flight.outgoingFlights[0].cost = Number(flight.outgoingFlights[0].cost);
             $scope.outgoingInfo.push(flight.outgoingFlights[0]);
           }
-          if (flight != undefined && flight.returnFlights != undefined && flight.returnFlights[0] != undefined) {
+          if (flight.returnFlights != undefined && flight.returnFlights[0] != undefined) {
             flight.returnFlights[0].cost = Number(flight.returnFlights[0].cost);
             $scope.returnInfo.push(flight.returnFlights[0]);
           }
@@ -75,55 +64,48 @@ App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $locati
     });
   };
 
-  function pingAirlineS(origin, dest, oDate) {
+  function pingAirlineS(origin, dest, oDate, tickets) {
     OutReturnSrv.getairLinesInfo().success(function(airlines) {
       airlines.forEach(function(c) {
         var tclass = ($scope.cabin === "true") ? "economy" : "business";
         var departDate = moment(oDate).toDate().getTime();
         jwt = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJNWU5LU0giLCJpYXQiOjE0NjA3NzIyOTQsImV4cCI6MTQ5MjMwODI5NSwiYXVkIjoid3d3LnNlY291cnNlLmNvbSIsInN1YiI6Ik1ZTktTSCBJYmVyaWEiLCJUZWFtIjoiTVlOS1NIIn0.hZxhv8XAcu1cARgcrtfb0l_crF1-Ic1tJt9eUhIL0qQ';
-        $http.get('http://localhost:8080/api/others/search/' + c.ip + '/' + origin + '/' + dest + '/' + departDate + '/' + tclass + '/' + jwt).success(function(flight) {
-          if (flight != undefined && flight.outgoingFlights != undefined && flight.outgoingFlights[0] != undefined) {
+        $http.get('http://52.58.24.76/api/others/search/' + c.ip + '/' + origin + '/' + dest + '/' + departDate + '/' + tclass + '/' + tickets + '/' + jwt).success(function(flight) {
+          if (flight.outgoingFlights != undefined && flight.outgoingFlights[0] != undefined) {
             flight.outgoingFlights[0].cost = Number(flight.outgoingFlights[0].cost);
             $scope.outgoingInfo.push(flight.outgoingFlights[0]);
           }
-          // console.log(flight.outgoingFlights);
         });
       });
     });
   };
 
 
-  function roundTripInfo(origin, dest, oDate, rDate) {
+  function roundTripInfo(origin, dest, oDate, rDate, tickets) {
     if ($scope.cabin === "true") {
-      OutReturnSrv.getRoundTripInfo(origin, dest, oDate, rDate, "economy").success(function(flights) {
-        if (flights.outgoingFlights[0] != undefined && flights.outgoingFlights[0].length != 0)
+      OutReturnSrv.getRoundTripInfo(origin, dest, oDate, rDate, "economy", tickets).success(function(flights) {
+        if (flights.outgoingFlights[0] != undefined)
           $scope.outgoingInfo.push(flights.outgoingFlights[0]);
-        if (flights.returnFlights[0] != undefined && flights.returnFlights[0].length != 0)
+        if (flights.returnFlights[0] != undefined)
           $scope.returnInfo.push(flights.returnFlights[0]);
-        // if(Object.keys(outgoingFlight).length === 0 || Object.keys(returnFlight).length === 0 )
-        //     res.send("no flights found");
         if ($scope.outgoingInfo.length === 0) {
-          console.log("outgoing empty");
           $scope.outFlightFound = false;
         }
         if ($scope.returnInfo.length === 0) {
-          console.log("outgoing empty");
           $scope.returnFlightFound = false;
         }
 
       });
     } else {
-      OutReturnSrv.getRoundTripInfo(origin, dest, oDate, rDate, "business").success(function(flights) {
-        if (flights.outgoingFlights[0] != undefined && flights.outgoingFlights[0].length != 0)
+      OutReturnSrv.getRoundTripInfo(origin, dest, oDate, rDate, "business", tickets).success(function(flights) {
+        if (flights.outgoingFlights[0] != undefined)
           $scope.outgoingInfo.push(flights.outgoingFlights[0]);
-        if (flights.returnFlights[0] != undefined && flights.returnFlights[0].length != 0)
+        if (flights.returnFlights[0] != undefined)
           $scope.returnInfo.push(flights.returnFlights[0]);
         if ($scope.outgoingInfo.length === 0) {
-          console.log("outgoing empty");
           $scope.outFlightFound = false;
         }
         if ($scope.returnInfo.length === 0) {
-          console.log("outgoing empty");
           $scope.returnFlightFound = false;
         }
 
@@ -132,17 +114,17 @@ App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $locati
   };
 
 
-  function oneWayTripInfo(origin, dest, oDate) {
+  function oneWayTripInfo(origin, dest, oDate, tickets) {
     if ($scope.cabin === "true") {
-      OutReturnSrv.getOneWayTripInfo(origin, dest, oDate, "economy").success(function(flights) {
-        if (flights.outgoingFlights[0] != undefined && flights.outgoingFlights[0].length != 0)
+      OutReturnSrv.getOneWayTripInfo(origin, dest, oDate, "economy", tickets).success(function(flights) {
+        if (flights.outgoingFlights[0] != undefined)
           $scope.outgoingInfo.push(flights.outgoingFlights[0]);
         if ($scope.outgoingInfo.length === 0)
           $scope.outFlightFound = false;
       });
     } else {
-      OutReturnSrv.getOneWayTripInfo(origin, dest, oDate, "business").success(function(flights) {
-        if (flights.outgoingFlights[0] != undefined && flights.outgoingFlights[0].length != 0)
+      OutReturnSrv.getOneWayTripInfo(origin, dest, oDate, "business", tickets).success(function(flights) {
+        if (flights.outgoingFlights[0] != undefined)
           $scope.outgoingInfo.push(flights.outgoingFlights[0]);
         if ($scope.outgoingInfo.length === 0)
           $scope.outFlightFound = false;
@@ -185,10 +167,9 @@ App.controller('flightsCtrl', function($scope, FlightsSrv, OutReturnSrv, $locati
     OutReturnSrv.setSelectedOutFlight($scope.selectedOutgoingFlight);
     if ($scope.roundTrip == 'true') {
       OutReturnSrv.setSelectedReturnFlight($scope.selectedReturnFlight);
-      OutReturnSrv.setSelectedPrice($scope.selectedOutgoingFlight.cost + $scope.selectedReturnFlight.cost);
+      OutReturnSrv.setSelectedPrice(($scope.selectedOutgoingFlight.cost + $scope.selectedReturnFlight.cost) * $scope.tickets);
     } else
-      OutReturnSrv.setSelectedPrice($scope.selectedOutgoingFlight.cost);
-
+      OutReturnSrv.setSelectedPrice($scope.selectedOutgoingFlight.cost * $scope.tickets);
     $location.url('/confirm');
   };
 

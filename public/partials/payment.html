@@ -11,9 +11,7 @@
                         <span class="icon-bar"></span>
                     </button>
                 </div>
-                
-                <a href='http://mynksh.com'>
-                    <!-- <div id='logo'> -->
+                <a href="#" onclick="location.href = document.referrer; return false;">
                     <span><img src='./assets/iberia-logo.png'></span>
                     <!-- </div> -->
                 </a>
@@ -21,7 +19,6 @@
         <!-- Main Navigation menu ends-->
         </nav>
     </div>
-</div>
 </div>
 
 <link rel="stylesheet" href="css/style.css" />
@@ -43,42 +40,16 @@
                         <!--  i have two tabs because of visa and paypal   -->
                         <div class="tabs" style="position:relative; top:-20px;color:black">
                             <ul class="nav nav-tabs navTab">
-                                <li class=""><a href ng-click="tab1()" data-toggle="tab" aria-expanded="false"><font size="5" color="black" class="text-left">Card payment</font></a></li>
-                                <li class=""><a href ng-click="tab2()" ng-show='false' data-toggle="tab" aria-expanded="false"><font size="3" color="black" class="text-left">PayPal</font></a></li>
+                                <li class=""><a href data-toggle="tab" aria-expanded="false"><font size="5" color="black" class="text-left">Card payment</font></a></li>
 
                             </ul>
                             <div id="myTabContent" class="tab-content">
-                                <div class="tab-pane fade {{tab}}">
+                                <div class="tab-pane fade active in">
                                     <!--  payment form  -->
                                     <br>
                                     <br>
                                     <div class="container form ">
                                         <form class="contact-form support-form" name="reviewForm" novalidate="">
-                                            <div class="form-group row">
-                                                <font size="3" color="black" class="col-sm-4 text-left">Type of card<font color="red" >*</font>: </font>
-                                                <div class="col-md-8 col-sm-8 text-left">
-                                                    <div class="dropdown">
-                                                        <!-- <button class="btn btn-primary dropdown-toggle" style="background:rgba(178,34,34, 1)" type="button" data-toggle="dropdown"> Type : {{selectedType}} -->
-                                                            <!-- <span class="caret"></span></button> -->
-                                                        <!-- <ul class="dropdown-menu"> -->
-                                                            <select name="MonthC" ng-model="selectedType" ng-required='true' style='color:black' >
-                                                              <option value="" disabled selected>Please Select your Card Type</option>
-                                                                <option style='color:black' value="Personal Visa Card (no charge)" ng-model="selectedType">Personal Visa Card (no charge)</option>
-                                                                <option style='color:black' value="Visa Corporate Card (+6.64 €)" ng-model="selectedType">Visa Corporate Card (+6.64 €)</option>
-                                                                <option style='color:black' value="Personal MasterCard (no charge)" ng-model="selectedType">Personal MasterCard (no charge)</option>
-                                                                <option style='color:black' value="MasterCard Corporate (+6.64 €)" ng-model="selectedType">MasterCard Corporate (+6.64 €)</option>
-                                                                <option style='color:black' value="Personal American Express (no charge)" ng-model="selectedType">Personal American Express (no charge)</option>
-                                                                <option style='color:black' value="American Express Corporate (+6.64 €)" ng-model="selectedType">American Express Corporate (+6.64 €)</option>
-                                                                <option style='color:black' value="Diners Club (+6.64 €)" ng-model="selectedType">Diners Club (+6.64 €)</option>
-                                                                <option style='color:black' value="UATP/Airplus (+6.64 €)" ng-model="selectedType">UATP/Airplus (+6.64 €)</option>
-                                                                <option style='color:black' value="Carte Blanche (+6.64 €)" ng-model="selectedType">Carte Blanche (+6.64 €)</option>
-                                                            </select>
-
-                                                        <!-- </ul> -->
-                                                    </div>
-                                                </div>
-                                            </div>
-
 
                                             <div class="form-group row">
                                                 <font size="3" color="black" class="col-sm-4 text-left">Card number<font color="red" >*</font>:</font>
@@ -93,7 +64,7 @@
                                             <div class="form-group row">
                                                 <font size="3" color="black" class="col-sm-4 text-left">Security code<font color="red" >*</font>:</font>
                                                 <div class="col-md-8 col-sm-8 text-left">
-                                                    <input type="number" class="form-control" name="CVV" placeholder="CVV" ng-model="selectedCVV" ng-required='true' ng-minlength='3' ng-maxlength='3'>
+                                                    <input type="number" class="form-control" name="CVV" placeholder="CVC" ng-model="selectedCVV" ng-required='true' ng-minlength='3' ng-maxlength='3'>
                                                 </div>
                                                 <span style='color:red' ng-show='(reviewForm.CVV.$error.number || reviewForm.CVV.$error.required) && reviewForm.CVV.$dirty'>A valid security code is required.</span>
                                                 <span style='color:red' ng-show='(reviewForm.CVV.$error.minlength || reviewForm.CVV.$error.maxlength) && reviewForm.CVV.$dirty'>Security code must be 3 digits.</span>
@@ -101,12 +72,12 @@
 
                                             <div class="form-group row">
                                                 <font size="3" color="black" class="col-sm-4 text-left">Expiry date<font color="red" >*</font>:</font>
-                                                <div class="col-md-8 col-sm-8 text-left">
-                                                    <div class="dropdown" selectedMonth="Month" style="position: relative">
+                                                <div class="text-left">
+                                                    <div class="dropdown col-sm-6">
                                                         <!-- <button class="btn btn-primary dropdown-toggle" style="background:rgba(178,34,34, 1)" type="button" data-toggle="dropdown"> Month {{selectedMonth}} -->
                                                             <!-- <span class="caret"></span></button> -->
                                                         <!-- <ul class="dropdown-menu"> -->
-                                              <select name="month" ng-model="selectedMonth" ng-required='true'  style='color:black'>
+                                              <select name="month" ng-model="selectedMonth" ng-required='true'  style='color:black;'>
                                                                   <option value="" disabled selected>Month</option>
                                                                 <option value="1" ng-model="selectedMonth" style='color:black'>1</option>
                                                                 <option value="2" ng-model="selectedMonth" style='color:black'>2</option>
@@ -124,7 +95,7 @@
 
                                                         <!-- </ul> -->
                                                     </div>
-                                                    <div class="dropdown" style="position: relative;left:80px ">
+                                                    <div class="dropdown col-sm-4">
                                                         <!-- <button class="btn btn-primary dropdown-toggle" style="background:rgba(178,34,34, 1)" type="button" data-toggle="dropdown"> Year {{selectedYear}} -->
                                                             <!-- <span class="caret"></span></button> -->
                                                         <!-- <ul class="dropdown-menu"> -->
@@ -145,59 +116,9 @@
                                                 </div>
                                             </div>
 
-                                            <div class="form-group row">
-                                                <font size="3" color="black" class="col-sm-4 text-left">First name<font color="red" >*</font>:</font>
-                                                <div class="col-md-8 col-sm-8 text-left">
-                                                    <label style='color:black'>{{reservation.FName}}</label>
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group row">
-                                                <font size="3" color="black" class="col-sm-4 text-left">Surname<font color="red" >*</font>:</font>
-                                                <div class="col-md-8 col-sm-8 text-left">
-                                                    <label style='color:black'>{{reservation.LName}}</label>
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group row">
-                                                <font size="3" color="black" class="col-sm-4 text-left">Street<font color="red" >*</font>:</font>
-                                                <div class="col-md-8 col-sm-8 text-left">
-                                                    <input type="text" class="form-control" name="Street" placeholder="1-221 QUEBEC ST VICTORIA BC" ng-model="selectedStreet" ng-required='true'>
-                                                    <span style='color:red' ng-show='reviewForm.Street.$error.required && reviewForm.Street.$dirty'>Street is required</span>
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group row">
-                                                <font size="3" color="black" class="col-sm-4 text-left">Postal code<font color="red" >*</font>:</font>
-                                                <div class="col-md-8 col-sm-8 text-left">
-                                                    <input type="text" class="form-control" name="postalCode" placeholder="Z123Z" ng-model="selectedPostalcode" ng-required='true' ng-minlength='5' ng-maxlength='5'>
-                                                </div>
-                                                <span style='color:red' ng-show='(reviewForm.postalCode.$error.number || reviewForm.postalCode.$error.required) && reviewForm.postalCode.$dirty'>A valid postal code is required.</span>
-                                                <span style='color:red' ng-show='(reviewForm.postalCode.$error.minlength || reviewForm.postalCode.$error.maxlength)&& reviewForm.postalCode.$dirty'>Postal Code must be 5 characters.</span>
-                                            </div>
-
-                                            <div class="form-group row">
-                                                <font size="3" color="black" class="col-sm-4 text-left">City<font color="red" >*</font>:</font>
-                                                <div class="col-md-8 col-sm-8 text-left">
-                                                    <input type="text" class="form-control" name="city" placeholder="Cairo" ng-model="SelectedCity" ng-required='true'>
-                                                </div>
-                                                <span style='color:red' ng-show='reviewForm.city.$error.required && reviewForm.city.$dirty'>City is required</span>
-                                            </div>
-                                            <div class="form-group row">
-                                                <font size="3" color="black" class="col-sm-6 text-left">Additional Information:</font>
-                                                <div class="col-md-12 text-left">
-                                                    <br>
-                                                    <input type="text" style='position:relative; top: -30px ; left: -90px   ;width:70%' class="form-control" id="info" placeholder="Extra" ng-model="selectedExtra">
-                                                </div>
-                                            </div>
                                         </form>
                                     </div>
                                     <!--  end of form    -->
-                                </div>
-                                <div class="tab-pane fade {{tab2}} " id="profile">
-                                    </br>
-                                    <font size="6" style=" color:rgba(178,34,34, 1)">This feature is coming <strong>soon</strong>!</font>
-                                    </br>
                                 </div>
 
 
@@ -234,11 +155,13 @@
                         <div class="col-md-12 col-sm-12 text-right">
                             <button type="button" class="btn btn-primary btn-lg" style="background:rgba(178,34,34, 1)" ng-disabled="reviewForm.$invalid || !accepted" ng-click=" payAction();">Pay</button>
 
-                            <a href="http://mynksh.com">
+                            <a href="#" onclick="location.href = document.referrer; return false;">
                                 <button type="button" class="btn btn-primary btn-lg" style="background:rgba(178,34,34, 1)">Cancel</button>
                             </a>
                             <div ng-show="reviewForm.$invalid || !accepted">
-                                <h4 style="color=" white "">  please complete all form entry first   </h4> </div>
+                                <h4 style="color=" white "">  Please complete all form entry first   </h4> </div>
+                            <!-- <div ng-show="stripeError">
+                                <h4 style="color=" white "">Stripe error: {{stripeErrorDescription}}</h4> </div> -->
                         </div>
                         </br>
                         </br>

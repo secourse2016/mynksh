@@ -5,32 +5,25 @@ App.controller('confirmCtrl', function($scope, FlightsSrv, OutReturnSrv, Confirm
     if ($scope.roundTrip === 'true')
         $scope.selectedReturnFlight = OutReturnSrv.getSelectedReturnFlight();
 
-    $scope.tickets = 1;
-    // $scope.tickets= 2;
+    $scope.tickets= FlightsSrv.getTickets();
     $scope.price = OutReturnSrv.getSelectedPrice();
     $scope.currentDate = new Date();
-    $scope.min = Math.min;
-    $scope.format = 'd/M/yyyy'
+    $scope.minDate = new Date($scope.currentDate.getFullYear() -100,$scope.currentDate.getMonth(),$scope.currentDate.getDate());
+    $scope.maxDate = new Date($scope.currentDate.getFullYear() +5,$scope.currentDate.getMonth(),$scope.currentDate.getDate());
+    $scope.reservations = [];
 
-    var setTicketEmail = function(value) {
-        ConfirmSrv.setEmail(value);
+    for(var i=0 ; i<$scope.tickets ; i++){
+        $scope.reservations[i] = {};
+        $scope.reservations[i].dateOfBirth = new Date();
+        $scope.reservations[i].passportExpiryDate = new Date();
     };
 
-    var setTicketPhoneNo = function(value) {
-        ConfirmSrv.setPhoneNo(value);
-    };
-
-    var setTicketReservation = function(value) {
-        ConfirmSrv.setReservation(value);
-    };
-    $scope.isGreaterThanTickets = function(num) {
-        return num < $scope.number;
+    var setTicketReservations = function(value) {
+        ConfirmSrv.setReservations(value);
     };
 
     $scope.goToPayment = function() {
-        setTicketPhoneNo($scope.typedPhoneno);
-        setTicketEmail($scope.typedEmail);
-        setTicketReservation($scope.reservation);
+        setTicketReservations($scope.reservations);
         $location.url('/payment');
     };
 });

@@ -4,7 +4,7 @@
 App.factory('FlightsSrv', function($http) {
     return {
         getAirportCodes: function() {
-            return $http.get('http://localhost:8080/data/airports');
+            return $http.get('http://52.58.24.76/data/airports');
         },
         setSelectedOriginAirport: function(value) {
             this.selectedOriginAirport = value;
@@ -47,6 +47,12 @@ App.factory('FlightsSrv', function($http) {
         },
         getPinging: function() {
             return this.selectedPinging;
+        },
+        setTickets: function(value) {
+            this.tickets = value;
+        },
+        getTickets: function() {
+            return this.tickets;
         }
 
     };

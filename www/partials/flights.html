@@ -1,5 +1,3 @@
-<script>
-</script>
 <style>
   listdemoListControls {
     /* Add some right padding so that the text doesn't overlap the buttons */
@@ -29,8 +27,9 @@
   }
 
   .selected {
-    color: red;
-    box-shadow: inset 0px 0px 0px 25px #b0b0b0;
+    color: white;
+    background-color: rgba(128,0,0,1);
+    /*box-shadow: inset 0px 0px 0px 25px #b0b0b0;*/
   }
 
   `
@@ -39,7 +38,7 @@
 
   <ion-content class="has-header has-subheader">
     <div class="col-md-10 col-md-offset-1 text-center">
-      <h3><font color="black" size="10" style="
+      <h3><font color="black" size="8" style="
     border-top: 1px solid;
     border-bottom: 1px solid;
     display: inline-block;
@@ -47,10 +46,11 @@
     padding: 8px 0;text-align: center;">Flights </font><br><br></h3>
     </div>
 
-    <h1 class="animated fadeInDown header-font">Select your flights</h1>
+    <center>
+      <h4 class="animated fadeInDown header-font">Select your flights</h4></center>
     <div class="animated slideInLeft">
-      <h3><img src='../assets/outgoingPlane.png'>Outbound:From {{origin}} to {{dest}}
-              <small></br>{{oDate | date}}</small></h3>
+      <h5><img src='../assets/outgoingPlane.png'>Outbound:From {{origin}} to {{dest}}
+              <small></br>{{oDate | date}}</small></h5>
     </div>
     <md-list ng-cloak>
       <md-subheader class="md-no-sticky">Outgoing flights</md-subheader>
@@ -61,19 +61,19 @@
         <md-list-item class="item-accordion" ng-show="isGroupShown(flight)">Departure Time: {{stringToDate(flight.departureDateTime) | date : 'shortTime'}} </md-list-item>
         <md-list-item class="item-accordion" ng-show="isGroupShown(flight)">Arrival Time: {{stringToDate(flight.arrivalDateTime) | date : 'shortTime'}} </md-list-item>
         <md-list-item class="item-accordion" ng-show="isGroupShown(flight)">Duration: {{timediff(flight.departureDateTime,flight.arrivalDateTime)}} </md-list-item>
-        <md-list-item class="item-accordion" ng-show="isGroupShown(flight)">Cost: {{flight.cost | currency: flight.currency+" "}} </md-list-item>
+        <md-list-item class="item-accordion" ng-show="isGroupShown(flight)">Cost: {{flight.cost | currency: "$"}} </md-list-item>
         <md-list-item class="item-accordion" ng-show="isGroupShown(flight)" id="OutgoingList">
-          <md-radio-group ng-model="$parent.selectedOutgoingFlight">
-            <md-radio-button ng-value="{{flight}}" class="md-primary" ng-click="SetSelectedOutgoingFlight(flight)">Select this flight</md-radio-button>
+          <md-radio-group ng-model="$parent.selectedOutgoingFlight" style="color:rgba(128,0,0,1) ">
+            <md-radio-button ng-value="{{flight}}" class="md-primary" ng-click="SetSelectedOutgoingFlight(flight); toggleGroup(flight)">Select this flight</md-radio-button>
           </md-radio-group>
         </md-list-item>
       </div>
     </md-list>
 
     <div ng-show="roundTrip === 'true'">
-        <div id='return'  class="animated slideInRight">
-            <h3><img src='../assets/returnPlane.png'>Return: From {{dest}} to {{origin}}<small></br>{{rDate |date}}</small></h3>
-        </div>
+      <div id='return' class="animated slideInRight">
+        <h5><img src='../assets/returnPlane.png'>Return: From {{dest}} to {{origin}}<small></br>{{rDate |date}}</small></h5>
+      </div>
       <md-list ng-cloak>
         <md-subheader class="md-no-sticky">Return flights</md-subheader>
         <div ng-repeat="flight in returnInfo">
@@ -83,24 +83,23 @@
           <md-list-item class="item-accordion" ng-show="isGroupShown(flight)">Departure Time: {{stringToDate(flight.departureDateTime) | date : 'shortTime'}} </md-list-item>
           <md-list-item class="item-accordion" ng-show="isGroupShown(flight)">Arrival Time: {{stringToDate(flight.arrivalDateTime) | date : 'shortTime'}} </md-list-item>
           <md-list-item class="item-accordion" ng-show="isGroupShown(flight)">Duration: {{timediff(flight.departureDateTime,flight.arrivalDateTime)}} </md-list-item>
-          <md-list-item class="item-accordion" ng-show="isGroupShown(flight)">Cost: {{flight.cost | currency: flight.currency+" "}} </md-list-item>
+          <md-list-item class="item-accordion" ng-show="isGroupShown(flight)">Cost: {{flight.cost | currency: "$"}} </md-list-item>
           <md-list-item class="item-accordion" ng-show="isGroupShown(flight)" id="OutgoingList">
             <md-radio-group ng-model="$parent.selectedReturnFlight">
-              <md-radio-button ng-value="{{flight}}" class="md-primary" ng-click="SetSelectedReturnFlight(flight)">Select this flight</md-radio-button>
+              <md-radio-button ng-value="{{flight}}" class="md-primary" ng-click="SetSelectedReturnFlight(flight); toggleGroup(flight)">Select this flight</md-radio-button>
             </md-radio-group>
           </md-list-item>
         </div>
       </md-list>
-
-      <div id='price'>
-          <blockquote>
-              <p>Price:</p>
-              <h3>{{(selectedReturnFlight.cost + selectedOutgoingFlight.cost) | currency:"€"}}</h3>
-              <span ng-show="RadioSelected" style="color: red">Flight(s) must be selected</span>
-          </blockquote>
-          <a href class="btn btn-primary btn-lg hvr-underline-from-center" ng-click='BookFlight()'>Book Flight</a>
-      </div>
-
+    </div>
+    <div id='price'>
+      <blockquote>
+        <p>Price:</p>
+        <h5>{{(selectedReturnFlight.cost + selectedOutgoingFlight.cost) | currency:"$"}} x {{tickets}} = {{(selectedReturnFlight.cost + selectedOutgoingFlight.cost) * tickets | currency:"$"}}</h5>
+        <span ng-show="RadioSelected" style="color: red">Flight(s) must be selected</span>
+      </blockquote>
+      <center><a class="button button-outline button-assertive" ng-click='BookFlight()'><font style="color:maroon">Book Flight</font></a></center>
+    </div>
   </ion-content>
 
 </ion-view>

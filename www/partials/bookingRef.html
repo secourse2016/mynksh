@@ -1,65 +1,67 @@
-<div style="background: rgba(128,0,0, 1)">
-    <div class="sticky-section">
-        <div id="topbar-hold" class="nav-hold container">
-            <nav class="navbar" role="navigation">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-responsive-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                </div>
-                <!-- Main Navigation menu Starts -->
-                <!--=== Site Name ===-->
-                <!-- <a class="site-name navbar-brand" href="#"><span>E</span>gret</a> -->
-                <a href='http://mynksh.com'>
-                    <!-- <div id='logo'> -->
-                    <span><img src='./assets/iberia-logo.png'></span>
-                    <!-- </div> -->
-                </a>
-        </div>
-        <!-- Main Navigation menu ends-->
-        </nav>
+<ion-view view-title="Previous Booking">
+  <ion-content class="has-header has-subheader">
+    <h4 style="text-align:center;color:rgba(128,0,0, 1)">Track Booking</h4>
+    <div class="list list-inset">
+      <form name='booking'>
+        <label class="item item-input item-floating-label" ng-class="{ 'has-error' : loginForm.originAirports.$invalid && loginForm.$submitted }">
+          <span class="input-label ion-plane">Booking Reference Number</span>
+          <input type="text" placeholder="Booking Number" id="bookingref" name="bookingref" class="form-control" ng-model="selectedBookingRef" ng-required='true' onkeypress="myFunction()">
+          </span>
+        </label>
+        <span style='color:red' ng-show="(booking.bookingref.$error.required)  && booking.bookingref.$dirty ">Booking Number is required</span>
+        </form>
+      <h6 style="text-align:center">  <button type="button" ng-disabled='booking.bookingref.$error.required' class="btn btn-primary btn-lg" style="left:200px; background:rgba(178,34,34, 1);margin-top: 15px" ng-click="SetBookingRef(selectedBookingRef);retreiveBookingRef();showTabDialog($event)">Search My Flight</button></h6>
     </div>
-</div>
-</div>
 
-<link rel="stylesheet" href="css/style.css" />
-<section id="section-download" class="download-wrap" style="background: rgba(255,255,255, .8)">
-  
-    <div class="container download center" style="border-radius: 25px;">
-    <div class="col-md-2 text-left">
-  <form  action="http://mynksh.com">
-  <input type="submit" class="btn btn-primary btn-lg" style="position:left; background:rgba(178,34,34, 1);margin-top: -200px" value="Back to Iberia" ></form>
-</div>
-        <div class="row">
+    <script type="text/ng-template" id="tabDialog.tmpl.html">
+      <md-dialog aria-label="Mango (Fruit)">
+        <form>
 
-            <div class="col-md-8 col-md-offset-2">
-                <div class="col-md-10 col-md-offset-1 center section-title">
-                    <h3><font color="black">Tracking Booking</font></h3>
-                </div>
-
-                <div class="form-group">
-                    <font class="col-sm-4 text-right" size="4" color="black"> Booking Reference No.: </font>
-                    <form name='booking' class="contact-form support-form">
-                        <div class="col-md-8 col-sm-8">
-                            <input type="text" placeholder="Booking Number" id="bookingref" name="bookingref" class="form-control" ng-model="selectedBookingRef" ng-required='true' onkeypress="myFunction()">
-                            <span style='color:red' ng-show="(booking.bookingref.$error.required)  && booking.bookingref.$dirty ">Booking Number is required</span>
-                        </div>
-                    </form>
-                    <button type="button" ng-disabled='booking.$invalid' class="btn btn-primary btn-lg" style="position:right; background:rgba(178,34,34, 1);margin-top: 15px" ng-click="SetBookingRef(selectedBookingRef);retreiveBookingRef();showme=true">Search My Flight</button>
-                </div>
-
-                <div class="form-group" ng-show="showme">
-                    <div class="input-group">
-                <p id="divID"></p>
-
-                    </div>
-
-
+          <md-toolbar>
+            <div class="md-toolbar-tools">
+              <h2 style="color:white">Booking Information</h2>
+              <span flex></span>
+              <md-button class="ion-close" ng-click="cancel()">
+              </md-button>
             </div>
-            </div>
-        </div>
+          </md-toolbar>
+
+          <md-dialog-content style="max-width:800px;max-height:810px; ">
+            <md-tabs md-dynamic-height md-border-bottom>
+              <md-tab label="Personal">
+                <md-content class="md-padding" ng-repeat="n in flights | unique:'passportNumber' ">
+                  <h4 style="text-align:center">Passenger {{n.firstName}} Information</h4>
+                  <h6>Hello, {{n.firstName}} {{n.lastName}}!</h6>
+                  <h6>Your Passport is {{n.passportNumber}}.</h6>
+                  <h6>We will contact you on {{n.email}} to confirm your booking.</h6>
+                </md-content>
+              </md-tab>
+              <md-tab label="Seats">
+              <h4 style="text-align:center"> All Seats</h4>
+              <md-content class="md-padding" ng-repeat="n in flights">
+              <h6>{{n.firstName}} {{n.lastName}}, your seat number on flight {{n.flightNumber}} is {{n.seatNum}}.</h6>
+              <hr>
+              </md-content>
+              </md-tab>
+              <md-tab label="Flight">
+                <md-content class="md-padding" ng-repeat="n in flights | unique:'flightNumber'">
+                  <h4 style="text-align:center">Flights {{n.way}} Information</h4>
+                  <h6>Seat Number on the flight from {{n.origin}} on {{n.arrivalTime}} to {{n.destination}} on {{n.departureTime}}.</h6>
+                  <h6>Flight Number is {{n.flightNumber}}.</h6>
+                </md-content>
+              </md-tab>
+            </md-tabs>
+          </md-dialog-content>
+
+          <md-dialog-actions layout="row">
+            <md-button href="#" target="_blank" md-autofocus>
+              See you again soon!
+            </md-button>
+          </md-dialog-actions>
+
+        </form>
+      </md-dialog>
+    </script>
     </div>
-</section>
+  </ion-content>
+</ion-view>

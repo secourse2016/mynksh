@@ -47,6 +47,12 @@ App.factory('FlightsSrv', function($http) {
         },
         getPinging: function() {
             return this.selectedPinging;
+        },
+        setTickets: function(value){
+            this.ticket = value;
+        },
+        getTickets: function(){
+            return this.ticket;
         }
 
     };
