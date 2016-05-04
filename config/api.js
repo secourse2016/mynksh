@@ -200,7 +200,7 @@ exports.check= function(passengerDetails, cabin, cost, outgoingFlightId, returnF
   var validCabin= cabin.toLowerCase();
   if(validCabin !== "economy" && validCabin !== "business")
   {
-    cb("The chosen calss is not supported by IBERIA.");
+    cb("The chosen class is not supported by IBERIA.");
     return;
   }
   for(var i=0; i<passengerDetails.length; i++)

@@ -1,10 +1,14 @@
-App.controller('congratsCtrl', function($scope, paymentSrv, OutReturnSrv, $http, $window) {
+App.controller('congratsCtrl', function($scope, paymentSrv, OutReturnSrv, $http, $window,FlightsSrv) {
 
 
   $scope.bookingRefNo1 = paymentSrv.getBookingRefNo1();
-  $scope.bookingRefNo2 = paymentSrv.getBookingRefNo2();
   $scope.airline1 = OutReturnSrv.getSelectedOutFlight().Airline;
-  $scope.airline2 = OutReturnSrv.getSelectedReturnFlight().Airline;
+
+  $scope.roundTrip = FlightsSrv.getSelectedRoundTrip();
+  if ($scope.roundTrip === 'true'){
+    $scope.airline2 = OutReturnSrv.getSelectedReturnFlight().Airline;
+    $scope.bookingRefNo2 = paymentSrv.getBookingRefNo2();
+  }
 
 
   paymentSrv.getOtherAirlineIP($scope.airline1).success(function(airlineIP) {
