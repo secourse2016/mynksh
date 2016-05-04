@@ -61,14 +61,17 @@ exports.getAirLines = function(cb) {
 //get from data base ip
 exports.getAirLineIP = function(airLineName, cb) {
   var airLineIP = "";
+  if(airLineName === "Iberia"){
+    cb(null,'Iberia');
+    return;
+  }
   var collection = mongo.db().collection('airLines');
   collection.find({
     "name": airLineName + " Airlines"
   }).toArray(function(err, airLine) {
-    if (airLine.length === 0)
-      airLineIP = "52.58.24.76";
-    if (airLine[0] === null) {
+    if (airLine.length === 0){
       cb(err, "No ip with this Name");
+      return;
     }
     airLineIP = airLine[0].ip;
     cb(err, airLineIP);
@@ -104,6 +107,7 @@ exports.searchFlights = function(origin, destination, departingDate, cabin, seat
   }).toArray(function(err, flights) {
     if (flights.length === 0) {
       cb(err, []);
+      return;
     } else {
       if (economyOrBusiness == "economy")
         cost = flights[0].eCost;
