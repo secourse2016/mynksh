@@ -1,28 +1,60 @@
+<div style="background: rgba(128,0,0, 1)">
+    <div class="sticky-section">
+        <div id="topbar-hold" class="nav-hold container">
+            <nav class="navbar" role="navigation">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <a href='http://mynksh.com'>
+                    <!-- <div id='logo'> -->
+                    <span><img src='./assets/iberia-logo.png'></span>
+                    <!-- </div> -->
+                </a>
+        </div>
+        <!-- Main Navigation menu ends-->
+        </nav>
+    </div>
+</div>
+
+<!-- <link rel="stylesheet" href="css/style.css" /> -->
+    <!-- <div class="section-overlay"></div> -->
+<div class="container home text-center col-md-12" style="background-color:white;">
   <div class="flex-container">
     <div class="flex-columns flex-column-right">
       <div>
+        <div class="divID" style="background-image: url('/images/seatMap.png');width:450px;height:675px;">
+          <div style="position:relative; top:90px;">
         <keruc-seatpicker class="ng-isolate-scope" data-data="seatsData" data-selected-nodes="selectedNodes" data-on-selected="nodeSelected($node)" data-on-deselected="nodeDeselected($node)" data-on-disallowed-selected="nodeDisallowedSelected($node)">
-          <canvas width="500" height="500" id="canvasId"></canvas>
+          <canvas height="900px" width="563px" id="canvasId"></canvas>
         </keruc-seatpicker>
+        </div>
+      </div><br>
+      <div style="border-radius: 25px;padding: 1%;background-color:rgba(207, 207, 207, 1)">
         <div>
-          <h6 class="list-heading">Events
-            <small>run your own callbacks</small>
+          <h6 class="list-heading" style="color:black">Events
+            <small style="color:maroon">run your own callbacks</small>
           </h6>
-          <div class="ng-binding" ng-bind="userEvent">user deselected F7</div>
-          <h6 class="list-heading">Selected seats
-            <small>accessible in parent controller scope</small>
+          <div class="ng-binding" ng-bind="userEvent" style="color:white">user deselected F7</div>
+          <h6 class="list-heading" style="color:black">Selected seats
+            <small style="color:maroon">accessible in parent controller scope</small>
           </h6>
           <div>
             <!-- ngRepeat: node in selectedNodes track by node.uniqueName -->
             <span class="" ng-show="selectedNodes.length &lt;= 0">none</span>
           </div>
+          <font size=3 color="black">Selected Seats :
+          {{selectedNodes.uniqueName}}</font><br>
+          <center><a href class="btn btn-lg hvr-underline-from-center"  style="background-color:rgba(0,0,0,0);color:maroon;"ng-click='Reserve()'>Reserve
+            {{way}}
+            seat</a></center>
+          </div>
         </div>
+      </div>
       </div>
     </div>
   </div>
-  Selected Seats :
-  {{selectedNodes.uniqueName}}
-
-  <a href class="btn btn-primary btn-lg hvr-underline-from-center" ng-click='Reserve()'>Reserve
-    {{way}}
-    seat</a>
