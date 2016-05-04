@@ -29,8 +29,9 @@ App.controller('landingCtrl', function($scope, FlightsSrv, $location) {
     };
 
     $scope.teamMembers = function() {
-        $location.url('/teamMembers');
+      $location.url('/teamMembers');
     };
+
 
     // $scope.cabin="cabin";
 

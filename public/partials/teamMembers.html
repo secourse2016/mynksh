@@ -1,8 +1,4 @@
 
-
-
-
-
 <!--==== Essential files ====-->
 <script type="text/javascript" src="js/jquery-2.2.0.min.js"></script>
 <script type="text/javascript" src="js/modernizr.js"></script>
@@ -18,17 +14,17 @@
 <script type="text/javascript" src="js/jquery.vegas.min.js"></script>
 
 <!--==== Slider and Card style plugin ====-->
-<link rel="stylesheet" href="css/animate.css" />
 <script type="text/javascript" src="js/jquery.baraja.js"></script>
 <link rel="stylesheet" href="css/baraja.css" />
 <script type="text/javascript" src="js/jquery.bxslider.min.js"></script>
+
+
 <link rel="stylesheet" href="css/font-awesome.min.css" />
 <link rel="stylesheet" href="css/fancy-buttons.css" />
 
-<!--=== Other CSS files ===-->
-
   <script type="text/javascript" src="./js/typed.js"></script>
 <script>
+
     $(function() {
         $("#typed").typed({
             // strings: ["Typed.js is a <strong>jQuery</strong> plugin.", "It <em>types</em> out sentences.", "And then deletes them.", "Try it out!"],
@@ -47,6 +43,7 @@
             $("#typed").typed('reset');
         });
     });
+
 </script>
 <!--=== Main Stylesheets ===-->
 <link rel="stylesheet" href="css/style.css" />
@@ -68,7 +65,7 @@
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                             </button>
-                            <a onclick="history.go(-1);">
+                            <a href="#" onclick="location.href = document.referrer; return false;">
                                 <span><img src="./assets/Iberia-logo.png"></span>
                             </a>
                         </div>
@@ -78,8 +75,6 @@
                             <ul class="nav navbar-nav navbar-right">
                                 <li class="current"><a href="#header">Home</a></li>
                                 <li ><a href="#section-feature">Names</a></li>
-                                <li ><a href="#section-feature">Accounts</a></li>
-                                <li ><a href="#section-feature">Send Feedback</a></li>
                             </ul>
                         </div>
                         <!-- Main Navigation menu ends-->
@@ -87,46 +82,10 @@
                 </div>
             </div>
         </div>
+      </div>
 
 
-    <div id="section-home" class="home-section-wrap center">
-        <div class="section-overlay"></div>
-        <div class="container home">
-            <div class="row">
-                <h1 class="well-come">Team Members</h1>
-                <div class="col-md-8 col-md-offset-2">
-                    <p class="intro-message">The MYNKSH Team</p>
-                    <div class="type-wrap">
-                        <div id="typed-strings">
-                            <p><font color="white">The <strong>BOND</strong> unites us.</font></p>
-                            <p><font color="white">The <strong>M</strong> Mostafa Ibrahim.</font></p>
-                            <p><font color="white">The <strong>Y</strong> Yara Sobhy.</font></p>
-                            <p><font color="white">The <strong>Y</strong> Youssef Radi.</font></p>
-                            <p><font color="white">The <strong>N</strong> Narihan Ellaithy.</font></p>
-                            <p><font color="white">The <strong>K</strong> Mohamed Kefahy.</font></p>
-                            <p><font color="white">The <strong>S</strong> Safa Ads.</font></p>
-                            <p><font color="white">The <strong>H</strong> Hazem Ayman.</font></p>
-                            <p><font color="white">And we are <strong>MYNKSH</strong></font></p>
-                        </div>
-                        <span id="typed" style="white-space:pre;"></span>
-                        </br>
-                        </br>
-                        </br>
-                        </br>
-                        </br>
-                        </br>
-                        </br>
-                        </br>
-                        </br>
-                        </br>
-                        </br>
-                        </br>
-                    </div>
-                </div>
-              </div>
-            </div>
-          </div>
-</div>
+
 
 <section id="section-feature" class="feature-wrap" style="background: rgba(128,0,0, 1)">
     <div class="container features center" >
@@ -160,7 +119,6 @@
                         <!-- Feature Icon -->
                         <h4 class="feature-title color-scheme">Safa Ads</h4>
                         <p class="feature-text">
-
                             Back-end Developer
                         </p>
                         <a href="https://www.facebook.com/Safa.Muhammed?fref=ts" class="fancy-button button-line btn-col small zoom">
@@ -283,3 +241,41 @@
         </div>
     </div>
 </section>
+
+<div id="section-home" class="home-section-wrap center">
+    <div class="section-overlay"></div>
+    <div class="container home">
+        <div class="row">
+            <h1 class="well-come">Team Members</h1>
+            <div class="col-md-8 col-md-offset-2">
+                <p class="intro-message">The MYNKSH Team</p>
+                <div class="type-wrap">
+                    <div id="typed-strings">
+                        <p><font color="white">The <strong>BOND</strong> unites us.</font></p>
+                        <p><font color="white">The <strong>M</strong> Mostafa Ibrahim.</font></p>
+                        <p><font color="white">The <strong>Y</strong> Yara Sobhy.</font></p>
+                        <p><font color="white">The <strong>Y</strong> Youssef Radi.</font></p>
+                        <p><font color="white">The <strong>N</strong> Narihan Ellaithy.</font></p>
+                        <p><font color="white">The <strong>K</strong> Mohamed Kefahy.</font></p>
+                        <p><font color="white">The <strong>S</strong> Safa Ads.</font></p>
+                        <p><font color="white">The <strong>H</strong> Hazem Ayman.</font></p>
+                        <p><font color="white">And we are <strong>MYNKSH</strong></font></p>
+                    </div>
+                    <span id="typed" style="white-space:pre;"></span>
+                    </br>
+                    </br>
+                    </br>
+                    </br>
+                    </br>
+                    </br>
+                    </br>
+                    </br>
+                    </br>
+                    </br>
+                    </br>
+                    </br>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>

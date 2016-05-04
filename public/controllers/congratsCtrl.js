@@ -41,4 +41,17 @@ App.controller('congratsCtrl', function($scope, paymentSrv, OutReturnSrv, $http,
       console.log('Oops, unable to copy');
     }
   };
+
+	$scope.copy2 = function() {
+    var copyTextarea2 = document.querySelector('.js-copytextarea2');
+    copyTextarea2.select();
+
+    try {
+      var successful = document.execCommand('copy');
+      var msg = successful ? 'successful' : 'unsuccessful';
+      console.log('Copying text command was ' + msg);
+    } catch (err) {
+      console.log('Oops, unable to copy');
+    }
+  };
 });
