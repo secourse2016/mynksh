@@ -54,7 +54,7 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
 
   var paymentInfo = {};
 
-  var AirlineName1 = OutReturnSrv.getSelectedOutFlight().Airline; 
+  var AirlineName1 = OutReturnSrv.getSelectedOutFlight().Airline;
   var AirlineName2;
 
   $scope.payAction = function() {
@@ -65,10 +65,10 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
     SetCVV($scope.selectedCVV);
     var returnFlightId;
     var ecoOrBus;
-    if(FlightsSrv.getSelectedCabin() === "true")
-      ecoOrBus="economy";
+    if (FlightsSrv.getSelectedCabin() === "true")
+      ecoOrBus = "economy";
     else
-      ecoOrBus= "business";
+      ecoOrBus = "business";
     if (FlightsSrv.getSelectedRoundTrip() === 'true')
       var returnFlightId = OutReturnSrv.getSelectedReturnFlight().flightId;
     paymentInfo = {
@@ -86,13 +86,13 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
         paymentInfo[i].passengerDetails.passportExpiryDate = moment(changeISOFormat(paymentInfo[i].passengerDetails.passportExpiryDate)).toDate().getTime()
     }
 
-    if (FlightsSrv.getSelectedRoundTrip() != 'true'){
+    if (FlightsSrv.getSelectedRoundTrip() != 'true') {
       paymentInfo.cost = OutReturnSrv.getSelectedOutFlight().cost;
       paymentInfo.returnFlightId = undefined;
     }
 
     if (FlightsSrv.getSelectedRoundTrip() === 'true')
-      AirlineName2 = OutReturnSrv.getSelectedReturnFlight().Airline; 
+      AirlineName2 = OutReturnSrv.getSelectedReturnFlight().Airline;
 
     createStripeToken(AirlineName1);
 
@@ -135,23 +135,19 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
           getOtherPubKey("Iberia", function(key) {
             Stripe.setPublishableKey(key);
 
-            if (FlightsSrv.getSelectedRoundTrip() === 'true' && flag &&  AirlineName2 != AirlineName1) {
+            if (FlightsSrv.getSelectedRoundTrip() === 'true' && flag && AirlineName2 != AirlineName1) {
               flag = false;
               paymentInfo.outgoingFlightId = OutReturnSrv.getSelectedReturnFlight().flightId;
               paymentInfo.cost = OutReturnSrv.getSelectedReturnFlight().cost;
               createStripeToken(AirlineName2);
-            }
-            else if (data.errorMessage != null || data.errorMessage != undefined)
+            } else if (data.errorMessage != null || data.errorMessage != undefined)
               alert(data.errorMessage);
             else
               Congrats();
           });
         })
         .error(function(data, status, headers, config) {
-          if(data.errorMessage===undefined || data.errorMessage === null)
-            alert("THIS AIRLINE DOESN'T SUPPORT EXTERNAL BOOKING");
-          else
-            alert(data.errorMessage);
+          alert("THIS AIRLINE DOESN'T SUPPORT EXTERNAL BOOKING" + data.errorMessage);
         });
     }
   };

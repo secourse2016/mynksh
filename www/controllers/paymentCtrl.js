@@ -57,7 +57,6 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
   var AirlineName2;
 
   $scope.payAction = function() {
-    
     var returnFlightId;
     var ecoOrBus;
     if (FlightsSrv.getSelectedCabin() === "true")
@@ -142,9 +141,8 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
           });
         })
         .error(function(data, status, headers, config) {
-          alert(data.errorMessage);
+          alert("THIS AIRLINE DOESN'T SUPPORT EXTERNAL BOOKING" + data.errorMessage);
         });
     }
   };
-
 });
