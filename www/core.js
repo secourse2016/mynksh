@@ -71,12 +71,6 @@ App.config(function($stateProvider, $urlRouterProvider, $mdIconProvider, $mdDate
     controller: 'landingCtrl'
   })
 
-  .state('AboutUs', {
-    url: '/AboutUs',
-    templateUrl: 'partials/AboutUs.html',
-    controller: 'landingCtrl'
-  })
-
   .state('flights', {
     url: '/flights',
     templateUrl: 'partials/flights.html',

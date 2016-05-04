@@ -45,9 +45,7 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
 
   var getOtherPubKey = function(AirlineIP, cb) {
     paymentSrv.getOtherAirlineIP(AirlineIP).success(function(airlineIP) {
-      console.log(airlineIP);
       paymentSrv.getOtherStripePubKey(airlineIP).success(function(key) {
-        console.log(key);
         cb(key, airlineIP);
       })
     });
@@ -98,10 +96,6 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
       else
         pingIp = "http://" + airlineIP;
       Stripe.setPublishableKey(key);
-      console.log(paymentSrv.getSelectedCardNo());
-      console.log(paymentSrv.getSelectedCVV());
-      console.log(paymentSrv.getSelectedMonth());
-      console.log(paymentSrv.getSelectedYear());
       Stripe.card.createToken({
         "number": paymentSrv.getSelectedCardNo().toString(),
         "cvc": paymentSrv.getSelectedCVV(),
@@ -119,7 +113,10 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
       paymentInfo.paymentToken = response.id;
       paymentSrv.chargeCard(paymentInfo, pingIp)
         .success(function(data, status, headers, config) {
-          paymentSrv.setBookingRefNo(data.refNum);
+          if (paymentSrv.getBookingRefNo1() === undefined || paymentSrv.getBookingRefNo1() === null)
+            paymentSrv.setBookingRefNo1(data.refNum);
+          else
+            paymentSrv.setBookingRefNo2(data.refNum);
           //reset stripe key
           getOtherPubKey("Iberia", function(key) {
             Stripe.setPublishableKey(key);

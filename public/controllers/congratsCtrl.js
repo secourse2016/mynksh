@@ -6,10 +6,6 @@ App.controller('congratsCtrl', function($scope, paymentSrv, OutReturnSrv, $http,
   $scope.airline1 = OutReturnSrv.getSelectedOutFlight().Airline;
 	$scope.airline2 = OutReturnSrv.getSelectedReturnFlight().Airline;
 
-  console.log($scope.bookingRefNo1);
-  console.log($scope.bookingRefNo2);
-  console.log($scope.airline1);
-  console.log($scope.airline2);
 
   paymentSrv.getOtherAirlineIP($scope.airline1).success(function(airlineIP) {
     $scope.urlAirline1 = airlineIP;
