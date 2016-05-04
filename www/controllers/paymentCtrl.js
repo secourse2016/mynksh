@@ -53,46 +53,48 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
 
   var paymentInfo = {};
 
+  var AirlineName1 = OutReturnSrv.getSelectedOutFlight().Airline; //  out flight
+  var AirlineName2;
+
   $scope.payAction = function() {
+
     var returnFlightId;
     if (FlightsSrv.getSelectedRoundTrip() === 'true')
       var returnFlightId = OutReturnSrv.getSelectedReturnFlight().flightId;
     paymentInfo = {
-      "passengerDetails": $scope.reservation,
+      "passengerDetails": ConfirmSrv.getReservations(),
       "class": FlightsSrv.getSelectedCabin(),
       "cost": OutReturnSrv.getSelectedPrice(),
       "outgoingFlightId": OutReturnSrv.getSelectedOutFlight().flightId,
       "returnFlightId": returnFlightId,
       "paymentToken": 2112
-    }
+    };
+
     for (var i = 0; i < paymentInfo.length; i++) {
       paymentInfo[i].passengerDetails.dateOfBirth = moment(changeISOFormat(paymentInfo[i].passengerDetails.dateOfBirth)).toDate().getTime();
       if (paymentInfo[i].passengerDetails.passportExpiryDate === undefined)
         paymentInfo[i].passengerDetails.passportExpiryDate = moment(changeISOFormat(paymentInfo[i].passengerDetails.passportExpiryDate)).toDate().getTime()
     }
 
-    if (FlightsSrv.getSelectedRoundTrip() != 'true')
+    if (FlightsSrv.getSelectedRoundTrip() != 'true') {
+      paymentInfo.cost = OutReturnSrv.getSelectedOutFlight().cost;
       paymentInfo.returnFlightId = undefined;
-    //need here to check if one way or two and put this name attrubute inside createStripeToken method
-    var AirlineName1 = OutReturnSrv.getSelectedOutFlight().Airline; //  out flight
-    var AirlineName2;
-    if (FlightsSrv.getSelectedRoundTrip() === 'true')
-      var AirlineName2 = OutReturnSrv.getSelectedReturnFlight().Airline;; // return flight
-    if (FlightsSrv.getSelectedRoundTrip() === 'false' || AirlineName1 === AirlineName2)
-      createStripeToken(AirlineName1);
-    else {
-      createStripeToken(AirlineName1);
-      createStripeToken(AirlineName2);
     }
+
+    if (FlightsSrv.getSelectedRoundTrip() === 'true')
+      AirlineName2 = OutReturnSrv.getSelectedReturnFlight().Airline; // return flight
+
+    createStripeToken(AirlineName1);
 
   }
   var pingIp;
+  var flag = true;
 
   var createStripeToken = function(airline) {
 
     getOtherPubKey(airline, function(key, airlineIP) {
       if (airlineIP === "Iberia")
-        pingIp = "http://localhost:8080";
+        pingIp = "";
       else
         pingIp = "http://" + airlineIP;
       Stripe.setPublishableKey(key);
@@ -110,9 +112,12 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
     if (response.error)
       alert(response.error.message);
     else {
+      if (FlightsSrv.getSelectedRoundTrip() === 'true' && AirlineName2 != AirlineName1)
+        paymentInfo.returnFlightId = undefined;
       paymentInfo.paymentToken = response.id;
       paymentSrv.chargeCard(paymentInfo, pingIp)
-        .success(function(data, status, headers, config) {
+        .success(function(data) {
+          // console.log(data);
           if (paymentSrv.getBookingRefNo1() === undefined || paymentSrv.getBookingRefNo1() === null)
             paymentSrv.setBookingRefNo1(data.refNum);
           else
@@ -120,10 +125,22 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
           //reset stripe key
           getOtherPubKey("Iberia", function(key) {
             Stripe.setPublishableKey(key);
-            Congrats();
+
+            if (FlightsSrv.getSelectedRoundTrip() === 'true' && flag && AirlineName2 != AirlineName1) {
+              flag = false;
+              paymentInfo.outgoingFlightId = OutReturnSrv.getSelectedReturnFlight().flightId;
+              paymentInfo.cost = OutReturnSrv.getSelectedReturnFlight().cost;
+              createStripeToken(AirlineName2);
+            } else if (data.errorMessage != null || data.errorMessage != undefined)
+              alert(data.errorMessage);
+            else
+              Congrats();
           });
+        })
+        .error(function(data, status, headers, config) {
+          alert(data.errorMessage);
         });
     }
-
   };
+
 });
