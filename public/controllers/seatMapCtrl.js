@@ -1,4 +1,4 @@
-App.controller('seatMapCtrl', ['$scope', '$http', 'BookingSrv', '$routeParams', '$location', function($scope, $http, BookingSrv, $routeParams, $location) {
+App.controller('seatMapCtrl', ['$scope', '$http', 'BookingSrv', '$routeParams', '$window', function($scope, $http, BookingSrv, $routeParams, $window) {
 
   $scope.way = $routeParams.way;
   if ($scope.way === 'Outgoing'){
@@ -20,7 +20,6 @@ App.controller('seatMapCtrl', ['$scope', '$http', 'BookingSrv', '$routeParams', 
   });
 
 
-
   $scope.Map = function(seatMap) {
     var seatsData = {};
     seatsData.rows = [];
@@ -32,8 +31,10 @@ App.controller('seatMapCtrl', ['$scope', '$http', 'BookingSrv', '$routeParams', 
       "displayName": null,
       "selected": 0
     };
+    console.log($scope.ref);
     for (var i = 1; i < seatMap.length + 1; i++) {
       var state = (seatMap[i - 1].bookingRefNumber === undefined || seatMap[i - 1].bookingRefNumber === null) ? 0 : ( (seatMap[i - 1].bookingRefNumber === $scope.ref) ? 0 : 1);
+      state = (seatMap[i - 1].Cabin === $scope.old[0].class) ? state : 3;
       var node = {
         "type": 1,
         "uniqueName": seatMap[i - 1].seatNum,
@@ -117,12 +118,12 @@ App.controller('seatMapCtrl', ['$scope', '$http', 'BookingSrv', '$routeParams', 
       $http.post('/choosingSeat', body).success(function(res) {
         if ($scope.way === "Return") {
           alert(res);
-          $location.url('http://52.58.24.76/');
+          $window.location.href = 'http://52.58.24.76/';
         } else if (BookingSrv.getReturn().length != 0)
-          $location.url('/seatmap/Return');
+          $window.location.href = '/seatmap/Return';
         else {
           alert(res);
-          $location.url('http://52.58.24.76/');
+          $window.location.href = 'http://52.58.24.76/';
         }
       });
     } else {

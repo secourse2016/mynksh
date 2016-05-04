@@ -187,7 +187,8 @@ exports.submitPay = function(firstName, lastName, passportNumber, expiryDate, da
         "destination": flights[0].destination,
         "arrivalTime": flights[0].arrivalTime,
         "departureTime": flights[0].departureTime,
-        "way": fWay
+        "way": fWay,
+        "class" : businessOrEconomic
       };
       collection.insertOne(document, {
         w: 1
@@ -250,7 +251,7 @@ exports.check = function(passengerDetails, cabin, cost, outgoingFlightId, return
             expectedCost = (outgoingCost + returnCost) * tickets;
 
           }
-          if (expectedCost !== cost) {
+          if (expectedCost.toFixed(2) !== cost.toFixed(2)) {
             cb("The cost of the trip is not as expected");
             return;
           }
