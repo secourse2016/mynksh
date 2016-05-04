@@ -13,7 +13,7 @@ exports.seedDB = function(cb) {
     mongo.seed('flights', flights, function() {
       mongo.seed('airLines', airlines, function() {
         mongo.seed('airports', airports, function() {
-          cb(err,true);
+          cb(err, true);
         });
       });
     });
@@ -40,17 +40,26 @@ exports.getAirLines = function(cb) {
   });
 }
 
+exports.getSeatMap = function(flight, cb) {
+  var collection = mongo.db().collection('flights');
+  collection.find({
+    "flightNumber": flight
+  }).toArray(function(err, airLines) {
+    cb(err, airLines[0].SeatMap);
+  });
+}
+
 exports.getAirLineIP = function(airLineName, cb) {
   var airLineIP = "";
-  if(airLineName === "Iberia"){
-    cb(null,'Iberia');
+  if (airLineName === "Iberia") {
+    cb(null, 'Iberia');
     return;
   }
   var collection = mongo.db().collection('airLines');
   collection.find({
     "name": airLineName + " Airlines"
   }).toArray(function(err, airLine) {
-    if (airLine.length === 0){
+    if (airLine.length === 0) {
       cb(err, "No ip with this Name");
       return;
     }
@@ -58,7 +67,6 @@ exports.getAirLineIP = function(airLineName, cb) {
     cb(err, airLineIP);
   });
 }
-
 
 exports.getBooking = function(cb) {
   var collection = mongo.db().collection('bookings');
@@ -154,11 +162,11 @@ exports.submitPay = function(firstName, lastName, passportNumber, expiryDate, da
       "_id": new ObjectId(flightId)
     }, {
       $set: {
-        "availableESeats" : flights[0].availableESeats,
-        "availableBSeats" : flights[0].availableBSeats,
-        "nextBusSeat"     : bSeat,
-        "nextEcoSeat"     : eSeat,
-        "SeatMap"         : flights[0].SeatMap
+        "availableESeats": flights[0].availableESeats,
+        "availableBSeats": flights[0].availableBSeats,
+        "nextBusSeat": bSeat,
+        "nextEcoSeat": eSeat,
+        "SeatMap": flights[0].SeatMap
       }
     }, {
       upsert: false
@@ -179,7 +187,7 @@ exports.submitPay = function(firstName, lastName, passportNumber, expiryDate, da
         "destination": flights[0].destination,
         "arrivalTime": flights[0].arrivalTime,
         "departureTime": flights[0].departureTime,
-        "way" : fWay
+        "way": fWay
       };
       collection.insertOne(document, {
         w: 1
@@ -190,100 +198,82 @@ exports.submitPay = function(firstName, lastName, passportNumber, expiryDate, da
   });
 }
 
-exports.check= function(passengerDetails, cabin, cost, outgoingFlightId, returnFlightId, cb)
-{
-  if(cabin === undefined || cabin === null)
-  {
+exports.check = function(passengerDetails, cabin, cost, outgoingFlightId, returnFlightId, cb) {
+  if (cabin === undefined || cabin === null) {
     cb("Please specify the cabin economy/business.");
     return;
   }
   var validCabin= cabin.toLowerCase();
   if(validCabin !== "economy" && validCabin !== "business")
   {
-    cb("The chosen calss is not supported by IBERIA.");
+    cb("The chosen class is not supported by IBERIA.");
     return;
   }
-  for(var i=0; i<passengerDetails.length; i++)
-  {
-    if(passengerDetails[i].firstName === undefined)
-    {
+  for (var i = 0; i < passengerDetails.length; i++) {
+    if (passengerDetails[i].firstName === undefined) {
       cb("Passenger " + i + "'s first name was not defined.");
       return;
     }
-    if(passengerDetails[i].lastName === undefined)
-    {
+    if (passengerDetails[i].lastName === undefined) {
       cb("Passenger " + i + "'s last name was not defined.");
       return;
     }
-    if(passengerDetails[i].passportNum === undefined)
-    {
+    if (passengerDetails[i].passportNum === undefined) {
       cb("Passenger " + i + "'s passport number was not defined.");
       return;
     }
-    if(passengerDetails[i].passportNum === undefined)
-    {
+    if (passengerDetails[i].passportNum === undefined) {
       cb("Passenger " + i + "'s passport number was not defined.");
       return;
     }
-    if(passengerDetails[i].dateOfBirth === undefined)
-    {
+    if (passengerDetails[i].dateOfBirth === undefined) {
       cb("Passenger " + i + "'s date of birth was not defined.");
       return;
     }
   }
   var tickets = passengerDetails.length;
-  var outgoingCost=0;
-  var returnCost=0;
-  var expectedCost=0;
-  if(outgoingFlightId !== undefined && outgoingFlightId !== null)
-    getFlightCost(outgoingFlightId, validCabin, function(cbOutCost)
-      {
-        outgoingCost=cbOutCost;
-        if(returnFlightId !== undefined && returnFlightId !== null)
-        returnCost= getFlightCost(returnFlightId, validCabin, function(cbReturnCost)
-        {
-          returnCost=cbReturnCost;
-          if(outgoingCost === -1)
-          {
+  var outgoingCost = 0;
+  var returnCost = 0;
+  var expectedCost = 0;
+  if (outgoingFlightId !== undefined && outgoingFlightId !== null)
+    getFlightCost(outgoingFlightId, validCabin, function(cbOutCost) {
+      outgoingCost = cbOutCost;
+      if (returnFlightId !== undefined && returnFlightId !== null)
+        returnCost = getFlightCost(returnFlightId, validCabin, function(cbReturnCost) {
+          returnCost = cbReturnCost;
+          if (outgoingCost === -1) {
             cb("The outgoing flight is not supported by Iberia.");
             return;
-          }
-          else if(returnCost === -1)
-          {
+          } else if (returnCost === -1) {
             cb("The return flight is not supported by Iberia.");
             return;
-          }
-          else
-          {
-            expectedCost= (outgoingCost + returnCost)*tickets;
+          } else {
+            expectedCost = (outgoingCost + returnCost) * tickets;
 
           }
-          if(expectedCost !== cost)
-          {
+          if (expectedCost !== cost) {
             cb("The cost of the trip is not as expected");
             return;
           }
         });
-      });
+    });
   cb(null);
 }
-var getFlightCost = function(flightId, cabin, price)
-{
+var getFlightCost = function(flightId, cabin, price) {
   var collection = mongo.db().collection('flights');
-  var ticketPrice=0;
+  var ticketPrice = 0;
   collection.find({
     "_id": new ObjectId(flightId)
   }).toArray(function(err, flights) {
 
     if (flights.length === 0)
-      ticketPrice= -1;
-    if(cabin === "economy")
-      ticketPrice= flights[0].eCost;
+      ticketPrice = -1;
+    if (cabin === "economy")
+      ticketPrice = flights[0].eCost;
     else
-      ticketPrice= flights[0].bCost;
+      ticketPrice = flights[0].bCost;
     price(ticketPrice);
-    });
-
+  });
 }
 
 exports.searchBookings = function(bookingRef, cb) {
@@ -315,7 +305,7 @@ exports.changeSeats= function(flightNumber, oldSeats, newSeats, bookingRefNumber
         });
     });
   });
-  
+
 }
 var changeSeatMap = function (oldSeatMap, newSeats, oldSeats, bookingRefNumber,cb)
 {
@@ -330,7 +320,7 @@ var changeSeatMap = function (oldSeatMap, newSeats, oldSeats, bookingRefNumber,c
     }
   }
   cb(oldSeatMap);
-  
+
 }
 var getSeatMap = function(flightNumber,cb)
 {

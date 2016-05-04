@@ -3,7 +3,6 @@
 (function() {
     var client = require('mongodb').MongoClient;
     var db;
-
     module.exports = {
         init: function(dbURL, callback) {
             client.connect(dbURL, function(err, database) {
