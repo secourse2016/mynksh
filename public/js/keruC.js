@@ -215,7 +215,6 @@ var f = function($compile) {
             if (clickedNode.node.selected != 1 && clickedNode.node.selected != 3) {
               clickedNode.node.selected = clickedNode.node.selected == 0 ? 2 : 0;
               nodeLocations[i] = clickedNode;
-              console.log(maxSeatstoBeSelected);
               switch (clickedNode.node.selected) {
                 case 0:
                   var indexof = scope.selectedNodes.indexOf(clickedNode.node);
@@ -226,7 +225,6 @@ var f = function($compile) {
                     scope.selectedNodes.push(clickedNode.node);
                   break;
               }
-              console.log(scope.selectedNodes.length);
               scope.$apply();
             }
           }

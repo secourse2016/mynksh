@@ -1,36 +1,28 @@
-
-<meta http-equiv="content-type" content="text/html; charset=UTF-8"><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no">
-
-
-    <!-- <link href="../js/angular.keruC%20demo_files/font-awesome.css" rel="stylesheet" type="text/css"> -->
-    <!-- <link href="../js/angular.keruC%20demo_files/bootstrap.css" rel="stylesheet" type="text/css"> -->
-    <!-- <script src="../js/angular.keruC%20demo_files/angular_002.js"></script> -->
-
-
-<body class="ng-scope" data-ng-controller="mainController">
-    <div class="flex-container">
-        <div class="flex-columns flex-column-right">
-            <div>
-                <keruc-seatpicker class="ng-isolate-scope" data-data="seatsData" data-selected-nodes="selectedNodes" data-on-selected="nodeSelected($node)"
-                data-on-deselected="nodeDeselected($node)" data-on-disallowed-selected="nodeDisallowedSelected($node)"><canvas width="500" height="500" id="canvasId">
-                </canvas></keruc-seatpicker>
-                <div>
-                    <h6 class="list-heading">Events <small>run your own callbacks</small></h6>
-                    <div class="ng-binding" ng-bind="userEvent">user deselected F7</div>
-                        <h6 class="list-heading">Selected seats <small>accessible in parent controller scope</small></h6>
-                    <div>
-                        <!-- ngRepeat: node in selectedNodes track by node.uniqueName -->
-                        <span class="" ng-show="selectedNodes.length &lt;= 0">none</span>
-                    </div>
-                </div>
-            </div>
+  <div class="flex-container">
+    <div class="flex-columns flex-column-right">
+      <div>
+        <keruc-seatpicker class="ng-isolate-scope" data-data="seatsData" data-selected-nodes="selectedNodes" data-on-selected="nodeSelected($node)" data-on-deselected="nodeDeselected($node)" data-on-disallowed-selected="nodeDisallowedSelected($node)">
+          <canvas width="500" height="500" id="canvasId"></canvas>
+        </keruc-seatpicker>
+        <div>
+          <h6 class="list-heading">Events
+            <small>run your own callbacks</small>
+          </h6>
+          <div class="ng-binding" ng-bind="userEvent">user deselected F7</div>
+          <h6 class="list-heading">Selected seats
+            <small>accessible in parent controller scope</small>
+          </h6>
+          <div>
+            <!-- ngRepeat: node in selectedNodes track by node.uniqueName -->
+            <span class="" ng-show="selectedNodes.length &lt;= 0">none</span>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
+  Selected Seats :
+  {{selectedNodes.uniqueName}}
 
-    <a href class="btn btn-primary btn-lg hvr-underline-from-center" ng-click='Reserve()'>Reserve {{way}} seat</a>
-data : {{selectedNodes}}
-
-
-</body></html>
+  <a href class="btn btn-primary btn-lg hvr-underline-from-center" ng-click='Reserve()'>Reserve
+    {{way}}
+    seat</a>
