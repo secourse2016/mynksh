@@ -353,6 +353,9 @@ var updateSeatMap =function(flightNumber, newSeatMap,cb)
     }, {
       upsert: false
     }, function(err, results) {
-        cb(true);
+        if(err === undefined || err === null)
+          cb(true);
+        else
+          cb(false);
     });
 };

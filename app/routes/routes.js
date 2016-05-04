@@ -150,6 +150,15 @@ module.exports = function(app, mongo) {
     // set initial timeout
     var timeout = setTimeout(fn, 1000);
   });
+  app.post('/choosingSeat', function(req,res){
+    mongo.changeSeats(req.body.flightNumber, req.body.oldSeats, req.body.newSeats, req.body.bookingRefNumber, function(done)
+    {
+      if(done === true)
+        res.send("It was successfull");
+      else
+        res.send("It was unsuccessful"); 
+    });
+  });
 
   /* Middlewear For Secure API Endpoints */
   app.use('/api/flights/search' | '/booking' | '/stripe/pubkey', function(req, res, next) {
