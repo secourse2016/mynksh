@@ -8,12 +8,13 @@ App.controller('seatMapCtrl', ['$scope', '$http', 'BookingSrv', '$routeParams', 
 
   $scope.flightNumber = BookingSrv.getFlight();
 
-  $scope.flightNumber = 'MYNKSH20';
+  // $scope.flightNumber = 'MYNKSH20';
 
   $scope.ref = BookingSrv.getSelectedBookingRef();
 
   $http.get('/data/seatMap/' + $scope.flightNumber).success(function(seatMap) {
     $scope.seatsData = $scope.Map(seatMap);
+    console.log($scope.seatsData);
   });
 
 
@@ -61,7 +62,7 @@ App.controller('seatMapCtrl', ['$scope', '$http', 'BookingSrv', '$routeParams', 
     return seatsData;
   }
 
-  maxSeatstoBeSelected = 3; //FlightsSrv.getTickets();
+  maxSeatstoBeSelected = $scope.old.length; //FlightsSrv.getTickets();
 
   $scope.$watch('selectedNodes', function(val) {
     // if ($scope.selectedNodes.length > 3)
@@ -96,14 +97,14 @@ App.controller('seatMapCtrl', ['$scope', '$http', 'BookingSrv', '$routeParams', 
   };
 
   $scope.Reserve = function() {
-    // if ($scope.way === 'Outgoing' && BookingSrv.getReturn() != 0)
+    // $http.post('/')
 
-    // else
-
-    if ($scope.roundTrip && OutReturnSrv.getSelectedReturnFlight().Airline === 'IBERIA')
+    if (BookingSrv.getReturn().length != 0)
       $location.url('/seatmap/Return');
-    else
-      $location.url('/confirm');
+    else{
+      alert('Succesfully!');
+      $location.url('/');
+    }
   };
 
 

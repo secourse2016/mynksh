@@ -26,13 +26,8 @@ App.controller('bookingRefCtrl', function($scope, FlightsSrv, $location, Booking
     });
   }
 
-  $scope.goToSeats()
-
-  //   if ($scope.selectedOutgoingFlight.Airline === 'IBERIA')
-  //    $location.url('/seatmap/Outgoing');
-  //  else if ($scope.roundTrip == 'true' && $scope.selectedReturnFlight.Airline === 'IBERIA')
-  //    $location.url('/seatmap/Return');
-  //  else
-  //    $location.url('/confirm');
+  $scope.goToSeats = function() {
+       $location.url('/seatmap/Outgoing');
+  }
 
 });
