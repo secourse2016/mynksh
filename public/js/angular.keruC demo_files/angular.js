@@ -292,12 +292,12 @@ var f = function ($compile) {
             scope.settings = {
                 canvasWidth: attrs.canvasWidth || 500,
                 canvasHeight: attrs.canvasHeight || 500,
-                vacantColourBg: attrs.vacantColourBg || '#3090C7',
+                vacantColourBg: attrs.vacantColourBg || '#00AFFF',
                 vacantColourFg: attrs.vacantColourFg || '#ADDFFF',
-                occupiedColourBg: attrs.occupiedColourBg || '#800000',
-                occupiedColourFg: attrs.occupiedColourFg || '#F56979',
-                selectedColourBg: attrs.selectedColourBg || '#7854AF',
-                selectedColourFg: attrs.selectedColourFg || '#472085',
+                occupiedColourBg: attrs.occupiedColourBg || '#F56979',
+                occupiedColourFg: attrs.occupiedColourFg || '#800000 ',
+                selectedColourBg: attrs.selectedColourBg || '#76D75D',
+                selectedColourFg: attrs.selectedColourFg || '#C1F2B4',
                 showRowLabel: attrs.showRowLabel || false,
                 showSeatLabel: attrs.showSeatLabel || true
             };
