@@ -272,6 +272,17 @@ describe('submitpayTODB', function() {
  });     
 });
 
+describe('searchBookingsTODB', function() {
+    db.init('mongodb://localhost:27017/mynksh', function() { 
+    it('should return the flights desired from the database', function(done) {
+        mongo.submitPay("18y0q80wdhj",function(err,ref){
+            assert.isAtLeast(ref.length,1);
+            done();
+        });
+    });
+  });
+ });  
+
 
 // it('/api/quote should return a quote JSON object with keys [_id, text, author]', function(done) {
 //     request.get('/api/quote').set('Accept','application/json').expect('Content-Type',/json/).expect(function(res){
