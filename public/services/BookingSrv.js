@@ -27,6 +27,12 @@ App.factory('BookingSrv', function($http) {
     },
     setFlight: function(value) {
       this.Flight = value;
+    },
+    getFlightOut: function() {
+      return this.getFlightOut;
+    },
+    setFlightOut: function(value) {
+      this.getFlightOut = value;
     }
   }
 });
