@@ -1,8 +1,12 @@
 App.controller('congratsCtrl', function($scope, $location, paymentSrv, OutReturnSrv) {
   $scope.bookingRefNo1 = paymentSrv.getBookingRefNo1();
-  $scope.bookingRefNo2 = paymentSrv.getBookingRefNo2();
+  
   $scope.airline1 = OutReturnSrv.getSelectedOutFlight().Airline;
-  $scope.airline2 = OutReturnSrv.getSelectedReturnFlight().Airline;
+  $scope.roundTrip = FlightsSrv.getSelectedRoundTrip();
+  if ($scope.roundTrip === 'true'){
+    $scope.airline2 = OutReturnSrv.getSelectedReturnFlight().Airline;
+    $scope.bookingRefNo2 = paymentSrv.getBookingRefNo2();
+  }
 
   console.log($scope.bookingRefNo1);
   console.log($scope.bookingRefNo2);
