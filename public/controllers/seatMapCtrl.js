@@ -97,14 +97,23 @@ App.controller('seatMapCtrl', ['$scope', '$http', 'BookingSrv', '$routeParams', 
   };
 
   $scope.Reserve = function() {
-    // $http.post('/')
-
-    if (BookingSrv.getReturn().length != 0)
-      $location.url('/seatmap/Return');
-    else{
-      alert('Succesfully!');
-      $location.url('/');
-    }
+    // var body = {
+    //   "flightNumber": $scope.flightNumber,
+    //   "oldSeats": $scope.old,
+    //   "newSeats": $scope.selectedNodes,
+    //   "bookingRefNumber"
+    //   $scope.ref:
+    // }
+    // $http.post('/choosingSeat', {
+    //   body
+    // }).success(function(res) {
+    //   if (BookingSrv.getReturn().length != 0)
+    //     $location.url('/seatmap/Return');
+    //   else {
+    //     alert('Succesfully!');
+    //     $location.url('/');
+    //   }
+    // })
   };
 
 
