@@ -1,4 +1,4 @@
-App.controller('seatMapCtrl', ['$scope', '$http', 'BookingSrv', '$routeParams', '$location', function($scope, $http, BookingSrv, $routeParams, $location) {
+App.controller('seatMapCtrl', ['$scope', '$http', 'BookingSrv', '$routeParams', '$window', function($scope, $http, BookingSrv, $routeParams, $window) {
 
   $scope.way = $routeParams.way;
   if ($scope.way === 'Outgoing'){
@@ -118,12 +118,12 @@ App.controller('seatMapCtrl', ['$scope', '$http', 'BookingSrv', '$routeParams', 
       $http.post('/choosingSeat', body).success(function(res) {
         if ($scope.way === "Return") {
           alert(res);
-          $location.url('http://52.58.24.76/');
+          $window.location.href = 'http://52.58.24.76/';
         } else if (BookingSrv.getReturn().length != 0)
-          $location.url('/seatmap/Return');
+          $window.location.href = '/seatmap/Return';
         else {
           alert(res);
-          $location.url('http://52.58.24.76/');
+          $window.location.href = 'http://52.58.24.76/';
         }
       });
     } else {
