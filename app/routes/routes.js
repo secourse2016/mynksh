@@ -13,14 +13,16 @@ module.exports = function(app, mongo) {
 
   /* SEED DB */
   app.get('/db/seed', function(req, res) {
-    mongo.seedDB();
-    res.send("Seeding done");
+    mongo.seedDB(function(err, param) {
+      res.send("Seeding done");
+    });
   });
 
   /* DELETE DB */
   app.get('/db/delete', function(req, res) {
-    mongo.clearDB();
-    res.send("DB clear");
+    mongo.clearDB(function(err) {
+      res.send("DB clear");
+    });
   });
 
   /* GET ALL STATES ENDPOINT */
@@ -193,7 +195,7 @@ module.exports = function(app, mongo) {
   });
 
   var insertPassengers = function(i, passengerDetails, cabin, cost, outgoingFlightId, returnFlightId, error, data, cb) {
-    if (i === passengerDetails.length || (error !== null && error !== undefined)){
+    if (i === passengerDetails.length || (error !== null && error !== undefined)) {
       var fb = {
         refNum: data,
         errorMessage: error
@@ -216,9 +218,9 @@ module.exports = function(app, mongo) {
             passengerDetails[i].passportExpiryDate, passengerDetails[i].dateOfBirth, passengerDetails[i].nationality,
             passengerDetails[i].email, cabin, cost, returnFlightId, data2, "return",
             function(err2, data3) {
-              var err3=err;
-              if(err2 !== null && err2 !== undefined)
-                err3= err2;
+              var err3 = err;
+              if (err2 !== null && err2 !== undefined)
+                err3 = err2;
               insertPassengers(i + 1, passengerDetails, cabin, cost, outgoingFlightId, returnFlightId, err3, data2, cb);
             });
         });
