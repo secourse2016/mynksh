@@ -1,10 +1,10 @@
 # MYNKSH
 ###DISCLAIMER
- • Project is just a simulation for a real airline webserver and it can be ONLY used for learning purpose NO MORE
- • The project is built for an university course (Software Engineering- German University in Cairo) under the supervison of University
- • No actual companies or payments were involved, all payments are done in test mode, so no real cards are charged.</p>
+ - Project is just a simulation for a real airline webserver and it can be ONLY used for learning purpose NO MORE
+ - The project is built for an university course (Software Engineering- German University in Cairo) under the supervison of University
+ - No actual companies or payments were involved, all payments are done in test mode, so no real cards are charged.
 ### Project Description 
-#####This project is done using MEAN stack (MongoDB, ExpressJS, AngularJS, NodeJS)</h5>
+#####This project is done using MEAN stack (MongoDB, ExpressJS, AngularJS, NodeJS)
 Our team has been hired to build an online reservation system simulation for a virtual airline company. The system will be comprised of a single page web application using mongodb, nodejs, and angular.The application is also extended to support an IOS & Android mobile platform.
 <p>The project is hosted using an AWS server through the following link `<b>www.mynksh.com</b>`</p>
 <p>
@@ -22,7 +22,7 @@ The airline company has initially requested the system support a very basic work
   * `JWTSECRET`, the JWT secret key for authentication for the secure APIs, the JWTs can be found in the following directory public>Services so you will need to re-initialize them.
   * `PORT`, port number for application to run on.
   * `MONGODB_URL`, the MongoDB Url for the Database you previously created.
-  * `STRIPE_KEY`, Stripe seceret key which you can get from Stripe website for testing prupose.
+  * `StripeSecret `, Stripe seceret key which you can get from Stripe website for testing prupose.
 5. Make sure your MongoDB connection is alive if not start a MongoDB connection `$ sudo service mongod start`.
 6. Finally now you ready to start your server, So just type `$ npm start`.
 
