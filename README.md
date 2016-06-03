@@ -13,7 +13,7 @@ The airline company has initially requested the system support a very basic work
  • Provide all available (from/to) flights
  • Select, confirm, and pay for flights
 </p>
-<p>You can also login in to our [Website](http://www.mynksh.com) and try it. </p>
+<p>You can also login in to our <a href='http://www.mynksh.com'>Website</a> and try it. </p>
 ### How to run the web app:
 1. Clone the repo through `$ git clone https://github.com/secourse2016/mynksh`
 2. Navigate into the directory using `$ mynksh`, Then run `npm install` to get all required packages.
