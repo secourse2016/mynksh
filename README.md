@@ -1,6 +1,6 @@
 # MYNKSH
-<h2>This project is just a simulation for a real airline webserver and it can be ONLY used for learning purpose NO MORE</h2>
-<h2>The project is built for an university course (Software Engineering- German University in Cairo) under the supervison of University</h2>
+<h4>This project is just a simulation for a real airline webserver and it can be ONLY used for learning purpose NO MORE</h4>
+<h4>The project is built for an university course (Software Engineering- German University in Cairo) under the supervison of University</h4>
 <h3> Project Description </h3>
 <h5>This project is done using MEAN stack (MongoDB, ExpressJS, AngularJS, NodeJS)</h5>
 <p>Our team has been hired to build an online reservation system simulation for a virtual airline company. The system will be comprised of a single page web application using mongodb, nodejs, and angular.The application is also extended to support an IOS & Android mobile platform.</p>
