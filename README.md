@@ -6,13 +6,14 @@
 ### Project Description 
 #####This project is done using MEAN stack (MongoDB, ExpressJS, AngularJS, NodeJS)</h5>
 Our team has been hired to build an online reservation system simulation for a virtual airline company. The system will be comprised of a single page web application using mongodb, nodejs, and angular.The application is also extended to support an IOS & Android mobile platform.
+<p>The project is hosted using an AWS server through the following link `<b>www.mynksh.com</b>`</p>
 <p>
 The airline company has initially requested the system support a very basic workflow:
  • Allow any user to specify his/her travel location(s) and dates
  • Provide all available (from/to) flights
  • Select, confirm, and pay for flights
 </p>
-<p>You can also login in to our website and try it `<b>www.mynksh.com</b>`</p>
+<p>You can also login in to our [Website](http://www.mynksh.com) and try it. </p>
 ### How to run the web app:
 1. Clone the repo through `$ git clone https://github.com/secourse2016/mynksh`
 2. Navigate into the directory using `$ mynksh`, Then run `npm install` to get all required packages.
