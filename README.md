@@ -1,19 +1,18 @@
 # MYNKSH
 ###DISCLAIMER
-<p>•This project is just a simulation for a real airline webserver and it can be ONLY used for learning purpose NO MORE</br>
-•The project is built for an university course (Software Engineering- German University in Cairo) under the supervison of University</br>
-•No actual companies or payments were involved, all payments are done in test mode, so no real cards are charged.</p>
-<h3> Project Description </h3>
-<h5>This project is done using MEAN stack (MongoDB, ExpressJS, AngularJS, NodeJS)</h5>
-<p>Our team has been hired to build an online reservation system simulation for a virtual airline company. The system will be comprised of a single page web application using mongodb, nodejs, and angular.The application is also extended to support an IOS & Android mobile platform.</p>
+ • Project is just a simulation for a real airline webserver and it can be ONLY used for learning purpose NO MORE
+ • The project is built for an university course (Software Engineering- German University in Cairo) under the supervison of University
+ • No actual companies or payments were involved, all payments are done in test mode, so no real cards are charged.</p>
+### Project Description 
+#####This project is done using MEAN stack (MongoDB, ExpressJS, AngularJS, NodeJS)</h5>
+Our team has been hired to build an online reservation system simulation for a virtual airline company. The system will be comprised of a single page web application using mongodb, nodejs, and angular.The application is also extended to support an IOS & Android mobile platform.
 <p>
 The airline company has initially requested the system support a very basic workflow:
-</br>
- • Allow any user to specify his/her travel location(s) and dates</br>
- • Provide all available (from/to) flights</br>
+ • Allow any user to specify his/her travel location(s) and dates
+ • Provide all available (from/to) flights
  • Select, confirm, and pay for flights
 </p>
-<p>You can also login in to our website and try it <h5>www.mynksh.com</h5></p>
+<p>You can also login in to our website and try it `<b>www.mynksh.com</b>`</p>
 ### How to run the web app:
 1. Clone the repo through `$ git clone https://github.com/secourse2016/mynksh`
 2. Navigate into the directory using `$ mynksh`, Then run `npm install` to get all required packages.
@@ -29,3 +28,12 @@ The airline company has initially requested the system support a very basic work
 ### How to run the Ionic app:
 1.  Install Ionic and Cordova on your machine `$ npm install -g cordova ionic`, and run `ionic serve --lab`
   * The Ionic is ready to be used on web machine as it is a simulation for a mobile application
+  
+###Team:
+ - [Hazem Ayman](https://github.com/hazem279)
+ - [Mohamed Ashraf](https://github.com/Kefa7y)
+ - [Mostafa Ibrahim](https://github.com/xXGenomXx)
+ - [Narihan Ellithy](https://github.com/narihane)
+ - [Safa Ads](https://github.com/safa-ads)
+ - [Yara Sobhy](https://github.com/YaraA)
+ - [Youssuf Radi](https://github.com/YoussufRadi)
