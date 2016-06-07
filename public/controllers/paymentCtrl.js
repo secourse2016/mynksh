@@ -49,7 +49,13 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
       paymentSrv.getOtherStripePubKey(airlineIP).success(function(key) {
         cb(key, airlineIP);
       })
-    });
+      .error(function(key){
+        alert("The chosen airline doesn't support external booking. Please go back to Iberia by clicking on the logo at the top of the page.");
+      });
+    })
+    .error(function(airlineIP){
+        alert("The chosen airline doesn't support external booking. Please go back to Iberia by clicking on the logo at the top of the page.");
+      });
   };
 
   var paymentInfo = {};
@@ -127,7 +133,7 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
       paymentInfo.paymentToken = response.id;
       paymentSrv.chargeCard(paymentInfo, pingIp)
         .success(function(data) {
-          // console.log(data);
+          console.log(data);
           if (paymentSrv.getBookingRefNo1() === undefined || paymentSrv.getBookingRefNo1() === null)
             paymentSrv.setBookingRefNo1(data.refNum);
           else
@@ -147,7 +153,9 @@ App.controller('paymentCtrl', function($scope, FlightsSrv, ConfirmSrv, OutReturn
           });
         })
         .error(function(data, status, headers, config) {
-          alert("THIS AIRLINE DOESN'T SUPPORT EXTERNAL BOOKING" + data.errorMessage);
+          console.log(data);
+          //if(data.refNum === null || data.refNum === undefined)
+          alert("The chosen airline doesn't support external booking. Please go back to Iberia by clicking on the logo at the top of the page.");
         });
     }
   };

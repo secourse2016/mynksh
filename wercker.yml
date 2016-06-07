@@ -2,7 +2,6 @@ box: node
 build:
    steps:
       - npm-install
-      - npm-test
 deploy:
    aws:
       - add-ssh-key:
