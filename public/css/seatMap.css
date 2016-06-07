@@ -6,7 +6,7 @@ body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 div.flex-container {
-  display: flex;
+  /*display: flex;*/
   flex-direction: row;
 }
 div.sidebar-container {
@@ -18,9 +18,12 @@ div.sidebar-container {
 }
 div.flex-container > div.flex-columns {
   display: flex;
-  background-image: url('/images/seatMap.png');
-  width: 1356px;
+  background-image: url('http://i.imgur.com/jChbBN1.png?1');
+  width: 500px;
   height: 675px;
+  /*position:center;*/
+  top:70px;
+  left:400px;
   background-repeat:no-repeat;
 }
 .list-heading {

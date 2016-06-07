@@ -12,18 +12,18 @@ module.exports = function(app, mongo) {
   });
 
   /* SEED DB */
-  app.get('/db/seed', function(req, res) {
-    mongo.seedDB(function(err, param) {
-      res.send("Seeding done");
-    });
-  });
+//  app.get('/db/seed', function(req, res) {
+  //  mongo.seedDB(function(err, param) {
+    //  res.send("Seeding done");
+   // });
+ // });
 
   /* DELETE DB */
-  app.get('/db/delete', function(req, res) {
-    mongo.clearDB(function(err) {
-      res.send("DB clear");
-    });
-  });
+ // app.get('/db/delete', function(req, res) {
+   // mongo.clearDB(function(err) {
+     // res.send("DB clear");
+   // });
+ // });
 
   /* GET ALL STATES ENDPOINT */
   app.get('/data/airports', function(req, res) {
