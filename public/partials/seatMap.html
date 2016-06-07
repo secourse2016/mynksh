@@ -24,16 +24,17 @@
 <!-- <link rel="stylesheet" href="css/style.css" /> -->
     <!-- <div class="section-overlay"></div> -->
 <!-- <div class="container home text-center col-md-12" style="background-color:white;"> -->
+<center>
   <div class="flex-container">
     <div class="flex-columns flex-column-right">
-      <div>
+      <div><br><br><br><br><br>
         <!-- <div class="divID" style="background-image: url('/images/seatMap.png');width:450px;height:675px;"> -->
           <!-- <div style="position:relative; top:90px;"> -->
         <keruc-seatpicker class="ng-isolate-scope" data-data="seatsData" data-selected-nodes="selectedNodes" data-on-selected="nodeSelected($node)" data-on-deselected="nodeDeselected($node)" data-on-disallowed-selected="nodeDisallowedSelected($node)">
           <canvas height="900px" width="563px" id="canvasId"></canvas>
         </keruc-seatpicker>
         <!-- </div> -->
-      <!-- </div><br> -->
+      <!-- </div><br> --><br><br><br><br><br>
       <div style="border-radius: 25px;padding: 1%;background-color:rgba(207, 207, 207, 1)">
         <div>
           <h6 class="list-heading" style="color:black">Selected seats
@@ -44,7 +45,7 @@
           </div>
           Selected Seats: <font size=3 color="black"  ng-repeat = 'n in selectedNodes'>
           {{n.displayName}}</font><br>
-          <center><a href class="btn btn-lg hvr-underline-from-center"  style="background-color:rgba(0,0,0,0);color:maroon;"ng-click='Reserve()'>Change your 
+          <center><a href class="btn btn-lg hvr-underline-from-center"  style="background-color:rgba(0,0,0,0);color:maroon;"ng-click='Reserve()'>Change your
             {{way}}
             seat</a></center>
           </div>
@@ -52,4 +53,5 @@
       </div>
       </div>
     </div>
+  </center>
   <!-- </div> -->
