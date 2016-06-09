@@ -39,4 +39,4 @@ The airline company has initially requested the system support a very basic work
  - [Narihan Ellithy](https://github.com/narihane)
  - [Safa Ads](https://github.com/safa-ads)
  - [Yara Sobhy](https://github.com/YaraA)
- - [Youssuf Radi](https://github.com/YoussufRadi)
+ - [Youssuf Radi](http://youssufradi.github.io/)
